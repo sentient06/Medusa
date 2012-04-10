@@ -1,0 +1,311 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		81756F331534743500FCBA8E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81756F321534743500FCBA8E /* Cocoa.framework */; };
+		81756F3D1534743500FCBA8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81756F3B1534743500FCBA8E /* InfoPlist.strings */; };
+		81756F3F1534743500FCBA8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81756F3E1534743500FCBA8E /* main.m */; };
+		81756F431534743500FCBA8E /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 81756F411534743500FCBA8E /* Credits.rtf */; };
+		81756F461534743500FCBA8E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 81756F451534743500FCBA8E /* AppDelegate.m */; };
+		81756F491534743500FCBA8E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81756F471534743500FCBA8E /* MainMenu.xib */; };
+		81756F4C1534743600FCBA8E /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81756F4A1534743500FCBA8E /* Medusa.xcdatamodeld */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		81756F2E1534743500FCBA8E /* Medusa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Medusa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		81756F321534743500FCBA8E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		81756F351534743500FCBA8E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		81756F361534743500FCBA8E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		81756F371534743500FCBA8E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		81756F3A1534743500FCBA8E /* Medusa-Info.plist */ = {isa = PBXFileReference; path = "Medusa-Info.plist"; sourceTree = "<group>"; };
+		81756F3C1534743500FCBA8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		81756F3E1534743500FCBA8E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		81756F401534743500FCBA8E /* Medusa-Prefix.pch */ = {isa = PBXFileReference; path = "Medusa-Prefix.pch"; sourceTree = "<group>"; };
+		81756F421534743500FCBA8E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		81756F441534743500FCBA8E /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		81756F451534743500FCBA8E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		81756F481534743500FCBA8E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		81756F4B1534743500FCBA8E /* Medusa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Medusa.xcdatamodel; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		81756F2B1534743500FCBA8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81756F331534743500FCBA8E /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		81756F231534743400FCBA8E = {
+			isa = PBXGroup;
+			children = (
+				81756F381534743500FCBA8E /* Medusa */,
+				81756F311534743500FCBA8E /* Frameworks */,
+				81756F2F1534743500FCBA8E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		81756F2F1534743500FCBA8E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				81756F2E1534743500FCBA8E /* Medusa.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		81756F311534743500FCBA8E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81756F321534743500FCBA8E /* Cocoa.framework */,
+				81756F341534743500FCBA8E /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81756F341534743500FCBA8E /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81756F351534743500FCBA8E /* AppKit.framework */,
+				81756F361534743500FCBA8E /* CoreData.framework */,
+				81756F371534743500FCBA8E /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		81756F381534743500FCBA8E /* Medusa */ = {
+			isa = PBXGroup;
+			children = (
+				81756F441534743500FCBA8E /* AppDelegate.h */,
+				81756F451534743500FCBA8E /* AppDelegate.m */,
+				81756F471534743500FCBA8E /* MainMenu.xib */,
+				81756F4A1534743500FCBA8E /* Medusa.xcdatamodeld */,
+				81756F391534743500FCBA8E /* Supporting Files */,
+			);
+			path = Medusa;
+			sourceTree = "<group>";
+		};
+		81756F391534743500FCBA8E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				81756F3A1534743500FCBA8E /* Medusa-Info.plist */,
+				81756F3B1534743500FCBA8E /* InfoPlist.strings */,
+				81756F3E1534743500FCBA8E /* main.m */,
+				81756F401534743500FCBA8E /* Medusa-Prefix.pch */,
+				81756F411534743500FCBA8E /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		81756F2D1534743500FCBA8E /* Medusa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 81756F4F1534743600FCBA8E /* Build configuration list for PBXNativeTarget "Medusa" */;
+			buildPhases = (
+				81756F2A1534743500FCBA8E /* Sources */,
+				81756F2B1534743500FCBA8E /* Frameworks */,
+				81756F2C1534743500FCBA8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Medusa;
+			productName = Medusa;
+			productReference = 81756F2E1534743500FCBA8E /* Medusa.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		81756F251534743400FCBA8E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Giancarlo Mariot";
+			};
+			buildConfigurationList = 81756F281534743400FCBA8E /* Build configuration list for PBXProject "Medusa" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 81756F231534743400FCBA8E;
+			productRefGroup = 81756F2F1534743500FCBA8E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				81756F2D1534743500FCBA8E /* Medusa */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		81756F2C1534743500FCBA8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81756F3D1534743500FCBA8E /* InfoPlist.strings in Resources */,
+				81756F431534743500FCBA8E /* Credits.rtf in Resources */,
+				81756F491534743500FCBA8E /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		81756F2A1534743500FCBA8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				81756F3F1534743500FCBA8E /* main.m in Sources */,
+				81756F461534743500FCBA8E /* AppDelegate.m in Sources */,
+				81756F4C1534743600FCBA8E /* Medusa.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		81756F3B1534743500FCBA8E /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81756F3C1534743500FCBA8E /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		81756F411534743500FCBA8E /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81756F421534743500FCBA8E /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		81756F471534743500FCBA8E /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81756F481534743500FCBA8E /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		81756F4D1534743600FCBA8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		81756F4E1534743600FCBA8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		81756F501534743600FCBA8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Medusa/Medusa-Prefix.pch";
+				INFOPLIST_FILE = "Medusa/Medusa-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		81756F511534743600FCBA8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Medusa/Medusa-Prefix.pch";
+				INFOPLIST_FILE = "Medusa/Medusa-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		81756F281534743400FCBA8E /* Build configuration list for PBXProject "Medusa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81756F4D1534743600FCBA8E /* Debug */,
+				81756F4E1534743600FCBA8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		81756F4F1534743600FCBA8E /* Build configuration list for PBXNativeTarget "Medusa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				81756F501534743600FCBA8E /* Debug */,
+				81756F511534743600FCBA8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		81756F4A1534743500FCBA8E /* Medusa.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				81756F4B1534743500FCBA8E /* Medusa.xcdatamodel */,
+			);
+			currentVersion = 81756F4B1534743500FCBA8E /* Medusa.xcdatamodel */;
+			path = Medusa.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 81756F251534743400FCBA8E /* Project object */;
+}
