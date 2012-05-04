@@ -12,7 +12,6 @@
 
 //------------------------------------------------------------------------------
 @implementation VirtualMachineWindowController
-@synthesize useSelectedDisks;
 
 //------------------------------------------------------------------------------
 // Standard variables synthesizers.
