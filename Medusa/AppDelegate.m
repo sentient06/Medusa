@@ -5,8 +5,15 @@
 //  Created by Giancarlo Mariot on 10/04/2012.
 //  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
 //
+//------------------------------------------------------------------------------
 
 #import "AppDelegate.h"
+#import "VirtualMachineWindowController.h"  //VM Window
+#import "RomManagerWindowController.h"      //Rom Manager Window
+#import "DriveManagerWindowController.h"    //Drive Manager Window
+#import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
+
+//------------------------------------------------------------------------------
 
 @implementation AppDelegate
 
@@ -15,53 +22,262 @@
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize managedObjectContext = __managedObjectContext;
 
-- (void)dealloc
-{
+//------------------------------------------------------------------------------
+// Methods.
+
+/*!
+ * @method      dealloc:
+ * @discussion  Always in the top of the files!
+ */
+- (void)dealloc {
     [__persistentStoreCoordinator release];
     [__managedObjectModel release];
     [__managedObjectContext release];
     [super dealloc];
 }
-	
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
+
+//------------------------------------------------------------------------------
+// Application methods.
+
+/*!
+ * @method      openVirtualMachineWindow:
+ * @abstract    Opens the iTunes-like window to control the vm's properties.
+ */
+- (IBAction)openVirtualMachineWindow:(id)sender{
+    
+    NSArray *selectedVirtualMachines = [virtualMachinesArrayController selectedObjects];
+    //The user can select only one in the current interface, but anyway...
+    
+    NSManagedObject *selectedVirtualMachine;
+    
+    for (int i = 0; i < [selectedVirtualMachines count]; i++) {
+        
+        selectedVirtualMachine = [selectedVirtualMachines  objectAtIndex:i];
+        
+        VirtualMachineWindowController *newWindowController = [
+            [VirtualMachineWindowController alloc]
+                initWithVirtualMachine: selectedVirtualMachine
+                inManagedObjectContext: [self managedObjectContext]
+        ];
+        
+        //[newWindowController setShouldCloseDocument:NO];
+        //[self addWindowController:newWindowController];
+        [newWindowController showWindow:sender];
+        
+    }
+}
+
+/*!
+ * @method      showNewMachineView:
+ * @abstract    Displays the new VM sheet.
+ */
+- (IBAction)showNewMachineView:(id)sender {
+    
+    [ NSApp
+            beginSheet: newMachineView
+        modalForWindow: (NSWindow *)_window
+         modalDelegate: self
+        didEndSelector: nil
+           contextInfo: nil
+    ];
+    
+}
+
+/*!
+ * @method      endNewMachineView:
+ * @abstract    Closes the new VM sheet.
+ */
+- (IBAction)endNewMachineView:(id)sender {
+    
+    [newMachineNameField setStringValue:@""];
+    [newMachineModelField selectItemAtIndex:0];
+    [NSApp endSheet:newMachineView];
+    [newMachineView orderOut:sender];
+    
+}
+
+/*!
+ * @method      saveNewVirtualMachine:
+ * @abstract    Saves the new virtual machine created by the user to the
+ *              coredata.
+ * @discussion  This method is sort of messed. There is a need to check
+ *              the existence of the vm model before proceeding and this
+ *              leads to a whole new world of lines that I suppose are
+ *              not needed. Remember to refactor in the near future.
+ */
+- (IBAction)saveNewVirtualMachine:(id)sender {
+
+    //Gets the Managed Object Context:
+    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+
+    //Sets a new vm object.
+    NSManagedObject *newVirtualMachineObject = [
+        NSEntityDescription
+            insertNewObjectForEntityForName:@"VirtualMachines"
+                     inManagedObjectContext:managedObjectContext
+    ];
+    
+    //TODO: Refactor this part of the code:
+    //--------------------------------------------------------------------------
+    
+    // 1. Check the name of the macintosh model:
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"modelName = %@", [[newMachineModelField selectedItem] title]]; 
+    
+    // 2. Get the ROM Files entity:
+    NSEntityDescription *modelEntity = [NSEntityDescription entityForName:@"RomFiles" inManagedObjectContext:managedObjectContext];
+    
+    // 3. Set object to fetch the results:
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    // 4. Make request:
+    
+    [fetchRequest setEntity:modelEntity];
+    [fetchRequest setPredicate:predicate];
+    
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    
+    [fetchRequest release];
+
+    //--------------------------------------------------------------------------
+    
+    //Here we have all the fields to be inserted.
+    [newVirtualMachineObject setValue:[newMachineNameField stringValue] forKey:@"name"];
+    [newVirtualMachineObject setValue:[results objectAtIndex:0] forKey:@"model"];
+    
+       
+    //--------------------------------------------------------------------------
+    //Focus in the new item.
+    
+    //Something is not right here... bollocks.
+     
+     
+    //NSLog(@"%@", [[virtualMachinesArrayController arrangedObjects] lastObject]);
+//    [
+//        virtualMachinesArrayController
+//        setSelectionIndex:0
+//        //[[virtualMachinesArrayController arrangedObjects] lastIndex]
+//     //[[virtualMachinesArrayController arrangedObjects] las]
+////     [managedObject
+//    ];
+    //Open item's window if user specified.
+    //openVirtualMachineWindow
+    //--------------------------------------------------------------------------
+    
+    [self endNewMachineView:sender];
+
+}
+
+/*!
+ * @method      showRomManagerWindow:
+ * @abstract    Displays the Rom Manager.
+ */
+- (IBAction)showRomManagerWindow:(id)sender {
+    
+    if (!romWindowController) {
+        romWindowController = [[RomManagerWindowController alloc] initWithWindowNibName:@"RomManagerWindow"];
+    }
+    [romWindowController showWindow:self];  
+    
+}
+
+/*!
+ * @method      showDriveManagerWindow:
+ * @abstract    Displays the Drive Manager.
+ */
+- (IBAction)showDriveManagerWindow:(id)sender {
+    
+    if (!driveWindowController) {
+        driveWindowController = [[DriveManagerWindowController alloc] initWithWindowNibName:@"DriveManagerWindow"];
+    }
+    [driveWindowController showWindow:self];  
+    
+}
+
+//------------------------------------------------------------------------------
+// Overwrotten methods.
+/*!
+ * @method      applicationShouldHandleReopen:hasVisibleWindows:
+ * @abstract    Defines if the main window should re-open after a click in the
+ *              Dock's icon once all windows are closed.
+ */
+- (BOOL)applicationShouldHandleReopen:(NSApplication *)app hasVisibleWindows:(BOOL)flag {
+    if (!flag) {
+        [_window makeKeyAndOrderFront:self];
+        return NO;
+    } else {
+        return YES;
+    }
+}
+
+//------------------------------------------------------------------------------
+// Standard methods.
+
+//The comments are not part of Apple's policies, it seems.. *sigh*
+
+/*!
+ * @link Check XCode quick help.
+ */
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
 }
 
-/**
-    Returns the directory the application uses to store the Core Data store file. This code uses a directory named "Medusa" in the user's Library directory.
+/*!
+ * @method      applicationFilesDirectory:
+ * @abstract    Returns the directory the application uses to store the Core Data
+ *              store file.
+ * @discussion  This code uses a directory named "Medusa" in the user's Library
+ *              directory.
  */
 - (NSURL *)applicationFilesDirectory {
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *libraryURL = [[fileManager URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
+    
+    NSURL *libraryURL = [
+        [fileManager URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject
+    ];
+    
     return [libraryURL URLByAppendingPathComponent:@"Medusa"];
 }
 
-/**
-    Creates if necessary and returns the managed object model for the application.
+/*!
+ * @method      managedObjectModel:
+ * @abstract    Creates if necessary and returns the managed object model for
+ *              the application.
  */
 - (NSManagedObjectModel *)managedObjectModel {
-    if (__managedObjectModel) {
-        return __managedObjectModel;
-    }
+    
+    if (__managedObjectModel) return __managedObjectModel;
 	
-    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"Medusa" withExtension:@"momd"];
+    NSURL *modelURL = [
+        [NSBundle mainBundle] URLForResource:@"Medusa" withExtension:@"momd"
+    ];
+    
     __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+    
     return __managedObjectModel;
+
 }
 
 /**
-    Returns the persistent store coordinator for the application. This implementation creates and return a coordinator, having added the store for the application to it. (The directory for the store is created, if necessary.)
+ * @abstract    Returns the persistent store coordinator for the application.
+ *              This implementation creates and return a coordinator, having
+ *              added the store for the application to it. (The directory for
+ *              the store is created, if necessary.)
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    
     if (__persistentStoreCoordinator) {
         return __persistentStoreCoordinator;
     }
 
     NSManagedObjectModel *mom = [self managedObjectModel];
+    
     if (!mom) {
-        NSLog(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
+        NSLog(
+              @"%@:%@ No model to generate a store from",
+              [self class],
+              NSStringFromSelector(_cmd)
+        );
         return nil;
     }
 
@@ -69,10 +285,18 @@
     NSURL *applicationFilesDirectory = [self applicationFilesDirectory];
     NSError *error = nil;
     
-    NSDictionary *properties = [applicationFilesDirectory resourceValuesForKeys:[NSArray arrayWithObject:NSURLIsDirectoryKey] error:&error];
+    NSDictionary *properties = [
+        applicationFilesDirectory
+        resourceValuesForKeys:[
+            NSArray arrayWithObject:NSURLIsDirectoryKey
+        ]
+        error:&error
+    ];
         
     if (!properties) {
+        
         BOOL ok = NO;
+        
         if ([error code] == NSFileReadNoSuchFileError) {
             ok = [fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error];
         }
@@ -80,8 +304,9 @@
             [[NSApplication sharedApplication] presentError:error];
             return nil;
         }
-    }
-    else {
+        
+    } else {
+        
         if ([[properties objectForKey:NSURLIsDirectoryKey] boolValue] != YES) {
             // Customize and localize this error.
             NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]]; 
@@ -93,11 +318,32 @@
             [[NSApplication sharedApplication] presentError:error];
             return nil;
         }
+        
     }
     
     NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];
+    
     NSPersistentStoreCoordinator *coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
-    if (![coordinator addPersistentStoreWithType:NSXMLStoreType configuration:nil URL:url options:nil error:&error]) {
+    
+    /*
+     This part handles the persistent store upgrade:
+     */
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+                            [NSNumber numberWithBool:YES],
+                             NSMigratePersistentStoresAutomaticallyOption,
+                            [NSNumber numberWithBool:YES],
+                             NSInferMappingModelAutomaticallyOption, nil];
+    
+    /*
+     The following code was without 'options'. The value was set to 'nil'.
+     */
+    if (![coordinator
+          addPersistentStoreWithType:NSXMLStoreType
+                       configuration:nil
+                                 URL:url
+                             options:options
+                               error:&error]) {
+        
         [[NSApplication sharedApplication] presentError:error];
         return nil;
     }
@@ -196,6 +442,15 @@
     }
 
     return NSTerminateNow;
+}
+
+
+
+
++ (void)initialize {
+    IconValueTransformer *transformer = [[IconValueTransformer alloc] init];
+    [NSValueTransformer setValueTransformer:transformer forName:@"IconValueTransformer"];
+    [transformer release];
 }
 
 @end
