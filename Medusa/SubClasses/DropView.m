@@ -77,7 +77,7 @@
     NSString *firstElement = [[NSString alloc] initWithFormat:[urls objectAtIndex:0]];
     
     NSString *currentElement;
-    NSString *pathExtension;
+    //NSString *pathExtension;
     BOOL isDir;
     NSFileManager *fileManager = [[NSFileManager alloc] init];
     NSString *kind;
@@ -88,7 +88,7 @@
     for (int i=0; i<[urls count]; i++) {
 
         currentElement = [[NSString alloc] initWithFormat:[urls objectAtIndex:i]];
-        pathExtension  = [[NSString alloc] initWithFormat:[currentElement pathExtension]];
+        //pathExtension  = [[NSString alloc] initWithFormat:[currentElement pathExtension]];
 
         //Check if is a folder:
         
@@ -101,6 +101,8 @@
         NSLog(@"%@", kind);
         computerModel = @"Test";
         
+        [currentElement release];
+        
         if (
             [kind isEqualToString:@"Unix Executable File"] ||
             [kind isEqualToString:@"Document"]
@@ -112,7 +114,7 @@
     }
     
     [fileManager release];
-    [pathExtension release];
+    //[pathExtension release];
     [firstElement release];
     
     return returnValue;

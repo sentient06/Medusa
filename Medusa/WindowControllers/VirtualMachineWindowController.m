@@ -58,7 +58,21 @@
     virtualMachine = value;
 }
 
+//------------------------------------------------------------------------------
+// Methods.
 
+/*!
+ * @method      dealloc:
+ * @discussion  Always in the top of the files!
+ */
+- (void)dealloc {
+    [managedObjectContext release];
+    [virtualMachine release];
+    [menuObjectsArray release];
+    [subviewsArray release];
+    
+    [super dealloc];
+}
 
 // Init methods
 
@@ -129,12 +143,13 @@
 //            subViewConfiguration, subViewDisplay, subViewDrives, subViewSharing, subViewAdvanced, nil
 //        ];
         
-        NSLog(@"%@", subviewsArray);
+        //NSLog(@"%@", subviewsArray);
 /*        [advanced release];
         [share release];
 */        [drives release];
         [display release];
         [configuration release];
+        [information release];
     }
     
     [self setManagedObjectContext:theManagedObjectContext];
@@ -218,7 +233,67 @@
  *              drives subview in the vm interface.
  */
 - (IBAction)useSelectedDisks:(id)sender {
+    NSArray *selectedDrives = [availableDisksController selectedObjects];
     
+    //NSManagedObject *selectedDrive;
+    
+    NSMutableSet *newDrives = [NSMutableSet set];
+    
+    NSMutableSet *oldDrives = [virtualMachine valueForKey:@"drives"];
+    
+    NSLog(@"%@", oldDrives);
+     
+    for (int i = 0; i < [selectedDrives count]; i++) {
+        [newDrives addObject:[selectedDrives  objectAtIndex:i]];
+    }
+
+    //NSLog(@"%@", [selectedDrive value]);
+    [newDrives unionSet:oldDrives];
+    [virtualMachine setValue:newDrives forKey:@"drives"];
+    //[virtualMachine se];
+    
+    NSLog(@"--------::::::::: %@", virtualMachine);
+
+    /**
+
+    //TODO: Refactor this part of the code:
+    //--------------------------------------------------------------------------
+
+    // 1. Check the name of the macintosh model:
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"fileName = %@", [selectedDrive value]]; 
+
+    // 2. Get the ROM Files entity:
+    NSEntityDescription *modelEntity = [NSEntityDescription entityForName:@"RomFiles" inManagedObjectContext:managedObjectContext];
+
+    // 3. Set object to fetch the results:
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+
+    // 4. Make request:
+
+    [fetchRequest setEntity:modelEntity];
+    [fetchRequest setPredicate:predicate];
+
+    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+
+    [fetchRequest release];
+
+    //--------------------------------------------------------------------------
+
+    //Here we have all the fields to be inserted.
+    [newVirtualMachineObject setValue:[newMachineNameField stringValue] forKey:@"name"];
+    [newVirtualMachineObject setValue:[results objectAtIndex:0] forKey:@"model"];
+
+
+    //--------------------------------------------------------------------------
+
+
+    / **/
+
+
+
+    //[self managedObjectContext]     
+    
+
 }
 
 /*!

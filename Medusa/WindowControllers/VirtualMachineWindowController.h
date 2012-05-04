@@ -37,6 +37,7 @@
     IBOutlet NSView         *subViewSharing;
     IBOutlet NSView         *subViewAdvanced;
     
+    IBOutlet NSArrayController   *availableDisksController;
 //    NSArray  *subViews;
 }
 //------------------------------------------------------------------------------
@@ -50,11 +51,11 @@
 //@property (nonatomic, retain) IBOutletCollection(NSView) NSArray *subviewsArray;
 
 //------------------------------------------------------------------------------
-// Manual setters
+// Manual getters
 - (NSManagedObjectContext *)managedObjectContext;
 - (NSManagedObject *)virtualMachine;
 
-// Manual getters
+// Manual setters
 - (void)setManagedObjectContext:(NSManagedObjectContext *)value;
 - (void)setVirtualMachine:(NSManagedObject *)value;
 

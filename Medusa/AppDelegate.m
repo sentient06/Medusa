@@ -45,7 +45,7 @@
  */
 - (IBAction)openVirtualMachineWindow:(id)sender{
     
-    NSArray *selectedVirtualMachines = [virtualMachinesArrayController selectedObjects];
+    NSArray *selectedVirtualMachines = [[NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]];
     //The user can select only one in the current interface, but anyway...
     
     NSManagedObject *selectedVirtualMachine;
@@ -65,6 +65,9 @@
         [newWindowController showWindow:sender];
         
     }
+    
+    [selectedVirtualMachines release];
+    
 }
 
 /*!
