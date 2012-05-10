@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CoreDataModel : NSObject
+@interface CoreDataModel : NSObject {
+    NSManagedObjectContext *managedObjectContext;
+}
+
+- (void) insertNewVirtualMachineWithData:(NSDictionary*)newData;
+- (void) insertNewData:(NSDictionary*)newData inVirtualMachine:(NSManagedObject*)virtualMachine;
+
+- (NSMutableArray*) virtualMachineData:(NSManagedObject*)virtualMachine;
 
 @end
