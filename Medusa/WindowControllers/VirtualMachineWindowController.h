@@ -38,6 +38,7 @@
     IBOutlet NSView         *subViewAdvanced;
     
     IBOutlet NSArrayController   *availableDisksController;
+    IBOutlet NSArrayController   *usedDisksController;
 //    NSArray  *subViews;
 }
 //------------------------------------------------------------------------------
@@ -70,5 +71,7 @@
 - (IBAction)changeRightView:(id)sender;
 - (IBAction)traceTableViewClick:(id)sender;
 - (IBAction)useSelectedDisks:(id)sender;
+- (IBAction)makeDriveBootable:(id)sender;
+- (IBAction)run:(id)sender;
 
 @end

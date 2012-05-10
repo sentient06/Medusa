@@ -9,6 +9,7 @@
 
 #import "VirtualMachineWindowController.h"
 #import "TableLineInformationController.h" //Generic table lines object.
+#import "CoreDataModel.h" //Object to handle coredata information.
 
 //------------------------------------------------------------------------------
 @implementation VirtualMachineWindowController
@@ -233,67 +234,104 @@
  *              drives subview in the vm interface.
  */
 - (IBAction)useSelectedDisks:(id)sender {
-    NSArray *selectedDrives = [availableDisksController selectedObjects];
     
-    //NSManagedObject *selectedDrive;
+    /// Must move everything here to a new coredata class!
+    
+    NSArray *firstSelectedDrives = [availableDisksController selectedObjects];
+    //The actual selection
+    
+    NSMutableArray *selectedDrives = [[NSMutableArray alloc] initWithCapacity:[firstSelectedDrives count]];
+    //The filtered selection
     
     NSMutableSet *newDrives = [NSMutableSet set];
+    //The object to update
     
     NSMutableSet *oldDrives = [virtualMachine valueForKey:@"drives"];
+    //The old value updated
     
-    NSLog(@"%@", oldDrives);
-     
+    BOOL allowed = YES;
+    //Used in the filter
+    
+    // Filter:
+    if ( [firstSelectedDrives count] > 0 ) {
+        for (id object in firstSelectedDrives) {
+            
+            allowed = YES;
+            
+            for (id subObject in oldDrives) {
+
+                if ([[object valueForKey:@"filePath"] isLike:[[subObject valueForKey:@"drive"] valueForKey:@"filePath"]]) {
+                    allowed = NO;
+                }
+
+            }
+            
+            if (allowed) {
+                [selectedDrives addObject:object];
+            }
+        }
+    }
+    
+    // New updated data:
+    
     for (int i = 0; i < [selectedDrives count]; i++) {
-        [newDrives addObject:[selectedDrives  objectAtIndex:i]];
+        
+        // Create new relationship.
+        
+        NSManagedObject *newDrivesObject = [
+            NSEntityDescription
+                insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDrives"
+                         inManagedObjectContext:managedObjectContext
+        ];
+
+        [newDrivesObject setValue:[selectedDrives objectAtIndex:i] forKey:@"drive"];
+        [newDrivesObject setValue:virtualMachine forKey:@"virtualMachine"];
+        
+        
+        
+        [newDrives addObject:newDrivesObject];
+        
+        [newDrivesObject release];
+        
+        
     }
 
-    //NSLog(@"%@", [selectedDrive value]);
-    [newDrives unionSet:oldDrives];
-    [virtualMachine setValue:newDrives forKey:@"drives"];
-    //[virtualMachine se];
+    //Finally:
     
-    NSLog(@"--------::::::::: %@", virtualMachine);
+    [newDrives unionSet:oldDrives]; //Join old drives and new drives.
+    [virtualMachine setValue:newDrives forKey:@"drives"]; //Re-set the value.
 
-    /**
+}
 
-    //TODO: Refactor this part of the code:
-    //--------------------------------------------------------------------------
-
-    // 1. Check the name of the macintosh model:
-    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"fileName = %@", [selectedDrive value]]; 
-
-    // 2. Get the ROM Files entity:
-    NSEntityDescription *modelEntity = [NSEntityDescription entityForName:@"RomFiles" inManagedObjectContext:managedObjectContext];
-
-    // 3. Set object to fetch the results:
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-
-    // 4. Make request:
-
-    [fetchRequest setEntity:modelEntity];
-    [fetchRequest setPredicate:predicate];
-
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
-
-    [fetchRequest release];
-
-    //--------------------------------------------------------------------------
-
-    //Here we have all the fields to be inserted.
-    [newVirtualMachineObject setValue:[newMachineNameField stringValue] forKey:@"name"];
-    [newVirtualMachineObject setValue:[results objectAtIndex:0] forKey:@"model"];
-
-
-    //--------------------------------------------------------------------------
-
-
-    / **/
-
-
-
-    //[self managedObjectContext]     
+/*!
+ * @method      makeDriveBootable:
+ * @abstract    Set a drive as boot drive.
+ * @discussion  Iterates through all drives of the current VM and set all of
+ *              them to not-bootable, then it sets the first selected to
+ *              bootable.
+ */
+- (IBAction)makeDriveBootable:(id)sender {
     
+    NSArray *selectedDrives = [usedDisksController selectedObjects]; //Selected drives
+    NSArray *allDrives = [usedDisksController arrangedObjects];      //All drives
+    
+    // Iterate through all drives and set to NO.
+    for (int i = 0; i < [allDrives count]; i++) {
+        [[allDrives objectAtIndex:i] setValue:[NSNumber numberWithBool:NO] forKey:@"bootable"];
+    }
+    
+    // Set first selected to YES.
+    [[selectedDrives objectAtIndex:0] setValue:[NSNumber numberWithBool:YES] forKey:@"bootable"];
+    
+}
 
+- (IBAction)run:(id)sender {
+    CoreDataModel *coreDataHandler = [[CoreDataModel alloc] init];
+    NSArray *data = [coreDataHandler virtualMachineData:virtualMachine];
+    
+    NSLog(@"Run (data): %@", data);
+    
+    [coreDataHandler release];
 }
 
 /*!
