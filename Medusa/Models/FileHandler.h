@@ -18,5 +18,7 @@
 
 - (void) readRomFileFrom:(NSString*)filePath;
 //- (void) readDiskFileFrom:(NSString*)filePath;
+//- (void) importPreferencesFromFile
+//- (void) savePreferencesForVirtualMachine:(int)test;
 
 @end
