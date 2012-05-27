@@ -26,6 +26,6 @@
 - (void)insertNewData:(NSDictionary*)newData inVirtualMachine:(NSManagedObject*)virtualMachine;
 
 - (NSMutableArray*)getVirtualMachineData:(VirtualMachinesModel*)virtualMachine;
-- (void)savePreferencesFile:(NSArray*)dataToSave;
+- (void)savePreferencesFile:(NSArray*)dataToSave ForFile:(NSString*)filePath;
 
 @end

@@ -46,10 +46,10 @@
     //Do something
 }
 
-- (void)savePreferencesFile:(NSArray *)dataToSave {
+- (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath {
     NSLog(@"Save data: %@", dataToSave);
     
-    NSString *filePath = @"/Users/gian/Desktop/basilisk_ii_prefs.txt";
+    //NSString *filePath = [[NSString alloc] initWithFormat:@"%@%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
     
     NSMutableString * newContent = [[NSMutableString alloc] init];
     
@@ -60,8 +60,9 @@
             [newContent appendString:@"\n"];
         }
     }
-    
+    NSLog(@"%@", filePath);
     [newContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    [newContent release];
     
 }
 
@@ -161,6 +162,7 @@
     ];
     
     [allData addObject:screenSettings];
+    [screenSettings release];
     
     //--------------------------------------------------------------------------
     //6. Serial data
@@ -175,7 +177,7 @@
     ];
     
     [allData addObject:romSettings];
-
+    [romSettings release];
     
     //--------------------------------------------------------------------------
     //8. Memory information
@@ -190,7 +192,7 @@
     ];
     
     [allData addObject:memorySettings];
-
+    [memorySettings release];
     
     //--------------------------------------------------------------------------
     //9. Advanced information
@@ -203,13 +205,12 @@
 //    
 //    [allData addObject:screenSettings];
 
-    
     [request release];
     //End of requests.
     
     
     
-    return allData;
+    return [allData autorelease];
     
     
     //NSLog(@"%@", [[virtualMachine objectID] URIRepresentation]);

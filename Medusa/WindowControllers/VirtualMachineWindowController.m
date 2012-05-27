@@ -12,6 +12,7 @@
 #import "PreferencesModel.h" //Object to handle coredata information.
 #import "RelationshipVirtualMachinesDrivesModel.h" //Model for coredata entity.
 #import "VirtualMachinesModel.h"
+#import "RomFilesModel.h"
 #import "DrivesModel.h"
 
 //------------------------------------------------------------------------------
@@ -296,13 +297,12 @@
         
         [newDrives addObject:newDrivesObject];
         
-        [newDrivesObject release];
-        
     }
 
     //Finally:
     
-    [newDrives unionSet:oldDrives]; //Join old drives and new drives.
+    [selectedDrives release];
+    [oldDrives unionSet:newDrives]; //Join old drives and new drives.
     [virtualMachine setValue:newDrives forKey:@"drives"]; //Re-set the value.
     
     NSLog(@"Saving...");
@@ -373,13 +373,30 @@
  * @discussion  aa
  */
 - (IBAction)run:(id)sender {
+    
     PreferencesModel *preferences = [[PreferencesModel alloc] init];
     NSArray *data = [preferences getVirtualMachineData:virtualMachine];
-    [preferences savePreferencesFile:data];
+    NSURL * emulatorPath; // = [[NSURL alloc] init];
+    NSMutableString * preferencesFilePath; // = [[NSMutableString alloc] init];
+
+    if ([[[virtualMachine model] emulator] isEqualTo:@"Basilisk"]) {
+        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
+        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey: @"BasiliskPath"];
+    }else{
+        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".sheepshaver_prefs"];
+        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey:@"SheepshaverPath"];
+    }
+        
+    NSLog(@"%@", preferencesFilePath);
+    NSLog(@"%@", emulatorPath);
     
+    [preferences savePreferencesFile:data ForFile:preferencesFilePath];
+    [[NSWorkspace sharedWorkspace] openURL:emulatorPath];
     
-    
+//    [preferencesFilePath release];
+//    [emulatorPath release];
     [preferences release];
+
 }
 
 /*

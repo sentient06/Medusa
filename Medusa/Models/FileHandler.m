@@ -14,6 +14,8 @@
 
 - (void) readRomFileFrom:(NSString*)filePath {
     
+    BOOL sheepshaverEnabled = [[NSUserDefaults standardUserDefaults] boolForKey:@"sheepshaverEnabled"];
+    
     NSString *romPath = [[NSString alloc] initWithFormat:filePath];
     
     NSData *data = [NSData dataWithContentsOfFile:romPath];
@@ -153,7 +155,14 @@
                     comments = @"Is this an Apple ][ ROM??";
                     break;
                 case 972893:
-                    fileDetails = @"Power Mac (New World ROM)";
+                    
+                    if (sheepshaverEnabled) {
+                        fileDetails = @"Power Mac (New World ROM)";
+                    }else{
+                        fileDetails = @"Unsupported ROM size";
+                        comments = [NSString stringWithFormat: @"%d", [size intValue]];
+                    }
+                    
                     break;
                 case 1048576:
                     break;
@@ -164,7 +173,14 @@
                     break;
                     
                 case 2097172:
-                    fileDetails = @"Power Mac (Old World ROM)";
+                    
+                    if (sheepshaverEnabled) {
+                        fileDetails = @"Power Mac (Old World ROM)";
+                    }else{
+                        fileDetails = @"Unsupported ROM size";
+                        comments = [NSString stringWithFormat: @"%d", [size intValue]];
+                    }
+                    
                     break;
                 default:
                     fileDetails = @"Unsupported ROM size";
