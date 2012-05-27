@@ -11,7 +11,11 @@
 #import "VirtualMachineWindowController.h"  //VM Window
 #import "RomManagerWindowController.h"      //Rom Manager Window
 #import "DriveManagerWindowController.h"    //Drive Manager Window
+#import "PreferencesWindowController.h"     //Preferences Window
 #import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
+//Models:
+#import "VirtualMachinesModel.h"
+#import "RomFilesModel.h"
 
 //------------------------------------------------------------------------------
 
@@ -48,7 +52,7 @@
     NSArray *selectedVirtualMachines = [[NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]];
     //The user can select only one in the current interface, but anyway...
     
-    NSManagedObject *selectedVirtualMachine;
+    VirtualMachinesModel *selectedVirtualMachine;
     
     for (int i = 0; i < [selectedVirtualMachines count]; i++) {
         
@@ -114,39 +118,21 @@
     NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
 
     //Sets a new vm object.
-    NSManagedObject *newVirtualMachineObject = [
+    VirtualMachinesModel *newVirtualMachineObject = [
         NSEntityDescription
             insertNewObjectForEntityForName:@"VirtualMachines"
                      inManagedObjectContext:managedObjectContext
     ];
     
-    //TODO: Refactor this part of the code:
-    //--------------------------------------------------------------------------
-    
-    // 1. Check the name of the macintosh model:
-    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"modelName = %@", [[newMachineModelField selectedItem] title]]; 
-    
-    // 2. Get the ROM Files entity:
-    NSEntityDescription *modelEntity = [NSEntityDescription entityForName:@"RomFiles" inManagedObjectContext:managedObjectContext];
-    
-    // 3. Set object to fetch the results:
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    // 4. Make request:
-    
-    [fetchRequest setEntity:modelEntity];
-    [fetchRequest setPredicate:predicate];
-    
-    NSArray *results = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    
-    [fetchRequest release];
 
     //--------------------------------------------------------------------------
     
     //Here we have all the fields to be inserted.
-    [newVirtualMachineObject setValue:[newMachineNameField stringValue] forKey:@"name"];
-    [newVirtualMachineObject setValue:[results objectAtIndex:0] forKey:@"model"];
+    [newVirtualMachineObject setName:[newMachineNameField stringValue]];
+
+    NSLog(@"%@", [romFilesController selectedObjects]);
     
+    [newVirtualMachineObject setModel:[[romFilesController selectedObjects] objectAtIndex:0]];
        
     //--------------------------------------------------------------------------
     //Focus in the new item.
@@ -165,6 +151,13 @@
     //Open item's window if user specified.
     //openVirtualMachineWindow
     //--------------------------------------------------------------------------
+    
+    NSLog(@"Saving...");
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Check 'App Delegate' class.");
+    }
     
     [self endNewMachineView:sender];
 
@@ -193,6 +186,19 @@
         driveWindowController = [[DriveManagerWindowController alloc] initWithWindowNibName:@"DriveManagerWindow"];
     }
     [driveWindowController showWindow:self];  
+    
+}
+
+/*!
+ * @method      showPreferencesWindow:
+ * @abstract    Displays the Preferences.
+ */
+- (IBAction)showPreferencesWindow:(id)sender {
+    
+    if (!preferencesWindowController) {
+        preferencesWindowController = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
+    }
+    [preferencesWindowController showWindow:self];  
     
 }
 
@@ -341,7 +347,7 @@
      The following code was without 'options'. The value was set to 'nil'.
      */
     if (![coordinator
-          addPersistentStoreWithType:NSXMLStoreType
+          addPersistentStoreWithType:NSSQLiteStoreType
                        configuration:nil
                                  URL:url
                              options:options

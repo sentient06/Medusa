@@ -8,7 +8,7 @@
 
 #import "DropRomView.h"
 #import "FileHandler.h"
-//#import "CoreDataModel.h"
+#import "RomFilesModel.h" //Model that handles all Rom-Files-Entity-related objects.
 
 @implementation DropRomView
 
@@ -23,7 +23,7 @@
      If the manager got this far, it means the file is a "Document" or a
      "Unix Executable File", which are the acceptable types of file to a
      ROM image. Here we must check the extension. It must be "rom" or
-     nothing. After that we chack the file binary data and find out if it
+     nothing. After that we check the file binary data and find out if it
      is valid or not. If the file is not a ROM, it should be ignored.
      
     \*------------------------------------------------------------------*/
@@ -43,7 +43,7 @@
             [[pathExtension lowercaseString]    isEqualTo:@""]
         ) {
             
-            //[self setImage:[NSImage imageNamed:@"RomImageDocument.icns"]];
+            
             
             FileHandler *aFileHandler = [[FileHandler alloc] init];
             
@@ -51,22 +51,29 @@
             
             
             // Core-data part:
-            NSManagedObject *managedObject = [
+            RomFilesModel *managedObject = [
                 NSEntityDescription
                 insertNewObjectForEntityForName: @"RomFiles"
                          inManagedObjectContext: managedObjectContext
             ];
             
             /// Here we have all the fields to be inserted.
-            [managedObject setValue:[urls objectAtIndex:i]      forKey:@"filePath"];
-            [managedObject setValue:[aFileHandler fileDetails]  forKey:@"modelName"];
-            [managedObject setValue:[aFileHandler comments]     forKey:@"comments"];
+            [managedObject setFilePath:[urls objectAtIndex:i]];
+            [managedObject setModelName:[aFileHandler fileDetails]];
+            [managedObject setComments:[aFileHandler comments]];
             
             if ( [[aFileHandler fileDetails] rangeOfString:@"Power Mac"].length ) {
-                [managedObject setValue:@"Sheepshaver" forKey:@"emulator"];
+                [managedObject setEmulator:@"Sheepshaver"];
             }
             
             [aFileHandler release];
+            
+            NSLog(@"Saving...");
+            NSError *error;
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                NSLog(@"Check 'drop rom view' subclass.");
+            }
     
         }
         

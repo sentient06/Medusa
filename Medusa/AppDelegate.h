@@ -10,6 +10,7 @@
 #import <Cocoa/Cocoa.h>
 @class RomManagerWindowController; //Rom Manager Window
 @class DriveManagerWindowController; //Drive Manager Window
+@class PreferencesWindowController; //Preferences Window
 
 /*!
  * @class       AppDelegate:
@@ -27,13 +28,16 @@
     IBOutlet NSTextField        *newMachineNameField;
     //Text field in the new machine sheet.
     IBOutlet NSPopUpButton      *newMachineModelField;
-    //Pop up button with the model (rom file)
+    //Pop up button with the model (rom file).
+    IBOutlet NSArrayController  *romFilesController;
+    //Array controller with the model (rom file).
     
     IBOutlet NSObjectController *newVirtualMachineController;
     
     //Window Controllers:
     RomManagerWindowController      *romWindowController;
     DriveManagerWindowController    *driveWindowController;
+    PreferencesWindowController     *preferencesWindowController;
     
 }
 
@@ -66,5 +70,8 @@
 
 - (IBAction)showDriveManagerWindow:(id)sender;
 //Action to show the Drive Manager Window.
+
+- (IBAction)showPreferencesWindow:(id)sender;
+//Action to show the Preferences Window.
 
 @end

@@ -9,6 +9,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class VirtualMachinesModel;
+
 /*!
  * @class       VirtualMachineWindowController:
  * @abstract    Responsible for the iTunes-like window.
@@ -22,7 +24,8 @@
 @interface VirtualMachineWindowController : NSWindowController {
     //Standard variables
     NSManagedObjectContext  *managedObjectContext;
-    NSManagedObject         *virtualMachine;
+    //NSManagedObject         *virtualMachine;
+    VirtualMachinesModel    *virtualMachine;
     
     NSMutableArray          *menuObjectsArray;
     NSMutableArray          *subviewsArray;
@@ -54,14 +57,14 @@
 //------------------------------------------------------------------------------
 // Manual getters
 - (NSManagedObjectContext *)managedObjectContext;
-- (NSManagedObject *)virtualMachine;
+- (VirtualMachinesModel *)virtualMachine;
 
 // Manual setters
 - (void)setManagedObjectContext:(NSManagedObjectContext *)value;
-- (void)setVirtualMachine:(NSManagedObject *)value;
+- (void)setVirtualMachine:(VirtualMachinesModel *)value;
 
 // Init methods
-- (id)initWithVirtualMachine:(NSManagedObject *)aVirtualMachine
+- (id)initWithVirtualMachine:(VirtualMachinesModel *)aVirtualMachine
       inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext;
 
 //------------------------------------------------------------------------------
@@ -72,6 +75,7 @@
 - (IBAction)traceTableViewClick:(id)sender;
 - (IBAction)useSelectedDisks:(id)sender;
 - (IBAction)makeDriveBootable:(id)sender;
+- (IBAction)deleteUsedDrive:(id)sender;
 - (IBAction)run:(id)sender;
 
 @end

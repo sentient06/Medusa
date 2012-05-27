@@ -9,7 +9,10 @@
 
 #import "VirtualMachineWindowController.h"
 #import "TableLineInformationController.h" //Generic table lines object.
-#import "CoreDataModel.h" //Object to handle coredata information.
+#import "PreferencesModel.h" //Object to handle coredata information.
+#import "RelationshipVirtualMachinesDrivesModel.h" //Model for coredata entity.
+#import "VirtualMachinesModel.h"
+#import "DrivesModel.h"
 
 //------------------------------------------------------------------------------
 @implementation VirtualMachineWindowController
@@ -37,7 +40,7 @@
  * @method      virtualMachine:
  * @abstract    Manual getter.
  */
-- (NSManagedObject *)virtualMachine {
+- (VirtualMachinesModel *)virtualMachine {
     return virtualMachine;
 }
 
@@ -55,7 +58,7 @@
  * @method      setVirtualMachine:
  * @abstract    Manual setter.
  */
-- (void)setVirtualMachine:(NSManagedObject *)value {
+- (void)setVirtualMachine:(VirtualMachinesModel *)value {
     virtualMachine = value;
 }
 
@@ -81,7 +84,7 @@
  * @method      initWithVirtualMachine:inManagedObjectContext:
  * @abstract    Init method.
  */
-- (id)initWithVirtualMachine:(NSManagedObject *)aVirtualMachine
+- (id)initWithVirtualMachine:(VirtualMachinesModel *)aVirtualMachine
       inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
     
     //----------------------------------------------------------
@@ -246,7 +249,7 @@
     NSMutableSet *newDrives = [NSMutableSet set];
     //The object to update
     
-    NSMutableSet *oldDrives = [virtualMachine valueForKey:@"drives"];
+    NSMutableSet *oldDrives = [NSMutableSet setWithSet:[virtualMachine drives]];
     //The old value updated
     
     BOOL allowed = YES;
@@ -254,13 +257,15 @@
     
     // Filter:
     if ( [firstSelectedDrives count] > 0 ) {
-        for (id object in firstSelectedDrives) {
+        for (DrivesModel * object in firstSelectedDrives) {
+            
+        //for (id object in firstSelectedDrives) {
             
             allowed = YES;
             
-            for (id subObject in oldDrives) {
-
-                if ([[object valueForKey:@"filePath"] isLike:[[subObject valueForKey:@"drive"] valueForKey:@"filePath"]]) {
+            for (DrivesModel * subObject in oldDrives) {
+                
+                if ([[object filePath] isLike:[subObject filePath]]) {
                     allowed = NO;
                 }
 
@@ -278,14 +283,14 @@
         
         // Create new relationship.
         
-        NSManagedObject *newDrivesObject = [
+        RelationshipVirtualMachinesDrivesModel *newDrivesObject = [
             NSEntityDescription
                 insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDrives"
                          inManagedObjectContext:managedObjectContext
         ];
 
-        [newDrivesObject setValue:[selectedDrives objectAtIndex:i] forKey:@"drive"];
-        [newDrivesObject setValue:virtualMachine forKey:@"virtualMachine"];
+        [newDrivesObject setDrive:[selectedDrives objectAtIndex:i]];
+        [newDrivesObject setVirtualMachine:virtualMachine];
         
         
         
@@ -293,13 +298,19 @@
         
         [newDrivesObject release];
         
-        
     }
 
     //Finally:
     
     [newDrives unionSet:oldDrives]; //Join old drives and new drives.
     [virtualMachine setValue:newDrives forKey:@"drives"]; //Re-set the value.
+    
+    NSLog(@"Saving...");
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Check 'vm window controller' class.");
+    }
 
 }
 
@@ -323,16 +334,62 @@
     // Set first selected to YES.
     [[selectedDrives objectAtIndex:0] setValue:[NSNumber numberWithBool:YES] forKey:@"bootable"];
     
+    NSLog(@"Saving...");
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Check 'vm window controller' class.");
+    }
+    
 }
 
-- (IBAction)run:(id)sender {
-    CoreDataModel *coreDataHandler = [[CoreDataModel alloc] init];
-    NSArray *data = [coreDataHandler virtualMachineData:virtualMachine];
+/*!
+ * @method      deleteUsedDrive:
+ * @abstract    Deletes a drive.
+ * @discussion  Iterates through all selected drives of the current VM
+ *              and delete them.
+ */
+- (IBAction)deleteUsedDrive:(id)sender {
     
-    NSLog(@"Run (data): %@", data);
+    NSArray *selectedDrives = [usedDisksController selectedObjects]; //Selected drives
     
-    [coreDataHandler release];
+    // Iterate through all drives and set to NO.
+    for (int i = 0; i < [selectedDrives count]; i++) {
+        [managedObjectContext deleteObject:[selectedDrives objectAtIndex:i]];
+    }
+    
+    NSLog(@"Saving...");
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Check 'vm window controller' class.");
+    }
+    
 }
+
+/*!
+ * @method      aa
+ * @abstract    aa
+ * @discussion  aa
+ */
+- (IBAction)run:(id)sender {
+    PreferencesModel *preferences = [[PreferencesModel alloc] init];
+    NSArray *data = [preferences getVirtualMachineData:virtualMachine];
+    [preferences savePreferencesFile:data];
+    
+    
+    
+    [preferences release];
+}
+
+/*
+/ *!
+ * @method      aa
+ * @abstract    aa
+ * @discussion  aa
+ * /
+- (void)savePrefsFile
+*/
 
 /*!
  * @method      aa

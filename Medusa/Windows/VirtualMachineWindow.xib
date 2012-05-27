@@ -372,7 +372,7 @@
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
 			<object class="NSCustomView" id="829704899">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -381,8 +381,6 @@
 						<int key="NSvFlags">289</int>
 						<string key="NSFrame">{{352, 18}, {88, 25}}</string>
 						<reference key="NSSuperview" ref="829704899"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="404387143">
@@ -414,7 +412,6 @@
 										<int key="NSvFlags">4352</int>
 										<string key="NSFrameSize">{418, 128}</string>
 										<reference key="NSSuperview" ref="256742228"/>
-										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="49009737"/>
 										<int key="NSViewLayerContentsRedrawPolicy">2</int>
 										<bool key="NSEnabled">YES</bool>
@@ -496,7 +493,6 @@
 								</object>
 								<string key="NSFrame">{{1, 1}, {418, 128}}</string>
 								<reference key="NSSuperview" ref="376286162"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="503469387"/>
 								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<reference key="NSDocView" ref="503469387"/>
@@ -508,7 +504,6 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{224, 17}, {15, 102}}</string>
 								<reference key="NSSuperview" ref="376286162"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="818204051"/>
 								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<reference key="NSTarget" ref="376286162"/>
@@ -520,7 +515,6 @@
 								<int key="NSvFlags">-2147483392</int>
 								<string key="NSFrame">{{1, 119}, {223, 15}}</string>
 								<reference key="NSSuperview" ref="376286162"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="772119498"/>
 								<int key="NSViewLayerContentsRedrawPolicy">2</int>
 								<int key="NSsFlags">1</int>
@@ -531,7 +525,6 @@
 						</object>
 						<string key="NSFrame">{{20, 61}, {420, 130}}</string>
 						<reference key="NSSuperview" ref="829704899"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="256742228"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<int key="NSsFlags">562</int>
@@ -557,7 +550,6 @@
 						</object>
 						<string key="NSFrame">{{320, 220}, {120, 120}}</string>
 						<reference key="NSSuperview" ref="829704899"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="376286162"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
@@ -576,7 +568,6 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{17, 273}, {301, 17}}</string>
 						<reference key="NSSuperview" ref="829704899"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="491930515"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
@@ -600,7 +591,6 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{17, 223}, {301, 17}}</string>
 						<reference key="NSSuperview" ref="829704899"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="111430148"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
@@ -619,7 +609,6 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{17, 298}, {301, 17}}</string>
 						<reference key="NSSuperview" ref="829704899"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="210630379"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
@@ -638,7 +627,6 @@
 						<int key="NSvFlags">266</int>
 						<string key="NSFrame">{{17, 323}, {301, 17}}</string>
 						<reference key="NSSuperview" ref="829704899"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="937363439"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
@@ -654,8 +642,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{460, 360}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="320626947"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -825,7 +811,7 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="289124057">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -834,7 +820,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{70, 242}, {194, 18}}</string>
 						<reference key="NSSuperview" ref="289124057"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="517189958">
 							<int key="NSCellFlags">-2080244224</int>
@@ -929,7 +914,6 @@
 					</object>
 				</object>
 				<string key="NSFrameSize">{460, 360}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="331083984"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -1532,6 +1516,14 @@
 					<int key="connectionID">408</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">deleteUsedDrive:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="972619214"/>
+					</object>
+					<int key="connectionID">426</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">contentArray: menuObjectsArray</string>
 						<reference key="source" ref="775391465"/>
@@ -1622,10 +1614,14 @@
 							<string key="NSLabel">contentObject: virtualMachine</string>
 							<string key="NSBinding">contentObject</string>
 							<string key="NSKeyPath">virtualMachine</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSDeletesObjectsOnRemove</string>
+								<boolean value="YES" key="NS.object.0"/>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">144</int>
+					<int key="connectionID">425</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2055,30 +2051,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">contentSet: selection.drives</string>
-						<reference key="source" ref="208025379"/>
-						<reference key="destination" ref="3622824"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="208025379"/>
-							<reference key="NSDestination" ref="3622824"/>
-							<string key="NSLabel">contentSet: selection.drives</string>
-							<string key="NSBinding">contentSet</string>
-							<string key="NSKeyPath">selection.drives</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">384</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">remove:</string>
-						<reference key="source" ref="208025379"/>
-						<reference key="destination" ref="972619214"/>
-					</object>
-					<int key="connectionID">392</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">managedObjectContext: managedObjectContext</string>
 						<reference key="source" ref="208025379"/>
 						<reference key="destination" ref="1001"/>
@@ -2092,6 +2064,22 @@
 						</object>
 					</object>
 					<int key="connectionID">393</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">contentSet: selection.drives</string>
+						<reference key="source" ref="208025379"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="208025379"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">contentSet: selection.drives</string>
+							<string key="NSBinding">contentSet</string>
+							<string key="NSKeyPath">selection.drives</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">424</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3105,7 +3093,7 @@
 				<reference key="dict.values" ref="1002"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">422</int>
+			<int key="maxID">426</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3118,6 +3106,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>changeRightView:</string>
+							<string>deleteUsedDrive:</string>
 							<string>makeDriveBootable:</string>
 							<string>run:</string>
 							<string>traceTableViewClick:</string>
@@ -3125,6 +3114,7 @@
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 							<string>id</string>
@@ -3137,6 +3127,7 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>changeRightView:</string>
+							<string>deleteUsedDrive:</string>
 							<string>makeDriveBootable:</string>
 							<string>run:</string>
 							<string>traceTableViewClick:</string>
@@ -3146,6 +3137,10 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBActionInfo">
 								<string key="name">changeRightView:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">deleteUsedDrive:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">

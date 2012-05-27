@@ -8,6 +8,7 @@
 
 #import "DropDiskView.h"
 #import "FileHandler.h"
+#import "DrivesModel.h" //Model that handles all Drives-Entity-related objects.
 
 @implementation DropDiskView
 
@@ -28,24 +29,22 @@
             [[pathExtension lowercaseString]    isEqualTo:@"dsk"] ||
             [[pathExtension lowercaseString]    isEqualTo:@""]
         ) {
-            //[self setImage:[NSImage imageNamed:@"RomImageDocument.icns"]];
             
-            FileHandler *aFileHandler = [[FileHandler alloc] init];
-            //[aFileHandler readDiskFileFrom:[urls objectAtIndex:i]];
-            
-            NSManagedObject *managedObject = [
+            DrivesModel *drivesModel = [
                 NSEntityDescription
-                insertNewObjectForEntityForName: @"Drives"
-                         inManagedObjectContext: managedObjectContext
+                insertNewObjectForEntityForName:@"Drives"
+                         inManagedObjectContext:managedObjectContext
             ];
+            //insertNewObjectInManagedObjectContext
+            [drivesModel setFilePath:[urls objectAtIndex:i]];
+            [drivesModel setFileName:[[urls objectAtIndex:i] lastPathComponent]];
             
-            NSString *fileName = [[urls objectAtIndex:i] lastPathComponent];
-            
-            /// Here we have all the fields to be inserted.
-            [managedObject setValue:[urls objectAtIndex:i] forKey:@"filePath"];
-            [managedObject setValue:fileName forKey:@"fileName"];
-
-            [aFileHandler release];
+            NSLog(@"Saving...");
+            NSError *error;
+            if (![managedObjectContext save:&error]) {
+                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                NSLog(@"Check 'drop disk view' subclass.");
+            }
                 
         }
         

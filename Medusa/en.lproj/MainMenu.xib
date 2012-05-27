@@ -1394,7 +1394,6 @@
 							<string key="NSFrame">{{202, 18}, {58, 25}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="240724626">
 								<int key="NSCellFlags">-2080244224</int>
@@ -1612,7 +1611,7 @@
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<object class="NSView" key="NSWindowView" id="284963391">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSButton" id="486341767">
@@ -1620,6 +1619,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{237, 18}, {74, 25}}</string>
 							<reference key="NSSuperview" ref="284963391"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="425329647"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="827186499">
@@ -1641,6 +1641,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{319, 18}, {74, 25}}</string>
 							<reference key="NSSuperview" ref="284963391"/>
+							<reference key="NSWindow"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="1025567241">
 								<int key="NSCellFlags">-2080244224</int>
@@ -1661,6 +1662,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 142}, {176, 17}}</string>
 							<reference key="NSSuperview" ref="284963391"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="439385162"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="250210818">
@@ -1683,6 +1685,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 93}, {138, 17}}</string>
 							<reference key="NSSuperview" ref="284963391"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="657399779"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="805470030">
@@ -1700,6 +1703,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{160, 90}, {233, 22}}</string>
 							<reference key="NSSuperview" ref="284963391"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="464398897"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="526581933">
@@ -1731,6 +1735,8 @@
 							<int key="NSvFlags">-2147483380</int>
 							<string key="NSFrame">{{203, 140}, {178, 18}}</string>
 							<reference key="NSSuperview" ref="284963391"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="65374355"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="231727770">
 								<int key="NSCellFlags">-1543373312</int>
@@ -1758,6 +1764,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{17, 64}, {138, 17}}</string>
 							<reference key="NSSuperview" ref="284963391"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="369275254"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="680439637">
@@ -1775,6 +1782,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{157, 58}, {239, 26}}</string>
 							<reference key="NSSuperview" ref="284963391"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="486341767"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSPopUpButtonCell" key="NSCell" id="998653052">
@@ -1838,6 +1846,8 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{413, 179}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="698166946"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -2652,6 +2662,22 @@
 						<reference key="destination" ref="332085999"/>
 					</object>
 					<int key="connectionID">712</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">romFilesController</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="707196084"/>
+					</object>
+					<int key="connectionID">725</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showPreferencesWindow:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="609285721"/>
+					</object>
+					<int key="connectionID">726</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -4364,7 +4390,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">724</int>
+			<int key="maxID">726</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4376,6 +4402,7 @@
 						<string key="saveAction:">id</string>
 						<string key="saveNewVirtualMachine:">id</string>
 						<string key="showDriveManagerWindow:">id</string>
+						<string key="showPreferencesWindow:">id</string>
 						<string key="showRomManagerWindow:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
@@ -4395,6 +4422,10 @@
 							<string key="name">showDriveManagerWindow:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="showPreferencesWindow:">
+							<string key="name">showPreferencesWindow:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="showRomManagerWindow:">
 							<string key="name">showRomManagerWindow:</string>
 							<string key="candidateClassName">id</string>
@@ -4405,6 +4436,7 @@
 						<string key="newMachineNameField">NSTextField</string>
 						<string key="newMachineView">NSPanel</string>
 						<string key="newVirtualMachineController">NSObjectController</string>
+						<string key="romFilesController">NSArrayController</string>
 						<string key="virtualMachinesArrayController">NSArrayController</string>
 						<string key="window">NSWindow</string>
 					</dictionary>
@@ -4424,6 +4456,10 @@
 						<object class="IBToOneOutletInfo" key="newVirtualMachineController">
 							<string key="name">newVirtualMachineController</string>
 							<string key="candidateClassName">NSObjectController</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="romFilesController">
+							<string key="name">romFilesController</string>
+							<string key="candidateClassName">NSArrayController</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="virtualMachinesArrayController">
 							<string key="name">virtualMachinesArrayController</string>
