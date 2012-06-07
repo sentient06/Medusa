@@ -175,9 +175,16 @@
     //--------------------------------------------------------------------------
     //5. Display data
     
+    NSString * fullScreen = [[NSString alloc] initWithFormat:@"win"];
+    
+    if ([[virtualMachine fullScreen] intValue] > 0) { //Yeah... this rubbish is a NSNumber! =P
+        fullScreen = @"dga"; 
+    }
+    
     NSDictionary * screenSettings = [[NSDictionary alloc]
         initWithObjectsAndKeys:
-            [NSString stringWithFormat:@"win/%@/%@/%d",
+            [NSString stringWithFormat:@"%@/%@/%@/%d",
+             fullScreen,
              [virtualMachine displayWidth],
              [virtualMachine displayHeight], 32
             ], @"screen",
@@ -186,6 +193,7 @@
     
     [allData addObject:screenSettings];
     [screenSettings release];
+    [fullScreen release];
     
     //--------------------------------------------------------------------------
     //6. Serial data
