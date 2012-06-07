@@ -17,6 +17,8 @@
 		815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815F4F67156EC324001712CB /* PreferencesWindow.xib */; };
 		8160BB0915502F74005F6DBF /* DriveIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */; };
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
+		81638DF81572DCC800CBDCA6 /* SplashWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81638DF71572DCC800CBDCA6 /* SplashWindow.xib */; };
+		81638DFC1572DF7800CBDCA6 /* SplashWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */; };
 		816BAF8A153863E400B68091 /* IconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 816BAF89153863E300B68091 /* IconValueTransformer.m */; };
 		81756F331534743500FCBA8E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81756F321534743500FCBA8E /* Cocoa.framework */; };
 		81756F3D1534743500FCBA8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81756F3B1534743500FCBA8E /* InfoPlist.strings */; };
@@ -75,6 +77,9 @@
 		8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveIconValueTransformer.m; path = TransformerControllers/DriveIconValueTransformer.m; sourceTree = "<group>"; };
 		8160BB0B15503052005F6DBF /* RomIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomIconValueTransformer.h; path = TransformerControllers/RomIconValueTransformer.h; sourceTree = "<group>"; };
 		8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomIconValueTransformer.m; path = TransformerControllers/RomIconValueTransformer.m; sourceTree = "<group>"; };
+		81638DF71572DCC800CBDCA6 /* SplashWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashWindow.xib; path = Windows/SplashWindow.xib; sourceTree = "<group>"; };
+		81638DFA1572DF7800CBDCA6 /* SplashWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashWindowController.h; path = WindowControllers/SplashWindowController.h; sourceTree = "<group>"; };
+		81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashWindowController.m; path = WindowControllers/SplashWindowController.m; sourceTree = "<group>"; };
 		816BAF88153863E300B68091 /* IconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconValueTransformer.h; path = TransformerControllers/IconValueTransformer.h; sourceTree = "<group>"; };
 		816BAF89153863E300B68091 /* IconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconValueTransformer.m; path = TransformerControllers/IconValueTransformer.m; sourceTree = "<group>"; };
 		81756F2E1534743500FCBA8E /* Medusa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Medusa.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,6 +170,8 @@
 				81C03D01154EF46C00842906 /* DriveManagerWindowController.m */,
 				814FAD871570ED0D008D3223 /* PreferencesWindowController.h */,
 				814FAD881570ED0D008D3223 /* PreferencesWindowController.m */,
+				81638DFA1572DF7800CBDCA6 /* SplashWindowController.h */,
+				81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */,
 			);
 			name = WindowControllers;
 			sourceTree = "<group>";
@@ -273,6 +280,7 @@
 				81C8443A153E18CC00E94443 /* RomManagerWindow.xib */,
 				81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */,
 				815F4F67156EC324001712CB /* PreferencesWindow.xib */,
+				81638DF71572DCC800CBDCA6 /* SplashWindow.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -418,6 +426,7 @@
 				81C8443B153E18CC00E94443 /* RomManagerWindow.xib in Resources */,
 				81C03CFE154EF2C100842906 /* DriveManagerWindow.xib in Resources */,
 				815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */,
+				81638DF81572DCC800CBDCA6 /* SplashWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,6 +461,7 @@
 				81E84DF61565BE820002D4DA /* SharesModel.m in Sources */,
 				81E84DF91565BE820002D4DA /* RomFilesModel.m in Sources */,
 				814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */,
+				81638DFC1572DF7800CBDCA6 /* SplashWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +543,7 @@
 		81756F501534743600FCBA8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Medusa/Medusa-Prefix.pch";
 				INFOPLIST_FILE = "Medusa/Medusa-Info.plist";
@@ -544,6 +555,7 @@
 		81756F511534743600FCBA8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Medusa/Medusa-Prefix.pch";
 				INFOPLIST_FILE = "Medusa/Medusa-Info.plist";

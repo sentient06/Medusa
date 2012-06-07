@@ -29,4 +29,8 @@
 //    
 //}
 
+- (NSString *)description {
+    return [self fileName];
+}
+
 @end

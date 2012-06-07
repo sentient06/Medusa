@@ -11,6 +11,7 @@
 @class RomManagerWindowController; //Rom Manager Window
 @class DriveManagerWindowController; //Drive Manager Window
 @class PreferencesWindowController; //Preferences Window
+@class SplashWindowController;
 
 /*!
  * @class       AppDelegate:
@@ -38,7 +39,14 @@
     RomManagerWindowController      *romWindowController;
     DriveManagerWindowController    *driveWindowController;
     PreferencesWindowController     *preferencesWindowController;
+    SplashWindowController          *splashWindowController;
     
+    /// 32-bit compatibility -------    
+    id _window;
+    id __persistentStoreCoordinator;
+    id __managedObjectModel;
+    id __managedObjectContext;
+    /// ----------------------------
 }
 
 //------------------------------------------------------------------------------

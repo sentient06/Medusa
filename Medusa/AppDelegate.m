@@ -12,6 +12,7 @@
 #import "RomManagerWindowController.h"      //Rom Manager Window
 #import "DriveManagerWindowController.h"    //Drive Manager Window
 #import "PreferencesWindowController.h"     //Preferences Window
+#import "SplashWindowController.h"
 #import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
 //Models:
 #import "VirtualMachinesModel.h"
@@ -131,6 +132,9 @@
     [newVirtualMachineObject setName:[newMachineNameField stringValue]];
 
     NSLog(@"%@", [romFilesController selectedObjects]);
+    //NSLog(@"%@", [newMachineModelField ])
+    
+    
     
     [newVirtualMachineObject setModel:[[romFilesController selectedObjects] objectAtIndex:0]];
        
@@ -228,6 +232,16 @@
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
+    
+    BOOL showSplash = [[NSUserDefaults standardUserDefaults] boolForKey:@"showSplash"];
+    
+    if (showSplash) {
+        if (!splashWindowController) {
+            splashWindowController = [[SplashWindowController alloc] initWithWindowNibName:@"SplashWindow"];
+        }
+        [splashWindowController showWindow:self];  
+    }
+    
 }
 
 /*!

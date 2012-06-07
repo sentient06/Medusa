@@ -241,39 +241,41 @@
     
     /// Must move everything here to a new coredata class!
     
-    NSArray *firstSelectedDrives = [availableDisksController selectedObjects];
-    //The actual selection
+    NSArray * currentSelectedDrives = [availableDisksController selectedObjects];
+    //The current selection
     
-    NSMutableArray *selectedDrives = [[NSMutableArray alloc] initWithCapacity:[firstSelectedDrives count]];
+    NSMutableArray *selectedDrives = [
+        [NSMutableArray alloc] initWithCapacity:[currentSelectedDrives count]
+    ];
     //The filtered selection
     
-    NSMutableSet *newDrives = [NSMutableSet set];
+    NSMutableSet *newDriveRelationships = [NSMutableSet set];
     //The object to update
     
-    NSMutableSet *oldDrives = [NSMutableSet setWithSet:[virtualMachine drives]];
+    NSMutableSet *oldDriveRelationships = [NSMutableSet setWithSet:[virtualMachine drives]];
+    //Warning: this is a set of relationship objects, not drives.
     //The old value updated
     
     BOOL allowed = YES;
     //Used in the filter
     
     // Filter:
-    if ( [firstSelectedDrives count] > 0 ) {
-        for (DrivesModel * object in firstSelectedDrives) {
+    if ( [currentSelectedDrives count] > 0 ) {
+        for (DrivesModel * currentDrive in currentSelectedDrives) {
             
         //for (id object in firstSelectedDrives) {
-            
             allowed = YES;
             
-            for (DrivesModel * subObject in oldDrives) {
+            for (RelationshipVirtualMachinesDrivesModel * oldDriveRelationship in oldDriveRelationships) {
                 
-                if ([[object filePath] isLike:[subObject filePath]]) {
+                if ([[currentDrive filePath] isEqual:[[oldDriveRelationship drive] filePath]]) {
                     allowed = NO;
                 }
 
             }
             
             if (allowed) {
-                [selectedDrives addObject:object];
+                [selectedDrives addObject:currentDrive];
             }
         }
     }
@@ -284,26 +286,23 @@
         
         // Create new relationship.
         
-        RelationshipVirtualMachinesDrivesModel *newDrivesObject = [
+        RelationshipVirtualMachinesDrivesModel *newDriveRelationship = [
             NSEntityDescription
                 insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDrives"
                          inManagedObjectContext:managedObjectContext
         ];
 
-        [newDrivesObject setDrive:[selectedDrives objectAtIndex:i]];
-        [newDrivesObject setVirtualMachine:virtualMachine];
+        [newDriveRelationship setDrive:[selectedDrives objectAtIndex:i]];
+        [newDriveRelationship setVirtualMachine:virtualMachine];
         
-        
-        
-        [newDrives addObject:newDrivesObject];
+        [newDriveRelationships addObject:newDriveRelationship];
         
     }
 
     //Finally:
     
-    [selectedDrives release];
-    [oldDrives unionSet:newDrives]; //Join old drives and new drives.
-    [virtualMachine setValue:newDrives forKey:@"drives"]; //Re-set the value.
+    [newDriveRelationships unionSet:oldDriveRelationships];
+    [virtualMachine setValue:newDriveRelationships forKey:@"drives"]; //Re-set the value.
     
     NSLog(@"Saving...");
     NSError *error;
@@ -311,6 +310,8 @@
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         NSLog(@"Check 'vm window controller' class.");
     }
+    
+    [selectedDrives release];
 
 }
 
