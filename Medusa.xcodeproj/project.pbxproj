@@ -7,16 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		810E384E1554414300949BE1 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 810E38471554414300949BE1 /* Medusa.xcdatamodeld */; };
 		81134C4415540B2900785866 /* PreferencesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesModel.m */; };
 		814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FAD881570ED0D008D3223 /* PreferencesWindowController.m */; };
 		8159C790154F1205001E43D4 /* DropRomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C78F154F1205001E43D4 /* DropRomView.m */; };
 		8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C797154F2E29001E43D4 /* DropDiskView.m */; };
-		815C5714155BB3C500646B7C /* Map_0b72_0b73.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 815C5713155BB3C500646B7C /* Map_0b72_0b73.xcmappingmodel */; };
-		815C571A155C205900646B7C /* Map_0b73_0b74.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 815C5719155C205900646B7C /* Map_0b73_0b74.xcmappingmodel */; };
 		815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815F4F67156EC324001712CB /* PreferencesWindow.xib */; };
 		8160BB0915502F74005F6DBF /* DriveIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */; };
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
+		816154B8158131E500CB9188 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 816154B6158131E500CB9188 /* Medusa.xcdatamodeld */; };
 		81638DF81572DCC800CBDCA6 /* SplashWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81638DF71572DCC800CBDCA6 /* SplashWindow.xib */; };
 		81638DFC1572DF7800CBDCA6 /* SplashWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */; };
 		816BAF8A153863E400B68091 /* IconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 816BAF89153863E300B68091 /* IconValueTransformer.m */; };
@@ -56,27 +54,19 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		810E38481554414300949BE1 /* Medusa 0b7.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b7.xcdatamodel"; sourceTree = "<group>"; };
-		810E38491554414300949BE1 /* Medusa 0b71.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b71.xcdatamodel"; sourceTree = "<group>"; };
-		810E384A1554414300949BE1 /* Medusa 0b72.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b72.xcdatamodel"; sourceTree = "<group>"; };
-		810E384B1554414300949BE1 /* Medusa 0b73.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b73.xcdatamodel"; sourceTree = "<group>"; };
-		810E384C1554414300949BE1 /* Medusa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Medusa.xcdatamodel; sourceTree = "<group>"; };
 		81134C4315540B2900785866 /* PreferencesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesModel.m; path = Models/PreferencesModel.m; sourceTree = "<group>"; };
 		814FAD871570ED0D008D3223 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = WindowControllers/PreferencesWindowController.h; sourceTree = "<group>"; };
 		814FAD881570ED0D008D3223 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = WindowControllers/PreferencesWindowController.m; sourceTree = "<group>"; };
-		81559FD8155D2E470082B44A /* Medusa 0b75.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b75.xcdatamodel"; sourceTree = "<group>"; };
 		8159C78E154F1205001E43D4 /* DropRomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropRomView.h; path = SubClasses/DropRomView.h; sourceTree = "<group>"; };
 		8159C78F154F1205001E43D4 /* DropRomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropRomView.m; path = SubClasses/DropRomView.m; sourceTree = "<group>"; };
 		8159C796154F2E28001E43D4 /* DropDiskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropDiskView.h; path = SubClasses/DropDiskView.h; sourceTree = "<group>"; };
 		8159C797154F2E29001E43D4 /* DropDiskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropDiskView.m; path = SubClasses/DropDiskView.m; sourceTree = "<group>"; };
-		815C5713155BB3C500646B7C /* Map_0b72_0b73.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Map_0b72_0b73.xcmappingmodel; sourceTree = "<group>"; };
-		815C5716155C1B7300646B7C /* Medusa 0b74.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b74.xcdatamodel"; sourceTree = "<group>"; };
-		815C5719155C205900646B7C /* Map_0b73_0b74.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Map_0b73_0b74.xcmappingmodel; sourceTree = "<group>"; };
 		815F4F67156EC324001712CB /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindow.xib; path = Windows/PreferencesWindow.xib; sourceTree = "<group>"; };
 		8160BB0715502F74005F6DBF /* DriveIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveIconValueTransformer.h; path = TransformerControllers/DriveIconValueTransformer.h; sourceTree = "<group>"; };
 		8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveIconValueTransformer.m; path = TransformerControllers/DriveIconValueTransformer.m; sourceTree = "<group>"; };
 		8160BB0B15503052005F6DBF /* RomIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomIconValueTransformer.h; path = TransformerControllers/RomIconValueTransformer.h; sourceTree = "<group>"; };
 		8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomIconValueTransformer.m; path = TransformerControllers/RomIconValueTransformer.m; sourceTree = "<group>"; };
+		816154B7158131E500CB9188 /* Medusa 0b1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b1.xcdatamodel"; sourceTree = "<group>"; };
 		81638DF71572DCC800CBDCA6 /* SplashWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashWindow.xib; path = Windows/SplashWindow.xib; sourceTree = "<group>"; };
 		81638DFA1572DF7800CBDCA6 /* SplashWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashWindowController.h; path = WindowControllers/SplashWindowController.h; sourceTree = "<group>"; };
 		81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashWindowController.m; path = WindowControllers/SplashWindowController.m; sourceTree = "<group>"; };
@@ -152,9 +142,7 @@
 		810E38451554414300949BE1 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				810E38471554414300949BE1 /* Medusa.xcdatamodeld */,
-				815C5719155C205900646B7C /* Map_0b73_0b74.xcmappingmodel */,
-				815C5713155BB3C500646B7C /* Map_0b72_0b73.xcmappingmodel */,
+				816154B6158131E500CB9188 /* Medusa.xcdatamodeld */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -452,9 +440,6 @@
 				8160BB0915502F74005F6DBF /* DriveIconValueTransformer.m in Sources */,
 				8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */,
 				81134C4415540B2900785866 /* PreferencesModel.m in Sources */,
-				810E384E1554414300949BE1 /* Medusa.xcdatamodeld in Sources */,
-				815C5714155BB3C500646B7C /* Map_0b72_0b73.xcmappingmodel in Sources */,
-				815C571A155C205900646B7C /* Map_0b73_0b74.xcmappingmodel in Sources */,
 				81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDrivesModel.m in Sources */,
 				81E84DF01565BE820002D4DA /* DrivesModel.m in Sources */,
 				81E84DF31565BE820002D4DA /* VirtualMachinesModel.m in Sources */,
@@ -462,6 +447,7 @@
 				81E84DF91565BE820002D4DA /* RomFilesModel.m in Sources */,
 				814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */,
 				81638DFC1572DF7800CBDCA6 /* SplashWindowController.m in Sources */,
+				816154B8158131E500CB9188 /* Medusa.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,18 +574,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		810E38471554414300949BE1 /* Medusa.xcdatamodeld */ = {
+		816154B6158131E500CB9188 /* Medusa.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				81559FD8155D2E470082B44A /* Medusa 0b75.xcdatamodel */,
-				815C5716155C1B7300646B7C /* Medusa 0b74.xcdatamodel */,
-				810E38481554414300949BE1 /* Medusa 0b7.xcdatamodel */,
-				810E38491554414300949BE1 /* Medusa 0b71.xcdatamodel */,
-				810E384A1554414300949BE1 /* Medusa 0b72.xcdatamodel */,
-				810E384B1554414300949BE1 /* Medusa 0b73.xcdatamodel */,
-				810E384C1554414300949BE1 /* Medusa.xcdatamodel */,
+				816154B7158131E500CB9188 /* Medusa 0b1.xcdatamodel */,
 			);
-			currentVersion = 81559FD8155D2E470082B44A /* Medusa 0b75.xcdatamodel */;
 			path = Medusa.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
