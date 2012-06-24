@@ -168,6 +168,40 @@
 
     //--------------------------------------------------------------------------
     //3. Shares
+
+    if ( [[virtualMachine shareEnabled] boolValue] == YES) {
+    
+        if ( [[virtualMachine useDefaultShare] boolValue] ) {
+
+            //Get path from preferences:
+            NSDictionary * shareSettings = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                    [[NSUserDefaults standardUserDefaults]
+                      stringForKey:@"StandardSharePath"
+                    ], @"extfs",
+                    nil
+            ];
+            
+            [allData addObject:shareSettings];
+            [shareSettings release];
+            
+        }else{
+            
+            if ([virtualMachine sharedFolder] != nil ) {
+                //Get file from datamodel:
+                NSDictionary * shareSettings = [[NSDictionary alloc]
+                    initWithObjectsAndKeys:
+                        [virtualMachine sharedFolder], @"extfs",
+                        nil
+                ];
+                
+                [allData addObject:shareSettings];
+                [shareSettings release];
+            }
+            
+        }
+        
+    }
     
     //--------------------------------------------------------------------------
     //4. SCSI data
@@ -176,21 +210,29 @@
     //5. Display data
     
     NSString * fullScreen = [[NSString alloc] initWithFormat:@"win"];
-    
+    NSNumber * screenWidth = [virtualMachine displayWidth];
+    NSNumber * screenHeight = [virtualMachine displayHeight];
+
     if ([[virtualMachine fullScreen] intValue] > 0) { //Yeah... this rubbish is a NSNumber! =P
-        fullScreen = @"dga"; 
+        
+        NSRect screenRect = [[[NSScreen screens] objectAtIndex:0] frame];
+        
+        fullScreen   = @"dga";        
+        screenWidth  = [NSNumber numberWithFloat: screenRect.size.width];
+        screenHeight = [NSNumber numberWithFloat: screenRect.size.height];
+        
     }
     
     NSDictionary * screenSettings = [[NSDictionary alloc]
         initWithObjectsAndKeys:
             [NSString stringWithFormat:@"%@/%@/%@/%d",
              fullScreen,
-             [virtualMachine displayWidth],
-             [virtualMachine displayHeight], 32
+             screenWidth,
+             screenHeight, 32
             ], @"screen",
             nil
     ];
-    
+
     [allData addObject:screenSettings];
     [screenSettings release];
     [fullScreen release];

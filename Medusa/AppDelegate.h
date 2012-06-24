@@ -45,24 +45,24 @@
  */
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     
-    IBOutlet NSArrayController  *virtualMachinesArrayController;
+    IBOutlet NSArrayController  * virtualMachinesArrayController;
     //Array controller to keep track of the machines list.
-    IBOutlet NSPanel            *newMachineView;
+    IBOutlet NSPanel            * newMachineView;
     //Sheet used to create a new machine.
-    IBOutlet NSTextField        *newMachineNameField;
+    IBOutlet NSTextField        * newMachineNameField;
     //Text field in the new machine sheet.
-    IBOutlet NSPopUpButton      *newMachineModelField;
+    IBOutlet NSPopUpButton      * newMachineModelField;
     //Pop up button with the model (rom file).
-    IBOutlet NSArrayController  *romFilesController;
+    IBOutlet NSArrayController  * romFilesController;
     //Array controller with the model (rom file).
     
-    IBOutlet NSObjectController *newVirtualMachineController;
+    IBOutlet NSObjectController * newVirtualMachineController;
     
     //Window Controllers:
-    RomManagerWindowController      *romWindowController;
-    DriveManagerWindowController    *driveWindowController;
-    PreferencesWindowController     *preferencesWindowController;
-    SplashWindowController          *splashWindowController;
+    RomManagerWindowController      * romWindowController;
+    DriveManagerWindowController    * driveWindowController;
+    PreferencesWindowController     * preferencesWindowController;
+    SplashWindowController          * splashWindowController;
     
     /// 32-bit compatibility -------    
     id _window;

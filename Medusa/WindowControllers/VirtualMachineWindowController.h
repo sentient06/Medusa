@@ -32,6 +32,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+typedef enum {
+    useStandardPathOption = 0,
+    usePersonalPathOption,
+    useNoSharedPathOption
+} pathOptions;
+
 @class VirtualMachinesModel;
 
 /*!
@@ -46,25 +52,33 @@
  */
 @interface VirtualMachineWindowController : NSWindowController {
     //Standard variables
-    NSManagedObjectContext  *managedObjectContext;
-    //NSManagedObject         *virtualMachine;
-    VirtualMachinesModel    *virtualMachine;
+    NSManagedObjectContext  * managedObjectContext;
+    VirtualMachinesModel    * virtualMachine;
     
-    NSMutableArray          *menuObjectsArray;
-    NSMutableArray          *subviewsArray;
+    NSMutableArray          * menuObjectsArray;
+    NSMutableArray          * subviewsArray;
+    
+    NSString                * windowTitle;
     
     //Interface objects
-    IBOutlet NSTableView    *detailsTree;
-    IBOutlet NSView         *rightView;
-    IBOutlet NSView         *subViewInformation;
-    IBOutlet NSView         *subViewConfiguration;
-    IBOutlet NSView         *subViewDisplay;
-    IBOutlet NSView         *subViewDrives;
-    IBOutlet NSView         *subViewSharing;
-    IBOutlet NSView         *subViewAdvanced;
+    IBOutlet NSTableView    * detailsTree;
+    IBOutlet NSView         * rightView;
+    IBOutlet NSView         * subViewInformation;
+    IBOutlet NSView         * subViewConfiguration;
+    IBOutlet NSView         * subViewDisplay;
+    IBOutlet NSView         * subViewDrives;
+    IBOutlet NSView         * subViewSharing;
+    IBOutlet NSView         * subViewAdvanced;
     
-    IBOutlet NSArrayController   *availableDisksController;
-    IBOutlet NSArrayController   *usedDisksController;
+    //Controllers
+    IBOutlet NSArrayController   * availableDisksController;
+    IBOutlet NSArrayController   * usedDisksController;
+    
+    // Share subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    IBOutlet NSMatrix            * sharedPathMatrix;
+    IBOutlet NSButton            * openSharePathButton;
+    IBOutlet NSTextField         * sharePathLabel;
 //    NSArray  *subViews;
 }
 //------------------------------------------------------------------------------
@@ -76,6 +90,8 @@
 //@property (nonatomic, retain) IBOutlet NSView *subViewConfiguration;
 //@property (nonatomic, retain) IBOutlet NSView *subViewDisplay;
 //@property (nonatomic, retain) IBOutletCollection(NSView) NSArray *subviewsArray;
+@property (copy) NSString * windowTitle;
+@property pathOptions currentPathOption;
 
 //------------------------------------------------------------------------------
 // Manual getters
@@ -95,10 +111,20 @@
 
 // View actions
 - (IBAction)changeRightView:(id)sender;
+- (IBAction)savePreferencesFromView:(id)sender;
 - (IBAction)traceTableViewClick:(id)sender;
 - (IBAction)useSelectedDisks:(id)sender;
 - (IBAction)makeDriveBootable:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;
 - (IBAction)run:(id)sender;
+
+// Share subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+/// Behaviour when a different share method is selected.
+- (IBAction)changeShareType:(id)sender;
+
+// Open share folder
+//- (void)setShareCondition:(NSInteger)condition;
+- (IBAction)openSharePath:(id)sender;
 
 @end

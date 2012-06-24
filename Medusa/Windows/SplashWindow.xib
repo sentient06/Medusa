@@ -100,6 +100,7 @@ dHVyZSE</string>
 							<string key="NSFrame">{{18, 18}, {236, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="259584521">
 								<int key="NSCellFlags">-2080244224</int>
@@ -151,19 +152,23 @@ dHVyZSE</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: values.showSplash</string>
+						<string key="label">value: values.hideSplash</string>
 						<reference key="source" ref="209933901"/>
 						<reference key="destination" ref="69508546"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="209933901"/>
 							<reference key="NSDestination" ref="69508546"/>
-							<string key="NSLabel">value: values.showSplash</string>
+							<string key="NSLabel">value: values.hideSplash</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">values.showSplash</string>
+							<string key="NSKeyPath">values.hideSplash</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">14</int>
+					<int key="connectionID">17</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -262,7 +267,7 @@ dHVyZSE</string>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">15</int>
+			<int key="maxID">17</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

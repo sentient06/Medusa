@@ -565,6 +565,7 @@
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{20, 18}, {40, 25}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="149368562"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="391369210">
@@ -590,6 +591,7 @@
 							<int key="NSvFlags">292</int>
 							<string key="NSFrame">{{68, 18}, {64, 25}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="665091201"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="651438911">
@@ -609,14 +611,15 @@
 						<object class="NSButton" id="665091201">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">289</int>
-							<string key="NSFrame">{{202, 18}, {58, 25}}</string>
+							<string key="NSFrame">{{159, 18}, {101, 25}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="240724626">
 								<int key="NSCellFlags">-2080244224</int>
 								<int key="NSCellFlags2">134217728</int>
-								<string key="NSContents">Details</string>
+								<string key="NSContents">Configuration</string>
 								<reference key="NSSupport" ref="126414480"/>
 								<reference key="NSControlView" ref="665091201"/>
 								<int key="NSButtonFlags">-2038152961</int>
@@ -640,6 +643,7 @@
 											<int key="NSvFlags">4352</int>
 											<string key="NSFrameSize">{238, 244}</string>
 											<reference key="NSSuperview" ref="1020380079"/>
+											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="668349840"/>
 											<bool key="NSEnabled">YES</bool>
 											<object class="_NSCornerView" key="NSCornerView">
@@ -769,6 +773,7 @@
 									</array>
 									<string key="NSFrame">{{1, 1}, {238, 244}}</string>
 									<reference key="NSSuperview" ref="191054627"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="732531150"/>
 									<reference key="NSDocView" ref="732531150"/>
 									<reference key="NSBGColor" ref="553953533"/>
@@ -779,6 +784,7 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{224, 18}, {15, 212}}</string>
 									<reference key="NSSuperview" ref="191054627"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="286583612"/>
 									<reference key="NSTarget" ref="191054627"/>
 									<string key="NSAction">_doScroller:</string>
@@ -789,6 +795,7 @@
 									<int key="NSvFlags">-2147483392</int>
 									<string key="NSFrame">{{1, 230}, {238, 15}}</string>
 									<reference key="NSSuperview" ref="191054627"/>
+									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="648803177"/>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="191054627"/>
@@ -798,6 +805,7 @@
 							</array>
 							<string key="NSFrame">{{20, 63}, {240, 246}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1020380079"/>
 							<int key="NSsFlags">561</int>
 							<reference key="NSVScroller" ref="668349840"/>
@@ -808,6 +816,7 @@
 					</array>
 					<string key="NSFrameSize">{280, 329}</string>
 					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="191054627"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
@@ -2044,8 +2053,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="648803177"/>
 							<reference ref="149368562"/>
-							<reference ref="665091201"/>
 							<reference ref="191054627"/>
+							<reference ref="665091201"/>
 						</array>
 						<reference key="parent" ref="972006081"/>
 					</object>

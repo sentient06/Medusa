@@ -73,7 +73,9 @@
  */
 - (IBAction)openVirtualMachineWindow:(id)sender{
     
-    NSArray *selectedVirtualMachines = [[NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]];
+    NSArray *selectedVirtualMachines = [
+        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
+    ];
     //The user can select only one in the current interface, but anyway...
     
     VirtualMachinesModel *selectedVirtualMachine;
@@ -221,9 +223,13 @@
  * @abstract    Displays the Preferences.
  */
 - (IBAction)showPreferencesWindow:(id)sender {
+    NSLog(@"Show preferences window: %@", sender);
     
     if (!preferencesWindowController) {
+        NSLog(@"No controller");
         preferencesWindowController = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
+    }else{
+        NSLog(@"Controller ok");
     }
     [preferencesWindowController showWindow:self];  
     
@@ -256,14 +262,26 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
     
-    BOOL showSplash = [[NSUserDefaults standardUserDefaults] boolForKey:@"showSplash"];
+    //Preferences management:
     
-    if (showSplash) {
+    BOOL hideSplash = [[NSUserDefaults standardUserDefaults] boolForKey:@"hideSplash"];
+    BOOL haveSharePath = [[NSUserDefaults standardUserDefaults] boolForKey:@"haveSharePath"];
+    
+    //Splash window:
+    if (!hideSplash) {
         if (!splashWindowController) {
             splashWindowController = [[SplashWindowController alloc] initWithWindowNibName:@"SplashWindow"];
         }
         [splashWindowController showWindow:self];  
     }
+    
+    //Share path:
+    if (!haveSharePath) {
+        [[NSUserDefaults standardUserDefaults] setValue: NSHomeDirectory()
+        forKey:@"StandardSharePath"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"haveSharePath"];
+    }
+    
     
 }
 

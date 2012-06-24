@@ -33,16 +33,23 @@
 #import <Cocoa/Cocoa.h>
 
 @interface PreferencesWindowController : NSWindowController {
-    IBOutlet NSTextField *basiliskPathTextField;
-    IBOutlet NSTextField *basiliskPreferencesPathTextField;
+    
+    IBOutlet NSToolbar *preferencesToolbar;
+    
+    //Interface objects
+    IBOutlet NSView         * primaryView;
+    IBOutlet NSView         * generalSubView;
+    IBOutlet NSView         * shareSubView;
+    
 }
 
 
 - (NSArray*)openDialogForExtensions:(NSArray*)extensions;
 
 - (IBAction)openBasiliskPath:(id)sender;
-- (IBAction)openBasiliskPreferencesPath:(id)sender;
 - (IBAction)openSheepshaverPath:(id)sender;
-- (IBAction)openSheepshaverPreferencesPath:(id)sender;
+
+- (IBAction)openSubView:(id)sender;
+- (IBAction)openSharePath:(id)sender;
 
 @end

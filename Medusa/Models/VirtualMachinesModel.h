@@ -2,7 +2,7 @@
 //  VirtualMachinesModel.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 18/05/2012.
+//  Created by Giancarlo Mariot on 12/06/2012.
 //  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -33,7 +33,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class RelationshipVirtualMachinesDrivesModel, RomFilesModel, SharesModel;
+@class RelationshipVirtualMachinesDrivesModel, RomFilesModel;
 
 @interface VirtualMachinesModel : NSManagedObject
 
@@ -44,9 +44,11 @@
 @property (nonatomic, retain) NSNumber * jitEnabled;
 @property (nonatomic, retain) NSNumber * memory;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * sharedFolder;
+@property (nonatomic, retain) NSNumber * shareEnabled;
+@property (nonatomic, retain) NSNumber * useDefaultShare;
 @property (nonatomic, retain) NSSet *drives;
 @property (nonatomic, retain) RomFilesModel *model;
-@property (nonatomic, retain) SharesModel *sharedFolder;
 @end
 
 @interface VirtualMachinesModel (CoreDataGeneratedAccessors)
@@ -55,5 +57,4 @@
 - (void)removeDrivesObject:(RelationshipVirtualMachinesDrivesModel *)value;
 - (void)addDrives:(NSSet *)values;
 - (void)removeDrives:(NSSet *)values;
-
 @end

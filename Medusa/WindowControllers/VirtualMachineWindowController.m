@@ -31,8 +31,8 @@
 //------------------------------------------------------------------------------
 
 #import "VirtualMachineWindowController.h"
-#import "TableLineInformationController.h" //Generic table lines object.
-#import "PreferencesModel.h" //Object to handle coredata information.
+#import "TableLineInformationController.h"  //Generic table lines object.
+#import "PreferencesModel.h"                //Object to handle coredata information.
 #import "RelationshipVirtualMachinesDrivesModel.h" //Model for coredata entity.
 #import "VirtualMachinesModel.h"
 #import "RomFilesModel.h"
@@ -48,6 +48,8 @@
 //------------------------------------------------------------------------------
 // Application synthesizers.
 //@synthesize subviewsArray;
+@synthesize windowTitle;
+@synthesize currentPathOption;
 
 //------------------------------------------------------------------------------
 // Manual getters
@@ -115,9 +117,8 @@
     //VM details
     NSLog(@"%@", aVirtualMachine);
     
-    
     //----------------------------------------------------------
-    //Interface
+    //Interface view
     
     self = [super initWithWindowNibName:@"VirtualMachineWindow"];
     
@@ -146,7 +147,7 @@
             initWithTitle:@"Drives"
                   andIcon:@"Drive.icns"
         ];
-/*
+
         TableLineInformationController *share = [
             [TableLineInformationController alloc]                
             initWithTitle:@"Sharing"
@@ -158,23 +159,15 @@
             initWithTitle:@"Advanced"
                   andIcon:@"Configuration.icns"
         ];
-*/
         
         menuObjectsArray = [
             [NSMutableArray alloc]
-            initWithObjects:information, configuration, display, drives, nil
+            initWithObjects:information, configuration, display, drives, share, nil
         ];
         
-//        subviewsArray = [
-//            [NSMutableArray alloc]
-//            initWithObjects:
-//            subViewConfiguration, subViewDisplay, subViewDrives, subViewSharing, subViewAdvanced, nil
-//        ];
-        
-        //NSLog(@"%@", subviewsArray);
-/*        [advanced release];
+        [advanced release];
         [share release];
-*/        [drives release];
+        [drives release];
         [display release];
         [configuration release];
         [information release];
@@ -182,6 +175,28 @@
     
     [self setManagedObjectContext:theManagedObjectContext];
     [self setVirtualMachine:aVirtualMachine];
+    [self setWindowTitle:[NSString stringWithFormat:@"%@ Settings", [virtualMachine name]]];
+    
+    //----------------------------------------------------------
+    //Interface subviews
+    
+    // -- Share tab
+    
+    //Handle the status of the open path button in the share area:
+    
+    BOOL enabledShare = [[virtualMachine shareEnabled] boolValue] == YES;
+    BOOL shareDefault = [[virtualMachine useDefaultShare] boolValue] == YES;
+    
+    if ( enabledShare &  shareDefault ) {          
+        currentPathOption = useStandardPathOption;
+    }else if ( enabledShare & !shareDefault ) {
+        currentPathOption = usePersonalPathOption;
+    }else if ( !enabledShare & !shareDefault ) {
+        currentPathOption = useNoSharedPathOption;
+    }
+    
+    //----------------------------------------------------------
+    
     return self;
 
 }
@@ -391,9 +406,106 @@
     
 }
 
+//------------------------------------------------------------------------------
+// Sharing
+
 /*!
- * @method      aa
- * @abstract    aa
+ * @method      changeSharedFolderPath:
+ * @abstract    Changes share folder options.
+ * @discussion  Checks the value of the NSMatrix in the currentPathOption
+ *              variable, saves new data in the datamodel and changes interface
+ *              details accordinly.
+ */
+- (IBAction)changeShareType:(id)sender {
+    
+    if ( currentPathOption == useStandardPathOption ) {          
+        [openSharePathButton setEnabled:NO];
+        [sharePathLabel setStringValue:
+            [
+                [NSUserDefaults standardUserDefaults] stringForKey:@"StandardSharePath"
+            ]
+        ];
+        
+        [virtualMachine setShareEnabled:[NSNumber numberWithBool:YES]];
+        [virtualMachine setUseDefaultShare:[NSNumber numberWithBool:YES]];
+        
+    }else
+        if ( currentPathOption == usePersonalPathOption ) {
+        [openSharePathButton setEnabled:YES];
+        if ([virtualMachine sharedFolder] == nil ) {
+            [sharePathLabel setStringValue:@"Path not defined"];
+        }else{
+            [sharePathLabel setStringValue:
+                [virtualMachine sharedFolder]
+            ];
+        }
+        
+        [virtualMachine setShareEnabled:[NSNumber numberWithBool:YES]];
+        [virtualMachine setUseDefaultShare:[NSNumber numberWithBool:NO]];
+        
+    }else{
+        [openSharePathButton setEnabled:NO];
+        [sharePathLabel setStringValue:@"None"];
+
+        [virtualMachine setShareEnabled:[NSNumber numberWithBool:NO]];
+        [virtualMachine setUseDefaultShare:[NSNumber numberWithBool:NO]];
+        
+    }
+    
+    NSLog(@"Saving...");
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Check 'vm window controller' class; changeShareType");
+    }
+    
+}
+
+/*!
+ * @method      openSharePath:
+ * @abstract    Displays open panel to select the folder to be shared.
+ * @discussion  Maybe I should replace it with a shared folder preference?
+ */
+- (IBAction)openSharePath:(id)sender {
+        
+    NSArray * selectedFiles = [[[NSArray alloc] init] autorelease];
+    
+    NSOpenPanel * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
+    
+    //Dialog options:
+    [openDialog setCanChooseFiles:NO];
+    [openDialog setCanChooseDirectories:YES];
+    [openDialog setCanCreateDirectories:YES];
+    [openDialog setAllowsMultipleSelection:NO];
+    
+    //Display it and trace OK button:
+    if ([openDialog runModal] == NSOKButton) {
+        selectedFiles = [openDialog URLs];        
+    }
+    
+    if ([selectedFiles count] == 1) {
+        NSLog(@"%@", selectedFiles);
+        
+        [virtualMachine setSharedFolder: [[selectedFiles objectAtIndex:0] path]];
+        
+    }
+    
+    NSLog(@"Saving...");
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Check 'vm window controller' class; openSharePath");
+    }
+    
+    [sharePathLabel setStringValue:
+        [[selectedFiles objectAtIndex:0] path]
+    ];
+    
+}
+
+/*!
+ * @method      run:
+ * @abstract    Saves preferences and lauches emulator.
  * @discussion  aa
  */
 - (IBAction)run:(id)sender {
@@ -432,15 +544,55 @@
 - (void)savePrefsFile
 */
 
+- (IBAction)savePreferencesFromView:(id)sender {
+    NSLog(@"Saving...");
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Check 'vm window controller' class. (savePreferencesFromView)");
+    }
+}
+
 /*!
- * @method      aa
+ * @method      windowDidLoad:
  * @abstract    aa
  * @discussion  aa
  */
 - (void)windowDidLoad {
     [super windowDidLoad];
     
+    //----------------------------------------------------------
+    //Interface view
+    
     [rightView addSubview:subViewInformation];
+    
+    //----------------------------------------------------------
+    //Interface subviews
+    
+    // -- Share tab
+    
+    //Handle the status of the open path button in the share area:
+    
+    BOOL enabledShare = [[virtualMachine shareEnabled] boolValue] == YES;
+    BOOL shareDefault = [[virtualMachine useDefaultShare] boolValue] == YES;
+    
+    if ( enabledShare &  shareDefault ) {          
+        [openSharePathButton setEnabled:NO];
+        [sharePathLabel setStringValue:
+            [
+                [NSUserDefaults standardUserDefaults] stringForKey:@"StandardSharePath"
+            ]
+        ];
+    }else if ( enabledShare & !shareDefault ) {
+        [openSharePathButton setEnabled:YES];
+        [sharePathLabel setStringValue:
+            [virtualMachine sharedFolder]
+        ];
+    }else if ( !enabledShare & !shareDefault ) {
+        [openSharePathButton setEnabled:NO];
+        [sharePathLabel setStringValue:@"None"];
+    }
+
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
 }
 

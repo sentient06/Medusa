@@ -34,31 +34,18 @@
 
 @implementation PreferencesWindowController
 
+//------------------------------------------------------------------------------
+// Methods.
 
-- (id)initWithWindow:(NSWindow *)window
-{
-    self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
-- (void)windowDidLoad
-{
-    [super windowDidLoad];
-    
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-}
-
-//-------
-
+/*!
+ * @method      openDialogForExtensions:
+ * @abstract    Displays the open dialog.
+ * @return      Array of files selected.
+ */
 - (NSArray*)openDialogForExtensions:(NSArray *)extensions {
     
     NSArray * selectedFiles = [[[NSArray alloc] init] autorelease];
     
-    //int i; //Loop counter.
     NSOpenPanel * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
     
     //Dialog options:
@@ -68,18 +55,41 @@
     
     //Display it and trace OK button:
     if ([openDialog runModal] == NSOKButton) {
-        selectedFiles = [openDialog URLs];
-//        return [openDialog URLs];
-        //for (i = 0; i < [selectedFiles count]; i++) {
-        //    NSLog(@"File path: %@", [[selectedFiles objectAtIndex:i] path]);
-        //}
-        
+        selectedFiles = [openDialog URLs];        
     }
     
     return selectedFiles;
     
 }
 
+//------------------------------------------------------------------------------
+
+/*!
+ * @method      openSubView:
+ * @abstract    Displays a subview in the main window.
+ */
+- (IBAction)openSubView:(id)sender {
+    
+    [[[primaryView subviews] objectAtIndex:0] removeFromSuperview];
+    
+    switch ([sender tag]) {
+        default:
+        case 0:
+            [primaryView addSubview: generalSubView];
+            break;
+            
+        case 1:
+            [primaryView addSubview: shareSubView];
+            break;
+            
+    }
+    
+}
+
+/*!
+ * @method      openBasiliskPath:
+ * @abstract    Displays the open dialog to find Basilisk II executable.
+ */
 - (IBAction)openBasiliskPath:(id)sender {
     
     //Array of accepted file types:
@@ -91,9 +101,11 @@
     }
     
 }
-- (IBAction)openBasiliskPreferencesPath:(id)sender {
-    
-}
+
+/*!
+ * @method      openBasiliskPath:
+ * @abstract    Displays the open dialog to find Sheepshaver executable.
+ */
 - (IBAction)openSheepshaverPath:(id)sender {
     
     //Array of accepted file types:
@@ -105,8 +117,57 @@
     }
     
 }
-- (IBAction)openSheepshaverPreferencesPath:(id)sender {
+
+/*!
+ * @method      openSharePath:
+ * @abstract    Displays open panel to select the folder to be shared.
+ * @discussion  Maybe I should replace it with a shared folder preference?
+ */
+- (IBAction)openSharePath:(id)sender {
+    
+    NSArray * selectedFiles = [[[NSArray alloc] init] autorelease];
+    
+    NSOpenPanel * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
+    
+    //Dialog options:
+    [openDialog setCanChooseFiles:NO];
+    [openDialog setCanChooseDirectories:YES];
+    [openDialog setCanCreateDirectories:YES];
+    [openDialog setAllowsMultipleSelection:NO];
+    
+    //Display it and trace OK button:
+    if ([openDialog runModal] == NSOKButton) {
+        selectedFiles = [openDialog URLs];        
+    }
+    
+    if ([selectedFiles count] == 1) {
+        [[NSUserDefaults standardUserDefaults] setURL:[selectedFiles objectAtIndex:0] forKey:@"StandardSharePath"];
+    }
     
 }
+
+//------------------------------------------------------------------------------
+// Standard methods.
+
+- (id)initWithWindow:(NSWindow *)window {
+    self = [super initWithWindow:window];
+    if (self) {
+        // Initialization code here.
+    }
+    
+    return self;
+}
+
+/*!
+ * @discussion    Need to load one of the subviews here.
+ */
+- (void)windowDidLoad {
+    [super windowDidLoad];    
+    [primaryView addSubview: generalSubView];
+    //NSLog(@"%@",[[preferencesToolbar items] objectAtIndex:0]);
+    //[[[preferencesToolbar items] objectAtIndex:0] setEnabled:YES];
+}
+
+//------------------------------------------------------------------------------
 
 @end
