@@ -260,7 +260,8 @@
  * @link Check XCode quick help.
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    
+    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
     //Preferences management:
     

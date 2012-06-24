@@ -80,6 +80,10 @@ typedef enum {
     IBOutlet NSButton            * openSharePathButton;
     IBOutlet NSTextField         * sharePathLabel;
 //    NSArray  *subViews;
+    
+    /// 32-bit compatibility -------    
+    pathOptions currentPathOption;
+    /// ----------------------------
 }
 //------------------------------------------------------------------------------
 // Standard variables properties.
