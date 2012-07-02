@@ -82,6 +82,14 @@
             [primaryView addSubview: shareSubView];
             break;
             
+        case 2:
+            [primaryView addSubview: advancedSubView];
+            break;
+            
+        case 3:
+            [primaryView addSubview: developerSubView];
+            break;
+            
     }
     
 }
@@ -164,6 +172,7 @@
 - (void)windowDidLoad {
     [super windowDidLoad];    
     [primaryView addSubview: generalSubView];
+    [preferencesToolbar setSelectedItemIdentifier:@"generalButton"];
     //NSLog(@"%@",[[preferencesToolbar items] objectAtIndex:0]);
     //[[[preferencesToolbar items] objectAtIndex:0] setEnabled:YES];
 }

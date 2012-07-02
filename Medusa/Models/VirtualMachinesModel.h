@@ -45,10 +45,11 @@
 @property (nonatomic, retain) NSNumber * memory;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * sharedFolder;
+//@property (nonatomic, retain) NSNumber * model;
 @property (nonatomic, retain) NSNumber * shareEnabled;
 @property (nonatomic, retain) NSNumber * useDefaultShare;
 @property (nonatomic, retain) NSSet *drives;
-@property (nonatomic, retain) RomFilesModel *model;
+@property (nonatomic, retain) RomFilesModel *romFile;
 @end
 
 @interface VirtualMachinesModel (CoreDataGeneratedAccessors)

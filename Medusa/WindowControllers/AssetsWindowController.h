@@ -1,8 +1,8 @@
 //
-//  RomFilesModel.h
+//  AssetsWindowController.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 18/05/2012.
+//  Created by Giancarlo Mariot on 30/06/2012.
 //  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,25 +30,32 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import <Cocoa/Cocoa.h>
 
-@class VirtualMachinesModel;
+@interface AssetsWindowController : NSWindowController {
+    
+    //Standard variables
+    NSManagedObjectContext  * managedObjectContext;    
+    NSMutableArray          * menuObjectsArray;
+    
+    //Interface objects
+    IBOutlet NSTableView    * detailsTree;
+    IBOutlet NSView         * rightView;
+    IBOutlet NSView         * subViewRomFiles;
+    IBOutlet NSView         * subViewDisks;
+}
 
-@interface RomFilesModel : NSManagedObject
+//------------------------------------------------------------------------------
+// Manual getters
+- (NSManagedObjectContext *)managedObjectContext;
 
-@property (nonatomic, retain) NSString * comments;
-@property (nonatomic, retain) NSString * emulator;
-@property (nonatomic, retain) NSString * filePath;
-@property (nonatomic, retain) NSString * modelName;
-@property (nonatomic, retain) NSSet    * machines;
-@end
+// Manual setters
+- (void)setManagedObjectContext:(NSManagedObjectContext *)value;
 
-@interface RomFilesModel (CoreDataGeneratedAccessors)
+// Init methods
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext;
 
-- (void)addMachinesObject:(VirtualMachinesModel *)value;
-- (void)removeMachinesObject:(VirtualMachinesModel *)value;
-- (void)addMachines:(NSSet *)values;
-- (void)removeMachines:(NSSet *)values;
+//------------------------------------------------------------------------------
+- (IBAction)traceTableViewClick:(id)sender;
 
 @end

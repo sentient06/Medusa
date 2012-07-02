@@ -1,8 +1,8 @@
 //
-//  RomFilesModel.h
+//  ManagedObjectCloner.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 18/05/2012.
+//  Created by Giancarlo Mariot on 02/07/2012.
 //  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,25 +30,11 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class VirtualMachinesModel;
-
-@interface RomFilesModel : NSManagedObject
-
-@property (nonatomic, retain) NSString * comments;
-@property (nonatomic, retain) NSString * emulator;
-@property (nonatomic, retain) NSString * filePath;
-@property (nonatomic, retain) NSString * modelName;
-@property (nonatomic, retain) NSSet    * machines;
-@end
-
-@interface RomFilesModel (CoreDataGeneratedAccessors)
-
-- (void)addMachinesObject:(VirtualMachinesModel *)value;
-- (void)removeMachinesObject:(VirtualMachinesModel *)value;
-- (void)addMachines:(NSSet *)values;
-- (void)removeMachines:(NSSet *)values;
-
+/*!
+ * @link http://stackoverflow.com/questions/2730832/how-can-i-duplicate-or-copy-a-core-data-managed-object
+ */
+@interface NSManagedObject (DeepCopy)
+- (id)clone;
 @end

@@ -245,7 +245,7 @@
     
     NSDictionary * romSettings = [[NSDictionary alloc]
         initWithObjectsAndKeys:
-            [NSString stringWithFormat: [[virtualMachine model] filePath]], @"rom",
+            [NSString stringWithFormat: [[virtualMachine romFile] filePath]], @"rom",
             nil
     ];
     

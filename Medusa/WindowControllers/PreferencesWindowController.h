@@ -40,6 +40,8 @@
     IBOutlet NSView         * primaryView;
     IBOutlet NSView         * generalSubView;
     IBOutlet NSView         * shareSubView;
+    IBOutlet NSView         * advancedSubView;
+    IBOutlet NSView         * developerSubView;
     
 }
 

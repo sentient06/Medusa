@@ -113,6 +113,8 @@
 - (id)initWithVirtualMachine:(VirtualMachinesModel *)aVirtualMachine
       inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
     
+    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];
+    
     //----------------------------------------------------------
     //VM details
     NSLog(@"%@", aVirtualMachine);
@@ -164,6 +166,10 @@
             [NSMutableArray alloc]
             initWithObjects:information, configuration, display, drives, share, nil
         ];
+        
+        if (displayAllTabs == YES) {
+            [menuObjectsArray addObject:advanced];
+        }
         
         [advanced release];
         [share release];
@@ -226,11 +232,13 @@
     
 }
 
+/*!
+ * @method      traceTableViewClick:
+ * @abstract    Changes the right pane according to the selected item in the
+ *              left pane menu.
+ * @discussion  Just checks the row and shows content accordinly.
+ */
 - (IBAction)traceTableViewClick:(id)sender {
-    
-    
-    
-//    NSLog(@"%d", [detailsTree selectedRow] );
 
     [[[rightView subviews] objectAtIndex:0] removeFromSuperview];
     
@@ -515,7 +523,7 @@
     NSURL * emulatorPath; // = [[NSURL alloc] init];
     NSMutableString * preferencesFilePath; // = [[NSMutableString alloc] init];
 
-    if ([[[virtualMachine model] emulator] isEqualTo:@"Basilisk"]) {
+    if ([[[virtualMachine romFile] emulator] isEqualTo:@"Basilisk"]) {
         preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
         emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey: @"BasiliskPath"];
     }else{

@@ -45,9 +45,10 @@
 @dynamic memory;
 @dynamic name;
 @dynamic sharedFolder;
+//@dynamic model;
 @dynamic shareEnabled;
 @dynamic useDefaultShare;
 @dynamic drives;
-@dynamic model;
+@dynamic romFile;
 
 @end

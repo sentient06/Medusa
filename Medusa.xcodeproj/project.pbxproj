@@ -11,15 +11,17 @@
 		814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FAD881570ED0D008D3223 /* PreferencesWindowController.m */; };
 		8159C790154F1205001E43D4 /* DropRomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C78F154F1205001E43D4 /* DropRomView.m */; };
 		8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C797154F2E29001E43D4 /* DropDiskView.m */; };
-		815C26361587ECF4003FA9EB /* Map_1.0.2b.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 815C26351587ECF4003FA9EB /* Map_1.0.2b.xcmappingmodel */; };
+		815C26361587ECF4003FA9EB /* MapFrom0.1To1.0.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 815C26351587ECF4003FA9EB /* MapFrom0.1To1.0.2.xcmappingmodel */; };
 		815C26391587EEA5003FA9EB /* VirtualMachinesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 815C26381587EEA5003FA9EB /* VirtualMachinesModel.m */; };
 		815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815F4F67156EC324001712CB /* PreferencesWindow.xib */; };
 		8160BB0915502F74005F6DBF /* DriveIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */; };
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
-		816154B8158131E500CB9188 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 816154B6158131E500CB9188 /* Medusa.xcdatamodeld */; };
 		81638DF81572DCC800CBDCA6 /* SplashWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81638DF71572DCC800CBDCA6 /* SplashWindow.xib */; };
 		81638DFC1572DF7800CBDCA6 /* SplashWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */; };
 		816BAF8A153863E400B68091 /* IconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 816BAF89153863E300B68091 /* IconValueTransformer.m */; };
+		816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */; };
+		816F655115A1AD0A00687FA2 /* WizardWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 816F655015A1AD0900687FA2 /* WizardWindow.xib */; };
+		81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81733FB2159F2ED000711709 /* AssetsWindow.xib */; };
 		81756F331534743500FCBA8E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81756F321534743500FCBA8E /* Cocoa.framework */; };
 		81756F3D1534743500FCBA8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81756F3B1534743500FCBA8E /* InfoPlist.strings */; };
 		81756F3F1534743500FCBA8E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 81756F3E1534743500FCBA8E /* main.m */; };
@@ -41,15 +43,20 @@
 		817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF56153580100038E9A0 /* MedusaIcon.icns */; };
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
 		818987D11538CFED00A32B6A /* Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 818987D01538CFED00A32B6A /* Info.icns */; };
+		81A2B6A8159E55F8000623D2 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81A2B6A4159E55F8000623D2 /* Medusa.xcdatamodeld */; };
+		81A2B6AC159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81A2B6AB159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel */; };
 		81A7FBF81587D2C400D38521 /* Stop.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81A7FBF71587D2C400D38521 /* Stop.icns */; };
 		81C03CFE154EF2C100842906 /* DriveManagerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */; };
 		81C03D02154EF46C00842906 /* DriveManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C03D01154EF46C00842906 /* DriveManagerWindowController.m */; };
-		81C74C871597A7EE001A589B /* Map_1.0.2b1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81C74C861597A7EE001A589B /* Map_1.0.2b1.xcmappingmodel */; };
+		81C74C871597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81C74C861597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel */; };
 		81C84433153E181900E94443 /* FileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84430153E181900E94443 /* FileHandler.m */; };
 		81C84434153E181900E94443 /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84432153E181900E94443 /* FileObject.m */; };
 		81C84438153E183700E94443 /* DropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84437153E183700E94443 /* DropView.m */; };
 		81C8443B153E18CC00E94443 /* RomManagerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C8443A153E18CC00E94443 /* RomManagerWindow.xib */; };
 		81C8443E153E191800E94443 /* RomManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C8443D153E191800E94443 /* RomManagerWindowController.m */; };
+		81DB8240159F91F8003D4C5D /* Clone.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DB823F159F91F8003D4C5D /* Clone.png */; };
+		81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DB8248159FAED8003D4C5D /* AssetsWindowController.m */; };
+		81E4DA5E159E4DF900478A14 /* MapFrom0.1To1.0.2.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81E4DA5D159E4DF900478A14 /* MapFrom0.1To1.0.2.1.xcmappingmodel */; };
 		81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDrivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDrivesModel.m */; };
 		81E84DF01565BE820002D4DA /* DrivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEF1565BE820002D4DA /* DrivesModel.m */; };
 		81E84DF91565BE820002D4DA /* RomFilesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DF81565BE820002D4DA /* RomFilesModel.m */; };
@@ -57,14 +64,13 @@
 
 /* Begin PBXFileReference section */
 		81134C4315540B2900785866 /* PreferencesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesModel.m; path = Models/PreferencesModel.m; sourceTree = "<group>"; };
-		812070051593C8C400C49A55 /* Medusa 1.0.2b1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b1.xcdatamodel"; sourceTree = "<group>"; };
 		814FAD871570ED0D008D3223 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = WindowControllers/PreferencesWindowController.h; sourceTree = "<group>"; };
 		814FAD881570ED0D008D3223 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = WindowControllers/PreferencesWindowController.m; sourceTree = "<group>"; };
 		8159C78E154F1205001E43D4 /* DropRomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropRomView.h; path = SubClasses/DropRomView.h; sourceTree = "<group>"; };
 		8159C78F154F1205001E43D4 /* DropRomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropRomView.m; path = SubClasses/DropRomView.m; sourceTree = "<group>"; };
 		8159C796154F2E28001E43D4 /* DropDiskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropDiskView.h; path = SubClasses/DropDiskView.h; sourceTree = "<group>"; };
 		8159C797154F2E29001E43D4 /* DropDiskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropDiskView.m; path = SubClasses/DropDiskView.m; sourceTree = "<group>"; };
-		815C26351587ECF4003FA9EB /* Map_1.0.2b.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Map_1.0.2b.xcmappingmodel; sourceTree = "<group>"; };
+		815C26351587ECF4003FA9EB /* MapFrom0.1To1.0.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MapFrom0.1To1.0.2.xcmappingmodel; sourceTree = "<group>"; };
 		815C26371587EEA5003FA9EB /* VirtualMachinesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachinesModel.h; path = Models/VirtualMachinesModel.h; sourceTree = "<group>"; };
 		815C26381587EEA5003FA9EB /* VirtualMachinesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachinesModel.m; path = Models/VirtualMachinesModel.m; sourceTree = "<group>"; };
 		815F4F67156EC324001712CB /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindow.xib; path = Windows/PreferencesWindow.xib; sourceTree = "<group>"; };
@@ -72,12 +78,15 @@
 		8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveIconValueTransformer.m; path = TransformerControllers/DriveIconValueTransformer.m; sourceTree = "<group>"; };
 		8160BB0B15503052005F6DBF /* RomIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomIconValueTransformer.h; path = TransformerControllers/RomIconValueTransformer.h; sourceTree = "<group>"; };
 		8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomIconValueTransformer.m; path = TransformerControllers/RomIconValueTransformer.m; sourceTree = "<group>"; };
-		816154B7158131E500CB9188 /* Medusa 0b1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b1.xcdatamodel"; sourceTree = "<group>"; };
 		81638DF71572DCC800CBDCA6 /* SplashWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashWindow.xib; path = Windows/SplashWindow.xib; sourceTree = "<group>"; };
 		81638DFA1572DF7800CBDCA6 /* SplashWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashWindowController.h; path = WindowControllers/SplashWindowController.h; sourceTree = "<group>"; };
 		81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashWindowController.m; path = WindowControllers/SplashWindowController.m; sourceTree = "<group>"; };
 		816BAF88153863E300B68091 /* IconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconValueTransformer.h; path = TransformerControllers/IconValueTransformer.h; sourceTree = "<group>"; };
 		816BAF89153863E300B68091 /* IconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconValueTransformer.m; path = TransformerControllers/IconValueTransformer.m; sourceTree = "<group>"; };
+		816F654B15A19C6400687FA2 /* ManagedObjectCloner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjectCloner.h; path = UtilitiesModels/ManagedObjectCloner.h; sourceTree = "<group>"; };
+		816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjectCloner.m; path = UtilitiesModels/ManagedObjectCloner.m; sourceTree = "<group>"; };
+		816F655015A1AD0900687FA2 /* WizardWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WizardWindow.xib; path = Windows/WizardWindow.xib; sourceTree = "<group>"; };
+		81733FB2159F2ED000711709 /* AssetsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AssetsWindow.xib; path = Windows/AssetsWindow.xib; sourceTree = "<group>"; };
 		81756F2E1534743500FCBA8E /* Medusa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Medusa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81756F321534743500FCBA8E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		81756F351534743500FCBA8E /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -109,12 +118,16 @@
 		817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableLineInformationController.m; path = UtilitiesControllers/TableLineInformationController.m; sourceTree = "<group>"; };
 		818987D01538CFED00A32B6A /* Info.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Info.icns; path = Icons/Info.icns; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Models/PreferencesModel.h; sourceTree = "<group>"; };
+		81A2B6A5159E55F8000623D2 /* Medusa 0b1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b1.xcdatamodel"; sourceTree = "<group>"; };
+		81A2B6A6159E55F8000623D2 /* Medusa 1.0.2b.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b.xcdatamodel"; sourceTree = "<group>"; };
+		81A2B6A7159E55F8000623D2 /* Medusa 1.0.2b1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b1.xcdatamodel"; sourceTree = "<group>"; };
+		81A2B6AA159E562D000623D2 /* Medusa 1.0.2b2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b2.xcdatamodel"; sourceTree = "<group>"; };
+		81A2B6AB159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MapFrom1.0.2.1To1.0.2.2.xcmappingmodel; sourceTree = "<group>"; };
 		81A7FBF71587D2C400D38521 /* Stop.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Stop.icns; sourceTree = "<group>"; };
-		81AFE1B51587E8940007089E /* Medusa 1.0.2b.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b.xcdatamodel"; sourceTree = "<group>"; };
 		81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DriveManagerWindow.xib; path = Windows/DriveManagerWindow.xib; sourceTree = "<group>"; };
 		81C03D00154EF46C00842906 /* DriveManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveManagerWindowController.h; path = WindowControllers/DriveManagerWindowController.h; sourceTree = "<group>"; };
 		81C03D01154EF46C00842906 /* DriveManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveManagerWindowController.m; path = WindowControllers/DriveManagerWindowController.m; sourceTree = "<group>"; };
-		81C74C861597A7EE001A589B /* Map_1.0.2b1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = Map_1.0.2b1.xcmappingmodel; sourceTree = "<group>"; };
+		81C74C861597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MapFrom1.0.2To1.0.2.1.xcmappingmodel; sourceTree = "<group>"; };
 		81C8442F153E181900E94443 /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileHandler.h; path = Models/FileHandler.h; sourceTree = "<group>"; };
 		81C84430153E181900E94443 /* FileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileHandler.m; path = Models/FileHandler.m; sourceTree = "<group>"; };
 		81C84431153E181900E94443 /* FileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileObject.h; path = Models/FileObject.h; sourceTree = "<group>"; };
@@ -124,6 +137,10 @@
 		81C8443A153E18CC00E94443 /* RomManagerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RomManagerWindow.xib; path = Windows/RomManagerWindow.xib; sourceTree = "<group>"; };
 		81C8443C153E191800E94443 /* RomManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomManagerWindowController.h; path = WindowControllers/RomManagerWindowController.h; sourceTree = "<group>"; };
 		81C8443D153E191800E94443 /* RomManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomManagerWindowController.m; path = WindowControllers/RomManagerWindowController.m; sourceTree = "<group>"; };
+		81DB823F159F91F8003D4C5D /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clone.png; sourceTree = "<group>"; };
+		81DB8247159FAED8003D4C5D /* AssetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetsWindowController.h; path = WindowControllers/AssetsWindowController.h; sourceTree = "<group>"; };
+		81DB8248159FAED8003D4C5D /* AssetsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetsWindowController.m; path = WindowControllers/AssetsWindowController.m; sourceTree = "<group>"; };
+		81E4DA5D159E4DF900478A14 /* MapFrom0.1To1.0.2.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MapFrom0.1To1.0.2.1.xcmappingmodel; sourceTree = "<group>"; };
 		81E84DEB1565BE810002D4DA /* RelationshipVirtualMachinesDrivesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RelationshipVirtualMachinesDrivesModel.h; path = Models/RelationshipVirtualMachinesDrivesModel.h; sourceTree = "<group>"; };
 		81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDrivesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RelationshipVirtualMachinesDrivesModel.m; path = Models/RelationshipVirtualMachinesDrivesModel.m; sourceTree = "<group>"; };
 		81E84DEE1565BE820002D4DA /* DrivesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrivesModel.h; path = Models/DrivesModel.h; sourceTree = "<group>"; };
@@ -147,9 +164,11 @@
 		810E38451554414300949BE1 /* DataModels */ = {
 			isa = PBXGroup;
 			children = (
-				816154B6158131E500CB9188 /* Medusa.xcdatamodeld */,
-				81C74C861597A7EE001A589B /* Map_1.0.2b1.xcmappingmodel */,
-				815C26351587ECF4003FA9EB /* Map_1.0.2b.xcmappingmodel */,
+				81A2B6A4159E55F8000623D2 /* Medusa.xcdatamodeld */,
+				81A2B6AB159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel */,
+				81C74C861597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel */,
+				81E4DA5D159E4DF900478A14 /* MapFrom0.1To1.0.2.1.xcmappingmodel */,
+				815C26351587ECF4003FA9EB /* MapFrom0.1To1.0.2.xcmappingmodel */,
 			);
 			path = DataModels;
 			sourceTree = "<group>";
@@ -167,6 +186,8 @@
 				814FAD881570ED0D008D3223 /* PreferencesWindowController.m */,
 				81638DFA1572DF7800CBDCA6 /* SplashWindowController.h */,
 				81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */,
+				81DB8247159FAED8003D4C5D /* AssetsWindowController.h */,
+				81DB8248159FAED8003D4C5D /* AssetsWindowController.m */,
 			);
 			name = WindowControllers;
 			sourceTree = "<group>";
@@ -191,6 +212,22 @@
 				8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */,
 			);
 			name = Transformers;
+			sourceTree = "<group>";
+		};
+		816F462C159BBB3C00FC328B /* MapingModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = MapingModels;
+			sourceTree = "<group>";
+		};
+		816F654915A19C1A00687FA2 /* HelpingModels */ = {
+			isa = PBXGroup;
+			children = (
+				816F654B15A19C6400687FA2 /* ManagedObjectCloner.h */,
+				816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */,
+			);
+			name = HelpingModels;
 			sourceTree = "<group>";
 		};
 		81756F231534743400FCBA8E = {
@@ -244,6 +281,7 @@
 		81756F391534743500FCBA8E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				81FAA927159F3968004F5F11 /* Images */,
 				817CAF4015357EF90038E9A0 /* Icons */,
 				81756F3A1534743500FCBA8E /* Medusa-Info.plist */,
 				81756F3B1534743500FCBA8E /* InfoPlist.strings */,
@@ -271,11 +309,13 @@
 			isa = PBXGroup;
 			children = (
 				81756F471534743500FCBA8E /* MainMenu.xib */,
+				81733FB2159F2ED000711709 /* AssetsWindow.xib */,
 				81756F5F153483C400FCBA8E /* VirtualMachineWindow.xib */,
 				81C8443A153E18CC00E94443 /* RomManagerWindow.xib */,
 				81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */,
 				815F4F67156EC324001712CB /* PreferencesWindow.xib */,
 				81638DF71572DCC800CBDCA6 /* SplashWindow.xib */,
+				816F655015A1AD0900687FA2 /* WizardWindow.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -303,6 +343,8 @@
 		818987D31538D41900A32B6A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				816F654915A19C1A00687FA2 /* HelpingModels */,
+				816F462C159BBB3C00FC328B /* MapingModels */,
 				81E84DFA1565BEB10002D4DA /* FileModels */,
 				81E84DEA1565B1EF0002D4DA /* CoreDataEntityModels */,
 			);
@@ -348,6 +390,14 @@
 				81134C4315540B2900785866 /* PreferencesModel.m */,
 			);
 			name = FileModels;
+			sourceTree = "<group>";
+		};
+		81FAA927159F3968004F5F11 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				81DB823F159F91F8003D4C5D /* Clone.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,6 +472,9 @@
 				815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */,
 				81638DF81572DCC800CBDCA6 /* SplashWindow.xib in Resources */,
 				81A7FBF81587D2C400D38521 /* Stop.icns in Resources */,
+				81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */,
+				81DB8240159F91F8003D4C5D /* Clone.png in Resources */,
+				816F655115A1AD0A00687FA2 /* WizardWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -452,10 +505,14 @@
 				81E84DF91565BE820002D4DA /* RomFilesModel.m in Sources */,
 				814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */,
 				81638DFC1572DF7800CBDCA6 /* SplashWindowController.m in Sources */,
-				816154B8158131E500CB9188 /* Medusa.xcdatamodeld in Sources */,
-				815C26361587ECF4003FA9EB /* Map_1.0.2b.xcmappingmodel in Sources */,
+				815C26361587ECF4003FA9EB /* MapFrom0.1To1.0.2.xcmappingmodel in Sources */,
 				815C26391587EEA5003FA9EB /* VirtualMachinesModel.m in Sources */,
-				81C74C871597A7EE001A589B /* Map_1.0.2b1.xcmappingmodel in Sources */,
+				81C74C871597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel in Sources */,
+				81E4DA5E159E4DF900478A14 /* MapFrom0.1To1.0.2.1.xcmappingmodel in Sources */,
+				81A2B6A8159E55F8000623D2 /* Medusa.xcdatamodeld in Sources */,
+				81A2B6AC159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel in Sources */,
+				81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */,
+				816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,14 +639,15 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		816154B6158131E500CB9188 /* Medusa.xcdatamodeld */ = {
+		81A2B6A4159E55F8000623D2 /* Medusa.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				812070051593C8C400C49A55 /* Medusa 1.0.2b1.xcdatamodel */,
-				81AFE1B51587E8940007089E /* Medusa 1.0.2b.xcdatamodel */,
-				816154B7158131E500CB9188 /* Medusa 0b1.xcdatamodel */,
+				81A2B6AA159E562D000623D2 /* Medusa 1.0.2b2.xcdatamodel */,
+				81A2B6A5159E55F8000623D2 /* Medusa 0b1.xcdatamodel */,
+				81A2B6A6159E55F8000623D2 /* Medusa 1.0.2b.xcdatamodel */,
+				81A2B6A7159E55F8000623D2 /* Medusa 1.0.2b1.xcdatamodel */,
 			);
-			currentVersion = 812070051593C8C400C49A55 /* Medusa 1.0.2b1.xcdatamodel */;
+			currentVersion = 81A2B6AA159E562D000623D2 /* Medusa 1.0.2b2.xcdatamodel */;
 			path = Medusa.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

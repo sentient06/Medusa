@@ -31,9 +31,10 @@
 //------------------------------------------------------------------------------
 
 #import <Cocoa/Cocoa.h>
-@class RomManagerWindowController; //Rom Manager Window
-@class DriveManagerWindowController; //Drive Manager Window
-@class PreferencesWindowController; //Preferences Window
+@class RomManagerWindowController;      //Rom Manager Window
+@class DriveManagerWindowController;    //Drive Manager Window
+@class AssetsWindowController;          //Assets Window
+@class PreferencesWindowController;     //Preferences Window
 @class SplashWindowController;
 
 /*!
@@ -47,20 +48,30 @@
     
     IBOutlet NSArrayController  * virtualMachinesArrayController;
     //Array controller to keep track of the machines list.
+    IBOutlet NSArrayController  * romFilesController;
+    //Array controller with the model (rom file).
+    //IBOutlet NSObjectController * newVirtualMachineController;
+    
+    //New VM Sheet - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
     IBOutlet NSPanel            * newMachineView;
     //Sheet used to create a new machine.
     IBOutlet NSTextField        * newMachineNameField;
     //Text field in the new machine sheet.
     IBOutlet NSPopUpButton      * newMachineModelField;
     //Pop up button with the model (rom file).
-    IBOutlet NSArrayController  * romFilesController;
-    //Array controller with the model (rom file).
     
-    IBOutlet NSObjectController * newVirtualMachineController;
+    //Clone VM Sheet - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    IBOutlet NSPanel            * cloneMachineView;
+    //Sheet used to create a new machine.
+    IBOutlet NSTextField        * cloneMachineNameField;
+    //Text field in the new machine sheet.
     
     //Window Controllers:
     RomManagerWindowController      * romWindowController;
     DriveManagerWindowController    * driveWindowController;
+    AssetsWindowController          * assetsWindowController;
     PreferencesWindowController     * preferencesWindowController;
     SplashWindowController          * splashWindowController;
     
@@ -85,7 +96,7 @@
 //------------------------------------------------------------------------------
 // Default methods ahead.
 
-- (IBAction)saveAction:(id)sender; //don't remember...
+- (IBAction)saveAction:(id)sender; //don't know! Saves the managed object context. But why?
 
 //------------------------------------------------------------------------------
 // New methods ahead.

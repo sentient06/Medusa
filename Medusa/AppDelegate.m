@@ -34,9 +34,12 @@
 #import "VirtualMachineWindowController.h"  //VM Window
 #import "RomManagerWindowController.h"      //Rom Manager Window
 #import "DriveManagerWindowController.h"    //Drive Manager Window
+#import "AssetsWindowController.h"          //Assets Window
 #import "PreferencesWindowController.h"     //Preferences Window
 #import "SplashWindowController.h"
 #import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
+//Helpers:
+#import "ManagedObjectCloner.h"             //Clone core-data objects
 //Models:
 #import "VirtualMachinesModel.h"
 #import "RomFilesModel.h"
@@ -78,7 +81,7 @@
     ];
     //The user can select only one in the current interface, but anyway...
     
-    VirtualMachinesModel *selectedVirtualMachine;
+    VirtualMachinesModel * selectedVirtualMachine;
     
     for (int i = 0; i < [selectedVirtualMachines count]; i++) {
         
@@ -99,6 +102,10 @@
     [selectedVirtualMachines release];
     
 }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// New Virtual machines
+// New VM:
 
 /*!
  * @method      showNewMachineView:
@@ -140,11 +147,16 @@
  */
 - (IBAction)saveNewVirtualMachine:(id)sender {
 
+    BOOL openDetailsAfterCreation = [
+        [NSUserDefaults standardUserDefaults]
+            boolForKey:@"openDetailsAfterCreation"
+    ];
+
     //Gets the Managed Object Context:
-    NSManagedObjectContext *managedObjectContext = [self managedObjectContext];
+    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
 
     //Sets a new vm object.
-    VirtualMachinesModel *newVirtualMachineObject = [
+    VirtualMachinesModel * newVirtualMachineObject = [
         NSEntityDescription
             insertNewObjectForEntityForName:@"VirtualMachines"
                      inManagedObjectContext:managedObjectContext
@@ -161,25 +173,10 @@
     
     
     
-    [newVirtualMachineObject setModel:[[romFilesController selectedObjects] objectAtIndex:0]];
+    [newVirtualMachineObject setRomFile:[[romFilesController selectedObjects] objectAtIndex:0]];
        
     //--------------------------------------------------------------------------
-    //Focus in the new item.
-    
-    //Something is not right here... bollocks.
-     
-     
-    //NSLog(@"%@", [[virtualMachinesArrayController arrangedObjects] lastObject]);
-//    [
-//        virtualMachinesArrayController
-//        setSelectionIndex:0
-//        //[[virtualMachinesArrayController arrangedObjects] lastIndex]
-//     //[[virtualMachinesArrayController arrangedObjects] las]
-////     [managedObject
-//    ];
-    //Open item's window if user specified.
-    //openVirtualMachineWindow
-    //--------------------------------------------------------------------------
+    // Save:
     
     NSLog(@"Saving...");
     NSError *error;
@@ -188,9 +185,129 @@
         NSLog(@"Check 'App Delegate' class.");
     }
     
-    [self endNewMachineView:sender];
+    //--------------------------------------------------------------------------
+    //Focus in the new item.
+    
+    [virtualMachinesArrayController
+        setSelectedObjects:
+        [NSArray arrayWithObject:
+            [[virtualMachinesArrayController arrangedObjects] lastObject]
+        ]
+    ];
+    
+    //--------------------------------------------------------------------------
+    //Open item's window if user specified.    
 
+    [self endNewMachineView:sender];
+    
+    if (openDetailsAfterCreation == YES) {
+        [self openVirtualMachineWindow:sender];
+    }
+    
 }
+
+// Clone VM:
+
+/*!
+ * @method      showNewMachineView:
+ * @abstract    Displays the new VM sheet.
+ */
+- (IBAction)showCloneMachineView:(id)sender {
+    
+    [ NSApp
+            beginSheet: cloneMachineView
+        modalForWindow: (NSWindow *)_window
+         modalDelegate: self
+        didEndSelector: nil
+           contextInfo: nil
+    ];
+    
+}
+
+/*!
+ * @method      endNewMachineView:
+ * @abstract    Closes the new VM sheet.
+ */
+- (IBAction)endCloneMachineView:(id)sender {
+    
+    [cloneMachineNameField setStringValue:@""];
+    [NSApp endSheet:cloneMachineView];
+    [cloneMachineView orderOut:sender];
+    
+}
+
+/*!
+ * @method      saveNewVirtualMachine:
+ * @abstract    Saves the new virtual machine created by the user to the
+ *              coredata.
+ * @discussion  This method is sort of messed. There is a need to check
+ *              the existence of the vm model before proceeding and this
+ *              leads to a whole new world of lines that I suppose are
+ *              not needed. Remember to refactor in the near future.
+ */
+- (IBAction)saveCloneVirtualMachine:(id)sender {
+
+    BOOL openDetailsAfterCreation = [
+        [NSUserDefaults standardUserDefaults]
+            boolForKey:@"openDetailsAfterCreation"
+    ];
+
+    //Gets the Managed Object Context:
+    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
+    
+    //Gets selected machine:
+    NSArray * selectedVirtualMachines = [
+        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
+    ];
+
+    //Machine to clone:
+    VirtualMachinesModel * machineToClone = [selectedVirtualMachines objectAtIndex:0];
+    
+    NSLog(@"Cloning machine called '%@'", [machineToClone name]);
+    
+    //Cloned machine:
+    VirtualMachinesModel * clonedMachine = [machineToClone clone];
+    
+    //Change name:
+    [clonedMachine setName:[cloneMachineNameField stringValue]];
+    
+    //--------------------------------------------------------------------------
+    //Saving new clone:
+    
+    NSLog(@"Saving...");
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Check 'App Delegate' class, saveCloneVirtualMachine");
+    }
+    
+    //--------------------------------------------------------------------------
+    //Focus in the new item.
+    
+    [virtualMachinesArrayController
+        setSelectedObjects:
+        [NSArray arrayWithObject:
+            [[virtualMachinesArrayController arrangedObjects] lastObject]
+        ]
+    ];
+
+    //--------------------------------------------------------------------------
+    //Release all
+    
+    [selectedVirtualMachines release]; //Selected machines
+    
+    [self endCloneMachineView:sender];
+    
+    if (openDetailsAfterCreation == YES) {
+        [self openVirtualMachineWindow:sender];
+    }
+    
+}
+
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Open Window Actions
+// Rom Manager / Assets:
 
 /*!
  * @method      showRomManagerWindow:
@@ -198,12 +315,36 @@
  */
 - (IBAction)showRomManagerWindow:(id)sender {
     
-    if (!romWindowController) {
-        romWindowController = [[RomManagerWindowController alloc] initWithWindowNibName:@"RomManagerWindow"];
+    BOOL useAssetsManager = [[NSUserDefaults standardUserDefaults] boolForKey:@"useAssetsManager"];
+    
+    //Gets the Managed Object Context:
+    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
+    
+    if (useAssetsManager == YES) {
+    
+        if (!assetsWindowController) {
+            assetsWindowController = [
+                [AssetsWindowController alloc]
+                    initWithManagedObjectContext: managedObjectContext
+            ];
+        }
+        [assetsWindowController showWindow:self];  
+        
+    }else{
+        
+        if (!romWindowController) {
+            romWindowController = [
+                [RomManagerWindowController alloc]
+                    initWithWindowNibName:@"RomManagerWindow"
+            ];
+        }
+        [romWindowController showWindow:self];  
+        
     }
-    [romWindowController showWindow:self];  
     
 }
+
+// Disks:
 
 /*!
  * @method      showDriveManagerWindow:
@@ -217,6 +358,8 @@
     [driveWindowController showWindow:self];  
     
 }
+
+// Preferences:
 
 /*!
  * @method      showPreferencesWindow:
@@ -261,7 +404,8 @@
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    //Log all preferences:
+    //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
     //Preferences management:
     
@@ -390,14 +534,20 @@
     
     NSPersistentStoreCoordinator *coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
     
+    NSSet *versionIdentifiers = [[self managedObjectModel] versionIdentifiers];
+    NSLog(@"Which Current Version is our .xcdatamodeld file set to? %@", versionIdentifiers);
+    
     /*
      This part handles the persistent store upgrade:
      */
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
+    NSDictionary *options = [
+                             NSDictionary dictionaryWithObjectsAndKeys:
                             [NSNumber numberWithBool:YES],
                              NSMigratePersistentStoresAutomaticallyOption,
                             [NSNumber numberWithBool:YES],
-                             NSInferMappingModelAutomaticallyOption, nil];
+                             NSInferMappingModelAutomaticallyOption,
+                             nil
+                             ];
     
     /*
      The following code was without 'options'. The value was set to 'nil'.
@@ -408,8 +558,9 @@
                                  URL:url
                              options:options
                                error:&error]) {
+
+        //[[NSApplication sharedApplication] presentError:error];
         
-        [[NSApplication sharedApplication] presentError:error];
         return nil;
     }
     __persistentStoreCoordinator = [coordinator retain];
