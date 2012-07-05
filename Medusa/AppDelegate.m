@@ -56,6 +56,8 @@
 //------------------------------------------------------------------------------
 // Methods.
 
+#pragma mark – Dealloc
+
 /*!
  * @method      dealloc:
  * @discussion  Always in the top of the files!
@@ -69,6 +71,8 @@
 
 //------------------------------------------------------------------------------
 // Application methods.
+
+#pragma mark – Main Window actions
 
 /*!
  * @method      openVirtualMachineWindow:
@@ -105,6 +109,7 @@
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // New Virtual machines
+
 // New VM:
 
 /*!
@@ -307,6 +312,9 @@
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Open Window Actions
+
+#pragma mark – Windows triggers
+
 // Rom Manager / Assets:
 
 /*!
@@ -317,18 +325,9 @@
     
     BOOL useAssetsManager = [[NSUserDefaults standardUserDefaults] boolForKey:@"useAssetsManager"];
     
-    //Gets the Managed Object Context:
-    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
-    
     if (useAssetsManager == YES) {
     
-        if (!assetsWindowController) {
-            assetsWindowController = [
-                [AssetsWindowController alloc]
-                    initWithManagedObjectContext: managedObjectContext
-            ];
-        }
-        [assetsWindowController showWindow:self];  
+        [self showAssetsWindow:sender]; 
         
     }else{
         
@@ -359,6 +358,27 @@
     
 }
 
+// Assets:
+
+/*!
+ * @method      showAssetsWindow:
+ * @abstract    Displays the Assets Window.
+ */
+- (IBAction)showAssetsWindow:(id)sender {
+    
+    //Gets the Managed Object Context:
+    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
+    
+    if (!assetsWindowController) {
+        assetsWindowController = [
+            [AssetsWindowController alloc]
+                initWithManagedObjectContext: managedObjectContext
+        ];
+    }
+    [assetsWindowController showWindow:self];
+    
+}
+
 // Preferences:
 
 /*!
@@ -380,6 +400,9 @@
 
 //------------------------------------------------------------------------------
 // Overwrotten methods.
+
+#pragma mark – Rewrotten
+
 /*!
  * @method      applicationShouldHandleReopen:hasVisibleWindows:
  * @abstract    Defines if the main window should re-open after a click in the
@@ -396,6 +419,8 @@
 
 //------------------------------------------------------------------------------
 // Standard methods.
+
+#pragma mark – Standard methods
 
 //The comments are not part of Apple's policies, it seems.. *sigh*
 

@@ -113,6 +113,9 @@
 - (IBAction)showDriveManagerWindow:(id)sender;
 //Action to show the Drive Manager Window.
 
+- (IBAction)showAssetsWindow:(id)sender;
+//Action to show the Assets Window.
+
 - (IBAction)showPreferencesWindow:(id)sender;
 //Action to show the Preferences Window.
 

@@ -31,11 +31,19 @@
 //------------------------------------------------------------------------------
 
 #import "SplashWindowController.h"
+#import "WizardWindowController.h"
 
 @implementation SplashWindowController
 
-- (id)initWithWindow:(NSWindow *)window
-{
+/*!
+ * @method      dealloc:
+ * @discussion  Always in the top of the files!
+ */
+- (void)dealloc {
+    [wizardWindow release];
+}
+
+- (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
@@ -44,11 +52,25 @@
     return self;
 }
 
-- (void)windowDidLoad
-{
+- (void)windowDidLoad {
     [super windowDidLoad];
     
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+}
+
+- (IBAction)openWizard:(id)sender {
+    if (!wizardWindow) {
+        wizardWindow = [[WizardWindowController alloc] initWithWindowNibName:@"WizardWindow"];
+    }
+    [wizardWindow showWindow:self];  
+}
+
+- (IBAction)closeAndShowBasics:(id)sender {
+    
+}
+
+- (IBAction)closeAndPreventShowingAgain:(id)sender {
+    
 }
 
 @end

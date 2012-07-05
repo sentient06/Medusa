@@ -32,6 +32,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SplashWindowController : NSWindowController
+@class WizardWindowController;
+
+@interface SplashWindowController : NSWindowController {
+    WizardWindowController * wizardWindow;
+}
+
+- (IBAction)openWizard:(id)sender;
+- (IBAction)closeAndShowBasics:(id)sender;
+- (IBAction)closeAndPreventShowingAgain:(id)sender;
 
 @end

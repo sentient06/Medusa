@@ -34,8 +34,56 @@
 
 @implementation PreferencesWindowController
 
+@synthesize contentSubview = _contentSubview;
+
 //------------------------------------------------------------------------------
-// Methods.
+// Dealloc and initialization
+
+#pragma mark – Dealloc and initialization
+
+/*!
+ * @method      dealloc:
+ * @discussion  Always in the top of the files!
+ */
+- (void)dealloc {
+    [_contentSubview release];
+}
+
+- (id)initWithWindow:(NSWindow *)window {
+    self = [super initWithWindow:window];
+    if (self) {
+        self.contentSubview = [[NSView alloc] initWithFrame:[[[self window] contentView] frame]];
+    }
+    
+    return self;
+}
+
+/*!
+ * @discussion    Need to load one of the subviews here.
+ */
+- (void)windowDidLoad {
+    [super windowDidLoad];
+    
+    NSRect windowFrame = [[[self window] contentView] frame];
+    [self.contentSubview setFrame:windowFrame];
+    
+    [[[self window] contentView] addSubview:self.contentSubview];
+    NSLog(@"subview's frame: %@", NSStringFromRect([self.contentSubview frame]));
+    
+    ///[primaryView addSubview: generalSubView];
+    [preferencesToolbar setSelectedItemIdentifier:@"generalButton"];
+    
+    //NSLog(@"%@",[[preferencesToolbar items] objectAtIndex:0]);
+    //[[[preferencesToolbar items] objectAtIndex:0] setEnabled:YES];
+    
+    [self changeWindowSubview:0 animate:NO];
+    
+}
+
+//------------------------------------------------------------------------------
+// Methods
+
+#pragma mark – Methods
 
 /*!
  * @method      openDialogForExtensions:
@@ -62,13 +110,107 @@
     
 }
 
+/*!
+ * @method      changeWindowSubview:animate:
+ * @abstract    Changes subviews in the main window.
+ */
+- (void)changeWindowSubview:(NSInteger)viewIndex animate:(BOOL)animate {
+    
+    NSView * oldView = nil;
+    NSView * newView = nil;
+
+    switch (viewIndex) {
+        default:
+        case 0:
+            newView = generalSubView;
+            break;
+            
+        case 1:
+            newView = shareSubView;
+            break;
+            
+        case 2:
+            newView = advancedSubView;
+            break;
+            
+        case 3:
+            newView = developerSubView;
+            break;
+    }
+    
+    //--------------------------------------------------------------------------
+    // Get a list of all of the views in the window. Usually at this
+    // point there is just one visible view. But if the last fade
+    // hasn't finished, we need to get rid of it now before we move on.
+    
+    if([[self.contentSubview subviews] count] > 0) {
+        
+        NSEnumerator *subviewsEnum = [[self.contentSubview subviews] reverseObjectEnumerator];
+        
+        // The first one (last one added) is our visible view.
+        oldView = [subviewsEnum nextObject];
+        
+        // Remove any others.
+        NSView *reallyOldView = nil;
+        while((reallyOldView = [subviewsEnum nextObject]) != nil){
+            [reallyOldView removeFromSuperviewWithoutNeedingDisplay];
+        }
+    }
+    
+    //--------------------------------------------------------------------------
+    
+    //Remove old views.
+    //Insert new view.
+    
+    if(![newView isEqualTo:oldView]){
+        
+        [oldView removeFromSuperviewWithoutNeedingDisplay];
+        [newView setHidden:NO];
+        
+        NSRect subFrame = [self frameForView:newView];
+        
+        [self.contentSubview setFrameSize:subFrame.size];   //Resizes subview.       
+        [self.contentSubview addSubview:newView];           //Adds subview into subview.
+        [[self window] setInitialFirstResponder:newView];
+        
+        [[self window] setFrame:subFrame display:YES animate:animate];
+        
+    }
+    
+}
+
+
+/*!
+ * @method      frameForView:
+ * @abstract    Retrieves frame information from view.
+ * @return      NSRect (with size and origin) from view.
+ */
+- (NSRect)frameForView:(NSView *)view {
+    
+	NSRect windowFrame = [[self window] frame];
+	NSRect contentRect = [[self window] contentRectForFrameRect:windowFrame];
+	float windowTitleAndToolbarHeight = NSHeight(windowFrame) - NSHeight(contentRect);
+    
+	windowFrame.size.height = NSHeight([view frame]) + windowTitleAndToolbarHeight;
+	windowFrame.size.width = NSWidth([view frame]);
+	windowFrame.origin.y = NSMaxY([[self window] frame]) - NSHeight(windowFrame);
+	
+	return windowFrame;
+}
+
 //------------------------------------------------------------------------------
+// Interface actions
+
+#pragma mark – Interface actions
 
 /*!
  * @method      openSubView:
  * @abstract    Displays a subview in the main window.
  */
 - (IBAction)openSubView:(id)sender {
+    
+    [self changeWindowSubview: [sender tag] animate:YES];
+    /*
     
     [[[primaryView subviews] objectAtIndex:0] removeFromSuperview];
     
@@ -91,6 +233,7 @@
             break;
             
     }
+     */
     
 }
 
@@ -154,29 +297,58 @@
     
 }
 
-//------------------------------------------------------------------------------
-// Standard methods.
+/// Developer actions ==========================================================
 
-- (id)initWithWindow:(NSWindow *)window {
-    self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
+
+- (IBAction)flushPreferences:(id)sender {
 }
 
-/*!
- * @discussion    Need to load one of the subviews here.
- */
-- (void)windowDidLoad {
-    [super windowDidLoad];    
-    [primaryView addSubview: generalSubView];
-    [preferencesToolbar setSelectedItemIdentifier:@"generalButton"];
-    //NSLog(@"%@",[[preferencesToolbar items] objectAtIndex:0]);
-    //[[[preferencesToolbar items] objectAtIndex:0] setEnabled:YES];
+- (IBAction)flushDatabase:(id)sender {
 }
 
-//------------------------------------------------------------------------------
+- (IBAction)deleteB2Prefs:(id)sender {
+}
 
+- (IBAction)deleteSSPrefs:(id)sender {
+}
+
+- (IBAction)importB2Prefs:(id)sender {
+}
+
+- (IBAction)importSSPrefs:(id)sender {
+}
+
+- (IBAction)create2MBDisk:(id)sender {
+}
+
+- (IBAction)sys7Disk:(id)sender {
+}
+
+- (IBAction)openMain:(id)sender {
+    //[[[NSApp delegate] window] makeKeyAndOrderFront:self];
+}
+
+- (IBAction)openAssets:(id)sender {
+    [[NSApp delegate] showWindows];
+}
+
+- (IBAction)openVM:(id)sender {
+    [[NSApp delegate] openVM:sender];
+}
+
+- (IBAction)openRom:(id)sender {
+    [[NSApp delegate] openRom:sender];
+}
+
+- (IBAction)openDrive:(id)sender {
+    [[NSApp delegate] openDrive:sender];
+}
+
+- (IBAction)openSplash:(id)sender {
+    [[NSApp delegate] openSplash:sender];
+}
+
+- (IBAction)openWizard:(id)sender {
+    [[NSApp delegate] openWizard:sender];
+}
 @end
