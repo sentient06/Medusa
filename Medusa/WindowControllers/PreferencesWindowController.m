@@ -337,7 +337,7 @@
 }
 
 - (IBAction)openRom:(id)sender {
-    [[NSApp delegate] openRom:sender];
+    [[NSApp delegate] openRom:nil];
 }
 
 - (IBAction)openDrive:(id)sender {

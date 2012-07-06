@@ -36,15 +36,47 @@
 
 @interface WizardWindowController : NSWindowController {
 
+    CATransition        * transition;
     IBOutlet LinkedView * currentView;
     
-    CATransition    * transition;
+    // New setup values:
+    
+    //basiliskLocation
+    //romFileLocation
+    //bootDiskLocation
+    //systemUsed
+    //bootDiskType
+    
     
 }
 
 - (LinkedView *)currentView;
 
+//------------------------------------------------------------------------------
+// Common buttons
+
 - (IBAction)nextView:(id)sender;
 - (IBAction)previousView:(id)sender;
+- (IBAction)cancelWizard:(id)sender;
+
+//------------------------------------------------------------------------------
+// Step 0
+
+- (IBAction)downloadBasiliskII:(id)sender;
+- (IBAction)locateBasiliskII:(id)sender;
+
+// Step 1
+
+- (IBAction)selectSystem:(id)sender;
+
+// Step 2
+
+- (IBAction)locateRomFile:(id)sender;
+
+// Step 3
+
+- (IBAction)selectBootOption:(id)sender;
+
+// Step 4: insert name
 
 @end

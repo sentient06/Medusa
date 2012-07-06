@@ -34,6 +34,11 @@
 
 @implementation WizardWindowController
 
+//------------------------------------------------------------------------------
+// Initialization
+
+#pragma mark – Initialization
+
 - (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
     if (self) {
@@ -62,6 +67,11 @@
     [contentView setAnimations:ani];
 }
 
+//------------------------------------------------------------------------------
+// Linked view actions
+
+#pragma mark – Linked view actions
+
 - (LinkedView*)currentView {
     return currentView;
 }
@@ -76,6 +86,11 @@
     currentView = newView;
 }
 
+//------------------------------------------------------------------------------
+// Common buttons
+
+#pragma mark – Common buttons
+
 - (IBAction)nextView:(id)sender {
     if (![[self currentView] nextView]) return;
     [transition setSubtype:kCATransitionFromRight];
@@ -87,5 +102,44 @@
     [transition setSubtype:kCATransitionFromLeft];
     [self setCurrentView:[[self currentView] previousView]];
 }
+
+- (IBAction)cancelWizard:(id)sender {
+    
+}
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Step actions
+
+#pragma mark – Step actions
+
+// Step 0
+
+- (IBAction)downloadBasiliskII:(id)sender {
+    
+}
+
+- (IBAction)locateBasiliskII:(id)sender {
+    
+}
+
+// Step 1
+
+- (IBAction)selectSystem:(id)sender {
+    
+}
+
+// Step 2
+
+- (IBAction)locateRomFile:(id)sender {
+    
+}
+
+// Step 3
+
+- (IBAction)selectBootOption:(id)sender {
+    
+}
+
+// Step 4: insert name
 
 @end
