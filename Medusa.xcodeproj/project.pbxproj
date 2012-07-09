@@ -42,6 +42,7 @@
 		817CAF551535800A0038E9A0 /* RomFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF541535800A0038E9A0 /* RomFile.icns */; };
 		817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF56153580100038E9A0 /* MedusaIcon.icns */; };
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
+		817D267E15AB1888001081FF /* MapFrom1.0.2.2To1.0.2.3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 817D267D15AB1888001081FF /* MapFrom1.0.2.2To1.0.2.3.xcmappingmodel */; };
 		818987D11538CFED00A32B6A /* Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 818987D01538CFED00A32B6A /* Info.icns */; };
 		81A2B6A8159E55F8000623D2 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81A2B6A4159E55F8000623D2 /* Medusa.xcdatamodeld */; };
 		81A2B6AC159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81A2B6AB159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel */; };
@@ -119,6 +120,8 @@
 		817CAF56153580100038E9A0 /* MedusaIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MedusaIcon.icns; sourceTree = SOURCE_ROOT; };
 		817CAF601535B5CB0038E9A0 /* TableLineInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableLineInformationController.h; path = UtilitiesControllers/TableLineInformationController.h; sourceTree = "<group>"; };
 		817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableLineInformationController.m; path = UtilitiesControllers/TableLineInformationController.m; sourceTree = "<group>"; };
+		817D267B15AB1791001081FF /* Medusa 1.0.2b 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b 3.xcdatamodel"; sourceTree = "<group>"; };
+		817D267D15AB1888001081FF /* MapFrom1.0.2.2To1.0.2.3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MapFrom1.0.2.2To1.0.2.3.xcmappingmodel; sourceTree = "<group>"; };
 		818987D01538CFED00A32B6A /* Info.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Info.icns; path = Icons/Info.icns; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Models/PreferencesModel.h; sourceTree = "<group>"; };
 		81A2B6A5159E55F8000623D2 /* Medusa 0b1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b1.xcdatamodel"; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				81A2B6A4159E55F8000623D2 /* Medusa.xcdatamodeld */,
+				817D267D15AB1888001081FF /* MapFrom1.0.2.2To1.0.2.3.xcmappingmodel */,
 				81A2B6AB159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel */,
 				81C74C861597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel */,
 				81E4DA5D159E4DF900478A14 /* MapFrom0.1To1.0.2.1.xcmappingmodel */,
@@ -529,6 +533,7 @@
 				816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */,
 				81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */,
 				81D733F215A4ADB200DEA523 /* WizardWindowController.m in Sources */,
+				817D267E15AB1888001081FF /* MapFrom1.0.2.2To1.0.2.3.xcmappingmodel in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,12 +663,13 @@
 		81A2B6A4159E55F8000623D2 /* Medusa.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				817D267B15AB1791001081FF /* Medusa 1.0.2b 3.xcdatamodel */,
 				81A2B6AA159E562D000623D2 /* Medusa 1.0.2b2.xcdatamodel */,
 				81A2B6A5159E55F8000623D2 /* Medusa 0b1.xcdatamodel */,
 				81A2B6A6159E55F8000623D2 /* Medusa 1.0.2b.xcdatamodel */,
 				81A2B6A7159E55F8000623D2 /* Medusa 1.0.2b1.xcdatamodel */,
 			);
-			currentVersion = 81A2B6AA159E562D000623D2 /* Medusa 1.0.2b2.xcdatamodel */;
+			currentVersion = 817D267B15AB1791001081FF /* Medusa 1.0.2b 3.xcdatamodel */;
 			path = Medusa.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

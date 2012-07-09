@@ -60,6 +60,7 @@
     //Text field in the new machine sheet.
     IBOutlet NSPopUpButton      * newMachineModelField;
     //Pop up button with the model (rom file).
+    IBOutlet NSMatrix           * newMachineModelRadio;
     
     //Clone VM Sheet - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     

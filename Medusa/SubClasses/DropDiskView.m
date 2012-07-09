@@ -49,8 +49,11 @@
         pathExtension = [[urls objectAtIndex:i] pathExtension];
         
         if (
-            [[pathExtension lowercaseString]    isEqualTo:@"hfv"] ||
-            [[pathExtension lowercaseString]    isEqualTo:@"dsk"] ||
+            [[pathExtension lowercaseString]    isEqualTo:@"hfv"]   ||
+            [[pathExtension lowercaseString]    isEqualTo:@"dsk"]   ||
+            [[pathExtension lowercaseString]    isEqualTo:@"dmg"]   ||
+            [[pathExtension lowercaseString]    isEqualTo:@"img"]   ||
+            [[pathExtension lowercaseString]    isEqualTo:@"image"] ||
             [[pathExtension lowercaseString]    isEqualTo:@""]
         ) {
             

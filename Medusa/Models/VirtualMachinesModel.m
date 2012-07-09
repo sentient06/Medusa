@@ -45,7 +45,7 @@
 @dynamic memory;
 @dynamic name;
 @dynamic sharedFolder;
-//@dynamic model;
+@dynamic macModel;
 @dynamic shareEnabled;
 @dynamic useDefaultShare;
 @dynamic drives;

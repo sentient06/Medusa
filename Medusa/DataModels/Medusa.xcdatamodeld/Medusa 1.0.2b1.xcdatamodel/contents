@@ -30,7 +30,7 @@
         <attribute name="shareEnabled" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="useDefaultShare" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="drives" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDrives" inverseName="virtualMachine" inverseEntity="RelationshipVirtualMachinesDrives" syncable="YES"/>
-        <relationship name="model" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="model" syncable="YES"/>
+        <relationship name="model" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="modelToRomFile" syncable="YES"/>
     </entity>
     <elements>
         <element name="Drives" positionX="160" positionY="192" width="128" height="105"/>

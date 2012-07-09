@@ -43,6 +43,7 @@
 //Models:
 #import "VirtualMachinesModel.h"
 #import "RomFilesModel.h"
+#import "PreferencesModel.h"
 
 //------------------------------------------------------------------------------
 
@@ -176,7 +177,7 @@
     NSLog(@"%@", [romFilesController selectedObjects]);
     //NSLog(@"%@", [newMachineModelField ])
     
-    
+    [newVirtualMachineObject setMacModel:[NSNumber numberWithInteger:[newMachineModelRadio selectedTag]]];
     
     [newVirtualMachineObject setRomFile:[[romFilesController selectedObjects] objectAtIndex:0]];
        
@@ -309,6 +310,43 @@
     
 }
 
+/*!
+ * @method      run:
+ * @abstract    Saves preferences and lauches emulator.
+ * @discussion  There is a replica in the virtual machine controller that must be
+ *              taken care of.
+ */
+- (IBAction)run:(id)sender {
+    
+    NSArray *selectedVirtualMachines = [
+        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
+    ];
+
+    //The user can select only one in the current interface, but anyway...
+    VirtualMachinesModel * virtualMachine = [selectedVirtualMachines  objectAtIndex:0];
+    
+    
+    PreferencesModel *preferences = [[PreferencesModel alloc] init];
+    NSArray *data = [preferences getVirtualMachineData:virtualMachine];
+    NSURL * emulatorPath; // = [[NSURL alloc] init];
+    NSMutableString * preferencesFilePath; // = [[NSMutableString alloc] init];
+    
+    if ([[[virtualMachine romFile] emulator] isEqualTo:@"Basilisk"]) {
+        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
+        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey: @"BasiliskPath"];
+    }else{
+        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".sheepshaver_prefs"];
+        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey:@"SheepshaverPath"];
+    }
+    
+    NSLog(@"%@", preferencesFilePath);
+    NSLog(@"%@", emulatorPath);
+    
+    [preferences savePreferencesFile:data ForFile:preferencesFilePath];
+    [[NSWorkspace sharedWorkspace] openURL:emulatorPath];
+    [preferences release];
+    
+}
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Open Window Actions

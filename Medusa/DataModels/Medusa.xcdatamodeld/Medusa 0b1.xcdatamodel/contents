@@ -31,7 +31,7 @@
         <attribute name="memory" optional="YES" attributeType="Integer 16" defaultValueString="8" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <relationship name="drives" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDrives" inverseName="virtualMachine" inverseEntity="RelationshipVirtualMachinesDrives" syncable="YES"/>
-        <relationship name="model" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" syncable="YES"/>
+        <relationship name="model" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="modelToRomFile" syncable="YES"/>
         <relationship name="sharedFolder" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Shares" inverseName="virtualMachines" inverseEntity="Shares" syncable="YES"/>
     </entity>
     <elements>

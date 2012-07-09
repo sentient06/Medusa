@@ -104,7 +104,22 @@
     NSError *error = nil;
     
     //--------------------------------------------------------------------------
-    //1. The bootable drives
+    //1. The Macintosh Model
+    
+    int modelId = [[virtualMachine macModel] intValue];
+    
+    NSDictionary * macModelSettings = [[NSDictionary alloc]
+        initWithObjectsAndKeys:
+            [NSString stringWithFormat:@"%ld", modelId], @"modelid",
+            nil
+    ];
+    
+    [allData addObject:macModelSettings];
+    [macModelSettings release];
+
+    
+    //--------------------------------------------------------------------------
+    //2. The bootable drives
     
     NSEntityDescription *vmDrivesRelationship = [
         NSEntityDescription
@@ -139,7 +154,7 @@
     }
     
     //--------------------------------------------------------------------------
-    //2. The unbootable drives
+    //3. The unbootable drives
     
     //vmDrivesRelationship set in step 1.
     
@@ -167,7 +182,7 @@
     }
 
     //--------------------------------------------------------------------------
-    //3. Shares
+    //4. Shares
 
     if ( [[virtualMachine shareEnabled] boolValue] == YES) {
     
@@ -204,10 +219,10 @@
     }
     
     //--------------------------------------------------------------------------
-    //4. SCSI data
+    //5. SCSI data
     
     //--------------------------------------------------------------------------
-    //5. Display data
+    //6. Display data
     
     NSString * fullScreen = [[NSString alloc] initWithFormat:@"win"];
     NSNumber * screenWidth = [virtualMachine displayWidth];
@@ -238,10 +253,10 @@
     [fullScreen release];
     
     //--------------------------------------------------------------------------
-    //6. Serial data
+    //7. Serial data
     
     //--------------------------------------------------------------------------
-    //7. Model information (ROM)
+    //8. ROM information
     
     NSDictionary * romSettings = [[NSDictionary alloc]
         initWithObjectsAndKeys:
@@ -253,7 +268,7 @@
     [romSettings release];
     
     //--------------------------------------------------------------------------
-    //8. Memory information
+    //9. Memory information
     //Default is 8 MB
     
     int totalMemory = [[virtualMachine memory] intValue]*1024*1024;
@@ -268,7 +283,7 @@
     [memorySettings release];
     
     //--------------------------------------------------------------------------
-    //9. Advanced information
+    //10. Advanced information
     
 //    NSDictionary * screenSettings = [[NSDictionary alloc]
 //        initWithObjectsAndKeys:
@@ -318,7 +333,7 @@
      {"seriala", TYPE_STRING, false,     "device name of Mac serial port A"},
      {"serialb", TYPE_STRING, false,     "device name of Mac serial port B"},
      
-     model [RomFiles]
+     romFile [RomFiles]
      {"rom", TYPE_STRING, false,         "path of ROM file"},
      
      bootDrive ?

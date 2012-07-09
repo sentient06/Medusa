@@ -79,7 +79,6 @@
 															<int key="NSvFlags">256</int>
 															<string key="NSFrameSize">{180, 360}</string>
 															<reference key="NSSuperview" ref="888196684"/>
-															<reference key="NSWindow"/>
 															<reference key="NSNextKeyView" ref="135598412"/>
 															<bool key="NSEnabled">YES</bool>
 															<object class="_NSCornerView" key="NSCornerView">
@@ -216,7 +215,6 @@
 													</array>
 													<string key="NSFrameSize">{180, 360}</string>
 													<reference key="NSSuperview" ref="239079872"/>
-													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="989161235"/>
 													<reference key="NSDocView" ref="989161235"/>
 													<reference key="NSBGColor" ref="919550032"/>
@@ -227,7 +225,6 @@
 													<int key="NSvFlags">-2147483392</int>
 													<string key="NSFrame">{{165, 17}, {15, 328}}</string>
 													<reference key="NSSuperview" ref="239079872"/>
-													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="612654830"/>
 													<reference key="NSTarget" ref="239079872"/>
 													<string key="NSAction">_doScroller:</string>
@@ -238,7 +235,6 @@
 													<int key="NSvFlags">-2147483392</int>
 													<string key="NSFrame">{{0, 345}, {180, 15}}</string>
 													<reference key="NSSuperview" ref="239079872"/>
-													<reference key="NSWindow"/>
 													<reference key="NSNextKeyView" ref="177880416"/>
 													<int key="NSsFlags">1</int>
 													<reference key="NSTarget" ref="239079872"/>
@@ -248,7 +244,6 @@
 											</array>
 											<string key="NSFrameSize">{180, 360}</string>
 											<reference key="NSSuperview" ref="457847824"/>
-											<reference key="NSWindow"/>
 											<reference key="NSNextKeyView" ref="888196684"/>
 											<int key="NSsFlags">560</int>
 											<reference key="NSVScroller" ref="135598412"/>
@@ -259,7 +254,6 @@
 									</array>
 									<string key="NSFrameSize">{180, 360}</string>
 									<reference key="NSSuperview" ref="378906366"/>
-									<reference key="NSWindow"/>
 									<reference key="NSNextKeyView" ref="239079872"/>
 									<string key="NSClassName">NSView</string>
 								</object>
@@ -268,14 +262,11 @@
 									<int key="NSvFlags">256</int>
 									<string key="NSFrame">{{181, 0}, {459, 360}}</string>
 									<reference key="NSSuperview" ref="378906366"/>
-									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
 									<string key="NSClassName">NSView</string>
 								</object>
 							</array>
 							<string key="NSFrameSize">{640, 360}</string>
 							<reference key="NSSuperview" ref="1006"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="457847824"/>
 							<bool key="NSIsVertical">YES</bool>
 							<int key="NSDividerStyle">2</int>
@@ -283,52 +274,11 @@
 					</array>
 					<string key="NSFrameSize">{640, 360}</string>
 					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="378906366"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1366, 746}}</string>
 				<string key="NSMinSize">{640, 382}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
-			</object>
-			<object class="NSArrayController" id="658786976">
-				<array class="NSMutableArray" key="NSDeclaredKeys">
-					<string>lineTitle</string>
-					<string>lineIcon</string>
-				</array>
-				<string key="NSObjectClassName">TableLineInformationController</string>
-				<bool key="NSEditable">YES</bool>
-				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
-				<bool key="NSAvoidsEmptySelection">YES</bool>
-				<bool key="NSPreservesSelection">YES</bool>
-				<bool key="NSSelectsInsertedObjects">YES</bool>
-				<bool key="NSFilterRestrictsInsertion">YES</bool>
-				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
-			</object>
-			<object class="NSArrayController" id="1039513331">
-				<bool key="NSEditable">YES</bool>
-				<bool key="NSAutomaticallyPreparesContent">YES</bool>
-				<object class="_NSManagedProxy" key="_NSManagedProxy">
-					<string key="NSEntityName">RomFiles</string>
-				</object>
-				<bool key="_NSIsUsingManagedProxy">YES</bool>
-				<bool key="NSAvoidsEmptySelection">YES</bool>
-				<bool key="NSPreservesSelection">YES</bool>
-				<bool key="NSSelectsInsertedObjects">YES</bool>
-				<bool key="NSFilterRestrictsInsertion">YES</bool>
-				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
-			</object>
-			<object class="NSArrayController" id="959226927">
-				<bool key="NSEditable">YES</bool>
-				<bool key="NSAutomaticallyPreparesContent">YES</bool>
-				<object class="_NSManagedProxy" key="_NSManagedProxy">
-					<string key="NSEntityName">Drives</string>
-				</object>
-				<bool key="_NSIsUsingManagedProxy">YES</bool>
-				<bool key="NSAvoidsEmptySelection">YES</bool>
-				<bool key="NSPreservesSelection">YES</bool>
-				<bool key="NSSelectsInsertedObjects">YES</bool>
-				<bool key="NSFilterRestrictsInsertion">YES</bool>
-				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
 			<object class="NSCustomView" id="86188263">
 				<reference key="NSNextResponder"/>
@@ -433,7 +383,6 @@
 						<string key="NSFrame">{{256, 17}, {156, 156}}</string>
 						<reference key="NSSuperview" ref="86188263"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="857590302">
 							<int key="NSCellFlags">130560</int>
@@ -581,10 +530,52 @@
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="563786660">
-				<nil key="NSNextResponder"/>
-				<int key="NSvFlags">268</int>
+				<reference key="NSNextResponder"/>
+				<int key="NSvFlags">274</int>
 				<string key="NSFrameSize">{459, 360}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<string key="NSClassName">NSView</string>
+			</object>
+			<object class="NSArrayController" id="658786976">
+				<array class="NSMutableArray" key="NSDeclaredKeys">
+					<string>lineTitle</string>
+					<string>lineIcon</string>
+				</array>
+				<string key="NSObjectClassName">TableLineInformationController</string>
+				<bool key="NSEditable">YES</bool>
+				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
+				<bool key="NSAvoidsEmptySelection">YES</bool>
+				<bool key="NSPreservesSelection">YES</bool>
+				<bool key="NSSelectsInsertedObjects">YES</bool>
+				<bool key="NSFilterRestrictsInsertion">YES</bool>
+				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
+			</object>
+			<object class="NSArrayController" id="1039513331">
+				<bool key="NSEditable">YES</bool>
+				<bool key="NSAutomaticallyPreparesContent">YES</bool>
+				<object class="_NSManagedProxy" key="_NSManagedProxy">
+					<string key="NSEntityName">RomFiles</string>
+				</object>
+				<bool key="_NSIsUsingManagedProxy">YES</bool>
+				<bool key="NSAvoidsEmptySelection">YES</bool>
+				<bool key="NSPreservesSelection">YES</bool>
+				<bool key="NSSelectsInsertedObjects">YES</bool>
+				<bool key="NSFilterRestrictsInsertion">YES</bool>
+				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
+			</object>
+			<object class="NSArrayController" id="959226927">
+				<bool key="NSEditable">YES</bool>
+				<bool key="NSAutomaticallyPreparesContent">YES</bool>
+				<object class="_NSManagedProxy" key="_NSManagedProxy">
+					<string key="NSEntityName">Drives</string>
+				</object>
+				<bool key="_NSIsUsingManagedProxy">YES</bool>
+				<bool key="NSAvoidsEmptySelection">YES</bool>
+				<bool key="NSPreservesSelection">YES</bool>
+				<bool key="NSSelectsInsertedObjects">YES</bool>
+				<bool key="NSFilterRestrictsInsertion">YES</bool>
+				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -1129,6 +1120,10 @@
 		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
+		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
+			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin.InterfaceBuilder3</string>
+			<real value="4100" key="NS.object.0"/>
+		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
