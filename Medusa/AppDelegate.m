@@ -212,7 +212,7 @@
     
 }
 
-// Clone VM:
+// Clones VM:
 
 /*!
  * @method      showNewMachineView:

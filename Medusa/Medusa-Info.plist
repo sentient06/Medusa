@@ -22,7 +22,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>MedusaIcon.icns</string>
+	<string>MedusaIcon5.icns</string>
 	<key>CFBundleIdentifier</key>
 	<string>Giancarlo-Mariot.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

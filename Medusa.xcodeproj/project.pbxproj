@@ -30,6 +30,7 @@
 		81756F491534743500FCBA8E /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81756F471534743500FCBA8E /* MainMenu.xib */; };
 		81756F5C15347F2B00FCBA8E /* VirtualMachineWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81756F5B15347F2B00FCBA8E /* VirtualMachineWindowController.m */; };
 		81756F60153483C400FCBA8E /* VirtualMachineWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81756F5F153483C400FCBA8E /* VirtualMachineWindow.xib */; };
+		81795C1417396DE50001F16B /* EmulatorTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 81795C1317396DE50001F16B /* EmulatorTask.m */; };
 		817CAF4415357FDE0038E9A0 /* FinderBlue.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4215357FDE0038E9A0 /* FinderBlue.icns */; };
 		817CAF4515357FDE0038E9A0 /* FinderGrey.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4315357FDE0038E9A0 /* FinderGrey.icns */; };
 		817CAF4915357FEF0038E9A0 /* RomImageDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4615357FEF0038E9A0 /* RomImageDocument.icns */; };
@@ -47,6 +48,9 @@
 		81A2B6A8159E55F8000623D2 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81A2B6A4159E55F8000623D2 /* Medusa.xcdatamodeld */; };
 		81A2B6AC159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81A2B6AB159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel */; };
 		81A7FBF81587D2C400D38521 /* Stop.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81A7FBF71587D2C400D38521 /* Stop.icns */; };
+		81BB57E417318A5A00301ED3 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */; };
+		81BC867D173AE857006F8193 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BC867C173AE857006F8193 /* Sparkle.framework */; };
+		81BC867F173AE8B4006F8193 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81BC867C173AE857006F8193 /* Sparkle.framework */; };
 		81C03CFE154EF2C100842906 /* DriveManagerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */; };
 		81C03D02154EF46C00842906 /* DriveManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C03D01154EF46C00842906 /* DriveManagerWindowController.m */; };
 		81C74C871597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81C74C861597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel */; };
@@ -65,6 +69,19 @@
 		81E84DF01565BE820002D4DA /* DrivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEF1565BE820002D4DA /* DrivesModel.m */; };
 		81E84DF91565BE820002D4DA /* RomFilesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DF81565BE820002D4DA /* RomFilesModel.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		81BC867E173AE89A006F8193 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				81BC867F173AE8B4006F8193 /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		81134C4315540B2900785866 /* PreferencesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesModel.m; path = Models/PreferencesModel.m; sourceTree = "<group>"; };
@@ -107,6 +124,8 @@
 		81756F5A15347F2B00FCBA8E /* VirtualMachineWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineWindowController.h; path = WindowControllers/VirtualMachineWindowController.h; sourceTree = "<group>"; };
 		81756F5B15347F2B00FCBA8E /* VirtualMachineWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineWindowController.m; path = WindowControllers/VirtualMachineWindowController.m; sourceTree = "<group>"; };
 		81756F5F153483C400FCBA8E /* VirtualMachineWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VirtualMachineWindow.xib; path = Windows/VirtualMachineWindow.xib; sourceTree = "<group>"; };
+		81795C1217396DE50001F16B /* EmulatorTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorTask.h; path = Helpers/EmulatorTask.h; sourceTree = "<group>"; };
+		81795C1317396DE50001F16B /* EmulatorTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorTask.m; path = Helpers/EmulatorTask.m; sourceTree = "<group>"; };
 		817CAF4215357FDE0038E9A0 /* FinderBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = FinderBlue.icns; path = Icons/FinderBlue.icns; sourceTree = "<group>"; };
 		817CAF4315357FDE0038E9A0 /* FinderGrey.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = FinderGrey.icns; path = Icons/FinderGrey.icns; sourceTree = "<group>"; };
 		817CAF4615357FEF0038E9A0 /* RomImageDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RomImageDocument.icns; path = Icons/RomImageDocument.icns; sourceTree = "<group>"; };
@@ -130,6 +149,8 @@
 		81A2B6AA159E562D000623D2 /* Medusa 1.0.2b2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b2.xcdatamodel"; sourceTree = "<group>"; };
 		81A2B6AB159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MapFrom1.0.2.1To1.0.2.2.xcmappingmodel; sourceTree = "<group>"; };
 		81A7FBF71587D2C400D38521 /* Stop.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Stop.icns; sourceTree = "<group>"; };
+		81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
+		81BC867C173AE857006F8193 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DriveManagerWindow.xib; path = Windows/DriveManagerWindow.xib; sourceTree = "<group>"; };
 		81C03D00154EF46C00842906 /* DriveManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveManagerWindowController.h; path = WindowControllers/DriveManagerWindowController.h; sourceTree = "<group>"; };
 		81C03D01154EF46C00842906 /* DriveManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveManagerWindowController.m; path = WindowControllers/DriveManagerWindowController.m; sourceTree = "<group>"; };
@@ -167,6 +188,7 @@
 			files = (
 				81756F331534743500FCBA8E /* Cocoa.framework in Frameworks */,
 				81D733EF15A4AD6300DEA523 /* QuartzCore.framework in Frameworks */,
+				81BC867D173AE857006F8193 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +287,7 @@
 		81756F311534743500FCBA8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				81BC867C173AE857006F8193 /* Sparkle.framework */,
 				81756F321534743500FCBA8E /* Cocoa.framework */,
 				81D733EE15A4AD6300DEA523 /* QuartzCore.framework */,
 				81756F341534743500FCBA8E /* Other Frameworks */,
@@ -285,6 +308,7 @@
 		81756F381534743500FCBA8E /* Medusa */ = {
 			isa = PBXGroup;
 			children = (
+				81795C0F17396D2F0001F16B /* Helpers */,
 				810E38451554414300949BE1 /* DataModels */,
 				818987D31538D41900A32B6A /* Models */,
 				81756F5D15347F3300FCBA8E /* Controllers */,
@@ -336,9 +360,27 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
+		81795C0F17396D2F0001F16B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				81795C1117396D6B0001F16B /* EmulatorHelpers */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
+		81795C1117396D6B0001F16B /* EmulatorHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				81795C1217396DE50001F16B /* EmulatorTask.h */,
+				81795C1317396DE50001F16B /* EmulatorTask.m */,
+			);
+			name = EmulatorHelpers;
+			sourceTree = "<group>";
+		};
 		817CAF4015357EF90038E9A0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */,
 				81A7FBF71587D2C400D38521 /* Stop.icns */,
 				818987D01538CFED00A32B6A /* Info.icns */,
 				817CAF56153580100038E9A0 /* MedusaIcon.icns */,
@@ -428,6 +470,7 @@
 				81756F2A1534743500FCBA8E /* Sources */,
 				81756F2B1534743500FCBA8E /* Frameworks */,
 				81756F2C1534743500FCBA8E /* Resources */,
+				81BC867E173AE89A006F8193 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -453,6 +496,34 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				ca,
+				cs,
+				cy,
+				da,
+				de,
+				el,
+				es,
+				fi,
+				fr,
+				he,
+				hu,
+				id,
+				is,
+				it,
+				ja,
+				ko,
+				nl,
+				no,
+				pl,
+				pt,
+				ru,
+				sk,
+				sv,
+				English,
+				th,
+				tr,
+				zh_CN,
+				zh_TW,
 			);
 			mainGroup = 81756F231534743400FCBA8E;
 			productRefGroup = 81756F2F1534743500FCBA8E /* Products */;
@@ -493,6 +564,7 @@
 				81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */,
 				81DB8240159F91F8003D4C5D /* Clone.png in Resources */,
 				816F655115A1AD0A00687FA2 /* WizardWindow.xib in Resources */,
+				81BB57E417318A5A00301ED3 /* MedusaIcon5.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +606,7 @@
 				81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */,
 				81D733F215A4ADB200DEA523 /* WizardWindowController.m in Sources */,
 				817D267E15AB1888001081FF /* MapFrom1.0.2.2To1.0.2.3.xcmappingmodel in Sources */,
+				81795C1417396DE50001F16B /* EmulatorTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +689,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Sparkle 1.5b6\"",
+					"\"$(SRCROOT)/Sparkle 1.5b6/With Garbage Collection\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Medusa/Medusa-Prefix.pch";
 				INFOPLIST_FILE = "Medusa/Medusa-Info.plist";
@@ -628,6 +707,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Sparkle 1.5b6\"",
+					"\"$(SRCROOT)/Sparkle 1.5b6/With Garbage Collection\"",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Medusa/Medusa-Prefix.pch";
 				INFOPLIST_FILE = "Medusa/Medusa-Info.plist";

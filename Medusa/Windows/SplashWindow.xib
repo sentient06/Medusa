@@ -40,7 +40,7 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSWindowTemplate" id="1005">
-				<int key="NSWindowStyleMask">15</int>
+				<int key="NSWindowStyleMask">3</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 240}, {600, 290}}</string>
 				<int key="NSWTFlags">544735232</int>
@@ -57,6 +57,8 @@
 							<string key="NSFrame">{{18, 18}, {236, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="745295377"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="259584521">
 								<int key="NSCellFlags">-2080244224</int>
@@ -98,13 +100,14 @@
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="920948564"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="863519644">
 								<int key="NSCellFlags">130560</int>
 								<int key="NSCellFlags2">33554432</int>
 								<object class="NSCustomResource" key="NSContents">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">MedusaIcon</string>
+									<string key="NSResourceName">MedusaIcon5</string>
 								</object>
 								<int key="NSAlign">0</int>
 								<int key="NSScale">0</int>
@@ -120,6 +123,7 @@
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="352702300"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="752399579">
 								<int key="NSCellFlags">67239424</int>
@@ -146,7 +150,7 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 									<int key="NSColorSpace">6</int>
 									<string key="NSCatalogName">System</string>
 									<string key="NSColorName">controlTextColor</string>
-									<object class="NSColor" key="NSColor">
+									<object class="NSColor" key="NSColor" id="133494016">
 										<int key="NSColorSpace">3</int>
 										<bytes key="NSWhite">MAA</bytes>
 									</object>
@@ -156,10 +160,11 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 						<object class="NSButton" id="352702300">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{213, 146}, {350, 32}}</string>
+							<string key="NSFrame">{{213, 153}, {350, 25}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="745295377"/>
+							<reference key="NSNextKeyView" ref="200293133"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="271980042">
 								<int key="NSCellFlags">67239424</int>
@@ -167,8 +172,9 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 								<string key="NSContents">Guide me through simple steps</string>
 								<reference key="NSSupport" ref="340874842"/>
 								<reference key="NSControlView" ref="352702300"/>
-								<int key="NSButtonFlags">-2038284033</int>
-								<int key="NSButtonFlags2">129</int>
+								<int key="NSButtonFlags">-2038021889</int>
+								<int key="NSButtonFlags2">163</int>
+								<reference key="NSAlternateImage" ref="340874842"/>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">200</int>
@@ -178,10 +184,11 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 						<object class="NSButton" id="226066150">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{213, 82}, {350, 32}}</string>
+							<string key="NSFrame">{{213, 89}, {350, 25}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="209933901"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="958112877">
 								<int key="NSCellFlags">67239424</int>
@@ -190,7 +197,7 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 								<reference key="NSSupport" ref="340874842"/>
 								<reference key="NSControlView" ref="226066150"/>
 								<int key="NSButtonFlags">-2038284033</int>
-								<int key="NSButtonFlags2">129</int>
+								<int key="NSButtonFlags2">163</int>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">200</int>
@@ -200,10 +207,11 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 						<object class="NSButton" id="200293133">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{213, 114}, {350, 32}}</string>
+							<string key="NSFrame">{{213, 121}, {350, 25}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="226066150"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="386279475">
 								<int key="NSCellFlags">67239424</int>
@@ -212,7 +220,7 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 								<reference key="NSSupport" ref="340874842"/>
 								<reference key="NSControlView" ref="200293133"/>
 								<int key="NSButtonFlags">-2038284033</int>
-								<int key="NSButtonFlags2">129</int>
+								<int key="NSButtonFlags2">163</int>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
 								<int key="NSPeriodicDelay">200</int>
@@ -225,7 +233,8 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 							<string key="NSFrame">{{483, 16}, {100, 17}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="200293133"/>
+							<reference key="NSNextKeyView"/>
+							<int key="NSViewLayerContentsRedrawPolicy">2</int>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="598437983">
 								<int key="NSCellFlags">68288064</int>
@@ -246,6 +255,8 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="997677122"/>
+					<bool key="NSViewIsLayerTreeHost">YES</bool>
+					<int key="NSViewLayerContentsRedrawPolicy">2</int>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
@@ -451,7 +462,12 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 				<string key="11.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="19.IBCATransitionLastKnownSubtype">fromTop</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<real value="0.0" key="19.IBViewIntegration.shadowBlurRadius"/>
+				<reference key="19.IBViewIntegration.shadowColor" ref="133494016"/>
+				<real value="0.0" key="19.IBViewIntegration.shadowOffsetHeight"/>
+				<real value="0.0" key="19.IBViewIntegration.shadowOffsetWidth"/>
 				<string key="2.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -476,17 +492,25 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 				<object class="IBPartialClassDescription">
 					<string key="className">SplashWindowController</string>
 					<string key="superclassName">NSWindowController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<string key="NS.key.0">openWizard:</string>
-						<string key="NS.object.0">id</string>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<string key="NS.key.0">openWizard:</string>
-						<object class="IBActionInfo" key="NS.object.0">
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="closeAndPreventShowingAgain:">id</string>
+						<string key="closeAndShowBasics:">id</string>
+						<string key="openWizard:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="closeAndPreventShowingAgain:">
+							<string key="name">closeAndPreventShowingAgain:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="closeAndShowBasics:">
+							<string key="name">closeAndShowBasics:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openWizard:">
 							<string key="name">openWizard:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-					</object>
+					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/SplashWindowController.h</string>
@@ -499,7 +523,7 @@ dCwgY2hvc2UgYW4gb3B0aW9uOg</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="MedusaIcon">{512, 512}</string>
+			<string key="MedusaIcon5">{512, 512}</string>
 			<string key="NSSwitch">{15, 15}</string>
 		</dictionary>
 	</data>

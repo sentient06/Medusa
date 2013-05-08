@@ -35,33 +35,41 @@
 @implementation NSManagedObject (DeepCopy)
 
 - (id)clone {
+    
     NSString * entityName = [[self entity] name];
+    
     NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
     
-    //create new object in data store
-    NSManagedObject * cloned = [NSEntityDescription
-                               insertNewObjectForEntityForName:entityName
-                               inManagedObjectContext:managedObjectContext];
+    // Creates new object in data store
+    NSManagedObject * cloned = [
+                    NSEntityDescription
+        insertNewObjectForEntityForName:entityName
+                 inManagedObjectContext:managedObjectContext
+    ];
     
-    //loop through all attributes and assign then to the clone
-    NSDictionary * attributes = [[NSEntityDescription
-                                 entityForName:entityName
-                                 inManagedObjectContext:managedObjectContext] attributesByName];
+    // Loops through all attributes and assigns them to the clone
+    NSDictionary * attributes = [[
+           NSEntityDescription
+                 entityForName:entityName
+        inManagedObjectContext:managedObjectContext
+    ] attributesByName ];
     
     for (NSString * attr in attributes) {
         [cloned setValue:[self valueForKey:attr] forKey:attr];
     }
     
-    //Loop through all relationships, and clone them.
-    NSDictionary *relationships = [[NSEntityDescription
-                                    entityForName:entityName
-                                    inManagedObjectContext:managedObjectContext] relationshipsByName];
+    // Loops through all relationships, and clone them.
+    NSDictionary * relationships = [[
+           NSEntityDescription
+                 entityForName:entityName
+        inManagedObjectContext:managedObjectContext
+    ] relationshipsByName ];
     
-    for (NSString *relName in [relationships allKeys]){
+    for (NSString * relName in [relationships allKeys]){
+        NSRelationshipDescription * rel = [relationships objectForKey:relName];
         
-        NSRelationshipDescription *rel = [relationships objectForKey:relName];
         if ([rel isToMany]) {
-            //get a set of all objects in the relationship
+            // Gets a stack of all objects in the relationship
             NSArray *sourceArray = [[self mutableSetValueForKey:relName] allObjects];
             NSMutableSet *clonedSet = [cloned mutableSetValueForKey:relName];
             for(NSManagedObject *relatedObject in sourceArray) {
