@@ -472,7 +472,7 @@
     
     //Preferences management:
     
-    BOOL hideSplash = [[NSUserDefaults standardUserDefaults] boolForKey:@"hideSplash"];
+    BOOL hideSplash = YES; //[[NSUserDefaults standardUserDefaults] boolForKey:@"hideSplash"];
     BOOL haveSharePath = [[NSUserDefaults standardUserDefaults] boolForKey:@"haveSharePath"];
     
     //Splash window:

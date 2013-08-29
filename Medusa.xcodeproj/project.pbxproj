@@ -18,6 +18,19 @@
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
 		81638DF81572DCC800CBDCA6 /* SplashWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81638DF71572DCC800CBDCA6 /* SplashWindow.xib */; };
 		81638DFC1572DF7800CBDCA6 /* SplashWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */; };
+		8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8168995917CE17CE00058B9F /* dsa_pub.pem */; };
+		8168996917CE2C7900058B9F /* Configuration.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995D17CE2C7800058B9F /* Configuration.icns */; };
+		8168996A17CE2C7900058B9F /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995E17CE2C7800058B9F /* Display.icns */; };
+		8168996B17CE2C7900058B9F /* Drive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995F17CE2C7900058B9F /* Drive.icns */; };
+		8168996C17CE2C7900058B9F /* FinderBlue.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996017CE2C7900058B9F /* FinderBlue.icns */; };
+		8168996D17CE2C7900058B9F /* FinderGrey.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996117CE2C7900058B9F /* FinderGrey.icns */; };
+		8168996E17CE2C7900058B9F /* GenericQuestionMarkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */; };
+		8168996F17CE2C7900058B9F /* Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996317CE2C7900058B9F /* Info.icns */; };
+		8168997017CE2C7900058B9F /* RomFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996417CE2C7900058B9F /* RomFile.icns */; };
+		8168997117CE2C7900058B9F /* RomImageDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996517CE2C7900058B9F /* RomImageDocument.icns */; };
+		8168997217CE2C7900058B9F /* Shared.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996617CE2C7900058B9F /* Shared.icns */; };
+		8168997317CE2C7900058B9F /* Stop.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996717CE2C7900058B9F /* Stop.icns */; };
+		8168997417CE2C7900058B9F /* Unsupported.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996817CE2C7900058B9F /* Unsupported.icns */; };
 		816BAF8A153863E400B68091 /* IconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 816BAF89153863E300B68091 /* IconValueTransformer.m */; };
 		816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */; };
 		816F655115A1AD0A00687FA2 /* WizardWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 816F655015A1AD0900687FA2 /* WizardWindow.xib */; };
@@ -31,26 +44,12 @@
 		81756F5C15347F2B00FCBA8E /* VirtualMachineWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81756F5B15347F2B00FCBA8E /* VirtualMachineWindowController.m */; };
 		81756F60153483C400FCBA8E /* VirtualMachineWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81756F5F153483C400FCBA8E /* VirtualMachineWindow.xib */; };
 		81795C1417396DE50001F16B /* EmulatorTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 81795C1317396DE50001F16B /* EmulatorTask.m */; };
-		817CAF4415357FDE0038E9A0 /* FinderBlue.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4215357FDE0038E9A0 /* FinderBlue.icns */; };
-		817CAF4515357FDE0038E9A0 /* FinderGrey.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4315357FDE0038E9A0 /* FinderGrey.icns */; };
-		817CAF4915357FEF0038E9A0 /* RomImageDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4615357FEF0038E9A0 /* RomImageDocument.icns */; };
-		817CAF4A15357FEF0038E9A0 /* Shared.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4715357FEF0038E9A0 /* Shared.icns */; };
-		817CAF4B15357FEF0038E9A0 /* Unsupported.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4815357FEF0038E9A0 /* Unsupported.icns */; };
-		817CAF4E15357FFB0038E9A0 /* Drive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4C15357FFB0038E9A0 /* Drive.icns */; };
-		817CAF4F15357FFB0038E9A0 /* GenericQuestionMarkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF4D15357FFB0038E9A0 /* GenericQuestionMarkIcon.icns */; };
-		817CAF52153580030038E9A0 /* Configuration.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF50153580030038E9A0 /* Configuration.icns */; };
-		817CAF53153580030038E9A0 /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF51153580030038E9A0 /* Display.icns */; };
-		817CAF551535800A0038E9A0 /* RomFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF541535800A0038E9A0 /* RomFile.icns */; };
 		817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF56153580100038E9A0 /* MedusaIcon.icns */; };
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
 		817D267E15AB1888001081FF /* MapFrom1.0.2.2To1.0.2.3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 817D267D15AB1888001081FF /* MapFrom1.0.2.2To1.0.2.3.xcmappingmodel */; };
-		818987D11538CFED00A32B6A /* Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 818987D01538CFED00A32B6A /* Info.icns */; };
 		81A2B6A8159E55F8000623D2 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81A2B6A4159E55F8000623D2 /* Medusa.xcdatamodeld */; };
 		81A2B6AC159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81A2B6AB159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel */; };
-		81A7FBF81587D2C400D38521 /* Stop.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81A7FBF71587D2C400D38521 /* Stop.icns */; };
 		81BB57E417318A5A00301ED3 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */; };
-		81BC867D173AE857006F8193 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81BC867C173AE857006F8193 /* Sparkle.framework */; };
-		81BC867F173AE8B4006F8193 /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81BC867C173AE857006F8193 /* Sparkle.framework */; };
 		81C03CFE154EF2C100842906 /* DriveManagerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */; };
 		81C03D02154EF46C00842906 /* DriveManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C03D01154EF46C00842906 /* DriveManagerWindowController.m */; };
 		81C74C871597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81C74C861597A7EE001A589B /* MapFrom1.0.2To1.0.2.1.xcmappingmodel */; };
@@ -68,6 +67,8 @@
 		81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDrivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDrivesModel.m */; };
 		81E84DF01565BE820002D4DA /* DrivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEF1565BE820002D4DA /* DrivesModel.m */; };
 		81E84DF91565BE820002D4DA /* RomFilesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DF81565BE820002D4DA /* RomFilesModel.m */; };
+		81F0857617CF8DF000188A2E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
+		81F085E417CF8E9A00188A2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,7 +78,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				81BC867F173AE8B4006F8193 /* Sparkle.framework in CopyFiles */,
+				81F0857617CF8DF000188A2E /* Sparkle.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,6 +103,20 @@
 		81638DF71572DCC800CBDCA6 /* SplashWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashWindow.xib; path = Windows/SplashWindow.xib; sourceTree = "<group>"; };
 		81638DFA1572DF7800CBDCA6 /* SplashWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashWindowController.h; path = WindowControllers/SplashWindowController.h; sourceTree = "<group>"; };
 		81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashWindowController.m; path = WindowControllers/SplashWindowController.m; sourceTree = "<group>"; };
+		8168994F17CE16AC00058B9F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Medusa/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
+		8168995917CE17CE00058B9F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/SparkleKey/dsa_pub.pem; sourceTree = "<group>"; };
+		8168995D17CE2C7800058B9F /* Configuration.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Configuration.icns; path = Images/Icons/Configuration.icns; sourceTree = "<group>"; };
+		8168995E17CE2C7800058B9F /* Display.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Display.icns; path = Images/Icons/Display.icns; sourceTree = "<group>"; };
+		8168995F17CE2C7900058B9F /* Drive.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Drive.icns; path = Images/Icons/Drive.icns; sourceTree = "<group>"; };
+		8168996017CE2C7900058B9F /* FinderBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = FinderBlue.icns; path = Images/Icons/FinderBlue.icns; sourceTree = "<group>"; };
+		8168996117CE2C7900058B9F /* FinderGrey.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = FinderGrey.icns; path = Images/Icons/FinderGrey.icns; sourceTree = "<group>"; };
+		8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericQuestionMarkIcon.icns; path = Images/Icons/GenericQuestionMarkIcon.icns; sourceTree = "<group>"; };
+		8168996317CE2C7900058B9F /* Info.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Info.icns; path = Images/Icons/Info.icns; sourceTree = "<group>"; };
+		8168996417CE2C7900058B9F /* RomFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RomFile.icns; path = Images/Icons/RomFile.icns; sourceTree = "<group>"; };
+		8168996517CE2C7900058B9F /* RomImageDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RomImageDocument.icns; path = Images/Icons/RomImageDocument.icns; sourceTree = "<group>"; };
+		8168996617CE2C7900058B9F /* Shared.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Shared.icns; path = Images/Icons/Shared.icns; sourceTree = "<group>"; };
+		8168996717CE2C7900058B9F /* Stop.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Stop.icns; path = Images/Icons/Stop.icns; sourceTree = "<group>"; };
+		8168996817CE2C7900058B9F /* Unsupported.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Unsupported.icns; path = Images/Icons/Unsupported.icns; sourceTree = "<group>"; };
 		816BAF88153863E300B68091 /* IconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconValueTransformer.h; path = TransformerControllers/IconValueTransformer.h; sourceTree = "<group>"; };
 		816BAF89153863E300B68091 /* IconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconValueTransformer.m; path = TransformerControllers/IconValueTransformer.m; sourceTree = "<group>"; };
 		816F654B15A19C6400687FA2 /* ManagedObjectCloner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjectCloner.h; path = UtilitiesModels/ManagedObjectCloner.h; sourceTree = "<group>"; };
@@ -126,31 +141,18 @@
 		81756F5F153483C400FCBA8E /* VirtualMachineWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VirtualMachineWindow.xib; path = Windows/VirtualMachineWindow.xib; sourceTree = "<group>"; };
 		81795C1217396DE50001F16B /* EmulatorTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorTask.h; path = Helpers/EmulatorTask.h; sourceTree = "<group>"; };
 		81795C1317396DE50001F16B /* EmulatorTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorTask.m; path = Helpers/EmulatorTask.m; sourceTree = "<group>"; };
-		817CAF4215357FDE0038E9A0 /* FinderBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = FinderBlue.icns; path = Icons/FinderBlue.icns; sourceTree = "<group>"; };
-		817CAF4315357FDE0038E9A0 /* FinderGrey.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = FinderGrey.icns; path = Icons/FinderGrey.icns; sourceTree = "<group>"; };
-		817CAF4615357FEF0038E9A0 /* RomImageDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RomImageDocument.icns; path = Icons/RomImageDocument.icns; sourceTree = "<group>"; };
-		817CAF4715357FEF0038E9A0 /* Shared.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Shared.icns; path = Icons/Shared.icns; sourceTree = "<group>"; };
-		817CAF4815357FEF0038E9A0 /* Unsupported.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Unsupported.icns; path = Icons/Unsupported.icns; sourceTree = "<group>"; };
-		817CAF4C15357FFB0038E9A0 /* Drive.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Drive.icns; path = Icons/Drive.icns; sourceTree = "<group>"; };
-		817CAF4D15357FFB0038E9A0 /* GenericQuestionMarkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericQuestionMarkIcon.icns; path = Icons/GenericQuestionMarkIcon.icns; sourceTree = "<group>"; };
-		817CAF50153580030038E9A0 /* Configuration.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Configuration.icns; path = Icons/Configuration.icns; sourceTree = "<group>"; };
-		817CAF51153580030038E9A0 /* Display.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Display.icns; path = Icons/Display.icns; sourceTree = "<group>"; };
-		817CAF541535800A0038E9A0 /* RomFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RomFile.icns; path = Icons/RomFile.icns; sourceTree = "<group>"; };
-		817CAF56153580100038E9A0 /* MedusaIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MedusaIcon.icns; sourceTree = SOURCE_ROOT; };
+		817CAF56153580100038E9A0 /* MedusaIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon.icns; path = Medusa/Images/Icons/MedusaIcon.icns; sourceTree = SOURCE_ROOT; };
 		817CAF601535B5CB0038E9A0 /* TableLineInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableLineInformationController.h; path = UtilitiesControllers/TableLineInformationController.h; sourceTree = "<group>"; };
 		817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableLineInformationController.m; path = UtilitiesControllers/TableLineInformationController.m; sourceTree = "<group>"; };
 		817D267B15AB1791001081FF /* Medusa 1.0.2b 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b 3.xcdatamodel"; sourceTree = "<group>"; };
 		817D267D15AB1888001081FF /* MapFrom1.0.2.2To1.0.2.3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MapFrom1.0.2.2To1.0.2.3.xcmappingmodel; sourceTree = "<group>"; };
-		818987D01538CFED00A32B6A /* Info.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Info.icns; path = Icons/Info.icns; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Models/PreferencesModel.h; sourceTree = "<group>"; };
 		81A2B6A5159E55F8000623D2 /* Medusa 0b1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 0b1.xcdatamodel"; sourceTree = "<group>"; };
 		81A2B6A6159E55F8000623D2 /* Medusa 1.0.2b.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b.xcdatamodel"; sourceTree = "<group>"; };
 		81A2B6A7159E55F8000623D2 /* Medusa 1.0.2b1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b1.xcdatamodel"; sourceTree = "<group>"; };
 		81A2B6AA159E562D000623D2 /* Medusa 1.0.2b2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2b2.xcdatamodel"; sourceTree = "<group>"; };
 		81A2B6AB159E566E000623D2 /* MapFrom1.0.2.1To1.0.2.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MapFrom1.0.2.1To1.0.2.2.xcmappingmodel; sourceTree = "<group>"; };
-		81A7FBF71587D2C400D38521 /* Stop.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Stop.icns; sourceTree = "<group>"; };
-		81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
-		81BC867C173AE857006F8193 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon5.icns; path = Medusa/Images/Icons/MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
 		81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DriveManagerWindow.xib; path = Windows/DriveManagerWindow.xib; sourceTree = "<group>"; };
 		81C03D00154EF46C00842906 /* DriveManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveManagerWindowController.h; path = WindowControllers/DriveManagerWindowController.h; sourceTree = "<group>"; };
 		81C03D01154EF46C00842906 /* DriveManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveManagerWindowController.m; path = WindowControllers/DriveManagerWindowController.m; sourceTree = "<group>"; };
@@ -169,7 +171,7 @@
 		81D733EE15A4AD6300DEA523 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		81D733F015A4ADB200DEA523 /* WizardWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizardWindowController.h; path = WindowControllers/WizardWindowController.h; sourceTree = "<group>"; };
 		81D733F115A4ADB200DEA523 /* WizardWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizardWindowController.m; path = WindowControllers/WizardWindowController.m; sourceTree = "<group>"; };
-		81DB823F159F91F8003D4C5D /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clone.png; sourceTree = "<group>"; };
+		81DB823F159F91F8003D4C5D /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Clone.png; path = Images/Clone.png; sourceTree = "<group>"; };
 		81DB8247159FAED8003D4C5D /* AssetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetsWindowController.h; path = WindowControllers/AssetsWindowController.h; sourceTree = "<group>"; };
 		81DB8248159FAED8003D4C5D /* AssetsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetsWindowController.m; path = WindowControllers/AssetsWindowController.m; sourceTree = "<group>"; };
 		81E4DA5D159E4DF900478A14 /* MapFrom0.1To1.0.2.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = MapFrom0.1To1.0.2.1.xcmappingmodel; sourceTree = "<group>"; };
@@ -188,7 +190,7 @@
 			files = (
 				81756F331534743500FCBA8E /* Cocoa.framework in Frameworks */,
 				81D733EF15A4AD6300DEA523 /* QuartzCore.framework in Frameworks */,
-				81BC867D173AE857006F8193 /* Sparkle.framework in Frameworks */,
+				81F085E417CF8E9A00188A2E /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +238,22 @@
 				817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */,
 			);
 			name = HelpingControllers;
+			sourceTree = "<group>";
+		};
+		8168995717CE17AA00058B9F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8168995817CE17B600058B9F /* SparkleKey */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		8168995817CE17B600058B9F /* SparkleKey */ = {
+			isa = PBXGroup;
+			children = (
+				8168995917CE17CE00058B9F /* dsa_pub.pem */,
+			);
+			name = SparkleKey;
 			sourceTree = "<group>";
 		};
 		816BAF8C153863ED00B68091 /* Transformers */ = {
@@ -287,7 +305,7 @@
 		81756F311534743500FCBA8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				81BC867C173AE857006F8193 /* Sparkle.framework */,
+				8168994F17CE16AC00058B9F /* Sparkle.framework */,
 				81756F321534743500FCBA8E /* Cocoa.framework */,
 				81D733EE15A4AD6300DEA523 /* QuartzCore.framework */,
 				81756F341534743500FCBA8E /* Other Frameworks */,
@@ -308,6 +326,7 @@
 		81756F381534743500FCBA8E /* Medusa */ = {
 			isa = PBXGroup;
 			children = (
+				8168995717CE17AA00058B9F /* Resources */,
 				81795C0F17396D2F0001F16B /* Helpers */,
 				810E38451554414300949BE1 /* DataModels */,
 				818987D31538D41900A32B6A /* Models */,
@@ -322,7 +341,6 @@
 			isa = PBXGroup;
 			children = (
 				81FAA927159F3968004F5F11 /* Images */,
-				817CAF4015357EF90038E9A0 /* Icons */,
 				81756F3A1534743500FCBA8E /* Medusa-Info.plist */,
 				81756F3B1534743500FCBA8E /* InfoPlist.strings */,
 				81756F3E1534743500FCBA8E /* main.m */,
@@ -381,19 +399,19 @@
 			isa = PBXGroup;
 			children = (
 				81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */,
-				81A7FBF71587D2C400D38521 /* Stop.icns */,
-				818987D01538CFED00A32B6A /* Info.icns */,
 				817CAF56153580100038E9A0 /* MedusaIcon.icns */,
-				817CAF50153580030038E9A0 /* Configuration.icns */,
-				817CAF541535800A0038E9A0 /* RomFile.icns */,
-				817CAF51153580030038E9A0 /* Display.icns */,
-				817CAF4C15357FFB0038E9A0 /* Drive.icns */,
-				817CAF4D15357FFB0038E9A0 /* GenericQuestionMarkIcon.icns */,
-				817CAF4615357FEF0038E9A0 /* RomImageDocument.icns */,
-				817CAF4715357FEF0038E9A0 /* Shared.icns */,
-				817CAF4815357FEF0038E9A0 /* Unsupported.icns */,
-				817CAF4215357FDE0038E9A0 /* FinderBlue.icns */,
-				817CAF4315357FDE0038E9A0 /* FinderGrey.icns */,
+				8168995D17CE2C7800058B9F /* Configuration.icns */,
+				8168995E17CE2C7800058B9F /* Display.icns */,
+				8168995F17CE2C7900058B9F /* Drive.icns */,
+				8168996017CE2C7900058B9F /* FinderBlue.icns */,
+				8168996117CE2C7900058B9F /* FinderGrey.icns */,
+				8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */,
+				8168996317CE2C7900058B9F /* Info.icns */,
+				8168996417CE2C7900058B9F /* RomFile.icns */,
+				8168996517CE2C7900058B9F /* RomImageDocument.icns */,
+				8168996617CE2C7900058B9F /* Shared.icns */,
+				8168996717CE2C7900058B9F /* Stop.icns */,
+				8168996817CE2C7900058B9F /* Unsupported.icns */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -456,6 +474,7 @@
 			isa = PBXGroup;
 			children = (
 				81DB823F159F91F8003D4C5D /* Clone.png */,
+				817CAF4015357EF90038E9A0 /* Icons */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -544,27 +563,28 @@
 				81756F431534743500FCBA8E /* Credits.rtf in Resources */,
 				81756F491534743500FCBA8E /* MainMenu.xib in Resources */,
 				81756F60153483C400FCBA8E /* VirtualMachineWindow.xib in Resources */,
-				817CAF4415357FDE0038E9A0 /* FinderBlue.icns in Resources */,
-				817CAF4515357FDE0038E9A0 /* FinderGrey.icns in Resources */,
-				817CAF4915357FEF0038E9A0 /* RomImageDocument.icns in Resources */,
-				817CAF4A15357FEF0038E9A0 /* Shared.icns in Resources */,
-				817CAF4B15357FEF0038E9A0 /* Unsupported.icns in Resources */,
-				817CAF4E15357FFB0038E9A0 /* Drive.icns in Resources */,
-				817CAF4F15357FFB0038E9A0 /* GenericQuestionMarkIcon.icns in Resources */,
-				817CAF52153580030038E9A0 /* Configuration.icns in Resources */,
-				817CAF53153580030038E9A0 /* Display.icns in Resources */,
-				817CAF551535800A0038E9A0 /* RomFile.icns in Resources */,
 				817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */,
-				818987D11538CFED00A32B6A /* Info.icns in Resources */,
 				81C8443B153E18CC00E94443 /* RomManagerWindow.xib in Resources */,
 				81C03CFE154EF2C100842906 /* DriveManagerWindow.xib in Resources */,
 				815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */,
 				81638DF81572DCC800CBDCA6 /* SplashWindow.xib in Resources */,
-				81A7FBF81587D2C400D38521 /* Stop.icns in Resources */,
 				81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */,
 				81DB8240159F91F8003D4C5D /* Clone.png in Resources */,
 				816F655115A1AD0A00687FA2 /* WizardWindow.xib in Resources */,
 				81BB57E417318A5A00301ED3 /* MedusaIcon5.icns in Resources */,
+				8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */,
+				8168996917CE2C7900058B9F /* Configuration.icns in Resources */,
+				8168996A17CE2C7900058B9F /* Display.icns in Resources */,
+				8168996B17CE2C7900058B9F /* Drive.icns in Resources */,
+				8168996C17CE2C7900058B9F /* FinderBlue.icns in Resources */,
+				8168996D17CE2C7900058B9F /* FinderGrey.icns in Resources */,
+				8168996E17CE2C7900058B9F /* GenericQuestionMarkIcon.icns in Resources */,
+				8168996F17CE2C7900058B9F /* Info.icns in Resources */,
+				8168997017CE2C7900058B9F /* RomFile.icns in Resources */,
+				8168997117CE2C7900058B9F /* RomImageDocument.icns in Resources */,
+				8168997217CE2C7900058B9F /* Shared.icns in Resources */,
+				8168997317CE2C7900058B9F /* Stop.icns in Resources */,
+				8168997417CE2C7900058B9F /* Unsupported.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,9 +711,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Sparkle 1.5b6\"",
-					"\"$(SRCROOT)/Sparkle 1.5b6/With Garbage Collection\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Medusa/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Medusa/Medusa-Prefix.pch";
@@ -709,9 +728,8 @@
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/Sparkle 1.5b6\"",
-					"\"$(SRCROOT)/Sparkle 1.5b6/With Garbage Collection\"",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Medusa/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Medusa/Medusa-Prefix.pch";
