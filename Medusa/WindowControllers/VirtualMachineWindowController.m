@@ -91,6 +91,8 @@
 //------------------------------------------------------------------------------
 // Methods.
 
+#pragma mark – Dealloc
+
 /*!
  * @method      dealloc:
  * @discussion  Always in the top of the files!
@@ -104,7 +106,10 @@
     [super dealloc];
 }
 
+//------------------------------------------------------------------------------
 // Init methods
+
+#pragma mark – Methods
 
 /*!
  * @method      initWithVirtualMachine:inManagedObjectContext:
@@ -113,7 +118,7 @@
 - (id)initWithVirtualMachine:(VirtualMachinesModel *)aVirtualMachine
       inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
     
-    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];
+//    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];
     
     //----------------------------------------------------------
     //VM details
@@ -125,7 +130,7 @@
     self = [super initWithWindowNibName:@"VirtualMachineWindow"];
     
     if (self) {
-        
+        /*
         TableLineInformationController *information = [
             [TableLineInformationController alloc]                
             initWithTitle:@"Information"
@@ -177,6 +182,7 @@
         [display release];
         [configuration release];
         [information release];
+        */
     }
     
     [self setManagedObjectContext:theManagedObjectContext];
@@ -232,6 +238,31 @@
     
 }
 
+- (IBAction)displayGeneralView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewConfiguration];
+}
+
+- (IBAction)displayDisksView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewDrives];
+}
+
+- (IBAction)displayDisplayView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewDisplay];
+}
+
+- (IBAction)displayShareView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewSharing];
+}
+
+- (IBAction)displayAdvancedView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewAdvanced];
+}
+
 /*!
  * @method      traceTableViewClick:
  * @abstract    Changes the right pane according to the selected item in the
@@ -240,32 +271,32 @@
  */
 - (IBAction)traceTableViewClick:(id)sender {
 
-    [[[rightView subviews] objectAtIndex:0] removeFromSuperview];
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
     
     switch ([detailsTree selectedRow]) {
         default:
         case 0:
-            [rightView addSubview: subViewInformation];
+            [placeholderView addSubview: subViewInformation];
             break;
 
         case 1:
-            [rightView addSubview: subViewConfiguration];
+            [placeholderView addSubview: subViewConfiguration];
             break;
             
         case 2:
-            [rightView addSubview: subViewDisplay];
+            [placeholderView addSubview: subViewDisplay];
             break;
             
         case 3:
-            [rightView addSubview: subViewDrives];
+            [placeholderView addSubview: subViewDrives];
             break;
             
         case 4:
-            [rightView addSubview: subViewSharing];
+            [placeholderView addSubview: subViewSharing];
             break;
             
         case 5:
-            [rightView addSubview: subViewAdvanced];
+            [placeholderView addSubview: subViewAdvanced];
             break;
     }
     
@@ -572,7 +603,7 @@
     //----------------------------------------------------------
     //Interface view
     
-    [rightView addSubview:subViewInformation];
+    [placeholderView addSubview:subViewConfiguration];
     
     //----------------------------------------------------------
     //Interface subviews

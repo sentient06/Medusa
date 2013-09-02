@@ -43,14 +43,20 @@
 
 - (id)transformedValue:(id)value {
 	
+    NSLog(@"- value: %@", value);
+    
 	NSInteger _icon = [value intValue];
-    //NSLog(@"%ld", _icon);
+    NSLog(@"- icon: %ld", _icon);
     
     switch (_icon) {
         default:
+        case 0:
+            return [NSImage imageNamed:@"newVm.icns"];
+            break;
+            
         case 1:
-//            return [NSImage imageNamed:@"GenericQuestionMarkIcon.icns"];
-//            break;
+            return [NSImage imageNamed:@"GenericQuestionMarkIcon.icns"];
+            break;
             
         case 2:
             return [NSImage imageNamed:@"FinderGrey.icns"];

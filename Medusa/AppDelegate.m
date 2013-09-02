@@ -174,13 +174,14 @@
     //Here we have all the fields to be inserted.
     [newVirtualMachineObject setName:[newMachineNameField stringValue]];
 
-    NSLog(@"%@", [romFilesController selectedObjects]);
+//    NSLog(@"%@", [romFilesController selectedObjects]);
     //NSLog(@"%@", [newMachineModelField ])
     
-    [newVirtualMachineObject setMacModel:[NSNumber numberWithInteger:[newMachineModelRadio selectedTag]]];
+//    [newVirtualMachineObject setMacModel:[NSNumber numberWithInteger:[newMachineModelRadio selectedTag]]];
+    // Model must be 5 or 14 IIci 7-7.5 or Quadra 900 7.5-8.1
+//    [newVirtualMachineObject setRomFile:[[romFilesController selectedObjects] objectAtIndex:0]];
     
-    [newVirtualMachineObject setRomFile:[[romFilesController selectedObjects] objectAtIndex:0]];
-       
+    NSLog(@"%@", newVirtualMachineObject);
     //--------------------------------------------------------------------------
     // Save:
     
@@ -466,6 +467,9 @@
  * @link Check XCode quick help.
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+//    [virtualMachinesList setWantsLayer:YES];
+//    [virtualMachinesList layer].contents = [NSImage imageNamed:@"Unknown.png"];
+//    [virtualMachinesList setBackgroundColor:[NSColor colorWithPatternImage:[NSImage imageNamed:@"Unknown.png"]]];
     
     //Log all preferences:
     //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);

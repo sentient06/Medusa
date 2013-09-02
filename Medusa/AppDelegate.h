@@ -52,6 +52,8 @@
     //Array controller with the model (rom file).
     //IBOutlet NSObjectController * newVirtualMachineController;
     
+    IBOutlet NSScrollView * virtualMachinesList;
+    
     //New VM Sheet - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
     IBOutlet NSPanel            * newMachineView;

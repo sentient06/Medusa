@@ -62,7 +62,7 @@ typedef enum {
     
     //Interface objects
     IBOutlet NSTableView    * detailsTree;
-    IBOutlet NSView         * rightView;
+    IBOutlet NSView         * placeholderView;
     IBOutlet NSView         * subViewInformation;
     IBOutlet NSView         * subViewConfiguration;
     IBOutlet NSView         * subViewDisplay;
@@ -121,6 +121,12 @@ typedef enum {
 - (IBAction)makeDriveBootable:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;
 - (IBAction)run:(id)sender;
+
+- (IBAction)displayGeneralView:(id)sender;
+- (IBAction)displayDisksView:(id)sender;
+- (IBAction)displayDisplayView:(id)sender;
+- (IBAction)displayShareView:(id)sender;
+- (IBAction)displayAdvancedView:(id)sender;
 
 // Share subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
