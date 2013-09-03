@@ -34,22 +34,22 @@
 
 @interface PreferencesWindowController : NSWindowController {
     
-    IBOutlet NSToolbar *preferencesToolbar;
+    IBOutlet NSToolbar * preferencesToolbar;
     
     //Interface subviews
-    IBOutlet NSView         * primaryView;
-    IBOutlet NSView         * generalSubView;
-    IBOutlet NSView         * shareSubView;
-    IBOutlet NSView         * advancedSubView;
-    IBOutlet NSView         * developerSubView;
+    IBOutlet NSView  * primaryView;
+    IBOutlet NSView  * generalSubView;
+    IBOutlet NSView  * shareSubView;
+    IBOutlet NSView  * advancedSubView;
+    IBOutlet NSView  * developerSubView;
     
-    NSButton *flushDatabase;
+    NSButton * flushDatabase;
 }
 
 //------------------------------------------------------------------------------
 // Properties
 
-@property (nonatomic, strong) NSView *contentSubview;
+@property (nonatomic, strong) NSView * contentSubview;
 
 
 //------------------------------------------------------------------------------

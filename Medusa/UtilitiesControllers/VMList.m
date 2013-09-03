@@ -41,7 +41,7 @@
     NSGraphicsContext * theContext = [NSGraphicsContext currentContext];
 //    [theContext saveGraphicsState];
     [theContext setPatternPhase:NSMakePoint(0,[self frame].size.height)];
-    [[NSColor colorWithPatternImage:[NSImage imageNamed:@"NoiseGrey.png"]] set];
+    [[NSColor colorWithPatternImage:[NSImage imageNamed:@"linenPattern.png"]] set];
     NSRectFill(dirtyRect);
 //    NSRectFill([self bounds]);
 //    [theContext restoreGraphicsState];

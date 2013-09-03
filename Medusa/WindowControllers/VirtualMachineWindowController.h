@@ -61,6 +61,9 @@ typedef enum {
     NSString                * windowTitle;
     
     //Interface objects
+    
+    IBOutlet NSToolbar * settingsToolbar;
+    
 //    IBOutlet NSTableView    * detailsTree;
     IBOutlet NSView         * placeholderView;
 //    IBOutlet NSView         * subViewInformation;

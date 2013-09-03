@@ -56,6 +56,7 @@
 		81BB57E417318A5A00301ED3 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */; };
 		81C03CFE154EF2C100842906 /* DriveManagerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */; };
 		81C03D02154EF46C00842906 /* DriveManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C03D01154EF46C00842906 /* DriveManagerWindowController.m */; };
+		81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C2B75117D646AB000E4A01 /* linenPattern.png */; };
 		81C84433153E181900E94443 /* FileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84430153E181900E94443 /* FileHandler.m */; };
 		81C84434153E181900E94443 /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84432153E181900E94443 /* FileObject.m */; };
 		81C84438153E183700E94443 /* DropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84437153E183700E94443 /* DropView.m */; };
@@ -158,12 +159,13 @@
 		817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableLineInformationController.m; path = UtilitiesControllers/TableLineInformationController.m; sourceTree = "<group>"; };
 		817E319B17D1078200131E2D /* VMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMList.h; path = UtilitiesControllers/VMList.h; sourceTree = "<group>"; };
 		817E319C17D1078200131E2D /* VMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMList.m; path = UtilitiesControllers/VMList.m; sourceTree = "<group>"; };
-		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NoiseGrey.png; sourceTree = "<group>"; };
+		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Models/PreferencesModel.h; sourceTree = "<group>"; };
 		81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon5.icns; path = Medusa/Images/Icons/MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
 		81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DriveManagerWindow.xib; path = Windows/DriveManagerWindow.xib; sourceTree = "<group>"; };
 		81C03D00154EF46C00842906 /* DriveManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveManagerWindowController.h; path = WindowControllers/DriveManagerWindowController.h; sourceTree = "<group>"; };
 		81C03D01154EF46C00842906 /* DriveManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveManagerWindowController.m; path = WindowControllers/DriveManagerWindowController.m; sourceTree = "<group>"; };
+		81C2B75117D646AB000E4A01 /* linenPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = linenPattern.png; path = Images/Backgrounds/linenPattern.png; sourceTree = "<group>"; };
 		81C8442F153E181900E94443 /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileHandler.h; path = Models/FileHandler.h; sourceTree = "<group>"; };
 		81C84430153E181900E94443 /* FileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileHandler.m; path = Models/FileHandler.m; sourceTree = "<group>"; };
 		81C84431153E181900E94443 /* FileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileObject.h; path = Models/FileObject.h; sourceTree = "<group>"; };
@@ -420,7 +422,6 @@
 		817CAF4015357EF90038E9A0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				81895CFD17D4F51000752E51 /* NoiseGrey.png */,
 				81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */,
 				817CAF56153580100038E9A0 /* MedusaIcon.icns */,
 				8168995D17CE2C7800058B9F /* Configuration.icns */,
@@ -501,6 +502,8 @@
 		81FAA927159F3968004F5F11 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				81C2B75117D646AB000E4A01 /* linenPattern.png */,
+				81895CFD17D4F51000752E51 /* NoiseGrey.png */,
 				814804F217D5FFB40070DAD9 /* RomIcons */,
 				81DB823F159F91F8003D4C5D /* Clone.png */,
 				817CAF4015357EF90038E9A0 /* Icons */,
@@ -619,6 +622,7 @@
 				814804F717D5FFD00070DAD9 /* PerfectNew.png in Resources */,
 				814804F817D5FFD00070DAD9 /* PerfectOld.png in Resources */,
 				814804FB17D6022F0070DAD9 /* UnsupportedRom.png in Resources */,
+				81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
