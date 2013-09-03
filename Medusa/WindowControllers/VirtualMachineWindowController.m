@@ -36,6 +36,7 @@
 #import "RelationshipVirtualMachinesDrivesModel.h" //Model for coredata entity.
 #import "VirtualMachinesModel.h"
 #import "RomFilesModel.h"
+#import "RomModel.h"
 #import "DrivesModel.h"
 
 //------------------------------------------------------------------------------
@@ -107,126 +108,12 @@
 }
 
 //------------------------------------------------------------------------------
-// Init methods
 
 #pragma mark – Methods
 
-/*!
- * @method      initWithVirtualMachine:inManagedObjectContext:
- * @abstract    Init method.
- */
-- (id)initWithVirtualMachine:(VirtualMachinesModel *)aVirtualMachine
-      inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
-    
-//    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];
-    
-    //----------------------------------------------------------
-    //VM details
-    NSLog(@"%@", aVirtualMachine);
-    
-    //----------------------------------------------------------
-    //Interface view
-    
-    self = [super initWithWindowNibName:@"VirtualMachineWindow"];
-    
-    if (self) {
-        /*
-        TableLineInformationController *information = [
-            [TableLineInformationController alloc]                
-            initWithTitle:@"Information"
-                  andIcon:@"Info.icns"
-        ];
-
-        TableLineInformationController *configuration = [
-            [TableLineInformationController alloc]                
-            initWithTitle:@"Configuration"
-                  andIcon:@"RomFile.icns"
-        ];
-        
-        TableLineInformationController *display = [
-            [TableLineInformationController alloc]                
-            initWithTitle:@"Display"
-                  andIcon:@"Display.icns"
-        ];
-
-        TableLineInformationController *drives = [
-            [TableLineInformationController alloc]                
-            initWithTitle:@"Drives"
-                  andIcon:@"Drive.icns"
-        ];
-
-        TableLineInformationController *share = [
-            [TableLineInformationController alloc]                
-            initWithTitle:@"Sharing"
-                  andIcon:@"Shared.icns"
-        ];
-
-        TableLineInformationController *advanced = [
-            [TableLineInformationController alloc]                
-            initWithTitle:@"Advanced"
-                  andIcon:@"Configuration.icns"
-        ];
-        
-        menuObjectsArray = [
-            [NSMutableArray alloc]
-            initWithObjects:information, configuration, display, drives, share, nil
-        ];
-        
-        if (displayAllTabs == YES) {
-            [menuObjectsArray addObject:advanced];
-        }
-        
-        [advanced release];
-        [share release];
-        [drives release];
-        [display release];
-        [configuration release];
-        [information release];
-        */
-    }
-    
-    [self setManagedObjectContext:theManagedObjectContext];
-    [self setVirtualMachine:aVirtualMachine];
-    [self setWindowTitle:[NSString stringWithFormat:@"%@ Settings", [virtualMachine name]]];
-    
-    //----------------------------------------------------------
-    //Interface subviews
-    
-    // -- Share tab
-    
-    //Handle the status of the open path button in the share area:
-    
-    BOOL enabledShare = [[virtualMachine shareEnabled] boolValue] == YES;
-    BOOL shareDefault = [[virtualMachine useDefaultShare] boolValue] == YES;
-    
-    if ( enabledShare &  shareDefault ) {          
-        currentPathOption = useStandardPathOption;
-    }else if ( enabledShare & !shareDefault ) {
-        currentPathOption = usePersonalPathOption;
-    }else if ( !enabledShare & !shareDefault ) {
-        currentPathOption = useNoSharedPathOption;
-    }
-    
-    //----------------------------------------------------------
-    
-    return self;
-
-}
-
-/*!
- * @method      initWithWindow:
- * @abstract    Standard init method.
- */
-- (id)initWithWindow:(NSWindow *)window {
-    self = [super initWithWindow:window];
-    if (self) {
-        // Initialization code here.
-    }
-    
-    return self;
-}
-
 //------------------------------------------------------------------------------
+// View change methods
+#pragma mark – View change methods
 
 /*!
  * @method      changeRightView:
@@ -263,51 +150,54 @@
     [placeholderView addSubview: subViewAdvanced];
 }
 
-/*!
- * @method      traceTableViewClick:
- * @abstract    Changes the right pane according to the selected item in the
- *              left pane menu.
- * @discussion  Just checks the row and shows content accordinly.
- */
-- (IBAction)traceTableViewClick:(id)sender {
-
-    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
-    
-    switch ([detailsTree selectedRow]) {
-        default:
-        case 0:
-            [placeholderView addSubview: subViewInformation];
-            break;
-
-        case 1:
-            [placeholderView addSubview: subViewConfiguration];
-            break;
-            
-        case 2:
-            [placeholderView addSubview: subViewDisplay];
-            break;
-            
-        case 3:
-            [placeholderView addSubview: subViewDrives];
-            break;
-            
-        case 4:
-            [placeholderView addSubview: subViewSharing];
-            break;
-            
-        case 5:
-            [placeholderView addSubview: subViewAdvanced];
-            break;
-    }
-    
-    //[[[rightView subviews] objectAtIndex:0] removeFromSuperview];
-    //[rightView addSubview: [subviewsArray objectAtIndex:[detailsTree selectedRow]]];
-    //[[splitRightView subviews] objectAtIndex:0] removeFromSuperview];
-    
-}
+///*!
+// * @method      traceTableViewClick:
+// * @abstract    Changes the right pane according to the selected item in the
+// *              left pane menu.
+// * @discussion  Just checks the row and shows content accordinly.
+// */
+//- (IBAction)traceTableViewClick:(id)sender {
+//
+//    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+//    
+//    switch ([detailsTree selectedRow]) {
+//        default:
+//        case 0:
+//            [placeholderView addSubview: subViewInformation];
+//            break;
+//
+//        case 1:
+//            [placeholderView addSubview: subViewConfiguration];
+//            break;
+//            
+//        case 2:
+//            [placeholderView addSubview: subViewDisplay];
+//            break;
+//            
+//        case 3:
+//            [placeholderView addSubview: subViewDrives];
+//            break;
+//            
+//        case 4:
+//            [placeholderView addSubview: subViewSharing];
+//            break;
+//            
+//        case 5:
+//            [placeholderView addSubview: subViewAdvanced];
+//            break;
+//    }
+//    
+//    //[[[rightView subviews] objectAtIndex:0] removeFromSuperview];
+//    //[rightView addSubview: [subviewsArray objectAtIndex:[detailsTree selectedRow]]];
+//    //[[splitRightView subviews] objectAtIndex:0] removeFromSuperview];
+//    
+//}
 
 
 //------------------------------------------------------------------------------
+// Interface action methods
+#pragma mark – Interface action methods
+
 /*!
  * @method      useSelectedDisks:
  * @abstract    Checks the selected disks in the drives list and adds to the vm.
@@ -381,12 +271,7 @@
     [newDriveRelationships unionSet:oldDriveRelationships];
     [virtualMachine setValue:newDriveRelationships forKey:@"drives"]; //Re-set the value.
     
-    NSLog(@"Saving...");
-    NSError *error;
-    if (![managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        NSLog(@"Check 'vm window controller' class.");
-    }
+    [self savePreferences];
     
     [selectedDrives release];
 
@@ -401,10 +286,10 @@
  */
 - (IBAction)makeDriveBootable:(id)sender {
     
-    NSArray *selectedDrives = [usedDisksController selectedObjects]; //Selected drives
-    NSArray *allDrives = [usedDisksController arrangedObjects];      //All drives
+    NSArray * selectedDrives = [usedDisksController selectedObjects]; //Selected drives
+    NSArray * allDrives      = [usedDisksController arrangedObjects]; //All drives
     
-    // Iterate through all drives and set to NO.
+    // Iterate through all drives and set them to NO.
     for (int i = 0; i < [allDrives count]; i++) {
         [[allDrives objectAtIndex:i] setValue:[NSNumber numberWithBool:NO] forKey:@"bootable"];
     }
@@ -412,12 +297,7 @@
     // Set first selected to YES.
     [[selectedDrives objectAtIndex:0] setValue:[NSNumber numberWithBool:YES] forKey:@"bootable"];
     
-    NSLog(@"Saving...");
-    NSError *error;
-    if (![managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        NSLog(@"Check 'vm window controller' class.");
-    }
+    [self savePreferences];
     
 }
 
@@ -436,12 +316,7 @@
         [managedObjectContext deleteObject:[selectedDrives objectAtIndex:i]];
     }
     
-    NSLog(@"Saving...");
-    NSError *error;
-    if (![managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        NSLog(@"Check 'vm window controller' class.");
-    }
+    [self savePreferences];
     
 }
 
@@ -491,14 +366,66 @@
         
     }
     
-    NSLog(@"Saving...");
-    NSError *error;
-    if (![managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        NSLog(@"Check 'vm window controller' class; changeShareType");
-    }
+    [self savePreferences];
     
 }
+
+/*!
+ * @method      run:
+ * @abstract    Saves preferences and lauches emulator.
+ * @discussion  aa
+ */
+- (IBAction)run:(id)sender {
+    
+    PreferencesModel *preferences = [[PreferencesModel alloc] init];
+    NSArray *data = [preferences getVirtualMachineData:virtualMachine];
+    NSURL * emulatorPath; // = [[NSURL alloc] init];
+    NSMutableString * preferencesFilePath; // = [[NSMutableString alloc] init];
+
+    if ([[[virtualMachine romFile] emulator] isEqualTo:@"Basilisk"]) {
+        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
+        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey: @"BasiliskPath"];
+    }else{
+        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".sheepshaver_prefs"];
+        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey:@"SheepshaverPath"];
+    }
+        
+    NSLog(@"%@", preferencesFilePath);
+    NSLog(@"%@", emulatorPath);
+    
+    [preferences savePreferencesFile:data ForFile:preferencesFilePath];
+    [[NSWorkspace sharedWorkspace] openURL:emulatorPath];
+    
+//    [preferencesFilePath release];
+//    [emulatorPath release];
+    [preferences release];
+
+}
+
+/*!
+ * @method      savePreferencesFromView:
+ * @abstract    Saves all preferences in current object context.
+ */
+- (IBAction)savePreferencesFromView:(id)sender {
+    [self savePreferences];
+}
+
+/*!
+ * @method      savePreferencesFromView:
+ * @abstract    Saves all preferences in current object context.
+ */
+- (void)savePreferences {
+    NSLog(@"Saving...");
+    NSError * error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        NSLog(@"Check 'vm window controller' class. (savePreferences)");
+    }
+}
+
+//------------------------------------------------------------------------------
+// Open file methods
+#pragma mark – Open file methods
 
 /*!
  * @method      openSharePath:
@@ -543,59 +470,166 @@
 }
 
 /*!
- * @method      run:
- * @abstract    Saves preferences and lauches emulator.
- * @discussion  aa
+ * @method      openRunPath:
+ * @abstract    Displays open panel to select the ROM image to be used.
  */
-- (IBAction)run:(id)sender {
+- (IBAction)openRomPath:(id)sender {
     
-    PreferencesModel *preferences = [[PreferencesModel alloc] init];
-    NSArray *data = [preferences getVirtualMachineData:virtualMachine];
-    NSURL * emulatorPath; // = [[NSURL alloc] init];
-    NSMutableString * preferencesFilePath; // = [[NSMutableString alloc] init];
-
-    if ([[[virtualMachine romFile] emulator] isEqualTo:@"Basilisk"]) {
-        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
-        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey: @"BasiliskPath"];
-    }else{
-        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".sheepshaver_prefs"];
-        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey:@"SheepshaverPath"];
+    NSArray       * selectedFiles = [[[NSArray alloc] init] autorelease];
+    NSOpenPanel   * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
+    RomModel      * RomModelObject = [[RomModel alloc] init];
+    RomFilesModel * currentRom = [[RomFilesModel alloc] init];
+    
+    //Dialog options:
+    [openDialog setCanChooseFiles:YES];
+    [openDialog setCanChooseDirectories:NO];
+    [openDialog setCanCreateDirectories:NO];
+    [openDialog setAllowsMultipleSelection:NO];
+    
+    //Display it and trace OK button:
+    if ([openDialog runModal] == NSOKButton) {
+        selectedFiles = [openDialog URLs];        
     }
-        
-    NSLog(@"%@", preferencesFilePath);
-    NSLog(@"%@", emulatorPath);
     
-    [preferences savePreferencesFile:data ForFile:preferencesFilePath];
-    [[NSWorkspace sharedWorkspace] openURL:emulatorPath];
+    if ([selectedFiles count] == 1) {
+        NSLog(@"Selected files: %@", selectedFiles);
+        currentRom = [
+            RomModelObject
+            parseSingleRomFileAndSave:[[selectedFiles objectAtIndex:0] path]
+                      inObjectContext:managedObjectContext
+        ];
+    }
     
-//    [preferencesFilePath release];
-//    [emulatorPath release];
-    [preferences release];
-
+    [virtualMachine setRomFile:currentRom];
+    
+    [currentRom release];    
+    
 }
 
-/*
-/ *!
- * @method      aa
- * @abstract    aa
- * @discussion  aa
- * /
-- (void)savePrefsFile
-*/
 
-- (IBAction)savePreferencesFromView:(id)sender {
-    NSLog(@"Saving...");
-    NSError *error;
-    if (![managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        NSLog(@"Check 'vm window controller' class. (savePreferencesFromView)");
+//------------------------------------------------------------------------------
+// Init methods
+#pragma mark – Init methods
+
+/*!
+ * @method      initWithVirtualMachine:inManagedObjectContext:
+ * @abstract    Init method.
+ */
+- (id)initWithVirtualMachine:(VirtualMachinesModel *)aVirtualMachine
+      inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
+    
+    //    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];
+    
+    //----------------------------------------------------------
+    //VM details
+    NSLog(@"%@", aVirtualMachine);
+    
+    //----------------------------------------------------------
+    //Interface view
+    
+    self = [super initWithWindowNibName:@"VirtualMachineWindow"];
+    
+    if (self) {
+        /*
+         TableLineInformationController *information = [
+         [TableLineInformationController alloc]                
+         initWithTitle:@"Information"
+         andIcon:@"Info.icns"
+         ];
+         
+         TableLineInformationController *configuration = [
+         [TableLineInformationController alloc]                
+         initWithTitle:@"Configuration"
+         andIcon:@"RomFile.icns"
+         ];
+         
+         TableLineInformationController *display = [
+         [TableLineInformationController alloc]                
+         initWithTitle:@"Display"
+         andIcon:@"Display.icns"
+         ];
+         
+         TableLineInformationController *drives = [
+         [TableLineInformationController alloc]                
+         initWithTitle:@"Drives"
+         andIcon:@"Drive.icns"
+         ];
+         
+         TableLineInformationController *share = [
+         [TableLineInformationController alloc]                
+         initWithTitle:@"Sharing"
+         andIcon:@"Shared.icns"
+         ];
+         
+         TableLineInformationController *advanced = [
+         [TableLineInformationController alloc]                
+         initWithTitle:@"Advanced"
+         andIcon:@"Configuration.icns"
+         ];
+         
+         menuObjectsArray = [
+         [NSMutableArray alloc]
+         initWithObjects:information, configuration, display, drives, share, nil
+         ];
+         
+         if (displayAllTabs == YES) {
+         [menuObjectsArray addObject:advanced];
+         }
+         
+         [advanced release];
+         [share release];
+         [drives release];
+         [display release];
+         [configuration release];
+         [information release];
+         */
     }
+    
+    [self setManagedObjectContext:theManagedObjectContext];
+    [self setVirtualMachine:aVirtualMachine];
+    [self setWindowTitle:[NSString stringWithFormat:@"%@ Settings", [virtualMachine name]]];
+    
+    //----------------------------------------------------------
+    //Interface subviews
+    
+    // -- Share tab
+    
+    //Handle the status of the open path button in the share area:
+    
+    BOOL enabledShare = [[virtualMachine shareEnabled] boolValue] == YES;
+    BOOL shareDefault = [[virtualMachine useDefaultShare] boolValue] == YES;
+    
+    if ( enabledShare &  shareDefault ) {          
+        currentPathOption = useStandardPathOption;
+    }else if ( enabledShare & !shareDefault ) {
+        currentPathOption = usePersonalPathOption;
+    }else if ( !enabledShare & !shareDefault ) {
+        currentPathOption = useNoSharedPathOption;
+    }
+    
+    //----------------------------------------------------------
+    
+    return self;
+    
+}
+
+/*!
+ * @method      initWithWindow:
+ * @abstract    Standard init method.
+ */
+- (id)initWithWindow:(NSWindow *)window {
+    self = [super initWithWindow:window];
+    if (self) {
+        // Initialization code here.
+    }
+    
+    return self;
 }
 
 /*!
  * @method      windowDidLoad:
- * @abstract    aa
- * @discussion  aa
+ * @abstract    Sent after the window owned by the receiver has been loaded.
+ * @discussion  Refer to official documentation.
  */
 - (void)windowDidLoad {
     [super windowDidLoad];
@@ -612,22 +646,20 @@
     
     //Handle the status of the open path button in the share area:
     
-    BOOL enabledShare = [[virtualMachine shareEnabled] boolValue] == YES;
+    BOOL enabledShare = [[virtualMachine shareEnabled]    boolValue] == YES;
     BOOL shareDefault = [[virtualMachine useDefaultShare] boolValue] == YES;
     
     if ( enabledShare &  shareDefault ) {          
         [openSharePathButton setEnabled:NO];
         [sharePathLabel setStringValue:
-            [
-                [NSUserDefaults standardUserDefaults] stringForKey:@"StandardSharePath"
-            ]
+            [ [NSUserDefaults standardUserDefaults] stringForKey:@"StandardSharePath" ]
         ];
-    }else if ( enabledShare & !shareDefault ) {
+    } else if ( enabledShare & !shareDefault ) {
         [openSharePathButton setEnabled:YES];
         [sharePathLabel setStringValue:
             [virtualMachine sharedFolder]
         ];
-    }else if ( !enabledShare & !shareDefault ) {
+    } else if ( !enabledShare & !shareDefault ) {
         [openSharePathButton setEnabled:NO];
         [sharePathLabel setStringValue:@"None"];
     }

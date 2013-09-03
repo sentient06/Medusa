@@ -92,7 +92,7 @@
                         change:(NSDictionary *)change 
                        context:(void *)context {
     if ([keyPath isEqualToString:@"computerModel"]) {
-        NSLog(@"%@", [change objectForKey:NSKeyValueChangeNewKey]);
+        NSLog(@"something on RomManagerWindowController: %@", [change objectForKey:NSKeyValueChangeNewKey]);
     }
 }
 

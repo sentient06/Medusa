@@ -40,6 +40,7 @@
 @dynamic emulator;
 @dynamic filePath;
 @dynamic modelName;
+@dynamic romCondition;
 @dynamic machines;
 
 @end

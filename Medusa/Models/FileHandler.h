@@ -30,6 +30,8 @@
 //
 //------------------------------------------------------------------------------
 
+// Use RomModel!
+
 #import <Foundation/Foundation.h>
 
 @interface FileHandler : NSObject {

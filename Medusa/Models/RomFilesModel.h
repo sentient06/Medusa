@@ -41,6 +41,7 @@
 @property (nonatomic, retain) NSString * emulator;
 @property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSString * modelName;
+@property (nonatomic, retain) NSNumber * romCondition;
 @property (nonatomic, retain) NSSet    * machines;
 @end
 

@@ -46,15 +46,44 @@
 	//NSString *icon = [value stringValue];
     //NSLog(@"%ld", _icon);
     
-    if ([value isEqualToString:@"Basilisk"]) {
-        return [NSImage imageNamed:@"FinderGrey.icns"];
+//    if ([value isEqualToString:@"Basilisk"]) {
+//        return [NSImage imageNamed:@"FinderGrey.icns"];
+//    }
+//    
+//    if ([value isEqualToString:@"Sheepshaver"]) {
+//        return [NSImage imageNamed:@"FinderBlue.icns"];
+//    }
+    
+    
+//    enum RomConditions {
+//        PerfectSheepNew        = 1,
+//        PerfectSheepOld        = 2,
+//        PerfectBasilisk        = 3,
+//        NoAppleTalk            = 4,
+//        FPURequired            = 5,
+//        NoAppleTalkFPURequired = 6,
+//        Unsupported            = 7
+//    };
+    
+    
+    
+    long iconValue = [value integerValue];
+    
+    NSLog(@"Rom Icon Value Transformer - value: %@ -- %ld", value, iconValue);
+    
+    if (iconValue == 1) {
+        return [NSImage imageNamed:@"PerfectNew.png"];
     }
     
-    if ([value isEqualToString:@"Sheepshaver"]) {
-        return [NSImage imageNamed:@"FinderBlue.icns"];
+    if (iconValue > 1 && iconValue < 7) {
+        return [NSImage imageNamed:@"PerfectOld.png"];
     }
-	
-	return [NSImage imageNamed:@"GenericQuestionMarkIcon.icns"];
+    
+//    if (iconValue == 7) {
+//        return [NSImage imageNamed:@"Unsupported.icns"];
+//    }
+    
+	return [NSImage imageNamed:@"UnsupportedRom.png"];
 }
 
 @end

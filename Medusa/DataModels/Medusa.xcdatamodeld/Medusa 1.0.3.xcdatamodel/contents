@@ -16,7 +16,8 @@
         <attribute name="emulator" optional="YES" attributeType="String" defaultValueString="Basilisk" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="modelName" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="machines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
+        <attribute name="romCondition" attributeType="Integer 16" maxValueString="7" defaultValueString="7" syncable="YES"/>
+        <relationship name="machines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
     <entity name="VirtualMachines" representedClassName="VirtualMachinesModel" syncable="YES">
         <attribute name="displayHeight" attributeType="Integer 16" defaultValueString="500" syncable="YES"/>
@@ -37,7 +38,7 @@
     <elements>
         <element name="Drives" positionX="160" positionY="192" width="128" height="105"/>
         <element name="RelationshipVirtualMachinesDrives" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="RomFiles" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="RomFiles" positionX="160" positionY="192" width="128" height="135"/>
         <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="255"/>
     </elements>
 </model>

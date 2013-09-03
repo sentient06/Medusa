@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		81134C4415540B2900785866 /* PreferencesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesModel.m */; };
+		814804E817D5D56D0070DAD9 /* RomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomModel.m */; };
+		814804F717D5FFD00070DAD9 /* PerfectNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F417D5FFD00070DAD9 /* PerfectNew.png */; };
+		814804F817D5FFD00070DAD9 /* PerfectOld.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F517D5FFD00070DAD9 /* PerfectOld.png */; };
+		814804FB17D6022F0070DAD9 /* UnsupportedRom.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804FA17D6022F0070DAD9 /* UnsupportedRom.png */; };
 		814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FAD881570ED0D008D3223 /* PreferencesWindowController.m */; };
 		8159C790154F1205001E43D4 /* DropRomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C78F154F1205001E43D4 /* DropRomView.m */; };
 		8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C797154F2E29001E43D4 /* DropDiskView.m */; };
@@ -85,6 +89,11 @@
 
 /* Begin PBXFileReference section */
 		81134C4315540B2900785866 /* PreferencesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesModel.m; path = Models/PreferencesModel.m; sourceTree = "<group>"; };
+		814804E617D5D56D0070DAD9 /* RomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomModel.h; path = Models/RomModel.h; sourceTree = "<group>"; };
+		814804E717D5D56D0070DAD9 /* RomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomModel.m; path = Models/RomModel.m; sourceTree = "<group>"; };
+		814804F417D5FFD00070DAD9 /* PerfectNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PerfectNew.png; path = Images/RomIcons/PerfectNew.png; sourceTree = "<group>"; };
+		814804F517D5FFD00070DAD9 /* PerfectOld.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PerfectOld.png; path = Images/RomIcons/PerfectOld.png; sourceTree = "<group>"; };
+		814804FA17D6022F0070DAD9 /* UnsupportedRom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UnsupportedRom.png; path = Images/RomIcons/UnsupportedRom.png; sourceTree = "<group>"; };
 		814FAD871570ED0D008D3223 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = WindowControllers/PreferencesWindowController.h; sourceTree = "<group>"; };
 		814FAD881570ED0D008D3223 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = WindowControllers/PreferencesWindowController.m; sourceTree = "<group>"; };
 		8159C78E154F1205001E43D4 /* DropRomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropRomView.h; path = SubClasses/DropRomView.h; sourceTree = "<group>"; };
@@ -199,6 +208,16 @@
 				81EAD4C617CFB01F00ACA222 /* Medusa.xcdatamodeld */,
 			);
 			path = DataModels;
+			sourceTree = "<group>";
+		};
+		814804F217D5FFB40070DAD9 /* RomIcons */ = {
+			isa = PBXGroup;
+			children = (
+				814804F417D5FFD00070DAD9 /* PerfectNew.png */,
+				814804F517D5FFD00070DAD9 /* PerfectOld.png */,
+				814804FA17D6022F0070DAD9 /* UnsupportedRom.png */,
+			);
+			name = RomIcons;
 			sourceTree = "<group>";
 		};
 		815FEEF61536279000B9E5C5 /* WindowControllers */ = {
@@ -463,6 +482,8 @@
 				81C84432153E181900E94443 /* FileObject.m */,
 				819ED68C15725214000C03B4 /* PreferencesModel.h */,
 				81134C4315540B2900785866 /* PreferencesModel.m */,
+				814804E617D5D56D0070DAD9 /* RomModel.h */,
+				814804E717D5D56D0070DAD9 /* RomModel.m */,
 			);
 			name = FileModels;
 			sourceTree = "<group>";
@@ -470,6 +491,7 @@
 		81FAA927159F3968004F5F11 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				814804F217D5FFB40070DAD9 /* RomIcons */,
 				81DB823F159F91F8003D4C5D /* Clone.png */,
 				817CAF4015357EF90038E9A0 /* Icons */,
 			);
@@ -584,6 +606,9 @@
 				8168997417CE2C7900058B9F /* Unsupported.icns in Resources */,
 				816792A617D08F27002B991B /* newVm.icns in Resources */,
 				81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */,
+				814804F717D5FFD00070DAD9 /* PerfectNew.png in Resources */,
+				814804F817D5FFD00070DAD9 /* PerfectOld.png in Resources */,
+				814804FB17D6022F0070DAD9 /* UnsupportedRom.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -623,6 +648,7 @@
 				81EAD4C817CFB01F00ACA222 /* Medusa.xcdatamodeld in Sources */,
 				8175CBE717D0D18C0003294E /* VMListTextCell.m in Sources */,
 				817E319D17D1078200131E2D /* VMList.m in Sources */,
+				814804E817D5D56D0070DAD9 /* RomModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

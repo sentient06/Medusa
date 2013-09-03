@@ -61,9 +61,9 @@ typedef enum {
     NSString                * windowTitle;
     
     //Interface objects
-    IBOutlet NSTableView    * detailsTree;
+//    IBOutlet NSTableView    * detailsTree;
     IBOutlet NSView         * placeholderView;
-    IBOutlet NSView         * subViewInformation;
+//    IBOutlet NSView         * subViewInformation;
     IBOutlet NSView         * subViewConfiguration;
     IBOutlet NSView         * subViewDisplay;
     IBOutlet NSView         * subViewDrives;
@@ -71,8 +71,9 @@ typedef enum {
     IBOutlet NSView         * subViewAdvanced;
     
     //Controllers
-    IBOutlet NSArrayController   * availableDisksController;
-    IBOutlet NSArrayController   * usedDisksController;
+    IBOutlet NSArrayController * availableDisksController;
+    IBOutlet NSArrayController * usedDisksController;
+    IBOutlet NSArrayController * romFilesController;
     
     // Share subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
@@ -111,6 +112,11 @@ typedef enum {
       inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext;
 
 //------------------------------------------------------------------------------
+// General Methods
+
+- (void)savePreferences;
+
+//------------------------------------------------------------------------------
 // Interface Methods
 
 // View actions
@@ -136,5 +142,6 @@ typedef enum {
 // Open share folder
 //- (void)setShareCondition:(NSInteger)condition;
 - (IBAction)openSharePath:(id)sender;
+- (IBAction)openRomPath:(id)sender;
 
 @end
