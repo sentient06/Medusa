@@ -1,9 +1,9 @@
 //
-//  DropView.h
+//  DropRomToVmView.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 28/02/2012.
-//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 03/09/2013.
+//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,15 +30,35 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
+#import "DropRomToVmView.h"
+#import "RomModel.h"
+#import "VirtualMachinesModel.h"
+#import "VirtualMachineWindowController.h"
 
-@interface DropView : NSImageView {
-    NSMutableArray * acceptedTypes;
-    NSString       * computerModel;
+@implementation DropRomToVmView
+
+@synthesize lastRomParsed;
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+  
+    NSPasteboard * pboard    = [sender draggingPasteboard];
+    NSArray      * urls      = [pboard propertyListForType:NSFilenamesPboardType];
+    RomModel     * romObject = [[RomModel alloc] autorelease];
+    
+    [romObject parseRomFilesAndSave:urls];
+    
+    lastRomParsed = [romObject currentRomObject];
+    
+    // Messy!
+    //http://stackoverflow.com/questions/18596164/cocoa-how-to-get-entity-used-in-interface
+    VirtualMachineWindowController * parentController = [[[self window] windowController] owner];
+    VirtualMachinesModel * currentMachine = [parentController virtualMachine];
+    // Really messy!
+    
+    [currentMachine setRomFile:lastRomParsed];
+    
+    return YES;
+    
 }
 
-@property (copy) NSString * computerModel;
-@property (copy) NSMutableArray * acceptedTypes;
-
 @end
-

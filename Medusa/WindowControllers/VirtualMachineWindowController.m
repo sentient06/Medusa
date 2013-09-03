@@ -45,6 +45,7 @@
 //------------------------------------------------------------------------------
 // Standard variables synthesizers.
 @synthesize menuObjectsArray;
+@synthesize virtualMachine;
 
 //------------------------------------------------------------------------------
 // Application synthesizers.
@@ -665,6 +666,33 @@
     }
 
     // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+    
+
+    
+    
 }
+
+//- (IBAction)changeCurrentRom:(id)sender {
+//    NSLog(@"It wooooooooooorks!");
+//}
+
+///*!
+// * @method      observeValueForKeyPath:
+// *              ofObject:
+// *              change:
+// *              context:
+// * @abstract    Observer method.
+// */
+//- (void)observeValueForKeyPath:(NSString *)keyPath 
+//                      ofObject:(id)object 
+//                        change:(NSDictionary *)change 
+//                       context:(void *)context {
+//    NSLog(@" OBS: %@ ", keyPath);
+////    if ([keyPath isEqualToString:@"lastRomParsed"]) {
+////        NSLog(@"Yay observer works!");
+////    }
+//    
+//    
+//}
 
 @end

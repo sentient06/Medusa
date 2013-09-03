@@ -44,7 +44,7 @@
         == NSDragOperationGeneric) {
 
         return NSDragOperationCopy;
-    }else{
+    } else {
         return NSDragOperationNone;
     }
 }

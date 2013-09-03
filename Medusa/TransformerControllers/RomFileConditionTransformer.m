@@ -1,9 +1,9 @@
 //
-//  DropView.h
+//  RomFileConditionTransformer.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 28/02/2012.
-//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 03/09/2013.
+//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,15 +30,54 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
+#import "RomFileConditionTransformer.h"
 
-@interface DropView : NSImageView {
-    NSMutableArray * acceptedTypes;
-    NSString       * computerModel;
+@implementation RomFileConditionTransformer
+
++ (Class)transformedValueClass {
+    return [NSString class]; 
+}
++ (BOOL)allowsReverseTransformation { 
+    return NO; 
 }
 
-@property (copy) NSString * computerModel;
-@property (copy) NSMutableArray * acceptedTypes;
+- (id)transformedValue:(id)value {
+    
+//    enum RomConditions {
+//        PerfectSheepNew        = 1,
+//        PerfectSheepOld        = 2,
+//        PerfectBasilisk        = 3,
+//        NoAppleTalk            = 4,
+//        FPURequired            = 5,
+//        NoAppleTalkFPURequired = 6,
+//        Unsupported            = 7
+//    };
+    
+    
+    long conditionValue = [value integerValue];
+    
+    switch (conditionValue) {
+        default:
+            return @"";
+        break;
+            
+        case 4:
+            return @"Appletalk unavailable";
+        break;
+
+        case 5:
+            return @"Needs to use FPU";
+        break;
+
+        case 6:
+            return @"Needs to use FPU and Appletalk is unavailable";
+        break;
+
+        case 7:
+            return @"Unsupported ROM";
+        break;
+    }
+
+}
 
 @end
-

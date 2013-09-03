@@ -38,10 +38,9 @@
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     
-    NSPasteboard * pboard = [sender draggingPasteboard];
-    NSArray * urls = [pboard propertyListForType:NSFilenamesPboardType];
-
-    RomModel * RomObject = [[RomModel alloc] autorelease];
+    NSPasteboard * pboard    = [sender draggingPasteboard];
+    NSArray      * urls      = [pboard propertyListForType:NSFilenamesPboardType];
+    RomModel     * RomObject = [[RomModel alloc] autorelease];
     
     [RomObject parseRomFilesAndSave:urls];
     

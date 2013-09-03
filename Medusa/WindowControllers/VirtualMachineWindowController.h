@@ -38,7 +38,7 @@ typedef enum {
     useNoSharedPathOption
 } pathOptions;
 
-@class VirtualMachinesModel;
+@class VirtualMachinesModel, DropRomView;
 
 /*!
  * @class       VirtualMachineWindowController:
@@ -53,7 +53,7 @@ typedef enum {
 @interface VirtualMachineWindowController : NSWindowController {
     //Standard variables
     NSManagedObjectContext  * managedObjectContext;
-    VirtualMachinesModel    * virtualMachine;
+//    VirtualMachinesModel    * virtualMachine;
     
     NSMutableArray          * menuObjectsArray;
     NSMutableArray          * subviewsArray;
@@ -77,10 +77,10 @@ typedef enum {
     
     // Share subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    IBOutlet NSMatrix            * sharedPathMatrix;
-    IBOutlet NSButton            * openSharePathButton;
-    IBOutlet NSTextField         * sharePathLabel;
-//    NSArray  *subViews;
+    IBOutlet NSMatrix    * sharedPathMatrix;
+    IBOutlet NSButton    * openSharePathButton;
+    IBOutlet NSTextField * sharePathLabel;
+//    NSArray  *subViews;    
     
     /// 32-bit compatibility -------    
     pathOptions currentPathOption;
@@ -97,6 +97,7 @@ typedef enum {
 //@property (nonatomic, retain) IBOutletCollection(NSView) NSArray *subviewsArray;
 @property (copy) NSString * windowTitle;
 @property pathOptions currentPathOption;
+@property (assign) VirtualMachinesModel * virtualMachine;
 
 //------------------------------------------------------------------------------
 // Manual getters
@@ -122,7 +123,7 @@ typedef enum {
 // View actions
 - (IBAction)changeRightView:(id)sender;
 - (IBAction)savePreferencesFromView:(id)sender;
-- (IBAction)traceTableViewClick:(id)sender;
+//- (IBAction)traceTableViewClick:(id)sender;
 - (IBAction)useSelectedDisks:(id)sender;
 - (IBAction)makeDriveBootable:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;

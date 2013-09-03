@@ -1,9 +1,9 @@
 //
-//  DropView.h
+//  RomFileConditionTransformer.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 28/02/2012.
-//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 03/09/2013.
+//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,15 +30,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
-@interface DropView : NSImageView {
-    NSMutableArray * acceptedTypes;
-    NSString       * computerModel;
-}
-
-@property (copy) NSString * computerModel;
-@property (copy) NSMutableArray * acceptedTypes;
+@interface RomFileConditionTransformer : NSValueTransformer
 
 @end
-
