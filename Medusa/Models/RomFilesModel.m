@@ -43,4 +43,7 @@
 @dynamic romCondition;
 @dynamic machines;
 
+@dynamic mac68k;
+@dynamic macPPC;
+
 @end

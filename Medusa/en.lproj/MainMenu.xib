@@ -636,12 +636,13 @@
 											<string key="NSFrameSize">{300, 336}</string>
 											<reference key="NSSuperview" ref="1020380079"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="668349840"/>
+											<reference key="NSNextKeyView" ref="378602211"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="_NSCornerView" key="NSCornerView">
+											<object class="_NSCornerView" key="NSCornerView" id="378602211">
 												<nil key="NSNextResponder"/>
 												<int key="NSvFlags">-2147483392</int>
 												<string key="NSFrame">{{224, 1}, {16, 17}}</string>
+												<reference key="NSNextKeyView" ref="668349840"/>
 											</object>
 											<array class="NSMutableArray" key="NSTableColumns">
 												<object class="NSTableColumn" id="716154460">
@@ -745,7 +746,7 @@
 												<bytes key="NSRGB">MC40OTgwMzkyMTU4IDAuNDk4MDM5MjE1OCAwLjQ5ODAzOTIxNTgAA</bytes>
 											</object>
 											<double key="NSRowHeight">32</double>
-											<int key="NSTvFlags">-700448768</int>
+											<int key="NSTvFlags">-698351616</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
 											<int key="NSGridStyleMask">2</int>
@@ -776,7 +777,7 @@
 									<reference key="NSNextKeyView" ref="648803177"/>
 									<reference key="NSTarget" ref="191054627"/>
 									<string key="NSAction">_doScroller:</string>
-									<double key="NSPercent">0.99659863945578231</double>
+									<double key="NSPercent">0.94658753709198817</double>
 								</object>
 								<object class="NSScroller" id="286583612">
 									<reference key="NSNextResponder" ref="191054627"/>
@@ -784,7 +785,7 @@
 									<string key="NSFrame">{{-100, -100}, {238, 15}}</string>
 									<reference key="NSSuperview" ref="191054627"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView" ref="1020380079"/>
+									<reference key="NSNextKeyView"/>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="191054627"/>
 									<string key="NSAction">_doScroller:</string>
@@ -1649,23 +1650,23 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: arrangedObjects.icon</string>
+						<string key="label">value: arrangedObjects.romFile.romCondition</string>
 						<reference key="source" ref="716154460"/>
 						<reference key="destination" ref="196388366"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="716154460"/>
 							<reference key="NSDestination" ref="196388366"/>
-							<string key="NSLabel">value: arrangedObjects.icon</string>
+							<string key="NSLabel">value: arrangedObjects.romFile.romCondition</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">arrangedObjects.icon</string>
+							<string key="NSKeyPath">arrangedObjects.romFile.romCondition</string>
 							<dictionary key="NSOptions">
 								<boolean value="NO" key="NSConditionallySetsEnabled"/>
-								<string key="NSValueTransformerName">IconValueTransformer</string>
+								<string key="NSValueTransformerName">RomIconValueTransformer</string>
 							</dictionary>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">900</int>
+					<int key="connectionID">935</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2694,7 +2695,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">928</int>
+			<int key="maxID">947</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

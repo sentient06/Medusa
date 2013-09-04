@@ -15,6 +15,8 @@
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="emulator" optional="YES" attributeType="String" defaultValueString="Basilisk" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mac68k" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="macPPC" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="modelName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="romCondition" attributeType="Integer 16" maxValueString="7" defaultValueString="7" syncable="YES"/>
         <relationship name="machines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>

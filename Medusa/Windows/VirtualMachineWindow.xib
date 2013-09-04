@@ -708,6 +708,24 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
+					<object class="NSTextField" id="278525393">
+						<reference key="NSNextResponder" ref="915117506"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{186, 151}, {225, 17}}</string>
+						<reference key="NSSuperview" ref="915117506"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="142269176"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSTextFieldCell" key="NSCell" id="718514127">
+							<int key="NSCellFlags">68288064</int>
+							<int key="NSCellFlags2">272630784</int>
+							<string key="NSContents">Power Mac G4 (Mac OS 7.5 - 9.0.4)</string>
+							<reference key="NSSupport" ref="242979725"/>
+							<reference key="NSControlView" ref="278525393"/>
+							<reference key="NSBackgroundColor" ref="836078331"/>
+							<reference key="NSTextColor" ref="402407340"/>
+						</object>
+					</object>
 					<object class="NSTextField" id="499570869">
 						<reference key="NSNextResponder" ref="915117506"/>
 						<int key="NSvFlags">268</int>
@@ -878,7 +896,7 @@
 						<string key="NSFrame">{{168, 170}, {233, 38}}</string>
 						<reference key="NSSuperview" ref="915117506"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="142269176"/>
+						<reference key="NSNextKeyView" ref="278525393"/>
 						<bool key="NSEnabled">YES</bool>
 						<int key="NSNumRows">2</int>
 						<int key="NSNumCols">1</int>
@@ -1218,7 +1236,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<reference key="NSControlView" ref="1008916826"/>
 							<double key="NSMaxValue">2048</double>
 							<double key="NSMinValue">8</double>
-							<double key="NSValue">8</double>
+							<double key="NSValue">56.571428571428569</double>
 							<double key="NSAltIncValue">0.0</double>
 							<int key="NSNumberOfTickMarks">127</int>
 							<int key="NSTickMarkPosition">0</int>
@@ -2888,6 +2906,22 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: selection.romFile.mac68k</string>
+						<reference key="source" ref="339778249"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="339778249"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">enabled: selection.romFile.mac68k</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">selection.romFile.mac68k</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">823</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: selection.romFile.romCondition</string>
 						<reference key="source" ref="245268369"/>
 						<reference key="destination" ref="3622824"/>
@@ -3000,6 +3034,22 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<int key="connectionID">812</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">hidden: selection.romFile.mac68k</string>
+						<reference key="source" ref="278525393"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="278525393"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">hidden: selection.romFile.mac68k</string>
+							<string key="NSBinding">hidden</string>
+							<string key="NSKeyPath">selection.romFile.mac68k</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">826</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -3073,6 +3123,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<reference ref="657651880"/>
 							<reference ref="1044136966"/>
 							<reference ref="1008916826"/>
+							<reference ref="278525393"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Configuration Subview</string>
@@ -4017,6 +4068,19 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<reference key="object" ref="321097157"/>
 						<reference key="parent" ref="499570869"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">824</int>
+						<reference key="object" ref="278525393"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="718514127"/>
+						</array>
+						<reference key="parent" ref="915117506"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">825</int>
+						<reference key="object" ref="718514127"/>
+						<reference key="parent" ref="278525393"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -4185,6 +4249,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="733.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="807.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="808.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="824.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="825.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="88.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="91.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="92.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -4195,7 +4261,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">813</int>
+			<int key="maxID">826</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

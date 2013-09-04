@@ -65,7 +65,31 @@
         
         [self readRomFileFrom:filePath];
         
+        //----------------------------------------------------------------------
         // Core-data part:
+        
+        NSError * error;
+        
+        NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
+        NSEntityDescription * entity    = [ NSEntityDescription entityForName:@"RomFiles" inManagedObjectContext:currentContext];
+        NSPredicate         * predicate = [ NSPredicate
+            predicateWithFormat: @"filePath = %@ OR modelName = %@",
+            filePath, fileDetails
+        ];
+        
+        [request setEntity:entity];
+        [request setPredicate: predicate];
+        NSInteger resultCount = [currentContext countForFetchRequest:request error:&error];
+
+        [request release];
+                
+        if (resultCount > 0) {
+            NSLog(@"This ROM file is duplicated!");
+            return nil;
+        }        
+        
+        //----------------------------------------------------------------------        
+        
         RomFilesModel * managedObject = [
             NSEntityDescription
             insertNewObjectForEntityForName: @"RomFiles"
@@ -78,12 +102,30 @@
         [managedObject setComments     : comments];
         [managedObject setRomCondition : [NSNumber numberWithInt:romCondition]];
         
-        if ( [fileDetails rangeOfString:@"Power Mac"].length ) {
-            [managedObject setEmulator:@"Sheepshaver"];
+        switch (romCondition) {
+
+            case PerfectSheepNew        :
+            case PerfectSheepOld        :
+                [managedObject setEmulator:@"Sheepshaver"];
+                [managedObject setMac68k:[NSNumber numberWithBool:NO]];
+                [managedObject setMacPPC:[NSNumber numberWithBool:YES]];
+            break;
+
+            case PerfectBasilisk        :
+            case NoAppleTalk            :
+            case FPURequired            :
+            case NoAppleTalkFPURequired :
+                [managedObject setEmulator:@"Basilisk"];
+                [managedObject setMac68k:[NSNumber numberWithBool:YES]];
+                [managedObject setMacPPC:[NSNumber numberWithBool:NO]];
+            break;
+
         }
+
+        //----------------------------------------------------------------------
         
         NSLog(@"Saving...");
-        NSError * error;
+
         if (![currentContext save:&error]) {
             NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
             NSLog(@"Check 'drop rom view' subclass.");
@@ -94,6 +136,8 @@
             currentRomObject = managedObject;
             return managedObject;
         }
+        
+        //----------------------------------------------------------------------
 
     } else {
         success = NO;
@@ -197,7 +241,7 @@
 
         case 0x9779D2C4:
         case 0x97851DB6:
-            fileDetails  = @"Mac II";
+            fileDetails  = @"Mac II"; //vMac
             comments     = @"Not supported by Basilisk II";
             romCondition = Unsupported;
             break;
@@ -210,19 +254,19 @@
             break;
 
         case 0x36B7FB6C:
-            fileDetails  = @"Mac IIsi";
+            fileDetails  = @"Mac IIsi"; //test
             comments     = @"AppleTalk is not supported.";
             romCondition = NoAppleTalk;
             break;
 
         case 0x4147DD77:
-            fileDetails  = @"Mac IIfx";
+            fileDetails  = @"Mac IIfx"; //test
             comments     = @"FPU must be enabled.\nAppleTalk is not supported.";
             romCondition = NoAppleTalkFPURequired;
             break;
 
         case 0x35C28C8F:
-            fileDetails  = @"Mac IIx";
+            fileDetails  = @"Mac IIx"; //test
             comments     = @"AppleTalk may not be supported.";
             romCondition = NoAppleTalk;
             break;
@@ -246,7 +290,7 @@
             break;
 
         case 0x3193670E:
-            fileDetails  = @"Mac Classic II";
+            fileDetails  = @"Mac Classic II"; //test
             comments     = @"May require the FPU.\nAppleTalk may not be supported.";
             romCondition = NoAppleTalkFPURequired;
             break;
@@ -268,7 +312,7 @@
             break;
 
         case 0xFF7439EE:
-            fileDetails  = @"Quadra 605 or LC/Performa 475/575";
+            fileDetails  = @"Quadra 605 or LC/Performa 475/575"; //test
             romCondition = PerfectBasilisk;
             break;
 
@@ -295,7 +339,7 @@
             break;
 
         case 0xE33B2724:
-            fileDetails  = @"Powerbook 165c";
+            fileDetails  = @"Powerbook 165c"; //test
             romCondition = PerfectBasilisk;
             break;
 
@@ -305,13 +349,13 @@
             break;
 
         case 0x064DC91D:
-            fileDetails  = @"Performa 580/588";
+            fileDetails  = @"Performa 580/588"; //test
             comments     = @"AppleTalk is reported to work.";
             romCondition = PerfectBasilisk;
             break;
 
         case 0xEDE66CBD:
-            fileDetails  = @"Maybe Performa 450-550";
+            fileDetails  = @"Performa 450-550"; //maybe
             romCondition = PerfectBasilisk;
             break;
             

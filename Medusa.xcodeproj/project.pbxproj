@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		81134C4415540B2900785866 /* PreferencesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesModel.m */; };
+		8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8126596817D724DE00395990 /* MedusaIcon5.icns */; };
 		814804E817D5D56D0070DAD9 /* RomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomModel.m */; };
 		814804F717D5FFD00070DAD9 /* PerfectNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F417D5FFD00070DAD9 /* PerfectNew.png */; };
 		814804F817D5FFD00070DAD9 /* PerfectOld.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F517D5FFD00070DAD9 /* PerfectOld.png */; };
@@ -53,7 +54,6 @@
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
 		817E319D17D1078200131E2D /* VMList.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMList.m */; };
 		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
-		81BB57E417318A5A00301ED3 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */; };
 		81C03CFE154EF2C100842906 /* DriveManagerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */; };
 		81C03D02154EF46C00842906 /* DriveManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C03D01154EF46C00842906 /* DriveManagerWindowController.m */; };
 		81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C2B75117D646AB000E4A01 /* linenPattern.png */; };
@@ -92,6 +92,7 @@
 
 /* Begin PBXFileReference section */
 		81134C4315540B2900785866 /* PreferencesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesModel.m; path = Models/PreferencesModel.m; sourceTree = "<group>"; };
+		8126596817D724DE00395990 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon5.icns; path = Medusa/Images/Icons/MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
 		814804E617D5D56D0070DAD9 /* RomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomModel.h; path = Models/RomModel.h; sourceTree = "<group>"; };
 		814804E717D5D56D0070DAD9 /* RomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomModel.m; path = Models/RomModel.m; sourceTree = "<group>"; };
 		814804F417D5FFD00070DAD9 /* PerfectNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PerfectNew.png; path = Images/RomIcons/PerfectNew.png; sourceTree = "<group>"; };
@@ -161,7 +162,6 @@
 		817E319C17D1078200131E2D /* VMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMList.m; path = UtilitiesControllers/VMList.m; sourceTree = "<group>"; };
 		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Models/PreferencesModel.h; sourceTree = "<group>"; };
-		81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon5.icns; path = Medusa/Images/Icons/MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
 		81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DriveManagerWindow.xib; path = Windows/DriveManagerWindow.xib; sourceTree = "<group>"; };
 		81C03D00154EF46C00842906 /* DriveManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveManagerWindowController.h; path = WindowControllers/DriveManagerWindowController.h; sourceTree = "<group>"; };
 		81C03D01154EF46C00842906 /* DriveManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveManagerWindowController.m; path = WindowControllers/DriveManagerWindowController.m; sourceTree = "<group>"; };
@@ -422,7 +422,7 @@
 		817CAF4015357EF90038E9A0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
-				81BB57E317318A5A00301ED3 /* MedusaIcon5.icns */,
+				8126596817D724DE00395990 /* MedusaIcon5.icns */,
 				817CAF56153580100038E9A0 /* MedusaIcon.icns */,
 				8168995D17CE2C7800058B9F /* Configuration.icns */,
 				8168995E17CE2C7800058B9F /* Display.icns */,
@@ -603,7 +603,6 @@
 				81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */,
 				81DB8240159F91F8003D4C5D /* Clone.png in Resources */,
 				816F655115A1AD0A00687FA2 /* WizardWindow.xib in Resources */,
-				81BB57E417318A5A00301ED3 /* MedusaIcon5.icns in Resources */,
 				8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */,
 				8168996917CE2C7900058B9F /* Configuration.icns in Resources */,
 				8168996A17CE2C7900058B9F /* Display.icns in Resources */,
@@ -623,6 +622,7 @@
 				814804F817D5FFD00070DAD9 /* PerfectOld.png in Resources */,
 				814804FB17D6022F0070DAD9 /* UnsupportedRom.png in Resources */,
 				81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */,
+				8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
