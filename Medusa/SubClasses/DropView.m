@@ -122,14 +122,16 @@
         url = [NSURL fileURLWithPath:[firstElement stringByExpandingTildeInPath]];
         LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
         
-        NSLog(@"%@", kind);
+        NSLog(@"kind is %@", kind);
         computerModel = @"Test";
         
         [currentElement release];
         
         if (
             [kind isEqualToString:@"Unix Executable File"] ||
-            [kind isEqualToString:@"Document"]
+            [kind isEqualToString:@"Document"] ||
+            [kind isEqualToString:@"NDIF Disk Image"] ||
+            [kind isEqualToString:@"Disk Image"]
         ) {
             returnValue = YES;
             break;

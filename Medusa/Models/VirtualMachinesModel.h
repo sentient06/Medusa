@@ -37,19 +37,25 @@
 
 @interface VirtualMachinesModel : NSManagedObject
 
+@property (nonatomic, retain) NSString * uniqueName;
+@property (nonatomic, retain) RomFilesModel * romFile;
+@property (nonatomic, retain) NSNumber * icon;
+@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * displayHeight;
 @property (nonatomic, retain) NSNumber * displayWidth;
 @property (nonatomic, retain) NSNumber * fullScreen;
-@property (nonatomic, retain) NSNumber * icon;
-@property (nonatomic, retain) NSNumber * jitEnabled;
 @property (nonatomic, retain) NSNumber * memory;
-@property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * sharedFolder;
 @property (nonatomic, retain) NSNumber * macModel;
 @property (nonatomic, retain) NSNumber * shareEnabled;
 @property (nonatomic, retain) NSNumber * useDefaultShare;
-@property (nonatomic, retain) NSSet *drives;
-@property (nonatomic, retain) RomFilesModel *romFile;
+@property (nonatomic, retain) NSSet    * drives;
+@property (nonatomic, retain) NSNumber * processorType;
+@property (nonatomic, retain) NSNumber * jitEnabled;
+@property (nonatomic, retain) NSNumber * lazyCacheEnabled;
+@property (nonatomic, retain) NSNumber * fpuEnabled;
+@property (nonatomic, retain) NSNumber * jitCacheSize;
+
 @end
 
 @interface VirtualMachinesModel (CoreDataGeneratedAccessors)
@@ -58,4 +64,5 @@
 - (void)removeDrivesObject:(RelationshipVirtualMachinesDrivesModel *)value;
 - (void)addDrives:(NSSet *)values;
 - (void)removeDrives:(NSSet *)values;
+
 @end

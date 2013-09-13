@@ -46,6 +46,11 @@
  */
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     
+    // Grand Central Dispatch queue  - - - - - - - - - - - - - - - - - - - - - -
+    dispatch_queue_t queue;
+    
+    // Array Controllers - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    
     IBOutlet NSArrayController  * virtualMachinesArrayController;
     //Array controller to keep track of the machines list.
     IBOutlet NSArrayController  * romFilesController;
@@ -121,5 +126,7 @@
 
 - (IBAction)showPreferencesWindow:(id)sender;
 //Action to show the Preferences Window.
+
+- (NSString *)applicationSupportDirectory;
 
 @end

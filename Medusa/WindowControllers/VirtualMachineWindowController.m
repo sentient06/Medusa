@@ -151,50 +151,6 @@
     [placeholderView addSubview: subViewAdvanced];
 }
 
-///*!
-// * @method      traceTableViewClick:
-// * @abstract    Changes the right pane according to the selected item in the
-// *              left pane menu.
-// * @discussion  Just checks the row and shows content accordinly.
-// */
-//- (IBAction)traceTableViewClick:(id)sender {
-//
-//    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
-//    
-//    switch ([detailsTree selectedRow]) {
-//        default:
-//        case 0:
-//            [placeholderView addSubview: subViewInformation];
-//            break;
-//
-//        case 1:
-//            [placeholderView addSubview: subViewConfiguration];
-//            break;
-//            
-//        case 2:
-//            [placeholderView addSubview: subViewDisplay];
-//            break;
-//            
-//        case 3:
-//            [placeholderView addSubview: subViewDrives];
-//            break;
-//            
-//        case 4:
-//            [placeholderView addSubview: subViewSharing];
-//            break;
-//            
-//        case 5:
-//            [placeholderView addSubview: subViewAdvanced];
-//            break;
-//    }
-//    
-//    //[[[rightView subviews] objectAtIndex:0] removeFromSuperview];
-//    //[rightView addSubview: [subviewsArray objectAtIndex:[detailsTree selectedRow]]];
-//    //[[splitRightView subviews] objectAtIndex:0] removeFromSuperview];
-//    
-//}
-
-
 //------------------------------------------------------------------------------
 // Interface action methods
 #pragma mark – Interface action methods
@@ -531,59 +487,7 @@
     self = [super initWithWindowNibName:@"VirtualMachineWindow"];
     
     if (self) {
-        /*
-         TableLineInformationController *information = [
-         [TableLineInformationController alloc]                
-         initWithTitle:@"Information"
-         andIcon:@"Info.icns"
-         ];
-         
-         TableLineInformationController *configuration = [
-         [TableLineInformationController alloc]                
-         initWithTitle:@"Configuration"
-         andIcon:@"RomFile.icns"
-         ];
-         
-         TableLineInformationController *display = [
-         [TableLineInformationController alloc]                
-         initWithTitle:@"Display"
-         andIcon:@"Display.icns"
-         ];
-         
-         TableLineInformationController *drives = [
-         [TableLineInformationController alloc]                
-         initWithTitle:@"Drives"
-         andIcon:@"Drive.icns"
-         ];
-         
-         TableLineInformationController *share = [
-         [TableLineInformationController alloc]                
-         initWithTitle:@"Sharing"
-         andIcon:@"Shared.icns"
-         ];
-         
-         TableLineInformationController *advanced = [
-         [TableLineInformationController alloc]                
-         initWithTitle:@"Advanced"
-         andIcon:@"Configuration.icns"
-         ];
-         
-         menuObjectsArray = [
-         [NSMutableArray alloc]
-         initWithObjects:information, configuration, display, drives, share, nil
-         ];
-         
-         if (displayAllTabs == YES) {
-         [menuObjectsArray addObject:advanced];
-         }
-         
-         [advanced release];
-         [share release];
-         [drives release];
-         [display release];
-         [configuration release];
-         [information release];
-         */
+
     }
     
     [self setManagedObjectContext:theManagedObjectContext];

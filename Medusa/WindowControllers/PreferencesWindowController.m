@@ -132,10 +132,7 @@
         case 2:
             newView = advancedSubView;
             break;
-            
-        case 3:
-            newView = developerSubView;
-            break;
+
     }
     
     //--------------------------------------------------------------------------
@@ -297,58 +294,4 @@
     
 }
 
-/// Developer actions ==========================================================
-
-
-- (IBAction)flushPreferences:(id)sender {
-}
-
-- (IBAction)flushDatabase:(id)sender {
-}
-
-- (IBAction)deleteB2Prefs:(id)sender {
-}
-
-- (IBAction)deleteSSPrefs:(id)sender {
-}
-
-- (IBAction)importB2Prefs:(id)sender {
-}
-
-- (IBAction)importSSPrefs:(id)sender {
-}
-
-- (IBAction)create2MBDisk:(id)sender {
-}
-
-- (IBAction)sys7Disk:(id)sender {
-}
-
-- (IBAction)openMain:(id)sender {
-    //[[[NSApp delegate] window] makeKeyAndOrderFront:self];
-}
-
-- (IBAction)openAssets:(id)sender {
-    [[NSApp delegate] showWindows];
-}
-
-- (IBAction)openVM:(id)sender {
-    [[NSApp delegate] openVM:sender];
-}
-
-- (IBAction)openRom:(id)sender {
-    [[NSApp delegate] openRom:nil];
-}
-
-- (IBAction)openDrive:(id)sender {
-    [[NSApp delegate] openDrive:sender];
-}
-
-- (IBAction)openSplash:(id)sender {
-    [[NSApp delegate] openSplash:sender];
-}
-
-- (IBAction)openWizard:(id)sender {
-    [[NSApp delegate] openWizard:sender];
-}
 @end

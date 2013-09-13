@@ -106,28 +106,6 @@
 							<bool key="NSToolbarIsUserRemovable">YES</bool>
 							<int key="NSToolbarItemVisibilityPriority">0</int>
 						</object>
-						<object class="NSToolbarItem" key="8ACC4764-05FC-4239-87C3-0D7D943165A8" id="393390457">
-							<object class="NSMutableString" key="NSToolbarItemIdentifier">
-								<characters key="NS.bytes">8ACC4764-05FC-4239-87C3-0D7D943165A8</characters>
-							</object>
-							<string key="NSToolbarItemLabel">Developer</string>
-							<string key="NSToolbarItemPaletteLabel">Only if you know what you are doing!!!</string>
-							<string key="NSToolbarItemToolTip"/>
-							<nil key="NSToolbarItemView"/>
-							<object class="NSCustomResource" key="NSToolbarItemImage">
-								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">Stop</string>
-							</object>
-							<nil key="NSToolbarItemTarget"/>
-							<nil key="NSToolbarItemAction"/>
-							<string key="NSToolbarItemMinSize">{0, 0}</string>
-							<string key="NSToolbarItemMaxSize">{0, 0}</string>
-							<bool key="NSToolbarItemEnabled">YES</bool>
-							<bool key="NSToolbarItemAutovalidates">YES</bool>
-							<int key="NSToolbarItemTag">3</int>
-							<bool key="NSToolbarIsUserRemovable">YES</bool>
-							<int key="NSToolbarItemVisibilityPriority">0</int>
-						</object>
 						<object class="NSToolbarItem" key="93C58E54-C7C2-42A5-BE36-62AAC5884B2C" id="589199181">
 							<object class="NSMutableString" key="NSToolbarItemIdentifier">
 								<characters key="NS.bytes">93C58E54-C7C2-42A5-BE36-62AAC5884B2C</characters>
@@ -265,10 +243,9 @@
 						<reference ref="163986190"/>
 						<reference ref="589199181"/>
 						<reference ref="484907192"/>
-						<reference ref="393390457"/>
 						<reference ref="519580822"/>
 					</array>
-					<array key="NSToolbarIBDefaultItems">
+					<array class="NSMutableArray" key="NSToolbarIBDefaultItems">
 						<reference ref="163986190"/>
 						<reference ref="589199181"/>
 						<reference ref="54367870"/>
@@ -276,11 +253,14 @@
 					<array class="NSMutableArray" key="NSToolbarIBSelectableItems"/>
 				</object>
 				<object class="NSView" key="NSWindowView" id="1006">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<string key="NSFrameSize">{480, 230}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1366, 746}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 			</object>
 			<object class="NSCustomView" id="925769951">
@@ -663,7 +643,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{175, 108}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="874839370"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="452267933">
@@ -685,7 +664,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{14, 108}, {160, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="746606492"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="523461520">
@@ -707,7 +685,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{174, 12}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="44347348"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="14053979">
@@ -729,7 +706,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{15, 12}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="789741678"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="748329340">
@@ -751,7 +727,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{14, 76}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="909354005"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="289007207">
@@ -773,7 +748,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{333, 12}, {160, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="204981211">
@@ -795,7 +769,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{334, 108}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1042643812"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="262352499">
@@ -817,7 +790,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{174, 150}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="272431496"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="591484128">
@@ -839,7 +811,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{14, 150}, {160, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="190753820"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="354635163">
@@ -861,7 +832,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{174, 182}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="127046322"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="305656192">
@@ -883,7 +853,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{174, 214}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="989597799"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="945586891">
@@ -905,7 +874,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{174, 246}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="315021211"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="726298286">
@@ -927,7 +895,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{15, 182}, {159, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="894688859"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="903850405">
@@ -949,7 +916,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{14, 214}, {160, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="575868927"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="1042376841">
@@ -971,7 +937,6 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{14, 246}, {160, 32}}</string>
 						<reference key="NSSuperview" ref="1060518566"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="985963465"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="46533795">
@@ -991,7 +956,6 @@
 				</array>
 				<string key="NSFrameSize">{507, 294}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="490317659"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -1079,156 +1043,12 @@
 					<int key="connectionID">192</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">developerSubView</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="1060518566"/>
-					</object>
-					<int key="connectionID">224</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">openSubView:</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="484907192"/>
 					</object>
 					<int key="connectionID">229</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openSubView:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="393390457"/>
-					</object>
-					<int key="connectionID">230</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">flushDatabase:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="985963465"/>
-					</object>
-					<int key="connectionID">253</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openMain:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="874839370"/>
-					</object>
-					<int key="connectionID">254</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openAssets:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="44347348"/>
-					</object>
-					<int key="connectionID">255</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openVM:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="1042643812"/>
-					</object>
-					<int key="connectionID">256</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openRom:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="909354005"/>
-					</object>
-					<int key="connectionID">257</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openDrive:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="789741678"/>
-					</object>
-					<int key="connectionID">258</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openSplash:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="272431496"/>
-					</object>
-					<int key="connectionID">259</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">openWizard:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="746606492"/>
-					</object>
-					<int key="connectionID">260</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">flushPreferences:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="490317659"/>
-					</object>
-					<int key="connectionID">261</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">deleteB2Prefs:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="315021211"/>
-					</object>
-					<int key="connectionID">262</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">deleteSSPrefs</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="989597799"/>
-					</object>
-					<int key="connectionID">263</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">deleteSSPrefs:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="989597799"/>
-					</object>
-					<int key="connectionID">264</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">importB2Prefs:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="575868927"/>
-					</object>
-					<int key="connectionID">265</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">importSSPrefs:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="894688859"/>
-					</object>
-					<int key="connectionID">266</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">create2MBDisk:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="127046322"/>
-					</object>
-					<int key="connectionID">267</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">sys7Disk:</string>
-						<reference key="source" ref="1001"/>
-						<reference key="destination" ref="190753820"/>
-					</object>
-					<int key="connectionID">268</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1436,7 +1256,6 @@
 							<reference ref="589199181"/>
 							<reference ref="484907192"/>
 							<reference ref="163986190"/>
-							<reference ref="393390457"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 					</object>
@@ -1598,11 +1417,6 @@
 						<int key="objectID">127</int>
 						<reference key="object" ref="944446964"/>
 						<reference key="parent" ref="312436214"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">180</int>
-						<reference key="object" ref="393390457"/>
-						<reference key="parent" ref="646289781"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">86</int>
@@ -1951,8 +1765,6 @@
 				<string key="126.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="127.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<string key="180.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
-				<boolean value="YES" key="180.toolbarItem.selectable"/>
 				<string key="186.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="187.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="188.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -2021,73 +1833,14 @@
 					<string key="className">PreferencesWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="create2MBDisk:">id</string>
-						<string key="deleteB2Prefs:">id</string>
-						<string key="deleteSSPrefs:">id</string>
-						<string key="flushDatabase:">id</string>
-						<string key="flushPreferences:">id</string>
-						<string key="importB2Prefs:">id</string>
-						<string key="importSSPrefs:">id</string>
-						<string key="openAssets:">id</string>
 						<string key="openBasiliskPath:">id</string>
-						<string key="openDrive:">id</string>
-						<string key="openMain:">id</string>
-						<string key="openRom:">id</string>
 						<string key="openSharePath:">id</string>
 						<string key="openSheepshaverPath:">id</string>
-						<string key="openSplash:">id</string>
 						<string key="openSubView:">id</string>
-						<string key="openVM:">id</string>
-						<string key="openWizard:">id</string>
-						<string key="sys7Disk:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="create2MBDisk:">
-							<string key="name">create2MBDisk:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="deleteB2Prefs:">
-							<string key="name">deleteB2Prefs:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="deleteSSPrefs:">
-							<string key="name">deleteSSPrefs:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="flushDatabase:">
-							<string key="name">flushDatabase:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="flushPreferences:">
-							<string key="name">flushPreferences:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="importB2Prefs:">
-							<string key="name">importB2Prefs:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="importSSPrefs:">
-							<string key="name">importSSPrefs:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="openAssets:">
-							<string key="name">openAssets:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="openBasiliskPath:">
 							<string key="name">openBasiliskPath:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="openDrive:">
-							<string key="name">openDrive:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="openMain:">
-							<string key="name">openMain:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="openRom:">
-							<string key="name">openRom:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="openSharePath:">
@@ -2098,30 +1851,13 @@
 							<string key="name">openSheepshaverPath:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="openSplash:">
-							<string key="name">openSplash:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="openSubView:">
 							<string key="name">openSubView:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="openVM:">
-							<string key="name">openVM:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="openWizard:">
-							<string key="name">openWizard:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="sys7Disk:">
-							<string key="name">sys7Disk:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="advancedSubView">NSView</string>
-						<string key="developerSubView">NSView</string>
 						<string key="generalSubView">NSView</string>
 						<string key="preferencesToolbar">NSToolbar</string>
 						<string key="primaryView">NSView</string>
@@ -2130,10 +1866,6 @@
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="advancedSubView">
 							<string key="name">advancedSubView</string>
-							<string key="candidateClassName">NSView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="developerSubView">
-							<string key="name">developerSubView</string>
 							<string key="candidateClassName">NSView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="generalSubView">
@@ -2172,7 +1904,6 @@
 			<string key="NSSwitch">{15, 15}</string>
 			<string key="NSToolbarCustomizeToolbarItemImage">{32, 32}</string>
 			<string key="Shared">{512, 512}</string>
-			<string key="Stop">{128, 128}</string>
 		</dictionary>
 	</data>
 </archive>

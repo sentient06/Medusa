@@ -37,11 +37,11 @@
 
 @implementation VirtualMachinesModel
 
+@dynamic uniqueName;
 @dynamic displayHeight;
 @dynamic displayWidth;
 @dynamic fullScreen;
 @dynamic icon;
-@dynamic jitEnabled;
 @dynamic memory;
 @dynamic name;
 @dynamic sharedFolder;
@@ -50,5 +50,10 @@
 @dynamic useDefaultShare;
 @dynamic drives;
 @dynamic romFile;
+@dynamic processorType;
+@dynamic jitEnabled;
+@dynamic lazyCacheEnabled;
+@dynamic fpuEnabled;
+@dynamic jitCacheSize;
 
 @end

@@ -51,5 +51,6 @@
 
 - (NSMutableArray*)getVirtualMachineData:(VirtualMachinesModel*)virtualMachine;
 - (void)savePreferencesFile:(NSArray*)dataToSave ForFile:(NSString*)filePath;
+- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesModel *)virtualMachine;
 
 @end

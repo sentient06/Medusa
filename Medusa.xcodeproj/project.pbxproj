@@ -16,12 +16,12 @@
 		814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FAD881570ED0D008D3223 /* PreferencesWindowController.m */; };
 		8159C790154F1205001E43D4 /* DropRomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C78F154F1205001E43D4 /* DropRomView.m */; };
 		8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C797154F2E29001E43D4 /* DropDiskView.m */; };
+		815BD3B617E3224600CE4E2E /* Basilisk II in Resources */ = {isa = PBXBuildFile; fileRef = 815BD3B517E3224600CE4E2E /* Basilisk II */; };
+		815BD3B717E322B900CE4E2E /* Basilisk II in CopyFiles */ = {isa = PBXBuildFile; fileRef = 815BD3B517E3224600CE4E2E /* Basilisk II */; };
 		815C26391587EEA5003FA9EB /* VirtualMachinesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 815C26381587EEA5003FA9EB /* VirtualMachinesModel.m */; };
 		815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815F4F67156EC324001712CB /* PreferencesWindow.xib */; };
 		8160BB0915502F74005F6DBF /* DriveIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */; };
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
-		81638DF81572DCC800CBDCA6 /* SplashWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81638DF71572DCC800CBDCA6 /* SplashWindow.xib */; };
-		81638DFC1572DF7800CBDCA6 /* SplashWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */; };
 		816792A617D08F27002B991B /* newVm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 816792A517D08F27002B991B /* newVm.icns */; };
 		8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8168995917CE17CE00058B9F /* dsa_pub.pem */; };
 		8168996917CE2C7900058B9F /* Configuration.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995D17CE2C7800058B9F /* Configuration.icns */; };
@@ -38,7 +38,6 @@
 		8168997417CE2C7900058B9F /* Unsupported.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996817CE2C7900058B9F /* Unsupported.icns */; };
 		816BAF8A153863E400B68091 /* IconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 816BAF89153863E300B68091 /* IconValueTransformer.m */; };
 		816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */; };
-		816F655115A1AD0A00687FA2 /* WizardWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 816F655015A1AD0900687FA2 /* WizardWindow.xib */; };
 		81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81733FB2159F2ED000711709 /* AssetsWindow.xib */; };
 		81756F331534743500FCBA8E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81756F321534743500FCBA8E /* Cocoa.framework */; };
 		81756F3D1534743500FCBA8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81756F3B1534743500FCBA8E /* InfoPlist.strings */; };
@@ -66,7 +65,6 @@
 		81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */; };
 		81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D733EB15A4AC8800DEA523 /* LinkedView.m */; };
 		81D733EF15A4AD6300DEA523 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D733EE15A4AD6300DEA523 /* QuartzCore.framework */; };
-		81D733F215A4ADB200DEA523 /* WizardWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D733F115A4ADB200DEA523 /* WizardWindowController.m */; };
 		81DB8240159F91F8003D4C5D /* Clone.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DB823F159F91F8003D4C5D /* Clone.png */; };
 		81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DB8248159FAED8003D4C5D /* AssetsWindowController.m */; };
 		81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDrivesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDrivesModel.m */; };
@@ -78,6 +76,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		813F3C5117E21C6000544F5C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = Emulators;
+			dstSubfolderSpec = 6;
+			files = (
+				815BD3B717E322B900CE4E2E /* Basilisk II in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		81BC867E173AE89A006F8193 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -104,6 +112,7 @@
 		8159C78F154F1205001E43D4 /* DropRomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropRomView.m; path = SubClasses/DropRomView.m; sourceTree = "<group>"; };
 		8159C796154F2E28001E43D4 /* DropDiskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropDiskView.h; path = SubClasses/DropDiskView.h; sourceTree = "<group>"; };
 		8159C797154F2E29001E43D4 /* DropDiskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropDiskView.m; path = SubClasses/DropDiskView.m; sourceTree = "<group>"; };
+		815BD3B517E3224600CE4E2E /* Basilisk II */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "Basilisk II"; sourceTree = "<group>"; };
 		815C26371587EEA5003FA9EB /* VirtualMachinesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachinesModel.h; path = Models/VirtualMachinesModel.h; sourceTree = "<group>"; };
 		815C26381587EEA5003FA9EB /* VirtualMachinesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachinesModel.m; path = Models/VirtualMachinesModel.m; sourceTree = "<group>"; };
 		815F4F67156EC324001712CB /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindow.xib; path = Windows/PreferencesWindow.xib; sourceTree = "<group>"; };
@@ -111,9 +120,6 @@
 		8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveIconValueTransformer.m; path = TransformerControllers/DriveIconValueTransformer.m; sourceTree = "<group>"; };
 		8160BB0B15503052005F6DBF /* RomIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomIconValueTransformer.h; path = TransformerControllers/RomIconValueTransformer.h; sourceTree = "<group>"; };
 		8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomIconValueTransformer.m; path = TransformerControllers/RomIconValueTransformer.m; sourceTree = "<group>"; };
-		81638DF71572DCC800CBDCA6 /* SplashWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SplashWindow.xib; path = Windows/SplashWindow.xib; sourceTree = "<group>"; };
-		81638DFA1572DF7800CBDCA6 /* SplashWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashWindowController.h; path = WindowControllers/SplashWindowController.h; sourceTree = "<group>"; };
-		81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashWindowController.m; path = WindowControllers/SplashWindowController.m; sourceTree = "<group>"; };
 		816792A517D08F27002B991B /* newVm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = newVm.icns; path = Images/Icons/newVm.icns; sourceTree = "<group>"; };
 		8168994F17CE16AC00058B9F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Medusa/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		8168995917CE17CE00058B9F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/SparkleKey/dsa_pub.pem; sourceTree = "<group>"; };
@@ -133,7 +139,6 @@
 		816BAF89153863E300B68091 /* IconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconValueTransformer.m; path = TransformerControllers/IconValueTransformer.m; sourceTree = "<group>"; };
 		816F654B15A19C6400687FA2 /* ManagedObjectCloner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjectCloner.h; path = UtilitiesModels/ManagedObjectCloner.h; sourceTree = "<group>"; };
 		816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjectCloner.m; path = UtilitiesModels/ManagedObjectCloner.m; sourceTree = "<group>"; };
-		816F655015A1AD0900687FA2 /* WizardWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = WizardWindow.xib; path = Windows/WizardWindow.xib; sourceTree = "<group>"; };
 		81733FB2159F2ED000711709 /* AssetsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AssetsWindow.xib; path = Windows/AssetsWindow.xib; sourceTree = "<group>"; };
 		81756F2E1534743500FCBA8E /* Medusa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Medusa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81756F321534743500FCBA8E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -182,8 +187,6 @@
 		81D733EA15A4AC8800DEA523 /* LinkedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedView.h; path = SubClasses/LinkedView.h; sourceTree = "<group>"; };
 		81D733EB15A4AC8800DEA523 /* LinkedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinkedView.m; path = SubClasses/LinkedView.m; sourceTree = "<group>"; };
 		81D733EE15A4AD6300DEA523 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		81D733F015A4ADB200DEA523 /* WizardWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WizardWindowController.h; path = WindowControllers/WizardWindowController.h; sourceTree = "<group>"; };
-		81D733F115A4ADB200DEA523 /* WizardWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WizardWindowController.m; path = WindowControllers/WizardWindowController.m; sourceTree = "<group>"; };
 		81DB823F159F91F8003D4C5D /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Clone.png; path = Images/Clone.png; sourceTree = "<group>"; };
 		81DB8247159FAED8003D4C5D /* AssetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetsWindowController.h; path = WindowControllers/AssetsWindowController.h; sourceTree = "<group>"; };
 		81DB8248159FAED8003D4C5D /* AssetsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetsWindowController.m; path = WindowControllers/AssetsWindowController.m; sourceTree = "<group>"; };
@@ -218,6 +221,14 @@
 			path = DataModels;
 			sourceTree = "<group>";
 		};
+		813F3C4D17E21BBC00544F5C /* Emulators */ = {
+			isa = PBXGroup;
+			children = (
+				815BD3B417E3224600CE4E2E /* Basilisk 10 Oct */,
+			);
+			name = Emulators;
+			sourceTree = "<group>";
+		};
 		814804F217D5FFB40070DAD9 /* RomIcons */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +237,15 @@
 				814804FA17D6022F0070DAD9 /* UnsupportedRom.png */,
 			);
 			name = RomIcons;
+			sourceTree = "<group>";
+		};
+		815BD3B417E3224600CE4E2E /* Basilisk 10 Oct */ = {
+			isa = PBXGroup;
+			children = (
+				815BD3B517E3224600CE4E2E /* Basilisk II */,
+			);
+			name = "Basilisk 10 Oct";
+			path = "Resources/Emulators/Basilisk 10 Oct";
 			sourceTree = "<group>";
 		};
 		815FEEF61536279000B9E5C5 /* WindowControllers */ = {
@@ -239,12 +259,8 @@
 				81C03D01154EF46C00842906 /* DriveManagerWindowController.m */,
 				814FAD871570ED0D008D3223 /* PreferencesWindowController.h */,
 				814FAD881570ED0D008D3223 /* PreferencesWindowController.m */,
-				81638DFA1572DF7800CBDCA6 /* SplashWindowController.h */,
-				81638DFB1572DF7800CBDCA6 /* SplashWindowController.m */,
 				81DB8247159FAED8003D4C5D /* AssetsWindowController.h */,
 				81DB8248159FAED8003D4C5D /* AssetsWindowController.m */,
-				81D733F015A4ADB200DEA523 /* WizardWindowController.h */,
-				81D733F115A4ADB200DEA523 /* WizardWindowController.m */,
 			);
 			name = WindowControllers;
 			sourceTree = "<group>";
@@ -265,6 +281,7 @@
 		8168995717CE17AA00058B9F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				813F3C4D17E21BBC00544F5C /* Emulators */,
 				8168995817CE17B600058B9F /* SparkleKey */,
 			);
 			name = Resources;
@@ -396,8 +413,6 @@
 				81C8443A153E18CC00E94443 /* RomManagerWindow.xib */,
 				81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */,
 				815F4F67156EC324001712CB /* PreferencesWindow.xib */,
-				81638DF71572DCC800CBDCA6 /* SplashWindow.xib */,
-				816F655015A1AD0900687FA2 /* WizardWindow.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -522,6 +537,7 @@
 				81756F2B1534743500FCBA8E /* Frameworks */,
 				81756F2C1534743500FCBA8E /* Resources */,
 				81BC867E173AE89A006F8193 /* CopyFiles */,
+				813F3C5117E21C6000544F5C /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -599,10 +615,8 @@
 				81C8443B153E18CC00E94443 /* RomManagerWindow.xib in Resources */,
 				81C03CFE154EF2C100842906 /* DriveManagerWindow.xib in Resources */,
 				815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */,
-				81638DF81572DCC800CBDCA6 /* SplashWindow.xib in Resources */,
 				81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */,
 				81DB8240159F91F8003D4C5D /* Clone.png in Resources */,
-				816F655115A1AD0A00687FA2 /* WizardWindow.xib in Resources */,
 				8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */,
 				8168996917CE2C7900058B9F /* Configuration.icns in Resources */,
 				8168996A17CE2C7900058B9F /* Display.icns in Resources */,
@@ -623,6 +637,7 @@
 				814804FB17D6022F0070DAD9 /* UnsupportedRom.png in Resources */,
 				81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */,
 				8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */,
+				815BD3B617E3224600CE4E2E /* Basilisk II in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -652,12 +667,10 @@
 				81E84DF01565BE820002D4DA /* DrivesModel.m in Sources */,
 				81E84DF91565BE820002D4DA /* RomFilesModel.m in Sources */,
 				814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */,
-				81638DFC1572DF7800CBDCA6 /* SplashWindowController.m in Sources */,
 				815C26391587EEA5003FA9EB /* VirtualMachinesModel.m in Sources */,
 				81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */,
 				816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */,
 				81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */,
-				81D733F215A4ADB200DEA523 /* WizardWindowController.m in Sources */,
 				81795C1417396DE50001F16B /* EmulatorTask.m in Sources */,
 				81EAD4C817CFB01F00ACA222 /* Medusa.xcdatamodeld in Sources */,
 				8175CBE717D0D18C0003294E /* VMListTextCell.m in Sources */,

@@ -41,7 +41,6 @@
     IBOutlet NSView  * generalSubView;
     IBOutlet NSView  * shareSubView;
     IBOutlet NSView  * advancedSubView;
-    IBOutlet NSView  * developerSubView;
     
     NSButton * flushDatabase;
 }
@@ -67,26 +66,5 @@
 
 - (IBAction)openSubView:(id)sender;
 - (IBAction)openSharePath:(id)sender;
-
-/// Developer actions ==========================================================
-
-- (IBAction)flushPreferences:(id)sender;
-- (IBAction)flushDatabase:(id)sender;
-
-- (IBAction)deleteB2Prefs:(id)sender;
-- (IBAction)deleteSSPrefs:(id)sender;
-- (IBAction)importB2Prefs:(id)sender;
-- (IBAction)importSSPrefs:(id)sender;
-- (IBAction)create2MBDisk:(id)sender;
-- (IBAction)sys7Disk:(id)sender;
-
-
-- (IBAction)openMain:(id)sender;
-- (IBAction)openAssets:(id)sender;
-- (IBAction)openVM:(id)sender;
-- (IBAction)openRom:(id)sender;
-- (IBAction)openDrive:(id)sender;
-- (IBAction)openSplash:(id)sender;
-- (IBAction)openWizard:(id)sender;
 
 @end

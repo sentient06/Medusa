@@ -89,19 +89,19 @@
     
 }
 
-- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesModel*)virtualMachine {
+- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesModel *)virtualMachine {
     
     //The idea here is to return an array with dictionaries inside.
     //The returning object is the array that follows.
     
-    NSMutableArray *allData = [[NSMutableArray alloc] initWithCapacity:1]; //Return object.
+    NSMutableArray * allData = [[NSMutableArray alloc] initWithCapacity:1]; //Return object.
 
     //First we need the managed object context.
     [self setManagedObjectContext:[virtualMachine managedObjectContext]];
     
     //Now the requests.
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    NSError *error = nil;
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    NSError * error = nil;
     
     //--------------------------------------------------------------------------
     //1. The Macintosh Model
@@ -117,6 +117,87 @@
     [allData addObject:macModelSettings];
     [macModelSettings release];
 
+    //--------------------------------------------------------------------------
+    //2. The processor
+    
+//    processorType
+//    cpu 1/2/3/0
+
+    int processorId = [[virtualMachine processorType] intValue];
+    
+    NSDictionary * macProcessorType = [[NSDictionary alloc]
+        initWithObjectsAndKeys:
+            [NSString stringWithFormat:@"%ld", processorId], @"cpu",
+            nil
+    ];
+    
+    [allData addObject:macProcessorType];
+    [macProcessorType release];
+
+    
+//    jitEnabled
+//    jit <true/false>
+
+    if ( [[virtualMachine jitEnabled] boolValue] ) {
+    
+        NSDictionary * macJitEnabled = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                @"true", @"jit",
+                nil
+        ];
+        
+        [allData addObject:macJitEnabled];
+        [macJitEnabled release];
+   
+    
+//    lazyCacheEnabled
+//    jitlazyflush <"true" or "false">
+
+        if ( [[virtualMachine lazyCacheEnabled] boolValue] ) {
+            NSDictionary * macLazyCache = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                    @"true", @"jitlazyflush",
+                    nil
+            ];
+            
+            [allData addObject:macLazyCache];
+            [macLazyCache release];
+        }
+
+    
+//    fpuEnabled
+//    fpu
+        if ( [[virtualMachine fpuEnabled] boolValue] ) {
+            NSDictionary * macFpu = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                    @"true", @"fpu",
+                    nil
+            ];
+            
+            [allData addObject:macFpu];
+            [macFpu release];
+        }
+
+
+//    jitCacheSize
+//    jitcachesize <size>
+    
+        int chacheKbSize = [[virtualMachine processorType] intValue];
+        
+        if (chacheKbSize != 8192 && chacheKbSize > 2048) {
+        
+            NSDictionary * macJitCache = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                    [NSString stringWithFormat:@"%ld", chacheKbSize], @"jitcachesize",
+                    nil
+            ];
+            
+            [allData addObject:macJitCache];
+            [macJitCache release];
+
+        }
+
+    }
     
     //--------------------------------------------------------------------------
     //2. The bootable drives
@@ -302,74 +383,13 @@
     
     
     //NSLog(@"%@", [[virtualMachine objectID] URIRepresentation]);
+
     
-    /*
-     drives [Drives]
-     
-     {"disk", TYPE_STRING, true,         "device/file name of Mac volume"},
-     {"floppy", TYPE_STRING, true,       "device/file name of Mac floppy drive"},
-     {"cdrom", TYPE_STRING, true,        "device/file names of Mac CD-ROM drive"},
-     
-     shares [Shares]
-     {"extfs", TYPE_STRING, false,       "root path of ExtFS"},
-     
-     ! static
-     {"scsi0", TYPE_STRING, false,       "SCSI target for Mac SCSI ID 0"},
-     {"scsi1", TYPE_STRING, false,       "SCSI target for Mac SCSI ID 1"},
-     {"scsi2", TYPE_STRING, false,       "SCSI target for Mac SCSI ID 2"},
-     {"scsi3", TYPE_STRING, false,       "SCSI target for Mac SCSI ID 3"},
-     {"scsi4", TYPE_STRING, false,       "SCSI target for Mac SCSI ID 4"},
-     {"scsi5", TYPE_STRING, false,       "SCSI target for Mac SCSI ID 5"},
-     {"scsi6", TYPE_STRING, false,       "SCSI target for Mac SCSI ID 6"},
-     
-     displayHeight
-     displayWidth
-     fullScreen
-     {"screen", TYPE_STRING, false,      "video mode"},
-     {"windowmodes", TYPE_INT32, false,  "bitmap of allowed window video modes"},
-     {"screenmodes", TYPE_INT32, false,  "bitmap of allowed fullscreen video modes"},
-     
-     ! static
-     {"seriala", TYPE_STRING, false,     "device name of Mac serial port A"},
-     {"serialb", TYPE_STRING, false,     "device name of Mac serial port B"},
-     
-     romFile [RomFiles]
-     {"rom", TYPE_STRING, false,         "path of ROM file"},
-     
-     bootDrive ?
-     {"bootdrive", TYPE_INT32, false,    "boot drive number"},
-     
-     ! static
-     {"bootdriver", TYPE_INT32, false,   "boot driver number"},
-     
-     memory
-     {"ramsize", TYPE_INT32, false,      "size of Mac RAM in bytes"},
-     
-     ! static
-     {"frameskip", TYPE_INT32, false,    "number of frames to skip in refreshed video modes"},
-     {"gfxaccel", TYPE_BOOLEAN, false,   "turn on QuickDraw acceleration"},
-     {"nocdrom", TYPE_BOOLEAN, false,    "don't install CD-ROM driver"},
-     {"nonet", TYPE_BOOLEAN, false,      "don't use Ethernet"},
-     {"nosound", TYPE_BOOLEAN, false,    "don't enable sound output"},
-     {"nogui", TYPE_BOOLEAN, false,      "disable GUI"},
-     {"noclipconversion", TYPE_BOOLEAN, false, "don't convert clipboard contents"},
-     {"ignoresegv", TYPE_BOOLEAN, false, "ignore illegal memory accesses"},
-     {"ignoreillegal", TYPE_BOOLEAN, false, "ignore illegal instructions"},
-     
-     jitEnabled
-     {"jit", TYPE_BOOLEAN, false,        "enable JIT compiler"},
-     
-     ! static
-     {"jit68k", TYPE_BOOLEAN, false,     "enable 68k DR emulator"},
-     {"keyboardtype", TYPE_INT32, false, "hardware keyboard type"},
-     */
-    
-    
-    
-    
-    
-    
-    
+}
+
+- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesModel *)virtualMachine {    
+    NSArray  * currentVmData = [self getVirtualMachineData: virtualMachine];
+    [self savePreferencesFile:currentVmData ForFile: preferencesFilePath];
 }
 
 @end

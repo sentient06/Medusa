@@ -36,7 +36,6 @@
 #import "DriveManagerWindowController.h"    //Drive Manager Window
 #import "AssetsWindowController.h"          //Assets Window
 #import "PreferencesWindowController.h"     //Preferences Window
-#import "SplashWindowController.h"
 #import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
 //Helpers:
 #import "ManagedObjectCloner.h"             //Clone core-data objects
@@ -92,11 +91,11 @@
         
         selectedVirtualMachine = [selectedVirtualMachines  objectAtIndex:i];
         
-        VirtualMachineWindowController *newWindowController = [
+        VirtualMachineWindowController * newWindowController = [
             [VirtualMachineWindowController alloc]
                 initWithVirtualMachine: selectedVirtualMachine
                 inManagedObjectContext: [self managedObjectContext]
-        ];
+        ]; //autorelease here? check!!
         
         //[newWindowController setShouldCloseDocument:NO];
         //[self addWindowController:newWindowController];
@@ -152,6 +151,9 @@
  *              not needed. Remember to refactor in the near future.
  */
 - (IBAction)saveNewVirtualMachine:(id)sender {
+    
+    
+    int currentTime = CFAbsoluteTimeGetCurrent();
 
     BOOL openDetailsAfterCreation = [
         [NSUserDefaults standardUserDefaults]
@@ -173,6 +175,7 @@
     
     //Here we have all the fields to be inserted.
     [newVirtualMachineObject setName:[newMachineNameField stringValue]];
+    [newVirtualMachineObject setUniqueName:[NSString stringWithFormat:@"vm%d", currentTime]];
 
 //    NSLog(@"%@", [romFilesController selectedObjects]);
     //NSLog(@"%@", [newMachineModelField ])
@@ -316,36 +319,63 @@
  * @abstract    Saves preferences and lauches emulator.
  * @discussion  There is a replica in the virtual machine controller that must be
  *              taken care of.
+ * This will crash if the application support dir doesn't exist. Fix it!
  */
 - (IBAction)run:(id)sender {
     
-    NSArray *selectedVirtualMachines = [
-        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
-    ];
+    // Use GCD to execute emulator in an async thread:
+    dispatch_async(queue, ^{
+        
+        NSArray * selectedVirtualMachines = [[
+            [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
+        ] autorelease ];
 
-    //The user can select only one in the current interface, but anyway...
-    VirtualMachinesModel * virtualMachine = [selectedVirtualMachines  objectAtIndex:0];
-    
-    
-    PreferencesModel *preferences = [[PreferencesModel alloc] init];
-    NSArray *data = [preferences getVirtualMachineData:virtualMachine];
-    NSURL * emulatorPath; // = [[NSURL alloc] init];
-    NSMutableString * preferencesFilePath; // = [[NSMutableString alloc] init];
-    
-    if ([[[virtualMachine romFile] emulator] isEqualTo:@"Basilisk"]) {
-        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
-        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey: @"BasiliskPath"];
-    }else{
-        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".sheepshaver_prefs"];
-        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey:@"SheepshaverPath"];
-    }
-    
-    NSLog(@"%@", preferencesFilePath);
-    NSLog(@"%@", emulatorPath);
-    
-    [preferences savePreferencesFile:data ForFile:preferencesFilePath];
-    [[NSWorkspace sharedWorkspace] openURL:emulatorPath];
-    [preferences release];
+        //The user can select only one in the current interface, but anyway...
+        VirtualMachinesModel * virtualMachine = [selectedVirtualMachines  objectAtIndex:0];
+        
+        NSString * preferencesFilePath = [
+            [NSMutableString alloc] initWithFormat:
+                @"%@/%@Preferences",
+                [self applicationSupportDirectory],
+                [virtualMachine uniqueName]
+        ]; //next: change name per vm        
+       
+        PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
+//        NSArray * data = [preferences getVirtualMachineData:virtualMachine];
+        
+        [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];
+
+        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
+//        NSString * alternativeEmulatorPath = [[NSUserDefaults standardUserDefaults] stringForKey: @"BasiliskPath"];
+
+       
+        NSLog(@"Prefs file ....: %@", preferencesFilePath);
+        NSLog(@"Emulator path .: %@", emulatorPath);
+        
+        // Saves preferences file:
+        
+//        [preferences savePreferencesFile:data ForFile:preferencesFilePath];
+        
+        // Starts emulator:
+        
+        NSTask * emulatorTask = [[[NSTask alloc] init] autorelease];
+        [emulatorTask setLaunchPath:emulatorPath];
+        [emulatorTask setArguments:
+            [NSArray arrayWithObjects:
+                 @"--config"
+               , preferencesFilePath
+               ,nil
+            ]
+        ];
+        
+        [emulatorPath release];
+        [preferencesFilePath release];
+        [emulatorTask launch];
+        [emulatorTask waitUntilExit];
+
+        NSLog(@"Emulator finished.");
+        
+    });
     
 }
 
@@ -438,6 +468,17 @@
 }
 
 //------------------------------------------------------------------------------
+// Utility methods
+
+#pragma mark – Utility
+
+- (NSString *)applicationSupportDirectory {
+    NSArray  * paths    = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
+    return [basePath stringByAppendingPathComponent:@"Medusa"];
+} 
+
+//------------------------------------------------------------------------------
 // Overwrotten methods.
 
 #pragma mark – Rewrotten
@@ -454,6 +495,22 @@
     } else {
         return YES;
     }
+}
+
+// Init methods
+
+#pragma mark – Init
+
+/*!
+ * @method      init
+ * @abstract    Init method.
+ */
+- (id)init {
+    self = [super init];
+    if (self) {
+        queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    }
+    return self;
 }
 
 //------------------------------------------------------------------------------
@@ -475,17 +532,8 @@
     //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
     //Preferences management:
-    
-    BOOL hideSplash = YES; //[[NSUserDefaults standardUserDefaults] boolForKey:@"hideSplash"];
+
     BOOL haveSharePath = [[NSUserDefaults standardUserDefaults] boolForKey:@"haveSharePath"];
-    
-    //Splash window:
-    if (!hideSplash) {
-        if (!splashWindowController) {
-            splashWindowController = [[SplashWindowController alloc] initWithWindowNibName:@"SplashWindow"];
-        }
-        [splashWindowController showWindow:self];  
-    }
     
     //Share path:
     if (!haveSharePath) {

@@ -48,6 +48,8 @@
     
         pathExtension = [[urls objectAtIndex:i] pathExtension];
         
+        NSLog(@"Extension is %@", [pathExtension lowercaseString]);
+        
         if (
             [[pathExtension lowercaseString]    isEqualTo:@"hfv"]   ||
             [[pathExtension lowercaseString]    isEqualTo:@"dsk"]   ||
