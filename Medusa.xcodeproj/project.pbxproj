@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */; };
 		81134C4415540B2900785866 /* PreferencesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesModel.m */; };
 		8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8126596817D724DE00395990 /* MedusaIcon5.icns */; };
 		814804E817D5D56D0070DAD9 /* RomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomModel.m */; };
@@ -53,6 +54,10 @@
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
 		817E319D17D1078200131E2D /* VMList.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMList.m */; };
 		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
+		81AD5BBF17E4F9110072F4F1 /* noDiskBW.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */; };
+		81AD5BC017E4F9110072F4F1 /* noDiskColour.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */; };
+		81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */; };
+		81AD5BC517E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BC417E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns */; };
 		81C03CFE154EF2C100842906 /* DriveManagerWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */; };
 		81C03D02154EF46C00842906 /* DriveManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C03D01154EF46C00842906 /* DriveManagerWindowController.m */; };
 		81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C2B75117D646AB000E4A01 /* linenPattern.png */; };
@@ -99,6 +104,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineIconValueTransformer.h; path = TransformerControllers/VirtualMachineIconValueTransformer.h; sourceTree = "<group>"; };
+		810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineIconValueTransformer.m; path = TransformerControllers/VirtualMachineIconValueTransformer.m; sourceTree = "<group>"; };
 		81134C4315540B2900785866 /* PreferencesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesModel.m; path = Models/PreferencesModel.m; sourceTree = "<group>"; };
 		8126596817D724DE00395990 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon5.icns; path = Medusa/Images/Icons/MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
 		814804E617D5D56D0070DAD9 /* RomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomModel.h; path = Models/RomModel.h; sourceTree = "<group>"; };
@@ -167,6 +174,10 @@
 		817E319C17D1078200131E2D /* VMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMList.m; path = UtilitiesControllers/VMList.m; sourceTree = "<group>"; };
 		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Models/PreferencesModel.h; sourceTree = "<group>"; };
+		81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noDiskBW.png; path = Images/Icons/noDiskBW.png; sourceTree = "<group>"; };
+		81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noDiskColour.png; path = Images/Icons/noDiskColour.png; sourceTree = "<group>"; };
+		81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HFSFileIcon.icns; path = Images/Icons/HFSFileIcon.icns; sourceTree = "<group>"; };
+		81AD5BC417E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RecentDocumentsFolderIcon.icns; path = Images/Icons/RecentDocumentsFolderIcon.icns; sourceTree = "<group>"; };
 		81C03CFD154EF2C100842906 /* DriveManagerWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DriveManagerWindow.xib; path = Windows/DriveManagerWindow.xib; sourceTree = "<group>"; };
 		81C03D00154EF46C00842906 /* DriveManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveManagerWindowController.h; path = WindowControllers/DriveManagerWindowController.h; sourceTree = "<group>"; };
 		81C03D01154EF46C00842906 /* DriveManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveManagerWindowController.m; path = WindowControllers/DriveManagerWindowController.m; sourceTree = "<group>"; };
@@ -306,6 +317,8 @@
 				8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */,
 				81CE19CE17D63EA300596C79 /* RomFileConditionTransformer.h */,
 				81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */,
+				810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */,
+				810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -437,6 +450,9 @@
 		817CAF4015357EF90038E9A0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */,
+				81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */,
+				81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */,
 				8126596817D724DE00395990 /* MedusaIcon5.icns */,
 				817CAF56153580100038E9A0 /* MedusaIcon.icns */,
 				8168995D17CE2C7800058B9F /* Configuration.icns */,
@@ -447,6 +463,7 @@
 				8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */,
 				8168996317CE2C7900058B9F /* Info.icns */,
 				816792A517D08F27002B991B /* newVm.icns */,
+				81AD5BC417E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns */,
 				8168996417CE2C7900058B9F /* RomFile.icns */,
 				8168996517CE2C7900058B9F /* RomImageDocument.icns */,
 				8168996617CE2C7900058B9F /* Shared.icns */,
@@ -638,6 +655,10 @@
 				81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */,
 				8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */,
 				815BD3B617E3224600CE4E2E /* Basilisk II in Resources */,
+				81AD5BBF17E4F9110072F4F1 /* noDiskBW.png in Resources */,
+				81AD5BC017E4F9110072F4F1 /* noDiskColour.png in Resources */,
+				81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */,
+				81AD5BC517E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -678,6 +699,7 @@
 				814804E817D5D56D0070DAD9 /* RomModel.m in Sources */,
 				81CE19C817D61A0400596C79 /* DropRomToVmView.m in Sources */,
 				81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */,
+				810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

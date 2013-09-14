@@ -636,13 +636,12 @@
 											<string key="NSFrameSize">{300, 336}</string>
 											<reference key="NSSuperview" ref="1020380079"/>
 											<reference key="NSWindow"/>
-											<reference key="NSNextKeyView" ref="378602211"/>
+											<reference key="NSNextKeyView" ref="668349840"/>
 											<bool key="NSEnabled">YES</bool>
-											<object class="_NSCornerView" key="NSCornerView" id="378602211">
+											<object class="_NSCornerView" key="NSCornerView">
 												<nil key="NSNextResponder"/>
 												<int key="NSvFlags">-2147483392</int>
 												<string key="NSFrame">{{224, 1}, {16, 17}}</string>
-												<reference key="NSNextKeyView" ref="668349840"/>
 											</object>
 											<array class="NSMutableArray" key="NSTableColumns">
 												<object class="NSTableColumn" id="716154460">
@@ -785,7 +784,7 @@
 									<string key="NSFrame">{{-100, -100}, {238, 15}}</string>
 									<reference key="NSSuperview" ref="191054627"/>
 									<reference key="NSWindow"/>
-									<reference key="NSNextKeyView"/>
+									<reference key="NSNextKeyView" ref="1020380079"/>
 									<int key="NSsFlags">1</int>
 									<reference key="NSTarget" ref="191054627"/>
 									<string key="NSAction">_doScroller:</string>
@@ -886,7 +885,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="191054627"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{300, 382}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 			</object>
@@ -1037,7 +1036,7 @@
 					<string key="NSFrameSize">{413, 139}</string>
 					<reference key="NSNextKeyView" ref="698166946"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 			</object>
 			<object class="NSWindowTemplate" id="724776318">
@@ -1172,7 +1171,7 @@
 					<string key="NSFrameSize">{413, 153}</string>
 					<reference key="NSNextKeyView" ref="420387235"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 			</object>
 			<object class="NSCustomObject" id="976324537">
@@ -1650,23 +1649,23 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: arrangedObjects.romFile.romCondition</string>
+						<string key="label">value: arrangedObjects.icon</string>
 						<reference key="source" ref="716154460"/>
 						<reference key="destination" ref="196388366"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="716154460"/>
 							<reference key="NSDestination" ref="196388366"/>
-							<string key="NSLabel">value: arrangedObjects.romFile.romCondition</string>
+							<string key="NSLabel">value: arrangedObjects.icon</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">arrangedObjects.romFile.romCondition</string>
+							<string key="NSKeyPath">arrangedObjects.icon</string>
 							<dictionary key="NSOptions">
 								<boolean value="NO" key="NSConditionallySetsEnabled"/>
-								<string key="NSValueTransformerName">RomIconValueTransformer</string>
+								<string key="NSValueTransformerName">VirtualMachineIconValueTransformer</string>
 							</dictionary>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">935</int>
+					<int key="connectionID">949</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -1705,7 +1704,7 @@
 						<string key="label">enabled: canRemove</string>
 						<reference key="source" ref="35172548"/>
 						<reference key="destination" ref="196388366"/>
-						<object class="NSNibBindingConnector" key="connector">
+						<object class="NSNibBindingConnector" key="connector" id="799684206">
 							<reference key="NSSource" ref="35172548"/>
 							<reference key="NSDestination" ref="196388366"/>
 							<string key="NSLabel">enabled: canRemove</string>
@@ -1714,7 +1713,30 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">890</int>
+					<int key="connectionID">955</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled2: selection.canRun</string>
+						<reference key="source" ref="35172548"/>
+						<reference key="destination" ref="196388366"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="35172548"/>
+							<reference key="NSDestination" ref="196388366"/>
+							<string key="NSLabel">enabled2: selection.canRun</string>
+							<string key="NSBinding">enabled2</string>
+							<string key="NSKeyPath">selection.canRun</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="799684206"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">956</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2695,7 +2717,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">947</int>
+			<int key="maxID">956</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2898,7 +2920,7 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="Clone">{512, 512}</string>
+			<string key="Clone">{16, 16}</string>
 			<string key="NSAddTemplate">{8, 8}</string>
 			<string key="NSMenuCheckmark">{9, 8}</string>
 			<string key="NSMenuMixedState">{7, 2}</string>

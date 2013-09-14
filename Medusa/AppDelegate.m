@@ -152,7 +152,6 @@
  */
 - (IBAction)saveNewVirtualMachine:(id)sender {
     
-    
     int currentTime = CFAbsoluteTimeGetCurrent();
 
     BOOL openDetailsAfterCreation = [
@@ -257,6 +256,8 @@
  */
 - (IBAction)saveCloneVirtualMachine:(id)sender {
 
+    int currentTime = CFAbsoluteTimeGetCurrent();
+    
     BOOL openDetailsAfterCreation = [
         [NSUserDefaults standardUserDefaults]
             boolForKey:@"openDetailsAfterCreation"
@@ -280,12 +281,13 @@
     
     //Change name:
     [clonedMachine setName:[cloneMachineNameField stringValue]];
+    [clonedMachine setUniqueName:[NSString stringWithFormat:@"vm%d", currentTime]];
     
     //--------------------------------------------------------------------------
     //Saving new clone:
     
     NSLog(@"Saving...");
-    NSError *error;
+    NSError * error;
     if (![managedObjectContext save:&error]) {
         NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
         NSLog(@"Check 'App Delegate' class, saveCloneVirtualMachine");
@@ -472,11 +474,15 @@
 
 #pragma mark – Utility
 
+/*!
+ * @method      applicationSupportDirectory:
+ * @abstract    Returns the application support directory path.
+ */
 - (NSString *)applicationSupportDirectory {
     NSArray  * paths    = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
     return [basePath stringByAppendingPathComponent:@"Medusa"];
-} 
+}
 
 //------------------------------------------------------------------------------
 // Overwrotten methods.
@@ -524,15 +530,10 @@
  * @link Check XCode quick help.
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-//    [virtualMachinesList setWantsLayer:YES];
-//    [virtualMachinesList layer].contents = [NSImage imageNamed:@"Unknown.png"];
-//    [virtualMachinesList setBackgroundColor:[NSColor colorWithPatternImage:[NSImage imageNamed:@"Unknown.png"]]];
-    
     //Log all preferences:
     //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
     //Preferences management:
-
     BOOL haveSharePath = [[NSUserDefaults standardUserDefaults] boolForKey:@"haveSharePath"];
     
     //Share path:
@@ -541,6 +542,15 @@
         forKey:@"StandardSharePath"];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"haveSharePath"];
     }
+    
+    // Checks for application support directory:
+    BOOL isDir;
+    NSString      * applicationSupportDirectoryPath = [self applicationSupportDirectory];
+    NSFileManager * fileManager                     = [NSFileManager defaultManager];
+    
+    if(![fileManager fileExistsAtPath:applicationSupportDirectoryPath isDirectory:&isDir])
+        if(![fileManager createDirectoryAtPath:applicationSupportDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL])
+            NSLog(@"Error: Create application support dir failed.");
     
     
 }

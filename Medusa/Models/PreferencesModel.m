@@ -209,16 +209,16 @@
     ];
     
     //Need to set the vm object in relationship table:
-    NSPredicate *predicate = [
+    NSPredicate * predicate = [
         NSPredicate
         predicateWithFormat: @"virtualMachine = %@ AND bootable = 1",
         virtualMachine
     ];
     
     
-    [request setEntity:    vmDrivesRelationship];
+    [request setEntity   : vmDrivesRelationship];
     [request setPredicate: predicate];
-    NSArray *bootableDriveResult = [managedObjectContext executeFetchRequest:request error:&error];
+    NSArray * bootableDriveResult = [managedObjectContext executeFetchRequest:request error:&error];
     
     //NSLog(@"%@", bootableDriveResult);
     
@@ -387,7 +387,8 @@
     
 }
 
-- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesModel *)virtualMachine {    
+- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesModel *)virtualMachine {
+    //[NSApp delegate]
     NSArray  * currentVmData = [self getVirtualMachineData: virtualMachine];
     [self savePreferencesFile:currentVmData ForFile: preferencesFilePath];
 }

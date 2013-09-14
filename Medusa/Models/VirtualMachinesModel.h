@@ -39,7 +39,7 @@
 
 @property (nonatomic, retain) NSString * uniqueName;
 @property (nonatomic, retain) RomFilesModel * romFile;
-@property (nonatomic, retain) NSNumber * icon;
+//@property (nonatomic, retain) NSNumber * icon;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * displayHeight;
 @property (nonatomic, retain) NSNumber * displayWidth;
@@ -64,5 +64,8 @@
 - (void)removeDrivesObject:(RelationshipVirtualMachinesDrivesModel *)value;
 - (void)addDrives:(NSSet *)values;
 - (void)removeDrives:(NSSet *)values;
+
+- (NSNumber *)icon;
+- (BOOL)canRun;
 
 @end

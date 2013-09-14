@@ -26,14 +26,13 @@
         <attribute name="displayWidth" attributeType="Integer 16" defaultValueString="800" syncable="YES"/>
         <attribute name="fpuEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="fullScreen" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="icon" attributeType="Integer 16" maxValueString="3" defaultValueString="0" syncable="YES"/>
-        <attribute name="jitCacheSize" attributeType="Integer 16" minValueString="2048" defaultValueString="8192" syncable="YES"/>
+        <attribute name="jitCacheSize" attributeType="Integer 16" defaultValueString="8192" syncable="YES"/>
         <attribute name="jitEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="lazyCacheEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="macModel" attributeType="Integer 16" defaultValueString="5" syncable="YES"/>
         <attribute name="memory" attributeType="Integer 16" defaultValueString="8" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="processorType" attributeType="Integer 16" minValueString="1" maxValueString="3" defaultValueString="3" syncable="YES"/>
+        <attribute name="processorType" attributeType="Integer 16" maxValueString="3" defaultValueString="3" syncable="YES"/>
         <attribute name="ready" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="sharedFolder" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shareEnabled" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -46,6 +45,6 @@
         <element name="Drives" positionX="160" positionY="192" width="128" height="105"/>
         <element name="RelationshipVirtualMachinesDrives" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="330"/>
+        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="315"/>
     </elements>
 </model>

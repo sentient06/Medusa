@@ -74,7 +74,7 @@
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
 
-    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];
+//    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];
     
     
     //----------------------------------------------------------
@@ -84,29 +84,29 @@
     
     if (self) {
         
-        TableLineInformationController * romFiles = [
-            [TableLineInformationController alloc]                
-            initWithTitle:@"Rom files"
-                  andIcon:@"RomFile.icns"
-        ];
-
-        TableLineInformationController * disks = [
-            [TableLineInformationController alloc]                
-            initWithTitle:@"Disks"
-                  andIcon:@"Drive.icns"
-        ];
-        
-        menuObjectsArray = [
-            [NSMutableArray alloc]
-            initWithObjects: romFiles, nil
-        ];
-        
-        if (displayAllTabs == YES) {
-            [menuObjectsArray addObject: disks];
-        }
-        
-        [disks release];
-        [romFiles release];
+//        TableLineInformationController * romFiles = [
+//            [TableLineInformationController alloc]                
+//            initWithTitle:@"Rom files"
+//                  andIcon:@"RomFile.icns"
+//        ];
+//
+//        TableLineInformationController * disks = [
+//            [TableLineInformationController alloc]                
+//            initWithTitle:@"Disks"
+//                  andIcon:@"Drive.icns"
+//        ];
+//        
+//        menuObjectsArray = [
+//            [NSMutableArray alloc]
+//            initWithObjects: romFiles, nil
+//        ];
+//        
+//        if (displayAllTabs == YES) {
+//            [menuObjectsArray addObject: disks];
+//        }
+//        
+//        [disks release];
+//        [romFiles release];
         
     }
     
@@ -144,21 +144,35 @@
  */
 - (IBAction)traceTableViewClick:(id)sender {
     
-    [[[rightView subviews] objectAtIndex:0] removeFromSuperview];
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
     
     switch ([detailsTree selectedRow]) {
         default:
         case 0:
-            [rightView addSubview: subViewRomFiles];
+            [placeholderView addSubview: subViewRomFiles];
             break;
             
         case 1:
-            [rightView addSubview: subViewDisks];
+            [placeholderView addSubview: subViewDisks];
             break;
     }
     
 }
 
+- (IBAction)displayDropFilesView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewDropFiles];
+}
+
+- (IBAction)displayRomFilesView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewRomFiles];
+}
+
+- (IBAction)displayDisksView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewDisks];
+}
 
 - (id)initWithWindow:(NSWindow *)window {
     
@@ -176,7 +190,8 @@
     //----------------------------------------------------------
     //Interface view
     
-    [rightView addSubview: subViewRomFiles];
+    [placeholderView addSubview: subViewDropFiles];
+    [assetsToolbar setSelectedItemIdentifier:@"dropFilesButton"];
 }
 
 @end

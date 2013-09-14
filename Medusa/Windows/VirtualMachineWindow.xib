@@ -402,7 +402,7 @@
 				<bool key="NSClearsFilterPredicateOnInsertion">YES</bool>
 			</object>
 			<object class="NSCustomView" id="829704899">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSButton" id="772119498">
@@ -701,7 +701,6 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{550, 360}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="320626947"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -2063,7 +2062,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="NSClassName">NSView</string>
 			</object>
 			<object class="NSCustomView" id="469330821">
-				<reference key="NSNextResponder"/>
+				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSButton" id="91948625">
@@ -2071,7 +2070,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{311, 18}, {97, 25}}</string>
 						<reference key="NSSuperview" ref="469330821"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="707808254">
 							<int key="NSCellFlags">-2080244224</int>
@@ -2425,7 +2423,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 				</array>
 				<string key="NSFrameSize">{550, 360}</string>
-				<reference key="NSSuperview"/>
 				<reference key="NSNextKeyView" ref="581554082"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -2685,19 +2682,23 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">title: windowTitle</string>
+						<string key="label">title: selection.name</string>
 						<reference key="source" ref="310042291"/>
-						<reference key="destination" ref="1001"/>
+						<reference key="destination" ref="3622824"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="310042291"/>
-							<reference key="NSDestination" ref="1001"/>
-							<string key="NSLabel">title: windowTitle</string>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">title: selection.name</string>
 							<string key="NSBinding">title</string>
-							<string key="NSKeyPath">windowTitle</string>
+							<string key="NSKeyPath">selection.name</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSNullPlaceholder</string>
+								<string key="NS.object.0">Settings</string>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">574</int>
+					<int key="connectionID">892</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -4824,7 +4825,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">888</int>
+			<int key="maxID">892</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

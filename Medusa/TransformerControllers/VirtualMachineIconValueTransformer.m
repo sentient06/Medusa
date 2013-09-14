@@ -1,9 +1,9 @@
 //
-//  VirtualMachinesModel.m
+//  VirtualMachineIconValueTransformer.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 12/06/2012.
-//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 14/09/2013.
+//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,41 +30,20 @@
 //
 //------------------------------------------------------------------------------
 
-#import "VirtualMachinesModel.h"
-#import "RelationshipVirtualMachinesDrivesModel.h"
-#import "RomFilesModel.h"
+#import "VirtualMachineIconValueTransformer.h"
 
+@implementation VirtualMachineIconValueTransformer
 
-@implementation VirtualMachinesModel
++ (Class)transformedValueClass {
+    return [NSImage class]; 
+}
++ (BOOL)allowsReverseTransformation { 
+    return NO; 
+}
 
-@dynamic uniqueName;
-@dynamic displayHeight;
-@dynamic displayWidth;
-@dynamic fullScreen;
-//@dynamic icon;
-@dynamic memory;
-@dynamic name;
-@dynamic sharedFolder;
-@dynamic macModel;
-@dynamic shareEnabled;
-@dynamic useDefaultShare;
-@dynamic drives;
-@dynamic romFile;
-@dynamic processorType;
-@dynamic jitEnabled;
-@dynamic lazyCacheEnabled;
-@dynamic fpuEnabled;
-@dynamic jitCacheSize;
-
-- (NSNumber *)icon {
+- (id)transformedValue:(id)value {
     
-    // PerfectSheepNew        = 1,
-    // PerfectSheepOld        = 2,
-    // PerfectBasilisk        = 3,
-    // NoAppleTalk            = 4,
-    // FPURequired            = 5,
-    // NoAppleTalkFPURequired = 6,
-    // Unsupported            = 7
+    long iconValue = [value integerValue];
     
     // 0 = New VM
     // 1 = Happy mac B&W
@@ -73,28 +52,23 @@
     // 4 = No disk colour
     // 5 = Sad mac
     
-    int value = 0;
+    NSLog(@"VM Icon Value Transformer - value: %@ -- %ld", value, iconValue);
     
-    long iconValue = [[[self romFile] romCondition] integerValue];
-    NSInteger totalDisks = [[self drives] count];
+    switch (iconValue) {
+        case 1:
+            return [NSImage imageNamed:@"PerfectOld.png"];
+        case 2:
+            return [NSImage imageNamed:@"PerfectNew.png"];
+        case 3:
+            return [NSImage imageNamed:@"noDiskBW.png"];
+        case 4:
+            return [NSImage imageNamed:@"noDiskColour.png"];
+        case 5:
+            return [NSImage imageNamed:@"UnsupportedRom.png"];
+            
+    }
     
-    if (iconValue < 7 && iconValue > 0)
-        if (iconValue > 2)
-            if (totalDisks > 0) value = 1;
-            else value = 3;
-        else
-            if (totalDisks > 0) value = 2;
-            else value = 4;
-    else
-        if (totalDisks > 0) value = 5;
-    
-    return [NSNumber numberWithInt:value];
-}
-
-- (BOOL)canRun {
-    int icon = [[self icon] intValue];
-    if ( icon == 1 || icon == 2) return YES;
-    else return NO;
+    return [NSImage imageNamed:@"newVm.icns"];
 }
 
 @end
