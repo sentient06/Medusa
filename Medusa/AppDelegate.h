@@ -37,6 +37,12 @@
 @class PreferencesWindowController;     //Preferences Window
 @class SplashWindowController;
 
+//typedef enum Emulator {
+//    vMac,
+//    BasiliskII,
+//    Sheepshaver
+//} Emulator;
+
 /*!
  * @class       AppDelegate:
  * @abstract    Responsible for all the OS interaction, for short.

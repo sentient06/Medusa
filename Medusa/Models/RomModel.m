@@ -171,6 +171,10 @@
 /*!
  * @method      readRomFileFrom:
  * @abstract    Reads file and checks if it is a valid ROM file.
+ * http://www.jagshouse.com/rom.html
+ * http://www.jagshouse.com/68kmacs.html
+ * http://minivmac.sourceforge.net/mac68k.html
+ * http://www.jagshouse.com/plusrom.html
  */
 - (void)readRomFileFrom:(NSString *)filePath {
     
@@ -192,12 +196,15 @@
             
         // 64 KB
         case 0x28BA61CE:
-        case 0x28BA4E50:
-            
-            fileDetails  = @"Mac 128 or Mac 512";
+            fileDetails  = @"Mac 128K";
             comments     = @"Not supported by Basilisk II";
             romCondition = Unsupported;
+            break;
             
+        case 0x28BA4E50:
+            fileDetails  = @"Mac 512K";
+            comments     = @"Not supported by Basilisk II";
+            romCondition = Unsupported;
             break;
             
         // 128 KB
