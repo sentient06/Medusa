@@ -856,7 +856,7 @@
 						<object class="NSButton" id="617975296">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">289</int>
-							<string key="NSFrame">{{233, 2}, {28, 19}}</string>
+							<string key="NSFrame">{{232, 2}, {28, 19}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="35172548"/>
@@ -865,13 +865,17 @@
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents"/>
-								<reference key="NSSupport" ref="599580933"/>
+								<object class="NSFont" key="NSSupport">
+									<string key="NSName">LucidaGrande</string>
+									<double key="NSSize">12</double>
+									<int key="NSfFlags">4883</int>
+								</object>
 								<reference key="NSControlView" ref="617975296"/>
-								<int key="NSButtonFlags">-2033958657</int>
+								<int key="NSButtonFlags">-2032385793</int>
 								<int key="NSButtonFlags2">164</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">NSSmartBadgeTemplate</string>
+									<string key="NSResourceName">NSActionTemplate</string>
 								</object>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
@@ -1727,16 +1731,17 @@
 							<string key="NSBinding">enabled2</string>
 							<string key="NSKeyPath">selection.canRun</string>
 							<dictionary key="NSOptions">
-								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
-								<integer value="-1" key="NSNoSelectionPlaceholder"/>
-								<integer value="-1" key="NSNotApplicablePlaceholder"/>
-								<integer value="-1" key="NSNullPlaceholder"/>
+								<integer value="0" key="NSMultipleValuesPlaceholder"/>
+								<integer value="0" key="NSNoSelectionPlaceholder"/>
+								<integer value="0" key="NSNotApplicablePlaceholder"/>
+								<integer value="0" key="NSNullPlaceholder"/>
+								<boolean value="NO" key="NSRaisesForNotApplicableKeys"/>
 							</dictionary>
 							<reference key="NSPreviousConnector" ref="799684206"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">956</int>
+					<int key="connectionID">961</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2717,7 +2722,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">956</int>
+			<int key="maxID">961</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -2921,12 +2926,12 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="Clone">{16, 16}</string>
+			<string key="NSActionTemplate">{15, 15}</string>
 			<string key="NSAddTemplate">{8, 8}</string>
 			<string key="NSMenuCheckmark">{9, 8}</string>
 			<string key="NSMenuMixedState">{7, 2}</string>
 			<string key="NSRemoveTemplate">{8, 8}</string>
 			<string key="NSRightFacingTriangleTemplate">{9, 9}</string>
-			<string key="NSSmartBadgeTemplate">{15, 15}</string>
 			<string key="NSSwitch">{15, 15}</string>
 		</dictionary>
 	</data>

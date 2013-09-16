@@ -55,6 +55,7 @@
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
 		817E319D17D1078200131E2D /* VMList.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMList.m */; };
 		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
+		81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */; };
 		81AD5BBF17E4F9110072F4F1 /* noDiskBW.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */; };
 		81AD5BC017E4F9110072F4F1 /* noDiskColour.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */; };
 		81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */; };
@@ -176,6 +177,7 @@
 		817E319B17D1078200131E2D /* VMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMList.h; path = UtilitiesControllers/VMList.h; sourceTree = "<group>"; };
 		817E319C17D1078200131E2D /* VMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMList.m; path = UtilitiesControllers/VMList.m; sourceTree = "<group>"; };
 		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
+		81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericNetworkIcon.icns; path = Images/Icons/GenericNetworkIcon.icns; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Models/PreferencesModel.h; sourceTree = "<group>"; };
 		81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noDiskBW.png; path = Images/Icons/noDiskBW.png; sourceTree = "<group>"; };
 		81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noDiskColour.png; path = Images/Icons/noDiskColour.png; sourceTree = "<group>"; };
@@ -455,6 +457,7 @@
 		817CAF4015357EF90038E9A0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */,
 				81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */,
 				81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */,
 				81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */,
@@ -664,6 +667,7 @@
 				81AD5BC017E4F9110072F4F1 /* noDiskColour.png in Resources */,
 				81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */,
 				81AD5BC517E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns in Resources */,
+				81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -142,7 +142,7 @@
     //    jitEnabled
     //    jit <true/false>
     
-    if ( [[virtualMachine jitEnabled] boolValue] ) {
+    if ( [[virtualMachine jitEnabled] boolValue] && processorId == 3) {
         
         NSDictionary * macJitEnabled = [[NSDictionary alloc]
             initWithObjectsAndKeys:
@@ -212,7 +212,7 @@
     }
     
     //--------------------------------------------------------------------------
-    //2. The bootable drives
+    //3. The bootable drives
     
     NSEntityDescription *vmDrivesRelationship = [
         NSEntityDescription
@@ -247,7 +247,7 @@
     }
     
     //--------------------------------------------------------------------------
-    //3. The unbootable drives
+    //4. The unbootable drives
     
     //vmDrivesRelationship set in step 1.
     
@@ -275,7 +275,11 @@
     }
 
     //--------------------------------------------------------------------------
-    //4. Shares
+    //5. Networking
+    
+    // ether <ethernet card description> slirp
+    // udptunnel <"true" or "false"> (adv?)
+    // udpport <IP port number> (df: 6066)
 
     if ( [[virtualMachine shareEnabled] boolValue] == YES) {
     
