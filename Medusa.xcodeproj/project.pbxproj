@@ -10,6 +10,7 @@
 		810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */; };
 		81134C4415540B2900785866 /* PreferencesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesModel.m */; };
 		8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8126596817D724DE00395990 /* MedusaIcon5.icns */; };
+		8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */; };
 		814804E817D5D56D0070DAD9 /* RomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomModel.m */; };
 		814804F717D5FFD00070DAD9 /* PerfectNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F417D5FFD00070DAD9 /* PerfectNew.png */; };
 		814804F817D5FFD00070DAD9 /* PerfectOld.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F517D5FFD00070DAD9 /* PerfectOld.png */; };
@@ -108,6 +109,8 @@
 		810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineIconValueTransformer.m; path = TransformerControllers/VirtualMachineIconValueTransformer.m; sourceTree = "<group>"; };
 		81134C4315540B2900785866 /* PreferencesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesModel.m; path = Models/PreferencesModel.m; sourceTree = "<group>"; };
 		8126596817D724DE00395990 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon5.icns; path = Medusa/Images/Icons/MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
+		8131AA4317E76F1500682879 /* ProcessorToJitTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessorToJitTransformer.h; path = TransformerControllers/ProcessorToJitTransformer.h; sourceTree = "<group>"; };
+		8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessorToJitTransformer.m; path = TransformerControllers/ProcessorToJitTransformer.m; sourceTree = "<group>"; };
 		814804E617D5D56D0070DAD9 /* RomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomModel.h; path = Models/RomModel.h; sourceTree = "<group>"; };
 		814804E717D5D56D0070DAD9 /* RomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomModel.m; path = Models/RomModel.m; sourceTree = "<group>"; };
 		814804F417D5FFD00070DAD9 /* PerfectNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PerfectNew.png; path = Images/RomIcons/PerfectNew.png; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */,
 				810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */,
 				810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */,
+				8131AA4317E76F1500682879 /* ProcessorToJitTransformer.h */,
+				8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -700,6 +705,7 @@
 				81CE19C817D61A0400596C79 /* DropRomToVmView.m in Sources */,
 				81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */,
 				810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */,
+				8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

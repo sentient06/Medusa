@@ -120,83 +120,95 @@
     //--------------------------------------------------------------------------
     //2. The processor
     
-//    processorType
-//    cpu 1/2/3/0
-
+    // JIT defaults to "true" in some distributions.
+    // Need to force to false to have it working properly!
+    
+    //    processorType
+    //    cpu 1/2/3/0 check!
+    
     int processorId = [[virtualMachine processorType] intValue];
     
     NSDictionary * macProcessorType = [[NSDictionary alloc]
         initWithObjectsAndKeys:
-            [NSString stringWithFormat:@"%ld", processorId], @"cpu",
-            nil
+            [NSString stringWithFormat:@"%ld", processorId]
+            , @"cpu"
+            , nil
     ];
     
     [allData addObject:macProcessorType];
     [macProcessorType release];
-
     
-//    jitEnabled
-//    jit <true/false>
-
+    
+    //    jitEnabled
+    //    jit <true/false>
+    
     if ( [[virtualMachine jitEnabled] boolValue] ) {
-    
+        
         NSDictionary * macJitEnabled = [[NSDictionary alloc]
             initWithObjectsAndKeys:
-                @"true", @"jit",
-                nil
+                  @"true"
+                , @"jit"
+                , nil
         ];
         
         [allData addObject:macJitEnabled];
         [macJitEnabled release];
-   
-    
-//    lazyCacheEnabled
-//    jitlazyflush <"true" or "false">
-
-        if ( [[virtualMachine lazyCacheEnabled] boolValue] ) {
-            NSDictionary * macLazyCache = [[NSDictionary alloc]
-                initWithObjectsAndKeys:
-                    @"true", @"jitlazyflush",
-                    nil
-            ];
-            
-            [allData addObject:macLazyCache];
-            [macLazyCache release];
-        }
-
-    
-//    fpuEnabled
-//    fpu
-        if ( [[virtualMachine fpuEnabled] boolValue] ) {
-            NSDictionary * macFpu = [[NSDictionary alloc]
-                initWithObjectsAndKeys:
-                    @"true", @"fpu",
-                    nil
-            ];
-            
-            [allData addObject:macFpu];
-            [macFpu release];
-        }
-
-
-//    jitCacheSize
-//    jitcachesize <size>
-    
+        
+        
+        //    lazyCacheEnabled
+        //    jitlazyflush <"true" or "false">
+        
+        NSDictionary * macLazyCache = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                [[virtualMachine lazyCacheEnabled] boolValue] ? @"true" : @"false"
+                , @"jitlazyflush"
+                , nil
+        ];
+        
+        [allData addObject:macLazyCache];
+        [macLazyCache release];
+        
+        //    fpuEnabled
+        //    fpu
+        NSDictionary * macFpu = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                [[virtualMachine fpuEnabled] boolValue] ? @"true" : @"false"
+                , @"jitfpu"
+                , nil
+        ];
+        
+        [allData addObject:macFpu];
+        [macFpu release];
+        
+        
+        //    jitCacheSize
+        //    jitcachesize <size>
+        
         int chacheKbSize = [[virtualMachine processorType] intValue];
         
         if (chacheKbSize != 8192 && chacheKbSize > 2048) {
-        
+            
             NSDictionary * macJitCache = [[NSDictionary alloc]
-                initWithObjectsAndKeys:
-                    [NSString stringWithFormat:@"%ld", chacheKbSize], @"jitcachesize",
-                    nil
+            initWithObjectsAndKeys:
+                [NSString stringWithFormat:@"%ld", chacheKbSize]
+                , @"jitcachesize"
+                , nil
             ];
             
             [allData addObject:macJitCache];
             [macJitCache release];
-
+            
         }
-
+        
+    } else {
+        NSDictionary * macJitEnabled = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                  @"false"
+                , @"jit"
+                , nil
+        ];        
+        [allData addObject:macJitEnabled];
+        [macJitEnabled release]; 
     }
     
     //--------------------------------------------------------------------------

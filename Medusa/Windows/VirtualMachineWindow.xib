@@ -3379,16 +3379,44 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="label">enabled: selection.jitEnabled</string>
 						<reference key="source" ref="1004415315"/>
 						<reference key="destination" ref="3622824"/>
-						<object class="NSNibBindingConnector" key="connector">
+						<object class="NSNibBindingConnector" key="connector" id="556711285">
 							<reference key="NSSource" ref="1004415315"/>
 							<reference key="NSDestination" ref="3622824"/>
 							<string key="NSLabel">enabled: selection.jitEnabled</string>
 							<string key="NSBinding">enabled</string>
 							<string key="NSKeyPath">selection.jitEnabled</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSNullPlaceholder</string>
+								<integer value="0" key="NS.object.0"/>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">885</int>
+					<int key="connectionID">921</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled2: selection.processorType</string>
+						<reference key="source" ref="1004415315"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1004415315"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">enabled2: selection.processorType</string>
+							<string key="NSBinding">enabled2</string>
+							<string key="NSKeyPath">selection.processorType</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">ProcessorToJitTransformer</string>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="556711285"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">922</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3408,19 +3436,103 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: selection.jitEnabled</string>
+						<string key="label">value: selection.jitCacheSize</string>
 						<reference key="source" ref="192384395"/>
 						<reference key="destination" ref="3622824"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="192384395"/>
 							<reference key="NSDestination" ref="3622824"/>
-							<string key="NSLabel">enabled: selection.jitEnabled</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">selection.jitEnabled</string>
+							<string key="NSLabel">value: selection.jitCacheSize</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.jitCacheSize</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSNullPlaceholder</string>
+								<real value="8192" key="NS.object.0"/>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">886</int>
+					<int key="connectionID">905</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">editable: selection.lazyCacheEnabled</string>
+						<reference key="source" ref="192384395"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector" id="998099371">
+							<reference key="NSSource" ref="192384395"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">editable: selection.lazyCacheEnabled</string>
+							<string key="NSBinding">editable</string>
+							<string key="NSKeyPath">selection.lazyCacheEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">908</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: selection.jitEnabled</string>
+						<reference key="source" ref="192384395"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector" id="399146746">
+							<reference key="NSSource" ref="192384395"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">enabled: selection.jitEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">selection.jitEnabled</string>
+							<reference key="NSPreviousConnector" ref="998099371"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">909</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled2: selection.lazyCacheEnabled</string>
+						<reference key="source" ref="192384395"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector" id="557085617">
+							<reference key="NSSource" ref="192384395"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">enabled2: selection.lazyCacheEnabled</string>
+							<string key="NSBinding">enabled2</string>
+							<string key="NSKeyPath">selection.lazyCacheEnabled</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="399146746"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">910</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled3: selection.processorType</string>
+						<reference key="source" ref="192384395"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="192384395"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">enabled3: selection.processorType</string>
+							<string key="NSBinding">enabled3</string>
+							<string key="NSKeyPath">selection.processorType</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">ProcessorToJitTransformer</string>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="557085617"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">919</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3443,16 +3555,64 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="label">enabled: selection.jitEnabled</string>
 						<reference key="source" ref="1061484549"/>
 						<reference key="destination" ref="3622824"/>
-						<object class="NSNibBindingConnector" key="connector">
+						<object class="NSNibBindingConnector" key="connector" id="460180441">
 							<reference key="NSSource" ref="1061484549"/>
 							<reference key="NSDestination" ref="3622824"/>
 							<string key="NSLabel">enabled: selection.jitEnabled</string>
 							<string key="NSBinding">enabled</string>
 							<string key="NSKeyPath">selection.jitEnabled</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSNullPlaceholder</string>
+								<integer value="0" key="NS.object.0"/>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">884</int>
+					<int key="connectionID">923</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled2: selection.processorType</string>
+						<reference key="source" ref="1061484549"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="1061484549"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">enabled2: selection.processorType</string>
+							<string key="NSBinding">enabled2</string>
+							<string key="NSKeyPath">selection.processorType</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">ProcessorToJitTransformer</string>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="460180441"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">924</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: selection.processorType</string>
+						<reference key="source" ref="666725370"/>
+						<reference key="destination" ref="3622824"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="666725370"/>
+							<reference key="NSDestination" ref="3622824"/>
+							<string key="NSLabel">enabled: selection.processorType</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">selection.processorType</string>
+							<dictionary key="NSOptions">
+								<integer value="0" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">ProcessorToJitTransformer</string>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">920</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3465,10 +3625,14 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<string key="NSLabel">value: selection.jitEnabled</string>
 							<string key="NSBinding">value</string>
 							<string key="NSKeyPath">selection.jitEnabled</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSNotApplicablePlaceholder</string>
+								<integer value="0" key="NS.object.0"/>
+							</object>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">881</int>
+					<int key="connectionID">927</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -4825,7 +4989,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">892</int>
+			<int key="maxID">927</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
