@@ -486,6 +486,14 @@
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
 								</object>
+								<object class="NSMenuItem" id="1054683410">
+									<reference key="NSMenu" ref="835318025"/>
+									<string key="NSTitle">Assets Manager</string>
+									<string key="NSKeyEquiv"/>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="35465992"/>
+									<reference key="NSMixedImage" ref="502551668"/>
+								</object>
 								<object class="NSMenuItem" id="412085301">
 									<reference key="NSMenu" ref="835318025"/>
 									<string key="NSTitle">Rom Images Manager</string>
@@ -865,11 +873,7 @@
 								<int key="NSCellFlags">67239424</int>
 								<int key="NSCellFlags2">134217728</int>
 								<string key="NSContents"/>
-								<object class="NSFont" key="NSSupport">
-									<string key="NSName">LucidaGrande</string>
-									<double key="NSSize">12</double>
-									<int key="NSfFlags">4883</int>
-								</object>
+								<reference key="NSSupport" ref="599580933"/>
 								<reference key="NSControlView" ref="617975296"/>
 								<int key="NSButtonFlags">-2032385793</int>
 								<int key="NSButtonFlags2">164</int>
@@ -1596,6 +1600,14 @@
 					<int key="connectionID">928</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showAssetsWindow:</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="1054683410"/>
+					</object>
+					<int key="connectionID">963</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">managedObjectContext: managedObjectContext</string>
 						<reference key="source" ref="196388366"/>
@@ -2124,6 +2136,7 @@
 							<reference ref="412085301"/>
 							<reference ref="743003316"/>
 							<reference ref="332085999"/>
+							<reference ref="1054683410"/>
 						</array>
 						<reference key="parent" ref="713487014"/>
 					</object>
@@ -2588,6 +2601,11 @@
 						<reference key="object" ref="132362925"/>
 						<reference key="parent" ref="816985154"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">962</int>
+						<reference key="object" ref="1054683410"/>
+						<reference key="parent" ref="835318025"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -2717,12 +2735,13 @@
 				<string key="919.CustomClassName">VMListTextCell</string>
 				<string key="919.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="92.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="962.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">961</int>
+			<int key="maxID">963</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

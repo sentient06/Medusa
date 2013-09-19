@@ -15,10 +15,13 @@
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="emulator" optional="YES" attributeType="String" defaultValueString="Basilisk" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="mac68k" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="macPPC" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="mac68kNew" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="mac68kOld" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="macPPCNew" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="macPPCOld" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="modelName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="romCondition" attributeType="Integer 16" maxValueString="7" defaultValueString="7" syncable="YES"/>
+        <attribute name="romCondition" attributeType="Integer 16" maxValueString="8" defaultValueString="8" syncable="YES"/>
+        <attribute name="romSize" attributeType="Integer 16" minValueString="0" maxValueString="8" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="machines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
     <entity name="VirtualMachines" representedClassName="VirtualMachinesModel" syncable="YES">
@@ -44,7 +47,7 @@
     <elements>
         <element name="Drives" positionX="160" positionY="192" width="128" height="105"/>
         <element name="RelationshipVirtualMachinesDrives" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="RomFiles" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>
         <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="315"/>
     </elements>
 </model>

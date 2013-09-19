@@ -21,6 +21,7 @@
 		815BD3B617E3224600CE4E2E /* Basilisk II in Resources */ = {isa = PBXBuildFile; fileRef = 815BD3B517E3224600CE4E2E /* Basilisk II */; };
 		815BD3B717E322B900CE4E2E /* Basilisk II in CopyFiles */ = {isa = PBXBuildFile; fileRef = 815BD3B517E3224600CE4E2E /* Basilisk II */; };
 		815C26391587EEA5003FA9EB /* VirtualMachinesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 815C26381587EEA5003FA9EB /* VirtualMachinesModel.m */; };
+		815EEE0117EB1954002D8A02 /* EmulatorHandleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EEE0017EB1954002D8A02 /* EmulatorHandleController.m */; };
 		815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815F4F67156EC324001712CB /* PreferencesWindow.xib */; };
 		8160BB0915502F74005F6DBF /* DriveIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */; };
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
@@ -126,6 +127,8 @@
 		815BD3B517E3224600CE4E2E /* Basilisk II */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = "Basilisk II"; sourceTree = "<group>"; };
 		815C26371587EEA5003FA9EB /* VirtualMachinesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachinesModel.h; path = Models/VirtualMachinesModel.h; sourceTree = "<group>"; };
 		815C26381587EEA5003FA9EB /* VirtualMachinesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachinesModel.m; path = Models/VirtualMachinesModel.m; sourceTree = "<group>"; };
+		815EEDFF17EB1954002D8A02 /* EmulatorHandleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorHandleController.h; path = UtilitiesControllers/EmulatorHandleController.h; sourceTree = "<group>"; };
+		815EEE0017EB1954002D8A02 /* EmulatorHandleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorHandleController.m; path = UtilitiesControllers/EmulatorHandleController.m; sourceTree = "<group>"; };
 		815F4F67156EC324001712CB /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindow.xib; path = Windows/PreferencesWindow.xib; sourceTree = "<group>"; };
 		8160BB0715502F74005F6DBF /* DriveIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveIconValueTransformer.h; path = TransformerControllers/DriveIconValueTransformer.h; sourceTree = "<group>"; };
 		8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveIconValueTransformer.m; path = TransformerControllers/DriveIconValueTransformer.m; sourceTree = "<group>"; };
@@ -416,6 +419,8 @@
 			children = (
 				81756F441534743500FCBA8E /* AppDelegate.h */,
 				81756F451534743500FCBA8E /* AppDelegate.m */,
+				815EEDFF17EB1954002D8A02 /* EmulatorHandleController.h */,
+				815EEE0017EB1954002D8A02 /* EmulatorHandleController.m */,
 				815FEEF61536279000B9E5C5 /* WindowControllers */,
 				81C84439153E184E00E94443 /* SubClasses */,
 				815FEEF8153627A100B9E5C5 /* HelpingControllers */,
@@ -710,6 +715,7 @@
 				81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */,
 				810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */,
 				8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */,
+				815EEE0117EB1954002D8A02 /* EmulatorHandleController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

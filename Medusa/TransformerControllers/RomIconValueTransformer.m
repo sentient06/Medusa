@@ -62,7 +62,8 @@
 //        NoAppleTalk            = 4,
 //        FPURequired            = 5,
 //        NoAppleTalkFPURequired = 6,
-//        Unsupported            = 7
+//        PerfectVMac            = 7,
+//        Unsupported            = 8
 //    };
     
     
@@ -75,7 +76,7 @@
         return [NSImage imageNamed:@"PerfectNew.png"];
     }
     
-    if (iconValue > 1 && iconValue < 7) {
+    if (iconValue > 1 && iconValue < 8) {
         return [NSImage imageNamed:@"PerfectOld.png"];
     }
     

@@ -44,6 +44,9 @@
 #import "RomFilesModel.h"
 #import "PreferencesModel.h"
 
+
+#import "EmulatorHandleController.h" //testing
+
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -326,7 +329,7 @@
 - (IBAction)run:(id)sender {
     
     // Use GCD to execute emulator in an async thread:
-    dispatch_async(queue, ^{
+//    dispatch_async(queue, ^{
         
         NSArray * selectedVirtualMachines = [[
             [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
@@ -340,44 +343,39 @@
                 @"%@/%@Preferences",
                 [self applicationSupportDirectory],
                 [virtualMachine uniqueName]
-        ]; //next: change name per vm        
+        ];
        
         PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
-//        NSArray * data = [preferences getVirtualMachineData:virtualMachine];
-        
         [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];
 
-        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
-//        NSString * alternativeEmulatorPath = [[NSUserDefaults standardUserDefaults] stringForKey: @"BasiliskPath"];
-
+//        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
        
         NSLog(@"Prefs file ....: %@", preferencesFilePath);
-        NSLog(@"Emulator path .: %@", emulatorPath);
-        
-        // Saves preferences file:
-        
-//        [preferences savePreferencesFile:data ForFile:preferencesFilePath];
-        
-        // Starts emulator:
-        
-        NSTask * emulatorTask = [[[NSTask alloc] init] autorelease];
-        [emulatorTask setLaunchPath:emulatorPath];
-        [emulatorTask setArguments:
-            [NSArray arrayWithObjects:
-                 @"--config"
-               , preferencesFilePath
-               ,nil
-            ]
-        ];
-        
-        [emulatorPath release];
-        [preferencesFilePath release];
-        [emulatorTask launch];
-        [emulatorTask waitUntilExit];
-
-        NSLog(@"Emulator finished.");
-        
-    });
+//        NSLog(@"Emulator path .: %@", emulatorPath);
+    
+        [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
+    
+//        // Starts emulator:
+//        
+//        NSTask * emulatorTask = [[[NSTask alloc] init] autorelease];
+//        [emulatorTask setLaunchPath:emulatorPath];
+//
+//        [emulatorTask setArguments:
+//            [NSArray arrayWithObjects:
+//                 @"--config"
+//               , preferencesFilePath
+//               ,nil
+//            ]
+//        ];
+//        
+//        [emulatorPath release];
+//        [preferencesFilePath release];
+//        [emulatorTask launch];
+//        [emulatorTask waitUntilExit];
+//
+//        NSLog(@"Emulator finished.");
+//        
+//    });
     
 }
 

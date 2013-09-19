@@ -50,7 +50,8 @@
 //        NoAppleTalk            = 4,
 //        FPURequired            = 5,
 //        NoAppleTalkFPURequired = 6,
-//        Unsupported            = 7
+//        PerfectVMac            = 7,
+//        Unsupported            = 8
 //    };
     
     
@@ -73,7 +74,7 @@
             return @"Needs to use FPU and Appletalk is unavailable";
         break;
 
-        case 7:
+        case 8:
             return @"Unsupported ROM";
         break;
     }

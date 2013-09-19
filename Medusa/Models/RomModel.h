@@ -39,7 +39,20 @@ enum RomConditions {
     NoAppleTalk            = 4,
     FPURequired            = 5,
     NoAppleTalkFPURequired = 6,
-    Unsupported            = 7
+    PerfectVMac            = 7,
+    Unsupported            = 8
+};
+
+enum RomSizes {
+    romNull  = 0,
+    rom64KB  = 1,
+    rom128KB = 2,
+    rom256KB = 3,
+    rom512KB = 4,
+    rom1MB   = 5,
+    rom2MB   = 6,
+    rom3MB   = 7,
+    rom4MB   = 8
 };
 
 @class RomFilesModel;
@@ -49,6 +62,7 @@ enum RomConditions {
     NSString * fileDetails;
     NSString * comments;
     int romCondition;
+    int romSize;
 }
 
 @property (readonly, strong, nonatomic) RomFilesModel * currentRomObject;

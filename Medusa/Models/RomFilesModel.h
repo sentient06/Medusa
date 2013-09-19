@@ -42,8 +42,11 @@
 @property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSString * modelName;
 @property (nonatomic, retain) NSNumber * romCondition;
-@property (nonatomic, retain) NSNumber * mac68k;
-@property (nonatomic, retain) NSNumber * macPPC;
+@property (nonatomic, retain) NSNumber * mac68kOld;
+@property (nonatomic, retain) NSNumber * mac68kNew;
+@property (nonatomic, retain) NSNumber * macPPCOld;
+@property (nonatomic, retain) NSNumber * macPPCNew;
+@property (nonatomic, retain) NSNumber * romSize;
 @property (nonatomic, retain) NSSet    * machines;
 
 //@property (nonatomic) BOOL mac68k;
