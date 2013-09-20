@@ -31,10 +31,114 @@
 //------------------------------------------------------------------------------
 
 #import "DropAllView.h"
+#import "RomModel.h"
+#import "DrivesModel.h"
 
 @implementation DropAllView
 
+/**
+ * Iterates directories to parse files.
+ */
+-(void)iterateDirectory:(NSString *)currentDirectory {
+
+    directoriesParsed++;
+
+    NSLog(@"Parsing folder" );
+    
+    NSFileManager * fileManager = [[[NSFileManager alloc] init] autorelease];
+    NSURL         * directoryURL = [NSURL fileURLWithPath:[currentDirectory stringByExpandingTildeInPath]];
+    NSArray       * keys = [NSArray arrayWithObject:NSURLIsDirectoryKey];
+    
+    NSDirectoryEnumerator * enumerator = [
+        fileManager
+        enumeratorAtURL:directoryURL
+        includingPropertiesForKeys:keys
+        options:0
+        errorHandler:^(NSURL * url, NSError * error) {
+            // Handle the error.
+            // Return YES if the enumeration should continue after the error.
+            return YES;
+        }
+    ];
+    
+    for (NSURL * url in enumerator) {
+
+        //Check if is a folder:
+        BOOL isDir;
+        NSFileManager * fileManager = [[NSFileManager alloc] init];
+        [fileManager fileExistsAtPath:[url absoluteString] isDirectory:&isDir];
+        [fileManager release];
+        
+        if (!isDir) [self parseFile:[url relativePath]];
+        else directoriesParsed++;
+        
+    }
+}
+
+/**
+ * Parses not-directory files.
+ */
+-(void)parseFile:(NSString *)currentFile {
+    filesParsed++;
+    NSString * kind = nil;
+    NSURL * url = [NSURL fileURLWithPath:[currentFile stringByExpandingTildeInPath]];
+    LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
+    NSLog(@"Kind: %@, url: %@", kind, [url relativePath]); //[url absoluteString] );
+    
+    NSArray * acceptedExtensions = [[NSArray alloc] initWithObjects: @"hfv", @"dsk", @"dmg", @"img", @"image", @"iso", nil];
+    
+    if ([acceptedExtensions containsObject:[[url pathExtension] lowercaseString]]) {
+        NSLog(@"accepted image");
+    } else {
+    
+        if ([kind isEqualToString:@"Unix Executable File"] || [kind isEqualToString:@"Document"] ){
+            RomModel * RomObject = [[RomModel alloc] autorelease];
+            [RomObject parseSingleRomFileAndSave:[url relativePath] inObjectContext:[[NSApp delegate] managedObjectContext]];
+        }
+    }
+    
+    
+}
+
+- (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
+    
+    directoriesParsed = 0;
+    filesParsed       = 0;
+    romsParsed        = 0;
+    disksParsed       = 0;
+    filesRejected     = 0;
+    depthReached      = 0;
+    
+    // Get all pasteboard:
+    NSArray * droppedFileUrls = [
+        [sender draggingPasteboard] propertyListForType:NSFilenamesPboardType
+    ];
+    
+    // Iterate objects:
+    for (int i = 0; i < [droppedFileUrls count]; i++) {
+        NSString * currentObject = [droppedFileUrls objectAtIndex:i];
+        
+        //Check if is a folder:
+        BOOL isDir;
+        NSFileManager * fileManager = [[NSFileManager alloc] init];
+        [fileManager fileExistsAtPath:currentObject isDirectory:&isDir];
+        [fileManager release];
+        
+        if (isDir)
+            [self iterateDirectory:currentObject];
+        else
+            [self parseFile:currentObject];
+        
+    }
+    
+    NSLog(@"directories: %d, filesParsed: %d", directoriesParsed, filesParsed);
+    
+    return YES;
+}
+
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    
+    NSLog(@"Drop all");
     
 //    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
     
@@ -43,11 +147,7 @@
 
     for (int i = 0; i < [urls count]; i++) {
         
-        NSString * pathExtension = [[urls objectAtIndex:i] pathExtension];
-        
-        NSLog(@"Class is ..... %@", [[urls objectAtIndex:i] class]);
-        NSLog(@"Extension is . %@", [pathExtension lowercaseString]);
-        
+//        NSString * pathExtension = [[urls objectAtIndex:i] pathExtension];        
         
 //        if (
 //            [[pathExtension lowercaseString]    isEqualTo:@"hfv"]   ||

@@ -32,8 +32,8 @@
 
 #import "AppDelegate.h"
 #import "VirtualMachineWindowController.h"  //VM Window
-#import "RomManagerWindowController.h"      //Rom Manager Window
-#import "DriveManagerWindowController.h"    //Drive Manager Window
+//#import "RomManagerWindowController.h"      //Rom Manager Window
+//#import "DriveManagerWindowController.h"    //Drive Manager Window
 #import "AssetsWindowController.h"          //Assets Window
 #import "PreferencesWindowController.h"     //Preferences Window
 #import "IconValueTransformer.h"            //Transforms a coredata integer in an icon

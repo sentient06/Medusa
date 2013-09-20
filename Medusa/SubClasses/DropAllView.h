@@ -32,6 +32,16 @@
 
 #import "DropView.h"
 
-@interface DropAllView : DropView
+@interface DropAllView : DropView {
+    int directoriesParsed;
+    int filesParsed;
+    int romsParsed;
+    int disksParsed;
+    int filesRejected;
+    int depthReached;
+}
+
+-(void)iterateDirectory:(NSString *)currentDirectory;
+-(void)parseFile:(NSString *)currentFile;
 
 @end
