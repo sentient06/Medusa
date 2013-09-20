@@ -108,7 +108,7 @@
         [managedObject setMacPPCOld:[NSNumber numberWithBool:NO]];
         [managedObject setMacPPCNew:[NSNumber numberWithBool:NO]];
         
-        
+        // These are necessary to be used in interface bindings
         switch (romSize) {
             case rom64KB:
             case rom128KB:
@@ -135,20 +135,17 @@
             break;
             case PerfectSheepOld        :
                 [managedObject setEmulator:@"Sheepshaver"];
-//                [managedObject setMacPPCOld:[NSNumber numberWithBool:YES]];
             break;
 
-            case PerfectBasilisk        :
-            case NoAppleTalk            :
-            case FPURequired            :
-            case NoAppleTalkFPURequired :
+            case PerfectBasilisk:
+            case NoAppleTalk:
+            case FPURequired:
+            case NoAppleTalkFPURequired:
                 [managedObject setEmulator:@"Basilisk"];
-//                [managedObject setMac68kNew:[NSNumber numberWithBool:YES]];
             break;
                 
             case PerfectVMac:
                 [managedObject setEmulator:@"vMac"];
-//                [managedObject setMac68kOld:[NSNumber numberWithBool:YES]];
             break;
 
         }
@@ -216,7 +213,6 @@
     NSData * data   = [NSData dataWithContentsOfFile:romPath];
     NSUInteger len  = [data length];
     Byte * byteData = (Byte*)malloc(len);
-    
     memcpy(byteData, [data bytes], len);
     
     NSNumber * size = [[NSNumber alloc] initWithUnsignedLong:len/2^20];
@@ -234,58 +230,58 @@
     }
     
     switch( ntohl(*(uint32 *)byteData) ) {
-            
+        //------------------------------------------------
         // 64 KB
         case 0x28BA61CE:
-            fileDetails = @"Macintosh 128";
-            comments = @"First Macintosh ever made.\nThis ROM can't be used on emulation.";
+            fileDetails  = @"Macintosh 128";
+            comments     = @"First Macintosh ever made.\nThis ROM can't be used on emulation.";
             romCondition = Unsupported;
             break;
             
         case 0x28BA4E50:
-            fileDetails = @"Macintosh 512K";
-            comments = @"Second Macintosh ever made.\nThis ROM can't be used on emulation.";
+            fileDetails  = @"Macintosh 512K";
+            comments     = @"Second Macintosh ever made.\nThis ROM can't be used on emulation.";
             romCondition = Unsupported;
             break;
-            
+        //------------------------------------------------
         // 128 KB
         case 0x4D1EEEE1:
-            fileDetails = @"Macintosh Plus v1 Lonely Hearts";
-            comments = @"This ROM was buggy and had 2 revisions!\nvMac can't boot from it.\nThe second revision (v3) is more recommended.";
+            fileDetails  = @"Macintosh Plus v1 Lonely Hearts";
+            comments     = @"This ROM was buggy and had 2 revisions!\nvMac can't boot from it.\nThe second revision (v3) is more recommended.";
             romCondition = Unsupported;
             break;
             
         case 0x4D1EEAE1:
-            fileDetails = @"Macintosh Plus v2 Lonely Heifers";
-            comments = @"This ROM was the first revision and still had some bugs.\nv3 is more recommended.";
+            fileDetails  = @"Macintosh Plus v2 Lonely Heifers";
+            comments     = @"This ROM was the first revision and still had some bugs.\nv3 is more recommended.";
             romCondition = PerfectVMac;
             break;
             
         case 0x4D1F8172:
-            fileDetails = @"Macintosh Plus v3 Loud Harmonicas";
-            comments = @"Best Mac Plus ROM, second revision from the original.\nGood for vMac.";
+            fileDetails  = @"Macintosh Plus v3 Loud Harmonicas";
+            comments     = @"Best Mac Plus ROM, second revision from the original.\nGood for vMac.";
             romCondition = PerfectVMac;
             break;
-            
+        //------------------------------------------------
         // 256 KB
         case 0x97851DB6:
-            fileDetails = @"Macintosh II v1";
-            comments = @"First Mac II ROM, had a memory problem\nThis one is rare!\nvMac won't boot it.";
+            fileDetails  = @"Macintosh II v1";
+            comments     = @"First Mac II ROM, had a memory problem\nThis one is rare!\nvMac won't boot it.";
             romCondition = Unsupported;
             break;
         case 0xB2E362A8:
-            fileDetails = @"Macintosh SE";
-            comments = @"";
+            fileDetails  = @"Macintosh SE";
+            comments     = @"";
             romCondition = Unsupported;
             break;
         case 0x9779D2C4:
-            fileDetails = @"Macintosh II v2";
-            comments = @"Mac II ROM's revision";
+            fileDetails  = @"Macintosh II v2";
+            comments     = @"Mac II ROM's revision";
             romCondition = Unsupported;
             break;
         case 0xB306E171:
-            fileDetails = @"Macintosh SE FDHD";
-            comments = @"FDHD stands for 'Floppy Disk High Density'\nThis mac was later called Macintosh SE Superdrive";
+            fileDetails  = @"Macintosh SE FDHD";
+            comments     = @"FDHD stands for 'Floppy Disk High Density'\nThis mac was later called Macintosh SE Superdrive";
             romCondition = Unsupported;
             break;
         case 0x97221136:
@@ -294,86 +290,84 @@
             romCondition = Unsupported;
             break;
         case 0x96CA3846:
-            fileDetails = @"Macintosh Portable";
-            comments = @"One of the first 'laptops'!";
+            fileDetails  = @"Macintosh Portable";
+            comments     = @"One of the first 'laptops'!";
             romCondition = Unsupported;
             break;
         case 0xA49F9914:
-            fileDetails = @"Macintosh Classic (XO)";
-            comments = @"From Mac Classic with XO ROMDisk: It has the ability to boot from ROM by holding down cmd+opt+x+o at startup.\nLimited support in Basilisk II.";//Classic emulation is broken on Basilisk
+            fileDetails  = @"Macintosh Classic (XO)";
+            comments     = @"From Mac Classic with XO ROMDisk: It has the ability to boot from ROM by holding down cmd+opt+x+o at startup.\nLimited support in Basilisk II.";//Classic emulation is broken on Basilisk
             romCondition = PerfectVMac;
             break;
         case 0x96645F9C:
-            fileDetails = @"Macintosh PowerBook 100";
-            comments = @"";
+            fileDetails  = @"Macintosh PowerBook 100";
+            comments     = @"";
             romCondition = Unsupported;
             break;
-            
-            
+        //------------------------------------------------
         // 512 KB
         case 0x4147DD77:
-            fileDetails = @"Macintosh IIfx";
-            comments = @"Known as Stealth, Blackbird, F-16, F-19, Four Square, IIxi, Zone 5 and Weed-Whacker.\nEmulation requires FPU and AppleTalk is not supported.";
+            fileDetails  = @"Macintosh IIfx";
+            comments     = @"Known as Stealth, Blackbird, F-16, F-19, Four Square, IIxi, Zone 5 and Weed-Whacker.\nEmulation requires FPU and AppleTalk is not supported.";
             romCondition = NoAppleTalkFPURequired;
             break;
         case 0x350EACF0:
-            fileDetails = @"Macintosh LC (Pizza box)";
-            comments = @"AppleTalk is not supported in Basilisk.";
+            fileDetails  = @"Macintosh LC"; // Pizza box
+            comments     = @"AppleTalk is not supported in Basilisk.";
             romCondition = NoAppleTalk;
             break;
         case 0x3193670E: //messy checksum
-            fileDetails = @"Macintosh Classic II";
-            comments = @"Emulation may require the FPU and AppleTalk may not be supported.";
+            fileDetails  = @"Macintosh Classic II";
+            comments     = @"Emulation may require the FPU and AppleTalk may not be supported.";
             romCondition = NoAppleTalkFPURequired;
             break;            
         case 0x368CADFE:
-            fileDetails = @"Macintosh IIci";
-            comments = @"In Basilisk, FPU must be enabled and appleTalk is not supported.\nThis is a 32-bit clean ROM.";
+            fileDetails  = @"Macintosh IIci";
+            comments     = @"In Basilisk, FPU must be enabled and appleTalk is not supported.\nThis is a 32-bit clean ROM.";
             romCondition = NoAppleTalkFPURequired;
             break;
         case 0x36B7FB6C:
-            fileDetails = @"Macintosh IIsi";
-            comments = @"In Basilisk, AppleTalk is not supported.";
+            fileDetails  = @"Macintosh IIsi";
+            comments     = @"In Basilisk, AppleTalk is not supported.";
             romCondition = NoAppleTalk;
             break;
-        case 0x35C28F5F:
-            fileDetails = @"Mac LC II (Pizza box) or Performa 400/405/410/430"; //IIci?
-            comments = @"In Basilisk, AppleTalk is not supported.";
+        case 0x35C28F5F: // Pizza box too
+            fileDetails  = @"Mac LC II or Performa 400/405/410/430"; //IIci?
+            comments     = @"In Basilisk, AppleTalk is not supported.";
             romCondition = NoAppleTalk;
             break;
-            //------------------------------------------------
-        case 0x35C28C8F: //very strange didn't find it, called IIxi
-            fileDetails = @"Macintosh IIx";
-            comments = @"AppleTalk may not be supported.";
+            //--------------------------------------------
+        case 0x35C28C8F: // Very strange didn't find it
+                         // Model was called IIxi, which seems non-existent
+            fileDetails  = @"Macintosh IIx";
+            comments     = @"AppleTalk may not be supported.";
             romCondition = NoAppleTalk;
             break;
         case 0x4957EB49: 
-            fileDetails = @"Mac IIvx (Brazil) or IIvi/Performa 600";
-            comments = @"Mac IIvx was the last of Mac II series.\nAppleTalk may not be supported for emulation.";
+            fileDetails  = @"Mac IIvx (Brazil) or IIvi/Performa 600";
+            comments     = @"Mac IIvx was the last of Mac II series.\nAppleTalk may not be supported for emulation.";
             romCondition = NoAppleTalk;
             break;
-            
-            
-            //------------------------------------------------
-            // Things get messy here
-            // 1024 KB
+        //------------------------------------------------
+        // 1024 KB
+        // Things get messy here
         case 0x420DBFF3:
-            fileDetails = @"Quadra 700/900 or PowerBook 140/170";
-            comments = @"AppleTalk is not supported on Basilisk II.\nThis is the worst known 1MB ROM.";
+            fileDetails  = @"Quadra 700/900 or PowerBook 140/170";
+            comments     = @"AppleTalk is not supported on Basilisk II.\nThis is the worst known 1MB ROM.";
             romCondition = NoAppleTalk;
             break;
         case 0x3DC27823:
-            fileDetails = @"Macintosh Quadra 950";
-            comments = @"AppleTalk is not supported on Basilisk II.";
+            fileDetails  = @"Macintosh Quadra 950";
+            comments     = @"AppleTalk is not supported on Basilisk II.";
             romCondition = NoAppleTalk;
             break;
-            //====
-        case 0x49579803: //very strange didn't find it, called IIvx //49579803
-            fileDetails = @"Macintosh IIvx ?"; //Again? Brazil?
-            romCondition = NoAppleTalk;
+        case 0x49579803: // Very strange didn't find it, called IIvx
+                         // 0x49579803 (different size)
+            fileDetails  = @"Macintosh IIvx ?"; //Again? Brazil?
+            romCondition = PerfectBasilisk;
             break;
         case 0xE33B2724:
-            fileDetails = @"Powerbook 160/165/165c/180/180c";
+            fileDetails  = @"Powerbook 160/165/165c/180/180c";
             romCondition = PerfectBasilisk;
             break;
         case 0xECFA989B:
@@ -381,113 +375,110 @@
             romCondition = PerfectBasilisk;
             break;
         case 0xEC904829:
-            fileDetails = @"Macintosh LC III";
+            fileDetails  = @"Macintosh LC III";
             romCondition = PerfectBasilisk;
             break;
         case 0xECBBC41C:
-            fileDetails = @"Macintosh LCIII/LCIII+ or Performa 460";
+            fileDetails  = @"Macintosh LCIII/LCIII+ or Performa 460";
             romCondition = PerfectBasilisk;
             break;
         case 0xECD99DC0:
-            fileDetails = @"Macintosh Color Classic / Performa 250";
+            fileDetails  = @"Macintosh Color Classic / Performa 250";
             romCondition = PerfectBasilisk;
             break;
         case 0xF1A6F343:
-            fileDetails = @"Quadra/Centris 610 or 650";
+            fileDetails  = @"Quadra/Centris 610 or 650";
             romCondition = PerfectBasilisk;
             break;
         case 0xF1ACAD13:	// Mac Quadra 650
-            fileDetails = @"Quadra/Centris 610 or 650 or 800";
+            fileDetails  = @"Quadra/Centris 610 or 650 or 800";
             romCondition = PerfectBasilisk;
             break;
         case 0x0024D346:
-            fileDetails = @"Powerbook Duo 270C";
+            fileDetails  = @"Powerbook Duo 270C";
             romCondition = PerfectBasilisk;
             break;
         case 0xEDE66CBD:
-            fileDetails = @"Color Classic II, LC 550, Performa 275/550/560, Mac TV";//Maybe Performa 450-550";
+            fileDetails  = @"Color Classic II, LC 550, Performa 275/550/560, Mac TV";//Maybe Performa 450-550";
             romCondition = PerfectBasilisk;
             break;
         case 0xFF7439EE:
-            fileDetails = @"LC 475/575 Quadra 605 Performa 475/476/575/577/578";
-            comments = @"Codename Aladdin";
-            romCondition = FPURequired;
+            fileDetails  = @"LC 475/575 Quadra 605 Performa 475/476/575/577/578";
+            comments     = @"Codename Aladdin";
+            romCondition = PerfectBasilisk; //FPURequired; //?
             break;
         case 0x015621D7:
-            fileDetails = @"Powerbook Duo 280 or 280C";
+            fileDetails  = @"Powerbook Duo 280 or 280C";
             romCondition = PerfectBasilisk;
             break;
         case 0x06684214:
-            fileDetails = @"LC/Quadra/Performa 630";
-            comments = @"Codename Crusader";
+            fileDetails  = @"LC/Quadra/Performa 630";
+            comments     = @"Codename Crusader";
             romCondition = PerfectBasilisk;
             break;
         case 0xFDA22562:
-            fileDetails = @"Powerbook 150";
+            fileDetails  = @"Powerbook 150";
             romCondition = PerfectBasilisk;
             break;
         case 0x064DC91D:
-            fileDetails = @"LC/Performa 580/588";
-            comments = @"AppleTalk is reported to work in Basilisk II.";
+            fileDetails  = @"LC/Performa 580/588";
+            comments     = @"AppleTalk is reported to work in Basilisk II.";
             romCondition = PerfectBasilisk;
             break;
-            //------------------------------------------------
-            // 2MB and 3MB ROMs
-            // 2048 KB
-        case 0xB6909089:
-            fileDetails = @"PowerBook 520/520c/540/540c";
-            comments = @"2MB ROM image. =D";
-            //68LC040
+        //------------------------------------------------
+        // 2MB and 3MB ROMs
+        // 2048 KB
+        case 0xB6909089: // or 0x68LC040 ?
+            fileDetails  = @"PowerBook 520/520c/540/540c";
+            comments     = @"2MB ROM image. =D";
             romCondition = PerfectSheepOld;
             break;
         case 0x5BF10FD1:
-            fileDetails = @"Macintosh Quadra 660av or 840av";
+            fileDetails  = @"Macintosh Quadra 660av or 840av";
             romCondition = PerfectSheepOld;
             break;
         case 0x4D27039C:
-            fileDetails = @"PowerBook 190 or 190cs";
-            comments = @"2MB ROM image. =D";
+            fileDetails  = @"PowerBook 190 or 190cs";
+            comments     = @"2MB ROM image. =D";
             romCondition = FPURequired;
             break;
-            
-            
-            //------------------------------------------------
-            // 4MB
+        //------------------------------------------------
+        // 4MB
         case 0x9FEB69B3:
-            fileDetails = @"Power Mac 6100/7100/8100";
+            fileDetails  = @"Power Mac 6100/7100/8100";
             romCondition = PerfectSheepOld;
             break;
         case 0x9C7C98F7:
-            fileDetails = @"Workgroup Server 9150 80MHz";
+            fileDetails  = @"Workgroup Server 9150 80MHz";
             romCondition = PerfectSheepOld;
             break;
         case 0x9B7A3AAD:
-            fileDetails = @"Power Mac 7100 (newer)";
+            fileDetails  = @"Power Mac 7100 (newer)";
             romCondition = PerfectSheepOld;
             break;
         case 0x63ABFD3F:
-            fileDetails = @"Power Mac & Performa 5200/5300/6200/6300";
+            fileDetails  = @"Power Mac & Performa 5200/5300/6200/6300";
             romCondition = PerfectSheepOld;
             break;
         case 0x9B037F6F:
-            fileDetails = @"Workgroup Server 9150 120MHz";
+            fileDetails  = @"Workgroup Server 9150 120MHz";
             romCondition = PerfectSheepOld;
             break;
         case 0x83C54F75:
-            fileDetails = @"PowerBook 2300 & PB5x0 PPC Upgrade";
+            fileDetails  = @"PowerBook 2300 & PB5x0 PPC Upgrade";
             romCondition = PerfectSheepOld;
             break;
         case 0x9630C68B:
-            fileDetails = @"Power Mac 7200/7500/8500/9500 v2";
+            fileDetails  = @"Power Mac 7200/7500/8500/9500 v2";
             romCondition = PerfectSheepOld;
             break;
         case 0x96CD923D:
-            fileDetails = @"Power Mac 7200/7500/8500/9500 v1"; //Probably PPC Quadra
-            comments = @"Runs on Sheepshaver";
+            fileDetails  = @"Power Mac 7200/7500/8500/9500 v1";
+            comments     = @"Runs on Sheepshaver";
             romCondition = PerfectSheepOld;
             break;
         case 0x6F5724C0:
-            fileDetails = @"PowerM ac/Performa 6400";
+            fileDetails  = @"PowerM ac/Performa 6400";
             romCondition = PerfectSheepOld;
             break;
         case 0x83A21950:
@@ -495,234 +486,64 @@
             romCondition = PerfectSheepOld;
             break;
         case 0x6E92FE08:
-            fileDetails = @"Power Mac 6500";
+            fileDetails  = @"Power Mac 6500";
             romCondition = PerfectSheepOld;
             break;
         case 0x960E4BE9:
-            fileDetails = @"Power Mac 7300/7600/8600/9600 (v1)";
+            fileDetails  = @"Power Mac 7300/7600/8600/9600 (v1)";
             romCondition = PerfectSheepOld;
             break;
         case 0x960FC647:
-            fileDetails = @"Power Mac 8600 or 9600 (v2)";
+            fileDetails  = @"Power Mac 8600 or 9600 (v2)";
             romCondition = PerfectSheepOld;
             break;
         case 0x78F57389:
-            fileDetails = @"Power Mac G3 (v3)";
+            fileDetails  = @"Power Mac G3 (v3)";
             romCondition = PerfectSheepOld;
             break;
         case 0x79D68D63:
-            fileDetails = @"Power Mac G3 desktop";
+            fileDetails  = @"Power Mac G3 desktop";
             romCondition = PerfectSheepOld;
             break;
         case 0xCBB01212:
-            fileDetails = @"PowerBook G3 Wallstreet";
+            fileDetails  = @"PowerBook G3 Wallstreet";
             romCondition = PerfectSheepOld;
             break;
         case 0xB46FFB63:
-            fileDetails = @"PowerBook G3 Wallstreet PDQ";
+            fileDetails  = @"PowerBook G3 Wallstreet PDQ";
             romCondition = PerfectSheepOld;
             break;
-            
-            
-            
+        //------------------------------------------------
+        // 4MB New World ROM
         case 0x3C434852:
             fileDetails = @"The famous New World ROM from Apple's update";
             comments = @"Runs on Sheepshaver";
             romCondition = PerfectSheepNew;
             break;
-            
-        default:            
-            
+        //------------------------------------------------
+        // Unknown
+        default:
             fileDetails = @"Unknown ROM";
             switch([size intValue]) {
-                case 1048576:
+                case 65536: //64KB
+                case 131072: //128KB
+                case 262144: //256KB
                     break;
-                case 524288:
-                    fileDetails = @"AppleTalk is not supported.";
+                case 524288: //512KB
+                    romCondition = NoAppleTalk;
                     break;
-                case 262144:
-                    break;
-                    
-                    //                case 2097172:
-                    //                    
-                    //                    if (sheepshaverEnabled) {
-                    //                        fileDetails  = @"Power Mac (Old World ROM)";
-                    //                        romCondition = PerfectSheepOld;
-                    //                    }else{
-                    //                        fileDetails = @"Unsupported ROM size";
-                    //                        comments = [NSString stringWithFormat: @"%d", [size intValue]];
-                    //                    }
-                    //                    
-                    //                    break;                   
-                    
+                case 1048576: //1MB
+                case 2097152: //2MB
+                case 3145728: //3MB
+                case 4194304: //4MB
                 default:
-                    fileDetails = @"Unsupported ROM size.";
-                    comments = [NSString stringWithFormat: @"%d", [size intValue]];
+                    fileDetails  = @"Unsupported ROM size.";
+                    comments     = [NSString stringWithFormat: @"%d", [size intValue]];
+                    romCondition = Unsupported;
                     break;
             }
-            break;  
-            
-            
-//        case 0x368CADFE:
-//            fileDetails  = @"Mac IIci";
-//            comments     = @"FPU must be enabled.\nAppleTalk is not supported.";
-//            romCondition = NoAppleTalkFPURequired;
-//            break;
-//
-//        case 0x36B7FB6C:
-//            fileDetails  = @"Mac IIsi"; //test
-//            comments     = @"AppleTalk is not supported.";
-//            romCondition = NoAppleTalk;
-//            break;
-//
-//        case 0x4147DD77:
-//            fileDetails  = @"Mac IIfx"; //test
-//            comments     = @"FPU must be enabled.\nAppleTalk is not supported.";
-//            romCondition = NoAppleTalkFPURequired;
-//            break;
-//
-//        case 0x35C28C8F:
-//            fileDetails  = @"Mac IIx"; //test
-//            comments     = @"AppleTalk may not be supported.";
-//            romCondition = NoAppleTalk;
-//            break;
-//
-//        case 0x4957EB49:
-//            fileDetails  = @"Mac IIvi";
-//            comments     = @"AppleTalk may not be supported.";
-//            romCondition = NoAppleTalk;
-//            break;
-//
-//        case 0x350EACF0:
-//            fileDetails  = @"Mac LC";
-//            comments     = @"AppleTalk is not supported.";
-//            romCondition = NoAppleTalk;
-//            break;
-//
-//        case 0x35C28F5F:
-//            fileDetails  = @"Mac LC II";
-//            comments     = @"AppleTalk is not supported.";
-//            romCondition = NoAppleTalk;
-//            break;
-//
-//        case 0x3193670E:
-//            fileDetails  = @"Mac Classic II"; //test
-//            comments     = @"May require the FPU.\nAppleTalk may not be supported.";
-//            romCondition = NoAppleTalkFPURequired;
-//            break;
-//            
-//        // 1024 KB
-//        case 0x49579803:
-//            fileDetails  = @"Mac IIvx";
-//            romCondition = PerfectBasilisk;
-//            break;
-//
-//        case 0xECBBC41C:
-//            fileDetails  = @"Mac LC III";
-//            romCondition = PerfectBasilisk;
-//            break;
-//
-//        case 0xECD99DC0:
-//            fileDetails  = @"Mac Color Classic";
-//            romCondition = PerfectBasilisk;
-//            break;
-//
-//        case 0xFF7439EE:
-//            fileDetails  = @"Quadra 605 or LC/Performa 475/575"; //test
-//            romCondition = PerfectBasilisk;
-//            break;
-//
-//        case 0xF1A6F343:
-//            fileDetails  = @"Quadra/Centris 610/650/800";
-//            romCondition = PerfectBasilisk;
-//            break;
-//
-//        case 0xF1ACAD13:	// Mac Quadra 650
-//            fileDetails  = @"Quadra 650";
-//            romCondition = PerfectBasilisk;
-//            break;
-//
-//        case 0x420DBFF3:
-//            fileDetails  = @"Quadra 700/900";
-//            comments     = @"AppleTalk is not supported.\nThis is the worst known 1MB ROM.";
-//            romCondition = NoAppleTalk;
-//            break;
-//
-//        case 0x3DC27823:
-//            fileDetails  = @"Mac Quadra 950";
-//            comments     = @"AppleTalk is not supported.";
-//            romCondition = NoAppleTalk;
-//            break;
-//
-//        case 0xE33B2724:
-//            fileDetails  = @"Powerbook 165c"; //test
-//            romCondition = PerfectBasilisk;
-//            break;
-//
-//        case 0x06684214:
-//            fileDetails  = @"LC/Quadra/Performa 630";
-//            romCondition = PerfectBasilisk;
-//            break;
-//
-//        case 0x064DC91D:
-//            fileDetails  = @"Performa 580/588"; //test
-//            comments     = @"AppleTalk is reported to work.";
-//            romCondition = PerfectBasilisk;
-//            break;
-//
-//        case 0xEDE66CBD:
-//            fileDetails  = @"Performa 450-550"; //maybe
-//            romCondition = PerfectBasilisk;
-//            break;
-//            
-//        default:
-//            
-//            fileDetails  = @"Unknown ROM";
-//            romCondition = Unsupported;
-//            
-//            switch([size intValue]) {
-//                case 16404:
-//                    fileDetails = @"Unsupported ROM size";
-//                    comments = @"Is this an Apple ][ ROM??";
-//                    break;
-//
-//                case 972893:
-//                    
-//                    if (sheepshaverEnabled) {
-//                        fileDetails  = @"Power Mac (New World ROM)";
-//                        romCondition = PerfectSheepNew;
-//                    }else{
-//                        fileDetails = @"Unsupported ROM size";
-//                        comments = [NSString stringWithFormat: @"%d", [size intValue]];
-//                    }
-//                    
-//                    break;
-//                case 1048576:
-//                    break;
-//                case 524288:
-//                    fileDetails  = @"AppleTalk is not supported.";
-//                    romCondition = NoAppleTalk;
-//                    break;
-//                case 262144:
-//                    break;
-//                    
-//                case 2097172:
-//                    
-//                    if (sheepshaverEnabled) {
-//                        fileDetails  = @"Power Mac (Old World ROM)";
-//                        romCondition = PerfectSheepOld;
-//                    }else{
-//                        fileDetails = @"Unsupported ROM size";
-//                        comments = [NSString stringWithFormat: @"%d", [size intValue]];
-//                    }
-//                    
-//                    break;
-//                default:
-//                    fileDetails = @"Unsupported ROM size";
-//                    comments = [NSString stringWithFormat: @"%d", [size intValue]];
-//                    break;
-//            }
-//            break;
+            break;
+
     }
     
     if (comments == nil) {

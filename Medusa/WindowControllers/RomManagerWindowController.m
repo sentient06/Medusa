@@ -1,3 +1,5 @@
+//Legacy file. Delete!
+
 //
 //  RomManagerWindowController.m
 //  Medusa

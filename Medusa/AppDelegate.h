@@ -31,8 +31,8 @@
 //------------------------------------------------------------------------------
 
 #import <Cocoa/Cocoa.h>
-@class RomManagerWindowController;      //Rom Manager Window
-@class DriveManagerWindowController;    //Drive Manager Window
+//@class RomManagerWindowController;      //Rom Manager Window
+//@class DriveManagerWindowController;    //Drive Manager Window
 @class AssetsWindowController;          //Assets Window
 @class PreferencesWindowController;     //Preferences Window
 @class SplashWindowController;
@@ -83,8 +83,8 @@
     //Text field in the new machine sheet.
     
     //Window Controllers:
-    RomManagerWindowController      * romWindowController;
-    DriveManagerWindowController    * driveWindowController;
+//    RomManagerWindowController      * romWindowController;
+//    DriveManagerWindowController    * driveWindowController;
     AssetsWindowController          * assetsWindowController;
     PreferencesWindowController     * preferencesWindowController;
     SplashWindowController          * splashWindowController;
@@ -121,10 +121,10 @@
 - (IBAction)openVirtualMachineWindow:(id)sender;
 //Opens the iTunes-like window to control the machine's properties.
 
-- (IBAction)showRomManagerWindow:(id)sender;
+//- (IBAction)showRomManagerWindow:(id)sender;
 //Action to show the ROM Manager Window.
 
-- (IBAction)showDriveManagerWindow:(id)sender;
+//- (IBAction)showDriveManagerWindow:(id)sender;
 //Action to show the Drive Manager Window.
 
 - (IBAction)showAssetsWindow:(id)sender;

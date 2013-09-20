@@ -384,48 +384,48 @@
 
 #pragma mark – Windows triggers
 
-// Rom Manager / Assets:
-
-/*!
- * @method      showRomManagerWindow:
- * @abstract    Displays the Rom Manager.
- */
-- (IBAction)showRomManagerWindow:(id)sender {
-    
-    BOOL useAssetsManager = [[NSUserDefaults standardUserDefaults] boolForKey:@"useAssetsManager"];
-    
-    if (useAssetsManager == YES) {
-    
-        [self showAssetsWindow:sender]; 
-        
-    }else{
-        
-        if (!romWindowController) {
-            romWindowController = [
-                [RomManagerWindowController alloc]
-                    initWithWindowNibName:@"RomManagerWindow"
-            ];
-        }
-        [romWindowController showWindow:self];  
-        
-    }
-    
-}
-
-// Disks:
-
-/*!
- * @method      showDriveManagerWindow:
- * @abstract    Displays the Drive Manager.
- */
-- (IBAction)showDriveManagerWindow:(id)sender {
-    
-    if (!driveWindowController) {
-        driveWindowController = [[DriveManagerWindowController alloc] initWithWindowNibName:@"DriveManagerWindow"];
-    }
-    [driveWindowController showWindow:self];  
-    
-}
+//// Rom Manager / Assets:
+//
+///*!
+// * @method      showRomManagerWindow:
+// * @abstract    Displays the Rom Manager.
+// */
+//- (IBAction)showRomManagerWindow:(id)sender {
+//    
+//    BOOL useAssetsManager = [[NSUserDefaults standardUserDefaults] boolForKey:@"useAssetsManager"];
+//    
+//    if (useAssetsManager == YES) {
+//    
+//        [self showAssetsWindow:sender]; 
+//        
+//    }else{
+//        
+//        if (!romWindowController) {
+//            romWindowController = [
+//                [RomManagerWindowController alloc]
+//                    initWithWindowNibName:@"RomManagerWindow"
+//            ];
+//        }
+//        [romWindowController showWindow:self];  
+//        
+//    }
+//    
+//}
+//
+//// Disks:
+//
+///*!
+// * @method      showDriveManagerWindow:
+// * @abstract    Displays the Drive Manager.
+// */
+//- (IBAction)showDriveManagerWindow:(id)sender {
+//    
+//    if (!driveWindowController) {
+//        driveWindowController = [[DriveManagerWindowController alloc] initWithWindowNibName:@"DriveManagerWindow"];
+//    }
+//    [driveWindowController showWindow:self];  
+//    
+//}
 
 // Assets:
 
