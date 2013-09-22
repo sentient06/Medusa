@@ -1,9 +1,9 @@
 //
-//  AssetsWindowController.h
+//  DriveModel.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 30/06/2012.
-//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 22/09/2013.
+//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,39 +30,16 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
-@interface AssetsWindowController : NSWindowController {
-    
-    //Standard variables
-    NSManagedObjectContext  * managedObjectContext;    
-    NSMutableArray          * menuObjectsArray;
-    
-    //Interface objects
-    IBOutlet NSToolbar         * assetsToolbar;
-//    IBOutlet NSTableView    * detailsTree;
-    IBOutlet NSView            * placeholderView;
-    IBOutlet NSView            * subViewDropFiles;
-    IBOutlet NSView            * subViewRomFiles;
-    IBOutlet NSView            * subViewDisks;
-    IBOutlet NSArrayController * RomFilesArrayController;
-}
+@class DrivesModel; // Plural. This is the coredata class.
 
-//------------------------------------------------------------------------------
-// Manual getters
-- (NSManagedObjectContext *)managedObjectContext;
+@interface DriveModel : NSObject
 
-// Manual setters
-- (void)setManagedObjectContext:(NSManagedObjectContext *)value;
+@property (readonly, strong, nonatomic) DrivesModel * currentDriveObject;
 
-// Init methods
-- (id)initWithManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext;
-
-//------------------------------------------------------------------------------
-//- (IBAction)traceTableViewClick:(id)sender;
-
-- (IBAction)displayDropFilesView:(id)sender;
-- (IBAction)displayRomFilesView:(id)sender;
-- (IBAction)displayDisksView:(id)sender;
+- (id)parseSingleDriveFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
+- (void)parseDriveFileAndSave:(NSString *)filePath;
+- (void)parseDriveFilesAndSave:(NSArray *)filesList;
 
 @end

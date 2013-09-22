@@ -21,7 +21,7 @@
         <attribute name="macPPCOld" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="modelName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="romCondition" attributeType="Integer 16" maxValueString="8" defaultValueString="8" syncable="YES"/>
-        <attribute name="romSize" attributeType="Integer 16" minValueString="0" maxValueString="8" defaultValueString="0" indexed="YES" syncable="YES"/>
+        <attribute name="romSize" attributeType="Integer 16" maxValueString="8" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="machines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
     <entity name="VirtualMachines" representedClassName="VirtualMachinesModel" syncable="YES">

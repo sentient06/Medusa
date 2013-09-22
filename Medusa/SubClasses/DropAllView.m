@@ -82,32 +82,38 @@
     filesParsed++;
     NSString * kind = nil;
     NSURL * url = [NSURL fileURLWithPath:[currentFile stringByExpandingTildeInPath]];
+    RomModel * RomObject = [[RomModel alloc] init];
     LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
     NSLog(@"Kind: %@, url: %@", kind, [url relativePath]); //[url absoluteString] );
     
     NSArray * acceptedExtensions = [[NSArray alloc] initWithObjects: @"hfv", @"dsk", @"dmg", @"img", @"image", @"iso", nil];
     
     if ([acceptedExtensions containsObject:[[url pathExtension] lowercaseString]]) {
-        NSLog(@"accepted image");
+
     } else {
     
         if ([kind isEqualToString:@"Unix Executable File"] || [kind isEqualToString:@"Document"] ){
-            RomModel * RomObject = [[RomModel alloc] autorelease];
-            [RomObject parseSingleRomFileAndSave:[url relativePath] inObjectContext:[[NSApp delegate] managedObjectContext]];
+            [RomObject parseRomFileAndSave:[url relativePath]];
         }
     }
+    
+    [RomObject release];
     
     
 }
 
 - (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
-    
     directoriesParsed = 0;
     filesParsed       = 0;
     romsParsed        = 0;
     disksParsed       = 0;
     filesRejected     = 0;
     depthReached      = 0;
+    return YES;
+}
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    
     
     // Get all pasteboard:
     NSArray * droppedFileUrls = [
@@ -132,51 +138,49 @@
     }
     
     NSLog(@"directories: %d, filesParsed: %d", directoriesParsed, filesParsed);
-    
-    return YES;
-}
 
-- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     
-    NSLog(@"Drop all");
     
-//    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
     
-    NSPasteboard * pboard = [sender draggingPasteboard];
-    NSArray      * urls   = [pboard propertyListForType:NSFilenamesPboardType];    
-
-    for (int i = 0; i < [urls count]; i++) {
-        
-//        NSString * pathExtension = [[urls objectAtIndex:i] pathExtension];        
-        
-//        if (
-//            [[pathExtension lowercaseString]    isEqualTo:@"hfv"]   ||
-//            [[pathExtension lowercaseString]    isEqualTo:@"dsk"]   ||
-//            [[pathExtension lowercaseString]    isEqualTo:@"dmg"]   ||
-//            [[pathExtension lowercaseString]    isEqualTo:@"img"]   ||
-//            [[pathExtension lowercaseString]    isEqualTo:@"image"] ||
-//            [[pathExtension lowercaseString]    isEqualTo:@""]
-//            ) {
-//            
-//            DrivesModel *drivesModel = [
-//                                        NSEntityDescription
-//                                        insertNewObjectForEntityForName:@"Drives"
-//                                        inManagedObjectContext:managedObjectContext
-//                                        ];
-//            //insertNewObjectInManagedObjectContext
-//            [drivesModel setFilePath:[urls objectAtIndex:i]];
-//            [drivesModel setFileName:[[urls objectAtIndex:i] lastPathComponent]];
-//            
-//            NSLog(@"Saving...");
-//            NSError *error;
-//            if (![managedObjectContext save:&error]) {
-//                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-//                NSLog(@"Check 'drop disk view' subclass.");
-//            }
-//            
-//        }
-        
-    }
+//    NSLog(@"Drop all");
+//    
+////    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
+//    
+//    NSPasteboard * pboard = [sender draggingPasteboard];
+//    NSArray      * urls   = [pboard propertyListForType:NSFilenamesPboardType];    
+//
+//    for (int i = 0; i < [urls count]; i++) {
+//        
+////        NSString * pathExtension = [[urls objectAtIndex:i] pathExtension];        
+//        
+////        if (
+////            [[pathExtension lowercaseString]    isEqualTo:@"hfv"]   ||
+////            [[pathExtension lowercaseString]    isEqualTo:@"dsk"]   ||
+////            [[pathExtension lowercaseString]    isEqualTo:@"dmg"]   ||
+////            [[pathExtension lowercaseString]    isEqualTo:@"img"]   ||
+////            [[pathExtension lowercaseString]    isEqualTo:@"image"] ||
+////            [[pathExtension lowercaseString]    isEqualTo:@""]
+////            ) {
+////            
+////            DrivesModel *drivesModel = [
+////                                        NSEntityDescription
+////                                        insertNewObjectForEntityForName:@"Drives"
+////                                        inManagedObjectContext:managedObjectContext
+////                                        ];
+////            //insertNewObjectInManagedObjectContext
+////            [drivesModel setFilePath:[urls objectAtIndex:i]];
+////            [drivesModel setFileName:[[urls objectAtIndex:i] lastPathComponent]];
+////            
+////            NSLog(@"Saving...");
+////            NSError *error;
+////            if (![managedObjectContext save:&error]) {
+////                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+////                NSLog(@"Check 'drop disk view' subclass.");
+////            }
+////            
+////        }
+//        
+//    }
     
     return YES;
     

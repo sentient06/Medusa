@@ -180,20 +180,23 @@
 }
 
 /*!
+ * @method      parseRomFileAndSave:
+ * @abstract    Reads a single file and inserts into the data model.
+ */
+- (void)parseRomFileAndSave:(NSString *)filePath {    
+    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
+    [self parseSingleRomFileAndSave:filePath inObjectContext:managedObjectContext];
+}
+
+/*!
  * @method      parseRomFilesAndSave:
  * @abstract    Reads a list of files and inserts into the data model.
  */
 - (void)parseRomFilesAndSave:(NSArray *)filesList {
-    
-    //Must abstract all of this in a new class. -> Use CoreDataModel object.
-    
-    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
-    
     for (int i = 0; i < [filesList count]; i++) {
-        [self parseSingleRomFileAndSave:[filesList objectAtIndex:i] inObjectContext:managedObjectContext];
+        [self parseRomFileAndSave:[filesList objectAtIndex:i]];
         // bool checking?
     }
-
 }
 
 /*!
@@ -206,7 +209,7 @@
  */
 - (void)readRomFileFrom:(NSString *)filePath {
     
-    BOOL sheepshaverEnabled = YES; //[[NSUserDefaults standardUserDefaults] boolForKey:@"sheepshaverEnabled"];
+//    BOOL sheepshaverEnabled = YES; //[[NSUserDefaults standardUserDefaults] boolForKey:@"sheepshaverEnabled"];
     
     NSString * romPath = [[NSString alloc] initWithFormat:filePath];
     

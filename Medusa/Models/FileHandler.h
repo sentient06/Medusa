@@ -36,12 +36,12 @@
 
 @interface FileHandler : NSObject {
 @private
-    NSString *fileDetails;
-    NSString *comments;
+    NSString * fileDetails;
+    NSString * comments;
 }
 
 @property (copy) NSString *fileDetails, *comments;
 
-- (void) readRomFileFrom:(NSString*)filePath;
+//- (void) readRomFileFrom:(NSString*)filePath;
 
 @end

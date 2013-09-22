@@ -160,7 +160,7 @@
 					<string key="NSFrameSize">{640, 360}</string>
 					<reference key="NSNextKeyView" ref="660445736"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1440, 878}}</string>
 				<string key="NSMinSize">{640, 438}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 			</object>
@@ -173,6 +173,8 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{195, 55}, {250, 250}}</string>
 						<reference key="NSSuperview" ref="714412812"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="902463844">
 							<int key="NSCellFlags">67239424</int>
@@ -219,6 +221,7 @@
 						</set>
 						<string key="NSFrame">{{17, 17}, {606, 326}}</string>
 						<reference key="NSSuperview" ref="714412812"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="789145419"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSImageCell" key="NSCell" id="607631010">
@@ -234,6 +237,7 @@
 				</array>
 				<string key="NSFrameSize">{640, 360}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="904720196"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -244,16 +248,16 @@
 					<object class="NSTextField" id="46853430">
 						<reference key="NSNextResponder" ref="86188263"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{238, 206}, {382, 17}}</string>
+						<string key="NSFrame">{{238, 232}, {382, 17}}</string>
 						<reference key="NSSuperview" ref="86188263"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="908103006"/>
+						<reference key="NSNextKeyView" ref="760051304"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="686253112">
-							<int key="NSCellFlags">76676672</int>
+							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">4195328</int>
-							<string key="NSContents">Label</string>
+							<string key="NSContents">Type</string>
 							<object class="NSFont" key="NSSupport" id="626154949">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">13</double>
@@ -375,13 +379,13 @@
 						<string key="NSFrame">{{238, 258}, {382, 17}}</string>
 						<reference key="NSSuperview" ref="86188263"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="760051304"/>
+						<reference key="NSNextKeyView" ref="46853430"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="985082925">
-							<int key="NSCellFlags">76676672</int>
+							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">4195328</int>
-							<string key="NSContents">Label</string>
+							<string key="NSContents">Emulator</string>
 							<reference key="NSSupport" ref="626154949"/>
 							<reference key="NSControlView" ref="86273898"/>
 							<reference key="NSBackgroundColor" ref="100396751"/>
@@ -398,9 +402,9 @@
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="971924317">
-							<int key="NSCellFlags">75628032</int>
+							<int key="NSCellFlags">67239424</int>
 							<int key="NSCellFlags2">272629760</int>
-							<string key="NSContents">Multiline Label</string>
+							<string key="NSContents">Comments</string>
 							<object class="NSFont" key="NSSupport" id="722009248">
 								<string key="NSName">LucidaGrande</string>
 								<double key="NSSize">11</double>
@@ -464,16 +468,16 @@
 					<object class="NSTextField" id="760051304">
 						<reference key="NSNextResponder" ref="86188263"/>
 						<int key="NSvFlags">289</int>
-						<string key="NSFrame">{{238, 231}, {382, 17}}</string>
+						<string key="NSFrame">{{238, 171}, {382, 51}}</string>
 						<reference key="NSSuperview" ref="86188263"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="46853430"/>
+						<reference key="NSNextKeyView" ref="908103006"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="904600956">
-							<int key="NSCellFlags">613547584</int>
-							<int key="NSCellFlags2">4195328</int>
-							<string key="NSContents"/>
+							<int key="NSCellFlags">604110336</int>
+							<int key="NSCellFlags2">4194304</int>
+							<string key="NSContents">Path</string>
 							<reference key="NSSupport" ref="722009248"/>
 							<reference key="NSControlView" ref="760051304"/>
 							<reference key="NSBackgroundColor" ref="100396751"/>
@@ -486,6 +490,7 @@
 						<string key="NSFrame">{{20, 20}, {24, 24}}</string>
 						<reference key="NSSuperview" ref="86188263"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<int key="NSViewLayerContentsRedrawPolicy">2</int>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="34342818">
@@ -1019,6 +1024,14 @@
 					<int key="connectionID">139</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">RomFilesArrayController</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1039513331"/>
+					</object>
+					<int key="connectionID">181</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: arrangedObjects.modelName</string>
 						<reference key="source" ref="1040678824"/>
@@ -1372,8 +1385,8 @@
 							<reference ref="548320473"/>
 							<reference ref="122574335"/>
 							<reference ref="86273898"/>
-							<reference ref="760051304"/>
 							<reference ref="46853430"/>
+							<reference ref="760051304"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Rom SubView</string>
@@ -1866,7 +1879,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">180</int>
+			<int key="maxID">181</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1877,7 +1890,6 @@
 						<string key="displayDisksView:">id</string>
 						<string key="displayDropFilesView:">id</string>
 						<string key="displayRomFilesView:">id</string>
-						<string key="traceTableViewClick:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="displayDisksView:">
@@ -1892,27 +1904,23 @@
 							<string key="name">displayRomFilesView:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="traceTableViewClick:">
-							<string key="name">traceTableViewClick:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="RomFilesArrayController">NSArrayController</string>
 						<string key="assetsToolbar">NSToolbar</string>
-						<string key="detailsTree">NSTableView</string>
 						<string key="placeholderView">NSView</string>
 						<string key="subViewDisks">NSView</string>
 						<string key="subViewDropFiles">NSView</string>
 						<string key="subViewRomFiles">NSView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="RomFilesArrayController">
+							<string key="name">RomFilesArrayController</string>
+							<string key="candidateClassName">NSArrayController</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="assetsToolbar">
 							<string key="name">assetsToolbar</string>
 							<string key="candidateClassName">NSToolbar</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="detailsTree">
-							<string key="name">detailsTree</string>
-							<string key="candidateClassName">NSTableView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="placeholderView">
 							<string key="name">placeholderView</string>

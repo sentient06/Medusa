@@ -136,28 +136,28 @@
 
 }
 
-/*!
- * @method      traceTableViewClick:
- * @abstract    Changes the right pane according to the selected item in the
- *              left pane menu.
- * @discussion  Just checks the row and shows content accordinly.
- */
-- (IBAction)traceTableViewClick:(id)sender {
-    
-    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
-    
-    switch ([detailsTree selectedRow]) {
-        default:
-        case 0:
-            [placeholderView addSubview: subViewRomFiles];
-            break;
-            
-        case 1:
-            [placeholderView addSubview: subViewDisks];
-            break;
-    }
-    
-}
+///*!
+// * @method      traceTableViewClick:
+// * @abstract    Changes the right pane according to the selected item in the
+// *              left pane menu.
+// * @discussion  Just checks the row and shows content accordinly.
+// */
+//- (IBAction)traceTableViewClick:(id)sender {
+//    
+//    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+//    
+//    switch ([detailsTree selectedRow]) {
+//        default:
+//        case 0:
+//            [placeholderView addSubview: subViewRomFiles];
+//            break;
+//            
+//        case 1:
+//            [placeholderView addSubview: subViewDisks];
+//            break;
+//    }
+//    
+//}
 
 - (IBAction)displayDropFilesView:(id)sender {
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
@@ -165,6 +165,7 @@
 }
 
 - (IBAction)displayRomFilesView:(id)sender {
+    [RomFilesArrayController rearrangeObjects];
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
     [placeholderView addSubview: subViewRomFiles];
 }
@@ -189,6 +190,10 @@
     
     //----------------------------------------------------------
     //Interface view
+    
+    NSSortDescriptor * romSorting = [[[NSSortDescriptor alloc]
+                                      initWithKey:@"modelName" ascending:YES] autorelease];
+    [RomFilesArrayController setSortDescriptors:[NSArray arrayWithObject: romSorting]];
     
     [placeholderView addSubview: subViewDropFiles];
     [assetsToolbar setSelectedItemIdentifier:@"dropFilesButton"];

@@ -1,8 +1,8 @@
 //
-//  RomModel.h
-//  ROMan / Medusa
+//  DriveModel.m
+//  Medusa
 //
-//  Created by Giancarlo Mariot on 03/09/2013.
+//  Created by Giancarlo Mariot on 22/09/2013.
 //  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,46 +30,53 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Foundation/Foundation.h>
+#import "DriveModel.h"
+#import "DrivesModel.h"
 
-enum RomConditions {
-    PerfectSheepNew        = 1,
-    PerfectSheepOld        = 2,
-    PerfectBasilisk        = 3,
-    NoAppleTalk            = 4,
-    FPURequired            = 5,
-    NoAppleTalkFPURequired = 6,
-    PerfectVMac            = 7,
-    Unsupported            = 8
-};
+@implementation DriveModel
 
-enum RomSizes {
-    romNull  = 0,
-    rom64KB  = 1,
-    rom128KB = 2,
-    rom256KB = 3,
-    rom512KB = 4,
-    rom1MB   = 5,
-    rom2MB   = 6,
-    rom3MB   = 7,
-    rom4MB   = 8
-};
+@synthesize currentDriveObject;
 
-@class RomFilesModel;
-
-@interface RomModel : NSObject {
-//@private
-    NSString * fileDetails;
-    NSString * comments;
-    int romCondition;
-    int romSize;
+/*!
+ * @method      parseSingleDriveFileAndSave:inObjectContext:
+ * @abstract    Reads a single file and inserts into the data model.
+ */
+- (id)parseSingleDriveFileAndSave:(NSString *)filePath
+                inObjectContext:(NSManagedObjectContext *)currentContext {
+    // Here we add the new Drive's attributes.
+    
+//    Mount Point :	/ (maybe not)
+//    Capacity :    2 GB (xxx,xxx Bytes)
+// 	  Format :      Mac OS Extended (Journaled)
+//    Available :   1 GB (xxx,xxx Bytes)
+//    Owners Enabled : Yes (maybe not)
+//    Used :        1 GB (xxx,xxx Bytes)
+//    Number of Folders : 2,843
+//    Number of Files :   1,586
+    // Locked?
+    // OS?
+    
+    
+    return nil;
 }
 
-@property (readonly, strong, nonatomic) RomFilesModel * currentRomObject;
+/*!
+ * @method      parseDriveFileAndSave:
+ * @abstract    Reads a single file and inserts into the data model.
+ */
+- (void)parseDriveFileAndSave:(NSString *)filePath {    
+    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
+    [self parseSingleDriveFileAndSave:filePath inObjectContext:managedObjectContext];
+}
 
-- (id)parseSingleRomFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
-- (void)parseRomFileAndSave:(NSString *)filePath; 
-- (void)parseRomFilesAndSave:(NSArray *)filesList;
-- (void)readRomFileFrom:(NSString *)filePath; //Got from FileHandler
+/*!
+ * @method      parseRomFilesAndSave:
+ * @abstract    Reads a list of files and inserts into the data model.
+ */
+- (void)parseDriveFilesAndSave:(NSArray *)filesList {
+    for (int i = 0; i < [filesList count]; i++) {
+        [self parseDriveFileAndSave:[filesList objectAtIndex:i]];
+    }
+}
 
 @end
