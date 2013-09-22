@@ -33,6 +33,16 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+enum driveFormat {
+    formatLisaFS  = 1,
+    formatMFS     = 2,
+    formatHFS     = 3,
+    formatHFSPlus = 4,
+    formatISO9660 = 5,
+    formatFAT     = 6,
+    formatOther   = 7
+};
+
 @class RelationshipVirtualMachinesDrivesModel;
 
 @interface DrivesModel : NSManagedObject
@@ -41,6 +51,8 @@
 @property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSSet    * virtualMachines;
+@property (nonatomic, retain) NSNumber * format;
+@property (nonatomic, retain) NSNumber * capacity;
 @end
 
 @interface DrivesModel (CoreDataGeneratedAccessors)

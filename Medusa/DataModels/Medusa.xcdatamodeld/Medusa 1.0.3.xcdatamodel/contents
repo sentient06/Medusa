@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="1.0.2.3" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Drives" representedClassName="DrivesModel" syncable="YES">
+        <attribute name="capacity" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="type" optional="YES" attributeType="String" defaultValueString="disk" syncable="YES"/>
+        <attribute name="format" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="virtualMachines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDrives" inverseName="drive" inverseEntity="RelationshipVirtualMachinesDrives" syncable="YES"/>
     </entity>
     <entity name="RelationshipVirtualMachinesDrives" representedClassName="RelationshipVirtualMachinesDrivesModel" syncable="YES">
@@ -45,7 +46,7 @@
         <relationship name="romFile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="modelToRomFile" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Drives" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="Drives" positionX="160" positionY="192" width="128" height="120"/>
         <element name="RelationshipVirtualMachinesDrives" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>
         <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="315"/>

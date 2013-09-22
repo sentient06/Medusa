@@ -39,6 +39,8 @@
 @dynamic filePath;
 @dynamic type;
 @dynamic virtualMachines;
+@dynamic format;
+@dynamic capacity;
 
 //+ (NSEntityDescription*) insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)value {
 //    
