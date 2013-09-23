@@ -1232,9 +1232,9 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<reference key="NSControlView" ref="1008916826"/>
 							<double key="NSMaxValue">2048</double>
 							<double key="NSMinValue">8</double>
-							<double key="NSValue">56.571428571428569</double>
+							<double key="NSValue">45.090909090909093</double>
 							<double key="NSAltIncValue">0.0</double>
-							<int key="NSNumberOfTickMarks">127</int>
+							<int key="NSNumberOfTickMarks">56</int>
 							<int key="NSTickMarkPosition">0</int>
 							<bool key="NSAllowsTickMarkValuesOnly">YES</bool>
 							<bool key="NSVertical">NO</bool>

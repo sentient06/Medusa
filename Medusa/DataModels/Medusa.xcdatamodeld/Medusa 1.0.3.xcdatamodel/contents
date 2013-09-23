@@ -34,7 +34,7 @@
         <attribute name="jitEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="lazyCacheEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="macModel" attributeType="Integer 16" defaultValueString="5" syncable="YES"/>
-        <attribute name="memory" attributeType="Integer 16" defaultValueString="8" syncable="YES"/>
+        <attribute name="memory" attributeType="Integer 16" minValueString="8" defaultValueString="32" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="processorType" attributeType="Integer 16" maxValueString="3" defaultValueString="3" syncable="YES"/>
         <attribute name="ready" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
