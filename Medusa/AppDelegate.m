@@ -31,9 +31,15 @@
 //------------------------------------------------------------------------------
 
 #import "AppDelegate.h"
+
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+//------------------------------------------------------------------------------
+// Windows
 #import "VirtualMachineWindowController.h"  //VM Window
-//#import "RomManagerWindowController.h"      //Rom Manager Window
-//#import "DriveManagerWindowController.h"    //Drive Manager Window
 #import "AssetsWindowController.h"          //Assets Window
 #import "PreferencesWindowController.h"     //Preferences Window
 #import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
@@ -46,6 +52,8 @@
 
 
 #import "EmulatorHandleController.h" //testing
+
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 //------------------------------------------------------------------------------
 
@@ -179,22 +187,19 @@
     [newVirtualMachineObject setName:[newMachineNameField stringValue]];
     [newVirtualMachineObject setUniqueName:[NSString stringWithFormat:@"vm%d", currentTime]];
 
-//    NSLog(@"%@", [romFilesController selectedObjects]);
-    //NSLog(@"%@", [newMachineModelField ])
-    
 //    [newVirtualMachineObject setMacModel:[NSNumber numberWithInteger:[newMachineModelRadio selectedTag]]];
     // Model must be 5 or 14 IIci 7-7.5 or Quadra 900 7.5-8.1
 //    [newVirtualMachineObject setRomFile:[[romFilesController selectedObjects] objectAtIndex:0]];
     
-    NSLog(@"%@", newVirtualMachineObject);
+    DDLogVerbose(@"%@", newVirtualMachineObject);
     //--------------------------------------------------------------------------
     // Save:
     
-    NSLog(@"Saving...");
-    NSError *error;
+    DDLogVerbose(@"Saving...");
+    NSError * error;
     if (![managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        NSLog(@"Check 'App Delegate' class.");
+        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//        DDLogVerbose(@"Check 'App Delegate' class.");
     }
     
     //--------------------------------------------------------------------------
@@ -277,7 +282,7 @@
     //Machine to clone:
     VirtualMachinesModel * machineToClone = [selectedVirtualMachines objectAtIndex:0];
     
-    NSLog(@"Cloning machine called '%@'", [machineToClone name]);
+    DDLogVerbose(@"Cloning machine called '%@'", [machineToClone name]);
     
     //Cloned machine:
     VirtualMachinesModel * clonedMachine = [machineToClone clone];
@@ -289,11 +294,11 @@
     //--------------------------------------------------------------------------
     //Saving new clone:
     
-    NSLog(@"Saving...");
+    DDLogVerbose(@"Saving...");
     NSError * error;
     if (![managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        NSLog(@"Check 'App Delegate' class, saveCloneVirtualMachine");
+        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        DDLogVerbose(@"Check 'App Delegate' class, saveCloneVirtualMachine");
     }
     
     //--------------------------------------------------------------------------
@@ -350,8 +355,8 @@
 
 //        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
        
-        NSLog(@"Prefs file ....: %@", preferencesFilePath);
-//        NSLog(@"Emulator path .: %@", emulatorPath);
+        DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
+//        DDLogVerbose(@"Emulator path .: %@", emulatorPath);
     
         [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
     
@@ -373,7 +378,7 @@
 //        [emulatorTask launch];
 //        [emulatorTask waitUntilExit];
 //
-//        NSLog(@"Emulator finished.");
+//        DDLogVerbose(@"Emulator finished.");
 //        
 //    });
     
@@ -455,13 +460,10 @@
  * @abstract    Displays the Preferences.
  */
 - (IBAction)showPreferencesWindow:(id)sender {
-    NSLog(@"Show preferences window: %@", sender);
+    DDLogVerbose(@"Show preferences window: %@", sender);
     
     if (!preferencesWindowController) {
-        NSLog(@"No controller");
         preferencesWindowController = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
-    }else{
-        NSLog(@"Controller ok");
     }
     [preferencesWindowController showWindow:self];  
     
@@ -528,8 +530,12 @@
  * @link Check XCode quick help.
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    [DDLog addLogger:[DDASLLogger sharedInstance]];
+    [DDLog addLogger:[DDTTYLogger sharedInstance]];
+    
     //Log all preferences:
-    //NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    //DDLogVerbose(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
     //Preferences management:
     BOOL haveSharePath = [[NSUserDefaults standardUserDefaults] boolForKey:@"haveSharePath"];
@@ -548,7 +554,7 @@
     
     if(![fileManager fileExistsAtPath:applicationSupportDirectoryPath isDirectory:&isDir])
         if(![fileManager createDirectoryAtPath:applicationSupportDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL])
-            NSLog(@"Error: Create application support dir failed.");
+            DDLogError(@"Error: Create application support dir failed.");
     
     
 }
@@ -605,7 +611,7 @@
     NSManagedObjectModel *mom = [self managedObjectModel];
     
     if (!mom) {
-        NSLog(
+        DDLogError(
               @"%@:%@ No model to generate a store from",
               [self class],
               NSStringFromSelector(_cmd)
@@ -658,7 +664,7 @@
     NSPersistentStoreCoordinator *coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
     
     NSSet *versionIdentifiers = [[self managedObjectModel] versionIdentifiers];
-    NSLog(@"Which Current Version is our .xcdatamodeld file set to? %@", versionIdentifiers);
+    DDLogInfo(@"Current Version of .xcdatamodeld file: %@", versionIdentifiers);
     
     /*
      This part handles the persistent store upgrade:
@@ -729,7 +735,7 @@
     NSError *error = nil;
     
     if (![[self managedObjectContext] commitEditing]) {
-        NSLog(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
+        DDLogError(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
     }
 
     if (![[self managedObjectContext] save:&error]) {
@@ -746,7 +752,7 @@
     }
 
     if (![[self managedObjectContext] commitEditing]) {
-        NSLog(@"%@:%@ unable to commit editing to terminate", [self class], NSStringFromSelector(_cmd));
+        DDLogError(@"%@:%@ unable to commit editing to terminate", [self class], NSStringFromSelector(_cmd));
         return NSTerminateCancel;
     }
 
@@ -754,7 +760,7 @@
         return NSTerminateNow;
     }
 
-    NSError *error = nil;
+    NSError * error = nil;
     if (![[self managedObjectContext] save:&error]) {
 
         // Customize this code block to include application-specific recovery steps.              
@@ -763,11 +769,11 @@
             return NSTerminateCancel;
         }
 
-        NSString *question = NSLocalizedString(@"Could not save changes while quitting. Quit anyway?", @"Quit without saves error question message");
-        NSString *info = NSLocalizedString(@"Quitting now will lose any changes you have made since the last successful save", @"Quit without saves error question info");
-        NSString *quitButton = NSLocalizedString(@"Quit anyway", @"Quit anyway button title");
-        NSString *cancelButton = NSLocalizedString(@"Cancel", @"Cancel button title");
-        NSAlert *alert = [[[NSAlert alloc] init] autorelease];
+        NSString * question = NSLocalizedString(@"Could not save changes while quitting. Quit anyway?", @"Quit without saves error question message");
+        NSString * info = NSLocalizedString(@"Quitting now will lose any changes you have made since the last successful save", @"Quit without saves error question info");
+        NSString * quitButton = NSLocalizedString(@"Quit anyway", @"Quit anyway button title");
+        NSString * cancelButton = NSLocalizedString(@"Cancel", @"Cancel button title");
+        NSAlert  * alert = [[[NSAlert alloc] init] autorelease];
         [alert setMessageText:question];
         [alert setInformativeText:info];
         [alert addButtonWithTitle:quitButton];

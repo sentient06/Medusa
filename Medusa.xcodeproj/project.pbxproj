@@ -67,6 +67,10 @@
 		81A54CCB17F091CF00B1EFD0 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A54CC917F091C600B1EFD0 /* SystemConfiguration.framework */; };
 		81A54CCE17F091E500B1EFD0 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A54CCC17F091DB00B1EFD0 /* CoreServices.framework */; };
 		81A54CD117F091FA00B1EFD0 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A54CCF17F091EF00B1EFD0 /* libz.dylib */; };
+		81A54CF817F0AC1E00B1EFD0 /* DDASLLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CF417F0AC1E00B1EFD0 /* DDASLLogger.m */; };
+		81A54CF917F0AC1E00B1EFD0 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CF517F0AC1E00B1EFD0 /* DDFileLogger.m */; };
+		81A54CFA17F0AC1E00B1EFD0 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CF617F0AC1E00B1EFD0 /* DDLog.m */; };
+		81A54CFB17F0AC1E00B1EFD0 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CF717F0AC1E00B1EFD0 /* DDTTYLogger.m */; };
 		81AD5BBF17E4F9110072F4F1 /* noDiskBW.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */; };
 		81AD5BC017E4F9110072F4F1 /* noDiskColour.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */; };
 		81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */; };
@@ -213,6 +217,14 @@
 		81A54CC917F091C600B1EFD0 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		81A54CCC17F091DB00B1EFD0 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = System/Library/Frameworks/CoreServices.framework; sourceTree = SDKROOT; };
 		81A54CCF17F091EF00B1EFD0 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		81A54CF017F0AC1E00B1EFD0 /* DDASLLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDASLLogger.h; sourceTree = "<group>"; };
+		81A54CF117F0AC1E00B1EFD0 /* DDFileLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDFileLogger.h; sourceTree = "<group>"; };
+		81A54CF217F0AC1E00B1EFD0 /* DDLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDLog.h; sourceTree = "<group>"; };
+		81A54CF317F0AC1E00B1EFD0 /* DDTTYLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDTTYLogger.h; sourceTree = "<group>"; };
+		81A54CF417F0AC1E00B1EFD0 /* DDASLLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDASLLogger.m; sourceTree = "<group>"; };
+		81A54CF517F0AC1E00B1EFD0 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
+		81A54CF617F0AC1E00B1EFD0 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
+		81A54CF717F0AC1E00B1EFD0 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
 		81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noDiskBW.png; path = Images/Icons/noDiskBW.png; sourceTree = "<group>"; };
 		81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noDiskColour.png; path = Images/Icons/noDiskColour.png; sourceTree = "<group>"; };
 		81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HFSFileIcon.icns; path = Images/Icons/HFSFileIcon.icns; sourceTree = "<group>"; };
@@ -534,6 +546,7 @@
 			isa = PBXGroup;
 			children = (
 				81A54CAF17F0915900B1EFD0 /* ASIHTTPRequest */,
+				81A54CD617F0A5C200B1EFD0 /* Lumberjack */,
 			);
 			name = ExternalWrappers;
 			path = Medusa/ExternalWrappers;
@@ -562,6 +575,21 @@
 				81A54CC117F0915900B1EFD0 /* ASIProgressDelegate.h */,
 			);
 			path = ASIHTTPRequest;
+			sourceTree = "<group>";
+		};
+		81A54CD617F0A5C200B1EFD0 /* Lumberjack */ = {
+			isa = PBXGroup;
+			children = (
+				81A54CF017F0AC1E00B1EFD0 /* DDASLLogger.h */,
+				81A54CF117F0AC1E00B1EFD0 /* DDFileLogger.h */,
+				81A54CF217F0AC1E00B1EFD0 /* DDLog.h */,
+				81A54CF317F0AC1E00B1EFD0 /* DDTTYLogger.h */,
+				81A54CF417F0AC1E00B1EFD0 /* DDASLLogger.m */,
+				81A54CF517F0AC1E00B1EFD0 /* DDFileLogger.m */,
+				81A54CF617F0AC1E00B1EFD0 /* DDLog.m */,
+				81A54CF717F0AC1E00B1EFD0 /* DDTTYLogger.m */,
+			);
+			path = Lumberjack;
 			sourceTree = "<group>";
 		};
 		81C84439153E184E00E94443 /* SubClasses */ = {
@@ -784,6 +812,10 @@
 				81A54CC617F0915900B1EFD0 /* ASIHTTPRequest.m in Sources */,
 				81A54CC717F0915900B1EFD0 /* ASIInputStream.m in Sources */,
 				81A54CC817F0915900B1EFD0 /* ASINetworkQueue.m in Sources */,
+				81A54CF817F0AC1E00B1EFD0 /* DDASLLogger.m in Sources */,
+				81A54CF917F0AC1E00B1EFD0 /* DDFileLogger.m in Sources */,
+				81A54CFA17F0AC1E00B1EFD0 /* DDLog.m in Sources */,
+				81A54CFB17F0AC1E00B1EFD0 /* DDTTYLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
