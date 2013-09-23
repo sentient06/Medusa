@@ -37,7 +37,6 @@
 
 @dynamic fileName;
 @dynamic filePath;
-@dynamic type;
 @dynamic virtualMachines;
 @dynamic format;
 @dynamic capacity;

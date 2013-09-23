@@ -49,7 +49,6 @@ enum driveFormat {
 
 @property (nonatomic, retain) NSString * fileName;
 @property (nonatomic, retain) NSString * filePath;
-@property (nonatomic, retain) NSString * type;
 @property (nonatomic, retain) NSSet    * virtualMachines;
 @property (nonatomic, retain) NSNumber * format;
 @property (nonatomic, retain) NSNumber * capacity;

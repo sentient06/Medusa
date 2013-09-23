@@ -53,7 +53,6 @@ typedef enum {
 @interface VirtualMachineWindowController : NSWindowController {
     //Standard variables
     NSManagedObjectContext  * managedObjectContext;
-//    VirtualMachinesModel    * virtualMachine;
     
     NSMutableArray          * menuObjectsArray;
     NSMutableArray          * subviewsArray;
@@ -64,9 +63,7 @@ typedef enum {
     
     IBOutlet NSToolbar * settingsToolbar;
     
-//    IBOutlet NSTableView    * detailsTree;
     IBOutlet NSView         * placeholderView;
-//    IBOutlet NSView         * subViewInformation;
     IBOutlet NSView         * subViewConfiguration;
     IBOutlet NSView         * subViewDisplay;
     IBOutlet NSView         * subViewDrives;
@@ -95,9 +92,6 @@ typedef enum {
 
 //------------------------------------------------------------------------------
 // Application properties.
-//@property (nonatomic, retain) IBOutlet NSView *subViewConfiguration;
-//@property (nonatomic, retain) IBOutlet NSView *subViewDisplay;
-//@property (nonatomic, retain) IBOutletCollection(NSView) NSArray *subviewsArray;
 @property (copy) NSString * windowTitle;
 @property pathOptions currentPathOption;
 @property (assign) VirtualMachinesModel * virtualMachine;
@@ -130,6 +124,7 @@ typedef enum {
 - (IBAction)useSelectedDisks:(id)sender;
 - (IBAction)makeDriveBootable:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;
+- (void)resetDriveOrder;
 - (IBAction)run:(id)sender;
 
 - (IBAction)displayGeneralView:(id)sender;

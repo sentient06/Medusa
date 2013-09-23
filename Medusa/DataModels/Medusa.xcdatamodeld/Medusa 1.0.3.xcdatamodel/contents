@@ -7,8 +7,17 @@
         <attribute name="format" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="virtualMachines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDrives" inverseName="drive" inverseEntity="RelationshipVirtualMachinesDrives" syncable="YES"/>
     </entity>
+    <entity name="Emulators" syncable="YES">
+        <attribute name="family" attributeType="Integer 16" maxValueString="2" defaultValueString="0" syncable="YES"/>
+        <attribute name="maintained" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="path" attributeType="String" syncable="YES"/>
+        <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="machines" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="emulator" inverseEntity="VirtualMachines" syncable="YES"/>
+    </entity>
     <entity name="RelationshipVirtualMachinesDrives" representedClassName="RelationshipVirtualMachinesDrivesModel" syncable="YES">
         <attribute name="bootable" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="orderIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="drive" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drives" inverseName="virtualMachines" inverseEntity="Drives" syncable="YES"/>
         <relationship name="virtualMachine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="drives" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
@@ -34,7 +43,7 @@
         <attribute name="jitEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="lazyCacheEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="macModel" attributeType="Integer 16" defaultValueString="5" syncable="YES"/>
-        <attribute name="memory" attributeType="Integer 16" minValueString="8" defaultValueString="32" syncable="YES"/>
+        <attribute name="memory" attributeType="Integer 16" defaultValueString="32" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="processorType" attributeType="Integer 16" maxValueString="3" defaultValueString="3" syncable="YES"/>
         <attribute name="ready" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
@@ -43,10 +52,12 @@
         <attribute name="uniqueName" attributeType="String" syncable="YES"/>
         <attribute name="useDefaultShare" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="drives" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDrives" inverseName="virtualMachine" inverseEntity="RelationshipVirtualMachinesDrives" syncable="YES"/>
+        <relationship name="emulator" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Emulators" inverseName="machines" inverseEntity="Emulators" syncable="YES"/>
         <relationship name="romFile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="modelToRomFile" syncable="YES"/>
     </entity>
     <elements>
         <element name="Drives" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="Emulators" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RelationshipVirtualMachinesDrives" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>
         <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="315"/>

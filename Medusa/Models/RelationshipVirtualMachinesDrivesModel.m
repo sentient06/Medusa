@@ -37,6 +37,7 @@
 @implementation RelationshipVirtualMachinesDrivesModel
 
 @dynamic bootable;
+@dynamic orderIndex;
 @dynamic drive;
 @dynamic virtualMachine;
 

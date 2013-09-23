@@ -214,6 +214,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     // New updated data:
     
+    long nextIndex = [oldDriveRelationships count];
+    
     for (int i = 0; i < [selectedDrives count]; i++) {
         
         // Create new relationship.
@@ -226,6 +228,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
         [newDriveRelationship setDrive:[selectedDrives objectAtIndex:i]];
         [newDriveRelationship setVirtualMachine:virtualMachine];
+        [newDriveRelationship setOrderIndex:[NSNumber numberWithLong:nextIndex + i]];
         
         [newDriveRelationships addObject:newDriveRelationship];
         
@@ -266,6 +269,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
+// comment this
+- (void)resetDriveOrder {
+    NSArray * allDrives = [usedDisksController arrangedObjects];
+
+    // Iterate through all drives and set them to i.
+    for (int i = 0; i < [allDrives count]; i++) {
+        [[allDrives objectAtIndex:i] setValue:[NSNumber numberWithInt:i] forKey:@"orderIndex"];
+    }
+}
+
 /*!
  * @method      deleteUsedDrive:
  * @abstract    Deletes a drive.
@@ -274,12 +287,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (IBAction)deleteUsedDrive:(id)sender {
     
-    NSArray *selectedDrives = [usedDisksController selectedObjects]; //Selected drives
+    NSArray * selectedDrives = [usedDisksController selectedObjects]; //Selected drives
     
     // Iterate through all drives and set to NO.
     for (int i = 0; i < [selectedDrives count]; i++) {
         [managedObjectContext deleteObject:[selectedDrives objectAtIndex:i]];
     }
+    [self resetDriveOrder];
     
     [self savePreferences];
     
