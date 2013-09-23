@@ -42,18 +42,6 @@
 }
 
 - (id)transformedValue:(id)value {
-	/*
-	NSString *icon = [value stringValue];
-    //NSLog(@"%ld", _icon);
-    
-    if ([icon isEqualToString:@"hd"]) {
-        return [NSImage imageNamed:@"FinderGrey.icns"];
-    }
-    
-    if ([icon isEqualToString:@"sheepshaver"]) {
-        return [NSImage imageNamed:@"FinderBlue.icns"];
-    }
-	*/
 	return [NSImage imageNamed:@"Drive.icns"];
 }
 

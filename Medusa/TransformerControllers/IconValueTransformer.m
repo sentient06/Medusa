@@ -32,6 +32,14 @@
 
 #import "IconValueTransformer.h"
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation IconValueTransformer
 
 + (Class)transformedValueClass {
@@ -43,10 +51,10 @@
 
 - (id)transformedValue:(id)value {
 	
-    NSLog(@"- value: %@", value);
+    DDLogVerbose(@"- value: %@", value);
     
 	NSInteger _icon = [value intValue];
-    NSLog(@"- icon: %ld", _icon);
+    DDLogVerbose(@"- icon: %ld", _icon);
     
     switch (_icon) {
         default:

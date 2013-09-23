@@ -32,6 +32,14 @@
 
 #import "VirtualMachineIconValueTransformer.h"
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation VirtualMachineIconValueTransformer
 
 + (Class)transformedValueClass {
@@ -52,7 +60,7 @@
     // 4 = No disk colour
     // 5 = Sad mac
     
-    NSLog(@"VM Icon Value Transformer - value: %@ -- %ld", value, iconValue);
+    DDLogVerbose(@"VM Icon Value Transformer - value: %@ -- %ld", value, iconValue);
     
     switch (iconValue) {
         case 1:

@@ -36,6 +36,14 @@
 #import "VirtualMachinesModel.h"
 #import "RomFilesModel.h"
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation PreferencesModel
 
 //------------------------------------------------------------------------------
@@ -70,7 +78,7 @@
 }
 
 - (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath {
-    NSLog(@"Save data: %@", dataToSave);
+    DDLogVerbose(@"Save data: %@", dataToSave);
     
     //NSString *filePath = [[NSString alloc] initWithFormat:@"%@%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
     
@@ -78,12 +86,12 @@
     
     for (NSDictionary * pedaco in dataToSave) {
         for(id key in pedaco){
-            NSLog(@"key=%@ value=%@", key, [pedaco objectForKey:key]);
+            DDLogVerbose(@"key=%@ value=%@", key, [pedaco objectForKey:key]);
             [newContent appendString:[NSString stringWithFormat:@"%@ %@", key, [pedaco objectForKey:key]]];
             [newContent appendString:@"\n"];
         }
     }
-    NSLog(@"%@", filePath);
+    DDLogVerbose(@"%@", filePath);
     [newContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
     [newContent release];
     
@@ -232,7 +240,7 @@
     [request setPredicate: predicate];
     NSArray * bootableDriveResult = [managedObjectContext executeFetchRequest:request error:&error];
     
-    //NSLog(@"%@", bootableDriveResult);
+    //DDLogVerbose(@"%@", bootableDriveResult);
     
     for (RelationshipVirtualMachinesDrivesModel * object in bootableDriveResult) {
         DrivesModel * bootableDriveObject = [object drive];
@@ -398,7 +406,7 @@
     return [allData autorelease];
     
     
-    //NSLog(@"%@", [[virtualMachine objectID] URIRepresentation]);
+    //DDLogVerbose(@"%@", [[virtualMachine objectID] URIRepresentation]);
 
     
 }

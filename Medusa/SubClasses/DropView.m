@@ -34,6 +34,14 @@
 #import "FileHandler.h"
 #import "AppDelegate.h"
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation DropView
 
 @synthesize computerModel;
@@ -75,9 +83,9 @@
     NSURL *url = [NSURL fileURLWithPath:[firstElement stringByExpandingTildeInPath]];
     LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
     
-    NSLog(@"%@", kind);
+    DDLogVerbose(@"%@", kind);
     computerModel = @"Test";
-    //NSLog(@"%@", parent);
+    //DDLogVerbose(@"%@", parent);
 
     if (
         [kind isEqualToString:@"Unix Executable File"] ||
@@ -122,7 +130,7 @@
         url = [NSURL fileURLWithPath:[firstElement stringByExpandingTildeInPath]];
         LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
         
-        NSLog(@"kind is %@", kind);
+        DDLogVerbose(@"kind is %@", kind);
         computerModel = @"Test";
         
         [currentElement release];

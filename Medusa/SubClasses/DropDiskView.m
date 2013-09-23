@@ -34,6 +34,14 @@
 #import "FileHandler.h"
 #import "DrivesModel.h" //Model that handles all Drives-Entity-related objects.
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation DropDiskView
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
@@ -48,7 +56,7 @@
     
         pathExtension = [[urls objectAtIndex:i] pathExtension];
         
-        NSLog(@"Extension is %@", [pathExtension lowercaseString]);
+        DDLogVerbose(@"Extension is %@", [pathExtension lowercaseString]);
         
         if (
             [[pathExtension lowercaseString]    isEqualTo:@"hfv"]   ||
@@ -68,11 +76,11 @@
             [drivesModel setFilePath:[urls objectAtIndex:i]];
             [drivesModel setFileName:[[urls objectAtIndex:i] lastPathComponent]];
             
-            NSLog(@"Saving...");
+            DDLogVerbose(@"Saving...");
             NSError *error;
             if (![managedObjectContext save:&error]) {
-                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-                NSLog(@"Check 'drop disk view' subclass.");
+                DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+                DDLogVerbose(@"Check 'drop disk view' subclass.");
             }
                 
         }

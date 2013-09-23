@@ -34,6 +34,14 @@
 #import "RomModel.h"
 #import "DrivesModel.h"
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation DropAllView
 
 /**
@@ -43,7 +51,7 @@
 
     directoriesParsed++;
 
-    NSLog(@"Parsing folder" );
+    DDLogVerbose(@"Parsing folder" );
     
     NSFileManager * fileManager = [[[NSFileManager alloc] init] autorelease];
     NSURL         * directoryURL = [NSURL fileURLWithPath:[currentDirectory stringByExpandingTildeInPath]];
@@ -84,7 +92,7 @@
     NSURL * url = [NSURL fileURLWithPath:[currentFile stringByExpandingTildeInPath]];
     RomModel * RomObject = [[RomModel alloc] init];
     LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
-    NSLog(@"Kind: %@, url: %@", kind, [url relativePath]); //[url absoluteString] );
+    DDLogVerbose(@"Kind: %@, url: %@", kind, [url relativePath]); //[url absoluteString] );
     
     NSArray * acceptedExtensions = [[NSArray alloc] initWithObjects: @"hfv", @"dsk", @"dmg", @"img", @"image", @"iso", nil];
     
@@ -137,12 +145,12 @@
         
     }
     
-    NSLog(@"directories: %d, filesParsed: %d", directoriesParsed, filesParsed);
+    DDLogVerbose(@"directories: %d, filesParsed: %d", directoriesParsed, filesParsed);
 
     
     
     
-//    NSLog(@"Drop all");
+//    DDLogVerbose(@"Drop all");
 //    
 ////    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
 //    
@@ -171,11 +179,11 @@
 ////            [drivesModel setFilePath:[urls objectAtIndex:i]];
 ////            [drivesModel setFileName:[[urls objectAtIndex:i] lastPathComponent]];
 ////            
-////            NSLog(@"Saving...");
+////            DDLogVerbose(@"Saving...");
 ////            NSError *error;
 ////            if (![managedObjectContext save:&error]) {
-////                NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-////                NSLog(@"Check 'drop disk view' subclass.");
+////                DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+////                DDLogVerbose(@"Check 'drop disk view' subclass.");
 ////            }
 ////            
 ////        }

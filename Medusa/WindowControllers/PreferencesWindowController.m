@@ -32,6 +32,14 @@
 
 #import "PreferencesWindowController.h"
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation PreferencesWindowController
 
 @synthesize contentSubview = _contentSubview;
@@ -68,12 +76,12 @@
     [self.contentSubview setFrame:windowFrame];
     
     [[[self window] contentView] addSubview:self.contentSubview];
-    NSLog(@"subview's frame: %@", NSStringFromRect([self.contentSubview frame]));
+    DDLogVerbose(@"subview's frame: %@", NSStringFromRect([self.contentSubview frame]));
     
     ///[primaryView addSubview: generalSubView];
     [preferencesToolbar setSelectedItemIdentifier:@"generalButton"];
     
-    //NSLog(@"%@",[[preferencesToolbar items] objectAtIndex:0]);
+    //DDLogVerbose(@"%@",[[preferencesToolbar items] objectAtIndex:0]);
     //[[[preferencesToolbar items] objectAtIndex:0] setEnabled:YES];
     
     [self changeWindowSubview:0 animate:NO];

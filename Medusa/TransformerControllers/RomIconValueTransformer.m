@@ -32,6 +32,14 @@
 
 #import "RomIconValueTransformer.h"
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation RomIconValueTransformer
 
 + (Class)transformedValueClass {
@@ -44,7 +52,7 @@
 - (id)transformedValue:(id)value {
 	
 	//NSString *icon = [value stringValue];
-    //NSLog(@"%ld", _icon);
+    //DDLogVerbose(@"%ld", _icon);
     
 //    if ([value isEqualToString:@"Basilisk"]) {
 //        return [NSImage imageNamed:@"FinderGrey.icns"];
@@ -70,7 +78,7 @@
     
     long iconValue = [value integerValue];
     
-    NSLog(@"Rom Icon Value Transformer - value: %@ -- %ld", value, iconValue);
+    DDLogVerbose(@"Rom Icon Value Transformer - value: %@ -- %ld", value, iconValue);
     
     if (iconValue == 1) {
         return [NSImage imageNamed:@"PerfectNew.png"];

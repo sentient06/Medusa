@@ -40,6 +40,14 @@
 #import "DrivesModel.h"
 
 //------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
+//------------------------------------------------------------------------------
 @implementation VirtualMachineWindowController
 
 //------------------------------------------------------------------------------
@@ -347,8 +355,8 @@
         emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey:@"SheepshaverPath"];
     }
         
-    NSLog(@"%@", preferencesFilePath);
-    NSLog(@"%@", emulatorPath);
+    DDLogVerbose(@"%@", preferencesFilePath);
+    DDLogVerbose(@"%@", emulatorPath);
     
     [preferences savePreferencesFile:data ForFile:preferencesFilePath];
     [[NSWorkspace sharedWorkspace] openURL:emulatorPath];
@@ -372,11 +380,11 @@
  * @abstract    Saves all preferences in current object context.
  */
 - (void)savePreferences {
-    NSLog(@"Saving...");
+    DDLogVerbose(@"Saving...");
     NSError * error;
     if (![managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        NSLog(@"Check 'vm window controller' class. (savePreferences)");
+        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        DDLogVerbose(@"Check 'vm window controller' class. (savePreferences)");
     }
 }
 
@@ -407,17 +415,17 @@
     }
     
     if ([selectedFiles count] == 1) {
-        NSLog(@"%@", selectedFiles);
+        DDLogVerbose(@"%@", selectedFiles);
         
         [virtualMachine setSharedFolder: [[selectedFiles objectAtIndex:0] path]];
         
     }
     
-    NSLog(@"Saving...");
+    DDLogVerbose(@"Saving...");
     NSError *error;
     if (![managedObjectContext save:&error]) {
-        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        NSLog(@"Check 'vm window controller' class; openSharePath");
+        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        DDLogVerbose(@"Check 'vm window controller' class; openSharePath");
     }
     
     [sharePathLabel setStringValue:
@@ -449,7 +457,7 @@
     }
     
     if ([selectedFiles count] == 1) {
-        NSLog(@"Selected files: %@", selectedFiles);
+        DDLogVerbose(@"Selected files: %@", selectedFiles);
         currentRom = [
             RomModelObject
             parseSingleRomFileAndSave:[[selectedFiles objectAtIndex:0] path]
@@ -479,7 +487,7 @@
     
     //----------------------------------------------------------
     //VM details
-    NSLog(@"%@", aVirtualMachine);
+    DDLogVerbose(@"%@", aVirtualMachine);
     
     //----------------------------------------------------------
     //Interface view
@@ -577,7 +585,7 @@
 }
 
 //- (IBAction)changeCurrentRom:(id)sender {
-//    NSLog(@"It wooooooooooorks!");
+//    DDLogVerbose(@"It wooooooooooorks!");
 //}
 
 ///*!
@@ -591,9 +599,9 @@
 //                      ofObject:(id)object 
 //                        change:(NSDictionary *)change 
 //                       context:(void *)context {
-//    NSLog(@" OBS: %@ ", keyPath);
+//    DDLogVerbose(@" OBS: %@ ", keyPath);
 ////    if ([keyPath isEqualToString:@"lastRomParsed"]) {
-////        NSLog(@"Yay observer works!");
+////        DDLogVerbose(@"Yay observer works!");
 ////    }
 //    
 //    

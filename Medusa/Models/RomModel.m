@@ -34,6 +34,14 @@
 #import "FileHandler.h"
 #import "RomFilesModel.h" //Model that handles all Rom-Files-Entity-related objects.
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation RomModel
 
 @synthesize currentRomObject;
@@ -84,7 +92,7 @@
         [request release];
                 
         if (resultCount > 0) {
-            NSLog(@"This ROM file is duplicated!");
+            DDLogVerbose(@"This ROM file is duplicated!");
             return nil;
         }        
         
@@ -152,11 +160,11 @@
 
         //----------------------------------------------------------------------
         
-        NSLog(@"Saving...");
+        DDLogVerbose(@"Saving...");
 
         if (![currentContext save:&error]) {
-            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
-            NSLog(@"Check 'drop rom view' subclass.");
+            DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+            DDLogVerbose(@"Check 'drop rom view' subclass.");
             success = NO;
         }
         
@@ -553,9 +561,9 @@
         comments = @"";
     }
     
-    NSLog(@"fileDetails .. %@", fileDetails);
-    NSLog(@"comments ..... %@", comments);
-    NSLog(@"romCondition . %d", romCondition);
+    DDLogVerbose(@"fileDetails .. %@", fileDetails);
+    DDLogVerbose(@"comments ..... %@", comments);
+    DDLogVerbose(@"romCondition . %d", romCondition);
     
     [size release];    
     [romPath release];

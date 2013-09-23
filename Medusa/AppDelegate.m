@@ -33,11 +33,6 @@
 #import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
-// Lumberjack logger
-#import "DDLog.h"
-#import "DDASLLogger.h"
-#import "DDTTYLogger.h"
-//------------------------------------------------------------------------------
 // Windows
 #import "VirtualMachineWindowController.h"  //VM Window
 #import "AssetsWindowController.h"          //Assets Window
@@ -53,8 +48,12 @@
 
 #import "EmulatorHandleController.h" //testing
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
 static const int ddLogLevel = LOG_LEVEL_VERBOSE;
-
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -515,6 +514,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     self = [super init];
     if (self) {
         queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+        [DDLog addLogger:[DDASLLogger sharedInstance]];
+        [DDLog addLogger:[DDTTYLogger sharedInstance]];
     }
     return self;
 }
@@ -530,9 +531,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @link Check XCode quick help.
  */
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    
-    [DDLog addLogger:[DDASLLogger sharedInstance]];
-    [DDLog addLogger:[DDTTYLogger sharedInstance]];
     
     //Log all preferences:
     //DDLogVerbose(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);

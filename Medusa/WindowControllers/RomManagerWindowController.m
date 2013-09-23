@@ -34,6 +34,14 @@
 
 #import "RomManagerWindowController.h"
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
 @implementation RomManagerWindowController
 
 - (void)dealloc {
@@ -94,7 +102,7 @@
                         change:(NSDictionary *)change 
                        context:(void *)context {
     if ([keyPath isEqualToString:@"computerModel"]) {
-        NSLog(@"something on RomManagerWindowController: %@", [change objectForKey:NSKeyValueChangeNewKey]);
+        DDLogVerbose(@"something on RomManagerWindowController: %@", [change objectForKey:NSKeyValueChangeNewKey]);
     }
 }
 
