@@ -156,6 +156,43 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 // Interface action methods
 #pragma mark – Interface action methods
 
+- (IBAction)personalMemoryValueChanged:(id)sender {
+    
+    NSNumber * currentMemoryValue = [NSNumber numberWithInt:[personalMemoryField intValue]];
+    
+    DDLogCVerbose(@"original: %@", currentMemoryValue);
+    
+    NSInteger indexOfCurrentMemoryValue = [memoryDefaultValues indexOfObject:currentMemoryValue];
+    
+    if (NSNotFound == indexOfCurrentMemoryValue) {
+//        [defaultMemorySlider setAllowsTickMarkValuesOnly:NO];
+        DDLogCVerbose(@"Not found");
+        
+        for (int i = 0; i < [memoryDefaultValues count]; i++) {
+            int intTempValue = [[memoryDefaultValues objectAtIndex:i] intValue]; //inside array
+            int intMemoryValue = [currentMemoryValue intValue]; //in the field
+            DDLogCVerbose(@"if (%d < %d)", intMemoryValue, intTempValue);
+            if (intMemoryValue < intTempValue) {
+                DDLogCVerbose(@"before %d, %u", i, i-0.5);
+                [defaultMemorySlider setDoubleValue:i];
+                break;
+            }
+        }
+        
+//        [defaultMemorySlider setDoubleValue:[memoryDefaultValues count]-1];
+//        [defaultMemorySlider setAllowsTickMarkValuesOnly:YES];
+    } else {
+        [defaultMemorySlider setDoubleValue:indexOfCurrentMemoryValue];
+    }
+}
+
+- (IBAction)defaultMemorySliderChanged:(id)sender {
+    int current = [defaultMemorySlider intValue];
+    NSNumber * selectedMemory = [memoryDefaultValues objectAtIndex:current];
+    DDLogCVerbose(@"Memory chosen: %d - %@", current, selectedMemory);
+    [virtualMachine setMemory:selectedMemory];
+}
+
 /*!
  * @method      useSelectedDisks:
  * @abstract    Checks the selected disks in the drives list and adds to the vm.
@@ -570,10 +607,33 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 -(void)awakeFromNib {
+
     [super awakeFromNib];
     NSSortDescriptor * mySortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"positionIndex" ascending:YES];
     [usedDisksController setSortDescriptors:[NSArray arrayWithObject:mySortDescriptor]];
     [mySortDescriptor release]; 
+    
+    memoryDefaultValues = [
+        [NSArray alloc] initWithObjects:
+          [NSNumber numberWithInt:8]
+        , [NSNumber numberWithInt:16]
+        , [NSNumber numberWithInt:32]
+        , [NSNumber numberWithInt:64]
+        , [NSNumber numberWithInt:128]
+        , [NSNumber numberWithInt:256]
+        , [NSNumber numberWithInt:512]
+        , [NSNumber numberWithInt:1024]
+        , [NSNumber numberWithInt:2048]
+        , nil
+    ];
+    
+    [defaultMemorySlider setNumberOfTickMarks:[memoryDefaultValues count]];
+    [defaultMemorySlider setMinValue:0];
+    [defaultMemorySlider setMaxValue:[memoryDefaultValues count]-1];
+    [defaultMemorySlider setAllowsTickMarkValuesOnly:YES];
+    
+    [self personalMemoryValueChanged:nil];
+    
 }
 
 @end

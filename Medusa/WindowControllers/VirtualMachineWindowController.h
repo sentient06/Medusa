@@ -52,35 +52,34 @@ typedef enum {
  */
 @interface VirtualMachineWindowController : NSWindowController {
     //Standard variables
-    NSManagedObjectContext  * managedObjectContext;
-    
-    NSMutableArray          * menuObjectsArray;
-    NSMutableArray          * subviewsArray;
-    
-    NSString                * windowTitle;
-    
-    //Interface objects
-    
-    IBOutlet NSToolbar * settingsToolbar;
-    
-    IBOutlet NSView         * placeholderView;
-    IBOutlet NSView         * subViewConfiguration;
-    IBOutlet NSView         * subViewDisplay;
-    IBOutlet NSView         * subViewDrives;
-    IBOutlet NSView         * subViewSharing;
-    IBOutlet NSView         * subViewAdvanced;
+    NSManagedObjectContext * managedObjectContext;
+    NSMutableArray         * menuObjectsArray;
+    NSMutableArray         * subviewsArray;
+    NSString               * windowTitle;
+    NSArray                * memoryDefaultValues;
     
     //Controllers
-    IBOutlet NSArrayController * availableDisksController;
-    IBOutlet SortableArrayController * usedDisksController;
-    IBOutlet NSArrayController * romFilesController;
+    IBOutlet NSArrayController       * availableDisksController;
+    IBOutlet NSArrayController       * romFilesController;
+    IBOutlet SortableArrayController * usedDisksController;    
     
+    //Interface objects    
+    IBOutlet NSToolbar * settingsToolbar;
+    IBOutlet NSView    * placeholderView;
+    IBOutlet NSView    * subViewConfiguration;
+    IBOutlet NSView    * subViewDisplay;
+    IBOutlet NSView    * subViewDrives;
+    IBOutlet NSView    * subViewSharing;
+    IBOutlet NSView    * subViewAdvanced;
+    
+    // General subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    IBOutlet NSTextField * personalMemoryField;
+    IBOutlet NSSlider    * defaultMemorySlider;
+
     // Share subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
     IBOutlet NSMatrix    * sharedPathMatrix;
     IBOutlet NSButton    * openSharePathButton;
     IBOutlet NSTextField * sharePathLabel;
-//    NSArray  *subViews;    
     
     /// 32-bit compatibility -------    
     pathOptions currentPathOption;
@@ -88,7 +87,7 @@ typedef enum {
 }
 //------------------------------------------------------------------------------
 // Standard variables properties.
-@property (copy) NSMutableArray *menuObjectsArray;
+@property (copy) NSMutableArray * menuObjectsArray;
 
 //------------------------------------------------------------------------------
 // Application properties.
@@ -131,6 +130,10 @@ typedef enum {
 - (IBAction)displayDisplayView:(id)sender;
 - (IBAction)displayShareView:(id)sender;
 - (IBAction)displayAdvancedView:(id)sender;
+
+// General subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+- (IBAction)personalMemoryValueChanged:(id)sender;
+- (IBAction)defaultMemorySliderChanged:(id)sender;
 
 // Share subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

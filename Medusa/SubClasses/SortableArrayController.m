@@ -18,19 +18,18 @@ NSString *kRSRTVMovedRowsType = @"com.red-sweater.RSRTVArrayController";
 
 @implementation SortableArrayController
 
-- (void) awakeFromNib {
+- (void)awakeFromNib {
 	[oTableView registerForDraggedTypes:[NSArray arrayWithObjects:kRSRTVMovedRowsType, nil]];
 	[self setDraggingEnabled:YES];
-    
 }
 
 //  draggingEnabled 
-- (BOOL) draggingEnabled {
+- (BOOL)draggingEnabled {
     return mDraggingEnabled;
     
 }
 
-- (void) setDraggingEnabled:(BOOL)flag {
+- (void)setDraggingEnabled:(BOOL)flag {
     mDraggingEnabled = flag;
     
 }
@@ -47,8 +46,7 @@ NSString *kRSRTVMovedRowsType = @"com.red-sweater.RSRTVArrayController";
     return [self draggingEnabled];
 }
 
-- (BOOL) tableObjectsSupportCopying {
-    
+- (BOOL)tableObjectsSupportCopying {
 	return [[[self arrangedObjects] objectAtIndex:0] conformsToProtocol:@protocol(NSCopying)];
 }
 
@@ -104,7 +102,7 @@ NSString *kRSRTVMovedRowsType = @"com.red-sweater.RSRTVArrayController";
     return NO;
 }
 
--(void) copyObjectsInArrangedObjectsFromIndexes:(NSIndexSet*)indexSet toIndex:(NSUInteger)insertIndex {	
+- (void)copyObjectsInArrangedObjectsFromIndexes:(NSIndexSet*)indexSet toIndex:(NSUInteger)insertIndex {	
     
     id object;
     NSArray	* objects = [self arrangedObjects];
@@ -127,7 +125,7 @@ NSString *kRSRTVMovedRowsType = @"com.red-sweater.RSRTVArrayController";
     
 }
 
--(void) moveObjectsInArrangedObjectsFromIndexes:(NSIndexSet*)indexSet toIndex:(NSUInteger)insertIndex {
+- (void)moveObjectsInArrangedObjectsFromIndexes:(NSIndexSet*)indexSet toIndex:(NSUInteger)insertIndex {
     id object;
     NSArray	* objects = [self arrangedObjects];
 	NSUInteger thisIndex = [indexSet lastIndex];
