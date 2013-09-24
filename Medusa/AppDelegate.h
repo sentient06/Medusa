@@ -125,5 +125,6 @@
 //Action to show the Preferences Window.
 
 - (NSString *)applicationSupportDirectory;
+- (void)saveCoreData;
 
 @end

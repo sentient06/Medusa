@@ -37,8 +37,7 @@
 
 @interface RelationshipVirtualMachinesDrivesModel : NSManagedObject
 
-@property (nonatomic, retain) NSNumber * bootable;
-@property (nonatomic, retain) NSNumber * orderIndex;
+@property (nonatomic, retain) NSNumber * positionIndex;
 @property (nonatomic, retain) DrivesModel * drive;
 @property (nonatomic, retain) VirtualMachinesModel * virtualMachine;
 

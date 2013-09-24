@@ -57,6 +57,10 @@
 		817E319D17D1078200131E2D /* VMList.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMList.m */; };
 		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
 		81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */; };
+		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
+		819DC09217F1909200480073 /* HDClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DC09117F1909200480073 /* HDClassic.icns */; };
+		819DC09417F1926C00480073 /* RubbishBinClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DC09317F1926C00480073 /* RubbishBinClassic.icns */; };
+		819DC09F17F1B9D500480073 /* BootableDiskTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC09E17F1B9D500480073 /* BootableDiskTransformer.m */; };
 		81A54CC217F0915900B1EFD0 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CB217F0915900B1EFD0 /* ASIDataCompressor.m */; };
 		81A54CC317F0915900B1EFD0 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CB417F0915900B1EFD0 /* ASIDataDecompressor.m */; };
 		81A54CC417F0915900B1EFD0 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CB617F0915900B1EFD0 /* ASIDownloadCache.m */; };
@@ -195,6 +199,12 @@
 		817E319C17D1078200131E2D /* VMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMList.m; path = UtilitiesControllers/VMList.m; sourceTree = "<group>"; };
 		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
 		81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericNetworkIcon.icns; path = Images/Icons/GenericNetworkIcon.icns; sourceTree = "<group>"; };
+		819DC08717F18B7000480073 /* SortableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortableArrayController.h; path = SubClasses/SortableArrayController.h; sourceTree = "<group>"; };
+		819DC08817F18B7000480073 /* SortableArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortableArrayController.m; path = SubClasses/SortableArrayController.m; sourceTree = "<group>"; };
+		819DC09117F1909200480073 /* HDClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HDClassic.icns; path = Images/ClassicIcons/HDClassic.icns; sourceTree = "<group>"; };
+		819DC09317F1926C00480073 /* RubbishBinClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RubbishBinClassic.icns; path = Images/ClassicIcons/RubbishBinClassic.icns; sourceTree = "<group>"; };
+		819DC09D17F1B9D500480073 /* BootableDiskTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BootableDiskTransformer.h; path = TransformerControllers/BootableDiskTransformer.h; sourceTree = "<group>"; };
+		819DC09E17F1B9D500480073 /* BootableDiskTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BootableDiskTransformer.m; path = TransformerControllers/BootableDiskTransformer.m; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesModel.h; path = Models/PreferencesModel.h; sourceTree = "<group>"; };
 		81A54CB017F0915900B1EFD0 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		81A54CB117F0915900B1EFD0 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
@@ -372,6 +382,8 @@
 				810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */,
 				8131AA4317E76F1500682879 /* ProcessorToJitTransformer.h */,
 				8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */,
+				819DC09D17F1B9D500480073 /* BootableDiskTransformer.h */,
+				819DC09E17F1B9D500480073 /* BootableDiskTransformer.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -542,6 +554,24 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		819DC08B17F18B7300480073 /* ArrayController */ = {
+			isa = PBXGroup;
+			children = (
+				819DC08717F18B7000480073 /* SortableArrayController.h */,
+				819DC08817F18B7000480073 /* SortableArrayController.m */,
+			);
+			name = ArrayController;
+			sourceTree = "<group>";
+		};
+		819DC09017F1906900480073 /* ClassicIcons */ = {
+			isa = PBXGroup;
+			children = (
+				819DC09117F1909200480073 /* HDClassic.icns */,
+				819DC09317F1926C00480073 /* RubbishBinClassic.icns */,
+			);
+			name = ClassicIcons;
+			sourceTree = "<group>";
+		};
 		81A54CAE17F0915900B1EFD0 /* ExternalWrappers */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,6 +625,7 @@
 		81C84439153E184E00E94443 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
+				819DC08B17F18B7300480073 /* ArrayController */,
 				8162FF3C17EC4EA4000413C2 /* DropViews */,
 				81D733EA15A4AC8800DEA523 /* LinkedView.h */,
 				81D733EB15A4AC8800DEA523 /* LinkedView.m */,
@@ -637,6 +668,7 @@
 		81FAA927159F3968004F5F11 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				819DC09017F1906900480073 /* ClassicIcons */,
 				81C2B75117D646AB000E4A01 /* linenPattern.png */,
 				81895CFD17D4F51000752E51 /* NoiseGrey.png */,
 				814804F217D5FFB40070DAD9 /* RomIcons */,
@@ -760,6 +792,8 @@
 				81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */,
 				81AD5BC517E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns in Resources */,
 				81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */,
+				819DC09217F1909200480073 /* HDClassic.icns in Resources */,
+				819DC09417F1926C00480073 /* RubbishBinClassic.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,6 +850,8 @@
 				81A54CF917F0AC1E00B1EFD0 /* DDFileLogger.m in Sources */,
 				81A54CFA17F0AC1E00B1EFD0 /* DDLog.m in Sources */,
 				81A54CFB17F0AC1E00B1EFD0 /* DDTTYLogger.m in Sources */,
+				819DC08917F18B7000480073 /* SortableArrayController.m in Sources */,
+				819DC09F17F1B9D500480073 /* BootableDiskTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

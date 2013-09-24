@@ -220,9 +220,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     
     //--------------------------------------------------------------------------
-    //3. The bootable drives
+    //3. The drives
     
-    NSEntityDescription *vmDrivesRelationship = [
+    NSEntityDescription * vmDrivesRelationship = [
         NSEntityDescription
                  entityForName:@"RelationshipVirtualMachinesDrives"
         inManagedObjectContext:managedObjectContext
@@ -231,56 +231,33 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     //Need to set the vm object in relationship table:
     NSPredicate * predicate = [
         NSPredicate
-        predicateWithFormat: @"virtualMachine = %@ AND bootable = 1",
+        predicateWithFormat: @"virtualMachine = %@",
         virtualMachine
     ];
     
-    
-    [request setEntity   : vmDrivesRelationship];
+    NSSortDescriptor * sortPosition = [[NSSortDescriptor alloc] initWithKey:@"positionIndex" ascending:YES];
+
+    [request setEntity: vmDrivesRelationship];
     [request setPredicate: predicate];
-    NSArray * bootableDriveResult = [managedObjectContext executeFetchRequest:request error:&error];
+    [request setSortDescriptors:[NSArray arrayWithObject:sortPosition]];
     
-    //DDLogVerbose(@"%@", bootableDriveResult);
-    
-    for (RelationshipVirtualMachinesDrivesModel * object in bootableDriveResult) {
-        DrivesModel * bootableDriveObject = [object drive];
-        NSDictionary * bootableDrive = [[NSDictionary alloc]
-            initWithObjectsAndKeys:
-                [bootableDriveObject filePath], @"disk",
-                nil
-        ];
-        
-        [allData addObject:bootableDrive];
-        [bootableDrive release];
-    }
-    
-    //--------------------------------------------------------------------------
-    //4. The unbootable drives
-    
-    //vmDrivesRelationship set in step 1.
-    
-    //Need to set the vm object in relationship table:
-    predicate = [
-        NSPredicate
-        predicateWithFormat: @"virtualMachine = %@ AND bootable = 0",
-        virtualMachine
-    ];
-    
-    //[request setEntity:    vmDrivesRelationship];
-    [request setPredicate: predicate];
-    NSArray *unbootableDriveResult = [managedObjectContext executeFetchRequest:request error:&error];
-    
-    for (RelationshipVirtualMachinesDrivesModel * object in unbootableDriveResult) {
+    NSArray * drivesResult = [managedObjectContext executeFetchRequest:request error:&error];
+    NSEnumerator * rowEnumerator = [drivesResult objectEnumerator];
+    RelationshipVirtualMachinesDrivesModel * object;
+
+    while (object = [rowEnumerator nextObject]) {
         DrivesModel * unbootableDriveObject = [object drive];
+        DDLogCInfo(@"DAMN --- %@", [unbootableDriveObject fileName]);
         NSDictionary * unbootableDrive = [[NSDictionary alloc]
             initWithObjectsAndKeys:
                 [unbootableDriveObject filePath], @"disk",
                 nil
         ];
-        
         [allData addObject:unbootableDrive];
         [unbootableDrive release];
     }
+
+    [sortPosition release]; 
 
     //--------------------------------------------------------------------------
     //5. Networking

@@ -42,7 +42,7 @@
 }
 
 - (id)transformedValue:(id)value {
-	return [NSImage imageNamed:@"Drive.icns"];
+	return [NSImage imageNamed:@"HDClassic.icns"];
 }
 
 @end

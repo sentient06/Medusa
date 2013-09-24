@@ -38,7 +38,7 @@ typedef enum {
     useNoSharedPathOption
 } pathOptions;
 
-@class VirtualMachinesModel, DropRomView;
+@class VirtualMachinesModel, DropRomView, SortableArrayController;
 
 /*!
  * @class       VirtualMachineWindowController:
@@ -72,7 +72,7 @@ typedef enum {
     
     //Controllers
     IBOutlet NSArrayController * availableDisksController;
-    IBOutlet NSArrayController * usedDisksController;
+    IBOutlet SortableArrayController * usedDisksController;
     IBOutlet NSArrayController * romFilesController;
     
     // Share subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -118,11 +118,10 @@ typedef enum {
 // Interface Methods
 
 // View actions
-- (IBAction)changeRightView:(id)sender;
 - (IBAction)savePreferencesFromView:(id)sender;
 //- (IBAction)traceTableViewClick:(id)sender;
 - (IBAction)useSelectedDisks:(id)sender;
-- (IBAction)makeDriveBootable:(id)sender;
+//- (IBAction)makeDriveBootable:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;
 - (void)resetDriveOrder;
 - (IBAction)run:(id)sender;
@@ -139,7 +138,6 @@ typedef enum {
 - (IBAction)changeShareType:(id)sender;
 
 // Open share folder
-//- (void)setShareCondition:(NSInteger)condition;
 - (IBAction)openSharePath:(id)sender;
 - (IBAction)openRomPath:(id)sender;
 

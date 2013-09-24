@@ -108,6 +108,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @discussion  Always in the top of the files!
  */
 - (void)dealloc {
+    
+//    [usedDisksController removeObserver:self forKeyPath:@"draggingMode"];
+    
     [managedObjectContext release];
     [virtualMachine release];
     [menuObjectsArray release];
@@ -123,16 +126,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 // View change methods
 #pragma mark – View change methods
-
-/*!
- * @method      changeRightView:
- * @abstract    Changes the right pane according to the selected item in the
- *              left pane menu.
- * @discussion  Oh man...
- */
-- (IBAction)changeRightView:(id)sender {
-    
-}
 
 - (IBAction)displayGeneralView:(id)sender {
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
@@ -228,7 +221,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
         [newDriveRelationship setDrive:[selectedDrives objectAtIndex:i]];
         [newDriveRelationship setVirtualMachine:virtualMachine];
-        [newDriveRelationship setOrderIndex:[NSNumber numberWithLong:nextIndex + i]];
+        [newDriveRelationship setPositionIndex:[NSNumber numberWithLong:nextIndex + i]];
         
         [newDriveRelationships addObject:newDriveRelationship];
         
@@ -239,44 +232,24 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [newDriveRelationships unionSet:oldDriveRelationships];
     [virtualMachine setValue:newDriveRelationships forKey:@"drives"]; //Re-set the value.
     
-    [self savePreferences];
+    [self resetDriveOrder];
     
     [selectedDrives release];
 
 }
 
-/*!
- * @method      makeDriveBootable:
- * @abstract    Set a drive as boot drive.
- * @discussion  Iterates through all drives of the current VM and set all of
- *              them to not-bootable, then it sets the first selected to
- *              bootable.
- */
-- (IBAction)makeDriveBootable:(id)sender {
-    
-    NSArray * selectedDrives = [usedDisksController selectedObjects]; //Selected drives
-    NSArray * allDrives      = [usedDisksController arrangedObjects]; //All drives
-    
-    // Iterate through all drives and set them to NO.
-    for (int i = 0; i < [allDrives count]; i++) {
-        [[allDrives objectAtIndex:i] setValue:[NSNumber numberWithBool:NO] forKey:@"bootable"];
-    }
-    
-    // Set first selected to YES.
-    [[selectedDrives objectAtIndex:0] setValue:[NSNumber numberWithBool:YES] forKey:@"bootable"];
-    
-    [self savePreferences];
-    
-}
-
-// comment this
+//// comment this
 - (void)resetDriveOrder {
+    DDLogCVerbose(@"Reseting drives order");
     NSArray * allDrives = [usedDisksController arrangedObjects];
 
     // Iterate through all drives and set them to i.
     for (int i = 0; i < [allDrives count]; i++) {
-        [[allDrives objectAtIndex:i] setValue:[NSNumber numberWithInt:i] forKey:@"orderIndex"];
+        [[allDrives objectAtIndex:i] setValue:[NSNumber numberWithInt:i] forKey:@"positionIndex"];
     }
+
+    [self savePreferences];
+    
 }
 
 /*!
@@ -485,7 +458,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
-
 //------------------------------------------------------------------------------
 // Init methods
 #pragma mark – Init methods
@@ -547,7 +519,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.
+        // Initialization code here.        
     }
     
     return self;
@@ -595,30 +567,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     [settingsToolbar setSelectedItemIdentifier:@"generalButton"];
     
-    
 }
 
-//- (IBAction)changeCurrentRom:(id)sender {
-//    DDLogVerbose(@"It wooooooooooorks!");
-//}
-
-///*!
-// * @method      observeValueForKeyPath:
-// *              ofObject:
-// *              change:
-// *              context:
-// * @abstract    Observer method.
-// */
-//- (void)observeValueForKeyPath:(NSString *)keyPath 
-//                      ofObject:(id)object 
-//                        change:(NSDictionary *)change 
-//                       context:(void *)context {
-//    DDLogVerbose(@" OBS: %@ ", keyPath);
-////    if ([keyPath isEqualToString:@"lastRomParsed"]) {
-////        DDLogVerbose(@"Yay observer works!");
-////    }
-//    
-//    
-//}
+-(void)awakeFromNib {
+    [super awakeFromNib];
+    NSSortDescriptor * mySortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"positionIndex" ascending:YES];
+    [usedDisksController setSortDescriptors:[NSArray arrayWithObject:mySortDescriptor]];
+    [mySortDescriptor release]; 
+}
 
 @end

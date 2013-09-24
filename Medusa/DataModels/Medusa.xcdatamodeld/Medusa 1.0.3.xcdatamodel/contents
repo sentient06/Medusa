@@ -16,8 +16,7 @@
         <relationship name="machines" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="emulator" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
     <entity name="RelationshipVirtualMachinesDrives" representedClassName="RelationshipVirtualMachinesDrivesModel" syncable="YES">
-        <attribute name="bootable" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="orderIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="positionIndex" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <relationship name="drive" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drives" inverseName="virtualMachines" inverseEntity="Drives" syncable="YES"/>
         <relationship name="virtualMachine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="drives" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>

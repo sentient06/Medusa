@@ -332,6 +332,17 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (IBAction)run:(id)sender {
     
+    NSError *error = nil;
+    
+    if (![[self managedObjectContext] commitEditing]) {
+        DDLogError(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
+    }
+    
+    if (![[self managedObjectContext] save:&error]) {
+        [[NSApplication sharedApplication] presentError:error];
+    }
+    
+    
     // Use GCD to execute emulator in an async thread:
 //    dispatch_async(queue, ^{
         
@@ -356,7 +367,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
        
         DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
 //        DDLogVerbose(@"Emulator path .: %@", emulatorPath);
-    
+
         [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
     
 //        // Starts emulator:
@@ -481,6 +492,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSArray  * paths    = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
     NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
     return [basePath stringByAppendingPathComponent:@"Medusa"];
+}
+- (void)saveCoreData {
+    DDLogVerbose(@"Saving...");
+    NSError * error;
+    if (![[self managedObjectContext] save:&error]) {
+        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        DDLogVerbose(@"Check 'App Delegate' class, saveCloneVirtualMachine");
+    }
 }
 
 //------------------------------------------------------------------------------
