@@ -59,12 +59,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogVerbose(@"Extension is %@", [pathExtension lowercaseString]);
         
         if (
-            [[pathExtension lowercaseString]    isEqualTo:@"hfv"]   ||
-            [[pathExtension lowercaseString]    isEqualTo:@"dsk"]   ||
-            [[pathExtension lowercaseString]    isEqualTo:@"dmg"]   ||
-            [[pathExtension lowercaseString]    isEqualTo:@"img"]   ||
-            [[pathExtension lowercaseString]    isEqualTo:@"image"] ||
-            [[pathExtension lowercaseString]    isEqualTo:@""]
+            [[pathExtension lowercaseString] isEqualTo:@"hfv"]   ||
+            [[pathExtension lowercaseString] isEqualTo:@"dsk"]   ||
+            [[pathExtension lowercaseString] isEqualTo:@"dmg"]   ||
+            [[pathExtension lowercaseString] isEqualTo:@"img"]   ||
+            [[pathExtension lowercaseString] isEqualTo:@"image"] ||
+            [[pathExtension lowercaseString] isEqualTo:@""]
         ) {
             
             DrivesModel *drivesModel = [

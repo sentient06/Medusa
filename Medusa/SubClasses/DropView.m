@@ -131,6 +131,26 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
         
         DDLogVerbose(@"kind is %@", kind);
+        
+        NSFileManager * fileManager = [NSFileManager defaultManager];
+        
+//        DDLogVerbose(@"--> %@", [urls objectAtIndex:i]);
+        NSError * error = nil;
+        NSDictionary * attr = [fileManager attributesOfItemAtPath:[urls objectAtIndex:i] error:&error];
+        DDLogCVerbose(@"k --> %@", [attr allKeys]);
+//        com.apple.FinderInfo
+//        com.apple.ResourceFork
+        
+        //http://stackoverflow.com/questions/11556064/find-out-if-png-file-is-a-screenshot/11565743#11565743
+        //http://www.cocoanetics.com/2012/03/reading-and-writing-extended-file-attributes/
+        //http://forums.macrumors.com/showthread.php?t=839674
+        //http://gotofritz.net/blog/geekery/os-x-extended-attibutes/
+        
+        
+        
+        break;
+        
+        
         computerModel = @"Test";
         
         [currentElement release];
