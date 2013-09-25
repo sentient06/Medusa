@@ -41,7 +41,10 @@
     int depthReached;
 }
 
--(void)iterateDirectory:(NSString *)currentDirectory;
--(void)parseFile:(NSString *)currentFile;
+@property (assign) IBOutlet NSTextField * reportField;
+
+- (void)iterateDirectory:(NSString *)currentDirectory;
+- (void)parseFile:(NSString *)currentFile;
+- (void)clearReportField;
 
 @end

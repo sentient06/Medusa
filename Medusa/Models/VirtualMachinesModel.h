@@ -64,6 +64,7 @@
 - (void)removeDrivesObject:(RelationshipVirtualMachinesDrivesModel *)value;
 - (void)addDrives:(NSSet *)values;
 - (void)removeDrives:(NSSet *)values;
+- (NSNumber *)nextDiskIndex;
 
 - (NSNumber *)icon;
 - (BOOL)canRun;

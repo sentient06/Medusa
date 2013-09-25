@@ -85,7 +85,6 @@
 		81C84434153E181900E94443 /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84432153E181900E94443 /* FileObject.m */; };
 		81C84438153E183700E94443 /* DropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84437153E183700E94443 /* DropView.m */; };
 		81C8443E153E191800E94443 /* RomManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C8443D153E191800E94443 /* RomManagerWindowController.m */; };
-		81CE19C817D61A0400596C79 /* DropRomToVmView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CE19C717D61A0400596C79 /* DropRomToVmView.m */; };
 		81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */; };
 		81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D733EB15A4AC8800DEA523 /* LinkedView.m */; };
 		81D733EF15A4AD6300DEA523 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D733EE15A4AD6300DEA523 /* QuartzCore.framework */; };
@@ -250,8 +249,6 @@
 		81C84437153E183700E94443 /* DropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropView.m; path = SubClasses/DropView.m; sourceTree = "<group>"; };
 		81C8443C153E191800E94443 /* RomManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomManagerWindowController.h; path = WindowControllers/RomManagerWindowController.h; sourceTree = "<group>"; };
 		81C8443D153E191800E94443 /* RomManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomManagerWindowController.m; path = WindowControllers/RomManagerWindowController.m; sourceTree = "<group>"; };
-		81CE19C617D61A0400596C79 /* DropRomToVmView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropRomToVmView.h; path = SubClasses/DropRomToVmView.h; sourceTree = "<group>"; };
-		81CE19C717D61A0400596C79 /* DropRomToVmView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropRomToVmView.m; path = SubClasses/DropRomToVmView.m; sourceTree = "<group>"; };
 		81CE19CE17D63EA300596C79 /* RomFileConditionTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFileConditionTransformer.h; path = TransformerControllers/RomFileConditionTransformer.h; sourceTree = "<group>"; };
 		81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFileConditionTransformer.m; path = TransformerControllers/RomFileConditionTransformer.m; sourceTree = "<group>"; };
 		81D733EA15A4AC8800DEA523 /* LinkedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedView.h; path = SubClasses/LinkedView.h; sourceTree = "<group>"; };
@@ -343,8 +340,6 @@
 				8159C78F154F1205001E43D4 /* DropRomView.m */,
 				8159C796154F2E28001E43D4 /* DropDiskView.h */,
 				8159C797154F2E29001E43D4 /* DropDiskView.m */,
-				81CE19C617D61A0400596C79 /* DropRomToVmView.h */,
-				81CE19C717D61A0400596C79 /* DropRomToVmView.m */,
 				8162FF3E17EC4EDD000413C2 /* DropAllView.h */,
 				8162FF3F17EC4EDD000413C2 /* DropAllView.m */,
 			);
@@ -832,7 +827,6 @@
 				8175CBE717D0D18C0003294E /* VMListTextCell.m in Sources */,
 				817E319D17D1078200131E2D /* VMList.m in Sources */,
 				814804E817D5D56D0070DAD9 /* RomModel.m in Sources */,
-				81CE19C817D61A0400596C79 /* DropRomToVmView.m in Sources */,
 				81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */,
 				810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */,
 				8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */,

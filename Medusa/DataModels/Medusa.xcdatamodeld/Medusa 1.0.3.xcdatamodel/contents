@@ -2,11 +2,11 @@
 <model name="" userDefinedModelVersionIdentifier="1.0.2.3" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Drives" representedClassName="DrivesModel" syncable="YES">
         <attribute name="bootable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="capacity" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="capacity" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="fileName" attributeType="String" syncable="YES"/>
         <attribute name="filePath" attributeType="String" syncable="YES"/>
         <attribute name="format" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="size" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="size" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="virtualMachines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDrives" inverseName="drive" inverseEntity="RelationshipVirtualMachinesDrives" syncable="YES"/>
     </entity>
     <entity name="Emulators" syncable="YES">

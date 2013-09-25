@@ -97,4 +97,8 @@
     else return NO;
 }
 
+- (NSNumber *)nextDiskIndex {
+    return [NSNumber numberWithUnsignedInteger:[[self drives] count]];
+}
+
 @end

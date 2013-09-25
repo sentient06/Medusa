@@ -34,4 +34,6 @@
 
 @interface DropRomView : DropView
 
+@property (assign) IBOutlet NSObjectController * currentMachine;
+
 @end

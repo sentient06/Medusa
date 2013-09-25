@@ -34,4 +34,6 @@
 
 @interface DropDiskView : DropView
 
+@property (assign) IBOutlet NSObjectController * currentMachine;
+
 @end

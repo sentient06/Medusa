@@ -32,7 +32,7 @@
 
 #import "DropAllView.h"
 #import "RomModel.h"
-#import "DrivesModel.h"
+#import "DriveModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -43,6 +43,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation DropAllView
+
+@synthesize reportField;
 
 /**
  * Iterates directories to parse files.
@@ -87,27 +89,30 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * Parses not-directory files.
  */
 -(void)parseFile:(NSString *)currentFile {
+    NSURL * url = [NSURL fileURLWithPath:[currentFile stringByExpandingTildeInPath]];
+    if ([[url lastPathComponent] isEqualToString:@".DS_Store"]) return;
+    
     filesParsed++;
     NSString * kind = nil;
-    NSURL * url = [NSURL fileURLWithPath:[currentFile stringByExpandingTildeInPath]];
-    RomModel * RomObject = [[RomModel alloc] init];
     LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
     DDLogVerbose(@"Kind: %@, url: %@", kind, [url relativePath]); //[url absoluteString] );
     
     NSArray * acceptedExtensions = [[NSArray alloc] initWithObjects: @"hfv", @"dsk", @"dmg", @"img", @"image", @"iso", nil];
     
     if ([acceptedExtensions containsObject:[[url pathExtension] lowercaseString]]) {
-
+        DriveModel * driveObject = [[DriveModel alloc] init];
+        [driveObject parseDriveFileAndSave:[url relativePath]];
+        [driveObject release];
+        disksParsed++;
     } else {
-    
         if ([kind isEqualToString:@"Unix Executable File"] || [kind isEqualToString:@"Document"] ){
-            [RomObject parseRomFileAndSave:[url relativePath]];
+            RomModel * romObject = [[RomModel alloc] init];
+            [romObject parseRomFileAndSave:[url relativePath]];
+            [romObject release];
+            romsParsed++;
         }
     }
-    
-    [RomObject release];
-    
-    
+
 }
 
 - (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
@@ -147,51 +152,37 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     DDLogVerbose(@"directories: %d, filesParsed: %d", directoriesParsed, filesParsed);
 
-    
-    
-    
-//    DDLogVerbose(@"Drop all");
-//    
-////    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
-//    
-//    NSPasteboard * pboard = [sender draggingPasteboard];
-//    NSArray      * urls   = [pboard propertyListForType:NSFilenamesPboardType];    
-//
-//    for (int i = 0; i < [urls count]; i++) {
-//        
-////        NSString * pathExtension = [[urls objectAtIndex:i] pathExtension];        
-//        
-////        if (
-////            [[pathExtension lowercaseString]    isEqualTo:@"hfv"]   ||
-////            [[pathExtension lowercaseString]    isEqualTo:@"dsk"]   ||
-////            [[pathExtension lowercaseString]    isEqualTo:@"dmg"]   ||
-////            [[pathExtension lowercaseString]    isEqualTo:@"img"]   ||
-////            [[pathExtension lowercaseString]    isEqualTo:@"image"] ||
-////            [[pathExtension lowercaseString]    isEqualTo:@""]
-////            ) {
-////            
-////            DrivesModel *drivesModel = [
-////                                        NSEntityDescription
-////                                        insertNewObjectForEntityForName:@"Drives"
-////                                        inManagedObjectContext:managedObjectContext
-////                                        ];
-////            //insertNewObjectInManagedObjectContext
-////            [drivesModel setFilePath:[urls objectAtIndex:i]];
-////            [drivesModel setFileName:[[urls objectAtIndex:i] lastPathComponent]];
-////            
-////            DDLogVerbose(@"Saving...");
-////            NSError *error;
-////            if (![managedObjectContext save:&error]) {
-////                DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
-////                DDLogVerbose(@"Check 'drop disk view' subclass.");
-////            }
-////            
-////        }
-//        
-//    }
+    if (reportField) {
+//        [reportField setStringValue:[NSString stringWithFormat:@""
+//            "  Files parsed: %d\n"
+//            "Folders parsed: %d\n"
+//            "   Roms parsed: %d\n"
+//            "   Disk images: %d\n"
+//            "Rejected files: %d\n"
+//          , filesParsed - directoriesParsed
+//          , directoriesParsed
+//          , romsParsed
+//          , disksParsed
+//          , romsParsed + disksParsed - filesParsed        
+//        ]];
+        [reportField setStringValue:[NSString stringWithFormat:@"%d files parsed.", filesParsed]];
+        
+        [NSTimer
+            scheduledTimerWithTimeInterval:5
+                                    target:self
+                                  selector:@selector(clearReportField)
+                                  userInfo:nil
+                                   repeats:YES
+        ];
+        
+    }
     
     return YES;
     
+}
+
+- (void)clearReportField {
+    [reportField setStringValue:@""];
 }
 
 @end

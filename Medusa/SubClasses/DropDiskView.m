@@ -33,6 +33,8 @@
 #import "DropDiskView.h"
 #import "FileHandler.h"
 #import "DriveModel.h"
+#import "RelationshipVirtualMachinesDrivesModel.h"
+#import "VirtualMachinesModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -43,6 +45,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation DropDiskView
+@synthesize currentMachine;
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     
@@ -51,6 +54,19 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     DriveModel   * diskObject = [[DriveModel alloc] autorelease];
     
     [diskObject parseDriveFilesAndSave:urls];
+    
+    if (currentMachine) {
+        VirtualMachinesModel * newVirtualMachineObject = [currentMachine content];
+        RelationshipVirtualMachinesDrivesModel * newRelationship = [
+        NSEntityDescription
+            insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDrives"
+            inManagedObjectContext:[currentMachine managedObjectContext]
+        ];
+
+        [newRelationship setDrive:[diskObject currentDriveObject]];
+        [newRelationship setPositionIndex:[newVirtualMachineObject nextDiskIndex]];
+        [newVirtualMachineObject addDrivesObject:newRelationship];
+    }
     
     return YES;
 }

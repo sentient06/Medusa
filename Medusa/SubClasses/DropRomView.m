@@ -33,18 +33,26 @@
 #import "DropRomView.h"
 #import "FileHandler.h"
 #import "RomModel.h" // Model that handles all Rom objects.
+#import "VirtualMachinesModel.h"
 
 @implementation DropRomView
+@synthesize currentMachine;
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     
     NSPasteboard * pboard    = [sender draggingPasteboard];
     NSArray      * urls      = [pboard propertyListForType:NSFilenamesPboardType];
-    RomModel     * RomObject = [[RomModel alloc] autorelease];
+    RomModel     * romObject = [[RomModel alloc] autorelease];
     
-    [RomObject parseRomFilesAndSave:urls];
+    [romObject parseRomFilesAndSave:urls];
     
-    return YES;
+    if (currentMachine) {
+        VirtualMachinesModel * newVirtualMachineObject = [currentMachine content];
+        [newVirtualMachineObject setRomFile:[romObject currentRomObject]];
+    }
+    
+    return YES;    
+    
 }
 
 @end
