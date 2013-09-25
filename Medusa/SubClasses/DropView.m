@@ -44,8 +44,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 @implementation DropView
 
-@synthesize computerModel;
-@synthesize acceptedTypes;
+//@synthesize computerModel;
+//@synthesize acceptedTypes;
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
     if ((NSDragOperationGeneric & [sender draggingSourceOperationMask])
@@ -58,117 +58,51 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
-    
+
     BOOL returnValue;
     
     //All pasteboard:
-    NSPasteboard *pboard = [sender draggingPasteboard];
-    NSArray *urls = [pboard propertyListForType:NSFilenamesPboardType];
     
+    NSPasteboard * pboard = [sender draggingPasteboard];
+    NSArray      * urls   = [pboard propertyListForType:NSFilenamesPboardType];
     
-    //Old code
-    //------------------------------------
-    /*
-    //First element only:
-    NSString *firstElement = [[NSString alloc] initWithFormat:[urls objectAtIndex:0]];
-    NSString *pathExtension = [[NSString alloc] initWithFormat:[firstElement pathExtension]];
-    
-    //Check if is a folder:
-    BOOL isDir;
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    
-    [fileManager fileExistsAtPath:firstElement isDirectory:&isDir];
-    
-    NSString *kind = nil;
-    NSURL *url = [NSURL fileURLWithPath:[firstElement stringByExpandingTildeInPath]];
-    LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
-    
-    DDLogVerbose(@"%@", kind);
-    computerModel = @"Test";
-    //DDLogVerbose(@"%@", parent);
-
-    if (
-        [kind isEqualToString:@"Unix Executable File"] ||
-        [kind isEqualToString:@"Document"]
-    ) {
-        returnValue = YES;
-    }else{
-        returnValue = NO;
-    }
-        
-    
-    [fileManager release];
-    [pathExtension release];
-    [firstElement release];
-    
-    */
-    //------------------------------------
-    //New code
     //First element only:
     
-    NSString *firstElement = [[NSString alloc] initWithFormat:[urls objectAtIndex:0]];
-    
-    NSString *currentElement;
-    //NSString *pathExtension;
     BOOL isDir;
-    NSFileManager *fileManager = [[NSFileManager alloc] init];
-    NSString *kind;
-    NSURL *url;
+    NSString      * firstElement = [[NSString alloc] initWithFormat:[urls objectAtIndex:0]];
+    NSFileManager * fileManager  = [[NSFileManager alloc] init];
+    NSString * kind;
+    NSURL    * url;
     
     returnValue = NO;
     
+    NSArray * acceptedTypes = [[NSArray alloc] initWithObjects:
+          @"Unix Executable File"
+        , @"Document"
+        , @"NDIF Disk Image"
+        , @"Disk Image"
+        , nil
+    ];
+    
     for (int i=0; i<[urls count]; i++) {
-
-        currentElement = [[NSString alloc] initWithFormat:[urls objectAtIndex:i]];
-        //pathExtension  = [[NSString alloc] initWithFormat:[currentElement pathExtension]];
-
-        //Check if is a folder:
         
+        NSString * currentElement = [urls objectAtIndex:i];
+        
+        //Checks if is a folder:        
         [fileManager fileExistsAtPath:currentElement isDirectory:&isDir];
-        
         kind = nil;
         url = [NSURL fileURLWithPath:[firstElement stringByExpandingTildeInPath]];
         LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
-        
-        DDLogVerbose(@"kind is %@", kind);
-        
-        NSFileManager * fileManager = [NSFileManager defaultManager];
-        
-//        DDLogVerbose(@"--> %@", [urls objectAtIndex:i]);
-        NSError * error = nil;
-        NSDictionary * attr = [fileManager attributesOfItemAtPath:[urls objectAtIndex:i] error:&error];
-        DDLogCVerbose(@"k --> %@", [attr allKeys]);
-//        com.apple.FinderInfo
-//        com.apple.ResourceFork
-        
-        //http://stackoverflow.com/questions/11556064/find-out-if-png-file-is-a-screenshot/11565743#11565743
-        //http://www.cocoanetics.com/2012/03/reading-and-writing-extended-file-attributes/
-        //http://forums.macrumors.com/showthread.php?t=839674
-        //http://gotofritz.net/blog/geekery/os-x-extended-attibutes/
-        
-        
-        
-        break;
-        
-        
-        computerModel = @"Test";
-        
-        [currentElement release];
-        
-        if (
-            [kind isEqualToString:@"Unix Executable File"] ||
-            [kind isEqualToString:@"Document"] ||
-            [kind isEqualToString:@"NDIF Disk Image"] ||
-            [kind isEqualToString:@"Disk Image"]
-        ) {
+
+        if ([acceptedTypes containsObject:kind]) {
             returnValue = YES;
             break;
         }
         
     }
     
+    [acceptedTypes release];
     [fileManager release];
-    //[pathExtension release];
     [firstElement release];
     
     return returnValue;
@@ -176,9 +110,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-
     return YES;
-    
 }
 
 @end

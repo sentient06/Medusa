@@ -2114,13 +2114,31 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="NSTextField" id="569921871">
+					<object class="NSTextField" id="373705900">
 						<reference key="NSNextResponder" ref="469330821"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{342, 33}, {159, 17}}</string>
+						<string key="NSFrame">{{342, 27}, {159, 17}}</string>
 						<reference key="NSSuperview" ref="469330821"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="972619214"/>
+						<bool key="NSEnabled">YES</bool>
+						<object class="NSTextFieldCell" key="NSCell" id="605864369">
+							<int key="NSCellFlags">68288064</int>
+							<int key="NSCellFlags2">272630784</int>
+							<string key="NSContents">Bootable</string>
+							<reference key="NSSupport" ref="24"/>
+							<reference key="NSControlView" ref="373705900"/>
+							<reference key="NSBackgroundColor" ref="836078331"/>
+							<reference key="NSTextColor" ref="402407340"/>
+						</object>
+					</object>
+					<object class="NSTextField" id="569921871">
+						<reference key="NSNextResponder" ref="469330821"/>
+						<int key="NSvFlags">268</int>
+						<string key="NSFrame">{{342, 45}, {159, 17}}</string>
+						<reference key="NSSuperview" ref="469330821"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="373705900"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="911180358">
 							<int key="NSCellFlags">68288064</int>
@@ -3810,6 +3828,53 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 					</object>
 					<int key="connectionID">1033</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">hidden: selection.drive.bootable</string>
+						<reference key="source" ref="373705900"/>
+						<reference key="destination" ref="208025379"/>
+						<object class="NSNibBindingConnector" key="connector" id="366827323">
+							<reference key="NSSource" ref="373705900"/>
+							<reference key="NSDestination" ref="208025379"/>
+							<string key="NSLabel">hidden: selection.drive.bootable</string>
+							<string key="NSBinding">hidden</string>
+							<string key="NSKeyPath">selection.drive.bootable</string>
+							<dictionary key="NSOptions">
+								<integer value="0" key="NSMultipleValuesPlaceholder"/>
+								<integer value="0" key="NSNoSelectionPlaceholder"/>
+								<integer value="0" key="NSNotApplicablePlaceholder"/>
+								<integer value="0" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">NSNegateBoolean</string>
+							</dictionary>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1067</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">hidden2: canRemove</string>
+						<reference key="source" ref="373705900"/>
+						<reference key="destination" ref="208025379"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="373705900"/>
+							<reference key="NSDestination" ref="208025379"/>
+							<string key="NSLabel">hidden2: canRemove</string>
+							<string key="NSBinding">hidden2</string>
+							<string key="NSKeyPath">canRemove</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">NSNegateBoolean</string>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="366827323"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">1070</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -3930,6 +3995,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 							<reference ref="972619214"/>
 							<reference ref="613165053"/>
 							<reference ref="569921871"/>
+							<reference ref="373705900"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Drives Subview</string>
@@ -5035,6 +5101,19 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<reference key="object" ref="519858396"/>
 						<reference key="parent" ref="336631264"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1058</int>
+						<reference key="object" ref="373705900"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="605864369"/>
+						</array>
+						<reference key="parent" ref="469330821"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1059</int>
+						<reference key="object" ref="605864369"/>
+						<reference key="parent" ref="373705900"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -5059,6 +5138,8 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 				<string key="105.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1050.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1051.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1058.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1059.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="140.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="201.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="203.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5246,7 +5327,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1054</int>
+			<int key="maxID">1071</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">

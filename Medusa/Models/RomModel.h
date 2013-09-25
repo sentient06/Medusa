@@ -47,6 +47,6 @@
 - (id)parseSingleRomFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
 - (void)parseRomFileAndSave:(NSString *)filePath; 
 - (void)parseRomFilesAndSave:(NSArray *)filesList;
-- (void)readRomFileFrom:(NSString *)filePath; //Got from FileHandler
+- (void)readRomFileFrom:(NSString *)filePath;
 
 @end

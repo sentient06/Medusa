@@ -32,7 +32,7 @@
 
 #import "DropDiskView.h"
 #import "FileHandler.h"
-#import "DrivesModel.h" //Model that handles all Drives-Entity-related objects.
+#import "DriveModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -46,49 +46,64 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     
-    NSPasteboard *pboard = [sender draggingPasteboard];
-    NSArray *urls = [pboard propertyListForType:NSFilenamesPboardType];    
+    NSPasteboard * pboard    = [sender draggingPasteboard];
+    NSArray      * urls      = [pboard propertyListForType:NSFilenamesPboardType];
+    DriveModel   * diskObject = [[DriveModel alloc] autorelease];
     
-    NSString *pathExtension;
-    NSManagedObjectContext *managedObjectContext = [[NSApp delegate] managedObjectContext];
-    
-    for (int i = 0; i < [urls count]; i++) {
-    
-        pathExtension = [[urls objectAtIndex:i] pathExtension];
-        
-        DDLogVerbose(@"Extension is %@", [pathExtension lowercaseString]);
-        
-        if (
-            [[pathExtension lowercaseString] isEqualTo:@"hfv"]   ||
-            [[pathExtension lowercaseString] isEqualTo:@"dsk"]   ||
-            [[pathExtension lowercaseString] isEqualTo:@"dmg"]   ||
-            [[pathExtension lowercaseString] isEqualTo:@"img"]   ||
-            [[pathExtension lowercaseString] isEqualTo:@"image"] ||
-            [[pathExtension lowercaseString] isEqualTo:@""]
-        ) {
-            
-            DrivesModel *drivesModel = [
-                NSEntityDescription
-                insertNewObjectForEntityForName:@"Drives"
-                         inManagedObjectContext:managedObjectContext
-            ];
-            //insertNewObjectInManagedObjectContext
-            [drivesModel setFilePath:[urls objectAtIndex:i]];
-            [drivesModel setFileName:[[urls objectAtIndex:i] lastPathComponent]];
-            
-            DDLogVerbose(@"Saving...");
-            NSError *error;
-            if (![managedObjectContext save:&error]) {
-                DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
-                DDLogVerbose(@"Check 'drop disk view' subclass.");
-            }
-                
-        }
-        
-    }
+    [diskObject parseDriveFilesAndSave:urls];
     
     return YES;
-    
 }
+
+//- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+//    
+//    NSPasteboard *pboard = [sender draggingPasteboard];
+//    NSArray *urls = [pboard propertyListForType:NSFilenamesPboardType];    
+//    
+//    NSString *pathExtension;
+//    NSManagedObjectContext *managedObjectContext = [[NSApp delegate] managedObjectContext];
+//    
+//    NSArray * acceptedExtensions = [[NSArray alloc] initWithObjects:
+//          @"Unix Executable File"
+//        , @"Document"
+//        , @"NDIF Disk Image"
+//        , @"Disk Image"
+//        , nil
+//    ];
+//    
+//    for (int i = 0; i < [urls count]; i++) {
+//    
+//        pathExtension = [[urls objectAtIndex:i] pathExtension];
+//        
+//        DDLogVerbose(@"Extension is %@", [pathExtension lowercaseString]);
+//        
+//        if ( [acceptedExtensions containsObject: [pathExtension lowercaseString]] ) {
+//            
+//            DrivesModel * drivesModel = [
+//                NSEntityDescription
+//                insertNewObjectForEntityForName:@"Drives"
+//                         inManagedObjectContext:managedObjectContext
+//            ];
+//
+//            //insertNewObjectInManagedObjectContext
+//            [drivesModel setFilePath:[urls objectAtIndex:i]];
+//            [drivesModel setFileName:[[urls objectAtIndex:i] lastPathComponent]];
+//            
+//            DDLogVerbose(@"Saving...");
+//            NSError *error;
+//            if (![managedObjectContext save:&error]) {
+//                DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//                DDLogVerbose(@"Check 'drop disk view' subclass.");
+//            }
+//
+//        }
+//        
+//    }
+//    
+//    [acceptedExtensions release];
+//    
+//    return YES;
+//    
+//}
 
 @end

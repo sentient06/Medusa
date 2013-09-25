@@ -34,12 +34,20 @@
 
 @class DrivesModel; // Plural. This is the coredata class.
 
-@interface DriveModel : NSObject
+@interface DriveModel : NSObject {
+    NSString * fileName;
+    int diskFormat;
+    uint64_t diskSize;
+    int capacity;
+    BOOL bootable;
+}
 
 @property (readonly, strong, nonatomic) DrivesModel * currentDriveObject;
 
 - (id)parseSingleDriveFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
 - (void)parseDriveFileAndSave:(NSString *)filePath;
 - (void)parseDriveFilesAndSave:(NSArray *)filesList;
+- (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath;
+- (void)readDiskFileFrom:(NSString *)filePath;
 
 @end

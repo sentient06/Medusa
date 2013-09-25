@@ -35,11 +35,13 @@
 
 @implementation DrivesModel
 
+@dynamic bootable;
 @dynamic fileName;
 @dynamic filePath;
 @dynamic virtualMachines;
 @dynamic format;
 @dynamic capacity;
+@dynamic size;
 
 //+ (NSEntityDescription*) insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)value {
 //    

@@ -40,18 +40,21 @@ enum driveFormat {
     formatHFSPlus = 4,
     formatISO9660 = 5,
     formatFAT     = 6,
-    formatOther   = 7
+    formatOther   = 7,
+    formatUnknown = 8
 };
 
 @class RelationshipVirtualMachinesDrivesModel;
 
 @interface DrivesModel : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * bootable;
 @property (nonatomic, retain) NSString * fileName;
 @property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSSet    * virtualMachines;
 @property (nonatomic, retain) NSNumber * format;
 @property (nonatomic, retain) NSNumber * capacity;
+@property (nonatomic, retain) NSNumber * size;
 @end
 
 @interface DrivesModel (CoreDataGeneratedAccessors)

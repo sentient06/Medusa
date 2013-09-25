@@ -31,7 +31,15 @@
 //------------------------------------------------------------------------------
 
 #import "DriveModel.h"
-#import "DrivesModel.h"
+#import "DrivesModel.h" //Model that handles all Rom-Files-Entity-related objects.
+
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
 
 @implementation DriveModel
 
@@ -55,7 +63,72 @@
 //    Number of Files :   1,586
     // Locked?
     // OS?
+    BOOL success = YES;
     
+//    NSString * pathExtension = [filePath pathExtension];    
+        
+    [self readDiskFileFrom:filePath];
+    
+    //----------------------------------------------------------------------
+    // Core-data part:
+    
+    NSError * error;
+    
+    NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
+    NSEntityDescription * entity    = [ NSEntityDescription entityForName:@"Drives" inManagedObjectContext:currentContext];
+    NSPredicate         * predicate = [ NSPredicate
+        predicateWithFormat: @"filePath = %@",
+        filePath
+    ];
+    
+    [request setEntity:entity];
+    [request setPredicate: predicate];
+    NSInteger resultCount = [currentContext countForFetchRequest:request error:&error];
+    
+    [request release];
+    
+    if (resultCount > 0) {
+        DDLogVerbose(@"This disk file is duplicated!");
+        return nil;
+    }        
+    
+    //----------------------------------------------------------------------        
+    
+    DrivesModel * managedObject = [
+        NSEntityDescription
+            insertNewObjectForEntityForName: @"Drives"
+            inManagedObjectContext: currentContext
+    ];
+    
+    [managedObject setFilePath : filePath];
+    [managedObject setFileName : fileName];
+    [managedObject setCapacity : [NSNumber numberWithInt:capacity]];
+    [managedObject setFormat   : [NSNumber numberWithInt:diskFormat]];
+    [managedObject setBootable : [NSNumber numberWithBool:bootable]];
+    [managedObject setSize     : [NSNumber numberWithUnsignedLongLong:diskSize]];
+    
+    //----------------------------------------------------------------------
+    
+    DDLogVerbose(@"Saving...");
+    
+    if (![currentContext save:&error]) {
+        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        DDLogVerbose(@"Check 'drop rom view' subclass.");
+        success = NO;
+    }
+    
+    if (success) {
+        currentDriveObject = managedObject;
+        return managedObject;
+    }
+    
+    //----------------------------------------------------------------------
+
+    fileName   = nil;
+    diskFormat = -1;
+    capacity   = -1;
+    bootable   = NO;
+    diskSize   = -1;
     
     return nil;
 }
@@ -77,6 +150,85 @@
     for (int i = 0; i < [filesList count]; i++) {
         [self parseDriveFileAndSave:[filesList objectAtIndex:i]];
     }
+}
+
+- (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath {
+    
+    // Refer to:
+    // https://en.wikipedia.org/wiki/HFS_Plus#Design
+    // for details.
+    // Actually, we must check 400 bytes into sector 0, the rest doesn't matter.
+    
+    NSString * bootableDriveBootBlock = @""
+    "4C4B6000 00864418 00000653 79737465 6D000000 00000000 00000646 696E6465 72000000 00000000"
+    "0000074D 61637342 75670000 00000000 00000C44 69736173 73656D62 6C657200 00000D53 74617274"
+    "55705363 7265656E 00000646 696E6465 72000000 00000000 00000943 6C697062 6F617264 00000000"
+    "0000000A 00140000 43000000 80000002 00004A78 028E6B46 207802AE 32280008 7CFE5446 303B603C"
+    "6758B240 66F40C01 00766210 207802A6 D1FAFFD4 A05721F8 02A60118 584F2E0F 6138323B 60224A40"
+    "6704323B 60242078 02AE4EF0 10007062 A9C90075 02760178 037A067C 00000A44 090E0F1C 30E61D96"
+    "0B820A52 11AE336E 203E41FA FF0E43F8 0AD87010 A02E41FA FF1243F8 02E07010 A02E41FA FF5643F8"
+    "097021C9 096C7010 A02E303A FF58A06D 303AFF50 A06C2047 31780210 0016A00F 665442A8 00124268"
+    "001CA207 66402868 005E2168 005A0030 6710217C 4552494B 001C7001 A2606626 A015554F A9954A5F"
+    "6B1A594F 2F3C626F 6F743F3C 0002A9A0 201F6712 584F2640 20534ED0 702B3F00 2047A00E 301F4E75";
+    
+    // I know it is dumb, but I like it to be readable.
+    bootableDriveBootBlock = [bootableDriveBootBlock stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    // Pure C ahead.
+    
+    FILE * f;
+    int bufferSize = 400;
+    unsigned char buffer[bufferSize];
+    unsigned long n;
+    char firstBytes[bufferSize*2+1];
+    f = fopen([filePath UTF8String], "r");
+    n = fread(buffer, bufferSize, 1, f);
+    for (int c=0; c<bufferSize; c++)
+        if (c==0) snprintf(firstBytes, bufferSize*2+1, "%.2X", (int)buffer[c]);
+        else      snprintf(firstBytes, bufferSize*2+1, "%s%.2X", firstBytes, (int)buffer[c]);
+    fclose(f);
+    firstBytes[bufferSize*2] = 0;
+
+    // That's enough.
+    
+    NSString * finalResult = [[NSString alloc] initWithFormat:@"%s", firstBytes];
+    
+    if ([bootableDriveBootBlock isEqualTo:finalResult]) {
+        DDLogCVerbose(@"Image is bootable");
+        return YES;
+    } else {
+        DDLogCVerbose(@"Image is NOT bootable:\n%@\n\n%@\n\n%s", bootableDriveBootBlock, finalResult, firstBytes);
+        return NO;
+    }
+
+}
+
+- (void)readDiskFileFrom:(NSString *)filePath {
+//    NSString * fileName;
+//    int diskFormat;
+//    int capacity;
+//    BOOL bootable;
+    
+    fileName = [filePath lastPathComponent];
+    bootable = [self checkIfDiskImageIsBootable:filePath];
+    
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSError       * error       = nil;
+    NSDictionary  * attributes  = [fileManager attributesOfItemAtPath:filePath error:&error];
+
+    diskSize   = [attributes fileSize];
+    diskFormat = formatUnknown;
+    
+    // hdiutil imageinfo <image>
+
+    //formatLisaFS  = 1,
+    //formatMFS     = 2,
+    //formatHFS     = 3,
+    //formatHFSPlus = 4,
+    //formatISO9660 = 5,
+    //formatFAT     = 6,
+    //formatOther   = 7
+
 }
 
 @end

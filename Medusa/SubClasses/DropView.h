@@ -33,12 +33,12 @@
 #import <Cocoa/Cocoa.h>
 
 @interface DropView : NSImageView {
-    NSMutableArray * acceptedTypes;
-    NSString       * computerModel;
+//    NSMutableArray * acceptedTypes;
+//    NSString       * computerModel;
 }
 
-@property (copy) NSString * computerModel;
-@property (copy) NSMutableArray * acceptedTypes;
+//@property (copy) NSString       * computerModel;
+//@property (copy) NSMutableArray * acceptedTypes;
 
 @end
 
