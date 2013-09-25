@@ -220,6 +220,34 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     diskFormat = formatUnknown;
     
     // hdiutil imageinfo <image>
+    // hdiutil imageinfo -plist  /Users/gian/Dropbox/Emulation/macos81.dmg
+    
+    // -------------------------
+//    NSMutableArray * allMountedDisks = [[NSMutableArray alloc] initWithCapacity:1];
+    NSTask * task = [NSTask new];
+    [task setLaunchPath:@"/usr/bin/hdiutil"];
+    [task setArguments:[NSArray arrayWithObjects:@"imageinfo", @"-plist", filePath, nil]];
+    [task setStandardOutput:[NSPipe pipe]];
+    [task setStandardError:[task standardOutput]];
+    [task launch];
+    NSData       * plistData = [[[task standardOutput] fileHandleForReading] readDataToEndOfFile];
+    NSDictionary * plist = [NSPropertyListSerialization propertyListWithData:plistData options:0 format:nil error:&error];
+    
+    if(!plist) {
+        DDLogError(@"Error: %@", error);
+    } else {
+        
+//        for( id mountedDiskImage in [plist objectForKey:@"images"] ) { }
+        
+        DDLogVerbose(@"Plist generated: %@", plist);
+//        [availableImages initWithArray:allMountedDisks];
+//        "Size Information"
+//            "Total Bytes"
+//        partitions
+//            partitions
+        
+    }
+    // -------------------------
 
     //formatLisaFS  = 1,
     //formatMFS     = 2,
