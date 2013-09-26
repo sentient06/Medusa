@@ -123,7 +123,6 @@ typedef enum {
 //- (IBAction)makeDriveBootable:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;
 - (void)resetDriveOrder;
-- (IBAction)run:(id)sender;
 
 - (IBAction)displayGeneralView:(id)sender;
 - (IBAction)displayDisksView:(id)sender;

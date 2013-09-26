@@ -44,7 +44,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_ERROR;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -357,38 +357,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     [self savePreferences];
     
-}
-
-/*!
- * @method      run:
- * @abstract    Saves preferences and lauches emulator.
- * @discussion  aa
- */
-- (IBAction)run:(id)sender {
-    
-    PreferencesModel *preferences = [[PreferencesModel alloc] init];
-    NSArray *data = [preferences getVirtualMachineData:virtualMachine];
-    NSURL * emulatorPath; // = [[NSURL alloc] init];
-    NSMutableString * preferencesFilePath; // = [[NSMutableString alloc] init];
-
-    if ([[[virtualMachine romFile] emulator] isEqualTo:@"Basilisk"]) {
-        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
-        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey: @"BasiliskPath"];
-    }else{
-        preferencesFilePath = [NSMutableString stringWithFormat:@"%@/%@", NSHomeDirectory(), @".sheepshaver_prefs"];
-        emulatorPath = [[NSUserDefaults standardUserDefaults] URLForKey:@"SheepshaverPath"];
-    }
-        
-    DDLogVerbose(@"%@", preferencesFilePath);
-    DDLogVerbose(@"%@", emulatorPath);
-    
-    [preferences savePreferencesFile:data ForFile:preferencesFilePath];
-    [[NSWorkspace sharedWorkspace] openURL:emulatorPath];
-    
-//    [preferencesFilePath release];
-//    [emulatorPath release];
-    [preferences release];
-
 }
 
 /*!

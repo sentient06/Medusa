@@ -53,7 +53,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -332,7 +332,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (IBAction)run:(id)sender {
     
-    NSError *error = nil;
+    NSError * error = nil;
     
     if (![[self managedObjectContext] commitEditing]) {
         DDLogError(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
@@ -341,56 +341,59 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (![[self managedObjectContext] save:&error]) {
         [[NSApplication sharedApplication] presentError:error];
     }
-    
-    
-    // Use GCD to execute emulator in an async thread:
-//    dispatch_async(queue, ^{
         
-        NSArray * selectedVirtualMachines = [[
-            [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
-        ] autorelease ];
+    NSArray * selectedVirtualMachines = [[
+        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
+    ] autorelease ];
 
-        //The user can select only one in the current interface, but anyway...
-        VirtualMachinesEntityModel * virtualMachine = [selectedVirtualMachines  objectAtIndex:0];
-        
-        NSString * preferencesFilePath = [
-            [NSMutableString alloc] initWithFormat:
-                @"%@/%@Preferences",
-                [self applicationSupportDirectory],
-                [virtualMachine uniqueName]
-        ];
-       
-        PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
-        [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];
-
-//        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
-       
-        DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
+    //The user can select only one in the current interface, but anyway...
+    VirtualMachinesEntityModel * virtualMachine = [selectedVirtualMachines  objectAtIndex:0];
+    
+    NSString * preferencesFilePath = [
+        [NSMutableString alloc] initWithFormat:
+            @"%@/%@Preferences",
+            [self applicationSupportDirectory],
+            [virtualMachine uniqueName]
+    ];
+   
+    PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
+    [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];   
+    DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
 //        DDLogVerbose(@"Emulator path .: %@", emulatorPath);
 
-        [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
-    
-//        // Starts emulator:
-//        
-//        NSTask * emulatorTask = [[[NSTask alloc] init] autorelease];
-//        [emulatorTask setLaunchPath:emulatorPath];
-//
-//        [emulatorTask setArguments:
-//            [NSArray arrayWithObjects:
-//                 @"--config"
-//               , preferencesFilePath
-//               ,nil
-//            ]
-//        ];
-//        
-//        [emulatorPath release];
-//        [preferencesFilePath release];
-//        [emulatorTask launch];
-//        [emulatorTask waitUntilExit];
-//
-//        DDLogVerbose(@"Emulator finished.");
-//        
-//    });
+
+/// Emulator launching:
+//        [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
+///--------------------
+/// Or...
+///--------------------
+    // Use GCD to execute emulator in an async thread:
+    dispatch_async(queue, ^{
+        
+        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
+        
+        // Starts emulator:
+        
+        NSTask * emulatorTask = [[[NSTask alloc] init] autorelease];
+        [emulatorTask setLaunchPath:emulatorPath];
+
+        [emulatorTask setArguments:
+            [NSArray arrayWithObjects:
+                 @"--config"
+               , preferencesFilePath
+               ,nil
+            ]
+        ];
+        
+        [emulatorPath release];
+        [preferencesFilePath release];
+        [emulatorTask launch];
+        [emulatorTask waitUntilExit];
+
+        DDLogVerbose(@"Emulator finished.");
+        
+    });
+///--------------------
     
 }
 

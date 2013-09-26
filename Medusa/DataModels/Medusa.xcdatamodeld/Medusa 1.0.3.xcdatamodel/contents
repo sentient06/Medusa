@@ -37,6 +37,9 @@
         <relationship name="machines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
     <entity name="VirtualMachines" representedClassName="VirtualMachinesEntityModel" syncable="YES">
+        <attribute name="displayColourDepth" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="2" syncable="YES"/>
+        <attribute name="displayDynamicUpdate" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="displayFrameSkip" attributeType="Integer 16" minValueString="0" maxValueString="64" defaultValueString="8" syncable="YES"/>
         <attribute name="displayHeight" attributeType="Integer 16" defaultValueString="500" syncable="YES"/>
         <attribute name="displayWidth" attributeType="Integer 16" defaultValueString="800" syncable="YES"/>
         <attribute name="fpuEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -44,7 +47,7 @@
         <attribute name="jitCacheSize" attributeType="Integer 16" defaultValueString="8192" syncable="YES"/>
         <attribute name="jitEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="lazyCacheEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="macModel" attributeType="Integer 16" defaultValueString="5" syncable="YES"/>
+        <attribute name="macModel" attributeType="Integer 16" defaultValueString="14" syncable="YES"/>
         <attribute name="memory" attributeType="Integer 16" defaultValueString="32" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="processorType" attributeType="Integer 16" maxValueString="3" defaultValueString="3" syncable="YES"/>
@@ -62,6 +65,6 @@
         <element name="Emulators" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RelationshipVirtualMachinesDiskFiles" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>
-        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="330"/>
+        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="375"/>
     </elements>
 </model>

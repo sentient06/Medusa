@@ -84,10 +84,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     NSMutableString * newContent = [[NSMutableString alloc] init];
     
-    for (NSDictionary * pedaco in dataToSave) {
-        for(id key in pedaco){
-            DDLogVerbose(@"key=%@ value=%@", key, [pedaco objectForKey:key]);
-            [newContent appendString:[NSString stringWithFormat:@"%@ %@", key, [pedaco objectForKey:key]]];
+    for (NSDictionary * dataElement in dataToSave) {
+        for(id key in dataElement){
+            DDLogVerbose(@"key=%@ value=%@", key, [dataElement objectForKey:key]);
+            [newContent appendString:[NSString stringWithFormat:@"%@ %@", key, [dataElement objectForKey:key]]];
             [newContent appendString:@"\n"];
         }
     }
@@ -220,7 +220,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     
     //--------------------------------------------------------------------------
-    //3. The drives
+    //3. The disks
     
     NSEntityDescription * vmDrivesRelationship = [
         NSEntityDescription
@@ -306,15 +306,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     //--------------------------------------------------------------------------
     //6. Display data
     
-    NSString * fullScreen = [[NSString alloc] initWithFormat:@"win"];
-    NSNumber * screenWidth = [virtualMachine displayWidth];
-    NSNumber * screenHeight = [virtualMachine displayHeight];
+    NSString * fullScreen    = [[NSString alloc] initWithFormat:@"win"];
+    NSNumber * screenWidth   = [virtualMachine displayWidth];
+    NSNumber * screenHeight  = [virtualMachine displayHeight];
+    NSNumber * colourDepth   = [virtualMachine displayColourDepth];
+    NSNumber * dynamicUpdate = [virtualMachine displayDynamicUpdate];
+    NSNumber * frameSkip     = [virtualMachine displayFrameSkip];
 
-    if ([[virtualMachine fullScreen] intValue] > 0) { //Yeah... this rubbish is a NSNumber! =P
-        
-        NSRect screenRect = [[[NSScreen screens] objectAtIndex:0] frame];
-        
-        fullScreen   = @"dga";        
+    if ([[virtualMachine fullScreen] boolValue] == YES) {
+        NSRect screenRect = [[[NSScreen screens] objectAtIndex:0] frame];        
+        fullScreen   = @"dga";
         screenWidth  = [NSNumber numberWithFloat: screenRect.size.width];
         screenHeight = [NSNumber numberWithFloat: screenRect.size.height];
         
@@ -322,10 +323,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     NSDictionary * screenSettings = [[NSDictionary alloc]
         initWithObjectsAndKeys:
-            [NSString stringWithFormat:@"%@/%@/%@/%d",
+            [NSString stringWithFormat:@"%@/%@/%@/%@",
              fullScreen,
              screenWidth,
-             screenHeight, 32
+             screenHeight, colourDepth
             ], @"screen",
             nil
     ];
@@ -333,6 +334,25 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [allData addObject:screenSettings];
     [screenSettings release];
     [fullScreen release];
+    
+    if ([dynamicUpdate boolValue] == YES) {
+        frameSkip = [NSNumber numberWithInt:0];
+    } else {
+        if ([frameSkip intValue] == 0)
+        frameSkip = [NSNumber numberWithInt:-1]; //ignores
+    }
+
+    if ([frameSkip intValue] >= 0) {
+        NSDictionary * frameSkipSettings = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                  [frameSkip stringValue]
+                , @"frameskip"
+                , nil
+        ]; 
+        
+        [allData addObject:frameSkipSettings];
+        [frameSkipSettings release];
+    }
     
     //--------------------------------------------------------------------------
     //7. Serial data

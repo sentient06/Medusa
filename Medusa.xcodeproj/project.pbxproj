@@ -82,12 +82,10 @@
 		81B08F1C17F43FE5000954C6 /* ByteValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F1B17F43FE5000954C6 /* ByteValueTransformer.m */; };
 		81B08F2317F44198000954C6 /* DriveFormatValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2217F44198000954C6 /* DriveFormatValueTransformer.m */; };
 		81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2617F44648000954C6 /* BoolValueTransformer.m */; };
-		81C03D02154EF46C00842906 /* DriveManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C03D01154EF46C00842906 /* DriveManagerWindowController.m */; };
 		81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C2B75117D646AB000E4A01 /* linenPattern.png */; };
 		81C84433153E181900E94443 /* FileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84430153E181900E94443 /* FileHandler.m */; };
 		81C84434153E181900E94443 /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84432153E181900E94443 /* FileObject.m */; };
 		81C84438153E183700E94443 /* DropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84437153E183700E94443 /* DropView.m */; };
-		81C8443E153E191800E94443 /* RomManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C8443D153E191800E94443 /* RomManagerWindowController.m */; };
 		81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */; };
 		81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D733EB15A4AC8800DEA523 /* LinkedView.m */; };
 		81D733EF15A4AD6300DEA523 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D733EE15A4AD6300DEA523 /* QuartzCore.framework */; };
@@ -247,8 +245,6 @@
 		81B08F2217F44198000954C6 /* DriveFormatValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveFormatValueTransformer.m; path = TransformerControllers/EnumeratorTransformers/DriveFormatValueTransformer.m; sourceTree = "<group>"; };
 		81B08F2517F44648000954C6 /* BoolValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueTransformer.h; sourceTree = "<group>"; };
 		81B08F2617F44648000954C6 /* BoolValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueTransformer.m; sourceTree = "<group>"; };
-		81C03D00154EF46C00842906 /* DriveManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveManagerWindowController.h; path = WindowControllers/DriveManagerWindowController.h; sourceTree = "<group>"; };
-		81C03D01154EF46C00842906 /* DriveManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveManagerWindowController.m; path = WindowControllers/DriveManagerWindowController.m; sourceTree = "<group>"; };
 		81C2B75117D646AB000E4A01 /* linenPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = linenPattern.png; path = Images/Backgrounds/linenPattern.png; sourceTree = "<group>"; };
 		81C8442F153E181900E94443 /* FileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileHandler.h; path = Models/FileHandler.h; sourceTree = "<group>"; };
 		81C84430153E181900E94443 /* FileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileHandler.m; path = Models/FileHandler.m; sourceTree = "<group>"; };
@@ -256,8 +252,6 @@
 		81C84432153E181900E94443 /* FileObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileObject.m; path = Models/FileObject.m; sourceTree = "<group>"; };
 		81C84436153E183700E94443 /* DropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropView.h; path = SubClasses/DropView.h; sourceTree = "<group>"; };
 		81C84437153E183700E94443 /* DropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropView.m; path = SubClasses/DropView.m; sourceTree = "<group>"; };
-		81C8443C153E191800E94443 /* RomManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomManagerWindowController.h; path = WindowControllers/RomManagerWindowController.h; sourceTree = "<group>"; };
-		81C8443D153E191800E94443 /* RomManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomManagerWindowController.m; path = WindowControllers/RomManagerWindowController.m; sourceTree = "<group>"; };
 		81CE19CE17D63EA300596C79 /* RomFileConditionTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFileConditionTransformer.h; path = TransformerControllers/RomFileConditionTransformer.h; sourceTree = "<group>"; };
 		81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFileConditionTransformer.m; path = TransformerControllers/RomFileConditionTransformer.m; sourceTree = "<group>"; };
 		81D733EA15A4AC8800DEA523 /* LinkedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedView.h; path = SubClasses/LinkedView.h; sourceTree = "<group>"; };
@@ -315,10 +309,6 @@
 			children = (
 				81756F5A15347F2B00FCBA8E /* VirtualMachineWindowController.h */,
 				81756F5B15347F2B00FCBA8E /* VirtualMachineWindowController.m */,
-				81C8443C153E191800E94443 /* RomManagerWindowController.h */,
-				81C8443D153E191800E94443 /* RomManagerWindowController.m */,
-				81C03D00154EF46C00842906 /* DriveManagerWindowController.h */,
-				81C03D01154EF46C00842906 /* DriveManagerWindowController.m */,
 				814FAD871570ED0D008D3223 /* PreferencesWindowController.h */,
 				814FAD881570ED0D008D3223 /* PreferencesWindowController.m */,
 				81DB8247159FAED8003D4C5D /* AssetsWindowController.h */,
@@ -854,8 +844,6 @@
 				81C84433153E181900E94443 /* FileHandler.m in Sources */,
 				81C84434153E181900E94443 /* FileObject.m in Sources */,
 				81C84438153E183700E94443 /* DropView.m in Sources */,
-				81C8443E153E191800E94443 /* RomManagerWindowController.m in Sources */,
-				81C03D02154EF46C00842906 /* DriveManagerWindowController.m in Sources */,
 				8159C790154F1205001E43D4 /* DropRomView.m in Sources */,
 				8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */,
 				8160BB0915502F74005F6DBF /* DriveIconValueTransformer.m in Sources */,

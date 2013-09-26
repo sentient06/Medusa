@@ -14,22 +14,22 @@
 
     NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
     
-        // Starts emulator:
-        
-        NSTask * emulatorTask = [[[NSTask alloc] init] autorelease];
-        [emulatorTask setLaunchPath:emulatorPath];
-
-        [emulatorTask setArguments:
-            [NSArray arrayWithObjects:
-                 @"--config"
-               , preferencesFilePath
-               ,nil
-            ]
-        ];
-        
-        [emulatorPath release];
-        [emulatorTask launch];
-        [emulatorTask waitUntilExit];
+    // Starts emulator:
+    
+    NSTask * emulatorTask = [[NSTask alloc] init];
+    [emulatorTask setLaunchPath:emulatorPath];
+    [emulatorTask setArguments:
+        [NSArray arrayWithObjects:
+             @"--config"
+           , preferencesFilePath
+           ,nil
+        ]
+    ];
+    
+    [emulatorTask launch];
+    [emulatorTask waitUntilExit];
+    [emulatorTask release];
+    [emulatorPath release];
     
 }
 

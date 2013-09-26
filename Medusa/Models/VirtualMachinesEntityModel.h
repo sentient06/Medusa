@@ -41,6 +41,9 @@
 @property (nonatomic, retain) RomFilesEntityModel * romFile;
 //@property (nonatomic, retain) NSNumber * icon;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * displayColourDepth;
+@property (nonatomic, retain) NSNumber * displayDynamicUpdate;
+@property (nonatomic, retain) NSNumber * displayFrameSkip;
 @property (nonatomic, retain) NSNumber * displayHeight;
 @property (nonatomic, retain) NSNumber * displayWidth;
 @property (nonatomic, retain) NSNumber * fullScreen;

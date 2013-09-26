@@ -38,6 +38,9 @@
 @implementation VirtualMachinesEntityModel
 
 @dynamic uniqueName;
+@dynamic displayColourDepth;
+@dynamic displayDynamicUpdate;
+@dynamic displayFrameSkip;
 @dynamic displayHeight;
 @dynamic displayWidth;
 @dynamic fullScreen;
