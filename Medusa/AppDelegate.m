@@ -53,7 +53,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -361,6 +361,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
 //        DDLogVerbose(@"Emulator path .: %@", emulatorPath);
 
+    return;
 
 /// Emulator launching:
 //        [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
@@ -496,6 +497,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSString * basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
     return [basePath stringByAppendingPathComponent:@"Medusa"];
 }
+
+/*!
+ * @method      saveCoreData:
+ * @abstract    Saves the core-data state.
+ */
 - (void)saveCoreData {
     DDLogVerbose(@"Saving...");
     NSError * error;
@@ -503,6 +509,66 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
         DDLogVerbose(@"Check 'App Delegate' class, saveCloneVirtualMachine");
     }
+}
+
+/*!
+ * @method      scanEmulators:
+ * @abstract    Scans for emulators inside app support dir.
+ */
+- (void)scanEmulators {
+    DDLogVerbose(@"Scanning...");
+    NSString * emulatorsDirectory = [[NSString alloc] initWithFormat:@"%@/Emulators", [self applicationSupportDirectory]];
+    BOOL isDir;
+    NSFileManager * fileManager= [NSFileManager defaultManager];
+    if(![fileManager fileExistsAtPath:emulatorsDirectory isDirectory:&isDir]) {
+        if(![fileManager createDirectoryAtPath:emulatorsDirectory withIntermediateDirectories:YES attributes:nil error:NULL])
+            DDLogError(@"Error: Could not create folder %@", emulatorsDirectory);
+    } else {
+        NSString * basiliskFolder = [[NSString alloc] initWithFormat:@"%@/Basilisk", emulatorsDirectory];
+        if(![fileManager fileExistsAtPath:basiliskFolder isDirectory:&isDir]) {
+            if(![fileManager createDirectoryAtPath:basiliskFolder withIntermediateDirectories:YES attributes:nil error:NULL])
+                DDLogError(@"Error: Could not create folder %@", basiliskFolder);
+        } else {
+//----------------------------------------------------------------------
+            NSError * notFound;
+            NSArray * emulatorsDirectoriesFound = [fileManager contentsOfDirectoryAtPath:basiliskFolder error:&notFound];
+            
+//            DDLogVerbose(@"emulatorsDirectoriesFound: %@", emulatorsDirectoriesFound);
+            
+            if ([emulatorsDirectoriesFound count] > 0) {
+                NSString * basiliskExecutableSuffix = [[NSString alloc] initWithString:@"Basilisk II.app/Contents/MacOS/BasiliskII"];
+                NSString * basiliskInfoDPlistSuffix = [[NSString alloc] initWithString:@"Basilisk II.app/Contents/Info.plist"];
+                for (NSString * singleDir in emulatorsDirectoriesFound) {
+                    
+                    NSString * exePath = [[NSString alloc] initWithFormat:@"%@/%@/%@", emulatorsDirectory, singleDir, basiliskExecutableSuffix];
+                    NSString * plsPath = [[NSString alloc] initWithFormat:@"%@/%@/%@", emulatorsDirectory, singleDir, basiliskInfoDPlistSuffix];
+                    
+                    DDLogVerbose(@"exe: %@", exePath);
+                    DDLogVerbose(@"pls: %@", plsPath);
+                    
+                    
+                    DDLogVerbose(@"aaa: %@", [fileManager fileExistsAtPath:exePath] ? @"yes" : @"no");
+                    BOOL foundExe = [fileManager fileExistsAtPath:exePath];
+                    BOOL foundPls = [fileManager fileExistsAtPath:plsPath];
+                    
+                    DDLogVerbose(@"found: %@ and %@", foundExe ? @"yes" : @"no", foundPls ? @"yes" : @"no");
+                    
+                    if (foundExe && foundPls) {
+                        //... read pls
+                        DDLogVerbose(@"Found: %@ - valid", singleDir);
+                    }
+                    
+                }
+                [basiliskInfoDPlistSuffix release];
+                [basiliskExecutableSuffix release];
+            }
+//----------------------------------------------------------------------
+            
+        }
+        [basiliskFolder release];
+    }
+    [emulatorsDirectory release];
+    DDLogVerbose(@"Done.");
 }
 
 //------------------------------------------------------------------------------

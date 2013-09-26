@@ -45,6 +45,7 @@
     IBOutlet NSView            * subViewDropFiles;
     IBOutlet NSView            * subViewRomFiles;
     IBOutlet NSView            * subViewDisks;
+    IBOutlet NSView            * subViewEmulators;
     IBOutlet NSArrayController * RomFilesArrayController;
 }
 
@@ -64,5 +65,8 @@
 - (IBAction)displayDropFilesView:(id)sender;
 - (IBAction)displayRomFilesView:(id)sender;
 - (IBAction)displayDisksView:(id)sender;
+- (IBAction)displayEmulatorsView:(id)sender;
+
+- (IBAction)scanEmulators:(id)sender;
 
 @end

@@ -408,9 +408,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
     if ([selectedFiles count] == 1) {
         DDLogVerbose(@"%@", selectedFiles);
-        
         [virtualMachine setSharedFolder: [[selectedFiles objectAtIndex:0] path]];
-        
     }
     
     DDLogVerbose(@"Saving...");
@@ -486,31 +484,30 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     self = [super initWithWindowNibName:@"VirtualMachineWindow"];
     
     if (self) {
-
+    
+        [self setManagedObjectContext:theManagedObjectContext];
+        [self setVirtualMachine:aVirtualMachine];
+        [self setWindowTitle:[NSString stringWithFormat:@"%@ Settings", [virtualMachine name]]];
+        
+        //------------------------------------------------------
+        //Interface subviews
+        
+        // -- Share tab
+        
+        //Handle the status of the open path button in the share area:
+        
+        BOOL enabledShare = [[virtualMachine shareEnabled] boolValue] == YES;
+        BOOL shareDefault = [[virtualMachine useDefaultShare] boolValue] == YES;
+        
+        if ( enabledShare &  shareDefault ) {          
+            currentPathOption = useStandardPathOption;
+        }else if ( enabledShare & !shareDefault ) {
+            currentPathOption = usePersonalPathOption;
+        }else if ( !enabledShare & !shareDefault ) {
+            currentPathOption = useNoSharedPathOption;
+        }
+    
     }
-    
-    [self setManagedObjectContext:theManagedObjectContext];
-    [self setVirtualMachine:aVirtualMachine];
-    [self setWindowTitle:[NSString stringWithFormat:@"%@ Settings", [virtualMachine name]]];
-    
-    //----------------------------------------------------------
-    //Interface subviews
-    
-    // -- Share tab
-    
-    //Handle the status of the open path button in the share area:
-    
-    BOOL enabledShare = [[virtualMachine shareEnabled] boolValue] == YES;
-    BOOL shareDefault = [[virtualMachine useDefaultShare] boolValue] == YES;
-    
-    if ( enabledShare &  shareDefault ) {          
-        currentPathOption = useStandardPathOption;
-    }else if ( enabledShare & !shareDefault ) {
-        currentPathOption = usePersonalPathOption;
-    }else if ( !enabledShare & !shareDefault ) {
-        currentPathOption = useNoSharedPathOption;
-    }
-    
     //----------------------------------------------------------
     
     return self;

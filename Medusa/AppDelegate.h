@@ -82,9 +82,9 @@
     //Text field in the new machine sheet.
     
     //Window Controllers:
-    AssetsWindowController          * assetsWindowController;
-    PreferencesWindowController     * preferencesWindowController;
-    SplashWindowController          * splashWindowController;
+    AssetsWindowController      * assetsWindowController;
+    PreferencesWindowController * preferencesWindowController;
+    SplashWindowController      * splashWindowController;
     
     /// 32-bit compatibility -------    
     id _window;
@@ -102,7 +102,6 @@
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator * persistentStoreCoordinator;
 @property (readonly, strong, nonatomic) NSManagedObjectModel * managedObjectModel;
 @property (readonly, strong, nonatomic) NSManagedObjectContext * managedObjectContext;
-
 
 //------------------------------------------------------------------------------
 // Default methods ahead.
@@ -125,6 +124,8 @@
 //Action to show the Preferences Window.
 
 - (NSString *)applicationSupportDirectory;
+
 - (void)saveCoreData;
+- (void)scanEmulators;
 
 @end

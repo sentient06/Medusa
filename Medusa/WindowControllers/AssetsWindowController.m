@@ -32,6 +32,7 @@
 
 #import "AssetsWindowController.h"
 #import "TableLineInformationController.h"
+#import "AppDelegate.h"
 
 @implementation AssetsWindowController
 
@@ -74,90 +75,14 @@
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
 
-//    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];
-    
-    
-    //----------------------------------------------------------
-    //Interface view
-    
     self = [super initWithWindowNibName:@"AssetsWindow"];
     
     if (self) {
-        
-//        TableLineInformationController * romFiles = [
-//            [TableLineInformationController alloc]                
-//            initWithTitle:@"Rom files"
-//                  andIcon:@"RomFile.icns"
-//        ];
-//
-//        TableLineInformationController * disks = [
-//            [TableLineInformationController alloc]                
-//            initWithTitle:@"Disks"
-//                  andIcon:@"Drive.icns"
-//        ];
-//        
-//        menuObjectsArray = [
-//            [NSMutableArray alloc]
-//            initWithObjects: romFiles, nil
-//        ];
-//        
-//        if (displayAllTabs == YES) {
-//            [menuObjectsArray addObject: disks];
-//        }
-//        
-//        [disks release];
-//        [romFiles release];
-        
+        [self setManagedObjectContext: theManagedObjectContext];
     }
     
-    [self setManagedObjectContext: theManagedObjectContext];
-    
-    //----------------------------------------------------------
-    //Interface subviews
-    
-    // -- Share tab
-    
-    //Handle the status of the open path button in the share area:
-    
-//    BOOL enabledShare = [[virtualMachine shareEnabled] boolValue] == YES;
-//    BOOL shareDefault = [[virtualMachine useDefaultShare] boolValue] == YES;
-//    
-//    if ( enabledShare &  shareDefault ) {          
-//        currentPathOption = useStandardPathOption;
-//    }else if ( enabledShare & !shareDefault ) {
-//        currentPathOption = usePersonalPathOption;
-//    }else if ( !enabledShare & !shareDefault ) {
-//        currentPathOption = useNoSharedPathOption;
-//    }
-    
-    //----------------------------------------------------------
-    
     return self;
-
 }
-
-///*!
-// * @method      traceTableViewClick:
-// * @abstract    Changes the right pane according to the selected item in the
-// *              left pane menu.
-// * @discussion  Just checks the row and shows content accordinly.
-// */
-//- (IBAction)traceTableViewClick:(id)sender {
-//    
-//    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
-//    
-//    switch ([detailsTree selectedRow]) {
-//        default:
-//        case 0:
-//            [placeholderView addSubview: subViewRomFiles];
-//            break;
-//            
-//        case 1:
-//            [placeholderView addSubview: subViewDisks];
-//            break;
-//    }
-//    
-//}
 
 - (IBAction)displayDropFilesView:(id)sender {
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
@@ -173,6 +98,15 @@
 - (IBAction)displayDisksView:(id)sender {
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
     [placeholderView addSubview: subViewDisks];
+}
+
+- (IBAction)displayEmulatorsView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewEmulators];
+}
+
+- (IBAction)scanEmulators:(id)sender {
+    [[NSApp delegate] scanEmulators];
 }
 
 - (id)initWithWindow:(NSWindow *)window {
