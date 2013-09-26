@@ -66,8 +66,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     BOOL success = YES;
     
 //    NSString * pathExtension = [filePath pathExtension];    
-        
-    [self readDiskFileFrom:filePath];
     
     //----------------------------------------------------------------------
     // Core-data part:
@@ -90,7 +88,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (resultCount > 0) {
         DDLogVerbose(@"This disk file is duplicated!");
         return nil;
-    }        
+    }
+    
+    [self readDiskFileFrom:filePath];
     
     //----------------------------------------------------------------------        
     
@@ -102,10 +102,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     [managedObject setFilePath : filePath];
     [managedObject setFileName : fileName];
-    [managedObject setCapacity : [NSNumber numberWithInt:capacity]];
-    [managedObject setFormat   : [NSNumber numberWithInt:diskFormat]];
     [managedObject setBootable : [NSNumber numberWithBool:bootable]];
-    [managedObject setSize     : [NSNumber numberWithUnsignedLongLong:diskSize]];
+    [managedObject setCapacity : [NSNumber numberWithUnsignedInteger:capacity]];
+    [managedObject setFormat   : [NSNumber numberWithUnsignedInteger:diskFormat]];
+    [managedObject setSize     : [NSNumber numberWithUnsignedInteger:diskSize]];
     
     //----------------------------------------------------------------------
     
@@ -197,7 +197,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogCVerbose(@"Image is bootable");
         return YES;
     } else {
-        DDLogCVerbose(@"Image is NOT bootable:\n%@\n\n%@\n\n%s", bootableDriveBootBlock, finalResult, firstBytes);
+        DDLogCVerbose(@"Image is NOT bootable:\n%@\n\n%@\n", bootableDriveBootBlock, finalResult);
         return NO;
     }
 
@@ -220,10 +220,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     diskFormat = formatUnknown;
     
     // hdiutil imageinfo <image>
-    // hdiutil imageinfo -plist  /Users/gian/Dropbox/Emulation/macos81.dmg
-    
-    // -------------------------
-//    NSMutableArray * allMountedDisks = [[NSMutableArray alloc] initWithCapacity:1];
+    // hdiutil imageinfo -plist <image>
+
     NSTask * task = [NSTask new];
     [task setLaunchPath:@"/usr/bin/hdiutil"];
     [task setArguments:[NSArray arrayWithObjects:@"imageinfo", @"-plist", filePath, nil]];
@@ -237,25 +235,67 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogError(@"Error: %@", error);
     } else {
         
-//        for( id mountedDiskImage in [plist objectForKey:@"images"] ) { }
-        
-        DDLogVerbose(@"Plist generated: %@", plist);
-//        [availableImages initWithArray:allMountedDisks];
-//        "Size Information"
-//            "Total Bytes"
-//        partitions
-//            partitions
-        
-    }
-    // -------------------------
+        int totalPartitions = 0;
+        NSUInteger partitionType = formatUnknown;
+       
+        for (id partitionElement in [[plist objectForKey:@"partitions"] objectForKey:@"partitions"]) {
+            if ([partitionElement respondsToSelector:@selector(objectForKey:)]) {
+                NSDictionary * fileSystems = [partitionElement objectForKey:@"partition-filesystems"];
+                if (fileSystems) {
+                    
+                    NSArray * expectedFileSystems = [
+                        [NSArray alloc] initWithObjects:
+                          @""
+                        , @"LFS"
+                        , @"MFS"
+                        , @"HFS"
+                        , @"HFS+"
+                        , @"ISO9660"
+                        , @"FAT12"
+                        , nil
+                    ];
+                    
+                    //formatLisaFS  = Must test
+                    //formatMFS     = MFS
+                    //formatHFS     = HFS
+                    //formatHFSPlus = HFS+
+                    //formatISO9660 = ISO9660
+                    //formatFAT     = FAT12
+                    //formatOther   = 7, // Other FS
+                    //formatUnknown = 8, // Unknown FS
+                    //formatMisc    = 9  // Partitioned with different FS
+                    
+                    for (id fileSystem in fileSystems) {
+                        totalPartitions++;
+                        DDLogVerbose(@"key: %@, value: %@", fileSystem, [fileSystems objectForKey:fileSystem]);
+                        
+                        NSUInteger indexFS = [expectedFileSystems indexOfObject:fileSystem];
 
-    //formatLisaFS  = 1,
-    //formatMFS     = 2,
-    //formatHFS     = 3,
-    //formatHFSPlus = 4,
-    //formatISO9660 = 5,
-    //formatFAT     = 6,
-    //formatOther   = 7
+                        if (totalPartitions > 1 && partitionType != indexFS) partitionType = formatMisc;
+                        else
+                        if (indexFS) partitionType = indexFS;
+                        
+                        //formatLisaFS  = 1, // Lisa File-system
+                        //formatMFS     = 2, // Macintosh File-system
+                        //formatHFS     = 3, // Hyerarquical File-system
+                        //formatHFSPlus = 4, // Hyerarquical File-system Plus
+                        //formatISO9660 = 5, // ISO 9660 - CD/DVD ROM
+                        //formatFAT     = 6, // FAT 16, FAT 32
+                        //formatOther   = 7, // Other FS
+                        //formatUnknown = 8, // Unknown FS
+                        //formatMisc    = 9  // Partitioned with different FS
+                        
+                    }
+                }
+            }
+        }
+        
+        DDLogVerbose(@"%d partitions found", totalPartitions);
+        DDLogVerbose(@"Partitions type is %u", partitionType);
+        
+        diskFormat = partitionType;
+
+    }
 
 }
 

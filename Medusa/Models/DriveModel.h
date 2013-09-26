@@ -36,9 +36,9 @@
 
 @interface DriveModel : NSObject {
     NSString * fileName;
-    int diskFormat;
-    uint64_t diskSize;
-    int capacity;
+    NSUInteger diskFormat;
+    NSUInteger diskSize;
+    NSUInteger capacity;
     BOOL bootable;
 }
 

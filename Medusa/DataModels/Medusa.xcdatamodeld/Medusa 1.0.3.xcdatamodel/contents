@@ -6,6 +6,7 @@
         <attribute name="fileName" attributeType="String" syncable="YES"/>
         <attribute name="filePath" attributeType="String" syncable="YES"/>
         <attribute name="format" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="partitions" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="1" syncable="YES"/>
         <attribute name="size" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="virtualMachines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDrives" inverseName="drive" inverseEntity="RelationshipVirtualMachinesDrives" syncable="YES"/>
     </entity>
@@ -57,7 +58,7 @@
         <relationship name="romFile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="modelToRomFile" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Drives" positionX="160" positionY="192" width="128" height="150"/>
+        <element name="Drives" positionX="160" positionY="192" width="128" height="165"/>
         <element name="Emulators" positionX="160" positionY="192" width="128" height="135"/>
         <element name="RelationshipVirtualMachinesDrives" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>

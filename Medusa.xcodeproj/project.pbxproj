@@ -79,6 +79,9 @@
 		81AD5BC017E4F9110072F4F1 /* noDiskColour.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */; };
 		81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */; };
 		81AD5BC517E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BC417E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns */; };
+		81B08F1C17F43FE5000954C6 /* ByteValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F1B17F43FE5000954C6 /* ByteValueTransformer.m */; };
+		81B08F2317F44198000954C6 /* DriveFormatValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2217F44198000954C6 /* DriveFormatValueTransformer.m */; };
+		81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2617F44648000954C6 /* BoolValueTransformer.m */; };
 		81C03D02154EF46C00842906 /* DriveManagerWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C03D01154EF46C00842906 /* DriveManagerWindowController.m */; };
 		81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C2B75117D646AB000E4A01 /* linenPattern.png */; };
 		81C84433153E181900E94443 /* FileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84430153E181900E94443 /* FileHandler.m */; };
@@ -238,6 +241,12 @@
 		81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noDiskColour.png; path = Images/Icons/noDiskColour.png; sourceTree = "<group>"; };
 		81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HFSFileIcon.icns; path = Images/Icons/HFSFileIcon.icns; sourceTree = "<group>"; };
 		81AD5BC417E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RecentDocumentsFolderIcon.icns; path = Images/Icons/RecentDocumentsFolderIcon.icns; sourceTree = "<group>"; };
+		81B08F1A17F43FE5000954C6 /* ByteValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByteValueTransformer.h; path = TransformerControllers/ByteValueTransformer.h; sourceTree = "<group>"; };
+		81B08F1B17F43FE5000954C6 /* ByteValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ByteValueTransformer.m; path = TransformerControllers/ByteValueTransformer.m; sourceTree = "<group>"; };
+		81B08F2117F44198000954C6 /* DriveFormatValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveFormatValueTransformer.h; path = TransformerControllers/EnumeratorTransformers/DriveFormatValueTransformer.h; sourceTree = "<group>"; };
+		81B08F2217F44198000954C6 /* DriveFormatValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveFormatValueTransformer.m; path = TransformerControllers/EnumeratorTransformers/DriveFormatValueTransformer.m; sourceTree = "<group>"; };
+		81B08F2517F44648000954C6 /* BoolValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueTransformer.h; sourceTree = "<group>"; };
+		81B08F2617F44648000954C6 /* BoolValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueTransformer.m; sourceTree = "<group>"; };
 		81C03D00154EF46C00842906 /* DriveManagerWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DriveManagerWindowController.h; path = WindowControllers/DriveManagerWindowController.h; sourceTree = "<group>"; };
 		81C03D01154EF46C00842906 /* DriveManagerWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveManagerWindowController.m; path = WindowControllers/DriveManagerWindowController.m; sourceTree = "<group>"; };
 		81C2B75117D646AB000E4A01 /* linenPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = linenPattern.png; path = Images/Backgrounds/linenPattern.png; sourceTree = "<group>"; };
@@ -365,12 +374,10 @@
 		816BAF8C153863ED00B68091 /* Transformers */ = {
 			isa = PBXGroup;
 			children = (
-				816BAF88153863E300B68091 /* IconValueTransformer.h */,
-				816BAF89153863E300B68091 /* IconValueTransformer.m */,
-				8160BB0B15503052005F6DBF /* RomIconValueTransformer.h */,
-				8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */,
-				8160BB0715502F74005F6DBF /* DriveIconValueTransformer.h */,
-				8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */,
+				81B08F2417F44624000954C6 /* BoolTransformers */,
+				81B08F1D17F44106000954C6 /* EnumeratorTransformers */,
+				81B08F1917F43FB7000954C6 /* NumberTransformers */,
+				81B08F1717F43F92000954C6 /* ImageTransformers */,
 				81CE19CE17D63EA300596C79 /* RomFileConditionTransformer.h */,
 				81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */,
 				810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */,
@@ -617,6 +624,46 @@
 			path = Lumberjack;
 			sourceTree = "<group>";
 		};
+		81B08F1717F43F92000954C6 /* ImageTransformers */ = {
+			isa = PBXGroup;
+			children = (
+				816BAF88153863E300B68091 /* IconValueTransformer.h */,
+				816BAF89153863E300B68091 /* IconValueTransformer.m */,
+				8160BB0B15503052005F6DBF /* RomIconValueTransformer.h */,
+				8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */,
+				8160BB0715502F74005F6DBF /* DriveIconValueTransformer.h */,
+				8160BB0815502F74005F6DBF /* DriveIconValueTransformer.m */,
+			);
+			name = ImageTransformers;
+			sourceTree = "<group>";
+		};
+		81B08F1917F43FB7000954C6 /* NumberTransformers */ = {
+			isa = PBXGroup;
+			children = (
+				81B08F1A17F43FE5000954C6 /* ByteValueTransformer.h */,
+				81B08F1B17F43FE5000954C6 /* ByteValueTransformer.m */,
+			);
+			name = NumberTransformers;
+			sourceTree = "<group>";
+		};
+		81B08F1D17F44106000954C6 /* EnumeratorTransformers */ = {
+			isa = PBXGroup;
+			children = (
+				81B08F2117F44198000954C6 /* DriveFormatValueTransformer.h */,
+				81B08F2217F44198000954C6 /* DriveFormatValueTransformer.m */,
+			);
+			name = EnumeratorTransformers;
+			sourceTree = "<group>";
+		};
+		81B08F2417F44624000954C6 /* BoolTransformers */ = {
+			isa = PBXGroup;
+			children = (
+				81B08F2517F44648000954C6 /* BoolValueTransformer.h */,
+				81B08F2617F44648000954C6 /* BoolValueTransformer.m */,
+			);
+			name = BoolTransformers;
+			sourceTree = "<group>";
+		};
 		81C84439153E184E00E94443 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -846,6 +893,9 @@
 				81A54CFB17F0AC1E00B1EFD0 /* DDTTYLogger.m in Sources */,
 				819DC08917F18B7000480073 /* SortableArrayController.m in Sources */,
 				819DC09F17F1B9D500480073 /* BootableDiskTransformer.m in Sources */,
+				81B08F1C17F43FE5000954C6 /* ByteValueTransformer.m in Sources */,
+				81B08F2317F44198000954C6 /* DriveFormatValueTransformer.m in Sources */,
+				81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

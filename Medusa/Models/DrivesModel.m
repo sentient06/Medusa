@@ -36,24 +36,13 @@
 @implementation DrivesModel
 
 @dynamic bootable;
+@dynamic capacity;
+@dynamic format;
+@dynamic partitions;
+@dynamic size;
+@dynamic virtualMachines;
 @dynamic fileName;
 @dynamic filePath;
-@dynamic virtualMachines;
-@dynamic format;
-@dynamic capacity;
-@dynamic size;
-
-//+ (NSEntityDescription*) insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)value {
-//    
-//    NSEntityDescription * teste = [
-//        NSEntityDescription
-//            insertNewObjectForEntityForName:@"Drives"
-//                     inManagedObjectContext:value
-//    ];
-//    
-//    return teste;
-//    
-//}
 
 - (NSString *)description {
     return [self fileName];

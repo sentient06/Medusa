@@ -70,9 +70,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if ([[pathExtension lowercaseString] isEqualTo:@"rom"] ||
         [[pathExtension lowercaseString] isEqualTo:@""]
     ) {
-        
-        [self readRomFileFrom:filePath];
-        
+       
         //----------------------------------------------------------------------
         // Core-data part:
         
@@ -96,7 +94,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             return nil;
         }        
         
-        //----------------------------------------------------------------------        
+        [self readRomFileFrom:filePath];
+        if (romCondition == Unsupported) {
+            DDLogError(@"Unsupported file");
+            return NO;
+        }
+        
+        //----------------------------------------------------------------------
         
         RomFilesModel * managedObject = [
             NSEntityDescription
