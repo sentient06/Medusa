@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class DrivesModel; // Plural. This is the coredata class.
+@class DiskFilesEntityModel; // Plural. This is the coredata class.
 
 @interface DriveModel : NSObject {
     NSString * fileName;
@@ -42,7 +42,7 @@
     BOOL bootable;
 }
 
-@property (readonly, strong, nonatomic) DrivesModel * currentDriveObject;
+@property (readonly, strong, nonatomic) DiskFilesEntityModel * currentDriveObject;
 
 - (id)parseSingleDriveFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
 - (void)parseDriveFileAndSave:(NSString *)filePath;

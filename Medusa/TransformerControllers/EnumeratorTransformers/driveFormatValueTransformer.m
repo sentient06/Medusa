@@ -7,7 +7,7 @@
 //
 
 #import "DriveFormatValueTransformer.h"
-#import "DrivesModel.h"
+#import "DiskFilesEntityModel.h"
 
 @implementation DriveFormatValueTransformer
 

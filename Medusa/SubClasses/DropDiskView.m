@@ -33,8 +33,8 @@
 #import "DropDiskView.h"
 #import "FileHandler.h"
 #import "DriveModel.h"
-#import "RelationshipVirtualMachinesDrivesModel.h"
-#import "VirtualMachinesModel.h"
+#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
+#import "VirtualMachinesEntityModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -56,10 +56,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [diskObject parseDriveFilesAndSave:urls];
     
     if (currentMachine) {
-        VirtualMachinesModel * newVirtualMachineObject = [currentMachine content];
-        RelationshipVirtualMachinesDrivesModel * newRelationship = [
+        VirtualMachinesEntityModel * newVirtualMachineObject = [currentMachine content];
+        RelationshipVirtualMachinesDiskFilesEntityModel * newRelationship = [
         NSEntityDescription
-            insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDrives"
+            insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
             inManagedObjectContext:[currentMachine managedObjectContext]
         ];
 
@@ -71,14 +71,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     return YES;
 }
 
-//- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-//    
-//    NSPasteboard *pboard = [sender draggingPasteboard];
-//    NSArray *urls = [pboard propertyListForType:NSFilenamesPboardType];    
-//    
-//    NSString *pathExtension;
-//    NSManagedObjectContext *managedObjectContext = [[NSApp delegate] managedObjectContext];
-//    
+
 //    NSArray * acceptedExtensions = [[NSArray alloc] initWithObjects:
 //          @"Unix Executable File"
 //        , @"Document"
@@ -86,40 +79,5 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //        , @"Disk Image"
 //        , nil
 //    ];
-//    
-//    for (int i = 0; i < [urls count]; i++) {
-//    
-//        pathExtension = [[urls objectAtIndex:i] pathExtension];
-//        
-//        DDLogVerbose(@"Extension is %@", [pathExtension lowercaseString]);
-//        
-//        if ( [acceptedExtensions containsObject: [pathExtension lowercaseString]] ) {
-//            
-//            DrivesModel * drivesModel = [
-//                NSEntityDescription
-//                insertNewObjectForEntityForName:@"Drives"
-//                         inManagedObjectContext:managedObjectContext
-//            ];
-//
-//            //insertNewObjectInManagedObjectContext
-//            [drivesModel setFilePath:[urls objectAtIndex:i]];
-//            [drivesModel setFileName:[[urls objectAtIndex:i] lastPathComponent]];
-//            
-//            DDLogVerbose(@"Saving...");
-//            NSError *error;
-//            if (![managedObjectContext save:&error]) {
-//                DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
-//                DDLogVerbose(@"Check 'drop disk view' subclass.");
-//            }
-//
-//        }
-//        
-//    }
-//    
-//    [acceptedExtensions release];
-//    
-//    return YES;
-//    
-//}
 
 @end

@@ -38,7 +38,7 @@ typedef enum {
     useNoSharedPathOption
 } pathOptions;
 
-@class VirtualMachinesModel, DropRomView, SortableArrayController;
+@class VirtualMachinesEntityModel, DropRomView, SortableArrayController;
 
 /*!
  * @class       VirtualMachineWindowController:
@@ -93,19 +93,19 @@ typedef enum {
 // Application properties.
 @property (copy) NSString * windowTitle;
 @property pathOptions currentPathOption;
-@property (assign) VirtualMachinesModel * virtualMachine;
+@property (assign) VirtualMachinesEntityModel * virtualMachine;
 
 //------------------------------------------------------------------------------
 // Manual getters
 - (NSManagedObjectContext *)managedObjectContext;
-- (VirtualMachinesModel *)virtualMachine;
+- (VirtualMachinesEntityModel *)virtualMachine;
 
 // Manual setters
 - (void)setManagedObjectContext:(NSManagedObjectContext *)value;
-- (void)setVirtualMachine:(VirtualMachinesModel *)value;
+- (void)setVirtualMachine:(VirtualMachinesEntityModel *)value;
 
 // Init methods
-- (id)initWithVirtualMachine:(VirtualMachinesModel *)aVirtualMachine
+- (id)initWithVirtualMachine:(VirtualMachinesEntityModel *)aVirtualMachine
       inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext;
 
 //------------------------------------------------------------------------------

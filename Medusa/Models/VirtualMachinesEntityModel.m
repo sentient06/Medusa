@@ -30,12 +30,12 @@
 //
 //------------------------------------------------------------------------------
 
-#import "VirtualMachinesModel.h"
-#import "RelationshipVirtualMachinesDrivesModel.h"
-#import "RomFilesModel.h"
+#import "VirtualMachinesEntityModel.h"
+#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
+#import "RomFilesEntityModel.h"
 
 
-@implementation VirtualMachinesModel
+@implementation VirtualMachinesEntityModel
 
 @dynamic uniqueName;
 @dynamic displayHeight;

@@ -1,5 +1,5 @@
 //
-//  RomFilesModel.m
+//  RelationshipVirtualMachinesDrivesModel.m
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -30,24 +30,14 @@
 //
 //------------------------------------------------------------------------------
 
-#import "RomFilesModel.h"
-#import "VirtualMachinesModel.h"
+#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
+#import "DiskFilesEntityModel.h"
+#import "VirtualMachinesEntityModel.h"
 
+@implementation RelationshipVirtualMachinesDiskFilesEntityModel
 
-@implementation RomFilesModel
-
-@dynamic comments;
-@dynamic emulator;
-@dynamic filePath;
-@dynamic modelName;
-@dynamic romCondition;
-@dynamic machines;
-
-@dynamic mac68kOld;
-@dynamic mac68kNew;
-@dynamic macPPCOld;
-@dynamic macPPCNew;
-
-@dynamic romSize;
+@dynamic positionIndex;
+@dynamic drive;
+@dynamic virtualMachine;
 
 @end

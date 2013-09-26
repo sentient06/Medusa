@@ -1,8 +1,8 @@
 //
-//  VirtualMachinesModel.h
+//  RomFilesModel.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 12/06/2012.
+//  Created by Giancarlo Mariot on 18/05/2012.
 //  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,43 +30,24 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "RomFilesEntityModel.h"
+#import "VirtualMachinesEntityModel.h"
 
-@class RelationshipVirtualMachinesDrivesModel, RomFilesModel;
 
-@interface VirtualMachinesModel : NSManagedObject
+@implementation RomFilesEntityModel
 
-@property (nonatomic, retain) NSString * uniqueName;
-@property (nonatomic, retain) RomFilesModel * romFile;
-//@property (nonatomic, retain) NSNumber * icon;
-@property (nonatomic, retain) NSString * name;
-@property (nonatomic, retain) NSNumber * displayHeight;
-@property (nonatomic, retain) NSNumber * displayWidth;
-@property (nonatomic, retain) NSNumber * fullScreen;
-@property (nonatomic, retain) NSNumber * memory;
-@property (nonatomic, retain) NSString * sharedFolder;
-@property (nonatomic, retain) NSNumber * macModel;
-@property (nonatomic, retain) NSNumber * shareEnabled;
-@property (nonatomic, retain) NSNumber * useDefaultShare;
-@property (nonatomic, retain) NSSet    * drives;
-@property (nonatomic, retain) NSNumber * processorType;
-@property (nonatomic, retain) NSNumber * jitEnabled;
-@property (nonatomic, retain) NSNumber * lazyCacheEnabled;
-@property (nonatomic, retain) NSNumber * fpuEnabled;
-@property (nonatomic, retain) NSNumber * jitCacheSize;
+@dynamic comments;
+@dynamic emulator;
+@dynamic filePath;
+@dynamic modelName;
+@dynamic romCondition;
+@dynamic machines;
 
-@end
+@dynamic mac68kOld;
+@dynamic mac68kNew;
+@dynamic macPPCOld;
+@dynamic macPPCNew;
 
-@interface VirtualMachinesModel (CoreDataGeneratedAccessors)
-
-- (void)addDrivesObject:(RelationshipVirtualMachinesDrivesModel *)value;
-- (void)removeDrivesObject:(RelationshipVirtualMachinesDrivesModel *)value;
-- (void)addDrives:(NSSet *)values;
-- (void)removeDrives:(NSSet *)values;
-- (NSNumber *)nextDiskIndex;
-
-- (NSNumber *)icon;
-- (BOOL)canRun;
+@dynamic romSize;
 
 @end

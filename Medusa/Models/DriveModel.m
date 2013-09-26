@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "DriveModel.h"
-#import "DrivesModel.h" //Model that handles all Rom-Files-Entity-related objects.
+#import "DiskFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -73,7 +73,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSError * error;
     
     NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
-    NSEntityDescription * entity    = [ NSEntityDescription entityForName:@"Drives" inManagedObjectContext:currentContext];
+    NSEntityDescription * entity    = [ NSEntityDescription entityForName:@"DiskFiles" inManagedObjectContext:currentContext];
     NSPredicate         * predicate = [ NSPredicate
         predicateWithFormat: @"filePath = %@",
         filePath
@@ -94,9 +94,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     //----------------------------------------------------------------------        
     
-    DrivesModel * managedObject = [
+    DiskFilesEntityModel * managedObject = [
         NSEntityDescription
-            insertNewObjectForEntityForName: @"Drives"
+            insertNewObjectForEntityForName: @"DiskFiles"
             inManagedObjectContext: currentContext
     ];
     

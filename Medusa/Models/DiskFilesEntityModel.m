@@ -30,10 +30,10 @@
 //
 //------------------------------------------------------------------------------
 
-#import "DrivesModel.h"
-#import "RelationshipVirtualMachinesDrivesModel.h"
+#import "DiskFilesEntityModel.h"
+#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 
-@implementation DrivesModel
+@implementation DiskFilesEntityModel
 
 @dynamic bootable;
 @dynamic capacity;

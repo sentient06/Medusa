@@ -32,7 +32,7 @@
 
 #import "RomModel.h"
 #import "FileHandler.h"
-#import "RomFilesModel.h" //Model that handles all Rom-Files-Entity-related objects.
+#import "RomFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -102,7 +102,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
         //----------------------------------------------------------------------
         
-        RomFilesModel * managedObject = [
+        RomFilesEntityModel * managedObject = [
             NSEntityDescription
             insertNewObjectForEntityForName: @"RomFiles"
                      inManagedObjectContext: currentContext

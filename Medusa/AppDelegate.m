@@ -41,8 +41,8 @@
 //Helpers:
 #import "ManagedObjectCloner.h"             //Clone core-data objects
 //Models:
-#import "VirtualMachinesModel.h"
-#import "RomFilesModel.h"
+#import "VirtualMachinesEntityModel.h"
+#import "RomFilesEntityModel.h"
 #import "PreferencesModel.h"
 
 
@@ -95,7 +95,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     ];
     //The user can select only one in the current interface, but anyway...
     
-    VirtualMachinesModel * selectedVirtualMachine;
+    VirtualMachinesEntityModel * selectedVirtualMachine;
     
     for (int i = 0; i < [selectedVirtualMachines count]; i++) {
         
@@ -173,7 +173,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
 
     //Sets a new vm object.
-    VirtualMachinesModel * newVirtualMachineObject = [
+    VirtualMachinesEntityModel * newVirtualMachineObject = [
         NSEntityDescription
             insertNewObjectForEntityForName:@"VirtualMachines"
                      inManagedObjectContext:managedObjectContext
@@ -279,12 +279,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     ];
 
     //Machine to clone:
-    VirtualMachinesModel * machineToClone = [selectedVirtualMachines objectAtIndex:0];
+    VirtualMachinesEntityModel * machineToClone = [selectedVirtualMachines objectAtIndex:0];
     
     DDLogVerbose(@"Cloning machine called '%@'", [machineToClone name]);
     
     //Cloned machine:
-    VirtualMachinesModel * clonedMachine = [machineToClone clone];
+    VirtualMachinesEntityModel * clonedMachine = [machineToClone clone];
     
     //Change name:
     [clonedMachine setName:[cloneMachineNameField stringValue]];
@@ -351,7 +351,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         ] autorelease ];
 
         //The user can select only one in the current interface, but anyway...
-        VirtualMachinesModel * virtualMachine = [selectedVirtualMachines  objectAtIndex:0];
+        VirtualMachinesEntityModel * virtualMachine = [selectedVirtualMachines  objectAtIndex:0];
         
         NSString * preferencesFilePath = [
             [NSMutableString alloc] initWithFormat:

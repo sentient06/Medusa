@@ -33,11 +33,11 @@
 #import "VirtualMachineWindowController.h"
 #import "TableLineInformationController.h"  //Generic table lines object.
 #import "PreferencesModel.h"                //Object to handle coredata information.
-#import "RelationshipVirtualMachinesDrivesModel.h" //Model for coredata entity.
-#import "VirtualMachinesModel.h"
-#import "RomFilesModel.h"
+#import "RelationshipVirtualMachinesDiskFilesEntityModel.h" //Model for coredata entity.
+#import "VirtualMachinesEntityModel.h"
+#import "RomFilesEntityModel.h"
 #import "RomModel.h"
-#import "DrivesModel.h"
+#import "DiskFilesEntityModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -76,7 +76,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @method      virtualMachine:
  * @abstract    Manual getter.
  */
-- (VirtualMachinesModel *)virtualMachine {
+- (VirtualMachinesEntityModel *)virtualMachine {
     return virtualMachine;
 }
 
@@ -94,7 +94,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @method      setVirtualMachine:
  * @abstract    Manual setter.
  */
-- (void)setVirtualMachine:(VirtualMachinesModel *)value {
+- (void)setVirtualMachine:(VirtualMachinesEntityModel *)value {
     virtualMachine = value;
 }
 
@@ -223,12 +223,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     // Filter:
     if ( [currentSelectedDrives count] > 0 ) {
-        for (DrivesModel * currentDrive in currentSelectedDrives) {
+        for (DiskFilesEntityModel * currentDrive in currentSelectedDrives) {
             
         //for (id object in firstSelectedDrives) {
             allowed = YES;
             
-            for (RelationshipVirtualMachinesDrivesModel * oldDriveRelationship in oldDriveRelationships) {
+            for (RelationshipVirtualMachinesDiskFilesEntityModel * oldDriveRelationship in oldDriveRelationships) {
                 
                 if ([[currentDrive filePath] isEqual:[[oldDriveRelationship drive] filePath]]) {
                     allowed = NO;
@@ -250,9 +250,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
         // Create new relationship.
         
-        RelationshipVirtualMachinesDrivesModel *newDriveRelationship = [
+        RelationshipVirtualMachinesDiskFilesEntityModel *newDriveRelationship = [
             NSEntityDescription
-                insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDrives"
+                insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
                          inManagedObjectContext:managedObjectContext
         ];
 
@@ -467,7 +467,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSArray       * selectedFiles = [[[NSArray alloc] init] autorelease];
     NSOpenPanel   * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
     RomModel      * RomModelObject = [[RomModel alloc] init];
-    RomFilesModel * currentRom = [[RomFilesModel alloc] init];
+    RomFilesEntityModel * currentRom = [[RomFilesEntityModel alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];
@@ -503,7 +503,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @method      initWithVirtualMachine:inManagedObjectContext:
  * @abstract    Init method.
  */
-- (id)initWithVirtualMachine:(VirtualMachinesModel *)aVirtualMachine
+- (id)initWithVirtualMachine:(VirtualMachinesEntityModel *)aVirtualMachine
       inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
     
     //    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];

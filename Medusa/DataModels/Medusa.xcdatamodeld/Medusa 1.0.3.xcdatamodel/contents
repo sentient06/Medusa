@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="1.0.2.3" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Drives" representedClassName="DrivesModel" syncable="YES">
+    <entity name="DiskFiles" representedClassName="DiskFilesEntityModel" syncable="YES">
         <attribute name="bootable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="capacity" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="fileName" attributeType="String" syncable="YES"/>
         <attribute name="filePath" attributeType="String" syncable="YES"/>
         <attribute name="format" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="partitions" optional="YES" attributeType="Integer 16" minValueString="0" defaultValueString="1" syncable="YES"/>
+        <attribute name="partitions" optional="YES" attributeType="Integer 16" defaultValueString="1" syncable="YES"/>
         <attribute name="size" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="virtualMachines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDrives" inverseName="drive" inverseEntity="RelationshipVirtualMachinesDrives" syncable="YES"/>
+        <relationship name="virtualMachines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDiskFiles" inverseName="drive" inverseEntity="RelationshipVirtualMachinesDiskFiles" syncable="YES"/>
     </entity>
     <entity name="Emulators" syncable="YES">
         <attribute name="family" attributeType="Integer 16" maxValueString="2" defaultValueString="0" syncable="YES"/>
@@ -18,12 +18,12 @@
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="machines" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="emulator" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
-    <entity name="RelationshipVirtualMachinesDrives" representedClassName="RelationshipVirtualMachinesDrivesModel" syncable="YES">
+    <entity name="RelationshipVirtualMachinesDiskFiles" representedClassName="RelationshipVirtualMachinesDiskFilesEntityModel" syncable="YES">
         <attribute name="positionIndex" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="drive" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Drives" inverseName="virtualMachines" inverseEntity="Drives" syncable="YES"/>
+        <relationship name="drive" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiskFiles" inverseName="virtualMachines" inverseEntity="DiskFiles" syncable="YES"/>
         <relationship name="virtualMachine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="drives" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
-    <entity name="RomFiles" representedClassName="RomFilesModel" syncable="YES">
+    <entity name="RomFiles" representedClassName="RomFilesEntityModel" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="emulator" optional="YES" attributeType="String" defaultValueString="Basilisk" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
@@ -36,7 +36,7 @@
         <attribute name="romSize" attributeType="Integer 16" maxValueString="8" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="machines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
-    <entity name="VirtualMachines" representedClassName="VirtualMachinesModel" syncable="YES">
+    <entity name="VirtualMachines" representedClassName="VirtualMachinesEntityModel" syncable="YES">
         <attribute name="displayHeight" attributeType="Integer 16" defaultValueString="500" syncable="YES"/>
         <attribute name="displayWidth" attributeType="Integer 16" defaultValueString="800" syncable="YES"/>
         <attribute name="fpuEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -53,15 +53,15 @@
         <attribute name="shareEnabled" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="uniqueName" attributeType="String" syncable="YES"/>
         <attribute name="useDefaultShare" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <relationship name="drives" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDrives" inverseName="virtualMachine" inverseEntity="RelationshipVirtualMachinesDrives" syncable="YES"/>
+        <relationship name="drives" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDiskFiles" inverseName="virtualMachine" inverseEntity="RelationshipVirtualMachinesDiskFiles" syncable="YES"/>
         <relationship name="emulator" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Emulators" inverseName="machines" inverseEntity="Emulators" syncable="YES"/>
         <relationship name="romFile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="modelToRomFile" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Drives" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="DiskFiles" positionX="160" positionY="192" width="128" height="165"/>
         <element name="Emulators" positionX="160" positionY="192" width="128" height="135"/>
-        <element name="RelationshipVirtualMachinesDrives" positionX="160" positionY="192" width="128" height="90"/>
+        <element name="RelationshipVirtualMachinesDiskFiles" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>
-        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="315"/>
+        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="330"/>
     </elements>
 </model>

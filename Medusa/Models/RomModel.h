@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class RomFilesModel;
+@class RomFilesEntityModel;
 
 @interface RomModel : NSObject {
 //@private
@@ -42,7 +42,7 @@
     int romSize;
 }
 
-@property (readonly, strong, nonatomic) RomFilesModel * currentRomObject;
+@property (readonly, strong, nonatomic) RomFilesEntityModel * currentRomObject;
 
 - (id)parseSingleRomFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
 - (void)parseRomFileAndSave:(NSString *)filePath; 

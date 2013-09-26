@@ -1,8 +1,8 @@
 //
-//  CoreDataModel.h
+//  VirtualMachinesModel.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 04/05/2012.
+//  Created by Giancarlo Mariot on 12/06/2012.
 //  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -31,26 +31,42 @@
 //------------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@class VirtualMachinesEntityModel;
+@class RelationshipVirtualMachinesDiskFilesEntityModel, RomFilesEntityModel;
 
-@interface PreferencesModel : NSObject {
-    NSManagedObjectContext *managedObjectContext;
-}
+@interface VirtualMachinesEntityModel : NSManagedObject
 
-//------------------------------------------------------------------------------
-// Manual getters
-- (NSManagedObjectContext *)managedObjectContext;
+@property (nonatomic, retain) NSString * uniqueName;
+@property (nonatomic, retain) RomFilesEntityModel * romFile;
+//@property (nonatomic, retain) NSNumber * icon;
+@property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSNumber * displayHeight;
+@property (nonatomic, retain) NSNumber * displayWidth;
+@property (nonatomic, retain) NSNumber * fullScreen;
+@property (nonatomic, retain) NSNumber * memory;
+@property (nonatomic, retain) NSString * sharedFolder;
+@property (nonatomic, retain) NSNumber * macModel;
+@property (nonatomic, retain) NSNumber * shareEnabled;
+@property (nonatomic, retain) NSNumber * useDefaultShare;
+@property (nonatomic, retain) NSSet    * drives;
+@property (nonatomic, retain) NSNumber * processorType;
+@property (nonatomic, retain) NSNumber * jitEnabled;
+@property (nonatomic, retain) NSNumber * lazyCacheEnabled;
+@property (nonatomic, retain) NSNumber * fpuEnabled;
+@property (nonatomic, retain) NSNumber * jitCacheSize;
 
-// Manual setters
-- (void)setManagedObjectContext:(NSManagedObjectContext *)value;
+@end
 
-//------------------------------------------------------------------------------
-- (void)insertNewVirtualMachineWithData:(NSDictionary*)newData;
-- (void)insertNewData:(NSDictionary*)newData inVirtualMachine:(NSManagedObject*)virtualMachine;
+@interface VirtualMachinesEntityModel (CoreDataGeneratedAccessors)
 
-- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesEntityModel*)virtualMachine;
-- (void)savePreferencesFile:(NSArray*)dataToSave ForFile:(NSString*)filePath;
-- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
+- (void)addDrivesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
+- (void)removeDrivesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
+- (void)addDrives:(NSSet *)values;
+- (void)removeDrives:(NSSet *)values;
+- (NSNumber *)nextDiskIndex;
+
+- (NSNumber *)icon;
+- (BOOL)canRun;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  RelationshipVirtualMachinesDrivesModel.h
+//  DrivesModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -33,12 +33,41 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DrivesModel, VirtualMachinesModel;
+enum driveFormat {
+    formatLisaFS  = 1, // Lisa File-system
+    formatMFS     = 2, // Macintosh File-system
+    formatHFS     = 3, // Hyerarquical File-system
+    formatHFSPlus = 4, // Hyerarquical File-system Plus
+    formatISO9660 = 5, // ISO 9660 - CD/DVD ROM
+    formatFAT     = 6, // FAT 16, FAT 32
+    formatOther   = 7, // Other FS
+    formatUnknown = 8, // Unknown FS
+    formatMisc    = 9  // Partitioned with different FS
+};
 
-@interface RelationshipVirtualMachinesDrivesModel : NSManagedObject
+@class RelationshipVirtualMachinesDiskFilesEntityModel;
 
-@property (nonatomic, retain) NSNumber * positionIndex;
-@property (nonatomic, retain) DrivesModel * drive;
-@property (nonatomic, retain) VirtualMachinesModel * virtualMachine;
+@interface DiskFilesEntityModel : NSManagedObject
+
+@property (nonatomic, retain) NSNumber * bootable;
+@property (nonatomic, retain) NSNumber * capacity;
+@property (nonatomic, retain) NSNumber * format;
+@property (nonatomic, retain) NSNumber * partitions;
+@property (nonatomic, retain) NSNumber * size;
+@property (nonatomic, retain) NSSet    * virtualMachines;
+@property (nonatomic, retain) NSString * fileName;
+@property (nonatomic, retain) NSString * filePath;
+
+@end
+
+@interface DiskFilesEntityModel (CoreDataGeneratedAccessors)
+
+- (void)addVirtualMachinesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
+- (void)removeVirtualMachinesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
+- (void)addVirtualMachines:(NSSet *)values;
+- (void)removeVirtualMachines:(NSSet *)values;
+
+//Test
+//+ (NSEntityDescription**) insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)value;
 
 @end

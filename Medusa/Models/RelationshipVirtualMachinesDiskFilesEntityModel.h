@@ -1,5 +1,5 @@
 //
-//  RomFilesModel.h
+//  RelationshipVirtualMachinesDrivesModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -33,56 +33,12 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-enum RomConditions {
-    PerfectSheepNew        = 1,
-    PerfectSheepOld        = 2,
-    PerfectBasilisk        = 3,
-    NoAppleTalk            = 4,
-    FPURequired            = 5,
-    NoAppleTalkFPURequired = 6,
-    PerfectVMac            = 7,
-    Unsupported            = 8
-};
+@class DiskFilesEntityModel, VirtualMachinesEntityModel;
 
-enum RomSizes {
-    romNull  = 0,
-    rom64KB  = 1,
-    rom128KB = 2,
-    rom256KB = 3,
-    rom512KB = 4,
-    rom1MB   = 5,
-    rom2MB   = 6,
-    rom3MB   = 7,
-    rom4MB   = 8
-};
+@interface RelationshipVirtualMachinesDiskFilesEntityModel : NSManagedObject
 
-@class VirtualMachinesModel;
-
-@interface RomFilesModel : NSManagedObject
-
-@property (nonatomic, retain) NSString * comments;
-@property (nonatomic, retain) NSString * emulator;
-@property (nonatomic, retain) NSString * filePath;
-@property (nonatomic, retain) NSString * modelName;
-@property (nonatomic, retain) NSNumber * romCondition;
-@property (nonatomic, retain) NSNumber * mac68kOld;
-@property (nonatomic, retain) NSNumber * mac68kNew;
-@property (nonatomic, retain) NSNumber * macPPCOld;
-@property (nonatomic, retain) NSNumber * macPPCNew;
-@property (nonatomic, retain) NSNumber * romSize;
-@property (nonatomic, retain) NSSet    * machines;
-
-//@property (nonatomic) BOOL mac68k;
-//@property (nonatomic) BOOL macPPC;
-
-
-@end
-
-@interface RomFilesModel (CoreDataGeneratedAccessors)
-
-- (void)addMachinesObject:(VirtualMachinesModel *)value;
-- (void)removeMachinesObject:(VirtualMachinesModel *)value;
-- (void)addMachines:(NSSet *)values;
-- (void)removeMachines:(NSSet *)values;
+@property (nonatomic, retain) NSNumber * positionIndex;
+@property (nonatomic, retain) DiskFilesEntityModel * drive;
+@property (nonatomic, retain) VirtualMachinesEntityModel * virtualMachine;
 
 @end

@@ -31,10 +31,10 @@
 //------------------------------------------------------------------------------
 
 #import "PreferencesModel.h"
-#import "RelationshipVirtualMachinesDrivesModel.h"
-#import "DrivesModel.h"
-#import "VirtualMachinesModel.h"
-#import "RomFilesModel.h"
+#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
+#import "DiskFilesEntityModel.h"
+#import "VirtualMachinesEntityModel.h"
+#import "RomFilesEntityModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -97,7 +97,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
-- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesModel *)virtualMachine {
+- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesEntityModel *)virtualMachine {
     
     //The idea here is to return an array with dictionaries inside.
     //The returning object is the array that follows.
@@ -224,7 +224,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     NSEntityDescription * vmDrivesRelationship = [
         NSEntityDescription
-                 entityForName:@"RelationshipVirtualMachinesDrives"
+                 entityForName:@"RelationshipVirtualMachinesDiskFiles"
         inManagedObjectContext:managedObjectContext
     ];
     
@@ -243,10 +243,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     NSArray * drivesResult = [managedObjectContext executeFetchRequest:request error:&error];
     NSEnumerator * rowEnumerator = [drivesResult objectEnumerator];
-    RelationshipVirtualMachinesDrivesModel * object;
+    RelationshipVirtualMachinesDiskFilesEntityModel * object;
 
     while (object = [rowEnumerator nextObject]) {
-        DrivesModel * unbootableDriveObject = [object drive];
+        DiskFilesEntityModel * unbootableDriveObject = [object drive];
         DDLogCInfo(@"DAMN --- %@", [unbootableDriveObject fileName]);
         NSDictionary * unbootableDrive = [[NSDictionary alloc]
             initWithObjectsAndKeys:
@@ -388,7 +388,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
-- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesModel *)virtualMachine {
+- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
     //[NSApp delegate]
     NSArray  * currentVmData = [self getVirtualMachineData: virtualMachine];
     [self savePreferencesFile:currentVmData ForFile: preferencesFilePath];

@@ -33,7 +33,7 @@
 #import "DropRomView.h"
 #import "FileHandler.h"
 #import "RomModel.h" // Model that handles all Rom objects.
-#import "VirtualMachinesModel.h"
+#import "VirtualMachinesEntityModel.h"
 
 @implementation DropRomView
 @synthesize currentMachine;
@@ -47,7 +47,7 @@
     [romObject parseRomFilesAndSave:urls];
     
     if (currentMachine) {
-        VirtualMachinesModel * newVirtualMachineObject = [currentMachine content];
+        VirtualMachinesEntityModel * newVirtualMachineObject = [currentMachine content];
         [newVirtualMachineObject setRomFile:[romObject currentRomObject]];
     }
     

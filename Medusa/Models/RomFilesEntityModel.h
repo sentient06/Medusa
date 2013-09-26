@@ -1,5 +1,5 @@
 //
-//  DrivesModel.h
+//  RomFilesModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -33,41 +33,56 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-enum driveFormat {
-    formatLisaFS  = 1, // Lisa File-system
-    formatMFS     = 2, // Macintosh File-system
-    formatHFS     = 3, // Hyerarquical File-system
-    formatHFSPlus = 4, // Hyerarquical File-system Plus
-    formatISO9660 = 5, // ISO 9660 - CD/DVD ROM
-    formatFAT     = 6, // FAT 16, FAT 32
-    formatOther   = 7, // Other FS
-    formatUnknown = 8, // Unknown FS
-    formatMisc    = 9  // Partitioned with different FS
+enum RomConditions {
+    PerfectSheepNew        = 1,
+    PerfectSheepOld        = 2,
+    PerfectBasilisk        = 3,
+    NoAppleTalk            = 4,
+    FPURequired            = 5,
+    NoAppleTalkFPURequired = 6,
+    PerfectVMac            = 7,
+    Unsupported            = 8
 };
 
-@class RelationshipVirtualMachinesDrivesModel;
+enum RomSizes {
+    romNull  = 0,
+    rom64KB  = 1,
+    rom128KB = 2,
+    rom256KB = 3,
+    rom512KB = 4,
+    rom1MB   = 5,
+    rom2MB   = 6,
+    rom3MB   = 7,
+    rom4MB   = 8
+};
 
-@interface DrivesModel : NSManagedObject
+@class VirtualMachinesEntityModel;
 
-@property (nonatomic, retain) NSNumber * bootable;
-@property (nonatomic, retain) NSNumber * capacity;
-@property (nonatomic, retain) NSNumber * format;
-@property (nonatomic, retain) NSNumber * partitions;
-@property (nonatomic, retain) NSNumber * size;
-@property (nonatomic, retain) NSSet    * virtualMachines;
-@property (nonatomic, retain) NSString * fileName;
+@interface RomFilesEntityModel : NSManagedObject
+
+@property (nonatomic, retain) NSString * comments;
+@property (nonatomic, retain) NSString * emulator;
 @property (nonatomic, retain) NSString * filePath;
+@property (nonatomic, retain) NSString * modelName;
+@property (nonatomic, retain) NSNumber * romCondition;
+@property (nonatomic, retain) NSNumber * mac68kOld;
+@property (nonatomic, retain) NSNumber * mac68kNew;
+@property (nonatomic, retain) NSNumber * macPPCOld;
+@property (nonatomic, retain) NSNumber * macPPCNew;
+@property (nonatomic, retain) NSNumber * romSize;
+@property (nonatomic, retain) NSSet    * machines;
+
+//@property (nonatomic) BOOL mac68k;
+//@property (nonatomic) BOOL macPPC;
+
 
 @end
 
-@interface DrivesModel (CoreDataGeneratedAccessors)
+@interface RomFilesEntityModel (CoreDataGeneratedAccessors)
 
-- (void)addVirtualMachinesObject:(RelationshipVirtualMachinesDrivesModel *)value;
-- (void)removeVirtualMachinesObject:(RelationshipVirtualMachinesDrivesModel *)value;
-- (void)addVirtualMachines:(NSSet *)values;
-- (void)removeVirtualMachines:(NSSet *)values;
-
-//Test
-//+ (NSEntityDescription**) insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)value;
+- (void)addMachinesObject:(VirtualMachinesEntityModel *)value;
+- (void)removeMachinesObject:(VirtualMachinesEntityModel *)value;
+- (void)addMachines:(NSSet *)values;
+- (void)removeMachines:(NSSet *)values;
 
 @end
