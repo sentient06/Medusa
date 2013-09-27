@@ -31,7 +31,6 @@
 //------------------------------------------------------------------------------
 
 #import "DropRomView.h"
-#import "FileHandler.h"
 #import "RomModel.h" // Model that handles all Rom objects.
 #import "VirtualMachinesEntityModel.h"
 

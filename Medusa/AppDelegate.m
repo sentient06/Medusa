@@ -362,7 +362,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
 //        DDLogVerbose(@"Emulator path .: %@", emulatorPath);
 
-    return;
+//    return;
 
 /// Emulator launching:
 //        [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
@@ -372,7 +372,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // Use GCD to execute emulator in an async thread:
     dispatch_async(queue, ^{
         
-        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
+        NSString * emulatorPath = [[virtualMachine emulator] unixPath];
+        
+        NSLog(@"Emulator path:\n%@", emulatorPath);
+        
+//        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
         
         // Starts emulator:
         

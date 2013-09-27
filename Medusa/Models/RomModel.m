@@ -31,7 +31,6 @@
 //------------------------------------------------------------------------------
 
 #import "RomModel.h"
-#import "FileHandler.h"
 #import "RomFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
 
 //------------------------------------------------------------------------------

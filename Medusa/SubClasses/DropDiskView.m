@@ -31,7 +31,6 @@
 //------------------------------------------------------------------------------
 
 #import "DropDiskView.h"
-#import "FileHandler.h"
 #import "DriveModel.h"
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 #import "VirtualMachinesEntityModel.h"
