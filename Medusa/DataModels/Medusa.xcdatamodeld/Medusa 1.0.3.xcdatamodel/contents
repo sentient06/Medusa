@@ -10,11 +10,11 @@
         <attribute name="size" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="virtualMachines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDiskFiles" inverseName="drive" inverseEntity="RelationshipVirtualMachinesDiskFiles" syncable="YES"/>
     </entity>
-    <entity name="Emulators" syncable="YES">
+    <entity name="Emulators" representedClassName="EmulatorsEntityModel" syncable="YES">
         <attribute name="family" attributeType="Integer 16" maxValueString="2" defaultValueString="0" syncable="YES"/>
         <attribute name="maintained" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
-        <attribute name="path" attributeType="String" syncable="YES"/>
+        <attribute name="unixPath" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="machines" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="emulator" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
@@ -37,9 +37,9 @@
         <relationship name="machines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
     <entity name="VirtualMachines" representedClassName="VirtualMachinesEntityModel" syncable="YES">
-        <attribute name="displayColourDepth" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="2" syncable="YES"/>
+        <attribute name="displayColourDepth" attributeType="Integer 16" maxValueString="2" defaultValueString="2" syncable="YES"/>
         <attribute name="displayDynamicUpdate" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="displayFrameSkip" attributeType="Integer 16" minValueString="0" maxValueString="64" defaultValueString="8" syncable="YES"/>
+        <attribute name="displayFrameSkip" attributeType="Integer 16" maxValueString="64" defaultValueString="8" syncable="YES"/>
         <attribute name="displayHeight" attributeType="Integer 16" defaultValueString="500" syncable="YES"/>
         <attribute name="displayWidth" attributeType="Integer 16" defaultValueString="800" syncable="YES"/>
         <attribute name="fpuEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
@@ -57,7 +57,7 @@
         <attribute name="uniqueName" attributeType="String" syncable="YES"/>
         <attribute name="useDefaultShare" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="drives" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDiskFiles" inverseName="virtualMachine" inverseEntity="RelationshipVirtualMachinesDiskFiles" syncable="YES"/>
-        <relationship name="emulator" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Emulators" inverseName="machines" inverseEntity="Emulators" syncable="YES"/>
+        <relationship name="emulator" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Emulators" inverseName="machines" inverseEntity="Emulators" syncable="YES"/>
         <relationship name="romFile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="modelToRomFile" syncable="YES"/>
     </entity>
     <elements>

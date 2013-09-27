@@ -43,6 +43,7 @@
 //Models:
 #import "VirtualMachinesEntityModel.h"
 #import "RomFilesEntityModel.h"
+#import "EmulatorsEntityModel.h"
 #import "PreferencesModel.h"
 
 
@@ -514,60 +515,148 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 /*!
  * @method      scanEmulators:
  * @abstract    Scans for emulators inside app support dir.
+ * Must move these things to a new class.
  */
 - (void)scanEmulators {
+    
+    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
+    
     DDLogVerbose(@"Scanning...");
     NSString * emulatorsDirectory = [[NSString alloc] initWithFormat:@"%@/Emulators", [self applicationSupportDirectory]];
     BOOL isDir;
+    BOOL mustSave = NO;
     NSFileManager * fileManager= [NSFileManager defaultManager];
     if(![fileManager fileExistsAtPath:emulatorsDirectory isDirectory:&isDir]) {
         if(![fileManager createDirectoryAtPath:emulatorsDirectory withIntermediateDirectories:YES attributes:nil error:NULL])
             DDLogError(@"Error: Could not create folder %@", emulatorsDirectory);
     } else {
         NSString * basiliskFolder = [[NSString alloc] initWithFormat:@"%@/Basilisk", emulatorsDirectory];
-        if(![fileManager fileExistsAtPath:basiliskFolder isDirectory:&isDir]) {
+        BOOL basiliskFolderIsDir;
+        
+        if(![fileManager fileExistsAtPath:basiliskFolder isDirectory:&basiliskFolderIsDir]) {
             if(![fileManager createDirectoryAtPath:basiliskFolder withIntermediateDirectories:YES attributes:nil error:NULL])
                 DDLogError(@"Error: Could not create folder %@", basiliskFolder);
         } else {
 //----------------------------------------------------------------------
-            NSError * notFound;
-            NSArray * emulatorsDirectoriesFound = [fileManager contentsOfDirectoryAtPath:basiliskFolder error:&notFound];
+
+            NSMutableArray * shallowDirectoryList =[[NSMutableArray alloc]
+                initWithArray:[fileManager contentsOfDirectoryAtPath:basiliskFolder error:nil]
+            ]; 
             
-//            DDLogVerbose(@"emulatorsDirectoriesFound: %@", emulatorsDirectoriesFound);
+            if([shallowDirectoryList containsObject:@".DS_Store"])
+                [shallowDirectoryList removeObject:@".DS_Store"];
             
-            if ([emulatorsDirectoriesFound count] > 0) {
-                NSString * basiliskExecutableSuffix = [[NSString alloc] initWithString:@"Basilisk II.app/Contents/MacOS/BasiliskII"];
-                NSString * basiliskInfoDPlistSuffix = [[NSString alloc] initWithString:@"Basilisk II.app/Contents/Info.plist"];
-                for (NSString * singleDir in emulatorsDirectoriesFound) {
-                    
-                    NSString * exePath = [[NSString alloc] initWithFormat:@"%@/%@/%@", emulatorsDirectory, singleDir, basiliskExecutableSuffix];
-                    NSString * plsPath = [[NSString alloc] initWithFormat:@"%@/%@/%@", emulatorsDirectory, singleDir, basiliskInfoDPlistSuffix];
-                    
-                    DDLogVerbose(@"exe: %@", exePath);
-                    DDLogVerbose(@"pls: %@", plsPath);
-                    
-                    
-                    DDLogVerbose(@"aaa: %@", [fileManager fileExistsAtPath:exePath] ? @"yes" : @"no");
-                    BOOL foundExe = [fileManager fileExistsAtPath:exePath];
-                    BOOL foundPls = [fileManager fileExistsAtPath:plsPath];
-                    
-                    DDLogVerbose(@"found: %@ and %@", foundExe ? @"yes" : @"no", foundPls ? @"yes" : @"no");
-                    
-                    if (foundExe && foundPls) {
-                        //... read pls
-                        DDLogVerbose(@"Found: %@ - valid", singleDir);
+            if ([shallowDirectoryList count] > 0) {
+
+                NSString * contentsSuffix    = [[NSString alloc] initWithFormat:@"Basilisk II.app/Contents"];
+                
+                for (NSString * folder in shallowDirectoryList) {
+                    NSString * currentEmulatorFolder = [[NSString alloc] initWithFormat:@"%@/%@", basiliskFolder, folder];
+                    BOOL currentEmulatorFolderIsDir;
+                    BOOL currentEmulatorFolderExists = [fileManager fileExistsAtPath:currentEmulatorFolder isDirectory:&currentEmulatorFolderIsDir];
+
+                    if (currentEmulatorFolderExists && currentEmulatorFolderIsDir) {
+                        NSLog(@"Exists: %@", currentEmulatorFolder);
+                        
+                        NSString * currentEmulatorPListFile = [[NSString alloc] initWithFormat:@"%@/%@/Info.plist", currentEmulatorFolder, contentsSuffix];
+                        BOOL currentEmulatorPListFileIsDir;
+                        BOOL currentEmulatorPListFileExists = [fileManager
+                            fileExistsAtPath:currentEmulatorPListFile
+                                 isDirectory:&currentEmulatorPListFileIsDir
+                        ];
+                        
+                        if (currentEmulatorPListFileExists && !currentEmulatorPListFileIsDir) {
+                            NSMutableDictionary * plist = [[NSMutableDictionary alloc] initWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:currentEmulatorPListFile]];
+                            
+                            NSString * executableName = [[NSString alloc] initWithString:[plist valueForKey:@"CFBundleExecutable"]];
+                            NSString * versionString  = [[NSString alloc] initWithString:[plist valueForKey:@"CFBundleShortVersionString"]];
+                            
+                            if (executableName) {
+                                NSString * currentEmulatorUnixFile = [[NSString alloc] initWithFormat:@"%@/%@/MacOS/%@", currentEmulatorFolder, contentsSuffix, executableName];
+                                
+                                BOOL currentEmulatorExeFileIsDir;
+                                BOOL currentEmulatorExeFileExists = [fileManager
+                                    fileExistsAtPath:currentEmulatorUnixFile
+                                         isDirectory:&currentEmulatorPListFileIsDir
+                                ];
+                                
+                                if (currentEmulatorExeFileExists && !currentEmulatorExeFileIsDir) {
+                                    
+                                    NSLog(@"Name: %@, Version: %@, Unix file: %@", folder, versionString, currentEmulatorUnixFile);
+
+                                    //----------------------------------------------------------------------
+                                    // Core-data part:
+                                    
+                                    NSError * errorFetch;
+                                    
+                                    NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
+                                    NSEntityDescription * entity    = [ NSEntityDescription entityForName:@"Emulators" inManagedObjectContext:managedObjectContext];
+                                    NSPredicate         * predicate = [ NSPredicate
+                                        predicateWithFormat: @"unixPath = %@",
+                                        currentEmulatorUnixFile
+                                    ];
+                                    
+                                    [request setEntity:entity];
+                                    [request setPredicate: predicate];
+                                    NSInteger resultCount = [managedObjectContext countForFetchRequest:request error:&errorFetch];
+
+                                    [request release];
+                                            
+                                    if (resultCount > 0) {
+                                        DDLogVerbose(@"This Emulator app is duplicated!");
+                                    } else {
+
+                                        //Sets a new emulator object.
+                                        EmulatorsEntityModel * newEmulatorObject = [
+                                            NSEntityDescription
+                                                insertNewObjectForEntityForName:@"Emulators"
+                                                         inManagedObjectContext:managedObjectContext
+                                        ];
+        
+                                        //Here we have all the fields to be inserted.
+                                        [newEmulatorObject setFamily:[NSNumber numberWithInt:basiliskFamily]];
+                                        [newEmulatorObject setName:[NSString stringWithFormat:@"Basilisk II v%@ (M)", versionString]];
+                                        [newEmulatorObject setMaintained:[NSNumber numberWithBool:YES]];
+                                        [newEmulatorObject setUnixPath:currentEmulatorUnixFile];
+                                        [newEmulatorObject setVersion:versionString];
+
+                                        mustSave = YES;
+                                        
+                                    }
+
+                                }
+                                
+                                [currentEmulatorUnixFile release];
+                                [plist release];
+                                
+                            }
+                            
+                            [versionString release];
+                            [executableName release];
+                            
+                            
+                        }
+                        
+                        [currentEmulatorPListFile release];
+                        
                     }
-                    
+
+                    [currentEmulatorFolder release];
                 }
-                [basiliskInfoDPlistSuffix release];
-                [basiliskExecutableSuffix release];
+                [contentsSuffix release];
             }
+            
+            [shallowDirectoryList release];
+            [fileManager release];
 //----------------------------------------------------------------------
             
         }
         [basiliskFolder release];
     }
     [emulatorsDirectory release];
+    
+    if (mustSave) [self saveCoreData];
+    
     DDLogVerbose(@"Done.");
 }
 

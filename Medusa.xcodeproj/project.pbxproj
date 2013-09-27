@@ -12,6 +12,7 @@
 		8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8126596817D724DE00395990 /* MedusaIcon5.icns */; };
 		812A83A217EF5FF100B355BD /* DriveModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 812A83A117EF5FF000B355BD /* DriveModel.m */; };
 		8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */; };
+		813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */; };
 		814804E817D5D56D0070DAD9 /* RomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomModel.m */; };
 		814804F717D5FFD00070DAD9 /* PerfectNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F417D5FFD00070DAD9 /* PerfectNew.png */; };
 		814804F817D5FFD00070DAD9 /* PerfectOld.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F517D5FFD00070DAD9 /* PerfectOld.png */; };
@@ -130,6 +131,8 @@
 		812A83A117EF5FF000B355BD /* DriveModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveModel.m; path = Models/DriveModel.m; sourceTree = "<group>"; };
 		8131AA4317E76F1500682879 /* ProcessorToJitTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessorToJitTransformer.h; path = TransformerControllers/ProcessorToJitTransformer.h; sourceTree = "<group>"; };
 		8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessorToJitTransformer.m; path = TransformerControllers/ProcessorToJitTransformer.m; sourceTree = "<group>"; };
+		813DB9C817F5AABE00CB7EA2 /* EmulatorsEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorsEntityModel.h; path = Models/EmulatorsEntityModel.h; sourceTree = "<group>"; };
+		813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorsEntityModel.m; path = Models/EmulatorsEntityModel.m; sourceTree = "<group>"; };
 		814804E617D5D56D0070DAD9 /* RomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomModel.h; path = Models/RomModel.h; sourceTree = "<group>"; };
 		814804E717D5D56D0070DAD9 /* RomModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomModel.m; path = Models/RomModel.m; sourceTree = "<group>"; };
 		814804F417D5FFD00070DAD9 /* PerfectNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = PerfectNew.png; path = Images/RomIcons/PerfectNew.png; sourceTree = "<group>"; };
@@ -676,6 +679,8 @@
 				81E84DEF1565BE820002D4DA /* DiskFilesEntityModel.m */,
 				81E84DEB1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.h */,
 				81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m */,
+				813DB9C817F5AABE00CB7EA2 /* EmulatorsEntityModel.h */,
+				813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */,
 			);
 			name = CoreDataEntityModels;
 			sourceTree = "<group>";
@@ -884,6 +889,7 @@
 				81B08F1C17F43FE5000954C6 /* ByteValueTransformer.m in Sources */,
 				81B08F2317F44198000954C6 /* DriveFormatValueTransformer.m in Sources */,
 				81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */,
+				813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

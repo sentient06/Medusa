@@ -53,6 +53,7 @@
 @dynamic useDefaultShare;
 @dynamic drives;
 @dynamic romFile;
+@dynamic emulator;
 @dynamic processorType;
 @dynamic jitEnabled;
 @dynamic lazyCacheEnabled;

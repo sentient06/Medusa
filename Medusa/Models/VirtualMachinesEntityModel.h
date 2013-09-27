@@ -33,12 +33,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class RelationshipVirtualMachinesDiskFilesEntityModel, RomFilesEntityModel;
+@class RelationshipVirtualMachinesDiskFilesEntityModel, RomFilesEntityModel, EmulatorsEntityModel;
 
 @interface VirtualMachinesEntityModel : NSManagedObject
 
 @property (nonatomic, retain) NSString * uniqueName;
 @property (nonatomic, retain) RomFilesEntityModel * romFile;
+@property (nonatomic, retain) EmulatorsEntityModel * emulator;
 //@property (nonatomic, retain) NSNumber * icon;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * displayColourDepth;
