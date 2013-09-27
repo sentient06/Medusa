@@ -94,6 +94,7 @@
 		81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m */; };
 		81E84DF01565BE820002D4DA /* DiskFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEF1565BE820002D4DA /* DiskFilesEntityModel.m */; };
 		81E84DF91565BE820002D4DA /* RomFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DF81565BE820002D4DA /* RomFilesEntityModel.m */; };
+		81E9A44717F5D4EB008C2A31 /* RubbishFullClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E9A44617F5D4EB008C2A31 /* RubbishFullClassic.png */; };
 		81EAD4C817CFB01F00ACA222 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 81EAD4C617CFB01F00ACA222 /* Medusa.xcdatamodeld */; };
 		81F0857617CF8DF000188A2E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
 		81F085E417CF8E9A00188A2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
@@ -266,6 +267,7 @@
 		81E84DEF1565BE820002D4DA /* DiskFilesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiskFilesEntityModel.m; path = Models/DiskFilesEntityModel.m; sourceTree = "<group>"; };
 		81E84DF71565BE820002D4DA /* RomFilesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFilesEntityModel.h; path = Models/RomFilesEntityModel.h; sourceTree = "<group>"; };
 		81E84DF81565BE820002D4DA /* RomFilesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFilesEntityModel.m; path = Models/RomFilesEntityModel.m; sourceTree = "<group>"; };
+		81E9A44617F5D4EB008C2A31 /* RubbishFullClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RubbishFullClassic.png; path = Images/ClassicIcons/RubbishFullClassic.png; sourceTree = "<group>"; };
 		81EAD4C717CFB01F00ACA222 /* Medusa 1.0.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.3.xcdatamodel"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -560,6 +562,7 @@
 			children = (
 				819DC09117F1909200480073 /* HDClassic.icns */,
 				819DC09317F1926C00480073 /* RubbishBinClassic.icns */,
+				81E9A44617F5D4EB008C2A31 /* RubbishFullClassic.png */,
 			);
 			name = ClassicIcons;
 			sourceTree = "<group>";
@@ -826,6 +829,7 @@
 				81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */,
 				819DC09217F1909200480073 /* HDClassic.icns in Resources */,
 				819DC09417F1926C00480073 /* RubbishBinClassic.icns in Resources */,
+				81E9A44717F5D4EB008C2A31 /* RubbishFullClassic.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

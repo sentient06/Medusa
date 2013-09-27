@@ -77,6 +77,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [__persistentStoreCoordinator release];
     [__managedObjectModel release];
     [__managedObjectContext release];
+    [windowsForVirtualMachines release];
     [super dealloc];
 }
 
@@ -85,50 +86,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 #pragma mark – Main Window actions
 
-/*!
- * @method      openVirtualMachineWindow:
- * @abstract    Opens the iTunes-like window to control the vm's properties.
- */
-- (IBAction)openVirtualMachineWindow:(id)sender{
-    
-    NSArray *selectedVirtualMachines = [
-        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
-    ];
-    //The user can select only one in the current interface, but anyway...
-    
-    VirtualMachinesEntityModel * selectedVirtualMachine;
-    
-    for (int i = 0; i < [selectedVirtualMachines count]; i++) {
-        
-        selectedVirtualMachine = [selectedVirtualMachines  objectAtIndex:i];
-        
-        VirtualMachineWindowController * newWindowController = [
-            [VirtualMachineWindowController alloc]
-                initWithVirtualMachine: selectedVirtualMachine
-                inManagedObjectContext: [self managedObjectContext]
-        ]; //autorelease here? check!!
-        
-        //[newWindowController setShouldCloseDocument:NO];
-        //[self addWindowController:newWindowController];
-        [newWindowController showWindow:sender];
-        
-    }
-    
-    [selectedVirtualMachines release];
-    
-}
-
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// New Virtual machines
-
-// New VM:
+// Virtual machine sheets
 
 /*!
  * @method      showNewMachineView:
  * @abstract    Displays the new VM sheet.
  */
 - (IBAction)showNewMachineView:(id)sender {
-    
     [ NSApp
             beginSheet: newMachineView
         modalForWindow: (NSWindow *)_window
@@ -136,7 +101,34 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         didEndSelector: nil
            contextInfo: nil
     ];
-    
+}
+
+/*!
+ * @method      showNewMachineView:
+ * @abstract    Displays the new VM sheet.
+ */
+- (IBAction)showCloneMachineView:(id)sender {
+    [ NSApp
+            beginSheet: cloneMachineView
+        modalForWindow: (NSWindow *)_window
+         modalDelegate: self
+        didEndSelector: nil
+           contextInfo: nil
+    ];
+}
+
+/*!
+ * @method      showDeleteMachineView:
+ * @abstract    Displays the delete VM sheet.
+ */
+- (IBAction)showDeleteMachineView:(id)sender {
+    [ NSApp
+            beginSheet: deleteMachineView
+        modalForWindow: (NSWindow *)_window
+         modalDelegate: self
+        didEndSelector: nil
+           contextInfo: nil
+    ];
 }
 
 /*!
@@ -144,12 +136,28 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @abstract    Closes the new VM sheet.
  */
 - (IBAction)endNewMachineView:(id)sender {
-    
     [newMachineNameField setStringValue:@""];
-    [newMachineModelField selectItemAtIndex:0];
     [NSApp endSheet:newMachineView];
     [newMachineView orderOut:sender];
-    
+}
+
+/*!
+ * @method      endNewMachineView:
+ * @abstract    Closes the new VM sheet.
+ */
+- (IBAction)endCloneMachineView:(id)sender {
+    [cloneMachineNameField setStringValue:@""];
+    [NSApp endSheet:cloneMachineView];
+    [cloneMachineView orderOut:sender];
+}
+
+/*!
+ * @method      endNewMachineView:
+ * @abstract    Closes the new VM sheet.
+ */
+- (IBAction)endDeleteMachineView:(id)sender {
+    [NSApp endSheet:deleteMachineView];
+    [deleteMachineView orderOut:sender];
 }
 
 /*!
@@ -226,34 +234,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 // Clones VM:
 
 /*!
- * @method      showNewMachineView:
- * @abstract    Displays the new VM sheet.
- */
-- (IBAction)showCloneMachineView:(id)sender {
-    
-    [ NSApp
-            beginSheet: cloneMachineView
-        modalForWindow: (NSWindow *)_window
-         modalDelegate: self
-        didEndSelector: nil
-           contextInfo: nil
-    ];
-    
-}
-
-/*!
- * @method      endNewMachineView:
- * @abstract    Closes the new VM sheet.
- */
-- (IBAction)endCloneMachineView:(id)sender {
-    
-    [cloneMachineNameField setStringValue:@""];
-    [NSApp endSheet:cloneMachineView];
-    [cloneMachineView orderOut:sender];
-    
-}
-
-/*!
  * @method      saveNewVirtualMachine:
  * @abstract    Saves the new virtual machine created by the user to the
  *              coredata.
@@ -324,6 +304,42 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
+- (IBAction)deleteVirtualMachine:(id)sender {
+    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
+    
+    NSArray * selectedVirtualMachines = [[
+        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
+    ] autorelease ];
+
+    //The user can select only one in the current interface, but anyway...
+    VirtualMachinesEntityModel * virtualMachine = [selectedVirtualMachines objectAtIndex:0];
+    
+    NSString * preferencesFilePath = [
+        [NSMutableString alloc] initWithFormat:
+            @"%@/%@Preferences",
+            [self applicationSupportDirectory],
+            [virtualMachine uniqueName]
+    ];
+
+    NSFileManager * fileManager= [NSFileManager defaultManager];
+    NSError * error;
+
+    if([fileManager fileExistsAtPath:preferencesFilePath isDirectory:nil])    
+        if (![fileManager removeItemAtPath:preferencesFilePath error:&error])
+            DDLogError(@"Whoops, couldn't delete: %@", preferencesFilePath);
+    
+    [managedObjectContext deleteObject:virtualMachine];
+    
+    if ([windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] != nil) {
+        [[[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] window] close];
+        [windowsForVirtualMachines removeObjectForKey:[virtualMachine uniqueName]];
+    }
+    
+    [self endDeleteMachineView:sender];
+    [self saveCoreData];
+
+}
+
 /*!
  * @method      run:
  * @abstract    Saves preferences and lauches emulator.
@@ -333,16 +349,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (IBAction)run:(id)sender {
     
-    NSError * error = nil;
+//    NSError * error = nil;
+//    
+//    if (![[self managedObjectContext] commitEditing]) {
+//        DDLogError(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
+//    }
+//    
+//    if (![[self managedObjectContext] save:&error]) {
+//        [[NSApplication sharedApplication] presentError:error];
+//    }
     
-    if (![[self managedObjectContext] commitEditing]) {
-        DDLogError(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
-    }
+    [self saveCoreData];
     
-    if (![[self managedObjectContext] save:&error]) {
-        [[NSApplication sharedApplication] presentError:error];
-    }
-        
     NSArray * selectedVirtualMachines = [[
         [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
     ] autorelease ];
@@ -408,50 +426,37 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 #pragma mark – Windows triggers
 
-//// Rom Manager / Assets:
-//
-///*!
-// * @method      showRomManagerWindow:
-// * @abstract    Displays the Rom Manager.
-// */
-//- (IBAction)showRomManagerWindow:(id)sender {
-//    
-//    BOOL useAssetsManager = [[NSUserDefaults standardUserDefaults] boolForKey:@"useAssetsManager"];
-//    
-//    if (useAssetsManager == YES) {
-//    
-//        [self showAssetsWindow:sender]; 
-//        
-//    }else{
-//        
-//        if (!romWindowController) {
-//            romWindowController = [
-//                [RomManagerWindowController alloc]
-//                    initWithWindowNibName:@"RomManagerWindow"
-//            ];
-//        }
-//        [romWindowController showWindow:self];  
-//        
-//    }
-//    
-//}
-//
-//// Disks:
-//
-///*!
-// * @method      showDriveManagerWindow:
-// * @abstract    Displays the Drive Manager.
-// */
-//- (IBAction)showDriveManagerWindow:(id)sender {
-//    
-//    if (!driveWindowController) {
-//        driveWindowController = [[DriveManagerWindowController alloc] initWithWindowNibName:@"DriveManagerWindow"];
-//    }
-//    [driveWindowController showWindow:self];  
-//    
-//}
+/*!
+ * @method      openVirtualMachineWindow:
+ * @abstract    Opens the iTunes-like window to control the vm's properties.
+ */
+- (IBAction)openVirtualMachineWindow:(id)sender {
+    
+    NSArray * selectedVirtualMachines = [
+        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
+    ];
+    //The user can select only one in the current interface, but anyway...
+    
+    VirtualMachinesEntityModel * selectedVirtualMachine;
+        
+    selectedVirtualMachine = [selectedVirtualMachines objectAtIndex:0];
+    
+    VirtualMachineWindowController * newWindowController = [windowsForVirtualMachines objectForKey:[selectedVirtualMachine uniqueName]];
+    
+    if (newWindowController == nil) {
+        DDLogWarn(@"Missing window for key %@", [selectedVirtualMachine uniqueName]);
+        newWindowController = [
+            [VirtualMachineWindowController alloc]
+                initWithVirtualMachine: selectedVirtualMachine
+                inManagedObjectContext: [self managedObjectContext]
+        ]; //closing won't release it.
+        [windowsForVirtualMachines setObject:newWindowController forKey:[selectedVirtualMachine uniqueName]];
+    }
 
-// Assets:
+    [newWindowController showWindow:sender];
+    [selectedVirtualMachines release];
+    
+}
 
 /*!
  * @method      showAssetsWindow:
@@ -487,6 +492,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [preferencesWindowController showWindow:self];  
     
 }
+
+//- (void)releaseWindowFor:(NSString *)virtualMachineUniqueName {
+////    VirtualMachineWindowController * newWindowController = [windowsForVirtualMachines objectForKey:virtualMachineUniqueName];
+////    [newWindowController release];
+////    [windowsForVirtualMachines removeObjectForKey:virtualMachineUniqueName];
+//}
+
 
 //------------------------------------------------------------------------------
 // Utility methods
@@ -697,6 +709,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
         [DDLog addLogger:[DDASLLogger sharedInstance]];
         [DDLog addLogger:[DDTTYLogger sharedInstance]];
+        windowsForVirtualMachines = [[NSMutableDictionary alloc] init];
     }
     return self;
 }

@@ -31,17 +31,10 @@
 //------------------------------------------------------------------------------
 
 #import <Cocoa/Cocoa.h>
-//@class RomManagerWindowController;      //Rom Manager Window
-//@class DriveManagerWindowController;    //Drive Manager Window
+
 @class AssetsWindowController;          //Assets Window
 @class PreferencesWindowController;     //Preferences Window
 @class SplashWindowController;
-
-//typedef enum Emulator {
-//    vMac,
-//    BasiliskII,
-//    Sheepshaver
-//} Emulator;
 
 /*!
  * @class       AppDelegate:
@@ -62,17 +55,13 @@
     IBOutlet NSArrayController  * romFilesController;
     //Array controller with the rom file.
     
-    IBOutlet NSScrollView * virtualMachinesList;
+    IBOutlet NSScrollView       * virtualMachinesList;
     
     //New VM Sheet - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
     IBOutlet NSPanel            * newMachineView;
     //Sheet used to create a new machine.
     IBOutlet NSTextField        * newMachineNameField;
-    //Text field in the new machine sheet.
-    IBOutlet NSPopUpButton      * newMachineModelField;
-    //Pop up button with the model (rom file).
-    IBOutlet NSMatrix           * newMachineModelRadio;
     
     //Clone VM Sheet - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
@@ -81,10 +70,19 @@
     IBOutlet NSTextField        * cloneMachineNameField;
     //Text field in the new machine sheet.
     
+    //Delete VM Sheet  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    IBOutlet NSPanel            * deleteMachineView;
+    //Sheet used to delete current machine.
+    
+    //Controllers  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     //Window Controllers:
     AssetsWindowController      * assetsWindowController;
     PreferencesWindowController * preferencesWindowController;
     SplashWindowController      * splashWindowController;
+    
+    NSMutableDictionary * windowsForVirtualMachines;
     
     /// 32-bit compatibility -------    
     id _window;
@@ -111,21 +109,44 @@
 //------------------------------------------------------------------------------
 // New methods ahead.
 
+// Buttons
+// Actions to the buttons that create and delete VM entries in the coredata.
+
 - (IBAction)saveNewVirtualMachine:(id)sender;
-//Action to the button that creates the new entry in the coredata.
+- (IBAction)saveCloneVirtualMachine:(id)sender;
+- (IBAction)deleteVirtualMachine:(id)sender;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Windows
 
 - (IBAction)openVirtualMachineWindow:(id)sender;
-//Opens the iTunes-like window to control the machine's properties.
+// Opens the virtual machine's properties.
 
 - (IBAction)showAssetsWindow:(id)sender;
-//Action to show the Assets Window.
+// Action to show the Assets Window.
 
 - (IBAction)showPreferencesWindow:(id)sender;
-//Action to show the Preferences Window.
+// Action to show the Preferences Window.
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Sheets
+
+// Open all sheets:
+- (IBAction)showNewMachineView:(id)sender;
+- (IBAction)showCloneMachineView:(id)sender;
+- (IBAction)showDeleteMachineView:(id)sender;
+
+// Close all sheets:
+- (IBAction)endNewMachineView:(id)sender;
+- (IBAction)endCloneMachineView:(id)sender;
+- (IBAction)endDeleteMachineView:(id)sender;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Utilities
 
 - (NSString *)applicationSupportDirectory;
-
 - (void)saveCoreData;
 - (void)scanEmulators;
+//- (void)releaseWindowFor:(NSString *)virtualMachineUniqueName;
 
 @end

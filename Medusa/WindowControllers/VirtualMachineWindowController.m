@@ -38,6 +38,7 @@
 #import "RomFilesEntityModel.h"
 #import "RomModel.h"
 #import "DiskFilesEntityModel.h"
+#import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -118,6 +119,15 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
     [super dealloc];
 }
+
+///**
+// * This will not work for multiple windows. However, probably the class is called only once.
+// */
+//- (void)windowWillClose:(NSNotification *)notification {
+//    NSLog(@"window will close");
+////    [[NSApp delegate] releaseWindowFor:[virtualMachine uniqueName]];
+////    [self autorelease];
+//}
 
 //------------------------------------------------------------------------------
 
@@ -521,7 +531,13 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 - (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.        
+        // Initialization code here.
+//        [[NSNotificationCenter defaultCenter]
+//         addObserver:self
+//         selector:@selector(windowWillClose:)
+//         name:NSWindowWillCloseNotification
+//         object:window];
+        DDLogVerbose(@"new vm controller init");
     }
     
     return self;
