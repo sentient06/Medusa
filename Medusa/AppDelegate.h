@@ -62,6 +62,7 @@
     IBOutlet NSPanel            * newMachineView;
     //Sheet used to create a new machine.
     IBOutlet NSTextField        * newMachineNameField;
+    IBOutlet NSTextField        * newMachineErrorLabel;
     
     //Clone VM Sheet - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
@@ -69,6 +70,7 @@
     //Sheet used to create a new machine.
     IBOutlet NSTextField        * cloneMachineNameField;
     //Text field in the new machine sheet.
+    IBOutlet NSTextField        * cloneMachineErrorLabel;
     
     //Delete VM Sheet  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
@@ -115,6 +117,7 @@
 - (IBAction)saveNewVirtualMachine:(id)sender;
 - (IBAction)saveCloneVirtualMachine:(id)sender;
 - (IBAction)deleteVirtualMachine:(id)sender;
+- (void)selectLastCreatedVirtualMachine:(id)sender;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Windows
@@ -146,7 +149,6 @@
 
 - (NSString *)applicationSupportDirectory;
 - (void)saveCoreData;
-- (void)scanEmulators;
 //- (void)releaseWindowFor:(NSString *)virtualMachineUniqueName;
 
 @end

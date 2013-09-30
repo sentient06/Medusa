@@ -33,6 +33,7 @@
 #import "AssetsWindowController.h"
 #import "TableLineInformationController.h"
 #import "AppDelegate.h"
+#import "EmulatorModel.h"
 
 @implementation AssetsWindowController
 
@@ -106,7 +107,9 @@
 }
 
 - (IBAction)scanEmulators:(id)sender {
-    [[NSApp delegate] scanEmulators];
+    EmulatorModel * emulatorObject = [[EmulatorModel alloc] init];
+    [emulatorObject scanEmulators];
+    [emulatorObject release];
 }
 
 - (id)initWithWindow:(NSWindow *)window {

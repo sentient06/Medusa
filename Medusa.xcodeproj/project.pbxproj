@@ -56,6 +56,8 @@
 		817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF56153580100038E9A0 /* MedusaIcon.icns */; };
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
 		817E319D17D1078200131E2D /* VMList.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMList.m */; };
+		8188A59217F97A6800BAB33B /* VirtualMachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59117F97A6800BAB33B /* VirtualMachineModel.m */; };
+		8188A59617F97A7A00BAB33B /* EmulatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorModel.m */; };
 		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
 		81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */; };
 		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
@@ -200,6 +202,10 @@
 		817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableLineInformationController.m; path = UtilitiesControllers/TableLineInformationController.m; sourceTree = "<group>"; };
 		817E319B17D1078200131E2D /* VMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMList.h; path = UtilitiesControllers/VMList.h; sourceTree = "<group>"; };
 		817E319C17D1078200131E2D /* VMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMList.m; path = UtilitiesControllers/VMList.m; sourceTree = "<group>"; };
+		8188A59017F97A6800BAB33B /* VirtualMachineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineModel.h; path = Models/VirtualMachineModel.h; sourceTree = "<group>"; };
+		8188A59117F97A6800BAB33B /* VirtualMachineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineModel.m; path = Models/VirtualMachineModel.m; sourceTree = "<group>"; };
+		8188A59417F97A7A00BAB33B /* EmulatorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorModel.h; path = Models/EmulatorModel.h; sourceTree = "<group>"; };
+		8188A59517F97A7A00BAB33B /* EmulatorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorModel.m; path = Models/EmulatorModel.m; sourceTree = "<group>"; };
 		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
 		81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericNetworkIcon.icns; path = Images/Icons/GenericNetworkIcon.icns; sourceTree = "<group>"; };
 		819DC08717F18B7000480073 /* SortableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortableArrayController.h; path = SubClasses/SortableArrayController.h; sourceTree = "<group>"; };
@@ -696,6 +702,10 @@
 				814804E717D5D56D0070DAD9 /* RomModel.m */,
 				812A83A017EF5FF000B355BD /* DriveModel.h */,
 				812A83A117EF5FF000B355BD /* DriveModel.m */,
+				8188A59017F97A6800BAB33B /* VirtualMachineModel.h */,
+				8188A59117F97A6800BAB33B /* VirtualMachineModel.m */,
+				8188A59417F97A7A00BAB33B /* EmulatorModel.h */,
+				8188A59517F97A7A00BAB33B /* EmulatorModel.m */,
 			);
 			name = FileModels;
 			sourceTree = "<group>";
@@ -888,6 +898,8 @@
 				81B08F2317F44198000954C6 /* DriveFormatValueTransformer.m in Sources */,
 				81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */,
 				813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */,
+				8188A59217F97A6800BAB33B /* VirtualMachineModel.m in Sources */,
+				8188A59617F97A7A00BAB33B /* EmulatorModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

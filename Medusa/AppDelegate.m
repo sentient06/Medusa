@@ -39,13 +39,13 @@
 #import "PreferencesWindowController.h"     //Preferences Window
 #import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
 //Helpers:
-#import "ManagedObjectCloner.h"             //Clone core-data objects
+
 //Models:
 #import "VirtualMachinesEntityModel.h"
 #import "RomFilesEntityModel.h"
 #import "EmulatorsEntityModel.h"
 #import "PreferencesModel.h"
-
+#import "VirtualMachineModel.h"
 
 #import "EmulatorHandleController.h" //testing
 
@@ -136,6 +136,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @abstract    Closes the new VM sheet.
  */
 - (IBAction)endNewMachineView:(id)sender {
+    [newMachineErrorLabel setHidden:YES];
     [newMachineNameField setStringValue:@""];
     [NSApp endSheet:newMachineView];
     [newMachineView orderOut:sender];
@@ -146,6 +147,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @abstract    Closes the new VM sheet.
  */
 - (IBAction)endCloneMachineView:(id)sender {
+    [cloneMachineErrorLabel setHidden:YES];
     [cloneMachineNameField setStringValue:@""];
     [NSApp endSheet:cloneMachineView];
     [cloneMachineView orderOut:sender];
@@ -171,64 +173,33 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (IBAction)saveNewVirtualMachine:(id)sender {
     
-    int currentTime = CFAbsoluteTimeGetCurrent();
+    // Parses name:
+    NSString * newMachineName = [[NSString alloc] initWithString:[newMachineNameField stringValue]];
 
-    BOOL openDetailsAfterCreation = [
-        [NSUserDefaults standardUserDefaults]
-            boolForKey:@"openDetailsAfterCreation"
-    ];
+    if ([newMachineName length] == 0) {
+        DDLogVerbose(@"VM name is empty.");
+        [newMachineErrorLabel setStringValue:@"Name cannot be empty."];
+        [newMachineErrorLabel setHidden:NO];
+        return;
+    }
 
     //Gets the Managed Object Context:
-    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
-
-    //Sets a new vm object.
-    VirtualMachinesEntityModel * newVirtualMachineObject = [
-        NSEntityDescription
-            insertNewObjectForEntityForName:@"VirtualMachines"
-                     inManagedObjectContext:managedObjectContext
-    ];
+    NSManagedObjectContext * managedObjectContext      = [self managedObjectContext];
+    VirtualMachineModel    * virtualMachineModelObject = [[VirtualMachineModel alloc] initWithManagedObjectContext:managedObjectContext];
     
-
-    //--------------------------------------------------------------------------
-    
-    //Here we have all the fields to be inserted.
-    [newVirtualMachineObject setName:[newMachineNameField stringValue]];
-    [newVirtualMachineObject setUniqueName:[NSString stringWithFormat:@"vm%d", currentTime]];
-
-//    [newVirtualMachineObject setMacModel:[NSNumber numberWithInteger:[newMachineModelRadio selectedTag]]];
-    // Model must be 5 or 14 IIci 7-7.5 or Quadra 900 7.5-8.1
-//    [newVirtualMachineObject setRomFile:[[romFilesController selectedObjects] objectAtIndex:0]];
-    
-    DDLogVerbose(@"%@", newVirtualMachineObject);
-    //--------------------------------------------------------------------------
-    // Save:
-    
-    DDLogVerbose(@"Saving...");
-    NSError * error;
-    if (![managedObjectContext save:&error]) {
-        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
-//        DDLogVerbose(@"Check 'App Delegate' class.");
+    if ([virtualMachineModelObject existsMachineNamed:newMachineName]) {
+        DDLogVerbose(@"VM name is being used.");
+        [newMachineErrorLabel setStringValue:@"Name is already in use."];
+        [newMachineErrorLabel setHidden:NO];
+        return;
     }
     
-    //--------------------------------------------------------------------------
-    //Focus in the new item.
-    
-    [virtualMachinesArrayController
-        setSelectedObjects:
-        [NSArray arrayWithObject:
-            [[virtualMachinesArrayController arrangedObjects] lastObject]
-        ]
-    ];
-    
-    //--------------------------------------------------------------------------
-    //Open item's window if user specified.    
-
+    [virtualMachineModelObject insertMachineNamed:newMachineName];
+    [self selectLastCreatedVirtualMachine:sender];
     [self endNewMachineView:sender];
-    
-    if (openDetailsAfterCreation == YES) {
-        [self openVirtualMachineWindow:sender];
-    }
-    
+    [virtualMachineModelObject release];
+    [newMachineName release];
+
 }
 
 // Clones VM:
@@ -243,44 +214,46 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              not needed. Remember to refactor in the near future.
  */
 - (IBAction)saveCloneVirtualMachine:(id)sender {
-
-    int currentTime = CFAbsoluteTimeGetCurrent();
     
+    // Parses name:
+    NSString * newMachineName = [[NSString alloc] initWithString:[cloneMachineNameField stringValue]];
+    
+    if ([newMachineName length] == 0) {
+        DDLogVerbose(@"VM name is empty.");
+        [cloneMachineErrorLabel setStringValue:@"Name cannot be empty."];
+        [cloneMachineErrorLabel setHidden:NO];
+        return;
+    }
+    
+    //Gets the Managed Object Context:
+    NSManagedObjectContext * managedObjectContext      = [self managedObjectContext];
+    VirtualMachineModel    * virtualMachineModelObject = [[VirtualMachineModel alloc] initWithManagedObjectContext:managedObjectContext];
+    
+    if ([virtualMachineModelObject existsMachineNamed:newMachineName]) {
+        DDLogVerbose(@"VM name is being used.");
+        [cloneMachineErrorLabel setStringValue:@"Name is already in use."];
+        [cloneMachineErrorLabel setHidden:NO];
+        return;
+    }
+    
+    //Machine to clone:
+    VirtualMachinesEntityModel * machineToClone = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+    
+    [virtualMachineModelObject cloneMachine:machineToClone withName:newMachineName];
+    [self selectLastCreatedVirtualMachine:sender];
+    [self endCloneMachineView:sender];
+    [virtualMachineModelObject release];
+    [newMachineName release];
+    
+}
+
+- (void)selectLastCreatedVirtualMachine:(id)sender {
+
     BOOL openDetailsAfterCreation = [
         [NSUserDefaults standardUserDefaults]
             boolForKey:@"openDetailsAfterCreation"
     ];
 
-    //Gets the Managed Object Context:
-    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
-    
-    //Gets selected machine:
-    NSArray * selectedVirtualMachines = [
-        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
-    ];
-
-    //Machine to clone:
-    VirtualMachinesEntityModel * machineToClone = [selectedVirtualMachines objectAtIndex:0];
-    
-    DDLogVerbose(@"Cloning machine called '%@'", [machineToClone name]);
-    
-    //Cloned machine:
-    VirtualMachinesEntityModel * clonedMachine = [machineToClone clone];
-    
-    //Change name:
-    [clonedMachine setName:[cloneMachineNameField stringValue]];
-    [clonedMachine setUniqueName:[NSString stringWithFormat:@"vm%d", currentTime]];
-    
-    //--------------------------------------------------------------------------
-    //Saving new clone:
-    
-    DDLogVerbose(@"Saving...");
-    NSError * error;
-    if (![managedObjectContext save:&error]) {
-        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        DDLogVerbose(@"Check 'App Delegate' class, saveCloneVirtualMachine");
-    }
-    
     //--------------------------------------------------------------------------
     //Focus in the new item.
     
@@ -294,17 +267,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     //--------------------------------------------------------------------------
     //Release all
     
-    [selectedVirtualMachines release]; //Selected machines
-    
-    [self endCloneMachineView:sender];
-    
     if (openDetailsAfterCreation == YES) {
         [self openVirtualMachineWindow:sender];
     }
-    
+
 }
 
 - (IBAction)deleteVirtualMachine:(id)sender {
+
     NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
     
     NSArray * selectedVirtualMachines = [[
@@ -528,154 +498,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
-/*!
- * @method      scanEmulators:
- * @abstract    Scans for emulators inside app support dir.
- * Must move these things to a new class.
- */
-- (void)scanEmulators {
-    
-    NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
-    
-    DDLogVerbose(@"Scanning...");
-    NSString * emulatorsDirectory = [[NSString alloc] initWithFormat:@"%@/Emulators", [self applicationSupportDirectory]];
-    BOOL isDir;
-    BOOL mustSave = NO;
-    NSFileManager * fileManager= [NSFileManager defaultManager];
-    if(![fileManager fileExistsAtPath:emulatorsDirectory isDirectory:&isDir]) {
-        if(![fileManager createDirectoryAtPath:emulatorsDirectory withIntermediateDirectories:YES attributes:nil error:NULL])
-            DDLogError(@"Error: Could not create folder %@", emulatorsDirectory);
-    } else {
-        NSString * basiliskFolder = [[NSString alloc] initWithFormat:@"%@/Basilisk", emulatorsDirectory];
-        BOOL basiliskFolderIsDir;
-        
-        if(![fileManager fileExistsAtPath:basiliskFolder isDirectory:&basiliskFolderIsDir]) {
-            if(![fileManager createDirectoryAtPath:basiliskFolder withIntermediateDirectories:YES attributes:nil error:NULL])
-                DDLogError(@"Error: Could not create folder %@", basiliskFolder);
-        } else {
-//----------------------------------------------------------------------
-
-            NSMutableArray * shallowDirectoryList =[[NSMutableArray alloc]
-                initWithArray:[fileManager contentsOfDirectoryAtPath:basiliskFolder error:nil]
-            ]; 
-            
-            if([shallowDirectoryList containsObject:@".DS_Store"])
-                [shallowDirectoryList removeObject:@".DS_Store"];
-            
-            if ([shallowDirectoryList count] > 0) {
-
-                NSString * contentsSuffix    = [[NSString alloc] initWithFormat:@"Basilisk II.app/Contents"];
-                
-                for (NSString * folder in shallowDirectoryList) {
-                    NSString * currentEmulatorFolder = [[NSString alloc] initWithFormat:@"%@/%@", basiliskFolder, folder];
-                    BOOL currentEmulatorFolderIsDir;
-                    BOOL currentEmulatorFolderExists = [fileManager fileExistsAtPath:currentEmulatorFolder isDirectory:&currentEmulatorFolderIsDir];
-
-                    if (currentEmulatorFolderExists && currentEmulatorFolderIsDir) {
-                        NSLog(@"Exists: %@", currentEmulatorFolder);
-                        
-                        NSString * currentEmulatorPListFile = [[NSString alloc] initWithFormat:@"%@/%@/Info.plist", currentEmulatorFolder, contentsSuffix];
-                        BOOL currentEmulatorPListFileIsDir;
-                        BOOL currentEmulatorPListFileExists = [fileManager
-                            fileExistsAtPath:currentEmulatorPListFile
-                                 isDirectory:&currentEmulatorPListFileIsDir
-                        ];
-                        
-                        if (currentEmulatorPListFileExists && !currentEmulatorPListFileIsDir) {
-                            NSMutableDictionary * plist = [[NSMutableDictionary alloc] initWithDictionary:[NSMutableDictionary dictionaryWithContentsOfFile:currentEmulatorPListFile]];
-                            
-                            NSString * executableName = [[NSString alloc] initWithString:[plist valueForKey:@"CFBundleExecutable"]];
-                            NSString * versionString  = [[NSString alloc] initWithString:[plist valueForKey:@"CFBundleShortVersionString"]];
-                            
-                            if (executableName) {
-                                NSString * currentEmulatorUnixFile = [[NSString alloc] initWithFormat:@"%@/%@/MacOS/%@", currentEmulatorFolder, contentsSuffix, executableName];
-                                
-                                BOOL currentEmulatorExeFileIsDir;
-                                BOOL currentEmulatorExeFileExists = [fileManager
-                                    fileExistsAtPath:currentEmulatorUnixFile
-                                         isDirectory:&currentEmulatorPListFileIsDir
-                                ];
-                                
-                                if (currentEmulatorExeFileExists && !currentEmulatorExeFileIsDir) {
-                                    
-                                    NSLog(@"Name: %@, Version: %@, Unix file: %@", folder, versionString, currentEmulatorUnixFile);
-
-                                    //----------------------------------------------------------------------
-                                    // Core-data part:
-                                    
-                                    NSError * errorFetch;
-                                    
-                                    NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
-                                    NSEntityDescription * entity    = [ NSEntityDescription entityForName:@"Emulators" inManagedObjectContext:managedObjectContext];
-                                    NSPredicate         * predicate = [ NSPredicate
-                                        predicateWithFormat: @"unixPath = %@",
-                                        currentEmulatorUnixFile
-                                    ];
-                                    
-                                    [request setEntity:entity];
-                                    [request setPredicate: predicate];
-                                    NSInteger resultCount = [managedObjectContext countForFetchRequest:request error:&errorFetch];
-
-                                    [request release];
-                                            
-                                    if (resultCount > 0) {
-                                        DDLogVerbose(@"This Emulator app is duplicated!");
-                                    } else {
-
-                                        //Sets a new emulator object.
-                                        EmulatorsEntityModel * newEmulatorObject = [
-                                            NSEntityDescription
-                                                insertNewObjectForEntityForName:@"Emulators"
-                                                         inManagedObjectContext:managedObjectContext
-                                        ];
-        
-                                        //Here we have all the fields to be inserted.
-                                        [newEmulatorObject setFamily:[NSNumber numberWithInt:basiliskFamily]];
-                                        [newEmulatorObject setName:[NSString stringWithFormat:@"Basilisk II v%@ (M)", versionString]];
-                                        [newEmulatorObject setMaintained:[NSNumber numberWithBool:YES]];
-                                        [newEmulatorObject setUnixPath:currentEmulatorUnixFile];
-                                        [newEmulatorObject setVersion:versionString];
-
-                                        mustSave = YES;
-                                        
-                                    }
-
-                                }
-                                
-                                [currentEmulatorUnixFile release];
-                                [plist release];
-                                
-                            }
-                            
-                            [versionString release];
-                            [executableName release];
-                            
-                            
-                        }
-                        
-                        [currentEmulatorPListFile release];
-                        
-                    }
-
-                    [currentEmulatorFolder release];
-                }
-                [contentsSuffix release];
-            }
-            
-            [shallowDirectoryList release];
-            [fileManager release];
-//----------------------------------------------------------------------
-            
-        }
-        [basiliskFolder release];
-    }
-    [emulatorsDirectory release];
-    
-    if (mustSave) [self saveCoreData];
-    
-    DDLogVerbose(@"Done.");
-}
-
 //------------------------------------------------------------------------------
 // Overwrotten methods.
 
@@ -760,9 +582,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (NSURL *)applicationFilesDirectory {
 
-    NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSFileManager * fileManager = [NSFileManager defaultManager];
     
-    NSURL *libraryURL = [
+    NSURL * libraryURL = [
         [fileManager URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject
     ];
     
