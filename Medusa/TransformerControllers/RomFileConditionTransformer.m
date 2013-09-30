@@ -31,29 +31,28 @@
 //------------------------------------------------------------------------------
 
 #import "RomFileConditionTransformer.h"
+#import "RomFilesEntityModel.h"
 
 @implementation RomFileConditionTransformer
 
 + (Class)transformedValueClass {
     return [NSString class]; 
 }
+
 + (BOOL)allowsReverseTransformation { 
     return NO; 
 }
 
+//PerfectSheepNew        = 1,
+//PerfectSheepOld        = 2,
+//PerfectBasilisk        = 3,
+//NoAppleTalk            = 4,
+//FPURequired            = 5,
+//NoAppleTalkFPURequired = 6,
+//PerfectVMac            = 7,
+//Unsupported            = 8
+
 - (id)transformedValue:(id)value {
-    
-//    enum RomConditions {
-//        PerfectSheepNew        = 1,
-//        PerfectSheepOld        = 2,
-//        PerfectBasilisk        = 3,
-//        NoAppleTalk            = 4,
-//        FPURequired            = 5,
-//        NoAppleTalkFPURequired = 6,
-//        PerfectVMac            = 7,
-//        Unsupported            = 8
-//    };
-    
     
     long conditionValue = [value integerValue];
     
@@ -62,19 +61,19 @@
             return @"";
         break;
             
-        case 4:
+        case NoAppleTalk:
             return @"Appletalk unavailable";
         break;
 
-        case 5:
+        case FPURequired:
             return @"Needs to use FPU";
         break;
 
-        case 6:
+        case NoAppleTalkFPURequired:
             return @"Needs to use FPU and Appletalk is unavailable";
         break;
 
-        case 8:
+        case Unsupported:
             return @"Unsupported ROM";
         break;
     }

@@ -1,5 +1,5 @@
 //
-//  FileDetails.h
+//  FileObject.h
 //  ROMan / Medusa
 //
 //  Created by Giancarlo Mariot on 12/03/2012.

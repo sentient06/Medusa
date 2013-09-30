@@ -45,6 +45,7 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
 + (Class)transformedValueClass {
     return [NSImage class]; 
 }
+
 + (BOOL)allowsReverseTransformation { 
     return NO; 
 }

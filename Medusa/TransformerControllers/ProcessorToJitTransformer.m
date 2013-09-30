@@ -37,6 +37,7 @@
 + (Class)transformedValueClass {
     return [NSNumber class]; 
 }
+
 + (BOOL)allowsReverseTransformation { 
     return NO; 
 }

@@ -33,6 +33,7 @@
 #import "VirtualMachineModel.h"
 #import "VirtualMachinesEntityModel.h"
 #import "ManagedObjectCloner.h" //Clone core-data objects
+#import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -84,11 +85,11 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     [newVirtualMachineObject setName:newMachineName];
     [newVirtualMachineObject setUniqueName:[NSString stringWithFormat:@"vm%d", currentTime]];
     
-    //    [newVirtualMachineObject setMacModel:[NSNumber numberWithInteger:[newMachineModelRadio selectedTag]]];
     // Model must be 5 or 14 IIci 7-7.5 or Quadra 900 7.5-8.1
-    //    [newVirtualMachineObject setRomFile:[[romFilesController selectedObjects] objectAtIndex:0]];
     
     DDLogVerbose(@"%@", newVirtualMachineObject);
+    
+    [[NSApp delegate] saveCoreData];
 
 }
 
@@ -103,6 +104,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     //Change name:
     [clonedMachine setName:newMachineName];
     [clonedMachine setUniqueName:[NSString stringWithFormat:@"vm%d", currentTime]];
+    
+    [[NSApp delegate] saveCoreData];
 
 }
 

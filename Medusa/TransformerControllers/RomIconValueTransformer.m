@@ -31,6 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "RomIconValueTransformer.h"
+#import "RomFilesEntityModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -45,52 +46,24 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
 + (Class)transformedValueClass {
     return [NSImage class]; 
 }
+
 + (BOOL)allowsReverseTransformation { 
     return NO; 
 }
 
 - (id)transformedValue:(id)value {
-	
-	//NSString *icon = [value stringValue];
-    //DDLogVerbose(@"%ld", _icon);
-    
-//    if ([value isEqualToString:@"Basilisk"]) {
-//        return [NSImage imageNamed:@"FinderGrey.icns"];
-//    }
-//    
-//    if ([value isEqualToString:@"Sheepshaver"]) {
-//        return [NSImage imageNamed:@"FinderBlue.icns"];
-//    }
-    
-    
-//    enum RomConditions {
-//        PerfectSheepNew        = 1,
-//        PerfectSheepOld        = 2,
-//        PerfectBasilisk        = 3,
-//        NoAppleTalk            = 4,
-//        FPURequired            = 5,
-//        NoAppleTalkFPURequired = 6,
-//        PerfectVMac            = 7,
-//        Unsupported            = 8
-//    };
-    
-    
-    
+
     long iconValue = [value integerValue];
     
     DDLogVerbose(@"Rom Icon Value Transformer - value: %@ -- %ld", value, iconValue);
     
-    if (iconValue == 1) {
+    if (iconValue == PerfectSheepNew) {
         return [NSImage imageNamed:@"PerfectNew.png"];
     }
     
     if (iconValue > 1 && iconValue < 8) {
         return [NSImage imageNamed:@"PerfectOld.png"];
     }
-    
-//    if (iconValue == 7) {
-//        return [NSImage imageNamed:@"Unsupported.icns"];
-//    }
     
 	return [NSImage imageNamed:@"UnsupportedRom.png"];
 }

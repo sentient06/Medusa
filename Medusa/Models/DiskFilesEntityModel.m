@@ -1,5 +1,5 @@
 //
-//  DrivesModel.m
+//  DiskFilesEntityModel.m
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.

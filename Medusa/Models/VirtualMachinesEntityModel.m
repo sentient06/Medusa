@@ -1,5 +1,5 @@
 //
-//  VirtualMachinesModel.m
+//  VirtualMachinesEntityModel.m
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 12/06/2012.
@@ -44,7 +44,6 @@
 @dynamic displayHeight;
 @dynamic displayWidth;
 @dynamic fullScreen;
-//@dynamic icon;
 @dynamic memory;
 @dynamic name;
 @dynamic sharedFolder;

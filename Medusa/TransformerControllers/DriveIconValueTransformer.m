@@ -37,6 +37,7 @@
 + (Class)transformedValueClass {
     return [NSImage class]; 
 }
+
 + (BOOL)allowsReverseTransformation { 
     return NO; 
 }

@@ -1,5 +1,5 @@
 //
-//  CoreDataModel.h
+//  PreferencesModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 04/05/2012.

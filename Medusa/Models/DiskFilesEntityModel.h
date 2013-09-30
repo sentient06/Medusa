@@ -1,5 +1,5 @@
 //
-//  DrivesModel.h
+//  DiskFilesEntityModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -66,8 +66,5 @@ enum driveFormat {
 - (void)removeVirtualMachinesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
 - (void)addVirtualMachines:(NSSet *)values;
 - (void)removeVirtualMachines:(NSSet *)values;
-
-//Test
-//+ (NSEntityDescription**) insertNewObjectInManagedObjectContext:(NSManagedObjectContext *)value;
 
 @end

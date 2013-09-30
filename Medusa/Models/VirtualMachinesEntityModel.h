@@ -1,5 +1,5 @@
 //
-//  VirtualMachinesModel.h
+//  VirtualMachinesEntityModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 12/06/2012.
@@ -40,7 +40,6 @@
 @property (nonatomic, retain) NSString * uniqueName;
 @property (nonatomic, retain) RomFilesEntityModel * romFile;
 @property (nonatomic, retain) EmulatorsEntityModel * emulator;
-//@property (nonatomic, retain) NSNumber * icon;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSNumber * displayColourDepth;
 @property (nonatomic, retain) NSNumber * displayDynamicUpdate;

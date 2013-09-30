@@ -1,5 +1,5 @@
 //
-//  RomFilesModel.h
+//  RomFilesEntityModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -71,10 +71,6 @@ enum RomSizes {
 @property (nonatomic, retain) NSNumber * macPPCNew;
 @property (nonatomic, retain) NSNumber * romSize;
 @property (nonatomic, retain) NSSet    * machines;
-
-//@property (nonatomic) BOOL mac68k;
-//@property (nonatomic) BOOL macPPC;
-
 
 @end
 
