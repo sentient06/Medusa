@@ -1,8 +1,8 @@
 //
-//  EmulatorModel.h
+//  RomFileSizeTransformer.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 30/09/2013.
+//  Created by Giancarlo Mariot on 01/10/2013.
 //  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -32,14 +32,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EmulatorModel : NSObject {
-    NSString * emulatorsDirectory;
-    BOOL mustSave;
-}
-
-- (void)scanEmulators;
-- (void)scanEmulatorFamily:(int)emulatorFamily;
-- (id)parseEmulator:(NSString *)applicationPath;
-- (void)parseEmulatorsAndSave:(NSArray *)filesList;
+@interface RomFileSizeTransformer : NSValueTransformer
 
 @end

@@ -57,23 +57,29 @@
     long conditionValue = [value integerValue];
     
     switch (conditionValue) {
-            
+
+        case PerfectBasilisk:
+            return @"Basilisk II should work fine";
+
         case NoAppleTalk:
             return @"Appletalk unavailable";
-        break;
 
         case FPURequired:
             return @"Needs to use FPU";
-        break;
 
         case NoAppleTalkFPURequired:
             return @"Needs to use FPU and Appletalk is unavailable";
-        break;
+
+        case PerfectSheepNew:
+        case PerfectSheepOld:
+        case PerfectVMac:
+            return @"Unsupported Emulator for this ROM";
 
         case Unsupported:
-        default:
             return @"Unsupported ROM";
-        break;
+
+        default:
+            return @"";
     }
 
 }

@@ -1,8 +1,8 @@
 //
-//  EmulatorModel.h
+//  DropEmulatorView.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 30/09/2013.
+//  Created by Giancarlo Mariot on 01/10/2013.
 //  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,16 +30,10 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Foundation/Foundation.h>
+#import "DropView.h"
 
-@interface EmulatorModel : NSObject {
-    NSString * emulatorsDirectory;
-    BOOL mustSave;
-}
+@interface DropEmulatorView : DropView
 
-- (void)scanEmulators;
-- (void)scanEmulatorFamily:(int)emulatorFamily;
-- (id)parseEmulator:(NSString *)applicationPath;
-- (void)parseEmulatorsAndSave:(NSArray *)filesList;
+@property (assign) IBOutlet NSObjectController * currentMachine;
 
 @end

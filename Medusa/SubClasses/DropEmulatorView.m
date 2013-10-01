@@ -1,8 +1,8 @@
 //
-//  EmulatorModel.h
+//  DropEmulatorView.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 30/09/2013.
+//  Created by Giancarlo Mariot on 01/10/2013.
 //  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,16 +30,37 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Foundation/Foundation.h>
+#import "DropEmulatorView.h"
+#import "EmulatorModel.h"
+#import "VirtualMachinesEntityModel.h"
 
-@interface EmulatorModel : NSObject {
-    NSString * emulatorsDirectory;
-    BOOL mustSave;
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
+
+@implementation DropEmulatorView
+
+@synthesize currentMachine;
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    
+    DDLogVerbose(@"Drop operation");
+    
+    NSPasteboard  * pboard    = [sender draggingPasteboard];
+    NSArray       * urls      = [pboard propertyListForType:NSFilenamesPboardType];
+    EmulatorModel * emulatorObject = [[EmulatorModel alloc] autorelease];
+    
+    [emulatorObject parseEmulatorsAndSave:urls];
+    
+    if (currentMachine) {
+        DDLogVerbose(@"There's a machine associated to this drop! Too bad for now.");
+    }
+    
+    return YES;
 }
-
-- (void)scanEmulators;
-- (void)scanEmulatorFamily:(int)emulatorFamily;
-- (id)parseEmulator:(NSString *)applicationPath;
-- (void)parseEmulatorsAndSave:(NSArray *)filesList;
 
 @end

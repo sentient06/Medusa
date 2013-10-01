@@ -1,8 +1,8 @@
 //
-//  EmulatorModel.h
+//  RomFileSizeTransformer.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 30/09/2013.
+//  Created by Giancarlo Mariot on 01/10/2013.
 //  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,16 +30,54 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Foundation/Foundation.h>
+#import "RomFileSizeTransformer.h"
+#import "RomFilesEntityModel.h"
 
-@interface EmulatorModel : NSObject {
-    NSString * emulatorsDirectory;
-    BOOL mustSave;
+@implementation RomFileSizeTransformer
+
++ (Class)transformedValueClass {
+    return [NSString class]; 
 }
 
-- (void)scanEmulators;
-- (void)scanEmulatorFamily:(int)emulatorFamily;
-- (id)parseEmulator:(NSString *)applicationPath;
-- (void)parseEmulatorsAndSave:(NSArray *)filesList;
++ (BOOL)allowsReverseTransformation { 
+    return NO; 
+}
+
+- (id)transformedValue:(id)value {
+    
+    long sizeValue = [value integerValue];
+    
+    switch (sizeValue) {
+            
+        case rom64KB:
+            return @"64K ROM";
+
+        case rom128KB:
+            return @"128K ROM";
+
+        case rom256KB:
+            return @"256K ROM";
+
+        case rom512KB:
+            return @"512K ROM";
+
+        case rom1MB:
+            return @"1MB ROM";
+
+        case rom2MB:
+            return @"2MB ROM";
+
+        case rom3MB:
+            return @"3MB ROM";
+
+        case rom4MB:
+            return @"4MB ROM";
+        
+        case romNull:
+        default:
+            return @"Unknown size";
+    }
+    
+}
 
 @end

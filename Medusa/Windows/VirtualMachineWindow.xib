@@ -318,7 +318,7 @@
 				</object>
 				<string key="NSWindowContentMinSize">{640, 360}</string>
 				<object class="NSView" key="NSWindowView" id="599317191">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSCustomView" id="15420099">
@@ -326,12 +326,10 @@
 							<int key="NSvFlags">256</int>
 							<string key="NSFrameSize">{550, 360}</string>
 							<reference key="NSSuperview" ref="599317191"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSClassName">NSView</string>
 						</object>
 					</array>
 					<string key="NSFrameSize">{550, 360}</string>
-					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="15420099"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
@@ -876,7 +874,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="NSFrame">{{509, 20}, {24, 17}}</string>
 						<reference key="NSSuperview" ref="915117506"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="581588692">
 							<int key="NSCellFlags">68288064</int>
@@ -1291,7 +1288,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="NSFrame">{{506, 20}, {24, 24}}</string>
 						<reference key="NSSuperview" ref="469330821"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="23792784">
 							<int key="NSCellFlags">-2080244224</int>
@@ -1361,7 +1357,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 										<string key="NSFrameSize">{233, 293}</string>
 										<reference key="NSSuperview" ref="550283173"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="375877272"/>
+										<reference key="NSNextKeyView" ref="763327001"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="_NSCornerView" key="NSCornerView">
 											<nil key="NSNextResponder"/>
@@ -1497,7 +1493,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="NSFrame">{{20, 20}, {235, 295}}</string>
 						<reference key="NSSuperview" ref="469330821"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="763327001"/>
+						<reference key="NSNextKeyView" ref="550283173"/>
 						<int key="NSsFlags">530</int>
 						<reference key="NSVScroller" ref="375877272"/>
 						<reference key="NSHScroller" ref="763327001"/>
@@ -1518,7 +1514,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 										<string key="NSFrameSize">{233, 243}</string>
 										<reference key="NSSuperview" ref="513396849"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="76348336"/>
+										<reference key="NSNextKeyView" ref="350872806"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="_NSCornerView" key="NSCornerView">
 											<nil key="NSNextResponder"/>
@@ -1632,7 +1628,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="NSFrame">{{295, 70}, {235, 245}}</string>
 						<reference key="NSSuperview" ref="469330821"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="350872806"/>
+						<reference key="NSNextKeyView" ref="513396849"/>
 						<int key="NSsFlags">530</int>
 						<reference key="NSVScroller" ref="76348336"/>
 						<reference key="NSHScroller" ref="350872806"/>
@@ -1656,7 +1652,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="NSFrame">{{168, 188}, {96, 22}}</string>
 						<reference key="NSSuperview" ref="323215428"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="1031298129">
 							<int key="NSCellFlags">-1804468671</int>
@@ -2104,7 +2099,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="NSFrame">{{17, 114}, {516, 17}}</string>
 						<reference key="NSSuperview" ref="65470472"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="742054479">
 							<int key="NSCellFlags">68288064</int>
@@ -2509,7 +2503,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="NSFrame">{{128, 156}, {191, 18}}</string>
 						<reference key="NSSuperview" ref="289124057"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="151141576">
 							<int key="NSCellFlags">-2080244224</int>
@@ -3100,6 +3093,14 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<reference key="destination" ref="65470472"/>
 					</object>
 					<int key="connectionID">1163</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openEmulatorPath:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="434233102"/>
+					</object>
+					<int key="connectionID">1210</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -5905,7 +5906,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1209</int>
+			<int key="maxID">1210</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -5989,6 +5990,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						<string key="displayDisplayView:">id</string>
 						<string key="displayGeneralView:">id</string>
 						<string key="displayShareView:">id</string>
+						<string key="openEmulatorPath:">id</string>
 						<string key="openRomPath:">id</string>
 						<string key="openSharePath:">id</string>
 						<string key="personalMemoryValueChanged:">id</string>
@@ -6026,6 +6028,10 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 						</object>
 						<object class="IBActionInfo" key="displayShareView:">
 							<string key="name">displayShareView:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openEmulatorPath:">
+							<string key="name">openEmulatorPath:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="openRomPath:">

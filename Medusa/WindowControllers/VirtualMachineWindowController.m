@@ -39,6 +39,8 @@
 #import "RomModel.h"
 #import "DiskFilesEntityModel.h"
 #import "AppDelegate.h"
+#import "EmulatorModel.h"
+#import "EmulatorsEntityModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -469,6 +471,32 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
     [currentRom release];    
     
+}
+
+- (IBAction)openEmulatorPath:(id)sender {
+    NSArray       * selectedFiles = [[[NSArray alloc] init] autorelease];
+    NSOpenPanel   * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
+    EmulatorModel * EmulatorsModelObject = [[EmulatorModel alloc] init];
+    
+    //Dialog options:
+    [openDialog setCanChooseFiles:YES];
+    [openDialog setCanChooseDirectories:NO];
+    [openDialog setCanCreateDirectories:NO];
+    [openDialog setAllowsMultipleSelection:NO];
+    
+    //Display it and trace OK button:
+    if ([openDialog runModal] == NSOKButton) {
+        selectedFiles = [openDialog URLs];        
+    }
+    
+    if ([selectedFiles count] == 1) {
+        DDLogVerbose(@"Selected files: %@", selectedFiles);
+        EmulatorsEntityModel * addedEmulator = [EmulatorsModelObject parseEmulator:[[selectedFiles objectAtIndex:0] path]];
+        if (addedEmulator != nil) {
+            [virtualMachine setEmulator:addedEmulator];
+        }
+    }
+     
 }
 
 //------------------------------------------------------------------------------

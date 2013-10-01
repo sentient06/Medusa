@@ -38,7 +38,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_ERROR;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation DropView
@@ -76,7 +76,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     returnValue = NO;
     
     NSArray * acceptedTypes = [[NSArray alloc] initWithObjects:
-          @"Unix Executable File"
+          @"Application"
+        , @"Unix Executable File"
         , @"Document"
         , @"NDIF Disk Image"
         , @"Disk Image"
@@ -93,6 +94,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         url = [NSURL fileURLWithPath:[firstElement stringByExpandingTildeInPath]];
         LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
 
+        DDLogVerbose(@"Dropped type is: %@", kind);
+        
         if ([acceptedTypes containsObject:kind]) {
             returnValue = YES;
             break;

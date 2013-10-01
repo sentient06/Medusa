@@ -204,6 +204,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogVerbose(@"VM name is empty.");
         [newMachineErrorLabel setStringValue:@"Name cannot be empty."];
         [newMachineErrorLabel setHidden:NO];
+        [newMachineName release];
         return;
     }
 
@@ -215,6 +216,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogVerbose(@"VM name is being used.");
         [newMachineErrorLabel setStringValue:@"Name is already in use."];
         [newMachineErrorLabel setHidden:NO];
+        [virtualMachineModelObject release];
+        [newMachineName release];
         return;
     }
     
@@ -246,6 +249,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogVerbose(@"VM name is empty.");
         [cloneMachineErrorLabel setStringValue:@"Name cannot be empty."];
         [cloneMachineErrorLabel setHidden:NO];
+        [newMachineName release];
         return;
     }
     
@@ -257,6 +261,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogVerbose(@"VM name is being used.");
         [cloneMachineErrorLabel setStringValue:@"Name is already in use."];
         [cloneMachineErrorLabel setHidden:NO];
+        [newMachineName release];
+        [virtualMachineModelObject release];
         return;
     }
     
@@ -322,6 +328,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         if (![fileManager removeItemAtPath:preferencesFilePath error:&error])
             DDLogError(@"Whoops, couldn't delete: %@", preferencesFilePath);
     
+    [preferencesFilePath release];
     [managedObjectContext deleteObject:virtualMachine];
     
     if ([windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] != nil) {
@@ -342,16 +349,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * This will crash if the application support dir doesn't exist. Fix it!
  */
 - (IBAction)run:(id)sender {
-    
-//    NSError * error = nil;
-//    
-//    if (![[self managedObjectContext] commitEditing]) {
-//        DDLogError(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
-//    }
-//    
-//    if (![[self managedObjectContext] save:&error]) {
-//        [[NSApplication sharedApplication] presentError:error];
-//    }
     
     [self saveCoreData];
     
@@ -402,7 +399,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             ]
         ];
         
-        [emulatorPath release];
         [preferencesFilePath release];
         [emulatorTask launch];
         [emulatorTask waitUntilExit];

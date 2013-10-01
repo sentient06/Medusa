@@ -149,5 +149,6 @@ typedef enum {
 // Open share folder
 - (IBAction)openSharePath:(id)sender;
 - (IBAction)openRomPath:(id)sender;
+- (IBAction)openEmulatorPath:(id)sender;
 
 @end
