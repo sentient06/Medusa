@@ -45,41 +45,47 @@
  */
 @interface AppDelegate : NSObject <NSApplicationDelegate> {
     
-    // Grand Central Dispatch queue  - - - - - - - - - - - - - - - - - - - - - -
+    //--------------------------------------------------------------------------    
+    // Grand Central Dispatch
+
     dispatch_queue_t queue;
     
-    // Array Controllers - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+    //--------------------------------------------------------------------------
+    // Array Controllers
     
     IBOutlet NSArrayController  * virtualMachinesArrayController;
-    //Array controller to keep track of the machines list.
     IBOutlet NSArrayController  * romFilesController;
-    //Array controller with the rom file.
-    
     IBOutlet NSScrollView       * virtualMachinesList;
     
-    //New VM Sheet - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    //--------------------------------------------------------------------------
+    // Sheets
+    
+    //New VM - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
     IBOutlet NSPanel            * newMachineView;
-    //Sheet used to create a new machine.
     IBOutlet NSTextField        * newMachineNameField;
     IBOutlet NSTextField        * newMachineErrorLabel;
     
-    //Clone VM Sheet - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    //Clone VM - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
     IBOutlet NSPanel            * cloneMachineView;
-    //Sheet used to create a new machine.
     IBOutlet NSTextField        * cloneMachineNameField;
-    //Text field in the new machine sheet.
     IBOutlet NSTextField        * cloneMachineErrorLabel;
     
-    //Delete VM Sheet  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    //Delete VM - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
     IBOutlet NSPanel            * deleteMachineView;
-    //Sheet used to delete current machine.
     
-    //Controllers  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    //Error  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    //Window Controllers:
+    IBOutlet NSPanel            * errorSheetView;
+    IBOutlet NSTextField        * errorSheetLabel;
+    
+    //--------------------------------------------------------------------------
+    //Controllers
+
+    // Window Controllers:
+
     AssetsWindowController      * assetsWindowController;
     PreferencesWindowController * preferencesWindowController;
     SplashWindowController      * splashWindowController;
@@ -122,6 +128,8 @@
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Windows
 
+- (IBAction)showMainWindow:(id)sender;
+
 - (IBAction)openVirtualMachineWindow:(id)sender;
 // Opens the virtual machine's properties.
 
@@ -138,11 +146,13 @@
 - (IBAction)showNewMachineView:(id)sender;
 - (IBAction)showCloneMachineView:(id)sender;
 - (IBAction)showDeleteMachineView:(id)sender;
+- (IBAction)showErrorSheetView:(id)sender;
 
 // Close all sheets:
 - (IBAction)endNewMachineView:(id)sender;
 - (IBAction)endCloneMachineView:(id)sender;
 - (IBAction)endDeleteMachineView:(id)sender;
+- (IBAction)endErrorSheetView:(id)sender;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Utilities

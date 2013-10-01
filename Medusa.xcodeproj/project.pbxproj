@@ -27,6 +27,8 @@
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
 		8162FF4017EC4EDD000413C2 /* DropAllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8162FF3F17EC4EDD000413C2 /* DropAllView.m */; };
 		816792A617D08F27002B991B /* newVm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 816792A517D08F27002B991B /* newVm.icns */; };
+		8167977C17FAC76100E6F869 /* SettingsWindowTitleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8167977B17FAC76100E6F869 /* SettingsWindowTitleTransformer.m */; };
+		8167977F17FAC83500E6F869 /* SplashWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8167977E17FAC83500E6F869 /* SplashWindowController.m */; };
 		8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8168995917CE17CE00058B9F /* dsa_pub.pem */; };
 		8168996917CE2C7900058B9F /* Configuration.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995D17CE2C7800058B9F /* Configuration.icns */; };
 		8168996A17CE2C7900058B9F /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995E17CE2C7800058B9F /* Display.icns */; };
@@ -60,6 +62,7 @@
 		8188A59617F97A7A00BAB33B /* EmulatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorModel.m */; };
 		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
 		81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */; };
+		819DB78317F9D213006E7367 /* Emulators.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DB78217F9D213006E7367 /* Emulators.icns */; };
 		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
 		819DC09217F1909200480073 /* HDClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DC09117F1909200480073 /* HDClassic.icns */; };
 		819DC09417F1926C00480073 /* RubbishBinClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DC09317F1926C00480073 /* RubbishBinClassic.icns */; };
@@ -85,6 +88,8 @@
 		81B08F1C17F43FE5000954C6 /* ByteValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F1B17F43FE5000954C6 /* ByteValueTransformer.m */; };
 		81B08F2317F44198000954C6 /* DriveFormatValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2217F44198000954C6 /* DriveFormatValueTransformer.m */; };
 		81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2617F44648000954C6 /* BoolValueTransformer.m */; };
+		81BBBC5417F9B5B700C151FE /* EmulatorFamilyValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BBBC5317F9B5B700C151FE /* EmulatorFamilyValueTransformer.m */; };
+		81BBBC5717F9B72F00C151FE /* ErrorIconClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 81BBBC5617F9B72F00C151FE /* ErrorIconClassic.png */; };
 		81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C2B75117D646AB000E4A01 /* linenPattern.png */; };
 		81C84434153E181900E94443 /* FileObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84432153E181900E94443 /* FileObject.m */; };
 		81C84438153E183700E94443 /* DropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84437153E183700E94443 /* DropView.m */; };
@@ -158,6 +163,10 @@
 		8162FF3E17EC4EDD000413C2 /* DropAllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropAllView.h; path = SubClasses/DropAllView.h; sourceTree = "<group>"; };
 		8162FF3F17EC4EDD000413C2 /* DropAllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropAllView.m; path = SubClasses/DropAllView.m; sourceTree = "<group>"; };
 		816792A517D08F27002B991B /* newVm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = newVm.icns; path = Images/Icons/newVm.icns; sourceTree = "<group>"; };
+		8167977A17FAC76100E6F869 /* SettingsWindowTitleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsWindowTitleTransformer.h; path = TransformerControllers/StringTransformers/SettingsWindowTitleTransformer.h; sourceTree = "<group>"; };
+		8167977B17FAC76100E6F869 /* SettingsWindowTitleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsWindowTitleTransformer.m; path = TransformerControllers/StringTransformers/SettingsWindowTitleTransformer.m; sourceTree = "<group>"; };
+		8167977D17FAC83500E6F869 /* SplashWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashWindowController.h; path = WindowControllers/SplashWindowController.h; sourceTree = "<group>"; };
+		8167977E17FAC83500E6F869 /* SplashWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashWindowController.m; path = WindowControllers/SplashWindowController.m; sourceTree = "<group>"; };
 		8168994F17CE16AC00058B9F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Medusa/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		8168995917CE17CE00058B9F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/SparkleKey/dsa_pub.pem; sourceTree = "<group>"; };
 		8168995D17CE2C7800058B9F /* Configuration.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Configuration.icns; path = Images/Icons/Configuration.icns; sourceTree = "<group>"; };
@@ -208,6 +217,7 @@
 		8188A59517F97A7A00BAB33B /* EmulatorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorModel.m; path = Models/EmulatorModel.m; sourceTree = "<group>"; };
 		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
 		81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericNetworkIcon.icns; path = Images/Icons/GenericNetworkIcon.icns; sourceTree = "<group>"; };
+		819DB78217F9D213006E7367 /* Emulators.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Emulators.icns; path = Images/Icons/Emulators.icns; sourceTree = "<group>"; };
 		819DC08717F18B7000480073 /* SortableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortableArrayController.h; path = SubClasses/SortableArrayController.h; sourceTree = "<group>"; };
 		819DC08817F18B7000480073 /* SortableArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortableArrayController.m; path = SubClasses/SortableArrayController.m; sourceTree = "<group>"; };
 		819DC09117F1909200480073 /* HDClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HDClassic.icns; path = Images/ClassicIcons/HDClassic.icns; sourceTree = "<group>"; };
@@ -254,6 +264,9 @@
 		81B08F2217F44198000954C6 /* DriveFormatValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DriveFormatValueTransformer.m; path = TransformerControllers/EnumeratorTransformers/DriveFormatValueTransformer.m; sourceTree = "<group>"; };
 		81B08F2517F44648000954C6 /* BoolValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueTransformer.h; sourceTree = "<group>"; };
 		81B08F2617F44648000954C6 /* BoolValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueTransformer.m; sourceTree = "<group>"; };
+		81BBBC5217F9B5B700C151FE /* EmulatorFamilyValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorFamilyValueTransformer.h; path = TransformerControllers/EnumeratorTransformers/EmulatorFamilyValueTransformer.h; sourceTree = "<group>"; };
+		81BBBC5317F9B5B700C151FE /* EmulatorFamilyValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorFamilyValueTransformer.m; path = TransformerControllers/EnumeratorTransformers/EmulatorFamilyValueTransformer.m; sourceTree = "<group>"; };
+		81BBBC5617F9B72F00C151FE /* ErrorIconClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ErrorIconClassic.png; path = Images/ClassicIcons/ErrorIconClassic.png; sourceTree = "<group>"; };
 		81C2B75117D646AB000E4A01 /* linenPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = linenPattern.png; path = Images/Backgrounds/linenPattern.png; sourceTree = "<group>"; };
 		81C84431153E181900E94443 /* FileObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileObject.h; path = Models/FileObject.h; sourceTree = "<group>"; };
 		81C84432153E181900E94443 /* FileObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileObject.m; path = Models/FileObject.m; sourceTree = "<group>"; };
@@ -321,6 +334,8 @@
 				814FAD881570ED0D008D3223 /* PreferencesWindowController.m */,
 				81DB8247159FAED8003D4C5D /* AssetsWindowController.h */,
 				81DB8248159FAED8003D4C5D /* AssetsWindowController.m */,
+				8167977D17FAC83500E6F869 /* SplashWindowController.h */,
+				8167977E17FAC83500E6F869 /* SplashWindowController.m */,
 			);
 			name = WindowControllers;
 			sourceTree = "<group>";
@@ -353,6 +368,15 @@
 			name = DropViews;
 			sourceTree = "<group>";
 		};
+		8167977917FAC72F00E6F869 /* StringTransformers */ = {
+			isa = PBXGroup;
+			children = (
+				8167977A17FAC76100E6F869 /* SettingsWindowTitleTransformer.h */,
+				8167977B17FAC76100E6F869 /* SettingsWindowTitleTransformer.m */,
+			);
+			name = StringTransformers;
+			sourceTree = "<group>";
+		};
 		8168995717CE17AA00058B9F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -376,8 +400,7 @@
 				81B08F1D17F44106000954C6 /* EnumeratorTransformers */,
 				81B08F1917F43FB7000954C6 /* NumberTransformers */,
 				81B08F1717F43F92000954C6 /* ImageTransformers */,
-				81CE19CE17D63EA300596C79 /* RomFileConditionTransformer.h */,
-				81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */,
+				8167977917FAC72F00E6F869 /* StringTransformers */,
 				810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */,
 				810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */,
 				8131AA4317E76F1500682879 /* ProcessorToJitTransformer.h */,
@@ -519,6 +542,7 @@
 		817CAF4015357EF90038E9A0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				819DB78217F9D213006E7367 /* Emulators.icns */,
 				81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */,
 				81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */,
 				81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */,
@@ -569,6 +593,7 @@
 				819DC09117F1909200480073 /* HDClassic.icns */,
 				819DC09317F1926C00480073 /* RubbishBinClassic.icns */,
 				81E9A44617F5D4EB008C2A31 /* RubbishFullClassic.png */,
+				81BBBC5617F9B72F00C151FE /* ErrorIconClassic.png */,
 			);
 			name = ClassicIcons;
 			sourceTree = "<group>";
@@ -650,6 +675,10 @@
 			children = (
 				81B08F2117F44198000954C6 /* DriveFormatValueTransformer.h */,
 				81B08F2217F44198000954C6 /* DriveFormatValueTransformer.m */,
+				81BBBC5217F9B5B700C151FE /* EmulatorFamilyValueTransformer.h */,
+				81BBBC5317F9B5B700C151FE /* EmulatorFamilyValueTransformer.m */,
+				81CE19CE17D63EA300596C79 /* RomFileConditionTransformer.h */,
+				81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */,
 			);
 			name = EnumeratorTransformers;
 			sourceTree = "<group>";
@@ -840,6 +869,8 @@
 				819DC09217F1909200480073 /* HDClassic.icns in Resources */,
 				819DC09417F1926C00480073 /* RubbishBinClassic.icns in Resources */,
 				81E9A44717F5D4EB008C2A31 /* RubbishFullClassic.png in Resources */,
+				81BBBC5717F9B72F00C151FE /* ErrorIconClassic.png in Resources */,
+				819DB78317F9D213006E7367 /* Emulators.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -900,6 +931,9 @@
 				813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */,
 				8188A59217F97A6800BAB33B /* VirtualMachineModel.m in Sources */,
 				8188A59617F97A7A00BAB33B /* EmulatorModel.m in Sources */,
+				81BBBC5417F9B5B700C151FE /* EmulatorFamilyValueTransformer.m in Sources */,
+				8167977C17FAC76100E6F869 /* SettingsWindowTitleTransformer.m in Sources */,
+				8167977F17FAC83500E6F869 /* SplashWindowController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

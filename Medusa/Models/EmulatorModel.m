@@ -215,6 +215,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
                     [newEmulatorObject setFamily:[NSNumber numberWithInt:emulatorFamily]];
                     [newEmulatorObject setName:[NSString stringWithFormat:@"%@ v%@ [M]", emulatorName, versionString]];
                     [newEmulatorObject setMaintained:[NSNumber numberWithBool:YES]];
+                    [newEmulatorObject setReadablePath:[NSString stringWithFormat:@"%@/%@.app", currentEmulatorFolder, emulatorName]];
                     [newEmulatorObject setUnixPath:currentEmulatorUnixFile];
                     [newEmulatorObject setVersion:versionString];
                     
@@ -232,14 +233,19 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         }
         
         [currentEmulatorPListFile release];
-
-        
         [currentEmulatorFolder release];
     }
 
     [contentsSuffix release];    
     [shallowDirectoryList release];
 
+}
+
+- (void)parseEmulator:(NSString *)applicationPath {
+// execute: ./BasiliskII --config ./
+// exptected response:
+//Basilisk II V1.0 by Christian Bauer et al.
+//ERROR: Cannot open ROM file.
 }
 
 /*!

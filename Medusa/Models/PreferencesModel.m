@@ -262,44 +262,73 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     //--------------------------------------------------------------------------
     //5. Networking
     
-    // ether <ethernet card description> slirp
-    // udptunnel <"true" or "false"> (adv?)
-    // udpport <IP port number> (df: 6066)
-
-    if ( [[virtualMachine shareEnabled] boolValue] == YES) {
+    // Here we must enforce the negative for recent versions of B2.
+    // An empty value will do.
     
-        if ( [[virtualMachine useDefaultShare] boolValue] ) {
-
-            //Get path from preferences:
-            NSDictionary * shareSettings = [[NSDictionary alloc]
+    if ( [[virtualMachine network] boolValue] == YES) {
+        NSDictionary * networkSettings = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                @"slirp", @"ether",
+                nil
+        ];
+        
+        [allData addObject:networkSettings];
+        [networkSettings release];
+    }
+    
+    if ( [[virtualMachine networkUDP] boolValue] == YES) {
+        NSDictionary * udpSettings = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                @"true", @"udptunnel",
+                nil
+        ];
+        
+        [allData addObject:udpSettings];
+        [udpSettings release];
+        
+        if ( [[virtualMachine networkUDPPort] intValue] != 6066) {
+            NSDictionary * udpPortSettings = [[NSDictionary alloc]
                 initWithObjectsAndKeys:
-                    [[NSUserDefaults standardUserDefaults]
-                      stringForKey:@"StandardSharePath"
-                    ], @"extfs",
+                    [[virtualMachine networkUDPPort] stringValue], @"udpport",
                     nil
             ];
             
-            [allData addObject:shareSettings];
-            [shareSettings release];
-            
-        }else{
-            
-            if ([virtualMachine sharedFolder] != nil ) {
-                //Get file from datamodel:
-                NSDictionary * shareSettings = [[NSDictionary alloc]
-                    initWithObjectsAndKeys:
-                        [virtualMachine sharedFolder], @"extfs",
-                        nil
-                ];
-                
-                [allData addObject:shareSettings];
-                [shareSettings release];
-            }
-            
+            [allData addObject:udpPortSettings];
+            [udpPortSettings release];
         }
         
     }
     
+    // ether <ethernet card description> slirp
+    // udptunnel <"true" or "false"> (adv?)
+    // udpport <IP port number> (df: 6066)
+
+    NSString * sharedFolderPath;
+    
+    if ( [[virtualMachine shareEnabled] boolValue] == YES) {
+        if ( [[virtualMachine useDefaultShare] boolValue] ) {
+            sharedFolderPath = [[NSString alloc] initWithString:[
+                [NSUserDefaults standardUserDefaults]
+                  stringForKey:@"StandardSharePath"
+                ]
+            ];            
+        } else  if ([virtualMachine sharedFolder] != nil ) {
+            sharedFolderPath = [[NSString alloc] initWithString:[virtualMachine sharedFolder]];
+        }
+    } else {
+        sharedFolderPath = [[NSString alloc] initWithString:@""];
+    }
+
+    NSDictionary * shareSettings = [[NSDictionary alloc]
+        initWithObjectsAndKeys:
+            sharedFolderPath, @"extfs",
+            nil
+    ];
+    
+    [allData addObject:shareSettings];
+    [shareSettings release];
+    [sharedFolderPath release];
+
     //--------------------------------------------------------------------------
     //5. SCSI data
     

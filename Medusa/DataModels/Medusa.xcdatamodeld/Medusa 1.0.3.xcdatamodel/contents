@@ -14,6 +14,7 @@
         <attribute name="family" attributeType="Integer 16" maxValueString="2" defaultValueString="0" syncable="YES"/>
         <attribute name="maintained" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="readablePath" attributeType="String" syncable="YES"/>
         <attribute name="unixPath" attributeType="String" syncable="YES"/>
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="machines" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="emulator" inverseEntity="VirtualMachines" syncable="YES"/>
@@ -50,6 +51,9 @@
         <attribute name="macModel" attributeType="Integer 16" defaultValueString="14" syncable="YES"/>
         <attribute name="memory" attributeType="Integer 16" defaultValueString="32" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="network" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="networkUDP" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="networkUDPPort" optional="YES" attributeType="Integer 16" defaultValueString="6066" syncable="YES"/>
         <attribute name="processorType" attributeType="Integer 16" maxValueString="3" defaultValueString="3" syncable="YES"/>
         <attribute name="ready" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="sharedFolder" optional="YES" attributeType="String" syncable="YES"/>
@@ -62,9 +66,9 @@
     </entity>
     <elements>
         <element name="DiskFiles" positionX="160" positionY="192" width="128" height="165"/>
-        <element name="Emulators" positionX="160" positionY="192" width="128" height="135"/>
+        <element name="Emulators" positionX="160" positionY="192" width="128" height="150"/>
         <element name="RelationshipVirtualMachinesDiskFiles" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>
-        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="375"/>
+        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="420"/>
     </elements>
 </model>

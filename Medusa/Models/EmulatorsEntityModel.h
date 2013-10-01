@@ -46,6 +46,7 @@ enum emulatorfamily {
 @property (nonatomic, retain) NSNumber * family;
 @property (nonatomic, retain) NSNumber * maintained;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * readablePath;
 @property (nonatomic, retain) NSString * unixPath;
 @property (nonatomic, retain) NSString * version;
 @property (nonatomic, retain) NSSet    * machines;

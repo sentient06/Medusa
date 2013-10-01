@@ -34,30 +34,36 @@
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 #import "RomFilesEntityModel.h"
 
-
 @implementation VirtualMachinesEntityModel
 
+@dynamic name;
 @dynamic uniqueName;
+@dynamic macModel;
+@dynamic memory;
+@dynamic processorType;
+
 @dynamic displayColourDepth;
 @dynamic displayDynamicUpdate;
 @dynamic displayFrameSkip;
 @dynamic displayHeight;
 @dynamic displayWidth;
 @dynamic fullScreen;
-@dynamic memory;
-@dynamic name;
-@dynamic sharedFolder;
-@dynamic macModel;
+
+@dynamic fpuEnabled;
+@dynamic jitCacheSize;
+@dynamic jitEnabled;
+@dynamic lazyCacheEnabled;
+
+@dynamic network;
+@dynamic networkUDP;
+@dynamic networkUDPPort;
 @dynamic shareEnabled;
+@dynamic sharedFolder;
 @dynamic useDefaultShare;
+
 @dynamic drives;
 @dynamic romFile;
 @dynamic emulator;
-@dynamic processorType;
-@dynamic jitEnabled;
-@dynamic lazyCacheEnabled;
-@dynamic fpuEnabled;
-@dynamic jitCacheSize;
 
 - (NSNumber *)icon {
     

@@ -39,5 +39,6 @@
 
 - (void)scanEmulators;
 - (void)scanEmulatorFamily:(int)emulatorFamily;
+- (void)parseEmulator:(NSString *)applicationPath;
 
 @end

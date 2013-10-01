@@ -1,8 +1,8 @@
 //
-//  RomFileConditionTransformer.m
+//  EmulatorFamilyValueTransformer.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 03/09/2013.
+//  Created by Giancarlo Mariot on 30/09/2013.
 //  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,10 +30,10 @@
 //
 //------------------------------------------------------------------------------
 
-#import "RomFileConditionTransformer.h"
-#import "RomFilesEntityModel.h"
+#import "EmulatorFamilyValueTransformer.h"
+#import "EmulatorsEntityModel.h"
 
-@implementation RomFileConditionTransformer
+@implementation EmulatorFamilyValueTransformer
 
 + (Class)transformedValueClass {
     return [NSString class]; 
@@ -43,39 +43,22 @@
     return NO; 
 }
 
-//PerfectSheepNew        = 1,
-//PerfectSheepOld        = 2,
-//PerfectBasilisk        = 3,
-//NoAppleTalk            = 4,
-//FPURequired            = 5,
-//NoAppleTalkFPURequired = 6,
-//PerfectVMac            = 7,
-//Unsupported            = 8
-
 - (id)transformedValue:(id)value {
-    
-    long conditionValue = [value integerValue];
-    
-    switch (conditionValue) {
+
+    switch ([value intValue]) {
+        case miniVMacFamily  :
+            return @"Mini vMac";
             
-        case NoAppleTalk:
-            return @"Appletalk unavailable";
-        break;
-
-        case FPURequired:
-            return @"Needs to use FPU";
-        break;
-
-        case NoAppleTalkFPURequired:
-            return @"Needs to use FPU and Appletalk is unavailable";
-        break;
-
-        case Unsupported:
-        default:
-            return @"Unsupported ROM";
-        break;
+        case basiliskFamily:
+            return @"Basilisk II";
+            
+        case sheepshaverFamily:
+            return @"Sheepshaver";
+            
     }
-
+    
+    return @"Undefined";
+    
 }
 
 @end

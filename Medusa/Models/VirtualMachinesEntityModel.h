@@ -37,27 +37,34 @@
 
 @interface VirtualMachinesEntityModel : NSManagedObject
 
-@property (nonatomic, retain) NSString * uniqueName;
-@property (nonatomic, retain) RomFilesEntityModel * romFile;
-@property (nonatomic, retain) EmulatorsEntityModel * emulator;
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * uniqueName;
+@property (nonatomic, retain) NSNumber * macModel;
+@property (nonatomic, retain) NSNumber * memory;
+@property (nonatomic, retain) NSNumber * processorType;
+
 @property (nonatomic, retain) NSNumber * displayColourDepth;
 @property (nonatomic, retain) NSNumber * displayDynamicUpdate;
 @property (nonatomic, retain) NSNumber * displayFrameSkip;
 @property (nonatomic, retain) NSNumber * displayHeight;
 @property (nonatomic, retain) NSNumber * displayWidth;
 @property (nonatomic, retain) NSNumber * fullScreen;
-@property (nonatomic, retain) NSNumber * memory;
-@property (nonatomic, retain) NSString * sharedFolder;
-@property (nonatomic, retain) NSNumber * macModel;
-@property (nonatomic, retain) NSNumber * shareEnabled;
-@property (nonatomic, retain) NSNumber * useDefaultShare;
-@property (nonatomic, retain) NSSet    * drives;
-@property (nonatomic, retain) NSNumber * processorType;
-@property (nonatomic, retain) NSNumber * jitEnabled;
-@property (nonatomic, retain) NSNumber * lazyCacheEnabled;
+
 @property (nonatomic, retain) NSNumber * fpuEnabled;
 @property (nonatomic, retain) NSNumber * jitCacheSize;
+@property (nonatomic, retain) NSNumber * jitEnabled;
+@property (nonatomic, retain) NSNumber * lazyCacheEnabled;
+
+@property (nonatomic, retain) NSNumber * network;
+@property (nonatomic, retain) NSNumber * networkUDP;
+@property (nonatomic, retain) NSNumber * networkUDPPort;
+@property (nonatomic, retain) NSNumber * shareEnabled;
+@property (nonatomic, retain) NSString * sharedFolder;
+@property (nonatomic, retain) NSNumber * useDefaultShare;
+
+@property (nonatomic, retain) NSSet    * drives;
+@property (nonatomic, retain) RomFilesEntityModel  * romFile;
+@property (nonatomic, retain) EmulatorsEntityModel * emulator;
 
 @end
 

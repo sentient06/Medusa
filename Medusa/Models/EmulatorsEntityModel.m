@@ -34,11 +34,12 @@
 
 @implementation EmulatorsEntityModel
 
-@dynamic  family;
-@dynamic  name;
-@dynamic  maintained;
-@dynamic  unixPath;
-@dynamic  version;
-@dynamic  machines;
+@dynamic family;
+@dynamic name;
+@dynamic maintained;
+@dynamic readablePath;
+@dynamic unixPath;
+@dynamic version;
+@dynamic machines;
 
 @end

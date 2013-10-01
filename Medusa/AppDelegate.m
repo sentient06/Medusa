@@ -132,6 +132,21 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /*!
+ * @method      showErrorSheetView:
+ * @abstract    Displays the error sheet.
+ */
+- (IBAction)showErrorSheetView:(id)sender {
+    [ NSApp
+            beginSheet: errorSheetView
+        modalForWindow: (NSWindow *)_window
+         modalDelegate: self
+        didEndSelector: nil
+           contextInfo: nil
+    ];
+}
+
+
+/*!
  * @method      endNewMachineView:
  * @abstract    Closes the new VM sheet.
  */
@@ -160,6 +175,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (IBAction)endDeleteMachineView:(id)sender {
     [NSApp endSheet:deleteMachineView];
     [deleteMachineView orderOut:sender];
+}
+
+/*!
+ * @method      endNewMachineView:
+ * @abstract    Closes the new VM sheet.
+ */
+- (IBAction)endErrorSheetView:(id)sender {
+    [NSApp endSheet:errorSheetView];
+    [errorSheetView orderOut:sender];
 }
 
 /*!
@@ -331,12 +355,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     [self saveCoreData];
     
-    NSArray * selectedVirtualMachines = [[
-        [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
-    ] autorelease ];
+    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects]  objectAtIndex:0];
 
-    //The user can select only one in the current interface, but anyway...
-    VirtualMachinesEntityModel * virtualMachine = [selectedVirtualMachines  objectAtIndex:0];
+    if (![[virtualMachine emulator] unixPath]){
+        [errorSheetLabel setStringValue:@"There is no emulator associated with this virtual machine!\nPlease check your emulator on the assets manager and then use the general tab in your machine's settings.\nIf you need help, refer to the help menu."];
+        [self showErrorSheetView:sender];
+        return;
+    }
     
     NSString * preferencesFilePath = [
         [NSMutableString alloc] initWithFormat:
@@ -348,15 +373,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
     [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];   
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
-//        DDLogVerbose(@"Emulator path .: %@", emulatorPath);
 
-//    return;
-
+///-----------------------------------------------------------------------------
 /// Emulator launching:
 //        [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
-///--------------------
+///-----------------------------------------------------------------------------
 /// Or...
-///--------------------
+///-----------------------------------------------------------------------------
     // Use GCD to execute emulator in an async thread:
     dispatch_async(queue, ^{
         
@@ -387,7 +410,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         DDLogVerbose(@"Emulator finished.");
         
     });
-///--------------------
+///-----------------------------------------------------------------------------
     
 }
 
@@ -395,6 +418,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 // Open Window Actions
 
 #pragma mark – Windows triggers
+
+- (IBAction)showMainWindow:(id)sender {
+    [_window makeKeyAndOrderFront:self];
+}
 
 /*!
  * @method      openVirtualMachineWindow:

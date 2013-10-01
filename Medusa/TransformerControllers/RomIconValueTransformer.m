@@ -61,7 +61,7 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
         return [NSImage imageNamed:@"PerfectNew.png"];
     }
     
-    if (iconValue > 1 && iconValue < 8) {
+    if (iconValue > PerfectSheepNew && iconValue < PerfectVMac) {
         return [NSImage imageNamed:@"PerfectOld.png"];
     }
     

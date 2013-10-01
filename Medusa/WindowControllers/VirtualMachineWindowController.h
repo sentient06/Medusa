@@ -51,25 +51,32 @@ typedef enum {
  * @var     objectsArray            The options in the left pane.s
  */
 @interface VirtualMachineWindowController : NSWindowController {
+    
+    //--------------------------------------------------------------------------
     //Standard variables
+
     NSManagedObjectContext * managedObjectContext;
     NSMutableArray         * menuObjectsArray;
     NSMutableArray         * subviewsArray;
     NSString               * windowTitle;
     NSArray                * memoryDefaultValues;
     
+    //--------------------------------------------------------------------------
     //Controllers
+
     IBOutlet NSArrayController       * availableDisksController;
     IBOutlet NSArrayController       * romFilesController;
-    IBOutlet SortableArrayController * usedDisksController;    
+    IBOutlet SortableArrayController * usedDisksController;
     
-    //Interface objects    
+    //--------------------------------------------------------------------------
+    //Interface objects
+
     IBOutlet NSToolbar * settingsToolbar;
     IBOutlet NSView    * placeholderView;
     IBOutlet NSView    * subViewConfiguration;
     IBOutlet NSView    * subViewDisplay;
     IBOutlet NSView    * subViewDrives;
-    IBOutlet NSView    * subViewSharing;
+    IBOutlet NSView    * subViewNetwork;
     IBOutlet NSView    * subViewAdvanced;
     
     // General subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

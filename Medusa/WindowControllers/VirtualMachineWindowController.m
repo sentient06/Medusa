@@ -154,7 +154,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 
 - (IBAction)displayShareView:(id)sender {
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
-    [placeholderView addSubview: subViewSharing];
+    [placeholderView addSubview: subViewNetwork];
 }
 
 - (IBAction)displayAdvancedView:(id)sender {
