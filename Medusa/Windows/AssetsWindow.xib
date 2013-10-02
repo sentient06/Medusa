@@ -23,6 +23,7 @@
 			<string>NSImageView</string>
 			<string>NSImageCell</string>
 			<string>NSTableView</string>
+			<string>NSProgressIndicator</string>
 			<string>NSCustomView</string>
 			<string>NSCustomObject</string>
 			<string>NSView</string>
@@ -191,6 +192,102 @@
 				<string key="NSMinSize">{640, 438}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 			</object>
+			<object class="NSWindowTemplate" id="533703174">
+				<int key="NSWindowStyleMask">23</int>
+				<int key="NSWindowBacking">2</int>
+				<string key="NSWindowRect">{{196, 112}, {362, 81}}</string>
+				<int key="NSWTFlags">-1535639552</int>
+				<string key="NSWindowTitle">Window</string>
+				<string key="NSWindowClass">NSPanel</string>
+				<nil key="NSViewClass"/>
+				<object class="NSView" key="NSWindowView" id="670001667">
+					<reference key="NSNextResponder"/>
+					<int key="NSvFlags">256</int>
+					<array class="NSMutableArray" key="NSSubviews">
+						<object class="NSProgressIndicator" id="742949200">
+							<reference key="NSNextResponder" ref="670001667"/>
+							<int key="NSvFlags">1292</int>
+							<object class="NSPSMatrix" key="NSDrawMatrix"/>
+							<string key="NSFrame">{{18, 16}, {304, 20}}</string>
+							<reference key="NSSuperview" ref="670001667"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="1061099312"/>
+							<int key="NSpiFlags">16392</int>
+							<double key="NSMaxValue">100</double>
+						</object>
+						<object class="NSTextField" id="35671753">
+							<reference key="NSNextResponder" ref="670001667"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{17, 44}, {150, 17}}</string>
+							<reference key="NSSuperview" ref="670001667"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView" ref="742949200"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSTextFieldCell" key="NSCell" id="917042255">
+								<int key="NSCellFlags">68288064</int>
+								<int key="NSCellFlags2">272630784</int>
+								<string key="NSContents">Downloading Basilisk II</string>
+								<object class="NSFont" key="NSSupport" id="626154949">
+									<string key="NSName">LucidaGrande</string>
+									<double key="NSSize">13</double>
+									<int key="NSfFlags">1044</int>
+								</object>
+								<reference key="NSControlView" ref="35671753"/>
+								<object class="NSColor" key="NSBackgroundColor" id="100396751">
+									<int key="NSColorSpace">6</int>
+									<string key="NSCatalogName">System</string>
+									<string key="NSColorName">controlColor</string>
+									<object class="NSColor" key="NSColor" id="518052647">
+										<int key="NSColorSpace">3</int>
+										<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+									</object>
+								</object>
+								<object class="NSColor" key="NSTextColor" id="31379518">
+									<int key="NSColorSpace">6</int>
+									<string key="NSCatalogName">System</string>
+									<string key="NSColorName">controlTextColor</string>
+									<object class="NSColor" key="NSColor" id="1018324369">
+										<int key="NSColorSpace">3</int>
+										<bytes key="NSWhite">MAA</bytes>
+									</object>
+								</object>
+							</object>
+						</object>
+						<object class="NSButton" id="1061099312">
+							<reference key="NSNextResponder" ref="670001667"/>
+							<int key="NSvFlags">268</int>
+							<string key="NSFrame">{{328, 20}, {14, 14}}</string>
+							<reference key="NSSuperview" ref="670001667"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
+							<bool key="NSEnabled">YES</bool>
+							<object class="NSButtonCell" key="NSCell" id="523274993">
+								<int key="NSCellFlags">67239424</int>
+								<int key="NSCellFlags2">134217728</int>
+								<string key="NSContents"/>
+								<reference key="NSSupport" ref="626154949"/>
+								<reference key="NSControlView" ref="1061099312"/>
+								<int key="NSButtonFlags">-2039201537</int>
+								<int key="NSButtonFlags2">134</int>
+								<object class="NSCustomResource" key="NSNormalImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">NSStopProgressFreestandingTemplate</string>
+								</object>
+								<string key="NSAlternateContents"/>
+								<string key="NSKeyEquivalent"/>
+								<int key="NSPeriodicDelay">400</int>
+								<int key="NSPeriodicInterval">75</int>
+							</object>
+						</object>
+					</array>
+					<string key="NSFrameSize">{362, 81}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView" ref="35671753"/>
+				</object>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
+				<string key="NSMaxSize">{1e+13, 1e+13}</string>
+			</object>
 			<object class="NSCustomView" id="714412812">
 				<nil key="NSNextResponder"/>
 				<int key="NSvFlags">268</int>
@@ -213,24 +310,8 @@
 							<string key="NSPlaceholderString">Drop files or folders in this space.</string>
 							<reference key="NSControlView" ref="789145419"/>
 							<bool key="NSDrawsBackground">YES</bool>
-							<object class="NSColor" key="NSBackgroundColor" id="100396751">
-								<int key="NSColorSpace">6</int>
-								<string key="NSCatalogName">System</string>
-								<string key="NSColorName">controlColor</string>
-								<object class="NSColor" key="NSColor" id="518052647">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
-								</object>
-							</object>
-							<object class="NSColor" key="NSTextColor" id="31379518">
-								<int key="NSColorSpace">6</int>
-								<string key="NSCatalogName">System</string>
-								<string key="NSColorName">controlTextColor</string>
-								<object class="NSColor" key="NSColor" id="1018324369">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MAA</bytes>
-								</object>
-							</object>
+							<reference key="NSBackgroundColor" ref="100396751"/>
+							<reference key="NSTextColor" ref="31379518"/>
 						</object>
 					</object>
 					<object class="NSImageView" id="904720196">
@@ -278,11 +359,7 @@
 							<int key="NSCellFlags">68288064</int>
 							<int key="NSCellFlags2">272630784</int>
 							<string key="NSContents">&lt;- There is an image wheel over the table! =P</string>
-							<object class="NSFont" key="NSSupport" id="626154949">
-								<string key="NSName">LucidaGrande</string>
-								<double key="NSSize">13</double>
-								<int key="NSfFlags">1044</int>
-							</object>
+							<reference key="NSSupport" ref="626154949"/>
 							<reference key="NSControlView" ref="920953881"/>
 							<reference key="NSBackgroundColor" ref="100396751"/>
 							<reference key="NSTextColor" ref="31379518"/>
@@ -1094,6 +1171,7 @@
 						<string key="NSFrame">{{402, 42}, {215, 19}}</string>
 						<reference key="NSSuperview" ref="29559442"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="122332924">
 							<int key="NSCellFlags">-2080244224</int>
@@ -1632,12 +1710,36 @@
 					<int key="connectionID">365</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">downloadPanel</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="533703174"/>
+					</object>
+					<int key="connectionID">475</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">downloadProgressIndicator</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="742949200"/>
+					</object>
+					<int key="connectionID">476</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">cancelDownloadEmulators:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="1061099312"/>
+					</object>
+					<int key="connectionID">478</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">downloadEmulators:</string>
 						<reference key="source" ref="1001"/>
 						<reference key="destination" ref="777378522"/>
 					</object>
-					<int key="connectionID">467</int>
+					<int key="connectionID">479</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3555,6 +3657,56 @@
 						<reference key="object" ref="495000448"/>
 						<reference key="parent" ref="336749867"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">468</int>
+						<reference key="object" ref="533703174"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="670001667"/>
+						</array>
+						<reference key="parent" ref="0"/>
+						<string key="objectName">Download Panel</string>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">469</int>
+						<reference key="object" ref="670001667"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="35671753"/>
+							<reference ref="742949200"/>
+							<reference ref="1061099312"/>
+						</array>
+						<reference key="parent" ref="533703174"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">470</int>
+						<reference key="object" ref="742949200"/>
+						<reference key="parent" ref="670001667"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">471</int>
+						<reference key="object" ref="35671753"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="917042255"/>
+						</array>
+						<reference key="parent" ref="670001667"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">472</int>
+						<reference key="object" ref="917042255"/>
+						<reference key="parent" ref="35671753"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">473</int>
+						<reference key="object" ref="1061099312"/>
+						<array class="NSMutableArray" key="children">
+							<reference ref="523274993"/>
+						</array>
+						<reference key="parent" ref="670001667"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">474</int>
+						<reference key="object" ref="523274993"/>
+						<reference key="parent" ref="1061099312"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -3681,7 +3833,17 @@
 				<string key="464.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="465.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="466.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<boolean value="YES" key="468.IBNSWindowAutoPositionCentersHorizontal"/>
+				<boolean value="YES" key="468.IBNSWindowAutoPositionCentersVertical"/>
+				<string key="468.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<boolean value="NO" key="468.NSWindowTemplate.visibleAtLaunch"/>
+				<string key="469.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="47.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="470.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="471.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="472.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="473.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="474.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="58.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="59.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="67.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3702,7 +3864,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">467</int>
+			<int key="maxID">479</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3710,6 +3872,7 @@
 					<string key="className">AssetsWindowController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="cancelDownloadEmulators:">id</string>
 						<string key="displayDisksView:">id</string>
 						<string key="displayDropFilesView:">id</string>
 						<string key="displayEmulatorsView:">id</string>
@@ -3718,6 +3881,10 @@
 						<string key="scanEmulators:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="cancelDownloadEmulators:">
+							<string key="name">cancelDownloadEmulators:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="displayDisksView:">
 							<string key="name">displayDisksView:</string>
 							<string key="candidateClassName">id</string>
@@ -3746,6 +3913,8 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="RomFilesArrayController">NSArrayController</string>
 						<string key="assetsToolbar">NSToolbar</string>
+						<string key="downloadPanel">NSPanel</string>
+						<string key="downloadProgressIndicator">NSProgressIndicator</string>
 						<string key="placeholderView">NSView</string>
 						<string key="subViewDisks">NSView</string>
 						<string key="subViewDropFiles">NSView</string>
@@ -3760,6 +3929,14 @@
 						<object class="IBToOneOutletInfo" key="assetsToolbar">
 							<string key="name">assetsToolbar</string>
 							<string key="candidateClassName">NSToolbar</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="downloadPanel">
+							<string key="name">downloadPanel</string>
+							<string key="candidateClassName">NSPanel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="downloadProgressIndicator">
+							<string key="name">downloadProgressIndicator</string>
+							<string key="candidateClassName">NSProgressIndicator</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="placeholderView">
 							<string key="name">placeholderView</string>
@@ -3886,6 +4063,7 @@
 			<string key="HFSFileIcon">{512, 512}</string>
 			<string key="NSRefreshTemplate">{10, 12}</string>
 			<string key="NSRemoveTemplate">{8, 8}</string>
+			<string key="NSStopProgressFreestandingTemplate">{83, 83}</string>
 			<string key="NSSwitch">{15, 15}</string>
 			<string key="RecentDocumentsFolderIcon">{32, 32}</string>
 			<string key="RomImageDocument">{512, 512}</string>

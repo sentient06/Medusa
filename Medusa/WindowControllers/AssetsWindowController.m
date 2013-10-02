@@ -34,6 +34,15 @@
 #import "TableLineInformationController.h"
 #import "AppDelegate.h"
 #import "EmulatorModel.h"
+#import "ASIHTTPRequest.h"
+
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+//------------------------------------------------------------------------------
 
 @implementation AssetsWindowController
 
@@ -68,6 +77,7 @@
  * @discussion  Always in the top of the files!
  */
 - (void)dealloc {
+    [downloadDirectory release];
     [managedObjectContext release];
     [menuObjectsArray release];
     [super dealloc];
@@ -142,11 +152,76 @@
 }
 
 /*!
+ * @method      showDownloadPanel:
+ * @abstract    Displays the basilisk download sheet.
+ */
+- (IBAction)showDownloadPanel:(id)sender {
+    [ NSApp
+            beginSheet: downloadPanel
+        modalForWindow: [self window]
+         modalDelegate: self
+        didEndSelector: nil
+           contextInfo: nil
+    ];
+}
+
+/*!
+ * @method      cancelDownloadEmulators:
+ * @abstract    Closes the basilisk download sheet.
+ */
+- (IBAction)cancelDownloadEmulators:(id)sender {
+    [request cancel];
+    [NSApp endSheet:downloadPanel];
+    [downloadPanel orderOut:sender];
+}
+
+/*!
  * @method      downloadEmulators:
  * @discussion  Downloads emulators to Application Support folder.
  */
 - (IBAction)downloadEmulators:(id)sender {
-// something
+    
+    NSLog(@"Temp dir: %@", downloadDirectory);
+    
+    NSURL * url = [NSURL URLWithString:@"http://127.0.0.1/BasiliskExecutables.zip"];
+    
+    request = [ASIHTTPRequest requestWithURL:url];
+    
+    [request setDownloadProgressDelegate:downloadProgressIndicator];
+    [request setDownloadDestinationPath:[downloadDirectory stringByAppendingPathComponent:@"BasiliskExecutables.zip"]];
+    
+    [request setDelegate:self];
+    [request startAsynchronous];
+}
+
+//------------------------------------------------------------------------------
+// Utility methods
+
+#pragma mark – Utility
+
+- (void)requestFinished:(ASIHTTPRequest *)thisRequest {
+    NSLog(@"finished");
+//    // Use when fetching text data
+//    NSString *responseString = [request responseString];
+//    
+//    // Use when fetching binary data
+//    NSData *responseData = [request responseData];
+    
+    [NSApp endSheet:downloadPanel];
+    [downloadPanel orderOut:nil];
+    
+    EmulatorModel * emulatorObject = [[EmulatorModel alloc] init];
+    [emulatorObject assembleEmulatorsFromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"BasiliskExecutables"]];
+    [emulatorObject release];
+
+
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)thisRequest {
+    NSError * error = [thisRequest error];
+    DDLogError(@"Request failed: %@", error);
+    [NSApp endSheet:downloadPanel];
+    [downloadPanel orderOut:nil];
 }
 
 //------------------------------------------------------------------------------
@@ -162,6 +237,7 @@
     self = [super initWithWindowNibName:@"AssetsWindow"];
     if (self) {
         [self setManagedObjectContext: theManagedObjectContext];
+        downloadDirectory = [[NSString alloc] initWithString:NSTemporaryDirectory()];
     }
     return self;
 }
@@ -174,6 +250,7 @@
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
+        downloadDirectory = [[NSString alloc] initWithString:NSTemporaryDirectory()];
     }
     return self;
 }

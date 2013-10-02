@@ -41,5 +41,7 @@
 - (void)scanEmulatorFamily:(int)emulatorFamily;
 - (id)parseEmulator:(NSString *)applicationPath;
 - (void)parseEmulatorsAndSave:(NSArray *)filesList;
+- (void)assembleEmulatorsFromZip:(NSString *)emulatorsTempDirectory;
+- (BOOL)assembleBasiliskInDirectory:(NSString *)directory withName:(NSString *)folderName;
 
 @end

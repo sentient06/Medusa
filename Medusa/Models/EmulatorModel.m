@@ -323,6 +323,150 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [[NSApp delegate] saveCoreData];    
 }
 
+- (void)assembleEmulatorsFromZip:(NSString *)emulatorsTempDirectory {
+
+    NSTask * unzipTask = [[NSTask alloc] init];
+    
+    [unzipTask setLaunchPath:@"/usr/bin/unzip"];
+
+    [unzipTask setArguments:
+        [NSArray arrayWithObjects:
+           @"-o"
+           , [NSString stringWithFormat:@"%@.zip", emulatorsTempDirectory]
+           , @"-d"
+           , [emulatorsTempDirectory stringByDeletingLastPathComponent]
+           ,nil
+        ]
+    ];
+    
+    [unzipTask launch];
+    [unzipTask waitUntilExit];
+    [unzipTask release];
+
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    
+    NSMutableArray * shallowDirectoryList =[[NSMutableArray alloc]
+        initWithArray:[fileManager contentsOfDirectoryAtPath:emulatorsTempDirectory error:nil]
+    ];
+    
+    [shallowDirectoryList removeObject:@"BasiliskII.icns"];
+    
+    for (NSString * folderName in shallowDirectoryList) {
+        BOOL success = [self assembleBasiliskInDirectory:emulatorsTempDirectory withName:folderName];
+        
+        if (success) {
+            NSString * originalFolder = [NSString stringWithFormat:@"%@/%@", emulatorsTempDirectory, folderName];
+            NSString * destinyFolder  = [NSString stringWithFormat:@"%@/Emulators/Basilisk/%@", [[NSApp delegate] applicationSupportDirectory], folderName];
+            
+            NSLog(@"Destiny: %@", destinyFolder);
+            
+            if(![fileManager moveItemAtPath:originalFolder toPath:destinyFolder error:NULL]) {
+                DDLogError(@"Error: Could not move basilisk named %@", folderName);
+                if(![fileManager removeItemAtPath:originalFolder error:nil]){
+                    DDLogError(@"Error: Could not delete either!");
+                }
+            }
+            
+        }
+
+    }
+
+    [fileManager removeItemAtPath:emulatorsTempDirectory error:nil];
+    [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@.zip", emulatorsTempDirectory] error:nil];
+    
+    [shallowDirectoryList release];
+
+    [self scanEmulators];
+
+}
+
+- (BOOL)assembleBasiliskInDirectory:(NSString *)directory withName:(NSString *)folderName {
+
+    DDLogVerbose(@"Assembling");
+    
+    int errors = 0;
+    
+    NSString * finalDirectory     = [[NSString alloc] initWithFormat:@"%@/%@", directory, folderName];
+    NSString * appDirectory       = [[NSString alloc] initWithFormat:@"%@/Basilisk II.app", finalDirectory];
+    NSString * contentsDirectory  = [[NSString alloc] initWithFormat:@"%@/Contents", appDirectory];
+    NSString * macOSDirectory     = [[NSString alloc] initWithFormat:@"%@/MacOS", contentsDirectory];
+    NSString * resourcesDirectory = [[NSString alloc] initWithFormat:@"%@/Resources", contentsDirectory];
+
+    NSString * plistFilePathFrom  = [[NSString alloc] initWithFormat:@"%@/Info.plist", finalDirectory];
+    NSString * unixFilePathFrom   = [[NSString alloc] initWithFormat:@"%@/BasiliskII", finalDirectory];
+    NSString * iconFilePathFrom   = [[NSString alloc] initWithFormat:@"%@/BasiliskII.icns", directory];
+
+    NSString * plistFilePathTo    = [[NSString alloc] initWithFormat:@"%@/Info.plist", contentsDirectory];
+    NSString * unixFilePathTo     = [[NSString alloc] initWithFormat:@"%@/BasiliskII", macOSDirectory];
+    NSString * iconFilePathTo     = [[NSString alloc] initWithFormat:@"%@/BasiliskII.icns", resourcesDirectory];
+
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    
+    // 1. Create Basilisk II.app
+    
+    if(![fileManager createDirectoryAtPath:appDirectory withIntermediateDirectories:YES attributes:nil error:NULL]) {
+        DDLogError(@"Error: Could not create folder %@", appDirectory);
+        errors++;
+    }
+
+    // 2. Create Basilisk II.app/Contents
+
+    if(![fileManager createDirectoryAtPath:contentsDirectory withIntermediateDirectories:YES attributes:nil error:NULL]) {
+        DDLogError(@"Error: Could not create folder %@", contentsDirectory);
+        errors++;
+    }
+
+    // 3. Create Basilisk II.app/Contents/MacOS
+
+    if(![fileManager createDirectoryAtPath:macOSDirectory withIntermediateDirectories:YES attributes:nil error:NULL]) {
+        DDLogError(@"Error: Could not create folder %@", macOSDirectory);
+        errors++;
+    }
+
+    // 4. Create Basilisk II.app/Contents/Resources
+
+    if(![fileManager createDirectoryAtPath:resourcesDirectory withIntermediateDirectories:YES attributes:nil error:NULL]) {
+        DDLogError(@"Error: Could not create folder %@", resourcesDirectory);
+        errors++;
+    }
+
+    // 5. Move Info.plist into Basilisk II.app/Contents/
+    
+    if(![fileManager moveItemAtPath:plistFilePathFrom toPath:plistFilePathTo error:NULL]) {
+        DDLogError(@"Error: Could not move plist to %@", plistFilePathTo);
+        errors++;
+    }
+    
+    // 6. Move BasiliskII into Basilisk II.app/Contents/MacOS/
+    
+    if(![fileManager moveItemAtPath:unixFilePathFrom toPath:unixFilePathTo error:NULL]) {
+        DDLogError(@"Error: Could not move unix file to %@", unixFilePathTo);
+        errors++;
+    }
+    
+    // 7. Copy ../BasiliskII.icns to Basilisk II.app/Contents/Resources/
+    
+    if(![fileManager copyItemAtPath:iconFilePathFrom toPath:iconFilePathTo error:NULL]) {
+        DDLogError(@"Error: Could not copy icon to %@", iconFilePathTo);
+        errors++;
+    }
+    
+    [iconFilePathTo release];
+    [unixFilePathTo release];
+    [plistFilePathTo release];
+    [iconFilePathFrom release];
+    [unixFilePathFrom release];
+    [plistFilePathFrom release];
+    [resourcesDirectory release];
+    [macOSDirectory release];
+    [contentsDirectory release];
+    [appDirectory release];
+    [finalDirectory release];
+    
+    if (errors > 0) return NO;
+    else return YES;
+}
+
 /*!
  * @method      init
  * @abstract    Init method.

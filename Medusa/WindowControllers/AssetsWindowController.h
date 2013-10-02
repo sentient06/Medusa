@@ -32,6 +32,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class ASIHTTPRequest;
+
 @interface AssetsWindowController : NSWindowController {
     
     //Standard variables
@@ -47,8 +49,11 @@
     IBOutlet NSView            * subViewEmulators;
     IBOutlet NSArrayController * RomFilesArrayController;
     
-    id startSubView;
-    NSString * selectedItemIdentifier;
+    IBOutlet NSPanel             * downloadPanel;
+    IBOutlet NSProgressIndicator * downloadProgressIndicator;
+    ASIHTTPRequest * request;
+    NSString * downloadDirectory;
+
 }
 
 //------------------------------------------------------------------------------
@@ -69,5 +74,6 @@
 - (IBAction)displayEmulatorsView:(id)sender;
 - (IBAction)scanEmulators:(id)sender;
 - (IBAction)downloadEmulators:(id)sender;
+- (IBAction)cancelDownloadEmulators:(id)sender;
 
 @end
