@@ -61,6 +61,8 @@
 //------------------------------------------------------------------------------
 // Methods.
 
+#pragma mark – Dealloc
+
 /*!
  * @method      dealloc:
  * @discussion  Always in the top of the files!
@@ -68,72 +70,131 @@
 - (void)dealloc {
     [managedObjectContext release];
     [menuObjectsArray release];
-    
     [super dealloc];
 }
 
-// Init methods
+//------------------------------------------------------------------------------
+// Application methods.
 
-- (id)initWithManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
+#pragma mark – Main Window actions
 
-    self = [super initWithWindowNibName:@"AssetsWindow"];
-    
-    if (self) {
-        [self setManagedObjectContext: theManagedObjectContext];
-    }
-    
-    return self;
-}
-
+/*!
+ * @method      displayDropFilesView:
+ * @discussion  Displays the drop files subview.
+ *              If the sender is not one of the toolbar buttons, it sets the
+ *              button to selected.
+ */
 - (IBAction)displayDropFilesView:(id)sender {
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
     [placeholderView addSubview: subViewDropFiles];
+    if (![sender isKindOfClass:[NSToolbarItem class]])
+        [assetsToolbar setSelectedItemIdentifier:@"dropFilesButton"];
 }
 
+/*!
+ * @method      displayRomFilesView:
+ * @discussion  Displays ROM image files management subview.
+ *              If the sender is not one of the toolbar buttons, it sets the
+ *              button to selected.
+ */
 - (IBAction)displayRomFilesView:(id)sender {
     [RomFilesArrayController rearrangeObjects];
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
     [placeholderView addSubview: subViewRomFiles];
+    if (![sender isKindOfClass:[NSToolbarItem class]])
+        [assetsToolbar setSelectedItemIdentifier:@"dropRomsButton"];
 }
 
+/*!
+ * @method      displayDisksView:
+ * @discussion  Displays Disk files management subview.
+ *              If the sender is not one of the toolbar buttons, it sets the
+ *              button to selected.
+ */
 - (IBAction)displayDisksView:(id)sender {
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
     [placeholderView addSubview: subViewDisks];
+    if (![sender isKindOfClass:[NSToolbarItem class]])
+        [assetsToolbar setSelectedItemIdentifier:@"dropDisksButton"];
 }
 
+/*!
+ * @method      displayEmulatorsView:
+ * @discussion  Displays Emulator management subview.
+ *              If the sender is not one of the toolbar buttons, it sets the
+ *              button to selected.
+ */
 - (IBAction)displayEmulatorsView:(id)sender {
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
-    [placeholderView addSubview: subViewEmulators];
+    [placeholderView addSubview: subViewEmulators];    
+    if (![sender isKindOfClass:[NSToolbarItem class]])
+        [assetsToolbar setSelectedItemIdentifier:@"dropEmulatorsButton"];
 }
 
+/*!
+ * @method      scanEmulators:
+ * @discussion  Scans for emulators in Application Support folder.
+ */
 - (IBAction)scanEmulators:(id)sender {
     EmulatorModel * emulatorObject = [[EmulatorModel alloc] init];
     [emulatorObject scanEmulators];
     [emulatorObject release];
 }
 
+/*!
+ * @method      downloadEmulators:
+ * @discussion  Downloads emulators to Application Support folder.
+ */
+- (IBAction)downloadEmulators:(id)sender {
+// something
+}
+
+//------------------------------------------------------------------------------
+// Init methods
+
+#pragma mark – Init
+
+/*!
+ * @method      initWithManagedObjectContext:
+ * @discussion  Initiates with a managed object context by default.
+ */
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
+    self = [super initWithWindowNibName:@"AssetsWindow"];
+    if (self) {
+        [self setManagedObjectContext: theManagedObjectContext];
+    }
+    return self;
+}
+
+/*!
+ * @method      initWithWindow:
+ * @discussion  Default for NSWindowController classes.
+ */
 - (id)initWithWindow:(NSWindow *)window {
-    
     self = [super initWithWindow:window];
     if (self) {
         // Initialization code here.
     }
-    
     return self;
 }
 
+/*!
+ * @method      windowDidLoad:
+ * @discussion  Actions to be taken when window is already loaded.
+ *              Default for NSWindowController classes.
+ */
 - (void)windowDidLoad {
+
     [super windowDidLoad];
     
     //----------------------------------------------------------
     //Interface view
     
-    NSSortDescriptor * romSorting = [[[NSSortDescriptor alloc]
-                                      initWithKey:@"modelName" ascending:YES] autorelease];
+    NSSortDescriptor * romSorting = [[[NSSortDescriptor alloc] initWithKey:@"modelName" ascending:YES] autorelease];
     [RomFilesArrayController setSortDescriptors:[NSArray arrayWithObject: romSorting]];
-    
     [placeholderView addSubview: subViewDropFiles];
     [assetsToolbar setSelectedItemIdentifier:@"dropFilesButton"];
+
 }
 
 @end

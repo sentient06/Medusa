@@ -301,6 +301,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [newEmulatorObject setUnixPath:currentEmulatorUnixFile];
             [newEmulatorObject setVersion:versionString];
             
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"emulatorsUsed"];
+            
             return newEmulatorObject;
             
         }

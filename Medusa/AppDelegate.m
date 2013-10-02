@@ -593,7 +593,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         if(![fileManager createDirectoryAtPath:applicationSupportDirectoryPath withIntermediateDirectories:YES attributes:nil error:NULL])
             DDLogError(@"Error: Create application support dir failed.");
     
+    // Checks for emulators:
     
+    BOOL haveEmulators = [[NSUserDefaults standardUserDefaults] boolForKey:@"emulatorsUsed"];
+    
+    if (!haveEmulators) {
+        [self showAssetsWindow:self];
+        [assetsWindowController displayEmulatorsView:self];
+    }
+
 }
 
 /*!

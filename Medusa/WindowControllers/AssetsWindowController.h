@@ -40,13 +40,15 @@
     
     //Interface objects
     IBOutlet NSToolbar         * assetsToolbar;
-//    IBOutlet NSTableView    * detailsTree;
     IBOutlet NSView            * placeholderView;
     IBOutlet NSView            * subViewDropFiles;
     IBOutlet NSView            * subViewRomFiles;
     IBOutlet NSView            * subViewDisks;
     IBOutlet NSView            * subViewEmulators;
     IBOutlet NSArrayController * RomFilesArrayController;
+    
+    id startSubView;
+    NSString * selectedItemIdentifier;
 }
 
 //------------------------------------------------------------------------------
@@ -60,13 +62,12 @@
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext;
 
 //------------------------------------------------------------------------------
-//- (IBAction)traceTableViewClick:(id)sender;
 
 - (IBAction)displayDropFilesView:(id)sender;
 - (IBAction)displayRomFilesView:(id)sender;
 - (IBAction)displayDisksView:(id)sender;
 - (IBAction)displayEmulatorsView:(id)sender;
-
 - (IBAction)scanEmulators:(id)sender;
+- (IBAction)downloadEmulators:(id)sender;
 
 @end
