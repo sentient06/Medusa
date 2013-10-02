@@ -62,6 +62,7 @@
 		8188A59217F97A6800BAB33B /* VirtualMachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59117F97A6800BAB33B /* VirtualMachineModel.m */; };
 		8188A59617F97A7A00BAB33B /* EmulatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorModel.m */; };
 		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
+		8190AC5A17FC88520017198B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 8190AC5917FC88520017198B /* index.html */; };
 		81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */; };
 		819DB78317F9D213006E7367 /* Emulators.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DB78217F9D213006E7367 /* Emulators.icns */; };
 		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
@@ -220,6 +221,7 @@
 		8188A59417F97A7A00BAB33B /* EmulatorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorModel.h; path = Models/EmulatorModel.h; sourceTree = "<group>"; };
 		8188A59517F97A7A00BAB33B /* EmulatorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorModel.m; path = Models/EmulatorModel.m; sourceTree = "<group>"; };
 		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
+		8190AC5917FC88520017198B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericNetworkIcon.icns; path = Images/Icons/GenericNetworkIcon.icns; sourceTree = "<group>"; };
 		819DB78217F9D213006E7367 /* Emulators.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Emulators.icns; path = Images/Icons/Emulators.icns; sourceTree = "<group>"; };
 		819DC08717F18B7000480073 /* SortableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortableArrayController.h; path = SubClasses/SortableArrayController.h; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				8168995817CE17B600058B9F /* SparkleKey */,
+				8190AC5817FC88520017198B /* MedusaHelp */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -584,6 +587,15 @@
 				81E84DEA1565B1EF0002D4DA /* CoreDataEntityModels */,
 			);
 			name = Models;
+			sourceTree = "<group>";
+		};
+		8190AC5817FC88520017198B /* MedusaHelp */ = {
+			isa = PBXGroup;
+			children = (
+				8190AC5917FC88520017198B /* index.html */,
+			);
+			name = MedusaHelp;
+			path = Resources/MedusaHelp;
 			sourceTree = "<group>";
 		};
 		819DC08B17F18B7300480073 /* ArrayController */ = {
@@ -881,6 +893,7 @@
 				81E9A44717F5D4EB008C2A31 /* RubbishFullClassic.png in Resources */,
 				81BBBC5717F9B72F00C151FE /* ErrorIconClassic.png in Resources */,
 				819DB78317F9D213006E7367 /* Emulators.icns in Resources */,
+				8190AC5A17FC88520017198B /* index.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
