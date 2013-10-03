@@ -21,6 +21,10 @@
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
+	<key>CFBundleHelpBookFolder</key>
+	<string>Medusa.help</string>
+	<key>CFBundleHelpBookName</key>
+	<string>Giancarlo-Mariot.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleIconFile</key>
 	<string>MedusaIcon5.icns</string>
 	<key>CFBundleIdentifier</key>
@@ -32,7 +36,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.0a</string>
+	<string>1.1.0b</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>

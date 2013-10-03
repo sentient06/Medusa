@@ -62,7 +62,6 @@
 		8188A59217F97A6800BAB33B /* VirtualMachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59117F97A6800BAB33B /* VirtualMachineModel.m */; };
 		8188A59617F97A7A00BAB33B /* EmulatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorModel.m */; };
 		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
-		8190AC5A17FC88520017198B /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 8190AC5917FC88520017198B /* index.html */; };
 		81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */; };
 		819DB78317F9D213006E7367 /* Emulators.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DB78217F9D213006E7367 /* Emulators.icns */; };
 		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
@@ -100,6 +99,8 @@
 		81D733EF15A4AD6300DEA523 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D733EE15A4AD6300DEA523 /* QuartzCore.framework */; };
 		81DB8240159F91F8003D4C5D /* Clone.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DB823F159F91F8003D4C5D /* Clone.png */; };
 		81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DB8248159FAED8003D4C5D /* AssetsWindowController.m */; };
+		81E02B1717FD97510091CDA1 /* Medusa.help in Resources */ = {isa = PBXBuildFile; fileRef = 81E02B1617FD97510091CDA1 /* Medusa.help */; };
+		81E02B1817FD975A0091CDA1 /* Medusa.help in CopyFiles */ = {isa = PBXBuildFile; fileRef = 81E02B1617FD97510091CDA1 /* Medusa.help */; };
 		81E3A26017FB2BFF0026B842 /* RomFileSizeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E3A25F17FB2BFF0026B842 /* RomFileSizeTransformer.m */; };
 		81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m */; };
 		81E84DF01565BE820002D4DA /* DiskFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEF1565BE820002D4DA /* DiskFilesEntityModel.m */; };
@@ -114,9 +115,10 @@
 		813F3C5117E21C6000544F5C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 12;
-			dstPath = Emulators;
-			dstSubfolderSpec = 6;
+			dstPath = "";
+			dstSubfolderSpec = 7;
 			files = (
+				81E02B1817FD975A0091CDA1 /* Medusa.help in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +223,6 @@
 		8188A59417F97A7A00BAB33B /* EmulatorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorModel.h; path = Models/EmulatorModel.h; sourceTree = "<group>"; };
 		8188A59517F97A7A00BAB33B /* EmulatorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorModel.m; path = Models/EmulatorModel.m; sourceTree = "<group>"; };
 		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
-		8190AC5917FC88520017198B /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericNetworkIcon.icns; path = Images/Icons/GenericNetworkIcon.icns; sourceTree = "<group>"; };
 		819DB78217F9D213006E7367 /* Emulators.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Emulators.icns; path = Images/Icons/Emulators.icns; sourceTree = "<group>"; };
 		819DC08717F18B7000480073 /* SortableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortableArrayController.h; path = SubClasses/SortableArrayController.h; sourceTree = "<group>"; };
@@ -286,6 +287,7 @@
 		81DB823F159F91F8003D4C5D /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Clone.png; path = Images/Clone.png; sourceTree = "<group>"; };
 		81DB8247159FAED8003D4C5D /* AssetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetsWindowController.h; path = WindowControllers/AssetsWindowController.h; sourceTree = "<group>"; };
 		81DB8248159FAED8003D4C5D /* AssetsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetsWindowController.m; path = WindowControllers/AssetsWindowController.m; sourceTree = "<group>"; };
+		81E02B1617FD97510091CDA1 /* Medusa.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Medusa.help; sourceTree = "<group>"; };
 		81E3A25E17FB2BFF0026B842 /* RomFileSizeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFileSizeTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomFileSizeTransformer.h; sourceTree = "<group>"; };
 		81E3A25F17FB2BFF0026B842 /* RomFileSizeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFileSizeTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomFileSizeTransformer.m; sourceTree = "<group>"; };
 		81E84DEB1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RelationshipVirtualMachinesDiskFilesEntityModel.h; path = Models/RelationshipVirtualMachinesDiskFilesEntityModel.h; sourceTree = "<group>"; };
@@ -592,7 +594,7 @@
 		8190AC5817FC88520017198B /* MedusaHelp */ = {
 			isa = PBXGroup;
 			children = (
-				8190AC5917FC88520017198B /* index.html */,
+				81E02B1617FD97510091CDA1 /* Medusa.help */,
 			);
 			name = MedusaHelp;
 			path = Resources/MedusaHelp;
@@ -893,7 +895,7 @@
 				81E9A44717F5D4EB008C2A31 /* RubbishFullClassic.png in Resources */,
 				81BBBC5717F9B72F00C151FE /* ErrorIconClassic.png in Resources */,
 				819DB78317F9D213006E7367 /* Emulators.icns in Resources */,
-				8190AC5A17FC88520017198B /* index.html in Resources */,
+				81E02B1717FD97510091CDA1 /* Medusa.help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
