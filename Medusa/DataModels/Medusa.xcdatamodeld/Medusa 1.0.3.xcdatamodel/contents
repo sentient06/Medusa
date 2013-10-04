@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="1.0.2.3" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="DiskFiles" representedClassName="DiskFilesEntityModel" syncable="YES">
+        <attribute name="blocked" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="bootable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="capacity" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="fileName" attributeType="String" syncable="YES"/>
@@ -55,7 +56,6 @@
         <attribute name="networkUDP" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="networkUDPPort" optional="YES" attributeType="Integer 16" defaultValueString="6066" syncable="YES"/>
         <attribute name="processorType" attributeType="Integer 16" maxValueString="3" defaultValueString="3" syncable="YES"/>
-        <attribute name="ready" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="sharedFolder" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shareEnabled" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="uniqueName" attributeType="String" syncable="YES"/>
@@ -65,7 +65,7 @@
         <relationship name="romFile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="modelToRomFile" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DiskFiles" positionX="160" positionY="192" width="128" height="165"/>
+        <element name="DiskFiles" positionX="160" positionY="192" width="128" height="180"/>
         <element name="Emulators" positionX="160" positionY="192" width="128" height="150"/>
         <element name="RelationshipVirtualMachinesDiskFiles" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>

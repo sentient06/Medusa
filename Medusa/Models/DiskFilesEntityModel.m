@@ -35,6 +35,7 @@
 
 @implementation DiskFilesEntityModel
 
+@dynamic blocked;
 @dynamic bootable;
 @dynamic capacity;
 @dynamic format;

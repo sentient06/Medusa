@@ -178,15 +178,13 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         
         //----------------------------------------------------------------------
 
-    } else {
-        success = NO;
     }
 
     fileDetails  = nil;
     comments     = nil;
     romCondition = -1;
     
-    return nil;  
+    return nil;
     
 }
 
@@ -231,7 +229,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
     NSNumber * size = [[NSNumber alloc] initWithUnsignedLong:len/2^20];
     
-    switch ([size intValue] / 1024) {
+    switch (len / 1024) {
         case 64  : romSize = rom64KB;  break;
         case 128 : romSize = rom128KB; break;
         case 256 : romSize = rom256KB; break;

@@ -49,6 +49,7 @@ enum driveFormat {
 
 @interface DiskFilesEntityModel : NSManagedObject
 
+@property (nonatomic, retain) NSNumber * blocked;
 @property (nonatomic, retain) NSNumber * bootable;
 @property (nonatomic, retain) NSNumber * capacity;
 @property (nonatomic, retain) NSNumber * format;

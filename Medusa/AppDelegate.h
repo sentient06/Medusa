@@ -82,6 +82,10 @@
     IBOutlet NSTextField        * errorSheetLabel;
     
     //--------------------------------------------------------------------------
+    
+    // Interface elements    
+    IBOutlet NSButton * runButton;
+    
     //Controllers
 
     // Window Controllers:
@@ -159,6 +163,5 @@
 
 - (NSString *)applicationSupportDirectory;
 - (void)saveCoreData;
-//- (void)releaseWindowFor:(NSString *)virtualMachineUniqueName;
 
 @end

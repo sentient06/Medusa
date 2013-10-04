@@ -47,6 +47,7 @@
     IBOutlet NSView            * subViewRomFiles;
     IBOutlet NSView            * subViewDisks;
     IBOutlet NSView            * subViewEmulators;
+    IBOutlet NSArrayController * emulatorsArrayController;
     IBOutlet NSArrayController * RomFilesArrayController;
     
     IBOutlet NSPanel             * downloadPanel;

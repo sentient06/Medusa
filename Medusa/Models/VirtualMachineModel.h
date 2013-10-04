@@ -43,4 +43,9 @@
 - (void)cloneMachine:(VirtualMachinesEntityModel *)machineToClone withName:(NSString *)newMachineName;
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)newManagedObjectContext;
 
+//+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine;
+
+- (void)blockDisks;
+- (void)unblockDisks;
+
 @end

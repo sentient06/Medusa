@@ -303,31 +303,22 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // udptunnel <"true" or "false"> (adv?)
     // udpport <IP port number> (df: 6066)
 
-    NSString * sharedFolderPath;
-    
-    if ( [[virtualMachine shareEnabled] boolValue] == YES) {
-        if ( [[virtualMachine useDefaultShare] boolValue] ) {
-            sharedFolderPath = [[NSString alloc] initWithString:[
-                [NSUserDefaults standardUserDefaults]
-                  stringForKey:@"StandardSharePath"
-                ]
-            ];            
-        } else  if ([virtualMachine sharedFolder] != nil ) {
-            sharedFolderPath = [[NSString alloc] initWithString:[virtualMachine sharedFolder]];
-        }
-    } else {
-        sharedFolderPath = [[NSString alloc] initWithString:@""];
-    }
-
-    NSDictionary * shareSettings = [[NSDictionary alloc]
+    NSMutableDictionary * shareSettings = [[NSMutableDictionary alloc]
         initWithObjectsAndKeys:
-            sharedFolderPath, @"extfs",
+            @"", @"extfs",
             nil
     ];
     
+    if ( [[virtualMachine shareEnabled] boolValue] == YES) {
+        if ( [[virtualMachine useDefaultShare] boolValue] ) {
+            [shareSettings setValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"StandardSharePath"] forKey:@"extfs"];
+        } else  if ([virtualMachine sharedFolder] != nil ) {
+            [shareSettings setValue:[virtualMachine sharedFolder] forKey:@"extfs"];
+        }
+    }
+    
     [allData addObject:shareSettings];
     [shareSettings release];
-    [sharedFolderPath release];
 
     //--------------------------------------------------------------------------
     //5. SCSI data
@@ -335,7 +326,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     //--------------------------------------------------------------------------
     //6. Display data
     
-    NSString * fullScreen    = [[NSString alloc] initWithFormat:@"win"];
+    NSMutableString * fullScreen    = [[NSMutableString alloc] initWithString:@"win"];
     NSNumber * screenWidth   = [virtualMachine displayWidth];
     NSNumber * screenHeight  = [virtualMachine displayHeight];
     NSNumber * colourDepth   = [virtualMachine displayColourDepth];
@@ -344,10 +335,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
     if ([[virtualMachine fullScreen] boolValue] == YES) {
         NSRect screenRect = [[[NSScreen screens] objectAtIndex:0] frame];        
-        fullScreen   = @"dga";
+        [fullScreen setString:@"dga"];
         screenWidth  = [NSNumber numberWithFloat: screenRect.size.width];
         screenHeight = [NSNumber numberWithFloat: screenRect.size.height];
-        
     }
     
     NSDictionary * screenSettings = [[NSDictionary alloc]

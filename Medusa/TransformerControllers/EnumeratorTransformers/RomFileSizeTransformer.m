@@ -45,7 +45,9 @@
 
 - (id)transformedValue:(id)value {
     
-    long sizeValue = [value integerValue];
+    int sizeValue = [value intValue];
+    
+    NSLog(@"Rom size is id #%d", sizeValue);
     
     switch (sizeValue) {
             

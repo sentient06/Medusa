@@ -111,9 +111,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
  * @discussion  Always in the top of the files!
  */
 - (void)dealloc {
-    
-//    [usedDisksController removeObserver:self forKeyPath:@"draggingMode"];
-    
+    [managedObjectContext processPendingChanges];
     [managedObjectContext release];
     [virtualMachine release];
     [menuObjectsArray release];
@@ -122,14 +120,15 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     [super dealloc];
 }
 
-///**
-// * This will not work for multiple windows. However, probably the class is called only once.
-// */
-//- (void)windowWillClose:(NSNotification *)notification {
-//    NSLog(@"window will close");
-////    [[NSApp delegate] releaseWindowFor:[virtualMachine uniqueName]];
-////    [self autorelease];
-//}
+/**
+ * This will not work for multiple windows. However, probably the class is called only once.
+ */
+- (void)windowWillClose:(NSNotification *)notification {
+    NSLog(@"%@'s window will close", [virtualMachine name]);
+    [[NSApp delegate] saveCoreData];
+//    [[NSApp delegate] releaseWindowFor:[virtualMachine uniqueName]];
+//    [self autorelease];
+}
 
 //------------------------------------------------------------------------------
 
@@ -445,7 +444,6 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     NSArray       * selectedFiles = [[[NSArray alloc] init] autorelease];
     NSOpenPanel   * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
     RomModel      * RomModelObject = [[RomModel alloc] init];
-    RomFilesEntityModel * currentRom = [[RomFilesEntityModel alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];
@@ -460,23 +458,22 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
     if ([selectedFiles count] == 1) {
         DDLogVerbose(@"Selected files: %@", selectedFiles);
-        currentRom = [
+        RomFilesEntityModel * currentRom = [
             RomModelObject
             parseSingleRomFileAndSave:[[selectedFiles objectAtIndex:0] path]
                       inObjectContext:managedObjectContext
         ];
+        [virtualMachine setRomFile:currentRom];
     }
-    
-    [virtualMachine setRomFile:currentRom];
-    
-    [currentRom release];    
+
+    [RomModelObject release];
     
 }
 
 - (IBAction)openEmulatorPath:(id)sender {
     NSArray       * selectedFiles = [[[NSArray alloc] init] autorelease];
     NSOpenPanel   * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
-    EmulatorModel * EmulatorsModelObject = [[EmulatorModel alloc] init];
+    EmulatorModel * emulatorsModelObject = [[EmulatorModel alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];
@@ -491,11 +488,13 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
     if ([selectedFiles count] == 1) {
         DDLogVerbose(@"Selected files: %@", selectedFiles);
-        EmulatorsEntityModel * addedEmulator = [EmulatorsModelObject parseEmulator:[[selectedFiles objectAtIndex:0] path]];
+        EmulatorsEntityModel * addedEmulator = [emulatorsModelObject parseEmulator:[[selectedFiles objectAtIndex:0] path]];
         if (addedEmulator != nil) {
             [virtualMachine setEmulator:addedEmulator];
         }
     }
+    
+    [emulatorsModelObject release];
      
 }
 
@@ -509,8 +508,6 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
  */
 - (id)initWithVirtualMachine:(VirtualMachinesEntityModel *)aVirtualMachine
       inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
-    
-    //    BOOL displayAllTabs = [[NSUserDefaults standardUserDefaults] boolForKey:@"displayAllTabs"];
     
     //----------------------------------------------------------
     //VM details
@@ -526,7 +523,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         [self setManagedObjectContext:theManagedObjectContext];
         [self setVirtualMachine:aVirtualMachine];
         [self setWindowTitle:[NSString stringWithFormat:@"%@ Settings", [virtualMachine name]]];
-        
+
         //------------------------------------------------------
         //Interface subviews
         
@@ -642,6 +639,13 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     [defaultMemorySlider setAllowsTickMarkValuesOnly:YES];
     
     [self personalMemoryValueChanged:nil];
+    
+    [[NSNotificationCenter defaultCenter]
+     addObserver:self
+        selector:@selector(windowWillClose:)
+            name:NSWindowWillCloseNotification
+          object:self.window
+    ];
     
 }
 

@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class DiskFilesEntityModel; // Plural. This is the coredata class.
+@class DiskFilesEntityModel, VirtualMachinesEntityModel;
 
 @interface DriveModel : NSObject {
     NSString * fileName;
@@ -50,4 +50,5 @@
 - (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath;
 - (void)readDiskFileFrom:(NSString *)filePath;
 
+//+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine;
 @end

@@ -60,9 +60,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
     if (self) {
-        self.contentSubview = [[NSView alloc] initWithFrame:[[[self window] contentView] frame]];
+        _contentSubview = [[NSView alloc] initWithFrame:[[[self window] contentView] frame]];
     }
-    
     return self;
 }
 

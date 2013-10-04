@@ -78,7 +78,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (void)dealloc {
     [downloadDirectory release];
-    [managedObjectContext release];
     [menuObjectsArray release];
     [super dealloc];
 }
@@ -136,7 +135,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (IBAction)displayEmulatorsView:(id)sender {
     [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
-    [placeholderView addSubview: subViewEmulators];    
+    [placeholderView addSubview: subViewEmulators];
+    managedObjectContext = [[NSApp delegate] managedObjectContext];
+    
     if (![sender isKindOfClass:[NSToolbarItem class]])
         [assetsToolbar setSelectedItemIdentifier:@"dropEmulatorsButton"];
 }
@@ -236,11 +237,23 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
     self = [super initWithWindowNibName:@"AssetsWindow"];
     if (self) {
-        [self setManagedObjectContext: theManagedObjectContext];
+        managedObjectContext = theManagedObjectContext;
+        [self setManagedObjectContext:theManagedObjectContext];
         downloadDirectory = [[NSString alloc] initWithString:NSTemporaryDirectory()];
+//        [[NSNotificationCenter defaultCenter]
+//         addObserver:self
+//         selector:@selector(updateManagedObjectContext:)
+//         name:NSManagedObjectContextDidSaveNotification
+//         object:managedObjectContext];
     }
     return self;
 }
+
+//- (void)updateManagedObjectContext:(NSNotification *)notification {
+//        NSLog(@"Merging in assets");
+//    [managedObjectContext processPendingChanges];
+//    [managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
+//}
 
 /*!
  * @method      initWithWindow:
@@ -271,7 +284,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [RomFilesArrayController setSortDescriptors:[NSArray arrayWithObject: romSorting]];
     [placeholderView addSubview: subViewDropFiles];
     [assetsToolbar setSelectedItemIdentifier:@"dropFilesButton"];
-
+//[emulatorsArrayController setManagedObjectContext:managedObjectContext];
+    
 }
 
 @end

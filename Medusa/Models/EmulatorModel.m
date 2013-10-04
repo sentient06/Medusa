@@ -130,14 +130,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         }
     }
 
-    [shallowDirectoryList release];
     [[NSApp delegate] saveCoreData];
+    [emulatorName release];
+    [emulatorDir release];
+    [shallowDirectoryList release];
     
 }
 
 - (id)parseEmulator:(NSString *)applicationPath {
 
-    BOOL validEmulator;
+    BOOL validEmulator = NO;
     BOOL maintainedByMedusa;
     NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
     
@@ -320,7 +322,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         else
             [self parseEmulator:[filesList objectAtIndex:i]];
     }
-    [[NSApp delegate] saveCoreData];    
+    [[NSApp delegate] saveCoreData];
 }
 
 - (void)assembleEmulatorsFromZip:(NSString *)emulatorsTempDirectory {

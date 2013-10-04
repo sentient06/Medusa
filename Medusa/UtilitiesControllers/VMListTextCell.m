@@ -35,12 +35,19 @@
 @implementation VMListTextCell
 
 - (void)drawInteriorWithFrame:(NSRect)bounds inView:(NSView *)controlView {
-
     NSRect titleRect = [self titleRectForBounds:bounds];
     titleRect = NSInsetRect(titleRect, 0, 8);
     NSAttributedString * title = [self attributedStringValue];
     if (title) [title drawInRect:titleRect];
-
+    
+//    if ([self isHighlighted]) {
+//        [[NSColor colorWithDeviceRed:0.29 green:0.27 blue:0.42 alpha:1] set];
+//    }
+    
 }
+
+//- (NSColor *)highlightColorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+//    return nil;
+//}
 
 @end

@@ -46,6 +46,9 @@
 #import "EmulatorsEntityModel.h"
 #import "PreferencesModel.h"
 #import "VirtualMachineModel.h"
+#import "DiskFilesEntityModel.h"
+
+#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 
 #import "EmulatorHandleController.h" //testing
 
@@ -304,8 +307,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 - (IBAction)deleteVirtualMachine:(id)sender {
-
+    
     NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
+
+    [managedObjectContext processPendingChanges];
     
     NSArray * selectedVirtualMachines = [[
         [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
@@ -329,13 +334,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             DDLogError(@"Whoops, couldn't delete: %@", preferencesFilePath);
     
     [preferencesFilePath release];
-    [managedObjectContext deleteObject:virtualMachine];
-    
+
     if ([windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] != nil) {
         [[[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] window] close];
+        [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] release];
         [windowsForVirtualMachines removeObjectForKey:[virtualMachine uniqueName]];
     }
-    
+
+    [managedObjectContext deleteObject:virtualMachine];
+
     [self endDeleteMachineView:sender];
     [self saveCoreData];
 
@@ -352,7 +359,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     [self saveCoreData];
     
-    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects]  objectAtIndex:0];
+    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
 
     if (![[virtualMachine emulator] unixPath]){
         [errorSheetLabel setStringValue:@"There is no emulator associated with this virtual machine!\nPlease check your emulator on the assets manager and then use the general tab in your machine's settings.\nIf you need help, refer to the help menu."];
@@ -360,6 +367,26 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         return;
     }
     
+    int counter = 0;
+    NSEnumerator * rowEnumerator = [[virtualMachine drives] objectEnumerator];
+    RelationshipVirtualMachinesDiskFilesEntityModel * object;
+    while (object = [rowEnumerator nextObject]) {
+        DiskFilesEntityModel * driveObject = [object drive];
+        DDLogVerbose(@"---- %@", [driveObject blocked]);
+        if ([[driveObject blocked] boolValue]) {
+            counter++;
+        }
+    }
+    
+    if (counter > 0) {
+        [errorSheetLabel setStringValue:[
+            NSString stringWithFormat: @"There %@ disk%@ being used by this virtual machine right now!\nIf you use the same disks in two emulations at the same time, the data becomes corrupted!\nPlease stop the other emulation before booting this machine."
+            , counter > 1 ? @"are" : @"is a", counter > 1 ? @"s" : @""
+        ]];
+        [self showErrorSheetView:sender];
+        return;
+    }
+
     NSString * preferencesFilePath = [
         [NSMutableString alloc] initWithFormat:
             @"%@/%@Preferences",
@@ -370,7 +397,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
     [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];   
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
-
+    
 ///-----------------------------------------------------------------------------
 /// Emulator launching:
 //        [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
@@ -380,8 +407,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // Use GCD to execute emulator in an async thread:
     dispatch_async(queue, ^{
         
-        NSString * emulatorPath = [[virtualMachine emulator] unixPath];
+        // Blocks all used disks:
+        NSEnumerator * rowEnumerator = [[virtualMachine drives] objectEnumerator];
+        RelationshipVirtualMachinesDiskFilesEntityModel * object;
+        while (object = [rowEnumerator nextObject]) {
+            DiskFilesEntityModel * driveObject = [object drive];
+            [driveObject setBlocked:[NSNumber numberWithBool:YES]];
+        }
         
+        NSString * emulatorPath = [[virtualMachine emulator] unixPath];
         NSLog(@"Emulator path:\n%@", emulatorPath);
         
 //        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
@@ -402,6 +436,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [preferencesFilePath release];
         [emulatorTask launch];
         [emulatorTask waitUntilExit];
+        
+        // Unblocks all used disks:
+        rowEnumerator = [[virtualMachine drives] objectEnumerator];
+        while (object = [rowEnumerator nextObject]) {
+            DiskFilesEntityModel * driveObject = [object drive];
+            [driveObject setBlocked:[NSNumber numberWithBool:NO]];
+        }
 
         DDLogVerbose(@"Emulator finished.");
         
@@ -425,14 +466,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (IBAction)openVirtualMachineWindow:(id)sender {
     
-    NSArray * selectedVirtualMachines = [
+    NSArray * selectedVirtualMachines = [[
         [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
-    ];
+    ] autorelease];
     //The user can select only one in the current interface, but anyway...
     
-    VirtualMachinesEntityModel * selectedVirtualMachine;
-        
-    selectedVirtualMachine = [selectedVirtualMachines objectAtIndex:0];
+    VirtualMachinesEntityModel * selectedVirtualMachine = [selectedVirtualMachines objectAtIndex:0];
     
     VirtualMachineWindowController * newWindowController = [windowsForVirtualMachines objectForKey:[selectedVirtualMachine uniqueName]];
     
@@ -447,7 +486,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 
     [newWindowController showWindow:sender];
-    [selectedVirtualMachines release];
     
 }
 
@@ -555,6 +593,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [DDLog addLogger:[DDASLLogger sharedInstance]];
         [DDLog addLogger:[DDTTYLogger sharedInstance]];
         windowsForVirtualMachines = [[NSMutableDictionary alloc] init];
+        
+//        [[NSNotificationCenter defaultCenter]
+//         addObserver:self
+//         selector:@selector(updateManagedObjectContext:)
+//         name:NSManagedObjectContextDidSaveNotification
+//         object:__managedObjectContext];
+        
     }
     return self;
 }
@@ -601,7 +646,19 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [self showAssetsWindow:self];
         [assetsWindowController displayEmulatorsView:self];
     }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:nil];
 
+}
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+//    [virtualMachinesList ];
+    if ([[virtualMachinesArrayController selectedObjects] count] > 0){
+        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun]) {
+            [runButton setEnabled:YES];
+        } else {
+            [runButton setEnabled:NO];
+        }
+    }
 }
 
 /*!
@@ -628,20 +685,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              the application.
  */
 - (NSManagedObjectModel *)managedObjectModel {
-    
     if (__managedObjectModel) return __managedObjectModel;
-	
-    NSURL *modelURL = [
-        [NSBundle mainBundle] URLForResource:@"Medusa" withExtension:@"momd"
-    ];
-    
+    NSURL * modelURL = [[NSBundle mainBundle] URLForResource:@"Medusa" withExtension:@"momd"];
     __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
-    
     return __managedObjectModel;
-
 }
 
 /**
+ * @method      persistentStoreCoordinator:
  * @abstract    Returns the persistent store coordinator for the application.
  *              This implementation creates and return a coordinator, having
  *              added the store for the application to it. (The directory for
@@ -653,20 +704,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         return __persistentStoreCoordinator;
     }
 
-    NSManagedObjectModel *mom = [self managedObjectModel];
+    NSManagedObjectModel * mom = [self managedObjectModel];
     
     if (!mom) {
-        DDLogError(
-              @"%@:%@ No model to generate a store from",
-              [self class],
-              NSStringFromSelector(_cmd)
-        );
+        DDLogError(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
         return nil;
     }
 
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    NSURL *applicationFilesDirectory = [self applicationFilesDirectory];
-    NSError *error = nil;
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSURL   * applicationFilesDirectory = [self applicationFilesDirectory];
+    NSError * error = nil;
     
     NSDictionary *properties = [
         applicationFilesDirectory
@@ -704,38 +751,29 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
     }
     
-    NSURL *url = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];
+    NSURL * url = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];
     
-    NSPersistentStoreCoordinator *coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
+    NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
     
-    NSSet *versionIdentifiers = [[self managedObjectModel] versionIdentifiers];
+    NSSet * versionIdentifiers = [[self managedObjectModel] versionIdentifiers];
     DDLogInfo(@"Current Version of .xcdatamodeld file: %@", versionIdentifiers);
     
-    /*
-     This part handles the persistent store upgrade:
-     */
-    NSDictionary *options = [
-                             NSDictionary dictionaryWithObjectsAndKeys:
-                            [NSNumber numberWithBool:YES],
-                             NSMigratePersistentStoresAutomaticallyOption,
-                            [NSNumber numberWithBool:YES],
-                             NSInferMappingModelAutomaticallyOption,
-                             nil
-                             ];
+    // This part handles the persistent store upgrade:
+    NSDictionary * options = [ NSDictionary dictionaryWithObjectsAndKeys:
+          [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption
+        , [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
+        ,nil
+    ];
     
-    /*
-     The following code was without 'options'. The value was set to 'nil'.
-     */
+    // The following code was without 'options'. The value was set to 'nil'.
     if (![coordinator
           addPersistentStoreWithType:NSSQLiteStoreType
                        configuration:nil
                                  URL:url
                              options:options
-                               error:&error]) {
-
-        //[[NSApplication sharedApplication] presentError:error];
-        
-        return nil;
+                               error:&error])
+    {
+            return nil;
     }
     __persistentStoreCoordinator = [coordinator retain];
 
@@ -743,20 +781,22 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
-    Returns the managed object context for the application (which is already
-    bound to the persistent store coordinator for the application.) 
+ * @method        managedObjectContext:
+ * @discussion    Returns the managed object context for the application (which is already
+ *                bound to the persistent store coordinator for the application.) 
  */
 - (NSManagedObjectContext *)managedObjectContext {
+
     if (__managedObjectContext) {
         return __managedObjectContext;
     }
 
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    NSPersistentStoreCoordinator * coordinator = [self persistentStoreCoordinator];
     if (!coordinator) {
-        NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
         [dict setValue:@"Failed to initialize the store" forKey:NSLocalizedDescriptionKey];
         [dict setValue:@"There was an error building up the data file." forKey:NSLocalizedFailureReasonErrorKey];
-        NSError *error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
+        NSError * error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:9999 userInfo:dict];
         [[NSApplication sharedApplication] presentError:error];
         return nil;
     }
@@ -764,20 +804,23 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [__managedObjectContext setPersistentStoreCoordinator:coordinator];
 
     return __managedObjectContext;
+
 }
 
 /**
-    Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
+ * @discussion    Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
  */
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window {
     return [[self managedObjectContext] undoManager];
 }
 
 /**
-    Performs the save action for the application, which is to send the save: message to the application's managed object context. Any encountered errors are presented to the user.
+ * @discussion    Performs the save action for the application, which is to send
+ *                the save: message to the application's managed object context.
+ *                Any encountered errors are presented to the user.
  */
 - (IBAction)saveAction:(id)sender {
-    NSError *error = nil;
+    NSError * error = nil;
     
     if (![[self managedObjectContext] commitEditing]) {
         DDLogError(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
@@ -786,6 +829,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (![[self managedObjectContext] save:&error]) {
         [[NSApplication sharedApplication] presentError:error];
     }
+    
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {

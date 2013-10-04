@@ -32,13 +32,14 @@
 
 #import "DriveModel.h"
 #import "DiskFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
+#import "VirtualMachinesEntityModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation DriveModel
@@ -179,13 +180,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     FILE * f;
     int bufferSize = 400;
     unsigned char buffer[bufferSize];
-//    unsigned long n;
     char firstBytes[bufferSize*2+1];
     f = fopen([filePath UTF8String], "r");
-//    n = fread(buffer, bufferSize, 1, f);
-    for (int c=0; c<bufferSize; c++)
+    fread(buffer, bufferSize, 1, f); // Any leak-related issues here is false.
+    for (int c=0; c<bufferSize; c++){
         if (c==0) snprintf(firstBytes, bufferSize*2+1, "%.2X", (int)buffer[c]);
         else      snprintf(firstBytes, bufferSize*2+1, "%s%.2X", firstBytes, (int)buffer[c]);
+    }
     fclose(f);
     firstBytes[bufferSize*2] = 0;
 
@@ -300,5 +301,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
 
 }
+
+//+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine {
+//    VirtualMachinesEntityModel
+//}
 
 @end

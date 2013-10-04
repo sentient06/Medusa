@@ -20,9 +20,9 @@
 			<string>NSScrollView</string>
 			<string>NSButtonCell</string>
 			<string>NSButton</string>
-			<string>NSImageCell</string>
-			<string>NSTableView</string>
 			<string>NSImageView</string>
+			<string>NSTableView</string>
+			<string>NSImageCell</string>
 			<string>NSCustomObject</string>
 			<string>NSView</string>
 			<string>NSWindowTemplate</string>
@@ -653,7 +653,7 @@
 														<int key="NSCellFlags">75628096</int>
 														<int key="NSCellFlags2">2048</int>
 														<string key="NSContents"/>
-														<object class="NSFont" key="NSSupport">
+														<object class="NSFont" key="NSSupport" id="26">
 															<string key="NSName">LucidaGrande</string>
 															<double key="NSSize">11</double>
 															<int key="NSfFlags">3100</int>
@@ -746,7 +746,7 @@
 												<bytes key="NSRGB">MC40OTgwMzkyMTU4IDAuNDk4MDM5MjE1OCAwLjQ5ODAzOTIxNTgAA</bytes>
 											</object>
 											<double key="NSRowHeight">32</double>
-											<int key="NSTvFlags">-698351616</int>
+											<int key="NSTvFlags">-700448768</int>
 											<reference key="NSDelegate"/>
 											<reference key="NSDataSource"/>
 											<int key="NSGridStyleMask">2</int>
@@ -777,7 +777,7 @@
 									<reference key="NSNextKeyView" ref="648803177"/>
 									<reference key="NSTarget" ref="191054627"/>
 									<string key="NSAction">_doScroller:</string>
-									<double key="NSPercent">0.94658753709198817</double>
+									<double key="NSPercent">0.9970326409495549</double>
 								</object>
 								<object class="NSScroller" id="286583612">
 									<reference key="NSNextResponder" ref="191054627"/>
@@ -1334,7 +1334,7 @@
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<object class="NSView" key="NSWindowView" id="81010777">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSImageView" id="919493453">
@@ -1350,7 +1350,6 @@
 							</set>
 							<string key="NSFrame">{{17, 121}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="81010777"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="562882351"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="247630422">
@@ -1372,7 +1371,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{57, 50}, {323, 103}}</string>
 							<reference key="NSSuperview" ref="81010777"/>
-							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="707331369"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="390474807">
@@ -1390,8 +1388,6 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{306, 18}, {74, 25}}</string>
 							<reference key="NSSuperview" ref="81010777"/>
-							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="162818673">
 								<int key="NSCellFlags">-2080244224</int>
@@ -1409,8 +1405,6 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{400, 170}</string>
-					<reference key="NSSuperview"/>
-					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="919493453"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
@@ -1453,6 +1447,20 @@
 			</object>
 			<object class="NSUserDefaultsController" id="690576909">
 				<bool key="NSSharedInstance">YES</bool>
+			</object>
+			<object class="NSButtonCell" id="867786536">
+				<int key="NSCellFlags">67239424</int>
+				<int key="NSCellFlags2">131072</int>
+				<string key="NSContents">Check</string>
+				<reference key="NSSupport" ref="26"/>
+				<int key="NSButtonFlags">1211912703</int>
+				<int key="NSButtonFlags2">2</int>
+				<reference key="NSNormalImage" ref="247795541"/>
+				<reference key="NSAlternateImage" ref="991283120"/>
+				<string key="NSAlternateContents"/>
+				<string key="NSKeyEquivalent"/>
+				<int key="NSPeriodicDelay">200</int>
+				<int key="NSPeriodicInterval">25</int>
 			</object>
 		</array>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -1906,6 +1914,14 @@
 					<int key="connectionID">1003</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">runButton</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="35172548"/>
+					</object>
+					<int key="connectionID">1038</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">managedObjectContext: managedObjectContext</string>
 						<reference key="source" ref="196388366"/>
@@ -2011,30 +2027,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: canRemove</string>
-						<reference key="source" ref="35172548"/>
-						<reference key="destination" ref="196388366"/>
-						<object class="NSNibBindingConnector" key="connector" id="799684206">
-							<reference key="NSSource" ref="35172548"/>
-							<reference key="NSDestination" ref="196388366"/>
-							<string key="NSLabel">enabled: canRemove</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">canRemove</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">955</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled2: selection.canRun</string>
+						<string key="label">enabled: selection.canRun</string>
 						<reference key="source" ref="35172548"/>
 						<reference key="destination" ref="196388366"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="35172548"/>
 							<reference key="NSDestination" ref="196388366"/>
-							<string key="NSLabel">enabled2: selection.canRun</string>
-							<string key="NSBinding">enabled2</string>
+							<string key="NSLabel">enabled: selection.canRun</string>
+							<string key="NSBinding">enabled</string>
 							<string key="NSKeyPath">selection.canRun</string>
 							<dictionary key="NSOptions">
 								<integer value="0" key="NSMultipleValuesPlaceholder"/>
@@ -2043,11 +2043,10 @@
 								<integer value="0" key="NSNullPlaceholder"/>
 								<boolean value="NO" key="NSRaisesForNotApplicableKeys"/>
 							</dictionary>
-							<reference key="NSPreviousConnector" ref="799684206"/>
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<int key="connectionID">961</int>
+					<int key="connectionID">1037</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2492,12 +2491,12 @@
 						<int key="objectID">372</int>
 						<reference key="object" ref="439893737"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="191054627"/>
 							<reference ref="648803177"/>
 							<reference ref="149368562"/>
 							<reference ref="35172548"/>
 							<reference ref="7101677"/>
 							<reference ref="617975296"/>
+							<reference ref="191054627"/>
 						</array>
 						<reference key="parent" ref="972006081"/>
 					</object>
@@ -2720,11 +2719,6 @@
 						<reference key="object" ref="707196084"/>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Rom Files</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">723</int>
-						<reference key="object" ref="427405748"/>
-						<reference key="parent" ref="716154460"/>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">795</int>
@@ -3052,6 +3046,16 @@
 						<reference key="object" ref="568410563"/>
 						<reference key="parent" ref="835318025"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">1035</int>
+						<reference key="object" ref="867786536"/>
+						<reference key="parent" ref="0"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">723</int>
+						<reference key="object" ref="427405748"/>
+						<reference key="parent" ref="716154460"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -3059,6 +3063,7 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="-3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="1002.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="1035.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="112.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="124.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="125.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3212,7 +3217,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1003</int>
+			<int key="maxID">1061</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3314,6 +3319,7 @@
 						<string key="newMachineNameField">NSTextField</string>
 						<string key="newMachineView">NSPanel</string>
 						<string key="romFilesController">NSArrayController</string>
+						<string key="runButton">NSButton</string>
 						<string key="virtualMachinesArrayController">NSArrayController</string>
 						<string key="virtualMachinesList">NSScrollView</string>
 						<string key="window">NSWindow</string>
@@ -3358,6 +3364,10 @@
 						<object class="IBToOneOutletInfo" key="romFilesController">
 							<string key="name">romFilesController</string>
 							<string key="candidateClassName">NSArrayController</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="runButton">
+							<string key="name">runButton</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="virtualMachinesArrayController">
 							<string key="name">virtualMachinesArrayController</string>

@@ -117,4 +117,11 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     return self;    
 }
 
+- (void)blockDisks {
+    NSLog(@"blocking disks");
+}
+- (void)unblockDisks {
+    NSLog(@"unblocking disks");
+}
+
 @end

@@ -112,6 +112,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             romsParsed++;
         }
     }
+    
+    [acceptedExtensions release];
 
 }
 
