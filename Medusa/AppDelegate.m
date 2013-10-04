@@ -651,7 +651,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 }
 - (void)windowDidBecomeKey:(NSNotification *)notification {
-//    [virtualMachinesList ];
+    [virtualMachinesList reloadData];
     if ([[virtualMachinesArrayController selectedObjects] count] > 0){
         if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun]) {
             [runButton setEnabled:YES];

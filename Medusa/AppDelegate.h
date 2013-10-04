@@ -55,7 +55,7 @@
     
     IBOutlet NSArrayController  * virtualMachinesArrayController;
     IBOutlet NSArrayController  * romFilesController;
-    IBOutlet NSScrollView       * virtualMachinesList;
+    IBOutlet NSTableView        * virtualMachinesList;
     
     //--------------------------------------------------------------------------
     // Sheets

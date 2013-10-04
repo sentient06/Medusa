@@ -1818,14 +1818,6 @@
 					<int key="connectionID">883</int>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">virtualMachinesList</string>
-						<reference key="source" ref="976324537"/>
-						<reference key="destination" ref="191054627"/>
-					</object>
-					<int key="connectionID">928</int>
-				</object>
-				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
 						<string key="label">showAssetsWindow:</string>
 						<reference key="source" ref="976324537"/>
@@ -1920,6 +1912,14 @@
 						<reference key="destination" ref="35172548"/>
 					</object>
 					<int key="connectionID">1038</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">virtualMachinesList</string>
+						<reference key="source" ref="976324537"/>
+						<reference key="destination" ref="732531150"/>
+					</object>
+					<int key="connectionID">1062</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -3217,7 +3217,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">1061</int>
+			<int key="maxID">1062</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3321,7 +3321,7 @@
 						<string key="romFilesController">NSArrayController</string>
 						<string key="runButton">NSButton</string>
 						<string key="virtualMachinesArrayController">NSArrayController</string>
-						<string key="virtualMachinesList">NSScrollView</string>
+						<string key="virtualMachinesList">NSTableView</string>
 						<string key="window">NSWindow</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -3375,7 +3375,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="virtualMachinesList">
 							<string key="name">virtualMachinesList</string>
-							<string key="candidateClassName">NSScrollView</string>
+							<string key="candidateClassName">NSTableView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="window">
 							<string key="name">window</string>
