@@ -182,9 +182,11 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
  */
 - (IBAction)downloadEmulators:(id)sender {
     
-    NSLog(@"Temp dir: %@", downloadDirectory);
+//    NSLog(@"Temp dir: %@", downloadDirectory);
     
-    NSURL * url = [NSURL URLWithString:@"http://127.0.0.1/BasiliskExecutables.zip"];
+    [self showDownloadPanel:sender];
+    
+    NSURL * url = [NSURL URLWithString:@"http://medusa.mariot.me.uk/emulators/download/BasiliskExecutables.zip"];
     
     request = [ASIHTTPRequest requestWithURL:url];
     

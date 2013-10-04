@@ -357,10 +357,17 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         BOOL success = [self assembleBasiliskInDirectory:emulatorsTempDirectory withName:folderName];
         
         if (success) {
-            NSString * originalFolder = [NSString stringWithFormat:@"%@/%@", emulatorsTempDirectory, folderName];
-            NSString * destinyFolder  = [NSString stringWithFormat:@"%@/Emulators/Basilisk/%@", [[NSApp delegate] applicationSupportDirectory], folderName];
+            NSString * originalFolder       = [NSString stringWithFormat:@"%@/%@", emulatorsTempDirectory, folderName];
+            NSString * destinyFolderParent  = [NSString stringWithFormat:@"%@/Emulators/Basilisk", [[NSApp delegate] applicationSupportDirectory]];
+            NSString * destinyFolder        = [NSString stringWithFormat:@"%@/%@", destinyFolderParent, folderName];
             
-            NSLog(@"Destiny: %@", destinyFolder);
+            BOOL destinyFolderParentIsDir;
+            
+            if(![fileManager fileExistsAtPath:destinyFolderParent isDirectory:&destinyFolderParentIsDir])
+                if(![fileManager createDirectoryAtPath:destinyFolderParent withIntermediateDirectories:YES attributes:nil error:NULL])
+                    DDLogError(@"Error: Could not create folder %@", destinyFolderParent);
+            
+            DDLogVerbose(@"Destiny: %@", destinyFolder);
             
             if(![fileManager moveItemAtPath:originalFolder toPath:destinyFolder error:NULL]) {
                 DDLogError(@"Error: Could not move basilisk named %@", folderName);
