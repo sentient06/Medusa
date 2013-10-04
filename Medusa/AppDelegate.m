@@ -361,9 +361,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
     
-    //[[NSUserDefaults standardUserDefaults] stringForKey:@"BasiliskPath"];
-    
-    if (![[virtualMachine emulator] unixPath]){
+    if (![[virtualMachine emulator] unixPath] && ![[NSUserDefaults standardUserDefaults] stringForKey:@"BasiliskPath"]){
         [errorSheetLabel setStringValue:@"There is no emulator associated with this virtual machine!\nPlease check your emulator on the assets manager and then use the general tab in your machine's settings.\nIf you need help, refer to the help menu."];
         [self showErrorSheetView:sender];
         return;
@@ -417,7 +415,12 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             [driveObject setBlocked:[NSNumber numberWithBool:YES]];
         }
         
-        NSString * emulatorPath = [[virtualMachine emulator] unixPath];
+        NSString * emulatorPath = [[NSUserDefaults standardUserDefaults] stringForKey:@"BasiliskPath"];
+        if (!emulatorPath) {
+            emulatorPath = [[virtualMachine emulator] unixPath];
+        } else {
+            emulatorPath = [emulatorPath stringByAppendingString:@"/Contents/MacOS/BasiliskII"];
+        }
         NSLog(@"Emulator path:\n%@", emulatorPath);
         
 //        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
