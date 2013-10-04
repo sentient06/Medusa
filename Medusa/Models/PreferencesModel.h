@@ -35,7 +35,7 @@
 @class VirtualMachinesEntityModel;
 
 @interface PreferencesModel : NSObject {
-    NSManagedObjectContext *managedObjectContext;
+    NSManagedObjectContext * managedObjectContext;
 }
 
 //------------------------------------------------------------------------------
@@ -46,11 +46,11 @@
 - (void)setManagedObjectContext:(NSManagedObjectContext *)value;
 
 //------------------------------------------------------------------------------
-- (void)insertNewVirtualMachineWithData:(NSDictionary*)newData;
-- (void)insertNewData:(NSDictionary*)newData inVirtualMachine:(NSManagedObject*)virtualMachine;
+- (void)insertNewVirtualMachineWithData:(NSDictionary *)newData;
+- (void)insertNewData:(NSDictionary *)newData inVirtualMachine:(NSManagedObject*)virtualMachine;
 
-- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesEntityModel*)virtualMachine;
-- (void)savePreferencesFile:(NSArray*)dataToSave ForFile:(NSString*)filePath;
+- (NSMutableArray *)getVirtualMachineData:(VirtualMachinesEntityModel*)virtualMachine;
+- (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath;
 - (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
 
 @end

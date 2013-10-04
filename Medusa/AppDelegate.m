@@ -57,7 +57,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_WARN;
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -360,7 +360,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self saveCoreData];
     
     VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
-
+    
+    //[[NSUserDefaults standardUserDefaults] stringForKey:@"BasiliskPath"];
+    
     if (![[virtualMachine emulator] unixPath]){
         [errorSheetLabel setStringValue:@"There is no emulator associated with this virtual machine!\nPlease check your emulator on the assets manager and then use the general tab in your machine's settings.\nIf you need help, refer to the help menu."];
         [self showErrorSheetView:sender];
