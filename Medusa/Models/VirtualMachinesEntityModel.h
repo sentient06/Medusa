@@ -33,6 +33,70 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+enum GestaltMacModels {
+    Classic                 =  1,
+    // Unsupported -------------
+    MacXL                   =  2,
+    Mac512KE                =  3,
+    MacPlus                 =  4,
+    MacSE                   =  5,
+    MacII                   =  6,
+    MacIIx                  =  7,
+    MacIIcx                 =  8,
+    MacSE030                =  9,
+    // -------------------------
+    MacPortable             = 10,
+    MacIIci                 = 11,
+    MacIIfx                 = 13,
+    MacClassic              = 17,
+    MacIIsi                 = 18,
+    MacLC                   = 19,
+    Quadra900               = 20,
+    PowerBook170            = 21,
+    Quadra700               = 22,
+    ClassicII               = 23,
+    PowerBook100            = 24,
+    PowerBook140            = 25,
+    Quadra950               = 26,
+    MacLCIIIPerforma450     = 27,
+    PowerBookDuo210         = 29,
+    Centris650              = 30,
+    PowerBookDuo230         = 32,
+    PowerBook180            = 33,
+    PowerBook160            = 34,
+    Quadra800               = 35,
+    Quadra650               = 36,
+    MacLCII                 = 37,
+    PowerBookDuo250         = 38,
+    MacIIvi                 = 44,
+    MacIIvmPerforma600      = 45,
+    MacIIvx                 = 48,
+    ColorClassicPerforma250 = 49,
+    PowerBook165c           = 50,
+    Centris610              = 52,
+    Quadra610               = 53,
+    PowerBook145            = 54,
+    MacLC520                = 56,
+    QuadraCentris660AV      = 60,
+    Performa46x             = 62,
+    PowerBook180c           = 71,
+    PowerBook520520c540540c = 72,
+    PowerBookDuo270c        = 77,
+    Quadra840AV             = 78,
+    Performa550             = 80,
+    PowerBook165            = 84,
+    PowerBook190            = 85,
+    MacTV                   = 88,
+    MacLC475Performa47x     = 89,
+    MacLC575                = 92,
+    Quadra605               = 94,
+    Quadra630               = 98,
+    MacLC580                = 99,
+    PowerBookDuo280         = 102,
+    PowerBookDuo280c        = 103,
+    PowerBook150            = 115
+};
+
 @class RelationshipVirtualMachinesDiskFilesEntityModel, RomFilesEntityModel, EmulatorsEntityModel;
 
 @interface VirtualMachinesEntityModel : NSManagedObject
@@ -61,6 +125,11 @@
 @property (nonatomic, retain) NSNumber * shareEnabled;
 @property (nonatomic, retain) NSString * sharedFolder;
 @property (nonatomic, retain) NSNumber * useDefaultShare;
+
+@property (nonatomic, retain) NSString * rawKeycodes;
+
+@property (nonatomic, retain) NSNumber * running;
+@property (nonatomic, retain) NSNumber * taskPID;
 
 @property (nonatomic, retain) NSSet    * drives;
 @property (nonatomic, retain) RomFilesEntityModel  * romFile;

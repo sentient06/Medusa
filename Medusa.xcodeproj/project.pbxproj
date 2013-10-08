@@ -55,9 +55,11 @@
 		81756F5C15347F2B00FCBA8E /* VirtualMachineWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81756F5B15347F2B00FCBA8E /* VirtualMachineWindowController.m */; };
 		81756F60153483C400FCBA8E /* VirtualMachineWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81756F5F153483C400FCBA8E /* VirtualMachineWindow.xib */; };
 		8175CBE717D0D18C0003294E /* VMListTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8175CBE617D0D18C0003294E /* VMListTextCell.m */; };
+		8178DEC61804003D004CCC8B /* SettingsIconClassic16px.png in Resources */ = {isa = PBXBuildFile; fileRef = 8178DEC51804003D004CCC8B /* SettingsIconClassic16px.png */; };
 		817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF56153580100038E9A0 /* MedusaIcon.icns */; };
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
 		817E319D17D1078200131E2D /* VMList.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMList.m */; };
+		818313F21802DA2000DACD71 /* Diskette.icns in Resources */ = {isa = PBXBuildFile; fileRef = 818313F11802DA2000DACD71 /* Diskette.icns */; };
 		8188A59217F97A6800BAB33B /* VirtualMachineModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59117F97A6800BAB33B /* VirtualMachineModel.m */; };
 		8188A59617F97A7A00BAB33B /* EmulatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorModel.m */; };
 		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
@@ -199,11 +201,13 @@
 		81756F5F153483C400FCBA8E /* VirtualMachineWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VirtualMachineWindow.xib; path = Windows/VirtualMachineWindow.xib; sourceTree = "<group>"; };
 		8175CBE517D0D18C0003294E /* VMListTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMListTextCell.h; path = UtilitiesControllers/VMListTextCell.h; sourceTree = "<group>"; };
 		8175CBE617D0D18C0003294E /* VMListTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMListTextCell.m; path = UtilitiesControllers/VMListTextCell.m; sourceTree = "<group>"; };
+		8178DEC51804003D004CCC8B /* SettingsIconClassic16px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIconClassic16px.png; path = Images/ClassicIcons/SettingsIconClassic16px.png; sourceTree = "<group>"; };
 		817CAF56153580100038E9A0 /* MedusaIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon.icns; path = Medusa/Images/Icons/MedusaIcon.icns; sourceTree = SOURCE_ROOT; };
 		817CAF601535B5CB0038E9A0 /* TableLineInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableLineInformationController.h; path = UtilitiesControllers/TableLineInformationController.h; sourceTree = "<group>"; };
 		817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableLineInformationController.m; path = UtilitiesControllers/TableLineInformationController.m; sourceTree = "<group>"; };
 		817E319B17D1078200131E2D /* VMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMList.h; path = UtilitiesControllers/VMList.h; sourceTree = "<group>"; };
 		817E319C17D1078200131E2D /* VMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMList.m; path = UtilitiesControllers/VMList.m; sourceTree = "<group>"; };
+		818313F11802DA2000DACD71 /* Diskette.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Diskette.icns; path = Images/ClassicIcons/Diskette.icns; sourceTree = "<group>"; };
 		8188A59017F97A6800BAB33B /* VirtualMachineModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineModel.h; path = Models/VirtualMachineModel.h; sourceTree = "<group>"; };
 		8188A59117F97A6800BAB33B /* VirtualMachineModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineModel.m; path = Models/VirtualMachineModel.m; sourceTree = "<group>"; };
 		8188A59417F97A7A00BAB33B /* EmulatorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorModel.h; path = Models/EmulatorModel.h; sourceTree = "<group>"; };
@@ -580,10 +584,12 @@
 		819DC09017F1906900480073 /* ClassicIcons */ = {
 			isa = PBXGroup;
 			children = (
+				818313F11802DA2000DACD71 /* Diskette.icns */,
 				819DC09117F1909200480073 /* HDClassic.icns */,
 				819DC09317F1926C00480073 /* RubbishBinClassic.icns */,
 				81E9A44617F5D4EB008C2A31 /* RubbishFullClassic.png */,
 				81BBBC5617F9B72F00C151FE /* ErrorIconClassic.png */,
+				8178DEC51804003D004CCC8B /* SettingsIconClassic16px.png */,
 			);
 			name = ClassicIcons;
 			sourceTree = "<group>";
@@ -863,6 +869,8 @@
 				81BBBC5717F9B72F00C151FE /* ErrorIconClassic.png in Resources */,
 				819DB78317F9D213006E7367 /* Emulators.icns in Resources */,
 				81E02B1717FD97510091CDA1 /* Medusa.help in Resources */,
+				818313F21802DA2000DACD71 /* Diskette.icns in Resources */,
+				8178DEC61804003D004CCC8B /* SettingsIconClassic16px.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

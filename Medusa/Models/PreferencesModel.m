@@ -114,7 +114,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     //--------------------------------------------------------------------------
     //1. The Macintosh Model
     
-    int modelId = [[virtualMachine macModel] intValue];
+    int modelId = [[virtualMachine macModel] intValue] - 6;
     
     NSDictionary * macModelSettings = [[NSDictionary alloc]
         initWithObjectsAndKeys:
@@ -150,7 +150,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     //    jitEnabled
     //    jit <true/false>
     
-    if ( [[virtualMachine jitEnabled] boolValue] && processorId == 3) {
+    if ( [[virtualMachine jitEnabled] boolValue] && processorId == 4) {
         
         NSDictionary * macJitEnabled = [[NSDictionary alloc]
             initWithObjectsAndKeys:
@@ -414,7 +414,22 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 //    
 //    [allData addObject:screenSettings];
 
+    
+    if ([[virtualMachine rawKeycodes] boolValue]) {
+        NSDictionary * rawKeycodesSettings = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                @"true", @"keycodes",
+                nil
+        ];
+        [allData addObject:rawKeycodesSettings];
+    }
+    
     [request release];
+    [allData addObject:screenSettings];
+    
+    
+    
+    
     //End of requests.
     
     

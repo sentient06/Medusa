@@ -43,7 +43,7 @@
 }
 
 - (id)transformedValue:(id)value {
-    if ([value intValue] == 3) return [NSNumber numberWithBool:YES];
+    if ([value intValue] == 4) return [NSNumber numberWithBool:YES];
     return [NSNumber numberWithBool:NO];
 }
 

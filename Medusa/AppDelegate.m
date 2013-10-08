@@ -80,6 +80,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [__persistentStoreCoordinator release];
     [__managedObjectModel release];
     [__managedObjectContext release];
+    [virtualMachineTasks release];
     [windowsForVirtualMachines release];
     [super dealloc];
 }
@@ -337,15 +338,105 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
     if ([windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] != nil) {
         [[[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] window] close];
-        [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] release];
-        [windowsForVirtualMachines removeObjectForKey:[virtualMachine uniqueName]];
+        
+        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
+        
+        if ([[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount] > 0) {
+            [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] release];
+        }
+        
+        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
+
+        if ([[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount] > 0) {
+            [windowsForVirtualMachines removeObjectForKey:[virtualMachine uniqueName]];
+        }
+
+        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
     }
+    
+    // This code complains of double-releasing the pool, but... if it doesn't, it will crash by deleting related assets like emulators.
+    // Find a solution!
 
     [managedObjectContext deleteObject:virtualMachine];
 
     [self endDeleteMachineView:sender];
     [self saveCoreData];
 
+}
+
+- (IBAction)savePreferencesFile:(id)sender {
+    
+    [self saveCoreData];
+    
+    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+
+    NSString * preferencesFilePath = [
+        [NSMutableString alloc] initWithFormat:
+            @"%@/%@Preferences",
+            [self applicationSupportDirectory],
+            [virtualMachine uniqueName]
+    ];
+   
+    PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
+    [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];   
+    DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
+}
+
+- (IBAction)openPreferencesFileFolder:(id)sender {
+    
+    [self saveCoreData];
+    
+    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+
+    NSString * preferencesFilePath = [
+        [NSMutableString alloc] initWithFormat:
+            @"%@/%@Preferences",
+            [self applicationSupportDirectory],
+            [virtualMachine uniqueName]
+    ];
+   
+    NSWorkspace * ws = [NSWorkspace sharedWorkspace];
+    [ws selectFile: preferencesFilePath inFileViewerRootedAtPath:nil];
+
+}
+
+- (IBAction)showInformationWindow:(id)sender {
+//    if ([informationWindow retainCount] == 0) {
+//        informationWindow = [[NSWindow alloc] init];
+//    }
+    NSLog(@"%lu", [informationWindow retainCount]);
+    [informationWindow setIsVisible:YES];
+    [informationWindow makeKeyAndOrderFront:sender];
+
+}
+
+- (IBAction)stopEmulator:(id)sender {
+    
+    NSLog(@"Trying to stop emulator.");
+    
+    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+
+    if ([virtualMachine running]) {
+
+        
+        NSTask * theTask = [virtualMachineTasks objectForKey:[virtualMachine uniqueName]];        
+        [theTask terminate];
+        
+//        NSTask * emulatorTask = [NSTask  //[[[NSTask alloc] init] autorelease];
+//                                 [NSValue valueWithPointer:task]
+//        [emulatorTask ]
+//                [emulatorTask terminate];
+//        int seila = kill([[virtualMachine taskPID] intValue], SIGINFO);
+        
+//        NSLog(@"%d", seila);
+        /*
+        if (kill([[virtualMachine taskPID] intValue], 0) == 0) {
+            NSLog(@"Terminating %@", [virtualMachine taskPID]);
+        }
+         */
+    }
+
+    
 }
 
 /*!
@@ -440,9 +531,24 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         
         [preferencesFilePath release];
         [emulatorTask launch];
-        [emulatorTask waitUntilExit];
+        [virtualMachine setRunning:[NSNumber numberWithBool:YES]];
+//        [virtualMachineTasks setObject:[NSValue valueWithPointer:emulatorTask] forKey:[virtualMachine uniqueName]];
+        [virtualMachineTasks setObject:emulatorTask forKey:[virtualMachine uniqueName]];
         
+//        NSLog(@"hey! --- %@", [NSValue valueWithPointer:emulatorTask]);
+        [virtualMachine setTaskPID:[NSNumber numberWithInt:[emulatorTask processIdentifier]]];
+//        [virtualMachine setTaskPointer:[[NSValue valueWithPointer:emulatorTask] value]];
+
+        [emulatorTask waitUntilExit];
+
+        [virtualMachine setRunning:[NSNumber numberWithBool:NO]];
+        [virtualMachine setTaskPID:[NSNumber numberWithInt:0]];
         // Unblocks all used disks:
+//                NSLog(@"count: %lu", [theTask retainCount]);
+        [virtualMachineTasks removeObjectForKey:[virtualMachine uniqueName]];
+        
+        NSLog(@"count (2): %lu", [emulatorTask retainCount]);
+        
         rowEnumerator = [[virtualMachine drives] objectEnumerator];
         while (object = [rowEnumerator nextObject]) {
             DiskFilesEntityModel * driveObject = [object drive];
@@ -598,6 +704,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         [DDLog addLogger:[DDASLLogger sharedInstance]];
         [DDLog addLogger:[DDTTYLogger sharedInstance]];
         windowsForVirtualMachines = [[NSMutableDictionary alloc] init];
+        virtualMachineTasks = [[NSMutableDictionary alloc] init];
         
 //        [[NSNotificationCenter defaultCenter]
 //         addObserver:self
@@ -655,15 +762,22 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:nil];
 
 }
-- (void)windowDidBecomeKey:(NSNotification *)notification {
+
+- (void)resetButtons {
+    DDLogVerbose(@"Reseting buttons");
     [virtualMachinesList reloadData];
     if ([[virtualMachinesArrayController selectedObjects] count] > 0){
-        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun]) {
+        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun] &&
+          ![[[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] running] boolValue]) {
             [runButton setEnabled:YES];
         } else {
             [runButton setEnabled:NO];
         }
     }
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+    [self resetButtons];
 }
 
 /*!
@@ -882,9 +996,6 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
     return NSTerminateNow;
 }
-
-
-
 
 + (void)initialize {
     IconValueTransformer *transformer = [[IconValueTransformer alloc] init];

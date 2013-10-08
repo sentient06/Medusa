@@ -85,6 +85,7 @@
     
     // Interface elements    
     IBOutlet NSButton * runButton;
+    IBOutlet NSWindow * informationWindow;
     
     //Controllers
 
@@ -95,6 +96,7 @@
     SplashWindowController      * splashWindowController;
     
     NSMutableDictionary * windowsForVirtualMachines;
+    NSMutableDictionary * virtualMachineTasks;
     
     /// 32-bit compatibility -------    
     id _window;
@@ -163,5 +165,11 @@
 
 - (NSString *)applicationSupportDirectory;
 - (void)saveCoreData;
+- (void)resetButtons;
+
+- (IBAction)savePreferencesFile:(id)sender;
+- (IBAction)openPreferencesFileFolder:(id)sender;
+- (IBAction)stopEmulator:(id)sender;
+- (IBAction)showInformationWindow:(id)sender;
 
 @end

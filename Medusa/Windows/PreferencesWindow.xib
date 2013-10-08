@@ -67,7 +67,7 @@
 								<characters key="NS.bytes">020993E6-AE89-4605-998F-679C32B6F0E1</characters>
 							</object>
 							<string key="NSToolbarItemLabel">Advanced</string>
-							<string key="NSToolbarItemPaletteLabel">Advanced (alpha)</string>
+							<string key="NSToolbarItemPaletteLabel">Advanced</string>
 							<string key="NSToolbarItemToolTip"/>
 							<nil key="NSToolbarItemView"/>
 							<object class="NSCustomResource" key="NSToolbarItemImage">
@@ -248,16 +248,19 @@
 					<array class="NSMutableArray" key="NSToolbarIBDefaultItems">
 						<reference ref="163986190"/>
 						<reference ref="589199181"/>
-						<reference ref="54367870"/>
+						<reference ref="484907192"/>
 					</array>
 					<array class="NSMutableArray" key="NSToolbarIBSelectableItems"/>
 				</object>
 				<object class="NSView" key="NSWindowView" id="1006">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<string key="NSFrameSize">{480, 230}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1920, 1058}}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 			</object>
 			<object class="NSCustomView" id="925769951">
@@ -463,7 +466,7 @@
 					<object class="NSButton" id="626199772">
 						<reference key="NSNextResponder" ref="275384332"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{18, 70}, {178, 18}}</string>
+						<string key="NSFrame">{{18, 70}, {340, 18}}</string>
 						<reference key="NSSuperview" ref="275384332"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="587935534"/>
@@ -471,7 +474,7 @@
 						<object class="NSButtonCell" key="NSCell" id="312607437">
 							<int key="NSCellFlags">-2080244224</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Display advanced details</string>
+							<string key="NSContents">Display advanced information and hidden controls</string>
 							<reference key="NSSupport" ref="929797141"/>
 							<reference key="NSControlView" ref="626199772"/>
 							<int key="NSButtonFlags">1211912703</int>

@@ -61,6 +61,11 @@
 @dynamic sharedFolder;
 @dynamic useDefaultShare;
 
+@dynamic rawKeycodes;
+
+@dynamic running;
+@dynamic taskPID;
+
 @dynamic drives;
 @dynamic romFile;
 @dynamic emulator;

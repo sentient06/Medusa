@@ -49,15 +49,18 @@
         <attribute name="jitCacheSize" attributeType="Integer 16" defaultValueString="8192" syncable="YES"/>
         <attribute name="jitEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="lazyCacheEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="macModel" attributeType="Integer 16" defaultValueString="14" syncable="YES"/>
+        <attribute name="macModel" attributeType="Integer 16" defaultValueString="20" syncable="YES"/>
         <attribute name="memory" attributeType="Integer 16" defaultValueString="32" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="network" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="networkUDP" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="networkUDPPort" optional="YES" attributeType="Integer 16" defaultValueString="6066" syncable="YES"/>
-        <attribute name="processorType" attributeType="Integer 16" maxValueString="3" defaultValueString="3" syncable="YES"/>
+        <attribute name="processorType" attributeType="Integer 16" maxValueString="4" defaultValueString="4" syncable="YES"/>
+        <attribute name="rawKeycodes" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="running" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="sharedFolder" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shareEnabled" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="taskPID" optional="YES" transient="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
         <attribute name="uniqueName" attributeType="String" syncable="YES"/>
         <attribute name="useDefaultShare" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="drives" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDiskFiles" inverseName="virtualMachine" inverseEntity="RelationshipVirtualMachinesDiskFiles" syncable="YES"/>
@@ -69,6 +72,6 @@
         <element name="Emulators" positionX="160" positionY="192" width="128" height="150"/>
         <element name="RelationshipVirtualMachinesDiskFiles" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>
-        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="420"/>
+        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="450"/>
     </elements>
 </model>
