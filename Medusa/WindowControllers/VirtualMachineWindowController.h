@@ -78,6 +78,7 @@ typedef enum {
     IBOutlet NSView    * subViewDrives;
     IBOutlet NSView    * subViewNetwork;
     IBOutlet NSView    * subViewAdvanced;
+    IBOutlet NSView    * subViewKeyboard;
     
     // General subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     IBOutlet NSTextField * personalMemoryField;
@@ -136,6 +137,7 @@ typedef enum {
 - (IBAction)displayDisplayView:(id)sender;
 - (IBAction)displayShareView:(id)sender;
 - (IBAction)displayAdvancedView:(id)sender;
+- (IBAction)displayKeyboardView:(id)sender;
 
 // General subview - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 - (IBAction)personalMemoryValueChanged:(id)sender;

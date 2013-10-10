@@ -57,9 +57,11 @@
 @dynamic network;
 @dynamic networkUDP;
 @dynamic networkUDPPort;
+@dynamic networkTap0;
 @dynamic shareEnabled;
 @dynamic sharedFolder;
 @dynamic useDefaultShare;
+@dynamic keyboardLayout;
 
 @dynamic rawKeycodes;
 

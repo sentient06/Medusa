@@ -57,7 +57,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_WARN;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -704,14 +704,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         [DDLog addLogger:[DDASLLogger sharedInstance]];
         [DDLog addLogger:[DDTTYLogger sharedInstance]];
         windowsForVirtualMachines = [[NSMutableDictionary alloc] init];
-        virtualMachineTasks = [[NSMutableDictionary alloc] init];
-        
-//        [[NSNotificationCenter defaultCenter]
-//         addObserver:self
-//         selector:@selector(updateManagedObjectContext:)
-//         name:NSManagedObjectContextDidSaveNotification
-//         object:__managedObjectContext];
-        
+        virtualMachineTasks = [[NSMutableDictionary alloc] init];        
     }
     return self;
 }
@@ -803,7 +796,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
  * @abstract    Creates if necessary and returns the managed object model for
  *              the application.
  */
-- (NSManagedObjectModel *)managedObjectModel {
+- (NSManagedObjectModel *)managedObjectModel {//3 //4 //7 //8 //11 //12
     if (__managedObjectModel) return __managedObjectModel;
     NSURL * modelURL = [[NSBundle mainBundle] URLForResource:@"Medusa" withExtension:@"momd"];
     __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
@@ -818,7 +811,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
  *              the store is created, if necessary.)
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-    
+   //2 //6 //10
     if (__persistentStoreCoordinator) {
         return __persistentStoreCoordinator;
     }
@@ -834,7 +827,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     NSURL   * applicationFilesDirectory = [self applicationFilesDirectory];
     NSError * error = nil;
     
-    NSDictionary *properties = [
+    NSDictionary * properties = [
         applicationFilesDirectory
         resourceValuesForKeys:[
             NSArray arrayWithObject:NSURLIsDirectoryKey
@@ -850,6 +843,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             ok = [fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error];
         }
         if (!ok) {
+            DDLogError(@"No such file: applicationFilesDirectory");
             [[NSApplication sharedApplication] presentError:error];
             return nil;
         }
@@ -858,7 +852,9 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         
         if ([[properties objectForKey:NSURLIsDirectoryKey] boolValue] != YES) {
             // Customize and localize this error.
-            NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]]; 
+            NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
+            
+            DDLogError(@"Expected a folder to store application data, found a file.");
             
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
             [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
@@ -885,14 +881,12 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     ];
     
     // The following code was without 'options'. The value was set to 'nil'.
-    if (![coordinator
-          addPersistentStoreWithType:NSSQLiteStoreType
-                       configuration:nil
-                                 URL:url
-                             options:options
-                               error:&error])
-    {
-            return nil;
+    
+    id potentialMigration = [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error];
+    
+    if (!potentialMigration) {
+        DDLogError(@"Migration probably failed.");
+        return nil;
     }
     __persistentStoreCoordinator = [coordinator retain];
 
@@ -905,7 +899,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
  *                bound to the persistent store coordinator for the application.) 
  */
 - (NSManagedObjectContext *)managedObjectContext {
-
+//1 //error, then 5 //9
     if (__managedObjectContext) {
         return __managedObjectContext;
     }

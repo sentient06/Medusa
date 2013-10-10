@@ -163,6 +163,11 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     [placeholderView addSubview: subViewAdvanced];
 }
 
+- (IBAction)displayKeyboardView:(id)sender {
+    [[[placeholderView subviews] objectAtIndex:0] removeFromSuperview];
+    [placeholderView addSubview: subViewKeyboard];
+}
+
 //------------------------------------------------------------------------------
 // Interface action methods
 #pragma mark – Interface action methods

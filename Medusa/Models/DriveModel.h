@@ -39,6 +39,7 @@
     NSUInteger diskFormat;
     NSUInteger diskSize;
     NSUInteger capacity;
+    NSUInteger totalPartitions;
     BOOL bootable;
 }
 
@@ -48,6 +49,7 @@
 - (void)parseDriveFileAndSave:(NSString *)filePath;
 - (void)parseDriveFilesAndSave:(NSArray *)filesList;
 - (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath;
+- (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath startingAt:(int)readingStartPoint;
 - (void)readDiskFileFrom:(NSString *)filePath;
 
 //+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine;

@@ -122,9 +122,11 @@ enum GestaltMacModels {
 @property (nonatomic, retain) NSNumber * network;
 @property (nonatomic, retain) NSNumber * networkUDP;
 @property (nonatomic, retain) NSNumber * networkUDPPort;
+@property (nonatomic, retain) NSNumber * networkTap0;
 @property (nonatomic, retain) NSNumber * shareEnabled;
 @property (nonatomic, retain) NSString * sharedFolder;
 @property (nonatomic, retain) NSNumber * useDefaultShare;
+@property (nonatomic, retain) NSNumber * keyboardLayout;
 
 @property (nonatomic, retain) NSString * rawKeycodes;
 

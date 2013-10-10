@@ -39,7 +39,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_WARN;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation DriveModel
@@ -101,12 +101,13 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             inManagedObjectContext: currentContext
     ];
     
-    [managedObject setFilePath : filePath];
-    [managedObject setFileName : fileName];
-    [managedObject setBootable : [NSNumber numberWithBool:bootable]];
-    [managedObject setCapacity : [NSNumber numberWithUnsignedInteger:capacity]];
-    [managedObject setFormat   : [NSNumber numberWithUnsignedInteger:diskFormat]];
-    [managedObject setSize     : [NSNumber numberWithUnsignedInteger:diskSize]];
+    [managedObject setFilePath  : filePath];
+    [managedObject setFileName  : fileName];
+    [managedObject setBootable  : [NSNumber numberWithBool:bootable]];
+    [managedObject setPartitions: [NSNumber numberWithUnsignedInteger:totalPartitions]];
+    [managedObject setCapacity  : [NSNumber numberWithUnsignedInteger:capacity]];
+    [managedObject setFormat    : [NSNumber numberWithUnsignedInteger:diskFormat]];
+    [managedObject setSize      : [NSNumber numberWithUnsignedInteger:diskSize]];
     
     //----------------------------------------------------------------------
     
@@ -153,6 +154,49 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     }
 }
 
+- (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath startingAt:(int)readingStartPoint {
+    
+    FILE * f;
+    int bufferSize = 400;
+    unsigned char buffer[bufferSize];
+    char firstBytes[bufferSize*2+1];
+    f = fopen([filePath UTF8String], "r");
+    fseek(f, readingStartPoint, SEEK_SET);
+    fread(buffer, bufferSize, 1, f); // Any leak-related issues here is false.
+    for (int c=0; c<bufferSize; c++){
+        if (c==0) snprintf(firstBytes, bufferSize*2+1, "%.2X", (int)buffer[c]);
+        else      snprintf(firstBytes, bufferSize*2+1, "%s%.2X", firstBytes, (int)buffer[c]);
+    }
+    fclose(f);
+    firstBytes[bufferSize*2] = 0;
+    
+    NSString * bootableDriveBootBlock = @""
+    "4C4B6000 00864418 00000653 79737465 6D000000 00000000 00000646 696E6465 72000000 00000000"
+    "0000074D 61637342 75670000 00000000 00000C44 69736173 73656D62 6C657200 00000D53 74617274"
+    "55705363 7265656E 00000646 696E6465 72000000 00000000 00000943 6C697062 6F617264 00000000"
+    "0000000A 00140000 43000000 80000002 00004A78 028E6B46 207802AE 32280008 7CFE5446 303B603C"
+    "6758B240 66F40C01 00766210 207802A6 D1FAFFD4 A05721F8 02A60118 584F2E0F 6138323B 60224A40"
+    "6704323B 60242078 02AE4EF0 10007062 A9C90075 02760178 037A067C 00000A44 090E0F1C 30E61D96"
+    "0B820A52 11AE336E 203E41FA FF0E43F8 0AD87010 A02E41FA FF1243F8 02E07010 A02E41FA FF5643F8"
+    "097021C9 096C7010 A02E303A FF58A06D 303AFF50 A06C2047 31780210 0016A00F 665442A8 00124268"
+    "001CA207 66402868 005E2168 005A0030 6710217C 4552494B 001C7001 A2606626 A015554F A9954A5F"
+    "6B1A594F 2F3C626F 6F743F3C 0002A9A0 201F6712 584F2640 20534ED0 702B3F00 2047A00E 301F4E75";
+
+    // I know it is dumb, but I like it to be readable.
+    bootableDriveBootBlock = [bootableDriveBootBlock stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSString * finalResult = [[[NSString alloc] initWithFormat:@"%s", firstBytes] autorelease];
+    
+    if ([bootableDriveBootBlock isEqualTo:finalResult]) {
+        DDLogCVerbose(@"Partition is bootable");
+        return YES;
+    } else {
+        DDLogCVerbose(@"Partition is NOT bootable:\n%@\n\n%@\n", bootableDriveBootBlock, finalResult);
+        return NO;
+    }
+    
+}
+
 - (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath {
     
     // Refer to:
@@ -175,7 +219,39 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     // I know it is dumb, but I like it to be readable.
     bootableDriveBootBlock = [bootableDriveBootBlock stringByReplacingOccurrencesOfString:@" " withString:@""];
     
+    //--------------------------------------------------------------------------
     // Pure C ahead.
+    
+    // Check two first bytes for partition map schemes:
+    // 45520200 00061AC0 // ER     ¿ = HFS+?
+    
+    //--------------------------------------------------------------------------
+    // If pure HFS, check for bootable header:
+    
+    FILE * headerFile;
+    int headerBufferSize = 8;
+    unsigned char headerBuffer[headerBufferSize];
+    char headerFirstBytes[headerBufferSize*2+1];
+    headerFile = fopen([filePath UTF8String], "r");
+    fread(headerBuffer, headerBufferSize, 1, headerFile); // Any leak-related issues here is false.
+    for (int c=0; c<headerBufferSize; c++){
+        if (c==0) snprintf(headerFirstBytes, headerBufferSize*2+1, "%.2X", (int)headerBuffer[c]);
+        else      snprintf(headerFirstBytes, headerBufferSize*2+1, "%s%.2X", headerFirstBytes, (int)headerBuffer[c]);
+    }
+    fclose(headerFile);
+    headerFirstBytes[headerBufferSize*2] = 0;
+    
+    NSString * headerBytes = [[NSString alloc] initWithFormat:@"%s", headerFirstBytes];
+    
+    if ([headerBytes isEqualTo:@"4552020000061AC0"]) {
+        DDLogCVerbose(@"There's a partition scheme to check");
+    }
+    
+//    DDLogCVerbose(@"Image first bytes:");
+//    DDLogVerbose(@"%s", headerFirstBytes);
+
+    //--------------------------------------------------------------------------
+    // If pure HFS, check for bootable header:
     
     FILE * f;
     int bufferSize = 400;
@@ -189,7 +265,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     }
     fclose(f);
     firstBytes[bufferSize*2] = 0;
-
+    
     // That's enough.
     
     NSString * finalResult = [[NSString alloc] initWithFormat:@"%s", firstBytes];
@@ -205,45 +281,90 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 }
 
 - (void)readDiskFileFrom:(NSString *)filePath {
-//    NSString * fileName;
-//    int diskFormat;
-//    int capacity;
-//    BOOL bootable;
     
-    fileName = [filePath lastPathComponent];
-    bootable = [self checkIfDiskImageIsBootable:filePath];
-    
-    NSFileManager * fileManager = [NSFileManager defaultManager];
-    NSError       * error       = nil;
-    NSDictionary  * attributes  = [fileManager attributesOfItemAtPath:filePath error:&error];
+    totalPartitions = 0;
+    fileName        = [filePath lastPathComponent];
 
+    NSString        * fileExtension     = [[NSString alloc] initWithString:[[filePath pathExtension] lowercaseString]];
+    NSString        * originalFilePath  = [[NSString alloc] initWithString:filePath];
+    NSMutableString * operatingFilePath = [[NSMutableString alloc] initWithString:filePath];
+    NSFileManager   * fileManager       = [NSFileManager defaultManager];
+    NSError         * error             = nil;
+    NSDictionary    * attributes        = [fileManager attributesOfItemAtPath:filePath error:&error];
+    
     diskSize   = [attributes fileSize];
     diskFormat = formatUnknown;
+
+    BOOL unsupportedExtension = NO;
+
+    // Creates symlink for unsupported extensions hfv and dsk:
+    if ([fileExtension isEqualToString:@"hfv"] || [fileExtension isEqualToString:@"dsk"]) {
+        unsupportedExtension = YES;
+        operatingFilePath = [
+            NSMutableString stringWithFormat:@"%@/%@.dmg",
+             NSTemporaryDirectory(),
+            [fileName stringByDeletingPathExtension]
+        ];
+        [fileManager createSymbolicLinkAtPath:originalFilePath withDestinationPath:operatingFilePath error:nil];
+    }
     
+    [fileExtension release];
+
     // hdiutil imageinfo <image>
     // hdiutil imageinfo -plist <image>
 
     NSTask * task = [NSTask new];
+
     [task setLaunchPath:@"/usr/bin/hdiutil"];
-    [task setArguments:[NSArray arrayWithObjects:@"imageinfo", @"-plist", filePath, nil]];
+    [task setArguments:[NSArray arrayWithObjects:@"imageinfo", @"-plist", operatingFilePath, nil]];
     [task setStandardOutput:[NSPipe pipe]];
     [task setStandardError:[task standardOutput]];
     [task launch];
+    [task waitUntilExit];
+
     NSData       * plistData = [[[task standardOutput] fileHandleForReading] readDataToEndOfFile];
     NSDictionary * plist = [NSPropertyListSerialization propertyListWithData:plistData options:0 format:nil error:&error];
-    
     [task release];
     
     if(!plist) {
         DDLogError(@"Error: %@", error);
     } else {
-        
-        int totalPartitions = 0;
+
         NSUInteger partitionType = formatUnknown;
        
+        int blockSize = [[[plist objectForKey:@"partitions"] objectForKey:@"block-size"] intValue];
+
         for (id partitionElement in [[plist objectForKey:@"partitions"] objectForKey:@"partitions"]) {
             if ([partitionElement respondsToSelector:@selector(objectForKey:)]) {
+                
+                NSString * partitionHint = [partitionElement objectForKey:@"partition-hint"];
+                int partitionStartKB = [[partitionElement objectForKey:@"partition-start"] intValue];
+                int partitionStart = partitionStartKB / blockSize * 1024;
+                
+                NSLog(@"Checking '%@'", partitionHint);
+                
+                if ([partitionHint isEqualToString:@"Apple_HFS"]) {
+                    bootable = bootable | [self checkIfDiskImageIsBootable:operatingFilePath startingAt:partitionStart];
+                }
+                
+                //  Examples:
+                //
+                //  partition-name: Apple
+                //  partition-start: 1
+                //  partition-number: 1
+                //  partition-length: 63
+                //  partition-hint: Apple_partition_map
+                //
+                //  partition-name: disk image
+                //  partition-start: 64
+                //  partition-number: 2
+                //  partition-length: 400000
+                //  partition-hint: Apple_HFS
+                //  partition-filesystems: HFS: Mac HD 8.1
+                
+                
                 NSDictionary * fileSystems = [partitionElement objectForKey:@"partition-filesystems"];
+
                 if (fileSystems) {
                     
                     NSArray * expectedFileSystems = [
@@ -295,10 +416,18 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         
         DDLogVerbose(@"%d partitions found", totalPartitions);
         DDLogVerbose(@"Partitions type is %u", partitionType);
-        
+
         diskFormat = partitionType;
 
     }
+    
+    // Removes symlink if existant:
+    if (unsupportedExtension) {
+        [fileManager removeItemAtPath:operatingFilePath error:nil];
+    }
+    
+    [operatingFilePath release];
+    [originalFilePath release];
 
 }
 

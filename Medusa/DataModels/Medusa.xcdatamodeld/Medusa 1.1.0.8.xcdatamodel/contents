@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="1.0.2.3" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="DiskFiles" representedClassName="DiskFilesEntityModel" syncable="YES">
+<model name="" userDefinedModelVersionIdentifier="1.1.0.8" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="872" systemVersion="10K549" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="DiskFiles" representedClassName="DiskFilesEntityModel" elementID="DiskEntity" syncable="YES">
         <attribute name="blocked" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="bootable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="capacity" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -20,7 +20,7 @@
         <attribute name="version" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="machines" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="emulator" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
-    <entity name="RelationshipVirtualMachinesDiskFiles" representedClassName="RelationshipVirtualMachinesDiskFilesEntityModel" syncable="YES">
+    <entity name="RelationshipVirtualMachinesDiskFiles" representedClassName="RelationshipVirtualMachinesDiskFilesEntityModel" elementID="RelationshipVirtualMachinesDiskFilesEntity" syncable="YES">
         <attribute name="positionIndex" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="drive" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiskFiles" inverseName="virtualMachines" inverseEntity="DiskFiles" syncable="YES"/>
         <relationship name="virtualMachine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="drives" inverseEntity="VirtualMachines" syncable="YES"/>
@@ -48,19 +48,21 @@
         <attribute name="fullScreen" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="jitCacheSize" attributeType="Integer 16" defaultValueString="8192" syncable="YES"/>
         <attribute name="jitEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
+        <attribute name="keyboardLayout" attributeType="Integer 16" maxValueString="259" defaultValueString="5" syncable="YES"/>
         <attribute name="lazyCacheEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="macModel" attributeType="Integer 16" defaultValueString="20" syncable="YES"/>
         <attribute name="memory" attributeType="Integer 16" defaultValueString="32" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="network" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="networkTap0" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="networkUDP" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="networkUDPPort" optional="YES" attributeType="Integer 16" defaultValueString="6066" syncable="YES"/>
         <attribute name="processorType" attributeType="Integer 16" maxValueString="4" defaultValueString="4" syncable="YES"/>
-        <attribute name="rawKeycodes" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="rawKeycodes" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="running" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="sharedFolder" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="shareEnabled" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="taskPID" optional="YES" transient="YES" attributeType="Integer 16" minValueString="0" defaultValueString="0" syncable="YES"/>
+        <attribute name="taskPID" optional="YES" transient="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="uniqueName" attributeType="String" syncable="YES"/>
         <attribute name="useDefaultShare" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="drives" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDiskFiles" inverseName="virtualMachine" inverseEntity="RelationshipVirtualMachinesDiskFiles" syncable="YES"/>
@@ -72,6 +74,6 @@
         <element name="Emulators" positionX="160" positionY="192" width="128" height="150"/>
         <element name="RelationshipVirtualMachinesDiskFiles" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="210"/>
-        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="450"/>
+        <element name="VirtualMachines" positionX="160" positionY="192" width="128" height="480"/>
     </elements>
 </model>

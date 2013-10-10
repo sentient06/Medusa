@@ -102,6 +102,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     //The idea here is to return an array with dictionaries inside.
     //The returning object is the array that follows.
     
+    NSFileManager  * fileManager = [NSFileManager defaultManager];    
     NSMutableArray * allData = [[NSMutableArray alloc] initWithCapacity:1]; //Return object.
 
     //First we need the managed object context.
@@ -257,7 +258,12 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         [unbootableDrive release];
     }
 
-    [sortPosition release]; 
+    [sortPosition release];
+    
+//    bootdriver <driver number>
+//    
+//    Specify MacOS driver number of boot volume. "0" (the default) means
+//    "boot from first bootable volume". Use "-62" to boot from CD-ROM.
 
     //--------------------------------------------------------------------------
     //5. Networking
@@ -266,14 +272,24 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     // An empty value will do.
     
     if ( [[virtualMachine network] boolValue] == YES) {
+        
+        NSString * networkInterface = [[NSString alloc] init];
+        
+        if ( [[virtualMachine networkTap0] boolValue] == YES) {
+            networkInterface = @"tap0";
+        } else {
+            networkInterface = @"slirp";
+        }
+
         NSDictionary * networkSettings = [[NSDictionary alloc]
             initWithObjectsAndKeys:
-                @"slirp", @"ether",
+                networkInterface, @"ether",
                 nil
         ];
         
         [allData addObject:networkSettings];
         [networkSettings release];
+        [networkInterface release];
     }
     
     if ( [[virtualMachine networkUDP] boolValue] == YES) {
@@ -311,7 +327,9 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     if ( [[virtualMachine shareEnabled] boolValue] == YES) {
         if ( [[virtualMachine useDefaultShare] boolValue] ) {
-            [shareSettings setValue:[[NSUserDefaults standardUserDefaults] stringForKey:@"StandardSharePath"] forKey:@"extfs"];
+            [shareSettings setValue:[[[NSUserDefaults standardUserDefaults] stringForKey:@"StandardSharePath"]
+            stringByExpandingTildeInPath                         
+            ]forKey:@"extfs"];
         } else  if ([virtualMachine sharedFolder] != nil ) {
             [shareSettings setValue:[virtualMachine sharedFolder] forKey:@"extfs"];
         }
@@ -334,8 +352,13 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     NSNumber * frameSkip     = [virtualMachine displayFrameSkip];
 
     if ([[virtualMachine fullScreen] boolValue] == YES) {
-        NSRect screenRect = [[[NSScreen screens] objectAtIndex:0] frame];        
-        [fullScreen setString:@"dga"];
+        NSRect screenRect = [[[NSScreen screens] objectAtIndex:0] frame];
+        //full
+//        if ([[virtualMachine displayUseCGDirect] boolValue] == YES) {
+//            [fullScreen setString:@"full"];
+//        } else {
+            [fullScreen setString:@"dga"];
+//        }
         screenWidth  = [NSNumber numberWithFloat: screenRect.size.width];
         screenHeight = [NSNumber numberWithFloat: screenRect.size.height];
     }
@@ -405,6 +428,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     //--------------------------------------------------------------------------
     //10. Advanced information
+    //10. Keyboard
     
 //    NSDictionary * screenSettings = [[NSDictionary alloc]
 //        initWithObjectsAndKeys:
@@ -416,16 +440,37 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
     
     if ([[virtualMachine rawKeycodes] boolValue]) {
-        NSDictionary * rawKeycodesSettings = [[NSDictionary alloc]
-            initWithObjectsAndKeys:
-                @"true", @"keycodes",
-                nil
-        ];
-        [allData addObject:rawKeycodesSettings];
+        
+        BOOL keyCodeFile = [fileManager fileExistsAtPath:@"/usr/local/share/BasiliskII/keycodes"];
+        
+        if (keyCodeFile) {
+            NSDictionary * rawKeycodesSettings = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                    @"true", @"keycodes",
+                    nil
+            ];
+            [allData addObject:rawKeycodesSettings];
+            [rawKeycodesSettings release];
+            // true looks for file in /usr/local/share/BasiliskII/keycodes
+            // or it uses keycodefile
+            // the file won't be found in snow leopard
+        }
+        
+    } else {
+        if ([virtualMachine keyboardLayout]) {
+            NSDictionary * keycodesSettings = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                    [virtualMachine keyboardLayout], @"keycodes",
+                    nil
+            ];
+            [allData addObject:keycodesSettings];
+            [keycodesSettings release];
+        }
+        
+//        keycodefile
     }
     
     [request release];
-    [allData addObject:screenSettings];
     
     
     
