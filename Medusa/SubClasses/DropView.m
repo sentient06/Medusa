@@ -68,7 +68,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     //First element only:
     
     BOOL isDir;
-    NSString      * firstElement = [[NSString alloc] initWithFormat:[urls objectAtIndex:0]];
+    NSString      * firstElement = [[NSString alloc] initWithString:[urls objectAtIndex:0]];
     NSFileManager * fileManager  = [[NSFileManager alloc] init];
     NSString * kind;
     NSURL    * url;

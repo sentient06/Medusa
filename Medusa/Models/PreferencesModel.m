@@ -117,10 +117,11 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     int modelId = [[virtualMachine macModel] intValue] - 6;
     
-    NSDictionary * macModelSettings = [[NSDictionary alloc]
-        initWithObjectsAndKeys:
-            [NSString stringWithFormat:@"%ld", modelId], @"modelid",
-            nil
+    NSDictionary * macModelSettings = [
+        [NSDictionary alloc]
+        initWithObjectsAndKeys: [NSString stringWithFormat:@"%d", modelId]
+        , @"modelid"
+        , nil
     ];
     
     [allData addObject:macModelSettings];
@@ -139,7 +140,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     NSDictionary * macProcessorType = [[NSDictionary alloc]
         initWithObjectsAndKeys:
-            [NSString stringWithFormat:@"%ld", processorId]
+            [NSString stringWithFormat:@"%d", processorId]
             , @"cpu"
             , nil
     ];
@@ -199,7 +200,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             
             NSDictionary * macJitCache = [[NSDictionary alloc]
             initWithObjectsAndKeys:
-                [NSString stringWithFormat:@"%ld", chacheKbSize]
+                [NSString stringWithFormat:@"%d", chacheKbSize]
                 , @"jitcachesize"
                 , nil
             ];
@@ -305,16 +306,16 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         if ( [[virtualMachine networkUDPPort] intValue] != 6066) {
             NSDictionary * udpPortSettings = [[NSDictionary alloc]
                 initWithObjectsAndKeys:
-                    [[virtualMachine networkUDPPort] stringValue], @"udpport",
-                    nil
+                    [[virtualMachine networkUDPPort] stringValue]
+                    , @"udpport"
+                    , nil
             ];
-            
             [allData addObject:udpPortSettings];
             [udpPortSettings release];
         }
         
     }
-    
+
     // ether <ethernet card description> slirp
     // udptunnel <"true" or "false"> (adv?)
     // udpport <IP port number> (df: 6066)
@@ -324,7 +325,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             @"", @"extfs",
             nil
     ];
-    
+
     if ( [[virtualMachine shareEnabled] boolValue] == YES) {
         if ( [[virtualMachine useDefaultShare] boolValue] ) {
             [shareSettings setValue:[[[NSUserDefaults standardUserDefaults] stringForKey:@"StandardSharePath"]
@@ -334,16 +335,16 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             [shareSettings setValue:[virtualMachine sharedFolder] forKey:@"extfs"];
         }
     }
-    
+
     [allData addObject:shareSettings];
     [shareSettings release];
 
     //--------------------------------------------------------------------------
     //5. SCSI data
-    
+
     //--------------------------------------------------------------------------
     //6. Display data
-    
+
     NSMutableString * fullScreen    = [[NSMutableString alloc] initWithString:@"win"];
     NSNumber * screenWidth   = [virtualMachine displayWidth];
     NSNumber * screenHeight  = [virtualMachine displayHeight];
@@ -353,16 +354,11 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
     if ([[virtualMachine fullScreen] boolValue] == YES) {
         NSRect screenRect = [[[NSScreen screens] objectAtIndex:0] frame];
-        //full
-//        if ([[virtualMachine displayUseCGDirect] boolValue] == YES) {
-//            [fullScreen setString:@"full"];
-//        } else {
-            [fullScreen setString:@"dga"];
-//        }
+        [fullScreen setString:@"dga"];
         screenWidth  = [NSNumber numberWithFloat: screenRect.size.width];
         screenHeight = [NSNumber numberWithFloat: screenRect.size.height];
     }
-    
+
     NSDictionary * screenSettings = [[NSDictionary alloc]
         initWithObjectsAndKeys:
             [NSString stringWithFormat:@"%@/%@/%@/%@",
@@ -376,7 +372,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [allData addObject:screenSettings];
     [screenSettings release];
     [fullScreen release];
-    
+
     if ([dynamicUpdate boolValue] == YES) {
         frameSkip = [NSNumber numberWithInt:0];
     } else {
@@ -387,62 +383,54 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     if ([frameSkip intValue] >= 0) {
         NSDictionary * frameSkipSettings = [[NSDictionary alloc]
             initWithObjectsAndKeys:
-                  [frameSkip stringValue]
+              [frameSkip stringValue]
                 , @"frameskip"
                 , nil
         ]; 
-        
+
         [allData addObject:frameSkipSettings];
         [frameSkipSettings release];
     }
-    
+
     //--------------------------------------------------------------------------
     //7. Serial data
-    
+
     //--------------------------------------------------------------------------
     //8. ROM information
-    
+
     NSDictionary * romSettings = [[NSDictionary alloc]
         initWithObjectsAndKeys:
-            [NSString stringWithFormat: [[virtualMachine romFile] filePath]], @"rom",
+            [NSString stringWithString:[[virtualMachine romFile] filePath]], @"rom",
             nil
     ];
-    
+
     [allData addObject:romSettings];
     [romSettings release];
-    
+
     //--------------------------------------------------------------------------
     //9. Memory information
     //Default is 8 MB
-    
-    int totalMemory = [[virtualMachine memory] intValue]*1024*1024;
-    
+
+    int totalMemory = [[virtualMachine memory] intValue] * 1024 * 1024;
+
     NSDictionary * memorySettings = [[NSDictionary alloc]
         initWithObjectsAndKeys:
-            [NSString stringWithFormat:@"%d", totalMemory], @"ramsize",
-            nil
+          [NSString stringWithFormat:@"%d", totalMemory]
+            , @"ramsize"
+            , nil
     ];
-    
+
     [allData addObject:memorySettings];
     [memorySettings release];
-    
+
     //--------------------------------------------------------------------------
     //10. Advanced information
     //10. Keyboard
-    
-//    NSDictionary * screenSettings = [[NSDictionary alloc]
-//        initWithObjectsAndKeys:
-//            [NSString stringWithFormat:@"win/%d/%d/%d", 512, 384, 16], @"screen",
-//            nil
-//    ];
-//    
-//    [allData addObject:screenSettings];
 
-    
     if ([[virtualMachine rawKeycodes] boolValue]) {
-        
+
         BOOL keyCodeFile = [fileManager fileExistsAtPath:@"/usr/local/share/BasiliskII/keycodes"];
-        
+
         if (keyCodeFile) {
             NSDictionary * rawKeycodesSettings = [[NSDictionary alloc]
                 initWithObjectsAndKeys:
@@ -455,36 +443,27 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             // or it uses keycodefile
             // the file won't be found in snow leopard
         }
-        
+
     } else {
         if ([virtualMachine keyboardLayout]) {
             NSDictionary * keycodesSettings = [[NSDictionary alloc]
                 initWithObjectsAndKeys:
-                    [virtualMachine keyboardLayout], @"keycodes",
-                    nil
+                  [virtualMachine keyboardLayout]
+                    , @"keycodes"
+                    , nil
             ];
             [allData addObject:keycodesSettings];
             [keycodesSettings release];
         }
-        
-//        keycodefile
-    }
-    
-    [request release];
-    
-    
-    
-    
-    //End of requests.
-    
-    
-    
-    return [allData autorelease];
-    
-    
-    //DDLogVerbose(@"%@", [[virtualMachine objectID] URIRepresentation]);
 
-    
+    }
+
+    [request release];
+
+    //End of requests.
+
+    return [allData autorelease];
+
 }
 
 - (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {

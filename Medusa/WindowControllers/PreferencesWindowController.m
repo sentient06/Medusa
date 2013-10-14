@@ -55,6 +55,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
  */
 - (void)dealloc {
     [_contentSubview release];
+    [super dealloc];
 }
 
 - (id)initWithWindow:(NSWindow *)window {

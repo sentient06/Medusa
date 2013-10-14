@@ -47,7 +47,7 @@
     float floatSize = [value floatValue];
 
 	if (floatSize<1023)
-		return [NSString stringWithFormat:@"%i bytes", floatSize];
+		return [NSString stringWithFormat:@"%f bytes", floatSize];
 
 	floatSize = floatSize / 1024;
 	if (floatSize<1023)

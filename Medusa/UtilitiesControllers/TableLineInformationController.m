@@ -56,7 +56,7 @@
             andIcon:(NSString*)newImage {
     self = [super init];
     if (self) {
-        lineTitle = [[NSString alloc] initWithFormat:newTitle];
+        lineTitle = [[NSString alloc] initWithString:newTitle];
         lineIcon = [NSImage imageNamed:newImage];
     }
     return self;

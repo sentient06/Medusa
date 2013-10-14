@@ -220,7 +220,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
 //    BOOL sheepshaverEnabled = YES; //[[NSUserDefaults standardUserDefaults] boolForKey:@"sheepshaverEnabled"];
     
-    NSString * romPath = [[NSString alloc] initWithFormat:filePath];
+    NSString * romPath = [[NSString alloc] initWithString:filePath];
     
     NSData * data   = [NSData dataWithContentsOfFile:romPath];
     NSUInteger len  = [data length];
