@@ -25,7 +25,7 @@
         <relationship name="drive" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiskFiles" inverseName="virtualMachines" inverseEntity="DiskFiles" syncable="YES"/>
         <relationship name="virtualMachine" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="drives" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
-    <entity name="RomFiles" representedClassName="RomFilesEntityModel" syncable="YES">
+    <entity name="RomFiles" representedClassName="RomFilesEntityModel" elementID="RomEntity" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="emulator" optional="YES" attributeType="String" defaultValueString="Basilisk" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
@@ -38,7 +38,7 @@
         <attribute name="romSize" attributeType="Integer 16" maxValueString="8" defaultValueString="0" indexed="YES" syncable="YES"/>
         <relationship name="machines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
-    <entity name="VirtualMachines" representedClassName="VirtualMachinesEntityModel" syncable="YES">
+    <entity name="VirtualMachines" representedClassName="VirtualMachinesEntityModel" elementID="VMEntity" syncable="YES">
         <attribute name="displayColourDepth" attributeType="Integer 16" maxValueString="2" defaultValueString="2" syncable="YES"/>
         <attribute name="displayDynamicUpdate" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="displayFrameSkip" attributeType="Integer 16" maxValueString="64" defaultValueString="8" syncable="YES"/>
@@ -56,7 +56,7 @@
         <attribute name="network" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="networkTap0" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="networkUDP" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="networkUDPPort" optional="YES" attributeType="Integer 16" defaultValueString="6066" syncable="YES"/>
+        <attribute name="networkUDPPort" attributeType="Integer 16" defaultValueString="6066" syncable="YES"/>
         <attribute name="processorType" attributeType="Integer 16" maxValueString="4" defaultValueString="4" syncable="YES"/>
         <attribute name="rawKeycodes" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="running" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>

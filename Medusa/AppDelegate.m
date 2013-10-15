@@ -852,18 +852,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
         if ([[properties objectForKey:NSURLIsDirectoryKey] boolValue] != YES) {
             // Customize and localize this error.
-            NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
+            NSString * failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
             
             DDLogError(@"Expected a folder to store application data, found a file.");
             
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            NSMutableDictionary * dict = [NSMutableDictionary dictionary];
             [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
             error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:101 userInfo:dict];
             
             [[NSApplication sharedApplication] presentError:error];
             return nil;
         }
-        
+
     }
     
     NSURL * url = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];
@@ -877,16 +877,32 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSDictionary * options = [ NSDictionary dictionaryWithObjectsAndKeys:
           [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption
         , [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
-        ,nil
+        , nil
     ];
     
     // The following code was without 'options'. The value was set to 'nil'.
     
-    id potentialMigration = [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error];
+    id potentialMigration = [coordinator
+        addPersistentStoreWithType:NSSQLiteStoreType
+                     configuration:nil
+                               URL:url
+                           options:options
+                             error:&error
+    ];
     
     if (!potentialMigration) {
         DDLogError(@"Migration probably failed.");
-        return nil;
+        
+        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+        //url
+        NSString * errorDescription = [[[NSString alloc] initWithFormat:@"There was an error while trying to migrate your data to the new version.\n\nYou can downgrade, delete (or move) the store file below or/and report a bug.\n\n%@", [[url path] stringByAbbreviatingWithTildeInPath]] autorelease];
+        [dict setValue:errorDescription forKey:NSLocalizedDescriptionKey];
+        [dict setValue:@"Failed to initialize the store coordinator" forKey:NSLocalizedFailureReasonErrorKey];
+        NSError * error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN"
+                                              code:9999
+                                          userInfo:dict];
+        [[NSApplication sharedApplication] presentError:error];
+        [NSApp terminate:nil];
     }
     __persistentStoreCoordinator = [coordinator retain];
 
