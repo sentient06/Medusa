@@ -870,8 +870,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
     
-    NSSet * versionIdentifiers = [[self managedObjectModel] versionIdentifiers];
-    DDLogInfo(@"Current Version of .xcdatamodeld file: %@", versionIdentifiers);
+    NSSet * versionIdentifiers = [mom versionIdentifiers];
+    
+    DDLogInfo(@"Current Version of .xcdatamodeld file: %@", [[versionIdentifiers allObjects] objectAtIndex:0]);
     
     // This part handles the persistent store upgrade:
     NSDictionary * options = [ NSDictionary dictionaryWithObjectsAndKeys:
@@ -890,14 +891,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                              error:&error
     ];
     
-    if (!potentialMigration) {
-        DDLogError(@"Migration probably failed.");
+    if (potentialMigration == nil) {
+        DDLogError(@"Error: %@\n------", [[error userInfo] valueForKey:@"reason"]);
         
         NSMutableDictionary * dict = [NSMutableDictionary dictionary];
         //url
-        NSString * errorDescription = [[[NSString alloc] initWithFormat:@"There was an error while trying to migrate your data to the new version.\n\nYou can downgrade, delete (or move) the store file below or/and report a bug.\n\n%@", [[url path] stringByAbbreviatingWithTildeInPath]] autorelease];
+        NSString * errorDescription = [[[NSString alloc] initWithFormat:@"There was an error while trying to migrate your data to the new version:\n\n\"%@\"\n\nYou can either downgrade or delete/move the store file below and report a bug.\n\n%@", [[error userInfo] valueForKey:@"reason"], [[url path] stringByAbbreviatingWithTildeInPath]] autorelease];
         [dict setValue:errorDescription forKey:NSLocalizedDescriptionKey];
-        [dict setValue:@"Failed to initialize the store coordinator" forKey:NSLocalizedFailureReasonErrorKey];
+        [dict setValue:@"Failed to initialise the store coordinator" forKey:NSLocalizedFailureReasonErrorKey];
         NSError * error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN"
                                               code:9999
                                           userInfo:dict];

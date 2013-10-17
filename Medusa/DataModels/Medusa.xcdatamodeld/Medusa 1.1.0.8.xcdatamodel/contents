@@ -11,7 +11,7 @@
         <attribute name="size" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="virtualMachines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="RelationshipVirtualMachinesDiskFiles" inverseName="drive" inverseEntity="RelationshipVirtualMachinesDiskFiles" syncable="YES"/>
     </entity>
-    <entity name="Emulators" representedClassName="EmulatorsEntityModel" syncable="YES">
+    <entity name="Emulators" representedClassName="EmulatorsEntityModel" elementID="EmulatorEntity" syncable="YES">
         <attribute name="family" attributeType="Integer 16" maxValueString="2" defaultValueString="0" syncable="YES"/>
         <attribute name="maintained" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
