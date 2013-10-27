@@ -241,6 +241,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         default:   romSize = romNull;  break;
     }
     
+    //http://guides.macrumors.com/68k
+    
     switch( ntohl(*(uint32 *)byteData) ) {
         //------------------------------------------------
         // 64 KB

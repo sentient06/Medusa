@@ -642,9 +642,14 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     [defaultMemorySlider setMinValue:0];
     [defaultMemorySlider setMaxValue:[memoryDefaultValues count]-1];
     [defaultMemorySlider setAllowsTickMarkValuesOnly:YES];
+
+//{STR_JIT_CACHE_SIZE_2MB_LAB, "2048"},
+//{STR_JIT_CACHE_SIZE_4MB_LAB, "4096"},
+//{STR_JIT_CACHE_SIZE_8MB_LAB, "8192"},
+//{STR_JIT_CACHE_SIZE_16MB_LAB, "16384"},
     
     [self personalMemoryValueChanged:nil];
-    
+
     [[NSNotificationCenter defaultCenter]
      addObserver:self
         selector:@selector(windowWillClose:)
