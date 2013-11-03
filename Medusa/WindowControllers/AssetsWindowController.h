@@ -74,6 +74,7 @@
 - (IBAction)displayDisksView:(id)sender;
 - (IBAction)displayEmulatorsView:(id)sender;
 - (IBAction)openRomPath:(id)sender;
+- (IBAction)openDiskPath:(id)sender;
 - (IBAction)scanEmulators:(id)sender;
 - (IBAction)downloadEmulators:(id)sender;
 - (IBAction)cancelDownloadEmulators:(id)sender;

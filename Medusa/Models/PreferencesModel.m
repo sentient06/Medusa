@@ -274,7 +274,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     if ( [[virtualMachine network] boolValue] == YES) {
         
-        NSString * networkInterface = [[NSString alloc] init];
+        NSString * networkInterface;
         
         if ( [[virtualMachine networkTap0] boolValue] == YES) {
             networkInterface = @"tap0";
@@ -290,7 +290,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         
         [allData addObject:networkSettings];
         [networkSettings release];
-        [networkInterface release];
+//        [networkInterface release];
     }
     
     if ( [[virtualMachine networkUDP] boolValue] == YES) {

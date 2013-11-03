@@ -1925,6 +1925,14 @@
 					<int key="connectionID">549</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">openDiskPath:</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="372944072"/>
+					</object>
+					<int key="connectionID">552</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">value: arrangedObjects.modelName</string>
 						<reference key="source" ref="1040678824"/>
@@ -1995,14 +2003,6 @@
 						</object>
 					</object>
 					<int key="connectionID">500</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBActionConnection" key="connection">
-						<string key="label">remove:</string>
-						<reference key="source" ref="959226927"/>
-						<reference key="destination" ref="372944072"/>
-					</object>
-					<int key="connectionID">537</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -4291,7 +4291,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">551</int>
+			<int key="maxID">552</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -4305,6 +4305,7 @@
 						<string key="displayEmulatorsView:">id</string>
 						<string key="displayRomFilesView:">id</string>
 						<string key="downloadEmulators:">id</string>
+						<string key="openDiskPath:">id</string>
 						<string key="openRomPath:">id</string>
 						<string key="scanEmulators:">id</string>
 					</dictionary>
@@ -4331,6 +4332,10 @@
 						</object>
 						<object class="IBActionInfo" key="downloadEmulators:">
 							<string key="name">downloadEmulators:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openDiskPath:">
+							<string key="name">openDiskPath:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="openRomPath:">

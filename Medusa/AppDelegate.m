@@ -382,6 +382,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
     [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];   
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
+    [preferencesFilePath release];
 }
 
 - (IBAction)openPreferencesFileFolder:(id)sender {
@@ -398,8 +399,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     ];
    
     NSWorkspace * ws = [NSWorkspace sharedWorkspace];
-    [ws selectFile: preferencesFilePath inFileViewerRootedAtPath:nil];
-
+    [ws selectFile:preferencesFilePath inFileViewerRootedAtPath:nil];
+    [preferencesFilePath release];
 }
 
 - (IBAction)showInformationWindow:(id)sender {

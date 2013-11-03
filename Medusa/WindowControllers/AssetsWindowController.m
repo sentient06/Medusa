@@ -36,6 +36,7 @@
 #import "EmulatorModel.h"
 #import "ASIHTTPRequest.h"
 #import "RomModel.h"
+#import "DriveModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -144,7 +145,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 }
 
 /*!
- * @method      openRunPath:
+ * @method      openRomPath:
  * @abstract    Displays open panel to select the ROM image to be used.
  */
 - (IBAction)openRomPath:(id)sender {
@@ -174,6 +175,40 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     [RomModelObject release];
+    
+}
+
+/*!
+ * @method      openDiskPath:
+ * @abstract    Displays open panel to select disk images to be used.
+ */
+- (IBAction)openDiskPath:(id)sender {
+    
+    NSOpenPanel * openDialog      = [NSOpenPanel openPanel]; //File open dialog class.
+    DriveModel  * diskModelObject = [[DriveModel alloc] init];
+    
+    //Dialog options:
+    [openDialog setCanChooseFiles:YES];
+    [openDialog setCanChooseDirectories:NO];
+    [openDialog setCanCreateDirectories:NO];
+    [openDialog setAllowsMultipleSelection:YES];
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    //Displays open dialog:    
+    [openDialog beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSArray * selectedFiles = [[
+                [NSArray alloc] initWithArray:[openDialog URLs]
+            ] autorelease];
+            if ([selectedFiles count] > 0) {
+                DDLogVerbose(@"Selected files: %@", selectedFiles);
+                [diskModelObject parseDriveFilesAndSave:selectedFiles];
+            }
+        }
+    }];
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    
+    [diskModelObject release];
     
 }
 

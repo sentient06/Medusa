@@ -139,7 +139,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @method      parseDriveFileAndSave:
  * @abstract    Reads a single file and inserts into the data model.
  */
-- (void)parseDriveFileAndSave:(NSString *)filePath {    
+- (void)parseDriveFileAndSave:(NSString *)filePath {
+    NSLog(@"Parsing file: %@", filePath);
     NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
     [self parseSingleDriveFileAndSave:filePath inObjectContext:managedObjectContext];
 }
@@ -150,7 +151,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (void)parseDriveFilesAndSave:(NSArray *)filesList {
     for (int i = 0; i < [filesList count]; i++) {
-        [self parseDriveFileAndSave:[filesList objectAtIndex:i]];
+        if ([[filesList objectAtIndex:i] isKindOfClass:[NSURL class]]) {
+            [self parseDriveFileAndSave:[[filesList objectAtIndex:i] path]];
+        } else {
+            [self parseDriveFileAndSave:[filesList objectAtIndex:i]];
+        }
     }
 }
 
@@ -298,14 +303,30 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     BOOL unsupportedExtension = NO;
 
     // Creates symlink for unsupported extensions hfv and dsk:
+    
+    NSLog(@"Checking file extension...");
+    
     if ([fileExtension isEqualToString:@"hfv"] || [fileExtension isEqualToString:@"dsk"]) {
+        
+        NSError * linkError = nil;
+        NSLog(@"Unsupported extension.");
         unsupportedExtension = YES;
+        
+        [operatingFilePath release];
+        
         operatingFilePath = [
-            NSMutableString stringWithFormat:@"%@/%@.dmg",
-             NSTemporaryDirectory(),
-            [fileName stringByDeletingPathExtension]
+            [NSMutableString alloc]
+                 initWithFormat:@"%@%@.dmg",
+                 NSTemporaryDirectory(),
+                [fileName stringByDeletingPathExtension]
         ];
-        [fileManager createSymbolicLinkAtPath:originalFilePath withDestinationPath:operatingFilePath error:nil];
+        NSLog(@"Creating link: \nfrom: %@\nto: %@", originalFilePath, operatingFilePath);
+        [fileManager createSymbolicLinkAtPath:operatingFilePath withDestinationPath:originalFilePath error:&linkError];
+        
+        if (linkError) {
+            NSLog(@"Error creating link: %@", linkError);
+        }
+        
     }
     
     [fileExtension release];
@@ -313,6 +334,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // hdiutil imageinfo <image>
     // hdiutil imageinfo -plist <image>
 
+    NSLog(@"File path: %@", operatingFilePath);
     NSTask * task = [NSTask new];
 
     [task setLaunchPath:@"/usr/bin/hdiutil"];
