@@ -127,12 +127,11 @@ typedef enum {
 
 // View actions
 - (IBAction)savePreferencesFromView:(id)sender;
-//- (IBAction)traceTableViewClick:(id)sender;
 - (IBAction)useSelectedDisks:(id)sender;
-//- (IBAction)makeDriveBootable:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;
 - (void)resetDriveOrder;
 
+// Views
 - (IBAction)displayGeneralView:(id)sender;
 - (IBAction)displayDisksView:(id)sender;
 - (IBAction)displayDisplayView:(id)sender;
@@ -153,5 +152,8 @@ typedef enum {
 - (IBAction)openSharePath:(id)sender;
 - (IBAction)openRomPath:(id)sender;
 - (IBAction)openEmulatorPath:(id)sender;
+
+// Help showing
+- (IBAction)displayHelpForAdvancedView:(id)sender;
 
 @end

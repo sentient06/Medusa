@@ -34,6 +34,7 @@
 		8132D42518048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D41218048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif */; };
 		8132D42618048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D41318048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif */; };
 		8132D42718048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D41418048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif */; };
+		8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */; };
 		813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */; };
 		814804E817D5D56D0070DAD9 /* RomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomModel.m */; };
 		814804F717D5FFD00070DAD9 /* PerfectNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F417D5FFD00070DAD9 /* PerfectNew.png */; };
@@ -185,6 +186,8 @@
 		8132D41218048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "020 - PowerBook Extended Keyboard.gif"; sourceTree = "<group>"; };
 		8132D41318048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "024 - PowerBook ISO Extended Keyboard.gif"; sourceTree = "<group>"; };
 		8132D41418048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "259 - Macintosh 512K International Keyboard.gif"; sourceTree = "<group>"; };
+		8139BB4B1826BCA0003BAD98 /* HelpDocumentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpDocumentationController.h; path = UtilitiesControllers/HelpDocumentationController.h; sourceTree = "<group>"; };
+		8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpDocumentationController.m; path = UtilitiesControllers/HelpDocumentationController.m; sourceTree = "<group>"; };
 		813DB9C817F5AABE00CB7EA2 /* EmulatorsEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorsEntityModel.h; path = Models/EmulatorsEntityModel.h; sourceTree = "<group>"; };
 		813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorsEntityModel.m; path = Models/EmulatorsEntityModel.m; sourceTree = "<group>"; };
 		814804E617D5D56D0070DAD9 /* RomModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomModel.h; path = Models/RomModel.h; sourceTree = "<group>"; };
@@ -449,6 +452,8 @@
 				8175CBE617D0D18C0003294E /* VMListTextCell.m */,
 				817E319B17D1078200131E2D /* VMList.h */,
 				817E319C17D1078200131E2D /* VMList.m */,
+				8139BB4B1826BCA0003BAD98 /* HelpDocumentationController.h */,
+				8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */,
 			);
 			name = HelpingControllers;
 			sourceTree = "<group>";
@@ -1080,6 +1085,7 @@
 				81CD69A61813122300EF4374 /* VirtualMachinesToVirtualMachinesMigrationPolicy.m in Sources */,
 				81A1F2EB181316EB00C62890 /* MappingModelEmulators-1.0.2.3-1.1.0.8.xcmappingmodel in Sources */,
 				81198C5718170BEB006145E4 /* MappingModelVirtualMachines-1.0.2.3-1.1.0.8.xcmappingmodel in Sources */,
+				8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

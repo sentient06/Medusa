@@ -41,6 +41,7 @@
 #import "AppDelegate.h"
 #import "EmulatorModel.h"
 #import "EmulatorsEntityModel.h"
+#import "HelpDocumentationController.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -511,6 +512,10 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
     [emulatorsModelObject release];
      
+}
+
+- (IBAction)displayHelpForAdvancedView:(id)sender {
+    [HelpDocumentationController openHelpPage:@"01.html"];
 }
 
 //------------------------------------------------------------------------------
