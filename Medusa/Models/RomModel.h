@@ -35,18 +35,23 @@
 @class RomFilesEntityModel;
 
 @interface RomModel : NSObject {
-//@private
-    NSString * fileDetails;
-    NSString * comments;
-    int romCondition;
-    int romSize;
+    NSString * macModel; // Name of compatible models.
+    NSString * comments; // General details.
+    NSString * checksum; // Checksum. =P
+    NSString * checkMD5; // MD5 checksum for New World ROMs.
+    int category;        // ROM category
+    int fileCond;        // Condition of the ROM Image.
+    int emulator;        // Compatible emulators.
+    int fileSize;        // File size in bytes.
 }
 
 @property (readonly, strong, nonatomic) RomFilesEntityModel * currentRomObject;
 
++ (BOOL)validateFile:(NSString *)filePath;
+- (uint32)extractChecksumForFile:(NSString *)filePath;
 - (id)parseSingleRomFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
 - (void)parseRomFileAndSave:(NSString *)filePath; 
 - (void)parseRomFilesAndSave:(NSArray *)filesList;
-- (void)readRomFileFrom:(NSString *)filePath;
+- (void)getDetailsForChecksum:(uint32)intChecksum;
 
 @end

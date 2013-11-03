@@ -818,6 +818,109 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (__persistentStoreCoordinator) {
         return __persistentStoreCoordinator;
     }
+    
+    NSManagedObjectModel * mom = [self managedObjectModel];
+    
+    if (!mom) {
+        DDLogError(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
+        return nil;
+    }
+    
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSURL   * applicationFilesDirectory = [self applicationFilesDirectory];
+    NSError * error = nil;
+    
+    NSDictionary * properties = [
+                                 applicationFilesDirectory
+                                 resourceValuesForKeys:[
+                                                        NSArray arrayWithObject:NSURLIsDirectoryKey
+                                                        ]
+                                 error:&error
+                                 ];
+    
+    if (!properties) {
+        
+        BOOL ok = NO;
+        
+        if ([error code] == NSFileReadNoSuchFileError) {
+            ok = [fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error];
+        }
+        if (!ok) {
+            DDLogError(@"No such file: applicationFilesDirectory");
+            [[NSApplication sharedApplication] presentError:error];
+            return nil;
+        }
+        
+    } else {
+        
+        if ([[properties objectForKey:NSURLIsDirectoryKey] boolValue] != YES) {
+            // Customize and localize this error.
+            NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
+            
+            DDLogError(@"Expected a folder to store application data, found a file.");
+            
+            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+            [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
+            error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:101 userInfo:dict];
+            
+            [[NSApplication sharedApplication] presentError:error];
+            return nil;
+        }
+        
+    }
+    
+    NSURL * url = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];
+    
+    NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
+    
+    NSSet * versionIdentifiers = [[self managedObjectModel] versionIdentifiers];
+    DDLogInfo(@"Current Version of .xcdatamodeld file: %@", [[versionIdentifiers allObjects] objectAtIndex:0]);
+    
+    // This part handles the persistent store upgrade:
+    NSDictionary * options = [ NSDictionary dictionaryWithObjectsAndKeys:
+                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption
+                              , [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
+                              ,nil
+                              ];
+    
+    // The following code was without 'options'. The value was set to 'nil'.
+    
+    id potentialMigration = [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error];    
+    
+//    NSLog(@"%@", versionIdentifiers);
+    
+    if (potentialMigration == nil) {
+//        NSLog(@"%@", [error userInfo]);
+        DDLogError(@"Error: %@\n", [[error userInfo] valueForKey:@"reason"]);
+        
+        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+        //url
+        NSString * errorDescription = [[[NSString alloc] initWithFormat:@"There was an error while trying to verify your data:\n\n\"%@\"\n\nIf you just updated, you can downgrade Medusa. Otherwise, you can delete/move the store file below and report a bug.\n\n%@", [[error userInfo] valueForKey:@"reason"], [[url path] stringByAbbreviatingWithTildeInPath]] autorelease];
+        [dict setValue:errorDescription forKey:NSLocalizedDescriptionKey];
+        [dict setValue:@"Failed to initialise the store coordinator" forKey:NSLocalizedFailureReasonErrorKey];
+        NSError * error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN"
+                                              code:9999
+                                          userInfo:dict];
+        [[NSApplication sharedApplication] presentError:error];
+        [NSApp terminate:nil];
+    }
+    __persistentStoreCoordinator = [coordinator retain];
+    
+    return __persistentStoreCoordinator;
+}
+
+/**
+ * @method      persistentStoreCoordinator:
+ * @abstract    Returns the persistent store coordinator for the application.
+ *              This implementation creates and return a coordinator, having
+ *              added the store for the application to it. (The directory for
+ *              the store is created, if necessary.)
+ */
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinatorNew {
+
+    if (__persistentStoreCoordinator) {
+        return __persistentStoreCoordinator;
+    }
 
     NSManagedObjectModel * mom = [self managedObjectModel];
     

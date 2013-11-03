@@ -55,6 +55,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 
 //------------------------------------------------------------------------------
 // Standard variables synthesizers.
+@synthesize VMWindow;
 @synthesize menuObjectsArray;
 @synthesize virtualMachine;
 
@@ -446,9 +447,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
  */
 - (IBAction)openRomPath:(id)sender {
     
-    NSArray       * selectedFiles = [[[NSArray alloc] init] autorelease];
-    NSOpenPanel   * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
-    RomModel      * RomModelObject = [[RomModel alloc] init];
+    NSOpenPanel * openDialog     = [NSOpenPanel openPanel]; //File open dialog class.
+    RomModel    * RomModelObject = [[RomModel alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];
@@ -456,27 +456,32 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     [openDialog setCanCreateDirectories:NO];
     [openDialog setAllowsMultipleSelection:NO];
     
-    //Display it and trace OK button:
-    if ([openDialog runModal] == NSOKButton) {
-        selectedFiles = [openDialog URLs];        
-    }
-    
-    if ([selectedFiles count] == 1) {
-        DDLogVerbose(@"Selected files: %@", selectedFiles);
-        RomFilesEntityModel * currentRom = [
-            RomModelObject
-            parseSingleRomFileAndSave:[[selectedFiles objectAtIndex:0] path]
-                      inObjectContext:managedObjectContext
-        ];
-        [virtualMachine setRomFile:currentRom];
-    }
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    //Displays open dialog:    
+    [openDialog beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSArray * selectedFiles = [[
+                [NSArray alloc] initWithArray:[openDialog URLs]
+            ] autorelease];
+            if ([selectedFiles count] == 1) {
+                DDLogVerbose(@"Selected files: %@", selectedFiles);
+                RomFilesEntityModel * currentRom = [
+                    RomModelObject
+                    parseSingleRomFileAndSave:[[selectedFiles objectAtIndex:0] path]
+                              inObjectContext:managedObjectContext
+                ];
+                [virtualMachine setRomFile:currentRom];
+            }
+        }
+    }];
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     [RomModelObject release];
     
 }
 
 - (IBAction)openEmulatorPath:(id)sender {
-    NSArray       * selectedFiles = [[[NSArray alloc] init] autorelease];
+
     NSOpenPanel   * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
     EmulatorModel * emulatorsModelObject = [[EmulatorModel alloc] init];
     
@@ -486,18 +491,23 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     [openDialog setCanCreateDirectories:NO];
     [openDialog setAllowsMultipleSelection:NO];
     
-    //Display it and trace OK button:
-    if ([openDialog runModal] == NSOKButton) {
-        selectedFiles = [openDialog URLs];        
-    }
-    
-    if ([selectedFiles count] == 1) {
-        DDLogVerbose(@"Selected files: %@", selectedFiles);
-        EmulatorsEntityModel * addedEmulator = [emulatorsModelObject parseEmulator:[[selectedFiles objectAtIndex:0] path]];
-        if (addedEmulator != nil) {
-            [virtualMachine setEmulator:addedEmulator];
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    //Displays open dialog:    
+    [openDialog beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSArray * selectedFiles = [[
+                [NSArray alloc] initWithArray:[openDialog URLs]
+            ] autorelease];
+            if ([selectedFiles count] == 1) {
+                DDLogVerbose(@"Selected files: %@", selectedFiles);
+                EmulatorsEntityModel * addedEmulator = [emulatorsModelObject parseEmulator:[[selectedFiles objectAtIndex:0] path]];
+                if (addedEmulator != nil) {
+                    [virtualMachine setEmulator:addedEmulator];
+                }
+            }
         }
-    }
+    }];
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
     [emulatorsModelObject release];
      

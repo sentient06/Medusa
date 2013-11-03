@@ -52,13 +52,32 @@
 //PerfectVMac            = 7,
 //Unsupported            = 8
 
+//enum EmulatorTypes {
+//    vMacStandard = 1
+//    , vMacModelCompilation
+//    , BasiliskII
+//    , vMacStandardAndBasiliskII
+//    , vMacModelCompilationAndBasiliskII
+//    , Sheepshaver
+//    , EmulatorUnsupported
+//};
+//
+//enum RomConditions {
+//    NormalCondition = 1
+//    , NoAppleTalk
+//    , FPURequired
+//    , NoAppleTalkAndFPURequired
+//    , PPCOldWorld
+//    , PPCNewWorld
+//};
+
 - (id)transformedValue:(id)value {
     
     long conditionValue = [value integerValue];
     
     switch (conditionValue) {
 
-        case PerfectBasilisk:
+        case NormalCondition:
             return @"Basilisk II should work fine";
 
         case NoAppleTalk:
@@ -67,15 +86,10 @@
         case FPURequired:
             return @"Needs to use FPU";
 
-        case NoAppleTalkFPURequired:
+        case NoAppleTalkAndFPURequired:
             return @"Needs to use FPU and Appletalk is unavailable";
 
-        case PerfectSheepNew:
-        case PerfectSheepOld:
-        case PerfectVMac:
-            return @"Unsupported Emulator for this ROM";
-
-        case Unsupported:
+        case UnsupportedRom:
             return @"Unsupported ROM";
 
         default:

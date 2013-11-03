@@ -33,27 +33,52 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+//enum RomConditions {
+//    PerfectSheepNew        = 1,
+//    PerfectSheepOld        = 2,
+//    PerfectBasilisk        = 3,
+//    NoAppleTalk            = 4,
+//    FPURequired            = 5,
+//    NoAppleTalkFPURequired = 6,
+//    PerfectVMac            = 7,
+//    Unsupported            = 8
+//};
+
+enum EmulatorTypes {
+    vMacStandard = 1
+  , vMacModelCompilation
+  , BasiliskII
+  , vMacStandardAndBasiliskII
+  , vMacModelCompilationAndBasiliskII
+  , Sheepshaver
+  , EmulatorUnsupported
+};
+
+enum RomCategory {
+    OldWorld68k = 1
+  , PPCOldWorld
+  , PPCNewWorld
+  , Unknown
+};
+
 enum RomConditions {
-    PerfectSheepNew        = 1,
-    PerfectSheepOld        = 2,
-    PerfectBasilisk        = 3,
-    NoAppleTalk            = 4,
-    FPURequired            = 5,
-    NoAppleTalkFPURequired = 6,
-    PerfectVMac            = 7,
-    Unsupported            = 8
+    NormalCondition = 1
+  , NoAppleTalk
+  , FPURequired
+  , NoAppleTalkAndFPURequired
+  , UnsupportedRom
 };
 
 enum RomSizes {
-    romNull  = 0,
-    rom64KB  = 1,
-    rom128KB = 2,
-    rom256KB = 3,
-    rom512KB = 4,
-    rom1MB   = 5,
-    rom2MB   = 6,
-    rom3MB   = 7,
-    rom4MB   = 8
+    romNull = 0,
+    rom64KB,
+    rom128KB,
+    rom256KB,
+    rom512KB,
+    rom1MB,
+    rom2MB,
+    rom3MB,
+    rom4MB
 };
 
 @class VirtualMachinesEntityModel;
@@ -64,12 +89,14 @@ enum RomSizes {
 @property (nonatomic, retain) NSString * emulator;
 @property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSString * modelName;
+@property (nonatomic, retain) NSString * checksum;
 @property (nonatomic, retain) NSNumber * romCondition;
+@property (nonatomic, retain) NSNumber * romCategory;
 @property (nonatomic, retain) NSNumber * mac68kOld;
 @property (nonatomic, retain) NSNumber * mac68kNew;
 @property (nonatomic, retain) NSNumber * macPPCOld;
 @property (nonatomic, retain) NSNumber * macPPCNew;
-@property (nonatomic, retain) NSNumber * romSize;
+@property (nonatomic, retain) NSNumber * fileSize;
 @property (nonatomic, retain) NSSet    * machines;
 
 @end
@@ -80,5 +107,6 @@ enum RomSizes {
 - (void)removeMachinesObject:(VirtualMachinesEntityModel *)value;
 - (void)addMachines:(NSSet *)values;
 - (void)removeMachines:(NSSet *)values;
+- (NSNumber *)icon;
 
 @end

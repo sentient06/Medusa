@@ -95,6 +95,7 @@ typedef enum {
 }
 //------------------------------------------------------------------------------
 // Standard variables properties.
+@property (assign) IBOutlet NSWindow * VMWindow;
 @property (copy) NSMutableArray * menuObjectsArray;
 
 //------------------------------------------------------------------------------

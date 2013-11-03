@@ -38,7 +38,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_OFF;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation RomIconValueTransformer
@@ -53,17 +53,24 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
 
 - (id)transformedValue:(id)value {
 
-    long iconValue = [value integerValue];
+    int iconValue = [value intValue];
     
-    DDLogVerbose(@"Rom Icon Value Transformer - value: %@ -- %ld", value, iconValue);
+    DDLogVerbose(@"Rom Icon Value Transformer - value: %@ -- %d", value, iconValue);
     
-    if (iconValue == PerfectSheepNew) {
-        return [NSImage imageNamed:@"PerfectNew.png"];
-    }
+    // 1 OldWorld68k
+    // 2 PPCOldWorld
+    // 3 PPCNewWorld
+    // 4 Unknown
+    // 5 Unsupported
     
-    if (iconValue > PerfectSheepNew && iconValue < PerfectVMac) {
+    if (iconValue == OldWorld68k || iconValue == PPCOldWorld)
         return [NSImage imageNamed:@"PerfectOld.png"];
-    }
+    
+    if (iconValue == PPCNewWorld)
+        return [NSImage imageNamed:@"PerfectNew.png"];
+    
+    if (iconValue == Unknown)
+        return [NSImage imageNamed:@"UnsupportedRom.png"];
     
 	return [NSImage imageNamed:@"UnsupportedRom.png"];
 }

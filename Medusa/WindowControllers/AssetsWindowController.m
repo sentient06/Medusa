@@ -35,6 +35,7 @@
 #import "AppDelegate.h"
 #import "EmulatorModel.h"
 #import "ASIHTTPRequest.h"
+#import "RomModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -140,6 +141,40 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     if (![sender isKindOfClass:[NSToolbarItem class]])
         [assetsToolbar setSelectedItemIdentifier:@"dropEmulatorsButton"];
+}
+
+/*!
+ * @method      openRunPath:
+ * @abstract    Displays open panel to select the ROM image to be used.
+ */
+- (IBAction)openRomPath:(id)sender {
+    
+    NSOpenPanel * openDialog     = [NSOpenPanel openPanel]; //File open dialog class.
+    RomModel    * RomModelObject = [[RomModel alloc] init];
+    
+    //Dialog options:
+    [openDialog setCanChooseFiles:YES];
+    [openDialog setCanChooseDirectories:NO];
+    [openDialog setCanCreateDirectories:NO];
+    [openDialog setAllowsMultipleSelection:YES];
+    
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    //Displays open dialog:    
+    [openDialog beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
+        if (result == NSFileHandlingPanelOKButton) {
+            NSArray * selectedFiles = [[
+                [NSArray alloc] initWithArray:[openDialog URLs]
+            ] autorelease];
+            if ([selectedFiles count] > 0) {
+                DDLogVerbose(@"Selected files: %@", selectedFiles);
+                [RomModelObject parseRomFilesAndSave:selectedFiles];
+            }
+        }
+    }];
+    // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    [RomModelObject release];
+    
 }
 
 /*!

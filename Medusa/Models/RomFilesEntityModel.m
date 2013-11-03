@@ -40,7 +40,9 @@
 @dynamic emulator;
 @dynamic filePath;
 @dynamic modelName;
+@dynamic checksum;
 @dynamic romCondition;
+@dynamic romCategory;
 @dynamic machines;
 
 @dynamic mac68kOld;
@@ -48,6 +50,14 @@
 @dynamic macPPCOld;
 @dynamic macPPCNew;
 
-@dynamic romSize;
+@dynamic fileSize;
+
+
+- (NSNumber *)icon {    
+    int value = [[self romCategory] intValue]; // 1 - 4
+    if (value < Unknown && [[self romCondition] intValue] == UnsupportedRom)
+        value = 5;
+    return [NSNumber numberWithInt:value];
+}
 
 @end
