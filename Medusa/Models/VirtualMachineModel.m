@@ -118,10 +118,10 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 }
 
 - (void)blockDisks {
-    NSLog(@"blocking disks");
+    DDLogVerbose(@"blocking disks");
 }
 - (void)unblockDisks {
-    NSLog(@"unblocking disks");
+    DDLogVerbose(@"unblocking disks");
 }
 
 @end

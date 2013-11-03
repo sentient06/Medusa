@@ -273,7 +273,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 #pragma mark – Utility
 
 - (void)requestFinished:(ASIHTTPRequest *)thisRequest {
-    NSLog(@"finished");
+    DDLogVerbose(@"finished");
 //    // Use when fetching text data
 //    NSString *responseString = [request responseString];
 //    

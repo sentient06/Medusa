@@ -59,7 +59,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -341,19 +341,19 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if ([windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] != nil) {
         [[[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] window] close];
         
-        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
+//        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
         
         if ([[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount] > 0) {
             [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] release];
         }
         
-        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
+//        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
 
         if ([[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount] > 0) {
             [windowsForVirtualMachines removeObjectForKey:[virtualMachine uniqueName]];
         }
 
-        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
+//        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
     }
     
     // This code complains of double-releasing the pool, but... if it doesn't, it will crash by deleting related assets like emulators.
@@ -407,7 +407,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //    if ([informationWindow retainCount] == 0) {
 //        informationWindow = [[NSWindow alloc] init];
 //    }
-    NSLog(@"%lu", [informationWindow retainCount]);
+//    NSLog(@"%lu", [informationWindow retainCount]);
     [informationWindow setIsVisible:YES];
     [informationWindow makeKeyAndOrderFront:sender];
 
@@ -415,7 +415,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (IBAction)stopEmulator:(id)sender {
     
-    NSLog(@"Trying to stop emulator.");
+//    NSLog(@"Trying to stop emulator.");
     
     VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
 
@@ -515,7 +515,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         } else {
             emulatorPath = [emulatorPath stringByAppendingString:@"/Contents/MacOS/BasiliskII"];
         }
-        NSLog(@"Emulator path:\n%@", emulatorPath);
+//        NSLog(@"Emulator path:\n%@", emulatorPath);
         
 //        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
         
@@ -550,7 +550,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //                NSLog(@"count: %lu", [theTask retainCount]);
         [virtualMachineTasks removeObjectForKey:[virtualMachine uniqueName]];
         
-        NSLog(@"count (2): %lu", [emulatorTask retainCount]);
+//        NSLog(@"count (2): %lu", [emulatorTask retainCount]);
         
         rowEnumerator = [[virtualMachine drives] objectEnumerator];
         while (object = [rowEnumerator nextObject]) {

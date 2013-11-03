@@ -126,7 +126,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
  * This will not work for multiple windows. However, probably the class is called only once.
  */
 - (void)windowWillClose:(NSNotification *)notification {
-    NSLog(@"%@'s window will close", [virtualMachine name]);
+    DDLogVerbose(@"%@'s window will close", [virtualMachine name]);
     [[NSApp delegate] saveCoreData];
 //    [[NSApp delegate] releaseWindowFor:[virtualMachine uniqueName]];
 //    [self autorelease];

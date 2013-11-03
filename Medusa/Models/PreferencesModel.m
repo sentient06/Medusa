@@ -277,7 +277,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         NSString * networkInterface;
         
         if ( [[virtualMachine networkTap0] boolValue] == YES) {
-            networkInterface = @"tap0";
+            networkInterface = @"etherhelper/tap0/bridge0/en0";
         } else {
             networkInterface = @"slirp";
         }

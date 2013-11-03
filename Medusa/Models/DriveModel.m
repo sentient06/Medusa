@@ -39,7 +39,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_ERROR;
 //------------------------------------------------------------------------------
 
 @implementation DriveModel
@@ -140,7 +140,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @abstract    Reads a single file and inserts into the data model.
  */
 - (void)parseDriveFileAndSave:(NSString *)filePath {
-    NSLog(@"Parsing file: %@", filePath);
+    DDLogVerbose(@"Parsing file: %@", filePath);
     NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
     [self parseSingleDriveFileAndSave:filePath inObjectContext:managedObjectContext];
 }
@@ -304,12 +304,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
     // Creates symlink for unsupported extensions hfv and dsk:
     
-    NSLog(@"Checking file extension...");
+    DDLogVerbose(@"Checking file extension...");
     
     if ([fileExtension isEqualToString:@"hfv"] || [fileExtension isEqualToString:@"dsk"]) {
         
         NSError * linkError = nil;
-        NSLog(@"Unsupported extension.");
+        DDLogVerbose(@"Unsupported extension.");
         unsupportedExtension = YES;
         
         [operatingFilePath release];
@@ -320,11 +320,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                  NSTemporaryDirectory(),
                 [fileName stringByDeletingPathExtension]
         ];
-        NSLog(@"Creating link: \nfrom: %@\nto: %@", originalFilePath, operatingFilePath);
+        DDLogVerbose(@"Creating link: \nfrom: %@\nto: %@", originalFilePath, operatingFilePath);
         [fileManager createSymbolicLinkAtPath:operatingFilePath withDestinationPath:originalFilePath error:&linkError];
         
         if (linkError) {
-            NSLog(@"Error creating link: %@", linkError);
+            DDLogVerbose(@"Error creating link: %@", linkError);
         }
         
     }
@@ -334,7 +334,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // hdiutil imageinfo <image>
     // hdiutil imageinfo -plist <image>
 
-    NSLog(@"File path: %@", operatingFilePath);
+    DDLogVerbose(@"File path: %@", operatingFilePath);
     NSTask * task = [NSTask new];
 
     [task setLaunchPath:@"/usr/bin/hdiutil"];
@@ -363,7 +363,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                 int partitionStartKB = [[partitionElement objectForKey:@"partition-start"] intValue];
                 int partitionStart = partitionStartKB / blockSize * 1024;
                 
-                NSLog(@"Checking '%@'", partitionHint);
+                DDLogVerbose(@"Checking '%@'", partitionHint);
                 
                 if ([partitionHint isEqualToString:@"Apple_HFS"]) {
                     bootable = bootable | [self checkIfDiskImageIsBootable:operatingFilePath startingAt:partitionStart];

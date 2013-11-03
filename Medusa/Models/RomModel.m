@@ -38,7 +38,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_ERROR;
 //------------------------------------------------------------------------------
 
 @implementation RomModel
@@ -115,7 +115,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         if (intChecksum != 0) {
            
             checksum = [NSString stringWithFormat: @"%X", intChecksum];
-            NSLog(@"Checksum = 0x%@", checksum);
+            DDLogVerbose(@"Checksum = 0x%@", checksum);
             //----------------------------------------------------------------------
             // Core-data part:
             

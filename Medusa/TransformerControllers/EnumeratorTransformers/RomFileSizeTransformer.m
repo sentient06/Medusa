@@ -33,6 +33,14 @@
 #import "RomFileSizeTransformer.h"
 #import "RomFilesEntityModel.h"
 
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_ERROR;
+//------------------------------------------------------------------------------
+
 @implementation RomFileSizeTransformer
 
 + (Class)transformedValueClass {
@@ -47,7 +55,7 @@
     
     int sizeValue = [value intValue];
     
-    NSLog(@"Rom size is id #%d", sizeValue);
+    DDLogVerbose(@"Rom size is id #%d", sizeValue);
     
     switch (sizeValue) {
             
