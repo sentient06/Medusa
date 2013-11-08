@@ -37,7 +37,7 @@
 @implementation RelationshipVirtualMachinesDiskFilesEntityModel
 
 @dynamic positionIndex;
-@dynamic drive;
+@dynamic diskFile;
 @dynamic virtualMachine;
 
 @end

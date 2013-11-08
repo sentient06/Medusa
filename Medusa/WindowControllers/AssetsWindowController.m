@@ -36,7 +36,7 @@
 #import "EmulatorModel.h"
 #import "ASIHTTPRequest.h"
 #import "RomModel.h"
-#import "DriveModel.h"
+#import "DiskModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -185,7 +185,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 - (IBAction)openDiskPath:(id)sender {
     
     NSOpenPanel * openDialog      = [NSOpenPanel openPanel]; //File open dialog class.
-    DriveModel  * diskModelObject = [[DriveModel alloc] init];
+    DiskModel  * diskModelObject = [[DiskModel alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];

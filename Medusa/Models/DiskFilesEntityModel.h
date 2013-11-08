@@ -33,7 +33,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-enum driveFormat {
+enum diskFormat {
     formatLisaFS  = 1, // Lisa File-system
     formatMFS     = 2, // Macintosh File-system
     formatHFS     = 3, // Hyerarquical File-system

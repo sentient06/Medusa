@@ -34,7 +34,7 @@
 
 @class DiskFilesEntityModel, VirtualMachinesEntityModel;
 
-@interface DriveModel : NSObject {
+@interface DiskModel : NSObject {
     NSString * fileName;
     NSUInteger diskFormat;
     NSUInteger diskSize;

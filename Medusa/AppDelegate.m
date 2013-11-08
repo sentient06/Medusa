@@ -52,8 +52,6 @@
 
 #import "EmulatorHandleController.h" //testing
 
-#import "DataMigrationChangesHelper.h"
-
 //------------------------------------------------------------------------------
 // Lumberjack logger
 #import "DDLog.h"
@@ -462,10 +460,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
     
     int counter = 0;
-    NSEnumerator * rowEnumerator = [[virtualMachine drives] objectEnumerator];
+    NSEnumerator * rowEnumerator = [[virtualMachine disks] objectEnumerator];
     RelationshipVirtualMachinesDiskFilesEntityModel * object;
     while (object = [rowEnumerator nextObject]) {
-        DiskFilesEntityModel * driveObject = [object drive];
+        DiskFilesEntityModel * driveObject = [object diskFile];
         DDLogVerbose(@"---- %@", [driveObject blocked]);
         if ([[driveObject blocked] boolValue]) {
             counter++;
@@ -502,10 +500,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     dispatch_async(queue, ^{
         
         // Blocks all used disks:
-        NSEnumerator * rowEnumerator = [[virtualMachine drives] objectEnumerator];
+        NSEnumerator * rowEnumerator = [[virtualMachine disks] objectEnumerator];
         RelationshipVirtualMachinesDiskFilesEntityModel * object;
         while (object = [rowEnumerator nextObject]) {
-            DiskFilesEntityModel * driveObject = [object drive];
+            DiskFilesEntityModel * driveObject = [object diskFile];
             [driveObject setBlocked:[NSNumber numberWithBool:YES]];
         }
         
@@ -552,9 +550,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         
 //        NSLog(@"count (2): %lu", [emulatorTask retainCount]);
         
-        rowEnumerator = [[virtualMachine drives] objectEnumerator];
+        rowEnumerator = [[virtualMachine disks] objectEnumerator];
         while (object = [rowEnumerator nextObject]) {
-            DiskFilesEntityModel * driveObject = [object drive];
+            DiskFilesEntityModel * driveObject = [object diskFile];
             [driveObject setBlocked:[NSNumber numberWithBool:NO]];
         }
 

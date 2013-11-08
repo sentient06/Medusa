@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "DriveModel.h"
+#import "DiskModel.h"
 #import "DiskFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
 #import "VirtualMachinesEntityModel.h"
 
@@ -42,7 +42,7 @@
 static const int ddLogLevel = LOG_LEVEL_ERROR;
 //------------------------------------------------------------------------------
 
-@implementation DriveModel
+@implementation DiskModel
 
 @synthesize currentDriveObject;
 

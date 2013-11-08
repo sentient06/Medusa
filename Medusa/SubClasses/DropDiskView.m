@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "DropDiskView.h"
-#import "DriveModel.h"
+#import "DiskModel.h"
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 #import "VirtualMachinesEntityModel.h"
 
@@ -50,7 +50,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
     NSPasteboard * pboard    = [sender draggingPasteboard];
     NSArray      * urls      = [pboard propertyListForType:NSFilenamesPboardType];
-    DriveModel   * diskObject = [[DriveModel alloc] autorelease];
+    DiskModel   * diskObject = [[DiskModel alloc] autorelease];
     
     [diskObject parseDriveFilesAndSave:urls];
     
@@ -62,9 +62,9 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             inManagedObjectContext:[currentMachine managedObjectContext]
         ];
 
-        [newRelationship setDrive:[diskObject currentDriveObject]];
+        [newRelationship setDiskFile:[diskObject currentDriveObject]];
         [newRelationship setPositionIndex:[newVirtualMachineObject nextDiskIndex]];
-        [newVirtualMachineObject addDrivesObject:newRelationship];
+        [newVirtualMachineObject addDisksObject:newRelationship];
     }
     
     return YES;

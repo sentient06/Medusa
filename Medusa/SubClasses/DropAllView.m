@@ -32,7 +32,7 @@
 
 #import "DropAllView.h"
 #import "RomModel.h"
-#import "DriveModel.h"
+#import "DiskModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -100,7 +100,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     NSArray * acceptedExtensions = [[NSArray alloc] initWithObjects: @"hfv", @"dsk", @"dmg", @"img", @"image", @"iso", nil];
     
     if ([acceptedExtensions containsObject:[[url pathExtension] lowercaseString]]) {
-        DriveModel * driveObject = [[DriveModel alloc] init];
+        DiskModel * driveObject = [[DiskModel alloc] init];
         [driveObject parseDriveFileAndSave:[url relativePath]];
         [driveObject release];
         disksParsed++;

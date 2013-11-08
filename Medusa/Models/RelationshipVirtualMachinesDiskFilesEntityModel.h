@@ -38,7 +38,7 @@
 @interface RelationshipVirtualMachinesDiskFilesEntityModel : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * positionIndex;
-@property (nonatomic, retain) DiskFilesEntityModel * drive;
+@property (nonatomic, retain) DiskFilesEntityModel * diskFile;
 @property (nonatomic, retain) VirtualMachinesEntityModel * virtualMachine;
 
 @end

@@ -224,15 +224,15 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     NSArray * currentSelectedDrives = [availableDisksController selectedObjects];
     //The current selection
     
-    NSMutableArray *selectedDrives = [
+    NSMutableArray * selectedDrives = [
         [NSMutableArray alloc] initWithCapacity:[currentSelectedDrives count]
     ];
     //The filtered selection
     
-    NSMutableSet *newDriveRelationships = [NSMutableSet set];
+    NSMutableSet * newDriveRelationships = [NSMutableSet set];
     //The object to update
     
-    NSMutableSet *oldDriveRelationships = [NSMutableSet setWithSet:[virtualMachine drives]];
+    NSMutableSet * oldDriveRelationships = [NSMutableSet setWithSet:[virtualMachine disks]];
     //Warning: this is a set of relationship objects, not drives.
     //The old value updated
     
@@ -248,7 +248,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             
             for (RelationshipVirtualMachinesDiskFilesEntityModel * oldDriveRelationship in oldDriveRelationships) {
                 
-                if ([[currentDrive filePath] isEqual:[[oldDriveRelationship drive] filePath]]) {
+                if ([[currentDrive filePath] isEqual:[[oldDriveRelationship diskFile] filePath]]) {
                     allowed = NO;
                 }
 
@@ -268,13 +268,13 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         
         // Create new relationship.
         
-        RelationshipVirtualMachinesDiskFilesEntityModel *newDriveRelationship = [
+        RelationshipVirtualMachinesDiskFilesEntityModel * newDriveRelationship = [
             NSEntityDescription
                 insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
                          inManagedObjectContext:managedObjectContext
         ];
 
-        [newDriveRelationship setDrive:[selectedDrives objectAtIndex:i]];
+        [newDriveRelationship setDiskFile:[selectedDrives objectAtIndex:i]];
         [newDriveRelationship setVirtualMachine:virtualMachine];
         [newDriveRelationship setPositionIndex:[NSNumber numberWithLong:nextIndex + i]];
         
@@ -285,7 +285,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     //Finally:
     
     [newDriveRelationships unionSet:oldDriveRelationships];
-    [virtualMachine setValue:newDriveRelationships forKey:@"drives"]; //Re-set the value.
+    [virtualMachine setValue:newDriveRelationships forKey:@"disks"]; //Re-set the value.
     
     [self resetDriveOrder];
     

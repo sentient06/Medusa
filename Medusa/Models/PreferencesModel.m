@@ -248,7 +248,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     RelationshipVirtualMachinesDiskFilesEntityModel * object;
 
     while (object = [rowEnumerator nextObject]) {
-        DiskFilesEntityModel * unbootableDriveObject = [object drive];
+        DiskFilesEntityModel * unbootableDriveObject = [object diskFile];
         DDLogCInfo(@"DAMN --- %@", [unbootableDriveObject fileName]);
         NSDictionary * unbootableDrive = [[NSDictionary alloc]
             initWithObjectsAndKeys:

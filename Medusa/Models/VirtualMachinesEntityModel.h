@@ -133,7 +133,7 @@ enum GestaltMacModels {
 @property (nonatomic, retain) NSNumber * running;
 @property (nonatomic, retain) NSNumber * taskPID;
 
-@property (nonatomic, retain) NSSet    * drives;
+@property (nonatomic, retain) NSSet    * disks;
 @property (nonatomic, retain) RomFilesEntityModel  * romFile;
 @property (nonatomic, retain) EmulatorsEntityModel * emulator;
 
@@ -141,10 +141,10 @@ enum GestaltMacModels {
 
 @interface VirtualMachinesEntityModel (CoreDataGeneratedAccessors)
 
-- (void)addDrivesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
-- (void)removeDrivesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
-- (void)addDrives:(NSSet *)values;
-- (void)removeDrives:(NSSet *)values;
+- (void)addDisksObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
+- (void)removeDisksObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
+- (void)addDisks:(NSSet *)values;
+- (void)removeDisks:(NSSet *)values;
 - (NSNumber *)nextDiskIndex;
 
 - (NSNumber *)icon;

@@ -68,7 +68,7 @@
 @dynamic running;
 @dynamic taskPID;
 
-@dynamic drives;
+@dynamic disks;
 @dynamic romFile;
 @dynamic emulator;
 
@@ -92,7 +92,7 @@
     int value = 0;
     
     long iconValue = [[[self romFile] romCondition] integerValue];
-    NSInteger totalDisks = [[self drives] count];
+    NSInteger totalDisks = [[self disks] count];
     
     if (iconValue < 7 && iconValue > 0)
         if (iconValue > 2)
@@ -114,7 +114,7 @@
 }
 
 - (NSNumber *)nextDiskIndex {
-    return [NSNumber numberWithUnsignedInteger:[[self drives] count]];
+    return [NSNumber numberWithUnsignedInteger:[[self disks] count]];
 }
 
 @end
