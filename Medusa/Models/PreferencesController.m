@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "PreferencesModel.h"
+#import "PreferencesController.h"
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 #import "DiskFilesEntityModel.h"
 #import "VirtualMachinesEntityModel.h"
@@ -44,7 +44,7 @@
 static const int ddLogLevel = LOG_LEVEL_WARN;
 //------------------------------------------------------------------------------
 
-@implementation PreferencesModel
+@implementation PreferencesController
 
 //------------------------------------------------------------------------------
 // Manual getters

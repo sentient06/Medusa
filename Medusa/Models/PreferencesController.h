@@ -1,9 +1,9 @@
 //
-//  VirtualMachineModel.h
+//  PreferencesModel.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 30/09/2013.
-//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 04/05/2012.
+//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -34,18 +34,23 @@
 
 @class VirtualMachinesEntityModel;
 
-@interface VirtualMachineModel : NSObject {
+@interface PreferencesController : NSObject {
     NSManagedObjectContext * managedObjectContext;
 }
 
-- (BOOL)existsMachineNamed:(NSString *)nameToCheck;
-- (void)insertMachineNamed:(NSString *)newMachineName;
-- (void)cloneMachine:(VirtualMachinesEntityModel *)machineToClone withName:(NSString *)newMachineName;
-- (id)initWithManagedObjectContext:(NSManagedObjectContext *)newManagedObjectContext;
+//------------------------------------------------------------------------------
+// Manual getters
+- (NSManagedObjectContext *)managedObjectContext;
 
-//+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine;
+// Manual setters
+- (void)setManagedObjectContext:(NSManagedObjectContext *)value;
 
-- (void)blockDisks;
-- (void)unblockDisks;
+//------------------------------------------------------------------------------
+- (void)insertNewVirtualMachineWithData:(NSDictionary *)newData;
+- (void)insertNewData:(NSDictionary *)newData inVirtualMachine:(NSManagedObject*)virtualMachine;
+
+- (NSMutableArray *)getVirtualMachineData:(VirtualMachinesEntityModel*)virtualMachine;
+- (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath;
+- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
 
 @end

@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "VirtualMachineModel.h"
+#import "VirtualMachineController.h"
 #import "VirtualMachinesEntityModel.h"
 #import "ManagedObjectCloner.h" //Clone core-data objects
 #import "AppDelegate.h"
@@ -43,7 +43,7 @@
 static const int ddLogLevel = LOG_LEVEL_ERROR;
 //------------------------------------------------------------------------------
 
-@implementation VirtualMachineModel
+@implementation VirtualMachineController
 
 - (BOOL)existsMachineNamed:(NSString *)nameToCheck {
    

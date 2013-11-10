@@ -44,8 +44,8 @@
 #import "VirtualMachinesEntityModel.h"
 #import "RomFilesEntityModel.h"
 #import "EmulatorsEntityModel.h"
-#import "PreferencesModel.h"
-#import "VirtualMachineModel.h"
+#import "PreferencesController.h"
+#import "VirtualMachineController.h"
 #import "DiskFilesEntityModel.h"
 
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
@@ -214,7 +214,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
     //Gets the Managed Object Context:
     NSManagedObjectContext * managedObjectContext      = [self managedObjectContext];
-    VirtualMachineModel    * virtualMachineModelObject = [[VirtualMachineModel alloc] initWithManagedObjectContext:managedObjectContext];
+    VirtualMachineController    * virtualMachineModelObject = [[VirtualMachineController alloc] initWithManagedObjectContext:managedObjectContext];
     
     if ([virtualMachineModelObject existsMachineNamed:newMachineName]) {
         DDLogVerbose(@"VM name is being used.");
@@ -259,7 +259,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     //Gets the Managed Object Context:
     NSManagedObjectContext * managedObjectContext      = [self managedObjectContext];
-    VirtualMachineModel    * virtualMachineModelObject = [[VirtualMachineModel alloc] initWithManagedObjectContext:managedObjectContext];
+    VirtualMachineController    * virtualMachineModelObject = [[VirtualMachineController alloc] initWithManagedObjectContext:managedObjectContext];
     
     if ([virtualMachineModelObject existsMachineNamed:newMachineName]) {
         DDLogVerbose(@"VM name is being used.");
@@ -377,7 +377,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             [virtualMachine uniqueName]
     ];
    
-    PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
+    PreferencesController * preferences = [[PreferencesController alloc] autorelease];
     [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];   
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
     [preferencesFilePath release];
@@ -486,7 +486,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             [virtualMachine uniqueName]
     ];
    
-    PreferencesModel * preferences = [[PreferencesModel alloc] autorelease];
+    PreferencesController * preferences = [[PreferencesController alloc] autorelease];
     [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];   
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
     

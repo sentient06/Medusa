@@ -1,8 +1,8 @@
 //
-//  RomModel.h
-//  ROMan / Medusa
+//  DriveModel.h
+//  Medusa
 //
-//  Created by Giancarlo Mariot on 03/09/2013.
+//  Created by Giancarlo Mariot on 22/09/2013.
 //  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -32,26 +32,25 @@
 
 #import <Foundation/Foundation.h>
 
-@class RomFilesEntityModel;
+@class DiskFilesEntityModel, VirtualMachinesEntityModel;
 
-@interface RomModel : NSObject {
-    NSString * macModel; // Name of compatible models.
-    NSString * comments; // General details.
-    NSString * checksum; // Checksum. =P
-    NSString * checkMD5; // MD5 checksum for New World ROMs.
-    int category;        // ROM category
-    int fileCond;        // Condition of the ROM Image.
-    int emulator;        // Compatible emulators.
-    int fileSize;        // File size in bytes.
+@interface DiskController : NSObject {
+    NSString * fileName;
+    NSUInteger diskFormat;
+    NSUInteger diskSize;
+    NSUInteger capacity;
+    NSUInteger totalPartitions;
+    BOOL bootable;
 }
 
-@property (readonly, strong, nonatomic) RomFilesEntityModel * currentRomObject;
+@property (readonly, strong, nonatomic) DiskFilesEntityModel * currentDriveObject;
 
-+ (BOOL)validateFile:(NSString *)filePath;
-- (uint32)extractChecksumForFile:(NSString *)filePath;
-- (id)parseSingleRomFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
-- (void)parseRomFileAndSave:(NSString *)filePath; 
-- (void)parseRomFilesAndSave:(NSArray *)filesList;
-- (void)getDetailsForChecksum:(uint32)intChecksum;
+- (id)parseSingleDriveFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
+- (void)parseDriveFileAndSave:(NSString *)filePath;
+- (void)parseDriveFilesAndSave:(NSArray *)filesList;
+- (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath;
+- (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath startingAt:(int)readingStartPoint;
+- (void)readDiskFileFrom:(NSString *)filePath;
 
+//+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine;
 @end

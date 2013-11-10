@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "DropEmulatorView.h"
-#import "EmulatorModel.h"
+#import "EmulatorController.h"
 #import "VirtualMachinesEntityModel.h"
 
 //------------------------------------------------------------------------------
@@ -52,7 +52,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     NSPasteboard  * pboard    = [sender draggingPasteboard];
     NSArray       * urls      = [pboard propertyListForType:NSFilenamesPboardType];
-    EmulatorModel * emulatorObject = [[EmulatorModel alloc] autorelease];
+    EmulatorController * emulatorObject = [[EmulatorController alloc] autorelease];
     
     [emulatorObject parseEmulatorsAndSave:urls];
     

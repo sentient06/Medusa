@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "DropRomView.h"
-#import "RomModel.h" // Model that handles all Rom objects.
+#import "RomController.h" // Model that handles all Rom objects.
 #import "VirtualMachinesEntityModel.h"
 
 @implementation DropRomView
@@ -41,7 +41,7 @@
     
     NSPasteboard * pboard    = [sender draggingPasteboard];
     NSArray      * urls      = [pboard propertyListForType:NSFilenamesPboardType];
-    RomModel     * romObject = [[RomModel alloc] autorelease];
+    RomController     * romObject = [[RomController alloc] autorelease];
     
     [romObject parseRomFilesAndSave:urls];
     

@@ -33,10 +33,10 @@
 #import "AssetsWindowController.h"
 #import "TableLineInformationController.h"
 #import "AppDelegate.h"
-#import "EmulatorModel.h"
+#import "EmulatorController.h"
 #import "ASIHTTPRequest.h"
-#import "RomModel.h"
-#import "DiskModel.h"
+#import "RomController.h"
+#import "DiskController.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -151,7 +151,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 - (IBAction)openRomPath:(id)sender {
     
     NSOpenPanel * openDialog     = [NSOpenPanel openPanel]; //File open dialog class.
-    RomModel    * RomModelObject = [[RomModel alloc] init];
+    RomController    * RomModelObject = [[RomController alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];
@@ -185,7 +185,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 - (IBAction)openDiskPath:(id)sender {
     
     NSOpenPanel * openDialog      = [NSOpenPanel openPanel]; //File open dialog class.
-    DiskModel  * diskModelObject = [[DiskModel alloc] init];
+    DiskController  * diskModelObject = [[DiskController alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];
@@ -217,7 +217,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
  * @discussion  Scans for emulators in Application Support folder.
  */
 - (IBAction)scanEmulators:(id)sender {
-    EmulatorModel * emulatorObject = [[EmulatorModel alloc] init];
+    EmulatorController * emulatorObject = [[EmulatorController alloc] init];
     [emulatorObject scanEmulators];
     [emulatorObject release];
 }
@@ -283,7 +283,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [NSApp endSheet:downloadPanel];
     [downloadPanel orderOut:nil];
     
-    EmulatorModel * emulatorObject = [[EmulatorModel alloc] init];
+    EmulatorController * emulatorObject = [[EmulatorController alloc] init];
     [emulatorObject assembleEmulatorsFromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"BasiliskExecutables"]];
     [emulatorObject release];
 

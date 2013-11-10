@@ -32,14 +32,14 @@
 
 #import "VirtualMachineWindowController.h"
 #import "TableLineInformationController.h"  //Generic table lines object.
-#import "PreferencesModel.h"                //Object to handle coredata information.
+#import "PreferencesController.h"                //Object to handle coredata information.
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h" //Model for coredata entity.
 #import "VirtualMachinesEntityModel.h"
 #import "RomFilesEntityModel.h"
-#import "RomModel.h"
+#import "RomController.h"
 #import "DiskFilesEntityModel.h"
 #import "AppDelegate.h"
-#import "EmulatorModel.h"
+#import "EmulatorController.h"
 #import "EmulatorsEntityModel.h"
 #import "HelpDocumentationController.h"
 
@@ -449,7 +449,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 - (IBAction)openRomPath:(id)sender {
     
     NSOpenPanel * openDialog     = [NSOpenPanel openPanel]; //File open dialog class.
-    RomModel    * RomModelObject = [[RomModel alloc] init];
+    RomController    * RomModelObject = [[RomController alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];
@@ -484,7 +484,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 - (IBAction)openEmulatorPath:(id)sender {
 
     NSOpenPanel   * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
-    EmulatorModel * emulatorsModelObject = [[EmulatorModel alloc] init];
+    EmulatorController * emulatorsModelObject = [[EmulatorController alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];

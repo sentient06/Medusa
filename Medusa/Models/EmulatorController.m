@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "EmulatorModel.h"
+#import "EmulatorController.h"
 #import "EmulatorsEntityModel.h"
 #import "AppDelegate.h"
 
@@ -42,7 +42,7 @@
 static const int ddLogLevel = LOG_LEVEL_WARN;
 //------------------------------------------------------------------------------
 
-@implementation EmulatorModel
+@implementation EmulatorController
 
 /*!
  * @method      dealloc:

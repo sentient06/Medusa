@@ -1,8 +1,8 @@
 //
-//  EmulatorModel.h
-//  Medusa
+//  RomModel.h
+//  ROMan / Medusa
 //
-//  Created by Giancarlo Mariot on 30/09/2013.
+//  Created by Giancarlo Mariot on 03/09/2013.
 //  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -32,16 +32,26 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EmulatorModel : NSObject {
-    NSString * emulatorsDirectory;
-    BOOL mustSave;
+@class RomFilesEntityModel;
+
+@interface RomController : NSObject {
+    NSString * macModel; // Name of compatible models.
+    NSString * comments; // General details.
+    NSString * checksum; // Checksum. =P
+    NSString * checkMD5; // MD5 checksum for New World ROMs.
+    int category;        // ROM category
+    int fileCond;        // Condition of the ROM Image.
+    int emulator;        // Compatible emulators.
+    int fileSize;        // File size in bytes.
 }
 
-- (void)scanEmulators;
-- (void)scanEmulatorFamily:(int)emulatorFamily;
-- (id)parseEmulator:(NSString *)applicationPath;
-- (void)parseEmulatorsAndSave:(NSArray *)filesList;
-- (void)assembleEmulatorsFromZip:(NSString *)emulatorsTempDirectory;
-- (BOOL)assembleBasiliskInDirectory:(NSString *)directory withName:(NSString *)folderName;
+@property (readonly, strong, nonatomic) RomFilesEntityModel * currentRomObject;
+
++ (BOOL)validateFile:(NSString *)filePath;
+- (uint32)extractChecksumForFile:(NSString *)filePath;
+- (id)parseSingleRomFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
+- (void)parseRomFileAndSave:(NSString *)filePath; 
+- (void)parseRomFilesAndSave:(NSArray *)filesList;
+- (void)getDetailsForChecksum:(uint32)intChecksum;
 
 @end

@@ -1,8 +1,8 @@
 //
-//  DriveModel.h
+//  EmulatorModel.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 22/09/2013.
+//  Created by Giancarlo Mariot on 30/09/2013.
 //  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -32,25 +32,16 @@
 
 #import <Foundation/Foundation.h>
 
-@class DiskFilesEntityModel, VirtualMachinesEntityModel;
-
-@interface DiskModel : NSObject {
-    NSString * fileName;
-    NSUInteger diskFormat;
-    NSUInteger diskSize;
-    NSUInteger capacity;
-    NSUInteger totalPartitions;
-    BOOL bootable;
+@interface EmulatorController : NSObject {
+    NSString * emulatorsDirectory;
+    BOOL mustSave;
 }
 
-@property (readonly, strong, nonatomic) DiskFilesEntityModel * currentDriveObject;
+- (void)scanEmulators;
+- (void)scanEmulatorFamily:(int)emulatorFamily;
+- (id)parseEmulator:(NSString *)applicationPath;
+- (void)parseEmulatorsAndSave:(NSArray *)filesList;
+- (void)assembleEmulatorsFromZip:(NSString *)emulatorsTempDirectory;
+- (BOOL)assembleBasiliskInDirectory:(NSString *)directory withName:(NSString *)folderName;
 
-- (id)parseSingleDriveFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
-- (void)parseDriveFileAndSave:(NSString *)filePath;
-- (void)parseDriveFilesAndSave:(NSArray *)filesList;
-- (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath;
-- (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath startingAt:(int)readingStartPoint;
-- (void)readDiskFileFrom:(NSString *)filePath;
-
-//+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine;
 @end

@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "RomModel.h"
+#import "RomController.h"
 #import "RomFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
 
 //------------------------------------------------------------------------------
@@ -41,7 +41,7 @@
 static const int ddLogLevel = LOG_LEVEL_ERROR;
 //------------------------------------------------------------------------------
 
-@implementation RomModel
+@implementation RomController
 
 @synthesize currentRomObject;
 
@@ -105,7 +105,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 - (id)parseSingleRomFileAndSave:(NSString *)filePath
                 inObjectContext:(NSManagedObjectContext *)currentContext {
     
-    if (![RomModel validateFile:filePath]) {
+    if (![RomController validateFile:filePath]) {
         return nil;
     } else {
         uint32 intChecksum = [self extractChecksumForFile:filePath];
