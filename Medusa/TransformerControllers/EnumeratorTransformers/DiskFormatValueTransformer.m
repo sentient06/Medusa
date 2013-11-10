@@ -1,9 +1,9 @@
 //
-//  DriveIconValueTransformer.m
+//  driveFormatValueTransformer.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 01/05/2012.
-//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 26/09/2013.
+//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,12 +30,13 @@
 //
 //------------------------------------------------------------------------------
 
-#import "DriveIconValueTransformer.h"
+#import "DiskFormatValueTransformer.h"
+#import "DiskFilesEntityModel.h"
 
-@implementation DriveIconValueTransformer
+@implementation DiskFormatValueTransformer
 
 + (Class)transformedValueClass {
-    return [NSImage class]; 
+    return [NSString class]; 
 }
 
 + (BOOL)allowsReverseTransformation { 
@@ -43,7 +44,39 @@
 }
 
 - (id)transformedValue:(id)value {
-	return [NSImage imageNamed:@"HDClassic.icns"];
+    
+    switch ([value intValue]) {
+        case formatLisaFS  :
+            return @"Lisa FS";
+            
+        case formatMFS:
+            return @"MFS";
+            
+        case formatHFS:
+            return @"HFS";
+            
+        case formatHFSPlus:
+            return @"HFS+";
+            
+        case formatISO9660:
+            return @"ISO 9660";
+            
+        case formatFAT:
+            return @"FAT";
+            
+        case formatOther:
+            return @"Unknown file system";
+            
+        case formatUnknown:
+            return @"No file system detected";
+            
+        case formatMisc:
+            return @"Miscellaneous file systems";
+
+    }
+    
+    return @"No file system";
+    
 }
 
 @end

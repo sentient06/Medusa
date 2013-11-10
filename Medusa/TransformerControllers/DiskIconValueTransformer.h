@@ -32,6 +32,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DriveIconValueTransformer : NSValueTransformer
+@interface DiskIconValueTransformer : NSValueTransformer
 
 @end
