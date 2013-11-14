@@ -55,24 +55,20 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 
     int iconValue = [value intValue];
     
-    DDLogVerbose(@"Rom Icon Value Transformer - value: %@ -- %d", value, iconValue);
+    if (iconValue == DeadMac)
+        return [NSImage imageNamed:@"DeadMac.png"];
     
-    // 1 OldWorld68k
-    // 2 PPCOldWorld
-    // 3 PPCNewWorld
-    // 4 Unknown
-    // 5 Unsupported
+    if (iconValue == BlackAndWhiteHappyMac)
+        return [NSImage imageNamed:@"BlackAndWhiteHappyMac.png"];
     
-    if (iconValue == OldWorld68k || iconValue == PPCOldWorld)
-        return [NSImage imageNamed:@"PerfectOld.png"];
+    if (iconValue == ColouredHappyMac)
+        return [NSImage imageNamed:@"ColouredHappyMac.png"];
     
-    if (iconValue == PPCNewWorld)
-        return [NSImage imageNamed:@"PerfectNew.png"];
+    if (iconValue == MiniVMacMac)
+        return [NSImage imageNamed:@"MiniVMacMac.png"];
     
-    if (iconValue == Unknown)
-        return [NSImage imageNamed:@"UnsupportedRom.png"];
-    
-	return [NSImage imageNamed:@"UnsupportedRom.png"];
+    return [NSImage imageNamed:@"QuestionMarkMac.png"];
+
 }
 
 @end

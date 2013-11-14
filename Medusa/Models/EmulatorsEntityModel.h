@@ -39,6 +39,27 @@ enum emulatorfamily {
     sheepshaverFamily = 3
 };
 
+// I decided to insert a shitload of emulators here to avoid annoying data
+// migration codes. I don't expect to use more than a handful of these anyway,
+// given that ROM files are not necessary for more recent emulators.
+enum EmulatorTypes {
+    EmulatorUnsupported = 0
+  , vMacStandard
+  , vMacModelCompilation
+  , vMacOther1
+  , vMacOther2
+  , BasiliskII
+  , BasiliskIIOther1
+  , BasiliskIIOther2
+  , vMacStandardAndBasiliskII
+  , vMacModelCompilationAndBasiliskII
+  , EmulatorCombo1
+  , EmulatorCombo2
+  , Sheepshaver
+  , SheepshaverOther1
+  , SheepshaverOther2
+};
+
 @class VirtualMachinesEntityModel;
 
 @interface EmulatorsEntityModel : NSManagedObject

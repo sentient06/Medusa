@@ -39,7 +39,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_WARN;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation EmulatorController
@@ -58,20 +58,19 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
  * @abstract    Scans for emulators inside app support dir.
  */
 - (void)scanEmulators {
-
     BOOL isDir;
-
     NSFileManager * fileManager= [NSFileManager defaultManager];
 
+    [[NSApp delegate] saveCoreData];
+    
     if(![fileManager fileExistsAtPath:emulatorsDirectory isDirectory:&isDir]) {
         if(![fileManager createDirectoryAtPath:emulatorsDirectory withIntermediateDirectories:YES attributes:nil error:NULL])
             DDLogError(@"Error: Could not create folder %@", emulatorsDirectory);
-
     } else {
-        [self scanEmulatorFamily:basiliskFamily];
+//        [self scanEmulatorFamily:basiliskFamily];
+        [self scanEmulatorFamily:sheepshaverFamily];
     }
-    
-    if (mustSave) [[NSApp delegate] saveCoreData];
+
 }
 
 /*!
@@ -117,7 +116,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         return;
     }
     
-    NSMutableArray * shallowDirectoryList =[[NSMutableArray alloc]
+    NSMutableArray * shallowDirectoryList = [[NSMutableArray alloc]
         initWithArray:[fileManager contentsOfDirectoryAtPath:emulatorDir error:nil]
     ];
     
@@ -139,7 +138,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 - (id)parseEmulator:(NSString *)applicationPath {
 
-    BOOL validEmulator = NO;
+    int thisEmulatorFamily = undefinedFamily;
     BOOL maintainedByMedusa;
     NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
     
@@ -239,27 +238,32 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [emulatorTask waitUntilExit];
     
     NSData * outputData = [[[emulatorTask standardOutput] fileHandleForReading] availableData];
-
+    
     if ((outputData != nil) && [outputData length]) {
 
         NSString * outputString = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] autorelease];
-
+        thisEmulatorFamily = basiliskFamily;
+        
         if ([outputString rangeOfString:@"Basilisk II"].location == NSNotFound) {
-            DDLogVerbose(@"Nothing to see here.");
-        } else {
-            if ([outputString rangeOfString:@"Christian Bauer et al."].location == NSNotFound) {
-                DDLogVerbose(@"Nothing to see here. (2)");
-            } else {
-                validEmulator = YES;
-                DDLogVerbose(@"This IS Basilisk II! =D");
+            DDLogVerbose(@"Not Basilisk II.");
+            thisEmulatorFamily = sheepshaverFamily;
+
+            if ([outputString rangeOfString:@"SheepShaver"].location == NSNotFound) {
+                DDLogVerbose(@"Not Sheepshaver.");
+                thisEmulatorFamily = undefinedFamily;
+
+                if ([outputString rangeOfString:@"Christian Bauer"].location == NSNotFound)
+                    DDLogVerbose(@"Not Christian Bauer.");
+
             }
         }
+
     }
     
     [emulatorTask release];
     [emulatorPipe release];
     
-    if (!validEmulator) {
+    if (thisEmulatorFamily == undefinedFamily) {
         DDLogWarn(@"Emulator is invalid");
     } else {
         //------------------------------------------------------------------------
@@ -292,12 +296,29 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             ];
             
             //Here we have all the fields to be inserted.
-            [newEmulatorObject setFamily:[NSNumber numberWithInt:basiliskFamily]];
-            
-            if ([applicationPath rangeOfString:@"Application Support"].location == NSNotFound)
-                [newEmulatorObject setName:[NSString stringWithFormat:@"B2 v%@ on %@", versionString, [[applicationPath stringByDeletingLastPathComponent] lastPathComponent]]];
-            else
-                [newEmulatorObject setName:[NSString stringWithFormat:@"B2 v%@ on App Support", versionString]];
+            [newEmulatorObject setFamily:[NSNumber numberWithInt:thisEmulatorFamily]];
+
+            NSString * nameToBeSet = [[[NSString alloc] init] autorelease];
+
+            if (thisEmulatorFamily == basiliskFamily) {
+                nameToBeSet = @"B2";
+            }
+
+            if (thisEmulatorFamily == sheepshaverFamily) {
+                nameToBeSet = @"SS";
+            }
+
+            if ([applicationPath rangeOfString:@"Application Support"].location == NSNotFound) {                
+                [newEmulatorObject setName:
+                    [NSString stringWithFormat:@"%@ v%@ on %@",
+                        nameToBeSet,
+                        versionString,
+                        [[applicationPath stringByDeletingLastPathComponent] lastPathComponent]]
+                ];
+            } else {
+                [newEmulatorObject setName:[NSString stringWithFormat:@"%@ v%@ on App Support", nameToBeSet, versionString]];
+            }
+
             [newEmulatorObject setMaintained:[NSNumber numberWithBool:maintainedByMedusa]];
             [newEmulatorObject setReadablePath:applicationPath];
             [newEmulatorObject setUnixPath:currentEmulatorUnixFile];

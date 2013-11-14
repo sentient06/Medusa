@@ -65,15 +65,15 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
     
     switch (iconValue) {
         case 1:
-            return [NSImage imageNamed:@"PerfectOld.png"];
+            return [NSImage imageNamed:@"BlackAndWhiteHappyMac.png"];
         case 2:
-            return [NSImage imageNamed:@"PerfectNew.png"];
+            return [NSImage imageNamed:@"ColouredHappyMac.png"];
         case 3:
             return [NSImage imageNamed:@"noDiskBW.png"];
         case 4:
             return [NSImage imageNamed:@"noDiskColour.png"];
         case 5:
-            return [NSImage imageNamed:@"UnsupportedRom.png"];
+            return [NSImage imageNamed:@"DeadMac.png"];
             
     }
     

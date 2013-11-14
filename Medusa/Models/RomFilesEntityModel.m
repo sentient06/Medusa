@@ -32,12 +32,12 @@
 
 #import "RomFilesEntityModel.h"
 #import "VirtualMachinesEntityModel.h"
-
+#import "EmulatorsEntityModel.h"
 
 @implementation RomFilesEntityModel
 
 @dynamic comments;
-@dynamic emulator;
+@dynamic emulatorType;
 @dynamic filePath;
 @dynamic modelName;
 @dynamic checksum;
@@ -45,19 +45,35 @@
 @dynamic romCategory;
 @dynamic machines;
 
-@dynamic mac68kOld;
-@dynamic mac68kNew;
-@dynamic macPPCOld;
-@dynamic macPPCNew;
+//@dynamic mac68kOld;
+//@dynamic mac68kNew;
+//@dynamic macPPCOld;
+//@dynamic macPPCNew;
 
 @dynamic fileSize;
 
+- (NSNumber *)icon {
+    
+    int myCategory  = [[self romCategory ] intValue];
+    int myEmulator  = [[self emulatorType] intValue];
+    int myCondition = [[self romCondition] intValue];
+    
+    if (myCondition == UnsupportedRom) {
+        return [NSNumber numberWithInt:DeadMac];
+    } else {
+        if (myEmulator >= vMacStandard && myEmulator <= vMacOther2) {
+            return [NSNumber numberWithInt:MiniVMacMac];
+        } else {
+            if (myCategory == OldWorldROM) {
+                return [NSNumber numberWithInt:BlackAndWhiteHappyMac];
+            } else if (myCategory >= NewWorldROM) {
+                return [NSNumber numberWithInt:ColouredHappyMac];
+            } else {
+                return [NSNumber numberWithInt:QuestionMarkMac];
+            }
+        }
+    }
 
-- (NSNumber *)icon {    
-    int value = [[self romCategory] intValue]; // 1 - 4
-    if (value < Unknown && [[self romCondition] intValue] == UnsupportedRom)
-        value = 5;
-    return [NSNumber numberWithInt:value];
 }
 
 @end

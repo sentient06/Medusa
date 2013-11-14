@@ -33,32 +33,10 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-//enum RomConditions {
-//    PerfectSheepNew        = 1,
-//    PerfectSheepOld        = 2,
-//    PerfectBasilisk        = 3,
-//    NoAppleTalk            = 4,
-//    FPURequired            = 5,
-//    NoAppleTalkFPURequired = 6,
-//    PerfectVMac            = 7,
-//    Unsupported            = 8
-//};
-
-enum EmulatorTypes {
-    vMacStandard = 1
-  , vMacModelCompilation
-  , BasiliskII
-  , vMacStandardAndBasiliskII
-  , vMacModelCompilationAndBasiliskII
-  , Sheepshaver
-  , EmulatorUnsupported
-};
-
 enum RomCategory {
-    OldWorld68k = 1
-  , PPCOldWorld
-  , PPCNewWorld
-  , Unknown
+    OldWorldROM = 1
+  , NewWorldROM
+  , NoCategory
 };
 
 enum RomConditions {
@@ -78,7 +56,15 @@ enum RomSizes {
     rom1MB,
     rom2MB,
     rom3MB,
-    rom4MB
+    rom4MB,
+};
+
+enum RomIcons {
+    DeadMac
+  , BlackAndWhiteHappyMac
+  , ColouredHappyMac
+  , MiniVMacMac
+  , QuestionMarkMac
 };
 
 @class VirtualMachinesEntityModel;
@@ -86,16 +72,17 @@ enum RomSizes {
 @interface RomFilesEntityModel : NSManagedObject
 
 @property (nonatomic, retain) NSString * comments;
-@property (nonatomic, retain) NSString * emulator;
+//@property (nonatomic, retain) NSString * emulator;
+@property (nonatomic, retain) NSNumber * emulatorType;
 @property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSString * modelName;
 @property (nonatomic, retain) NSString * checksum;
 @property (nonatomic, retain) NSNumber * romCondition;
 @property (nonatomic, retain) NSNumber * romCategory;
-@property (nonatomic, retain) NSNumber * mac68kOld;
-@property (nonatomic, retain) NSNumber * mac68kNew;
-@property (nonatomic, retain) NSNumber * macPPCOld;
-@property (nonatomic, retain) NSNumber * macPPCNew;
+//@property (nonatomic, retain) NSNumber * mac68kOld;
+//@property (nonatomic, retain) NSNumber * mac68kNew;
+//@property (nonatomic, retain) NSNumber * macPPCOld;
+//@property (nonatomic, retain) NSNumber * macPPCNew;
 @property (nonatomic, retain) NSNumber * fileSize;
 @property (nonatomic, retain) NSSet    * machines;
 

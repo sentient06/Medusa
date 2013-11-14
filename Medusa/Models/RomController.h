@@ -41,7 +41,7 @@
     NSString * checkMD5; // MD5 checksum for New World ROMs.
     int category;        // ROM category
     int fileCond;        // Condition of the ROM Image.
-    int emulator;        // Compatible emulators.
+    int emulator;        // Compatible emulator family.
     int fileSize;        // File size in bytes.
 }
 
@@ -52,6 +52,6 @@
 - (id)parseSingleRomFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
 - (void)parseRomFileAndSave:(NSString *)filePath; 
 - (void)parseRomFilesAndSave:(NSArray *)filesList;
-- (void)getDetailsForChecksum:(uint32)intChecksum;
+- (void)getDetailsForChecksum:(uint32)intChecksum AndMD5:(NSString *)md5Hash;
 
 @end

@@ -33,6 +33,7 @@
 #import "VirtualMachinesEntityModel.h"
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 #import "RomFilesEntityModel.h"
+#import "EmulatorsEntityModel.h"
 
 @implementation VirtualMachinesEntityModel
 
@@ -115,6 +116,32 @@
 
 - (NSNumber *)nextDiskIndex {
     return [NSNumber numberWithUnsignedInteger:[[self disks] count]];
+}
+
+
+//EmulatorUnsupported = 0
+//, vMacStandard
+//, vMacModelCompilation
+//, vMacOther1
+//, vMacOther2
+//, BasiliskII
+//, BasiliskIIOther1
+//, BasiliskIIOther2
+//, vMacStandardAndBasiliskII
+//, vMacModelCompilationAndBasiliskII
+//, EmulatorCombo1
+//, EmulatorCombo2
+//, Sheepshaver
+//, SheepshaverOther1
+//, SheepshaverOther2
+
+- (BOOL)sheepShaverSetup {
+    return [[[self romFile] emulatorType] intValue] >= Sheepshaver;
+}
+
+- (BOOL)basilisk2Setup {
+    int emulatorType = [[[self romFile] emulatorType] intValue];
+    return emulatorType >= BasiliskII && emulatorType <= BasiliskIIOther2;
 }
 
 @end

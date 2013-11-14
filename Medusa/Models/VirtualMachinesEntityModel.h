@@ -150,4 +150,7 @@ enum GestaltMacModels {
 - (NSNumber *)icon;
 - (BOOL)canRun;
 
+- (BOOL)sheepShaverSetup;
+- (BOOL)basilisk2Setup;
+
 @end

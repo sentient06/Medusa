@@ -32,13 +32,15 @@
 
 #import "RomController.h"
 #import "RomFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
+#import "EmulatorsEntityModel.h"
+#import "NSData+MD5.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_ERROR;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation RomController
@@ -109,6 +111,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         return nil;
     } else {
         uint32 intChecksum = [self extractChecksumForFile:filePath];
+        NSData * data = [NSData dataWithContentsOfFile:filePath];
+        NSString * md5Hash = [data MD5];
     
         BOOL success = YES;
         
@@ -139,33 +143,9 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
                 return nil;
             }        
             
-            [self getDetailsForChecksum:intChecksum];
+            [self getDetailsForChecksum:intChecksum AndMD5:md5Hash];
 
             if (emulator == EmulatorUnsupported) {
-                
-                
-//                switch([size intValue]) {
-//                    case 65536: //64KB
-//                    case 131072: //128KB
-//                    case 262144: //256KB
-//                        break;
-//                    case 524288: //512KB
-//                        emulator = BasiliskII;
-//                        fileCond = NoAppleTalk;
-//                        break;
-//                    case 1048576: //1MB
-//                    case 2097152: //2MB
-//                    case 3145728: //3MB
-//                    case 4194304: //4MB
-//                    default:
-//                        macModel = @"Unsupported ROM size.";
-//                        comments = [NSString stringWithFormat: @"%d", [size intValue]];
-//                        emulator = Unsupported;
-//                        break;
-//                }
-
-                
-                
                 DDLogError(@"Unsupported file");
                 return NO;
             }
@@ -183,50 +163,10 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             [managedObject setChecksum     : checksum];
             [managedObject setModelName    : macModel];
             [managedObject setComments     : comments];
-            [managedObject setRomCondition : [NSNumber numberWithInt:emulator]];
+            [managedObject setRomCondition : [NSNumber numberWithInt:fileCond]];
             [managedObject setRomCategory  : [NSNumber numberWithInt:category]];
             [managedObject setFileSize     : [NSNumber numberWithInt:fileSize]];
-            
-            [managedObject setMac68kOld:[NSNumber numberWithBool:NO]];
-            [managedObject setMac68kNew:[NSNumber numberWithBool:NO]];
-            [managedObject setMacPPCOld:[NSNumber numberWithBool:NO]];
-            [managedObject setMacPPCNew:[NSNumber numberWithBool:NO]];
-            
-            // These are necessary to be used in interface bindings
-            switch (fileSize) {
-                case rom64KB:
-                case rom128KB:
-                case rom256KB:
-                case rom512KB:
-                    [managedObject setMac68kOld:[NSNumber numberWithBool:YES]];
-                break;
-                case rom1MB:
-                    [managedObject setMac68kNew:[NSNumber numberWithBool:YES]];
-                break;
-                case rom2MB:
-                case rom3MB:
-                case rom4MB:
-                    [managedObject setMacPPCOld:[NSNumber numberWithBool:YES]];
-                break;
-            }
-            
-            switch (emulator) {
-                    
-                case vMacStandard:
-                case vMacModelCompilation:
-                    [managedObject setEmulator:@"vMac"];
-                break;
-                case BasiliskII:
-                    [managedObject setEmulator:@"Basilisk"];
-                break;
-                case vMacStandardAndBasiliskII:
-                    [managedObject setEmulator:@"Basilisk"];
-                break;
-                case Sheepshaver:
-                    [managedObject setEmulator:@"Sheepshaver"];
-                break;
-
-            }
+            [managedObject setEmulatorType : [NSNumber numberWithInt:emulator]];
 
             //----------------------------------------------------------------------
             
@@ -293,32 +233,14 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
  * http://minivmac.sourceforge.net/mac68k.html
  * http://www.jagshouse.com/plusrom.html
  */
-- (void)getDetailsForChecksum:(uint32)intChecksum {
-    
-//    BOOL sheepshaverEnabled = YES; //[[NSUserDefaults standardUserDefaults] boolForKey:@"sheepshaverEnabled"];
-    
-//    NSString * romPath = [[NSString alloc] initWithString:filePath];
-    
-//    NSData * data   = [NSData dataWithContentsOfFile:romPath];
-//    NSUInteger len  = [data length];
-//    Byte * byteData = (Byte*)malloc(len);
-//    memcpy(byteData, [data bytes], len);
-    
-//    NSNumber * size = [[NSNumber alloc] initWithUnsignedLong:len/2^20];
-    
-//    switch (len / 1024) {
-//        case 64  : romSize = rom64KB;  break;
-//        case 128 : romSize = rom128KB; break;
-//        case 256 : romSize = rom256KB; break;
-//        case 512 : romSize = rom512KB; break;
-//        case 1024: romSize = rom1MB;   break;
-//        case 2048: romSize = rom2MB;   break;
-//        case 3072: romSize = rom3MB;   break;
-//        case 4096: romSize = rom4MB;   break;
-//        default:   romSize = romNull;  break;
-//    }
+- (void)getDetailsForChecksum:(uint32)intChecksum AndMD5:(NSString *)md5Hash {
     
     //http://guides.macrumors.com/68k
+    
+    NSLog(@"Here");
+    
+    emulator = EmulatorUnsupported;
+    category = OldWorldROM;
     
     switch( intChecksum ) {
         //------------------------------------------------
@@ -327,7 +249,6 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             macModel = @"Macintosh 128";
             comments = @"First Macintosh ever made.\nThis ROM can't be used on emulation.";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = UnsupportedRom;
             break;
             
@@ -335,7 +256,6 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             macModel = @"Macintosh 512K";
             comments = @"Second Macintosh ever made.\nThis ROM can't be used on emulation.";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = UnsupportedRom;
             break;
         //------------------------------------------------
@@ -344,7 +264,6 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             macModel = @"Macintosh Plus v1 Lonely Hearts";
             comments = @"This ROM was buggy and had 2 revisions!\nvMac can't boot from it.\nThe second revision (v3) is more recommended.";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = UnsupportedRom;
             break;
             
@@ -352,7 +271,6 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             macModel = @"Macintosh Plus v2 Lonely Heifers";
             comments = @"This ROM was the first revision and still had some bugs.\nv3 is more recommended.";
             emulator = vMacStandard;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
             
@@ -360,7 +278,6 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             macModel = @"Macintosh Plus v3 Loud Harmonicas";
             comments = @"Best Mac Plus ROM, second revision from the original.\nGood for vMac.";
             emulator = vMacStandard;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         //------------------------------------------------
@@ -369,56 +286,48 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             macModel = @"Macintosh II v1";
             comments = @"First Mac II ROM, had a memory problem\nThis one is rare!\nvMac won't boot it.";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = UnsupportedRom;
             break;
         case 0xB2E362A8:
             macModel = @"Macintosh SE";
             comments = @"";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = UnsupportedRom;
             break;
         case 0x9779D2C4:
             macModel = @"Macintosh II v2";
             comments = @"Mac II ROM's revision";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = UnsupportedRom;
             break;
         case 0xB306E171:
             macModel = @"Macintosh SE FDHD";
             comments = @"FDHD stands for 'Floppy Disk High Density'\nThis mac was later called Macintosh SE Superdrive";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = UnsupportedRom;
             break;
         case 0x97221136:
             macModel = @"Macintosh IIx, IIcx, SE/30";
             comments = @"'32-bit dirty' ROM, since it has code using 24-bit addressing.\n'x' stands for the 68030 processor family, 'c' stands for 'compact'\nApple used 'SE/30' to avoid the acronym 'SEx'";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = UnsupportedRom;
             break;
         case 0x96CA3846:
             macModel = @"Macintosh Portable";
             comments = @"One of the first 'laptops'!";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = UnsupportedRom;
             break;
         case 0xA49F9914:
             macModel = @"Macintosh Classic (XO)";
             comments = @"From Mac Classic with XO ROMDisk: It has the ability to boot from ROM by holding down cmd+opt+x+o at startup.\nLimited support in Basilisk II.";//Classic emulation is broken on Basilisk
             emulator = vMacModelCompilationAndBasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0x96645F9C:
             macModel = @"Macintosh PowerBook 100";
             comments = @"";
             emulator = EmulatorUnsupported;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         //------------------------------------------------
@@ -427,42 +336,36 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             macModel = @"Macintosh IIfx";
             comments = @"Known as Stealth, Blackbird, F-16, F-19, Four Square, IIxi, Zone 5 and Weed-Whacker.\nEmulation requires FPU and AppleTalk is not supported.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NoAppleTalkAndFPURequired;
             break;
         case 0x350EACF0:
             macModel = @"Macintosh LC"; // Pizza box
             comments = @"AppleTalk is not supported in Basilisk.";
             emulator = NoAppleTalk;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0x3193670E: //messy checksum
             macModel = @"Macintosh Classic II";
             comments = @"Emulation may require the FPU and AppleTalk may not be supported.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NoAppleTalkAndFPURequired;
             break;            
         case 0x368CADFE:
             macModel = @"Macintosh IIci";
             comments = @"In Basilisk, FPU must be enabled and appleTalk is not supported.\nThis is a 32-bit clean ROM.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NoAppleTalkAndFPURequired;
             break;
         case 0x36B7FB6C:
             macModel = @"Macintosh IIsi";
             comments = @"In Basilisk, AppleTalk is not supported.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NoAppleTalk;
             break;
         case 0x35C28F5F: // Pizza box too
             macModel = @"Mac LC II or Performa 400/405/410/430"; //IIci?
             comments = @"In Basilisk, AppleTalk is not supported.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NoAppleTalk;
             break;
             //--------------------------------------------
@@ -471,14 +374,12 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             macModel = @"Macintosh IIx";
             comments = @"AppleTalk may not be supported.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NoAppleTalk;
             break;
         case 0x4957EB49: 
             macModel = @"Mac IIvx (Brazil) or IIvi/Performa 600";
             comments = @"Mac IIvx was the last of Mac II series.\nAppleTalk may not be supported for emulation.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NoAppleTalk;
             break;
         //------------------------------------------------
@@ -488,108 +389,91 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             macModel = @"Quadra 700/900 or PowerBook 140/170";
             comments = @"AppleTalk is not supported on Basilisk II.\nThis is the worst known 1MB ROM.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NoAppleTalk;
             break;
         case 0x3DC27823:
             macModel = @"Macintosh Quadra 950";
             comments = @"AppleTalk is not supported on Basilisk II.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NoAppleTalk;
             break;
         case 0x49579803: // Very strange didn't find it, called IIvx
                          // 0x49579803 (different size)
             macModel = @"Macintosh IIvx ?"; //Again? Brazil?
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xE33B2724:
             macModel = @"Powerbook 160/165/165c/180/180c";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xECFA989B:
             macModel = @"Powerbook 210/230/250";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xEC904829:
             macModel = @"Macintosh LC III";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xECBBC41C:
             macModel = @"Macintosh LCIII/LCIII+ or Performa 460";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xECD99DC0:
             macModel = @"Macintosh Color Classic / Performa 250";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xF1A6F343:
             macModel = @"Quadra/Centris 610 or 650";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xF1ACAD13:
             macModel = @"Quadra/Centris 610 or 650 or 800";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0x0024D346:
             macModel = @"Powerbook Duo 270C";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xEDE66CBD:
             macModel = @"Color Classic II, LC 550, Performa 275/550/560, Mac TV";//Maybe Performa 450-550";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xFF7439EE:
             macModel = @"LC 475/575 Quadra 605 Performa 475/476/575/577/578";
             comments = @"Codename Aladdin";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition; //FPURequired; //?
             break;
         case 0x015621D7:
             macModel = @"Powerbook Duo 280 or 280C";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0x06684214:
             macModel = @"LC/Quadra/Performa 630";
             comments = @"Codename Crusader";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0xFDA22562:
             macModel = @"Powerbook 150";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         case 0x064DC91D:
             macModel = @"LC/Performa 580/588";
             comments = @"AppleTalk is reported to work in Basilisk II.";
             emulator = BasiliskII;
-            category = OldWorld68k;
             fileCond = NormalCondition;
             break;
         //------------------------------------------------
@@ -598,19 +482,16 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         case 0xB6909089: // or 0x68LC040 ?
             macModel = @"PowerBook 520/520c/540/540c";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x5BF10FD1:
             macModel = @"Macintosh Quadra 660av or 840av";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x4D27039C:
             macModel = @"PowerBook 190 or 190cs";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition; //fpu required???
             break;
         //------------------------------------------------
@@ -618,126 +499,280 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         case 0x9FEB69B3:
             macModel = @"Power Mac 6100/7100/8100";
             emulator = Sheepshaver;
-            category = OldWorld68k;
-            fileCond = PPCOldWorld;
+            fileCond = OldWorldROM;
             break;
         case 0x9C7C98F7:
             macModel = @"Workgroup Server 9150 80MHz";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x9B7A3AAD:
             macModel = @"Power Mac 7100 (newer)";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x63ABFD3F:
             macModel = @"Power Mac & Performa 5200/5300/6200/6300";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x9B037F6F:
             macModel = @"Workgroup Server 9150 120MHz";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x83C54F75:
             macModel = @"PowerBook 2300 & PB5x0 PPC Upgrade";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x9630C68B:
             macModel = @"Power Mac 7200/7500/8500/9500 v2";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x96CD923D:
             macModel = @"Power Mac 7200/7500/8500/9500 v1";
             comments = @"Runs on Sheepshaver";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x6F5724C0:
             macModel = @"PowerM ac/Performa 6400";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x83A21950:
             macModel = @"PowerBook 1400, 1400cs";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x6E92FE08:
             macModel = @"Power Mac 6500";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x960E4BE9:
             macModel = @"Power Mac 7300/7600/8600/9600 (v1)";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x960FC647:
             macModel = @"Power Mac 8600 or 9600 (v2)";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x78F57389:
             macModel = @"Power Mac G3 (v3)";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0x79D68D63:
             macModel = @"Power Mac G3 desktop";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0xCBB01212:
             macModel = @"PowerBook G3 Wallstreet";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         case 0xB46FFB63:
             macModel = @"PowerBook G3 Wallstreet PDQ";
             emulator = Sheepshaver;
-            category = PPCOldWorld;
             fileCond = NormalCondition;
             break;
         //------------------------------------------------
-        // 4MB New World ROM
-        case 0x3C434852:
-            macModel = @"Mac OS ROM 1.6";
-            comments = @"Extracted from the \"MacOS ROM Update 1.0\". Very popular."; // be65e1c4f04a3f2881d6e8de47d66454
-            emulator = Sheepshaver;
-            category = PPCNewWorld;
-            fileCond = NormalCondition;
-            break;
-        //------------------------------------------------
-        // Unknown
+        // New World ROM
         default:
-            macModel = @"Unknown ROM";
-            category = Unknown;
-            emulator = EmulatorUnsupported;
-            break;
+            
+            NSLog(@"New World!");
+            NSLog(@"old: %d, new: %d, undefined: %d", OldWorldROM, NewWorldROM, NoCategory);
+            
+            category = NewWorldROM;
+            emulator = Sheepshaver;
+
+            if ([md5Hash isEqualToString:@"e0fc03faa589ee066c411b4603e0ac89"]) {
+                macModel = @"Mac OS ROM 1.1";
+            } else
+            if ([md5Hash isEqualToString:@"17b134a0d837518498c06579aa4ff053"]) {
+                macModel = @"Mac OS ROM 1.1.2";
+            } else
+            if ([md5Hash isEqualToString:@"133ef27acf2f360341870f212c7207d7"]) {
+                macModel = @"Mac OS ROM 1.1.5";
+            } else
+            if ([md5Hash isEqualToString:@"3756f699eadaabf0abf8d3322bed70e5"]) {
+                macModel = @"Mac OS ROM 1.2";
+                comments = @"From Mac OS 8.5.1 Bundle:\nPower Macintosh G3 (Blue and White) or..\nMacintosh Server G3 (Blue and White).";
+            } else
+            if ([md5Hash isEqualToString:@"483233f45e8ca33fd2fbe5201f06ac18"]) {
+                macModel = @"Mac OS ROM 1.2.1";
+                comments = @"Version from the iMac Update 1.1.\nAlso bundled on Mac OS 8.5.1 (Colors iMac 266 MHz Bundle).";
+            } else
+            if ([md5Hash isEqualToString:@"1bf445c27513dba473cca51219184b07"]) {
+                macModel = @"Mac OS ROM 1.4";
+                comments = @"Rom extracted from Mac OS 8.6\nor Colors iMac 333 MHz Bundle\nor Power Macintosh G3 (Blue and White) Mac OS 8.6 Bundle";
+            } else
+            if ([md5Hash isEqualToString:@"be65e1c4f04a3f2881d6e8de47d66454"]) {
+                macModel = @"Mac OS ROM 1.6";
+                comments = @"Very popular ROM extracted from the Mac OS ROM Update 1.0.\nAlso available on the Macintosh PowerBook G3 Series 8.6 Bundle.";
+            } else
+            if ([md5Hash isEqualToString:@"dd26176882d14c39219aca668d7e97cb"]) {
+                macModel = @"Mac OS ROM 1.7.1";
+            } else
+            if ([md5Hash isEqualToString:@"02350bfe27c4dea1d2c13008efb3a036"]) {
+                macModel = @"Mac OS ROM 1.8.1";
+            } else
+            if ([md5Hash isEqualToString:@"722fe6481b4d5c04e005e5ba000eb00e"]) {
+                macModel = @"Mac OS ROM 2.3.1";
+            } else
+            if ([md5Hash isEqualToString:@"4bb3e019c5d7bfd5f3a296c13ad7f08f"]) {
+                macModel = @"Mac OS ROM 2.5.1";
+                comments = @"ROM from the Mac OS 8.6 bundled on Power Mac G4 (AGP).\nThis was rare before being seeded as a torrent (still difficult to get, though).";
+            } else
+            if ([md5Hash isEqualToString:@"d387acd4503ce24e941f1131433bbc0f"]) {
+                macModel = @"Mac OS ROM 3.0";
+            } else
+            if ([md5Hash isEqualToString:@"9e990cde6c30a3ab916c1390b29786c7"]) {
+                macModel = @"Mac OS ROM 3.1.1";
+                comments = @"Mac OS 9.0 bundled on iBook or\nMac OS 9.0 bundled on Power Mac G4";
+            } else
+            if ([md5Hash isEqualToString:@"bbfbb4c884741dd75e03f3de67bf9370"]) {
+                macModel = @"Mac OS ROM 3.2.1";
+            } else
+            if ([md5Hash isEqualToString:@"386ea1c81730f9b06bfc2e6c36be8d59"]) {
+                macModel = @"Mac OS ROM 3.5";
+                comments = @"Mac OS 9.0.2 installed on PowerBook";
+            } else
+            if ([md5Hash isEqualToString:@"????????????????????????????????"]) {
+                macModel = @"Mac OS ROM 3.6";
+                comments = @"Mac OS 9.0.3 bundled on iMac";
+            } else
+            if ([md5Hash isEqualToString:@"8f388ccf6f96c58bda5ae83d207ca85a"]) {
+                macModel = @"Mac OS ROM 3.7";
+                comments = @"Mac OS 9.0.4 Retail/Software Update or\nMac OS 9.0.4 installed on PowerBook";
+            } else
+            if ([md5Hash isEqualToString:@"3f182e059a60546f93114ed3798d5751"]) {
+                macModel = @"Mac OS ROM 3.8";
+                comments = @"Extracted from Ethernet Update 1.0.\nVery clever!";
+            } else
+            if ([md5Hash isEqualToString:@"bf9f186ba2dcaaa0bc2b9762a4bf0c4a"]) {
+                macModel = @"Mac OS ROM 4.6.1";
+                comments = @"Mac OS 9.0.4 installed on iMac (2000)";
+            } else
+            if ([md5Hash isEqualToString:@"????????????????????????????????"]) {
+                macModel = @"Mac OS ROM 4.9.1";
+                comments = @"Mac OS 9.0.4 installed on Power Mac G4";
+            } else
+            if ([md5Hash isEqualToString:@"52ea9e30d59796ce8c4822eeeb0f543e"]) {
+                macModel = @"Mac OS ROM 5.2.1";
+                comments = @"Mac OS 9.0.4 installed on Power Mac G4 Cube";
+            } else
+            if ([md5Hash isEqualToString:@"????????????????????????????????"]) {
+                macModel = @"Mac OS ROM 5.3.1";
+                comments = @"Mac OS 9.0.4 installed on iBook";
+            } else
+            if ([md5Hash isEqualToString:@"????????????????????????????????"]) {
+                macModel = @"Mac OS ROM 5.5.1";
+                comments = @"Mac OS 9.0.4 installed on Power Mac G4";
+            } else
+            if ([md5Hash isEqualToString:@"5e9a959067e1261d19427f983dd10162"]) {
+                macModel = @"Mac OS ROM 6.1";
+                comments = @"Mac OS 9.1 Update";
+            } else
+            if ([md5Hash isEqualToString:@"19d596fc3028612edb1553e4d2e0f345"]) {
+                macModel = @"Mac OS ROM 6.7.1";
+                comments = @"Mac OS 9.1 installed on Power Mac G4";
+            } else
+            if ([md5Hash isEqualToString:@"14cd0b3d8a7e022620b815f4983269ce"]) {
+                macModel = @"Mac OS ROM 7.5.1";
+                comments = @"Mac OS 9.1 installed on iMac (2001)";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"28a08b4d5d5e4ab113c5fc1b25955a7c"]) {
+                macModel = @"Mac OS ROM 7.8.1";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"1486fe0b293e23125c00b9209435365c"]) {
+                macModel = @"Mac OS ROM 7.9.1";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"6fc4679862b2106055b1ce301822ffeb"]) {
+                macModel = @"Mac OS ROM 8.3.1";
+                comments = @"Mac OS 9.2 installed on Power Mac G4 (QuickSilver)";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"f97d43821fea307578697a64b1705f8b"]) {
+                macModel = @"Mac OS ROM 8.4";
+                comments = @"Mac OS 9.2.1 Update";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"d81574f35e97a658eab99df52529251e"]) {
+                macModel = @"Mac OS ROM 8.6.1";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"97db5e70d05ab7568d8a1f7ddd3b901a"]) {
+                macModel = @"Mac OS ROM 8.7";
+                comments = @"Mac OS 9.2.2 Update";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"65e3bc1fee886bbe1aabe0faa4b8cda2"]) {
+                macModel = @"Mac OS ROM 8.9.1";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"66210b4f71df8a580eb175f52b9d0f88"]) {
+                macModel = @"Mac OS ROM 9.0.1";
+                comments = @"Mac OS 9.2.2 installed on iMac (2001)";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"c5f7aaaf28d7c7eac746e9f26b183816"]) {
+                macModel = @"Mac OS ROM 9.1.1";
+                comments = @"From iMac G4 Restore CD.";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"13889037360fe1567c7e7f89807453b0"]) {
+                macModel = @"Mac OS ROM 9.2.1f2";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"b36a5f1d814291a22457adfa2331b379"]) {
+                macModel = @"Mac OS ROM 9.5.1";
+                comments = @"Mac OS 9.2.2 installed on iMac (17-inch Flat Panel)";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"3c08de22aeaa7d7fdb14df848fbaa90d"]) {
+                macModel = @"Mac OS ROM 9.6.1";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"e74f8c6bb52a641b856d821be7a65275"]) {
+                macModel = @"Mac OS ROM 9.7.1";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"4e8d07f8e0d4af6d06336688013972c3"]) {
+                macModel = @"Mac OS ROM 9.8.1";
+
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"1fb3de4d87889c26068dd88779dc20e2"]) {
+                macModel = @"Mac OS ROM 10.1.1";
+                emulator = EmulatorUnsupported;
+            } else
+            if ([md5Hash isEqualToString:@"48fd7a428aaebeaec2dea347795a4910"]) {
+                macModel = @"Mac OS ROM 10.2.1";
+                emulator = EmulatorUnsupported;
+            } else {
+                macModel = @"Unsupported ROM size.";
+                comments = @"Size should be 64KB, 128KB, 256KB, 512KB, 1MB, 2MB, 3MB or 4MB.";
+                emulator = EmulatorUnsupported;
+                category = NoCategory;
+            }
+
+        break;
 
     }
     
-    // be65e1c4f04a3f2881d6e8de47d66454
+    if (category == NewWorldROM) {
+        checksum = md5Hash;
+    }
     
     if (comments == nil) {
         comments = @"";

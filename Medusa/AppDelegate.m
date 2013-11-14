@@ -57,7 +57,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -666,7 +666,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     DDLogVerbose(@"Saving...");
     NSError * error;
     if (![[self managedObjectContext] save:&error]) {
-        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        DDLogError(@"Whoops, couldn't save: %@\n\n%@", [error localizedDescription], [error userInfo]);
         DDLogVerbose(@"Check 'App Delegate' class, saveCloneVirtualMachine");
     }
 }
