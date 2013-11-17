@@ -54,6 +54,8 @@ typedef enum {
     
     //--------------------------------------------------------------------------
     //Standard variables
+    NSMutableArray           * allGestaltModelsArray;
+    NSObject * selectedGestaltModel;
 
     NSManagedObjectContext * managedObjectContext;
     NSMutableArray         * menuObjectsArray;
@@ -97,6 +99,8 @@ typedef enum {
 // Standard variables properties.
 @property (assign) IBOutlet NSWindow * VMWindow;
 @property (copy) NSMutableArray * menuObjectsArray;
+@property (copy) NSMutableArray * allGestaltModelsArray;
+@property (assign) NSObject * selectedGestaltModel;
 
 //------------------------------------------------------------------------------
 // Application properties.

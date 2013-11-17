@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */; };
 		81134C4415540B2900785866 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesController.m */; };
+		811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 811C770818369E7800C681C6 /* MacintoshModelModel.m */; };
 		811EF6EB1804B4160011DDBD /* KeyboardLayoutValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 811EF6EA1804B4160011DDBD /* KeyboardLayoutValueTransformer.m */; };
 		8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8126596817D724DE00395990 /* MedusaIcon5.icns */; };
 		812A83A217EF5FF100B355BD /* DiskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 812A83A117EF5FF000B355BD /* DiskController.m */; };
@@ -150,6 +151,8 @@
 		810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineIconValueTransformer.h; path = TransformerControllers/VirtualMachineIconValueTransformer.h; sourceTree = "<group>"; };
 		810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineIconValueTransformer.m; path = TransformerControllers/VirtualMachineIconValueTransformer.m; sourceTree = "<group>"; };
 		81134C4315540B2900785866 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Models/PreferencesController.m; sourceTree = "<group>"; };
+		811C770718369E7800C681C6 /* MacintoshModelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacintoshModelModel.h; path = Models/MacintoshModelModel.h; sourceTree = "<group>"; };
+		811C770818369E7800C681C6 /* MacintoshModelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MacintoshModelModel.m; path = Models/MacintoshModelModel.m; sourceTree = "<group>"; };
 		811EF6E91804B4160011DDBD /* KeyboardLayoutValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardLayoutValueTransformer.h; path = TransformerControllers/ImageTransformers/KeyboardLayoutValueTransformer.h; sourceTree = "<group>"; };
 		811EF6EA1804B4160011DDBD /* KeyboardLayoutValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardLayoutValueTransformer.m; path = TransformerControllers/ImageTransformers/KeyboardLayoutValueTransformer.m; sourceTree = "<group>"; };
 		8126596817D724DE00395990 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon5.icns; path = Medusa/Images/Icons/MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
@@ -360,6 +363,15 @@
 			);
 			name = DataModel;
 			path = DataModels;
+			sourceTree = "<group>";
+		};
+		811C770518369E3100C681C6 /* BackEndModels */ = {
+			isa = PBXGroup;
+			children = (
+				811C770718369E7800C681C6 /* MacintoshModelModel.h */,
+				811C770818369E7800C681C6 /* MacintoshModelModel.m */,
+			);
+			name = BackEndModels;
 			sourceTree = "<group>";
 		};
 		812AFB4B1833F54E00C1FF36 /* Categories */ = {
@@ -651,6 +663,7 @@
 		818987D31538D41900A32B6A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				811C770518369E3100C681C6 /* BackEndModels */,
 				816F654915A19C1A00687FA2 /* HelpingModels */,
 				81E84DEA1565B1EF0002D4DA /* EntityModels */,
 			);
@@ -1037,6 +1050,7 @@
 				8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */,
 				817334F3182D519900EDBF05 /* Medusa.xcdatamodeld in Sources */,
 				812AFB4E1833F57600C1FF36 /* NSData+MD5.m in Sources */,
+				811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

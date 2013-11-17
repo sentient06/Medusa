@@ -42,6 +42,7 @@
 #import "EmulatorController.h"
 #import "EmulatorsEntityModel.h"
 #import "HelpDocumentationController.h"
+#import "MacintoshModelModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -59,6 +60,9 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 @synthesize VMWindow;
 @synthesize menuObjectsArray;
 @synthesize virtualMachine;
+
+@synthesize allGestaltModelsArray;
+@synthesize selectedGestaltModel;
 
 //------------------------------------------------------------------------------
 // Application synthesizers.
@@ -113,6 +117,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
  * @discussion  Always in the top of the files!
  */
 - (void)dealloc {
+    
+    [allGestaltModelsArray release];
     [managedObjectContext processPendingChanges];
     [managedObjectContext release];
     [virtualMachine release];
@@ -519,6 +525,32 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 }
 
 //------------------------------------------------------------------------------
+// Observers
+#pragma mark – Observers
+
+/*!
+ * @method      observeValueForKeyPath:
+ *              ofObject:
+ *              change:
+ *              context:
+ * @abstract    Observer method.
+ */
+- (void)observeValueForKeyPath:(NSString *)keyPath 
+                      ofObject:(id)object 
+                        change:(NSDictionary *)change 
+                       context:(void *)context {
+    
+    if ([keyPath isEqualToString:@"selectedGestaltModel"]) {
+//        NSLog(@"%@", [object valueForKeyPath:keyPath]);
+        if ([[object valueForKeyPath:keyPath] respondsToSelector:@selector(modelId)]) {
+            [virtualMachine setMacModel:[[object valueForKeyPath:keyPath] modelId]];
+//            [[NSApp delegate] saveCoreData];
+        }
+    }
+    
+}
+
+//------------------------------------------------------------------------------
 // Init methods
 #pragma mark – Init methods
 
@@ -583,6 +615,40 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 //         name:NSWindowWillCloseNotification
 //         object:window];
         DDLogVerbose(@"new vm controller init");
+        
+        
+        
+        
+        
+        
+        //------------------------
+        
+        allGestaltModelsArray = [[NSMutableArray alloc] init];
+        
+        NSDictionary * allModels = [MacintoshModelModel fetchAllAvailableModelsForChecksum:0];
+        
+        NSEnumerator * modelEnumerator = [allModels keyEnumerator];
+        id key;
+        while ((key = [modelEnumerator nextObject])) {
+            MacintoshModelModel * newModel = [
+                [MacintoshModelModel alloc]
+                    initWithName:[allModels objectForKey:key]
+                      AndModelId:key
+            ];
+            [allGestaltModelsArray addObject:newModel];
+            [newModel release];
+        }
+        
+        [   self addObserver:self
+                  forKeyPath:@"selectedGestaltModel"
+                     options:NSKeyValueObservingOptionNew
+                     context:nil
+        ];
+        
+        //-----------------------
+        
+        
+        
     }
     
     return self;
