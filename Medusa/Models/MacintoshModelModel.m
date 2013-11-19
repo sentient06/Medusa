@@ -11,8 +11,13 @@
 @implementation MacintoshModelModel
 @synthesize modelName, modelId;
 
+- (void)dealloc {
+    [modelId release];
+    [modelName release];
+}
+
 + (NSDictionary *)fetchAllAvailableModelsForChecksum:(uint32)gestaltId {
-    return [[NSDictionary dictionaryWithObjectsAndKeys:
+    return [NSDictionary dictionaryWithObjectsAndKeys:
         @"1. Mac Classic",                  [NSNumber numberWithInt:1]
       , @"2. Mac XL",                       [NSNumber numberWithInt:2]
       , @"3. Mac 512KE",                    [NSNumber numberWithInt:3]
@@ -72,8 +77,8 @@
       , @"102. PowerBook Duo 280",          [NSNumber numberWithInt:102]
       , @"103. PowerBook Duo 280c",         [NSNumber numberWithInt:103]
       , @"115. PowerBook 150",              [NSNumber numberWithInt:115]
-      , @"1. unknown",                      [NSNumber numberWithInt:-1]
-      , nil] autorelease];
+//      , @"-1. unknown",                      [NSNumber numberWithInt:-1]
+      , nil];
 }
 
 - (id)initWithName:(NSString *)newName AndModelId:(NSNumber *)newModelId {

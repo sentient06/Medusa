@@ -48,7 +48,7 @@
         <attribute name="jitEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="keyboardLayout" attributeType="Integer 16" maxValueString="259" defaultValueString="5" syncable="YES"/>
         <attribute name="lazyCacheEnabled" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
-        <attribute name="macModel" attributeType="Integer 16" defaultValueString="20" syncable="YES"/>
+        <attribute name="macModel" attributeType="Integer 32" defaultValueString="20" syncable="YES"/>
         <attribute name="memory" optional="YES" attributeType="Integer 16" maxValueString="2048" defaultValueString="32" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="network" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>

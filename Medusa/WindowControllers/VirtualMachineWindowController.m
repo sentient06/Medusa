@@ -1,4 +1,4 @@
-//
+    //
 //  VirtualMachineWindowController.m
 //  Medusa
 //
@@ -541,11 +541,9 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
                        context:(void *)context {
     
     if ([keyPath isEqualToString:@"selectedGestaltModel"]) {
-//        NSLog(@"%@", [object valueForKeyPath:keyPath]);
-        if ([[object valueForKeyPath:keyPath] respondsToSelector:@selector(modelId)]) {
-            [virtualMachine setMacModel:[[object valueForKeyPath:keyPath] modelId]];
-//            [[NSApp delegate] saveCoreData];
-        }
+        NSLog(@"%@", [object valueForKeyPath:keyPath]);
+        NSLog(@"%@", [[object valueForKeyPath:keyPath] modelId]);
+        [virtualMachine setMacModel:[[object valueForKeyPath:keyPath] modelId]];
     }
     
 }
@@ -625,19 +623,22 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         
         allGestaltModelsArray = [[NSMutableArray alloc] init];
         
-        NSDictionary * allModels = [MacintoshModelModel fetchAllAvailableModelsForChecksum:0];
-        
+        NSDictionary * allModels = [[NSDictionary alloc] initWithDictionary:[MacintoshModelModel fetchAllAvailableModelsForChecksum:0]];
+
         NSEnumerator * modelEnumerator = [allModels keyEnumerator];
         id key;
         while ((key = [modelEnumerator nextObject])) {
             MacintoshModelModel * newModel = [
                 [MacintoshModelModel alloc]
-                    initWithName:[allModels objectForKey:key]
-                      AndModelId:key
+                    init
             ];
+            [newModel setModelName:[allModels objectForKey:key]];
+            [newModel setModelId:key];
             [allGestaltModelsArray addObject:newModel];
             [newModel release];
         }
+        
+        [allModels release];
         
         [   self addObserver:self
                   forKeyPath:@"selectedGestaltModel"

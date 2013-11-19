@@ -8,7 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MacintoshModelModel : NSObject
+@interface MacintoshModelModel : NSObject {
+    NSString * modelName;
+    NSNumber * modelId;
+}
 @property (nonatomic, retain) NSString * modelName;
 @property (nonatomic, retain) NSNumber * modelId;
 
