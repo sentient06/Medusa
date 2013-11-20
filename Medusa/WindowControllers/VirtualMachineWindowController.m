@@ -541,8 +541,6 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
                        context:(void *)context {
     
     if ([keyPath isEqualToString:@"selectedGestaltModel"]) {
-        NSLog(@"%@", [object valueForKeyPath:keyPath]);
-        NSLog(@"%@", [[object valueForKeyPath:keyPath] modelId]);
         [virtualMachine setMacModel:[[object valueForKeyPath:keyPath] modelId]];
     }
     
@@ -579,18 +577,63 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         
         // -- Share tab
         
-        //Handle the status of the open path button in the share area:
+        // Handle the status of the open path button in the share area:
         
         BOOL enabledShare = [[virtualMachine shareEnabled] boolValue] == YES;
         BOOL shareDefault = [[virtualMachine useDefaultShare] boolValue] == YES;
         
         if ( enabledShare &  shareDefault ) {          
             currentPathOption = useStandardPathOption;
-        }else if ( enabledShare & !shareDefault ) {
+        } else if ( enabledShare & !shareDefault ) {
             currentPathOption = usePersonalPathOption;
-        }else if ( !enabledShare & !shareDefault ) {
+        } else if ( !enabledShare & !shareDefault ) {
             currentPathOption = useNoSharedPathOption;
         }
+        
+        //------------------------------------------------------
+        // Populates the list of Macintosh models and selects current one.
+        
+        int emulatorType = [[[virtualMachine romFile] emulatorType] intValue];
+
+        allGestaltModelsArray = [[NSMutableArray alloc] init];
+        
+        NSDictionary * allModels = [
+            [NSDictionary alloc] initWithDictionary:
+//                [MacintoshModelModel fetchAllAvailableModelsForChecksum:0]
+                [MacintoshModelModel fetchAllAvailableModelsForEmulatorType:emulatorType]
+        ];
+        
+        NSArray * sortKeys = [[allModels allKeys] sortedArrayUsingComparator:^(id obj1, id obj2) {
+            if ([obj1 intValue] > [obj2 intValue])
+                return (NSComparisonResult)NSOrderedDescending;
+            if ([obj1 intValue] < [obj2 intValue])
+                return (NSComparisonResult)NSOrderedAscending;
+            return (NSComparisonResult)NSOrderedSame;
+        }];
+        
+        for (NSNumber * key in sortKeys) {
+            MacintoshModelModel * newModel = [
+                [MacintoshModelModel alloc] init
+            ];
+            
+            [newModel setModelName:[allModels objectForKey:key]];
+            [newModel setModelId:key];
+            [allGestaltModelsArray addObject:newModel];
+            
+            if ([key intValue] == [[virtualMachine macModel] intValue]) {
+                [self setSelectedGestaltModel:newModel];
+            }
+            
+            [newModel release];
+        }
+
+        [allModels release];
+        
+        [ self addObserver:self
+                forKeyPath:@"selectedGestaltModel"
+                   options:NSKeyValueObservingOptionNew
+                   context:nil
+        ];
     
     }
     //----------------------------------------------------------
@@ -613,43 +656,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 //         name:NSWindowWillCloseNotification
 //         object:window];
         DDLogVerbose(@"new vm controller init");
-        
-        
-        
-        
-        
-        
-        //------------------------
-        
-        allGestaltModelsArray = [[NSMutableArray alloc] init];
-        
-        NSDictionary * allModels = [[NSDictionary alloc] initWithDictionary:[MacintoshModelModel fetchAllAvailableModelsForChecksum:0]];
 
-        NSEnumerator * modelEnumerator = [allModels keyEnumerator];
-        id key;
-        while ((key = [modelEnumerator nextObject])) {
-            MacintoshModelModel * newModel = [
-                [MacintoshModelModel alloc]
-                    init
-            ];
-            [newModel setModelName:[allModels objectForKey:key]];
-            [newModel setModelId:key];
-            [allGestaltModelsArray addObject:newModel];
-            [newModel release];
-        }
-        
-        [allModels release];
-        
-        [   self addObserver:self
-                  forKeyPath:@"selectedGestaltModel"
-                     options:NSKeyValueObservingOptionNew
-                     context:nil
-        ];
-        
-        //-----------------------
-        
-        
-        
     }
     
     return self;

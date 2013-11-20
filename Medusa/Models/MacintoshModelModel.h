@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString * modelName;
 @property (nonatomic, retain) NSNumber * modelId;
 
++ (NSDictionary *)fetchAllAvailableModelsForEmulatorType:(int)emulatorType;
 + (NSDictionary *)fetchAllAvailableModelsForChecksum:(uint32)gestaltId;
 - (id)initWithName:(NSString *)newName AndModelId:(NSNumber *)newModelId;
 
