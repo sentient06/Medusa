@@ -51,6 +51,7 @@
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 
 #import "EmulatorHandleController.h" //testing
+#import "FileManager.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -725,6 +726,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     //Log all preferences:
     //DDLogVerbose(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
+    
+    // Resolves all bookmarks:
+    [FileManager resolveBookmarksInObjectContext:[self managedObjectContext]];
     
     //Preferences management:
     BOOL haveSharePath = [[NSUserDefaults standardUserDefaults] boolForKey:@"haveSharePath"];

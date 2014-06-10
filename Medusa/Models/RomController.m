@@ -34,6 +34,7 @@
 #import "RomFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
 #import "EmulatorsEntityModel.h"
 #import "NSData+MD5.h"
+#import "FileManager.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -125,11 +126,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             
             NSError * error;
             
+            NSString * escapedPath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+            NSData   * fileAlias   = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
+            
             NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
             NSEntityDescription * entity    = [ NSEntityDescription entityForName:@"RomFiles" inManagedObjectContext:currentContext];
             NSPredicate         * predicate = [ NSPredicate
-                predicateWithFormat: @"filePath = %@ OR checksum = %@",
-                filePath, checksum
+                predicateWithFormat: @"fileAlias = %@ OR checksum = %@",
+                fileAlias, checksum
             ];
             
             [request setEntity:entity];
@@ -159,7 +163,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             ];
             
             /// Here we have all the fields to be inserted.
-            [managedObject setFilePath     : filePath];
+            [managedObject setFileAlias    : fileAlias];
             [managedObject setChecksum     : checksum];
             [managedObject setModelName    : macModel];
             [managedObject setComments     : comments];

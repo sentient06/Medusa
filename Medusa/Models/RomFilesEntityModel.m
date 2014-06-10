@@ -33,12 +33,14 @@
 #import "RomFilesEntityModel.h"
 #import "VirtualMachinesEntityModel.h"
 #import "EmulatorsEntityModel.h"
+#import "FileManager.h"
 
 @implementation RomFilesEntityModel
 
 @dynamic comments;
 @dynamic emulatorType;
-@dynamic filePath;
+@dynamic fileMissing;
+@dynamic fileAlias;
 @dynamic modelName;
 @dynamic checksum;
 @dynamic romCondition;
@@ -74,6 +76,10 @@
         }
     }
 
+}
+
+- (NSString *)filePath {
+    return [FileManager resolveAlias:[self fileAlias]];
 }
 
 @end

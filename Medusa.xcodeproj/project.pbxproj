@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
+		405EDCB61945CA2C00DA78CE /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB41945CA2C00DA78CE /* Medusa.xcdatamodeld */; };
+		40E8173E194721250057A000 /* Map-1.2.0.0-1.2.0.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 40E8173D194721250057A000 /* Map-1.2.0.0-1.2.0.1.xcmappingmodel */; };
 		810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */; };
 		81134C4415540B2900785866 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesController.m */; };
 		811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 811C770818369E7800C681C6 /* MacintoshModelModel.m */; };
@@ -68,7 +71,6 @@
 		8168997417CE2C7900058B9F /* Unsupported.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996817CE2C7900058B9F /* Unsupported.icns */; };
 		816BAF8A153863E400B68091 /* IconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 816BAF89153863E300B68091 /* IconValueTransformer.m */; };
 		816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */; };
-		817334F3182D519900EDBF05 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 817334F1182D519900EDBF05 /* Medusa.xcdatamodeld */; };
 		81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81733FB2159F2ED000711709 /* AssetsWindow.xib */; };
 		81756F331534743500FCBA8E /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81756F321534743500FCBA8E /* Cocoa.framework */; };
 		81756F3D1534743500FCBA8E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 81756F3B1534743500FCBA8E /* InfoPlist.strings */; };
@@ -148,6 +150,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
+		405EDCB21945C71B00DA78CE /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = UtilitiesModels/FileManager.m; sourceTree = "<group>"; };
+		405EDCB51945CA2C00DA78CE /* Medusa 1.2.0.0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.0.xcdatamodel"; sourceTree = "<group>"; };
+		405EDCB71945CA4B00DA78CE /* Medusa 1.2.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.1.xcdatamodel"; sourceTree = "<group>"; };
+		40E8173D194721250057A000 /* Map-1.2.0.0-1.2.0.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "Map-1.2.0.0-1.2.0.1.xcmappingmodel"; sourceTree = "<group>"; };
 		810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineIconValueTransformer.h; path = TransformerControllers/VirtualMachineIconValueTransformer.h; sourceTree = "<group>"; };
 		810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineIconValueTransformer.m; path = TransformerControllers/VirtualMachineIconValueTransformer.m; sourceTree = "<group>"; };
 		81134C4315540B2900785866 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Models/PreferencesController.m; sourceTree = "<group>"; };
@@ -232,7 +239,6 @@
 		816BAF89153863E300B68091 /* IconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconValueTransformer.m; path = TransformerControllers/IconValueTransformer.m; sourceTree = "<group>"; };
 		816F654B15A19C6400687FA2 /* ManagedObjectCloner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjectCloner.h; path = UtilitiesModels/ManagedObjectCloner.h; sourceTree = "<group>"; };
 		816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ManagedObjectCloner.m; path = UtilitiesModels/ManagedObjectCloner.m; sourceTree = "<group>"; };
-		817334F2182D519900EDBF05 /* Medusa 1.1.0.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.1.0.8.xcdatamodel"; sourceTree = "<group>"; };
 		81733FB2159F2ED000711709 /* AssetsWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AssetsWindow.xib; path = Windows/AssetsWindow.xib; sourceTree = "<group>"; };
 		81756F2E1534743500FCBA8E /* Medusa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Medusa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81756F321534743500FCBA8E /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -359,7 +365,8 @@
 		810E38451554414300949BE1 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				817334F1182D519900EDBF05 /* Medusa.xcdatamodeld */,
+				405EDCB41945CA2C00DA78CE /* Medusa.xcdatamodeld */,
+				40E8173D194721250057A000 /* Map-1.2.0.0-1.2.0.1.xcmappingmodel */,
 			);
 			name = DataModel;
 			path = DataModels;
@@ -519,6 +526,8 @@
 			children = (
 				816F654B15A19C6400687FA2 /* ManagedObjectCloner.h */,
 				816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */,
+				405EDCB11945C71B00DA78CE /* FileManager.h */,
+				405EDCB21945C71B00DA78CE /* FileManager.m */,
 			);
 			name = HelpingModels;
 			sourceTree = "<group>";
@@ -870,7 +879,7 @@
 		81756F251534743400FCBA8E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Giancarlo Mariot";
 			};
 			buildConfigurationList = 81756F281534743400FCBA8E /* Build configuration list for PBXProject "Medusa" */;
@@ -994,6 +1003,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40E8173E194721250057A000 /* Map-1.2.0.0-1.2.0.1.xcmappingmodel in Sources */,
 				81756F3F1534743500FCBA8E /* main.m in Sources */,
 				81756F461534743500FCBA8E /* AppDelegate.m in Sources */,
 				81756F5C15347F2B00FCBA8E /* VirtualMachineWindowController.m in Sources */,
@@ -1006,6 +1016,7 @@
 				8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */,
 				81134C4415540B2900785866 /* PreferencesController.m in Sources */,
 				81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m in Sources */,
+				405EDCB61945CA2C00DA78CE /* Medusa.xcdatamodeld in Sources */,
 				81E84DF01565BE820002D4DA /* DiskFilesEntityModel.m in Sources */,
 				81E84DF91565BE820002D4DA /* RomFilesEntityModel.m in Sources */,
 				814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */,
@@ -1027,6 +1038,7 @@
 				81A54CC417F0915900B1EFD0 /* ASIDownloadCache.m in Sources */,
 				81A54CC517F0915900B1EFD0 /* ASIFormDataRequest.m in Sources */,
 				81A54CC617F0915900B1EFD0 /* ASIHTTPRequest.m in Sources */,
+				405EDCB31945C71B00DA78CE /* FileManager.m in Sources */,
 				81A54CC717F0915900B1EFD0 /* ASIInputStream.m in Sources */,
 				81A54CC817F0915900B1EFD0 /* ASINetworkQueue.m in Sources */,
 				81A54CF817F0AC1E00B1EFD0 /* DDASLLogger.m in Sources */,
@@ -1048,7 +1060,6 @@
 				81E3A26017FB2BFF0026B842 /* RomFileSizeTransformer.m in Sources */,
 				811EF6EB1804B4160011DDBD /* KeyboardLayoutValueTransformer.m in Sources */,
 				8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */,
-				817334F3182D519900EDBF05 /* Medusa.xcdatamodeld in Sources */,
 				812AFB4E1833F57600C1FF36 /* NSData+MD5.m in Sources */,
 				811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */,
 			);
@@ -1088,8 +1099,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1107,7 +1119,9 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1119,8 +1133,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -1132,7 +1147,9 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
@@ -1142,7 +1159,6 @@
 		81756F501534743600FCBA8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1162,7 +1178,6 @@
 		81756F511534743600FCBA8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1203,12 +1218,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		817334F1182D519900EDBF05 /* Medusa.xcdatamodeld */ = {
+		405EDCB41945CA2C00DA78CE /* Medusa.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				817334F2182D519900EDBF05 /* Medusa 1.1.0.8.xcdatamodel */,
+				405EDCB71945CA4B00DA78CE /* Medusa 1.2.0.1.xcdatamodel */,
+				405EDCB51945CA2C00DA78CE /* Medusa 1.2.0.0.xcdatamodel */,
 			);
-			currentVersion = 817334F2182D519900EDBF05 /* Medusa 1.1.0.8.xcdatamodel */;
+			currentVersion = 405EDCB71945CA4B00DA78CE /* Medusa 1.2.0.1.xcdatamodel */;
 			path = Medusa.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -81,6 +81,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         , @"Document"
         , @"NDIF Disk Image"
         , @"Disk Image"
+        , @"ROM Image"
         , nil
     ];
     

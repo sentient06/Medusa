@@ -74,7 +74,9 @@ enum RomIcons {
 @property (nonatomic, retain) NSString * comments;
 //@property (nonatomic, retain) NSString * emulator;
 @property (nonatomic, retain) NSNumber * emulatorType;
-@property (nonatomic, retain) NSString * filePath;
+@property (nonatomic, retain) NSNumber * fileMissing;
+@property (nonatomic, retain) NSData   * fileAlias;
+//@property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSString * modelName;
 @property (nonatomic, retain) NSString * checksum;
 @property (nonatomic, retain) NSNumber * romCondition;
@@ -95,5 +97,6 @@ enum RomIcons {
 - (void)addMachines:(NSSet *)values;
 - (void)removeMachines:(NSSet *)values;
 - (NSNumber *)icon;
+- (NSString *)filePath;
 
 @end

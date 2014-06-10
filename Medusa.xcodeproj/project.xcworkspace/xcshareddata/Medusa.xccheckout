@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B8C75598-A345-4004-BD75-ABAF3BB4C9FA</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Medusa</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>60A9EA0C-FC83-47F2-8E55-D9E7AAA50403</key>
+		<string>ssh://github.com/sentient06/Medusa.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Medusa.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>60A9EA0C-FC83-47F2-8E55-D9E7AAA50403</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/sentient06/Medusa.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>60A9EA0C-FC83-47F2-8E55-D9E7AAA50403</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>60A9EA0C-FC83-47F2-8E55-D9E7AAA50403</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Medusa</string>
+		</dict>
+	</array>
+</dict>
+</plist>
