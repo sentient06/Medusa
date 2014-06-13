@@ -4,6 +4,7 @@
         <attribute name="blocked" transient="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="bootable" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="capacity" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="fileAlias" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="filePath" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="format" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -29,13 +30,13 @@
         <attribute name="checksum" attributeType="String" syncable="YES"/>
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="emulatorType" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="fileAlias" optional="YES" attributeType="Transformable" storedInTruthFile="YES" syncable="YES"/>
+        <attribute name="fileAlias" optional="YES" attributeType="Binary" storedInTruthFile="YES" syncable="YES"/>
         <attribute name="fileMissing" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="fileSize" attributeType="Integer 16" maxValueString="8" defaultValueString="0" indexed="YES" syncable="YES"/>
         <attribute name="modelName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="romCategory" attributeType="Integer 16" maxValueString="4" defaultValueString="4" syncable="YES"/>
         <attribute name="romCondition" attributeType="Integer 16" defaultValueString="8" syncable="YES"/>
-        <relationship name="machines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
+        <relationship name="machines" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="VirtualMachines" inverseName="romFile" inverseEntity="VirtualMachines" syncable="YES"/>
     </entity>
     <entity name="VirtualMachines" representedClassName="VirtualMachinesEntityModel" syncable="YES">
         <attribute name="displayColourDepth" attributeType="Integer 16" maxValueString="2" defaultValueString="2" syncable="YES"/>
@@ -69,7 +70,7 @@
         <relationship name="romFile" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RomFiles" inverseName="machines" inverseEntity="RomFiles" elementID="modelToRomFile" syncable="YES"/>
     </entity>
     <elements>
-        <element name="DiskFiles" positionX="160" positionY="192" width="128" height="105"/>
+        <element name="DiskFiles" positionX="160" positionY="192" width="128" height="193"/>
         <element name="Emulators" positionX="160" positionY="192" width="128" height="150"/>
         <element name="RelationshipVirtualMachinesDiskFiles" positionX="160" positionY="192" width="128" height="90"/>
         <element name="RomFiles" positionX="160" positionY="192" width="128" height="195"/>

@@ -97,6 +97,17 @@ enum GestaltMacModels {
     PowerBook150            = 115
 };
 
+enum VirtualMachineIcons {
+      NewVM
+    , DeadVM
+    , BlackAndWhiteNoDisk
+    , ColouredNoDisk
+    , NoEmulatorVM
+    , BlackAndWhiteHappyVM
+    , ColouredHappyVM
+    , QuestionMarkVM
+};
+
 @class RelationshipVirtualMachinesDiskFilesEntityModel, RomFilesEntityModel, EmulatorsEntityModel;
 
 @interface VirtualMachinesEntityModel : NSManagedObject

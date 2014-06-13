@@ -158,7 +158,8 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [openDialog setCanChooseDirectories:NO];
     [openDialog setCanCreateDirectories:NO];
     [openDialog setAllowsMultipleSelection:YES];
-    
+    [openDialog setTreatsFilePackagesAsDirectories:YES];
+    [openDialog setAllowedFileTypes: [NSArray arrayWithObjects:@"rom", nil]];
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     //Displays open dialog:    
     [openDialog beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
@@ -192,6 +193,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [openDialog setCanChooseDirectories:NO];
     [openDialog setCanCreateDirectories:NO];
     [openDialog setAllowsMultipleSelection:YES];
+    [openDialog setAllowedFileTypes: [NSArray arrayWithObjects:@"hfv", @"dsk", @"dmg", @"img", @"image", @"iso", nil]];
     
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     //Displays open dialog:    

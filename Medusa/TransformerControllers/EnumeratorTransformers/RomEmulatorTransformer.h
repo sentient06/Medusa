@@ -1,9 +1,9 @@
 //
-//  DropDiskView.m
+//  RomEmulatorTransformer.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 30/04/2012.
-//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 12/06/2014.
+//  Copyright (c) 2014 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,36 +30,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import "DropDiskView.h"
-#import "DiskController.h"
-#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-#import "VirtualMachinesEntityModel.h"
+#import <Foundation/Foundation.h>
 
-@implementation DropDiskView
-@synthesize currentMachine;
-
-- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-    
-    NSPasteboard * pboard    = [sender draggingPasteboard];
-    NSArray      * urls      = [pboard propertyListForType:NSFilenamesPboardType];
-    DiskController   * diskObject = [[DiskController alloc] autorelease];
-    
-    [diskObject parseDriveFilesAndSave:urls];
-    
-    if (currentMachine) {
-        VirtualMachinesEntityModel * newVirtualMachineObject = [currentMachine content];
-        RelationshipVirtualMachinesDiskFilesEntityModel * newRelationship = [
-        NSEntityDescription
-            insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
-            inManagedObjectContext:[currentMachine managedObjectContext]
-        ];
-
-        [newRelationship setDiskFile:[diskObject currentDriveObject]];
-        [newRelationship setPositionIndex:[newVirtualMachineObject nextDiskIndex]];
-        [newVirtualMachineObject addDisksObject:newRelationship];
-    }
-    
-    return YES;
-}
+@interface RomEmulatorTransformer : NSValueTransformer
 
 @end

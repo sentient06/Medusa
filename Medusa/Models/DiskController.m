@@ -33,6 +33,7 @@
 #import "DiskController.h"
 #import "DiskFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
 #import "VirtualMachinesEntityModel.h"
+#import "FileManager.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -73,11 +74,14 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     
     NSError * error;
     
+    NSString * escapedPath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSData   * fileAlias   = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
+    
     NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
     NSEntityDescription * entity    = [ NSEntityDescription entityForName:@"DiskFiles" inManagedObjectContext:currentContext];
     NSPredicate         * predicate = [ NSPredicate
-        predicateWithFormat: @"filePath = %@",
-        filePath
+        predicateWithFormat: @"fileAlias = %@",
+        fileAlias
     ];
     
     [request setEntity:entity];
@@ -101,7 +105,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
             inManagedObjectContext: currentContext
     ];
     
-    [managedObject setFilePath  : filePath];
+    [managedObject setFileAlias : fileAlias];
     [managedObject setFileName  : fileName];
     [managedObject setBootable  : [NSNumber numberWithBool:bootable]];
     [managedObject setPartitions: [NSNumber numberWithUnsignedInteger:totalPartitions]];

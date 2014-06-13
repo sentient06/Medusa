@@ -43,59 +43,22 @@
     return NO; 
 }
 
-//PerfectSheepNew        = 1,
-//PerfectSheepOld        = 2,
-//PerfectBasilisk        = 3,
-//NoAppleTalk            = 4,
-//FPURequired            = 5,
-//NoAppleTalkFPURequired = 6,
-//PerfectVMac            = 7,
-//Unsupported            = 8
-
-//enum EmulatorTypes {
-//    vMacStandard = 1
-//    , vMacModelCompilation
-//    , BasiliskII
-//    , vMacStandardAndBasiliskII
-//    , vMacModelCompilationAndBasiliskII
-//    , Sheepshaver
-//    , EmulatorUnsupported
-//};
-//
-//enum RomConditions {
-//    NormalCondition = 1
-//    , NoAppleTalk
-//    , FPURequired
-//    , NoAppleTalkAndFPURequired
-//    , PPCOldWorld
-//    , PPCNewWorld
-//};
-
 - (id)transformedValue:(id)value {
-    
     long conditionValue = [value integerValue];
-    
     switch (conditionValue) {
-
         case NormalCondition:
-            return @"Basilisk II should work fine";
-
+            return @"Supported";
         case NoAppleTalk:
             return @"Appletalk unavailable";
-
         case FPURequired:
             return @"Needs to use FPU";
-
         case NoAppleTalkAndFPURequired:
             return @"Needs to use FPU and Appletalk is unavailable";
-
         case UnsupportedRom:
-            return @"Unsupported ROM";
-
+            return @"Unsupported";
         default:
-            return @"";
+            return @"Unknown";
     }
-
 }
 
 @end

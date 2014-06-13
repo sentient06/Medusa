@@ -32,6 +32,7 @@
 
 #import "DiskFilesEntityModel.h"
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
+#import "FileManager.h"
 
 @implementation DiskFilesEntityModel
 
@@ -43,10 +44,15 @@
 @dynamic size;
 @dynamic virtualMachines;
 @dynamic fileName;
-@dynamic filePath;
+//@dynamic filePath;
+@dynamic fileAlias;
 
 - (NSString *)description {
     return [self fileName];
+}
+
+- (NSString *)filePath {
+    return [FileManager resolveAlias:[self fileAlias]];
 }
 
 @end

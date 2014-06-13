@@ -149,10 +149,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             
             [self getDetailsForChecksum:intChecksum AndMD5:md5Hash];
 
-            if (emulator == EmulatorUnsupported) {
-                DDLogError(@"Unsupported file");
-                return NO;
-            }
+//            if (emulator == EmulatorUnsupported) {
+//                DDLogError(@"Unsupported file");
+//                return NO;
+//            }
             
             //----------------------------------------------------------------------
             
@@ -241,10 +241,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     //http://guides.macrumors.com/68k
     
-    NSLog(@"Here");
-    
     emulator = EmulatorUnsupported;
     category = OldWorldROM;
+    short macMd[5];
     
     switch( intChecksum ) {
         //------------------------------------------------
@@ -254,6 +253,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             comments = @"First Macintosh ever made.\nThis ROM can't be used on emulation.";
             emulator = EmulatorUnsupported;
             fileCond = UnsupportedRom;
+            macMd[0] = gestaltClassic;
             break;
             
         case 0x28BA4E50:
@@ -261,6 +261,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             comments = @"Second Macintosh ever made.\nThis ROM can't be used on emulation.";
             emulator = EmulatorUnsupported;
             fileCond = UnsupportedRom;
+            macMd[0] = gestaltClassic;
             break;
         //------------------------------------------------
         // 128 KB
@@ -269,6 +270,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             comments = @"This ROM was buggy and had 2 revisions!\nvMac can't boot from it.\nThe second revision (v3) is more recommended.";
             emulator = EmulatorUnsupported;
             fileCond = UnsupportedRom;
+            macMd[0] = gestaltMacPlus;
             break;
             
         case 0x4D1EEAE1:
@@ -276,6 +278,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             comments = @"This ROM was the first revision and still had some bugs.\nv3 is more recommended.";
             emulator = vMacStandard;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacPlus;
             break;
             
         case 0x4D1F8172:
@@ -283,6 +286,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             comments = @"Best Mac Plus ROM, second revision from the original.\nGood for vMac.";
             emulator = vMacStandard;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacPlus;
             break;
         //------------------------------------------------
         // 256 KB
@@ -291,48 +295,58 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             comments = @"First Mac II ROM, had a memory problem\nThis one is rare!\nvMac won't boot it.";
             emulator = EmulatorUnsupported;
             fileCond = UnsupportedRom;
+            macMd[0] = gestaltMacII;
             break;
         case 0xB2E362A8:
             macModel = @"Macintosh SE";
             comments = @"";
             emulator = EmulatorUnsupported;
             fileCond = UnsupportedRom;
+            macMd[0] = gestaltMacSE;
             break;
         case 0x9779D2C4:
             macModel = @"Macintosh II v2";
             comments = @"Mac II ROM's revision";
             emulator = EmulatorUnsupported;
             fileCond = UnsupportedRom;
+            macMd[0] = gestaltMacII;
             break;
         case 0xB306E171:
             macModel = @"Macintosh SE FDHD";
             comments = @"FDHD stands for 'Floppy Disk High Density'\nThis mac was later called Macintosh SE Superdrive";
             emulator = EmulatorUnsupported;
             fileCond = UnsupportedRom;
+            macMd[0] = gestaltMacSE;
             break;
         case 0x97221136:
             macModel = @"Macintosh IIx, IIcx, SE/30";
             comments = @"'32-bit dirty' ROM, since it has code using 24-bit addressing.\n'x' stands for the 68030 processor family, 'c' stands for 'compact'\nApple used 'SE/30' to avoid the acronym 'SEx'";
             emulator = EmulatorUnsupported;
             fileCond = UnsupportedRom;
+            macMd[0] = gestaltMacIIx;
+            macMd[1] = gestaltMacIIcx;
+            macMd[2] = gestaltMacSE030;
             break;
         case 0x96CA3846:
             macModel = @"Macintosh Portable";
             comments = @"One of the first 'laptops'!";
             emulator = EmulatorUnsupported;
             fileCond = UnsupportedRom;
+            macMd[0] = gestaltPortable;
             break;
         case 0xA49F9914:
             macModel = @"Macintosh Classic (XO)";
             comments = @"From Mac Classic with XO ROMDisk: It has the ability to boot from ROM by holding down cmd+opt+x+o at startup.\nLimited support in Basilisk II.";//Classic emulation is broken on Basilisk
             emulator = vMacModelCompilationAndBasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacClassic;
             break;
         case 0x96645F9C:
             macModel = @"Macintosh PowerBook 100";
             comments = @"";
             emulator = EmulatorUnsupported;
             fileCond = NormalCondition;
+            macMd[0] = gestaltPowerBook100;
             break;
         //------------------------------------------------
         // 512 KB
@@ -341,36 +355,42 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             comments = @"Known as Stealth, Blackbird, F-16, F-19, Four Square, IIxi, Zone 5 and Weed-Whacker.\nEmulation requires FPU and AppleTalk is not supported.";
             emulator = BasiliskII;
             fileCond = NoAppleTalkAndFPURequired;
+            macMd[0] = gestaltMacIIfx;
             break;
         case 0x350EACF0:
             macModel = @"Macintosh LC"; // Pizza box
             comments = @"AppleTalk is not supported in Basilisk.";
             emulator = NoAppleTalk;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacLC;
             break;
         case 0x3193670E: //messy checksum
             macModel = @"Macintosh Classic II";
             comments = @"Emulation may require the FPU and AppleTalk may not be supported.";
             emulator = BasiliskII;
             fileCond = NoAppleTalkAndFPURequired;
+            macMd[0] = gestaltClassicII;
             break;            
         case 0x368CADFE:
             macModel = @"Macintosh IIci";
             comments = @"In Basilisk, FPU must be enabled and appleTalk is not supported.\nThis is a 32-bit clean ROM.";
             emulator = BasiliskII;
             fileCond = NoAppleTalkAndFPURequired;
+            macMd[0] = gestaltMacIIci;
             break;
         case 0x36B7FB6C:
             macModel = @"Macintosh IIsi";
             comments = @"In Basilisk, AppleTalk is not supported.";
             emulator = BasiliskII;
             fileCond = NoAppleTalk;
+            macMd[0] = gestaltMacIIsi;
             break;
         case 0x35C28F5F: // Pizza box too
             macModel = @"Mac LC II or Performa 400/405/410/430"; //IIci?
             comments = @"In Basilisk, AppleTalk is not supported.";
             emulator = BasiliskII;
             fileCond = NoAppleTalk;
+            macMd[0] = gestaltMacLCII;
             break;
             //--------------------------------------------
         case 0x35C28C8F: // Very strange didn't find it
@@ -379,12 +399,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             comments = @"AppleTalk may not be supported.";
             emulator = BasiliskII;
             fileCond = NoAppleTalk;
+            macMd[0] = gestaltMacIIx;
             break;
         case 0x4957EB49: 
             macModel = @"Mac IIvx (Brazil) or IIvi/Performa 600";
             comments = @"Mac IIvx was the last of Mac II series.\nAppleTalk may not be supported for emulation.";
             emulator = BasiliskII;
             fileCond = NoAppleTalk;
+            macMd[0] = gestaltMacIIx;
+            macMd[1] = gestaltMacIIvi;
+            macMd[2] = gestaltPerforma600;
             break;
         //------------------------------------------------
         // 1024 KB
@@ -394,91 +418,128 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             comments = @"AppleTalk is not supported on Basilisk II.\nThis is the worst known 1MB ROM.";
             emulator = BasiliskII;
             fileCond = NoAppleTalk;
+            macMd[0] = gestaltMacQuadra700;
+            macMd[1] = gestaltMacQuadra900;
+            macMd[2] = gestaltPowerBook140;
+            macMd[3] = gestaltPowerBook170;
             break;
         case 0x3DC27823:
             macModel = @"Macintosh Quadra 950";
             comments = @"AppleTalk is not supported on Basilisk II.";
             emulator = BasiliskII;
             fileCond = NoAppleTalk;
+            macMd[0] = gestaltMacQuadra950;
             break;
         case 0x49579803: // Very strange didn't find it, called IIvx
                          // 0x49579803 (different size)
             macModel = @"Macintosh IIvx ?"; //Again? Brazil?
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacIIvx;
             break;
         case 0xE33B2724:
             macModel = @"Powerbook 160/165/165c/180/180c";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltPowerBook160;
+            macMd[1] = gestaltPowerBook165;
+            macMd[2] = gestaltPowerBook165c;
+            macMd[3] = gestaltPowerBook180;
+            macMd[4] = gestaltPowerBook180c;
             break;
         case 0xECFA989B:
-            macModel = @"Powerbook 210/230/250";
+            macModel = @"Powerbook Duo 210/230/250";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltPowerBookDuo210;
+            macMd[1] = gestaltPowerBookDuo230;
+            macMd[2] = gestaltPowerBookDuo250;
             break;
         case 0xEC904829:
-            macModel = @"Macintosh LC III";
+            macModel = @"Macintosh LCIII";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacLCIII;
             break;
         case 0xECBBC41C:
             macModel = @"Macintosh LCIII/LCIII+ or Performa 460";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacLCIII;
+            macMd[1] = gestaltPerforma46x;
             break;
         case 0xECD99DC0:
             macModel = @"Macintosh Color Classic / Performa 250";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacColorClassic;
+            macMd[1] = gestaltPerforma250;
             break;
         case 0xF1A6F343:
             macModel = @"Quadra/Centris 610 or 650";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltQuadra610;
+            macMd[1] = gestaltQuadra650;
             break;
         case 0xF1ACAD13:
             macModel = @"Quadra/Centris 610 or 650 or 800";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltQuadra610;
+            macMd[1] = gestaltQuadra650;
+            macMd[2] = gestaltQuadra800;
+            macMd[3] = gestaltMacCentris610;
+            macMd[4] = gestaltMacCentris650;
             break;
         case 0x0024D346:
             macModel = @"Powerbook Duo 270C";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltPowerBookDuo270c;
             break;
         case 0xEDE66CBD:
             macModel = @"Color Classic II, LC 550, Performa 275/550/560, Mac TV";//Maybe Performa 450-550";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltPerforma550;
+            macMd[1] = gestaltMacTV;
             break;
         case 0xFF7439EE:
             macModel = @"LC 475/575 Quadra 605 Performa 475/476/575/577/578";
             comments = @"Codename Aladdin";
             emulator = BasiliskII;
             fileCond = NormalCondition; //FPURequired; //?
+            macMd[0] = gestaltMacLC475;
+            macMd[1] = gestaltMacLC575;
+            macMd[2] = gestaltMacQuadra605;
             break;
         case 0x015621D7:
             macModel = @"Powerbook Duo 280 or 280C";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltPowerBookDuo280;
+            macMd[1] = gestaltPowerBookDuo280c;
             break;
         case 0x06684214:
             macModel = @"LC/Quadra/Performa 630";
             comments = @"Codename Crusader";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacQuadra630;
             break;
         case 0xFDA22562:
             macModel = @"Powerbook 150";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltPowerBook150;
             break;
         case 0x064DC91D:
             macModel = @"LC/Performa 580/588";
             comments = @"AppleTalk is reported to work in Basilisk II.";
             emulator = BasiliskII;
             fileCond = NormalCondition;
+            macMd[0] = gestaltMacLC580;
             break;
         //------------------------------------------------
         // 2MB and 3MB ROMs
@@ -487,16 +548,23 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             macModel = @"PowerBook 520/520c/540/540c";
             emulator = Sheepshaver;
             fileCond = NormalCondition;
+//            macMd[0] = gestaltPowerBook520;
+//            macMd[1] = gestaltPowerBook520c;
+//            macMd[2] = gestaltPowerBook540;
+//            macMd[3] = gestaltPowerBook540c;
             break;
         case 0x5BF10FD1:
             macModel = @"Macintosh Quadra 660av or 840av";
             emulator = Sheepshaver;
             fileCond = NormalCondition;
+//            macMd[0] = gestaltQuadra660AV;
+//            macMd[1] = gestaltQuadra840AV;
             break;
         case 0x4D27039C:
             macModel = @"PowerBook 190 or 190cs";
             emulator = Sheepshaver;
             fileCond = NormalCondition; //fpu required???
+//            macMd[0] = gestaltPowerBook190;
             break;
         //------------------------------------------------
         // 4MB
@@ -590,8 +658,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         // New World ROM
         default:
             
-            NSLog(@"New World!");
-            NSLog(@"old: %d, new: %d, undefined: %d", OldWorldROM, NewWorldROM, NoCategory);
+            DDLogVerbose(@"New World!");
+            DDLogVerbose(@"old: %d, new: %d, undefined: %d", OldWorldROM, NewWorldROM, NoCategory);
             
             category = NewWorldROM;
             emulator = Sheepshaver;
@@ -780,6 +848,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     if (comments == nil) {
         comments = @"";
+    }
+    
+    if (emulator == Sheepshaver) {
+        macMd[0] = gestaltPowerMac9500;
+    }
+    
+    if (emulator == EmulatorUnsupported) {
+        fileCond = UnsupportedRom;
     }
     
     DDLogVerbose(@"fileDetails .. %@", macModel);

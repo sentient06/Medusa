@@ -331,9 +331,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSFileManager * fileManager= [NSFileManager defaultManager];
     NSError * error;
 
-    if([fileManager fileExistsAtPath:preferencesFilePath isDirectory:nil])    
-        if (![fileManager removeItemAtPath:preferencesFilePath error:&error])
+    DDLogCInfo(@"Attempting to delete file: %@", preferencesFilePath);
+    if([fileManager fileExistsAtPath:preferencesFilePath isDirectory:nil]) {
+        DDLogCInfo(@"File exists.");
+        if (![fileManager removeItemAtPath:preferencesFilePath error:&error]) {
             DDLogError(@"Whoops, couldn't delete: %@", preferencesFilePath);
+        } else {
+            DDLogCInfo(@"File should be deleted!");
+        }
+    }
     
     [preferencesFilePath release];
 
@@ -341,7 +347,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [[[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] window] close];
         
 //        NSLog(@"count of retain: %lu", [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount]);
-        
+
         if ([[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] retainCount] > 0) {
             [[windowsForVirtualMachines objectForKey:[virtualMachine uniqueName]] release];
         }
@@ -365,6 +371,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 }
 
+/*!
+ * @method      savePreferencesFile:
+ * @abstract    Saves the virtual machine's preference file to be used
+ *              by the emulator.
+ */
 - (IBAction)savePreferencesFile:(id)sender {
     
     [self saveCoreData];
@@ -881,16 +892,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     // This part handles the persistent store upgrade:
     NSDictionary * options = [ NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption
-                              , [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
-                              ,nil
-                              ];
+        [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption
+      , [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
+      , nil
+    ];
     
     // The following code was without 'options'. The value was set to 'nil'.
     
     id potentialMigration = [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error];    
     
-//    NSLog(@"%@", versionIdentifiers);
+    DDLogVerbose(@"%@", versionIdentifiers);
     
     if (potentialMigration == nil) {
 //        NSLog(@"%@", [error userInfo]);
@@ -981,7 +992,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSString * sourceVersion = [[[NSString alloc] initWithString:[[versionIdentifiers allObjects] objectAtIndex:0]] autorelease];
     NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
     
-    NSLog(@"Current Version of .xcdatamodeld file: %@", sourceVersion);
+    DDLogVerbose(@"Current Version of .xcdatamodeld file: %@", sourceVersion);
     
     // This part handles the persistent store upgrade:
 
@@ -1004,19 +1015,19 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         ];
 
         if (storeAdded == nil) {
-            NSLog(@"%@", [error userInfo]);
-            NSLog(@"Error: %@\n------", [[error userInfo] valueForKey:@"reason"]);
+            DDLogError(@"%@", [error userInfo]);
+            DDLogError(@"Error: %@\n------", [[error userInfo] valueForKey:@"reason"]);
         }
 
     } else {
-        NSLog(@"Warning: Persistent store is not compatible. Attempting migration.");
+        DDLogWarn(@"Warning: Persistent store is not compatible. Attempting migration.");
         
         NSManagedObjectModel * destinationModel = [self managedObjectModel];
         NSArray * bundlesForSourceModel = nil;
         NSManagedObjectModel * sourceModel = [NSManagedObjectModel mergedModelFromBundles:bundlesForSourceModel forStoreMetadata:persistentStoreMetadata];
 
         if (sourceModel == nil) {
-            NSLog(@"source model is nil");
+            DDLogWarn(@"source model is nil");
         } else {
 //            NSLog(@"\n\nSource model: %@", sourceModel);
             
@@ -1037,9 +1048,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //                       destinationModel:destinationModel
 //            ];
             
-            
+            DDLogInfo(@"sourceVersion: %@", sourceVersion);
             NSArray * mappingModelNames = [[NSArray alloc] initWithObjects:
-                  [NSString stringWithFormat:@"MappingModelEmulators-%@-1.1.0.8", sourceVersion]
+                  [NSString stringWithFormat:@"MappingModel-%@-1.2.0.1", sourceVersion]
 //                , [NSString stringWithFormat:@"MappingModelDiskFiles-%@-1.1.0.8", sourceVersion]
 //                , [NSString stringWithFormat:@"MappingModelVirtualMachines-%@-1.1.0.8", sourceVersion]
 //                , [NSString stringWithFormat:@"MappingModelRelationshipVirtualMachinesDiskFiles-%@-1.1.0.8", sourceVersion]
@@ -1053,10 +1064,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                 NSURL * mappingModelURL = [[NSBundle mainBundle] URLForResource:mappingModelName withExtension:@"cdm"];
                 NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:mappingModelURL];
                 
-                if (mappingModel == nil) NSLog(@"Error on mapping model");
+                if (mappingModel == nil) DDLogWarn(@"Error on mapping model");
                 
                 NSError * error2 = nil;
-                NSLog(@"\n\npersistentStoreUrl = %@\ndestinationStoreURL = %@", persistentStoreUrl, destinationStoreURL);
+                DDLogInfo(@"\n\npersistentStoreUrl = %@\ndestinationStoreURL = %@", persistentStoreUrl, destinationStoreURL);
                 
 //                NSDictionary * options = [[NSDictionary alloc] init];
                 
@@ -1072,10 +1083,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                  ];
                     
                 [mappingModel release];
-                NSLog(@"%@ - %@", mappingModelName, teste ? @"OK" : @"Not OK");
+                DDLogVerbose(@"%@ - %@", mappingModelName, teste ? @"OK" : @"Not OK");
                 
                 if (!teste) {
-                    NSLog(@"%@", error2);
+                    DDLogVerbose(@"%@", error2);
                 }
                 
             }

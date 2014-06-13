@@ -33,14 +33,6 @@
 #import "RomIconValueTransformer.h"
 #import "RomFilesEntityModel.h"
 
-//------------------------------------------------------------------------------
-// Lumberjack logger
-#import "DDLog.h"
-#import "DDASLLogger.h"
-#import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_ERROR;
-//------------------------------------------------------------------------------
-
 @implementation RomIconValueTransformer
 
 + (Class)transformedValueClass {

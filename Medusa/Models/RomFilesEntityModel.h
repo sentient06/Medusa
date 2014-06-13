@@ -72,19 +72,13 @@ enum RomIcons {
 @interface RomFilesEntityModel : NSManagedObject
 
 @property (nonatomic, retain) NSString * comments;
-//@property (nonatomic, retain) NSString * emulator;
 @property (nonatomic, retain) NSNumber * emulatorType;
 @property (nonatomic, retain) NSNumber * fileMissing;
 @property (nonatomic, retain) NSData   * fileAlias;
-//@property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSString * modelName;
 @property (nonatomic, retain) NSString * checksum;
 @property (nonatomic, retain) NSNumber * romCondition;
 @property (nonatomic, retain) NSNumber * romCategory;
-//@property (nonatomic, retain) NSNumber * mac68kOld;
-//@property (nonatomic, retain) NSNumber * mac68kNew;
-//@property (nonatomic, retain) NSNumber * macPPCOld;
-//@property (nonatomic, retain) NSNumber * macPPCNew;
 @property (nonatomic, retain) NSNumber * fileSize;
 @property (nonatomic, retain) NSSet    * machines;
 

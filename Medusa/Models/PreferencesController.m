@@ -397,11 +397,19 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
     //--------------------------------------------------------------------------
     //8. ROM information
+    
+    DDLogVerbose(@"Rom file is %@", [virtualMachine romFile] == NULL ? @"null" : @"not-null");
 
+    NSString * romPath;
+    
+    if ([virtualMachine romFile] == NULL) {
+        romPath = @"";
+    } else {
+        romPath = [[virtualMachine romFile] filePath];
+    }
+        
     NSDictionary * romSettings = [[NSDictionary alloc]
-        initWithObjectsAndKeys:
-            [NSString stringWithString:[[virtualMachine romFile] filePath]], @"rom",
-            nil
+        initWithObjectsAndKeys: romPath, @"rom", nil
     ];
 
     [allData addObject:romSettings];

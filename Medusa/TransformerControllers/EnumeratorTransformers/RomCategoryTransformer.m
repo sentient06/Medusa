@@ -1,9 +1,9 @@
 //
-//  DropDiskView.m
+//  RomCategoryTransformer.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 30/04/2012.
-//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 12/06/2014.
+//  Copyright (c) 2014 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,36 +30,39 @@
 //
 //------------------------------------------------------------------------------
 
-#import "DropDiskView.h"
-#import "DiskController.h"
-#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-#import "VirtualMachinesEntityModel.h"
+#import "RomCategoryTransformer.h"
+#import "RomFilesEntityModel.h"
 
-@implementation DropDiskView
-@synthesize currentMachine;
+//------------------------------------------------------------------------------
+// Lumberjack logger
+#import "DDLog.h"
+#import "DDASLLogger.h"
+#import "DDTTYLogger.h"
+static const int ddLogLevel = LOG_LEVEL_OFF;
+//------------------------------------------------------------------------------
 
-- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
-    
-    NSPasteboard * pboard    = [sender draggingPasteboard];
-    NSArray      * urls      = [pboard propertyListForType:NSFilenamesPboardType];
-    DiskController   * diskObject = [[DiskController alloc] autorelease];
-    
-    [diskObject parseDriveFilesAndSave:urls];
-    
-    if (currentMachine) {
-        VirtualMachinesEntityModel * newVirtualMachineObject = [currentMachine content];
-        RelationshipVirtualMachinesDiskFilesEntityModel * newRelationship = [
-        NSEntityDescription
-            insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
-            inManagedObjectContext:[currentMachine managedObjectContext]
-        ];
+@implementation RomCategoryTransformer
 
-        [newRelationship setDiskFile:[diskObject currentDriveObject]];
-        [newRelationship setPositionIndex:[newVirtualMachineObject nextDiskIndex]];
-        [newVirtualMachineObject addDisksObject:newRelationship];
++ (Class)transformedValueClass {
+    return [NSString class];
+}
+
++ (BOOL)allowsReverseTransformation {
+    return NO;
+}
+
+- (id)transformedValue:(id)value {
+    int romCategory = [value intValue];
+    DDLogVerbose(@"Rom category is #%d", romCategory);
+    switch (romCategory) {
+        case OldWorldROM:
+            return @"Old World ROM";
+        case NewWorldROM:
+            return @"New World ROM";
+        case NoCategory:
+        default:
+            return @"Unknown type of ROM";
     }
-    
-    return YES;
 }
 
 @end

@@ -75,35 +75,40 @@
 
 - (NSNumber *)icon {
     
-    // PerfectSheepNew        = 1,
-    // PerfectSheepOld        = 2,
-    // PerfectBasilisk        = 3,
-    // NoAppleTalk            = 4,
-    // FPURequired            = 5,
-    // NoAppleTalkFPURequired = 6,
-    // Unsupported            = 7
+    short value = QuestionMarkMac;
     
-    // 0 = New VM
-    // 1 = Happy mac B&W
-    // 2 = Happy mac colour
-    // 3 = No disk B&W
-    // 4 = No disk colour
-    // 5 = Sad mac
-    
-    int value = 0;
-    
-    long iconValue = [[[self romFile] romCondition] integerValue];
+    // Rom:
+    short category  = [[[self romFile] romCategory ] integerValue];
+    short condition = [[[self romFile] romCondition] integerValue];
+
+    // Disks:
     NSInteger totalDisks = [[self disks] count];
-    
-    if (iconValue < 7 && iconValue > 0)
-        if (iconValue > 2)
-            if (totalDisks > 0) value = 1;
-            else value = 3;
-        else
-            if (totalDisks > 0) value = 2;
-            else value = 4;
-    else
-        if (totalDisks > 0) value = 5;
+
+    if ([self romFile] == NULL) {
+        if (totalDisks == 0) {
+            value = NewVM;
+        } else {
+            value = QuestionMarkVM;
+        }
+    } else if (condition == UnsupportedRom) {
+        value = DeadVM;
+    } else {
+        if (totalDisks == 0) {
+            if (category == OldWorldROM) {
+                value = BlackAndWhiteNoDisk;
+            }
+            if (category == NewWorldROM) {
+                value = ColouredNoDisk;
+            }
+        } else {
+            if (category == OldWorldROM) {
+                value = BlackAndWhiteHappyVM;
+            }
+            if (category == NewWorldROM) {
+                value = ColouredHappyVM;
+            }
+        }
+    }
     
     return [NSNumber numberWithInt:value];
 }
@@ -117,23 +122,6 @@
 - (NSNumber *)nextDiskIndex {
     return [NSNumber numberWithUnsignedInteger:[[self disks] count]];
 }
-
-
-//EmulatorUnsupported = 0
-//, vMacStandard
-//, vMacModelCompilation
-//, vMacOther1
-//, vMacOther2
-//, BasiliskII
-//, BasiliskIIOther1
-//, BasiliskIIOther2
-//, vMacStandardAndBasiliskII
-//, vMacModelCompilationAndBasiliskII
-//, EmulatorCombo1
-//, EmulatorCombo2
-//, Sheepshaver
-//, SheepshaverOther1
-//, SheepshaverOther2
 
 - (BOOL)sheepShaverSetup {
     return [[[self romFile] emulatorType] intValue] >= Sheepshaver;

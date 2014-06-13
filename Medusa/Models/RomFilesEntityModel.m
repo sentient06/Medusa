@@ -55,12 +55,10 @@
 @dynamic fileSize;
 
 - (NSNumber *)icon {
-    
     int myCategory  = [[self romCategory ] intValue];
     int myEmulator  = [[self emulatorType] intValue];
     int myCondition = [[self romCondition] intValue];
-    
-    if (myCondition == UnsupportedRom) {
+    if (myCondition == UnsupportedRom || myEmulator == EmulatorUnsupported) {
         return [NSNumber numberWithInt:DeadMac];
     } else {
         if (myEmulator >= vMacStandard && myEmulator <= vMacOther2) {

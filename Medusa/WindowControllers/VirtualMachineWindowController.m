@@ -1,4 +1,4 @@
-    //
+//
 //  VirtualMachineWindowController.m
 //  Medusa
 //
@@ -49,7 +49,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_ERROR;
+static const int ddLogLevel = LOG_LEVEL_OFF;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -117,8 +117,10 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
  * @discussion  Always in the top of the files!
  */
 - (void)dealloc {
-    
-    [allGestaltModelsArray release];
+
+    [self removeObserver:self forKeyPath:@"selectedGestaltModel"];
+    [self removeObserver:self forKeyPath:@"virtualMachine.romFile"];
+
     [managedObjectContext processPendingChanges];
     [managedObjectContext release];
     [virtualMachine release];
@@ -134,6 +136,9 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 - (void)windowWillClose:(NSNotification *)notification {
     DDLogVerbose(@"%@'s window will close", [virtualMachine name]);
     [[NSApp delegate] saveCoreData];
+    
+
+    
 //    [[NSApp delegate] releaseWindowFor:[virtualMachine uniqueName]];
 //    [self autorelease];
 }
@@ -454,15 +459,16 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
  */
 - (IBAction)openRomPath:(id)sender {
     
-    NSOpenPanel * openDialog     = [NSOpenPanel openPanel]; //File open dialog class.
-    RomController    * RomModelObject = [[RomController alloc] init];
+    NSOpenPanel   * openDialog     = [NSOpenPanel openPanel]; //File open dialog class.
+    RomController * RomModelObject = [[RomController alloc] init];
     
     //Dialog options:
     [openDialog setCanChooseFiles:YES];
     [openDialog setCanChooseDirectories:NO];
     [openDialog setCanCreateDirectories:NO];
     [openDialog setAllowsMultipleSelection:NO];
-    
+    [openDialog setAllowedFileTypes: [NSArray arrayWithObjects:@"rom", nil]];
+
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     //Displays open dialog:    
     [openDialog beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
@@ -497,7 +503,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     [openDialog setCanChooseDirectories:NO];
     [openDialog setCanCreateDirectories:NO];
     [openDialog setAllowsMultipleSelection:NO];
-    
+    [openDialog setAllowedFileTypes: [NSArray arrayWithObjects:@"public.executable", nil]];
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     //Displays open dialog:    
     [openDialog beginSheetModalForWindow:[self window] completionHandler:^(NSInteger result) {
@@ -544,6 +550,54 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         [virtualMachine setMacModel:[[object valueForKeyPath:keyPath] modelId]];
     }
     
+    if ([keyPath isEqualToString:@"virtualMachine.romFile"]) {
+        [self repopulateGestaltList];
+    }
+    
+}
+
+//------------------------------------------------------------------------------
+// Workflow Methods
+
+/*!
+ * @method      repopulateGestaltList
+ * @abstract    Populates the list of Macintosh models and selects current one.
+ */
+- (void)repopulateGestaltList {
+
+    NSDictionary * allModels = [
+        [NSDictionary alloc] initWithDictionary:
+            [MacintoshModelModel
+                fetchAllAvailableModelsForChecksum:[[virtualMachine romFile] checksum]
+                                       andEmulator:[[[virtualMachine romFile] emulatorType] intValue]
+            ]
+    ];
+
+    NSArray * sortKeys = [[allModels allKeys] sortedArrayUsingComparator:^(id obj1, id obj2) {
+        if ([obj1 intValue] > [obj2 intValue])
+            return (NSComparisonResult)NSOrderedDescending;
+        if ([obj1 intValue] < [obj2 intValue])
+            return (NSComparisonResult)NSOrderedAscending;
+        return (NSComparisonResult)NSOrderedSame;
+    }];
+
+
+    [[availableGestaltModels content] removeAllObjects];
+    
+    for (NSNumber * key in sortKeys) {
+        NSDictionary * thisModel = [
+            [NSDictionary alloc] initWithObjectsAndKeys:
+                [allModels objectForKey:key], @"name"
+              , key, @"key"
+              , nil
+        ];
+        
+        [availableGestaltModels addObject:thisModel];
+        [thisModel release];
+    }
+
+    [allModels release];
+
 }
 
 //------------------------------------------------------------------------------
@@ -589,54 +643,7 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         } else if ( !enabledShare & !shareDefault ) {
             currentPathOption = useNoSharedPathOption;
         }
-        
-        //------------------------------------------------------
-        // Populates the list of Macintosh models and selects current one.
-        
-        int emulatorType = [[[virtualMachine romFile] emulatorType] intValue];
-
-        allGestaltModelsArray = [[NSMutableArray alloc] init];
-        
-        NSDictionary * allModels = [
-            [NSDictionary alloc] initWithDictionary:
-//                [MacintoshModelModel fetchAllAvailableModelsForChecksum:0]
-                [MacintoshModelModel fetchAllAvailableModelsForEmulatorType:emulatorType]
-        ];
-        
-        NSArray * sortKeys = [[allModels allKeys] sortedArrayUsingComparator:^(id obj1, id obj2) {
-            if ([obj1 intValue] > [obj2 intValue])
-                return (NSComparisonResult)NSOrderedDescending;
-            if ([obj1 intValue] < [obj2 intValue])
-                return (NSComparisonResult)NSOrderedAscending;
-            return (NSComparisonResult)NSOrderedSame;
-        }];
-        
-        for (NSNumber * key in sortKeys) {
-            MacintoshModelModel * newModel = [
-                [MacintoshModelModel alloc] init
-            ];
-            
-            [newModel setModelName:[allModels objectForKey:key]];
-            [newModel setModelId:key];
-            [allGestaltModelsArray addObject:newModel];
-            
-            if ([key intValue] == [[virtualMachine macModel] intValue]) {
-                [self setSelectedGestaltModel:newModel];
-            }
-            
-            [newModel release];
-        }
-
-        [allModels release];
-        
-        [ self addObserver:self
-                forKeyPath:@"selectedGestaltModel"
-                   options:NSKeyValueObservingOptionNew
-                   context:nil
-        ];
-    
     }
-    //----------------------------------------------------------
     
     return self;
     
@@ -731,6 +738,24 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
     [defaultMemorySlider setMinValue:0];
     [defaultMemorySlider setMaxValue:[memoryDefaultValues count]-1];
     [defaultMemorySlider setAllowsTickMarkValuesOnly:YES];
+    
+    int emulatorType = [[[virtualMachine romFile] emulatorType] intValue];
+    
+    if (emulatorType) {
+        [self repopulateGestaltList];
+    }
+    
+    [ self addObserver:self
+            forKeyPath:@"virtualMachine.romFile"
+               options:NSKeyValueObservingOptionNew
+               context:nil
+    ];
+    
+    [ self addObserver:self
+            forKeyPath:@"selectedGestaltModel"
+               options:NSKeyValueObservingOptionNew
+               context:nil
+    ];
 
 //{STR_JIT_CACHE_SIZE_2MB_LAB, "2048"},
 //{STR_JIT_CACHE_SIZE_4MB_LAB, "4096"},

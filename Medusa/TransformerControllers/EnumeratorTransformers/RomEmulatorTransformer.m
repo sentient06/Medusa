@@ -1,9 +1,9 @@
 //
-//  VirtualMachineIconValueTransformer.m
+//  RomEmulatorTransformer.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 14/09/2013.
-//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 12/06/2014.
+//  Copyright (c) 2014 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,8 +30,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import "VirtualMachineIconValueTransformer.h"
-#import "VirtualMachinesEntityModel.h"
+#import "RomEmulatorTransformer.h"
+#import "EmulatorsEntityModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -41,39 +41,53 @@
 static const int ddLogLevel = LOG_LEVEL_OFF;
 //------------------------------------------------------------------------------
 
-@implementation VirtualMachineIconValueTransformer
+@implementation RomEmulatorTransformer
+
 
 + (Class)transformedValueClass {
-    return [NSImage class]; 
+    return [NSString class];
 }
 
-+ (BOOL)allowsReverseTransformation { 
-    return NO; 
++ (BOOL)allowsReverseTransformation {
+    return NO;
 }
 
 - (id)transformedValue:(id)value {
-    
-    short iconValue = [value integerValue];
-    
-    DDLogVerbose(@"VM Icon Value Transformer - value: %@ -- %ld", value, iconValue);
-    
-    switch (iconValue) {
-        case BlackAndWhiteHappyVM:
-            return [NSImage imageNamed:@"BlackAndWhiteHappyMac.png"];
-        case ColouredHappyVM:
-            return [NSImage imageNamed:@"ColouredHappyMac.png"];
-        case BlackAndWhiteNoDisk:
-            return [NSImage imageNamed:@"noDiskBW.png"];
-        case ColouredNoDisk:
-            return [NSImage imageNamed:@"noDiskColour.png"];
-        case QuestionMarkVM:
-            return [NSImage imageNamed:@"QuestionMarkMac.png"];
-        case DeadVM:
-            return [NSImage imageNamed:@"DeadMac.png"];
-            
+    int emulatorCode = [value intValue];
+    DDLogVerbose(@"Rom emulator is #%d", emulatorCode);
+    switch (emulatorCode) {
+        case vMacStandard:
+            return @"Mini vMac";
+        case vMacModelCompilation:
+            return @"Mini vMac specific-model compiled";
+        case vMacOther1:
+            return @"Mini vMac (other)";
+        case vMacOther2:
+            return @"Mini vMac (other)";
+        case BasiliskII:
+            return @"Basilisk II";
+        case BasiliskIIOther1:
+            return @"Basilisk II (other)";
+        case BasiliskIIOther2:
+            return @"Basilisk II (other)";
+        case vMacStandardAndBasiliskII:
+            return @"Mini vMac and Basilisk II";
+        case vMacModelCompilationAndBasiliskII:
+            return @"Mini vMac (model-compiled) and Basilisk II";
+        case EmulatorCombo1:
+            return @"Unknown";
+        case EmulatorCombo2:
+            return @"Unknown";
+        case Sheepshaver:
+            return @"Sheepshaver";
+        case SheepshaverOther1:
+            return @"Sheepshaver (other)";
+        case SheepshaverOther2:
+            return @"Sheepshaver (other)";
+        case EmulatorUnsupported:
+        default:
+            return @"No emulation possible";
     }
-    
-    return [NSImage imageNamed:@"newVm.icns"];
 }
 
 @end

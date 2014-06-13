@@ -13,6 +13,7 @@
 //
 
 #import "SortableArrayController.h"
+#import "VirtualMachineWindowController.h"
 
 NSString *kRSRTVMovedRowsType = @"com.red-sweater.RSRTVArrayController";
 

@@ -67,8 +67,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         if(![fileManager createDirectoryAtPath:emulatorsDirectory withIntermediateDirectories:YES attributes:nil error:NULL])
             DDLogError(@"Error: Could not create folder %@", emulatorsDirectory);
     } else {
-//        [self scanEmulatorFamily:basiliskFamily];
-        [self scanEmulatorFamily:sheepshaverFamily];
+        [self scanEmulatorFamily:basiliskFamily];
+//        [self scanEmulatorFamily:sheepshaverFamily];
     }
 
 }

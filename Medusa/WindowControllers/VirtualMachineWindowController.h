@@ -54,9 +54,8 @@ typedef enum {
     
     //--------------------------------------------------------------------------
     //Standard variables
-    NSMutableArray           * allGestaltModelsArray;
-    NSObject * selectedGestaltModel;
 
+    NSObject               * selectedGestaltModel;
     NSManagedObjectContext * managedObjectContext;
     NSMutableArray         * menuObjectsArray;
     NSMutableArray         * subviewsArray;
@@ -66,6 +65,7 @@ typedef enum {
     //--------------------------------------------------------------------------
     //Controllers
 
+    IBOutlet NSArrayController       * availableGestaltModels;
     IBOutlet NSArrayController       * availableDisksController;
     IBOutlet NSArrayController       * romFilesController;
     IBOutlet SortableArrayController * usedDisksController;
@@ -125,6 +125,11 @@ typedef enum {
 // General Methods
 
 - (void)savePreferences;
+
+//------------------------------------------------------------------------------
+// Workflow Methods
+
+- (void)repopulateGestaltList;
 
 //------------------------------------------------------------------------------
 // Interface Methods
