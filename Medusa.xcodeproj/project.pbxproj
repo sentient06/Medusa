@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4047CFAF194B4C0A003847C7 /* BoolValueToRedColourTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */; };
 		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
+		40A2261719C8C3CD003916C4 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40A2261319C8C3CD003916C4 /* Medusa.xcdatamodeld */; };
+		40A2262019C8C819003916C4 /* RomFilesMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A2261F19C8C819003916C4 /* RomFilesMigrationPolicy.m */; };
 		40B0F3B61949B54100F5CEC7 /* RomEmulatorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0F3B51949B54100F5CEC7 /* RomEmulatorTransformer.m */; };
 		40B0F3B81949B7FA00F5CEC7 /* QuestionMarkMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B0F3B71949B7FA00F5CEC7 /* QuestionMarkMac.png */; };
 		40B0F3BA1949B80000F5CEC7 /* MiniVMacMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B0F3B91949B80000F5CEC7 /* MiniVMacMac.png */; };
 		40B0F3BD1949BA0300F5CEC7 /* RomCategoryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0F3BC1949BA0300F5CEC7 /* RomCategoryTransformer.m */; };
-		40E8174C194747BC0057A000 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40E8174A194747BC0057A000 /* Medusa.xcdatamodeld */; };
+		40D3FFCF19CAE1910053CD3F /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 40D3FFCE19CAE1910053CD3F /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */; };
 		810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */; };
 		81134C4415540B2900785866 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesController.m */; };
 		811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 811C770818369E7800C681C6 /* MacintoshModelModel.m */; };
@@ -153,15 +156,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4047CFAD194B4C0A003847C7 /* BoolValueToRedColourTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToRedColourTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.h; sourceTree = "<group>"; };
+		4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToRedColourTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.m; sourceTree = "<group>"; };
 		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
 		405EDCB21945C71B00DA78CE /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = UtilitiesModels/FileManager.m; sourceTree = "<group>"; };
+		40A2261419C8C3CD003916C4 /* Medusa 1.0.2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2.3.xcdatamodel"; sourceTree = "<group>"; };
+		40A2261519C8C3CD003916C4 /* Medusa 1.1.0.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.1.0.8.xcdatamodel"; sourceTree = "<group>"; };
+		40A2261619C8C3CD003916C4 /* Medusa 1.2.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.1.xcdatamodel"; sourceTree = "<group>"; };
+		40A2261E19C8C819003916C4 /* RomFilesMigrationPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFilesMigrationPolicy.h; path = MigrationPolicies/RomFilesMigrationPolicy.h; sourceTree = "<group>"; };
+		40A2261F19C8C819003916C4 /* RomFilesMigrationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFilesMigrationPolicy.m; path = MigrationPolicies/RomFilesMigrationPolicy.m; sourceTree = "<group>"; };
 		40B0F3B41949B54100F5CEC7 /* RomEmulatorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomEmulatorTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomEmulatorTransformer.h; sourceTree = "<group>"; };
 		40B0F3B51949B54100F5CEC7 /* RomEmulatorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomEmulatorTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomEmulatorTransformer.m; sourceTree = "<group>"; };
 		40B0F3B71949B7FA00F5CEC7 /* QuestionMarkMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuestionMarkMac.png; path = Images/RomIcons/QuestionMarkMac.png; sourceTree = "<group>"; };
 		40B0F3B91949B80000F5CEC7 /* MiniVMacMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MiniVMacMac.png; path = Images/RomIcons/MiniVMacMac.png; sourceTree = "<group>"; };
 		40B0F3BB1949BA0300F5CEC7 /* RomCategoryTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomCategoryTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomCategoryTransformer.h; sourceTree = "<group>"; };
 		40B0F3BC1949BA0300F5CEC7 /* RomCategoryTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomCategoryTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomCategoryTransformer.m; sourceTree = "<group>"; };
-		40E8174B194747BC0057A000 /* Medusa 1.2.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.1.xcdatamodel"; sourceTree = "<group>"; };
+		40D3FFCE19CAE1910053CD3F /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel"; sourceTree = "<group>"; };
 		810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineIconValueTransformer.h; path = TransformerControllers/VirtualMachineIconValueTransformer.h; sourceTree = "<group>"; };
 		810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineIconValueTransformer.m; path = TransformerControllers/VirtualMachineIconValueTransformer.m; sourceTree = "<group>"; };
 		81134C4315540B2900785866 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Models/PreferencesController.m; sourceTree = "<group>"; };
@@ -369,10 +379,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40A2261A19C8C780003916C4 /* MigrationPolicies */ = {
+			isa = PBXGroup;
+			children = (
+				40A2261E19C8C819003916C4 /* RomFilesMigrationPolicy.h */,
+				40A2261F19C8C819003916C4 /* RomFilesMigrationPolicy.m */,
+			);
+			name = MigrationPolicies;
+			sourceTree = "<group>";
+		};
 		810E38451554414300949BE1 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
-				40E8174A194747BC0057A000 /* Medusa.xcdatamodeld */,
+				40A2261A19C8C780003916C4 /* MigrationPolicies */,
+				40A2261319C8C3CD003916C4 /* Medusa.xcdatamodeld */,
+				40D3FFCE19CAE1910053CD3F /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */,
 			);
 			name = DataModel;
 			path = DataModels;
@@ -818,6 +839,8 @@
 			children = (
 				81B08F2517F44648000954C6 /* BoolValueTransformer.h */,
 				81B08F2617F44648000954C6 /* BoolValueTransformer.m */,
+				4047CFAD194B4C0A003847C7 /* BoolValueToRedColourTransformer.h */,
+				4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */,
 			);
 			name = BoolTransformers;
 			sourceTree = "<group>";
@@ -1024,6 +1047,7 @@
 				816BAF8A153863E400B68091 /* IconValueTransformer.m in Sources */,
 				81C84438153E183700E94443 /* DropView.m in Sources */,
 				40B0F3BD1949BA0300F5CEC7 /* RomCategoryTransformer.m in Sources */,
+				4047CFAF194B4C0A003847C7 /* BoolValueToRedColourTransformer.m in Sources */,
 				8159C790154F1205001E43D4 /* DropRomView.m in Sources */,
 				8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */,
 				8160BB0915502F74005F6DBF /* DiskIconValueTransformer.m in Sources */,
@@ -1031,13 +1055,13 @@
 				40B0F3B61949B54100F5CEC7 /* RomEmulatorTransformer.m in Sources */,
 				81134C4415540B2900785866 /* PreferencesController.m in Sources */,
 				81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m in Sources */,
-				40E8174C194747BC0057A000 /* Medusa.xcdatamodeld in Sources */,
 				81E84DF01565BE820002D4DA /* DiskFilesEntityModel.m in Sources */,
 				81E84DF91565BE820002D4DA /* RomFilesEntityModel.m in Sources */,
 				814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */,
 				815C26391587EEA5003FA9EB /* VirtualMachinesEntityModel.m in Sources */,
 				81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */,
 				816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */,
+				40D3FFCF19CAE1910053CD3F /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel in Sources */,
 				81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */,
 				8175CBE717D0D18C0003294E /* VMListTextCell.m in Sources */,
 				817E319D17D1078200131E2D /* VMList.m in Sources */,
@@ -1051,6 +1075,7 @@
 				81A54CC217F0915900B1EFD0 /* ASIDataCompressor.m in Sources */,
 				81A54CC317F0915900B1EFD0 /* ASIDataDecompressor.m in Sources */,
 				81A54CC417F0915900B1EFD0 /* ASIDownloadCache.m in Sources */,
+				40A2261719C8C3CD003916C4 /* Medusa.xcdatamodeld in Sources */,
 				81A54CC517F0915900B1EFD0 /* ASIFormDataRequest.m in Sources */,
 				81A54CC617F0915900B1EFD0 /* ASIHTTPRequest.m in Sources */,
 				405EDCB31945C71B00DA78CE /* FileManager.m in Sources */,
@@ -1062,6 +1087,7 @@
 				81A54CFB17F0AC1E00B1EFD0 /* DDTTYLogger.m in Sources */,
 				819DC08917F18B7000480073 /* SortableArrayController.m in Sources */,
 				819DC09F17F1B9D500480073 /* BootableDiskTransformer.m in Sources */,
+				40A2262019C8C819003916C4 /* RomFilesMigrationPolicy.m in Sources */,
 				81B08F1C17F43FE5000954C6 /* ByteValueTransformer.m in Sources */,
 				81B08F2317F44198000954C6 /* DiskFormatValueTransformer.m in Sources */,
 				81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */,
@@ -1233,12 +1259,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		40E8174A194747BC0057A000 /* Medusa.xcdatamodeld */ = {
+		40A2261319C8C3CD003916C4 /* Medusa.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				40E8174B194747BC0057A000 /* Medusa 1.2.0.1.xcdatamodel */,
+				40A2261419C8C3CD003916C4 /* Medusa 1.0.2.3.xcdatamodel */,
+				40A2261519C8C3CD003916C4 /* Medusa 1.1.0.8.xcdatamodel */,
+				40A2261619C8C3CD003916C4 /* Medusa 1.2.0.1.xcdatamodel */,
 			);
-			currentVersion = 40E8174B194747BC0057A000 /* Medusa 1.2.0.1.xcdatamodel */;
+			currentVersion = 40A2261619C8C3CD003916C4 /* Medusa 1.2.0.1.xcdatamodel */;
 			path = Medusa.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

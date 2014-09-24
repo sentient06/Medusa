@@ -77,7 +77,10 @@
 }
 
 - (NSString *)filePath {
-    return [FileManager resolveAlias:[self fileAlias]];
+    NSString * resolvedFilePath = [FileManager resolveAlias:[self fileAlias]];
+    if (resolvedFilePath == nil)
+        [self setFileMissing:[NSNumber numberWithBool:YES]];
+    return resolvedFilePath;
 }
 
 @end

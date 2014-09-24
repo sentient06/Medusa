@@ -49,7 +49,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_OFF;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -126,6 +126,8 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
     [virtualMachine release];
     [menuObjectsArray release];
     [subviewsArray release];
+    
+    [gestaltModelsAvailable release];
     
     [super dealloc];
 }
@@ -302,6 +304,40 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
     
     [selectedDrives release];
 
+}
+
+- (void)updateMacModelFromList:(NSNumber *)listIndex {
+    
+    DDLogVerbose(@"updated gestalt model: %@", listIndex);
+    
+    BOOL useSimpleModel = [
+        [NSUserDefaults standardUserDefaults]
+            boolForKey:@"useSimpleModel"
+    ];
+    
+    // The first block is when there are a couple of radio buttons for Mac IIci and Q900.
+    if (useSimpleModel) {
+        [virtualMachine setMacModel:listIndex];
+    } else {
+        // The gestalt controller is an array and each item is a dictionary.
+        // This means that we must fetch the item at a given index and then match the index of the dictionary.
+        
+        int i = 0;
+        long max = [listIndex longValue];
+        long selectedItem = 0;
+        
+        NSArray * keys = [gestaltModelsAvailable allKeys];
+        NSArray * sortedKeys = [keys sortedArrayUsingSelector:@selector(compare:)];
+        for (NSString * dKey in sortedKeys) {
+            if (max == i) {
+                selectedItem = [dKey longLongValue];
+                break;
+            }
+            i++;
+        }
+        [virtualMachine setMacModel:[NSNumber numberWithLongLong:selectedItem]];
+    }
+    [[NSApp delegate] saveCoreData];
 }
 
 //// comment this
@@ -547,7 +583,7 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
                        context:(void *)context {
     
     if ([keyPath isEqualToString:@"selectedGestaltModel"]) {
-        [virtualMachine setMacModel:[[object valueForKeyPath:keyPath] modelId]];
+        [self updateMacModelFromList:[object valueForKeyPath:keyPath]];
     }
     
     if ([keyPath isEqualToString:@"virtualMachine.romFile"]) {
@@ -565,6 +601,8 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
  */
 - (void)repopulateGestaltList {
 
+    DDLogInfo(@"Repopulating gestalt list");
+    
     NSDictionary * allModels = [
         [NSDictionary alloc] initWithDictionary:
             [MacintoshModelModel
@@ -582,7 +620,11 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
     }];
 
 
-    [[availableGestaltModels content] removeAllObjects];
+    [[availableGestaltModelsController content] removeAllObjects];
+    
+    int counter = 0;
+    BOOL selectedInThisList = NO;
+    NSNumber * selectedModel = [virtualMachine macModel];
     
     for (NSNumber * key in sortKeys) {
         NSDictionary * thisModel = [
@@ -591,11 +633,36 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
               , key, @"key"
               , nil
         ];
-        
-        [availableGestaltModels addObject:thisModel];
+        [availableGestaltModelsController addObject:thisModel];
+        DDLogVerbose(@"%@ - %@ - %@", key, [virtualMachine macModel], [key isEqualToNumber:[virtualMachine macModel]] ? @"True" : @"False");
+        if ([key isEqualToNumber:selectedModel]) {
+            [self setSelectedGestaltModel:[NSNumber numberWithInt:counter]];
+            selectedInThisList = YES;
+        }
         [thisModel release];
+        counter++;
     }
-
+    
+    // The order here is important because 'updateMacModelFromList' uses 'gestaltModelsAvailable'!!
+    
+    [gestaltModelsAvailable release];
+    gestaltModelsAvailable = [[NSMutableDictionary alloc] initWithDictionary:allModels];
+    
+    BOOL useSimpleModel = [
+        [NSUserDefaults standardUserDefaults]
+            boolForKey:@"useSimpleModel"
+    ];
+    
+    if (useSimpleModel) {
+        [self setSelectedGestaltModel:selectedModel];
+    } else {
+        if (selectedInThisList == NO) {
+            DDLogWarn(@"Mac model is not in the list, selecting first item");
+            [self setSelectedGestaltModel:[NSNumber numberWithInt:0]];
+            [self updateMacModelFromList:[NSNumber numberWithInt:0]];
+        }
+    }
+    
     [allModels release];
 
 }

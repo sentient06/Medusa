@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1060" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -8,7 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="VirtualMachineWindowController">
             <connections>
                 <outlet property="availableDisksController" destination="333" id="371"/>
-                <outlet property="availableGestaltModels" destination="1703" id="Y1f-KU-fOJ"/>
+                <outlet property="availableGestaltModelsController" destination="1703" id="Pr8-tb-89K"/>
                 <outlet property="defaultMemorySlider" destination="593" id="1034"/>
                 <outlet property="openSharePathButton" destination="465" id="542"/>
                 <outlet property="personalMemoryField" destination="623" id="1054"/>
@@ -403,12 +403,12 @@
                 <popUpButton verticalHuggingPriority="750" id="1596">
                     <rect key="frame" x="165" y="185" width="311" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1599" id="1597">
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1597">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menu"/>
                         <menu key="menu" title="OtherViews" id="1598">
                             <items>
-                                <menuItem title="Item 1" state="on" id="1599"/>
+                                <menuItem title="Item 1" id="1599"/>
                                 <menuItem title="Item 2" id="1600"/>
                                 <menuItem title="Item 3" id="1601"/>
                             </items>
@@ -417,9 +417,45 @@
                     <connections>
                         <binding destination="1703" name="content" keyPath="arrangedObjects" id="DDb-uP-YQD"/>
                         <binding destination="1703" name="contentValues" keyPath="arrangedObjects.name" previousBinding="DDb-uP-YQD" id="VZp-SF-8RD"/>
-                        <binding destination="140" name="selectedIndex" keyPath="selection.macModel" previousBinding="VZp-SF-8RD" id="ovc-oL-G5r"/>
+                        <binding destination="495" name="hidden" keyPath="values.useSimpleModel" id="Et7-yD-RNA"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="selectedGestaltModel" previousBinding="VZp-SF-8RD" id="M6Y-Fn-brm">
+                            <dictionary key="options">
+                                <bool key="NSValidatesImmediately" value="YES"/>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </popUpButton>
+                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="CBA-Z8-1mw">
+                    <rect key="frame" x="167" y="170" width="306" height="38"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    <size key="cellSize" width="306" height="18"/>
+                    <size key="intercellSpacing" width="4" height="2"/>
+                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="nkd-gC-nhH">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <cells>
+                        <column>
+                            <buttonCell type="radio" title="Mac IIci (System 7 - 7.5)" imagePosition="left" alignment="left" state="on" tag="11" inset="2" id="A48-IR-xhp">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <buttonCell type="radio" title="Quadra 900 (Mac OS 7.5 - 8.1)" imagePosition="left" alignment="left" tag="20" inset="2" id="tji-Br-9OT">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </column>
+                    </cells>
+                    <connections>
+                        <binding destination="495" name="hidden" keyPath="values.useSimpleModel" id="OqM-53-7nW">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="selectedTag" keyPath="selectedGestaltModel" id="Gm9-Xr-iCV"/>
+                    </connections>
+                </matrix>
             </subviews>
         </customView>
         <customView id="97" userLabel="Drives Subview">
@@ -929,7 +965,7 @@
                         </binding>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" id="1223">
+                <textField hidden="YES" verticalHuggingPriority="750" id="1223">
                     <rect key="frame" x="17" y="167" width="172" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Macintosh model override:" id="1224">
@@ -937,17 +973,9 @@
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
-                    <connections>
-                        <binding destination="140" name="enabled" keyPath="selection.jitEnabled" id="1225"/>
-                        <binding destination="495" name="hidden" keyPath="values.showAdvanced" previousBinding="1225" id="1291">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
                 </textField>
-                <popUpButton verticalHuggingPriority="750" id="1226">
-                    <rect key="frame" x="190" y="161" width="290" height="26"/>
+                <popUpButton hidden="YES" verticalHuggingPriority="750" id="1226">
+                    <rect key="frame" x="18" y="17" width="290" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1227">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -1014,11 +1042,6 @@
                     </popUpButtonCell>
                     <connections>
                         <binding destination="140" name="selectedTag" keyPath="selection.macModel" id="1281"/>
-                        <binding destination="495" name="hidden" keyPath="values.showAdvanced" id="1288">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                     </connections>
                 </popUpButton>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="1463">
@@ -1032,6 +1055,15 @@
                         <action selector="displayHelpForAdvancedView:" target="-2" id="1478"/>
                     </connections>
                 </button>
+                <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="OQJ-o4-r4q">
+                    <rect key="frame" x="18" y="49" width="166" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="I'll leave this here for now" id="dw8-4b-F2f">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
         </customView>
         <customView id="100" userLabel="Network Subview">
@@ -1367,7 +1399,7 @@
                     </connections>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" id="1328">
-                    <rect key="frame" x="17" y="269" width="327" height="26"/>
+                    <rect key="frame" x="18" y="269" width="327" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" title="001 - Apple Keyboard" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" tag="1" imageScaling="proportionallyDown" inset="2" selectedItem="1333" id="1329">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>

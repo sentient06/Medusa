@@ -501,8 +501,12 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <connections>
-                                            <binding destination="76" name="fontItalic" keyPath="arrangedObjects.fileMissing" id="iN4-6Q-DyP"/>
                                             <binding destination="76" name="value" keyPath="arrangedObjects.modelName" id="79"/>
+                                            <binding destination="76" name="textColor" keyPath="arrangedObjects.fileMissing" id="8y5-FH-rw9">
+                                                <dictionary key="options">
+                                                    <string key="NSValueTransformerName">BoolValueToRedColourTransformer</string>
+                                                </dictionary>
+                                            </binding>
                                         </connections>
                                     </tableColumn>
                                 </tableColumns>
@@ -532,12 +536,12 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" id="106">
-                    <rect key="frame" x="241" y="174" width="379" height="50"/>
+                    <rect key="frame" x="241" y="120" width="379" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    <textFieldCell key="cell" enabled="NO" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" title="Path" id="107">
+                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" title="Path" id="107">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
                         <binding destination="76" name="hidden" keyPath="canRemove" id="346">
@@ -549,39 +553,30 @@
                         <binding destination="76" name="value" keyPath="selection.filePath" id="154"/>
                     </connections>
                 </textField>
-                <imageView id="142">
-                    <rect key="frame" x="241" y="294" width="32" height="46"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="QuestionMarkMac" id="147"/>
-                    <connections>
-                        <binding destination="76" name="value" keyPath="selection.icon" id="551">
-                            <dictionary key="options">
-                                <bool key="NSConditionallySetsEnabled" value="NO"/>
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">RomIconValueTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </imageView>
                 <textField verticalHuggingPriority="750" id="143">
-                    <rect key="frame" x="279" y="319" width="343" height="21"/>
+                    <rect key="frame" x="308" y="318" width="314" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Name" id="146">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
                         <binding destination="76" name="value" keyPath="selection.modelName" id="453"/>
+                        <binding destination="76" name="textColor" keyPath="selection.fileMissing" id="RQ2-P1-2Zj">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">BoolValueToRedColourTransformer</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="144">
-                    <rect key="frame" x="241" y="234" width="379" height="50"/>
+                    <rect key="frame" x="241" y="60" width="379" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="bezel" title="Comments" id="145">
                         <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
                         <binding destination="76" name="hidden" keyPath="canRemove" id="338">
@@ -594,7 +589,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="177">
-                    <rect key="frame" x="320" y="118" width="302" height="21"/>
+                    <rect key="frame" x="320" y="228" width="302" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Size" id="178">
                         <font key="font" metaFont="system"/>
@@ -657,7 +652,7 @@
                     </buttonCell>
                 </button>
                 <textField verticalHuggingPriority="750" id="569">
-                    <rect key="frame" x="239" y="93" width="81" height="21"/>
+                    <rect key="frame" x="239" y="203" width="81" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Checksum:" id="570">
                         <font key="font" metaFont="system"/>
@@ -673,7 +668,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="bSt-gP-lPX">
-                    <rect key="frame" x="242" y="143" width="78" height="21"/>
+                    <rect key="frame" x="242" y="253" width="78" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Emulators:" id="D0A-7M-TAI">
                         <font key="font" metaFont="system"/>
@@ -689,7 +684,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="H63-1B-mRP">
-                    <rect key="frame" x="279" y="118" width="41" height="21"/>
+                    <rect key="frame" x="279" y="228" width="41" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Size:" id="baa-LW-KNb">
                         <font key="font" metaFont="system"/>
@@ -705,7 +700,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="585">
-                    <rect key="frame" x="242" y="68" width="78" height="21"/>
+                    <rect key="frame" x="242" y="178" width="78" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Condition:" id="588">
                         <font key="font" metaFont="system"/>
@@ -721,7 +716,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="586">
-                    <rect key="frame" x="320" y="68" width="302" height="21"/>
+                    <rect key="frame" x="320" y="178" width="302" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="emulator" id="587">
                         <font key="font" metaFont="system"/>
@@ -741,8 +736,33 @@
                         </binding>
                     </connections>
                 </textField>
+                <textField verticalHuggingPriority="750" id="ezD-9C-4Xa">
+                    <rect key="frame" x="242" y="23" width="380" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="This file is missing!" id="eBz-HQ-DHR">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                    <connections>
+                        <binding destination="76" name="hidden2" keyPath="selection.fileMissing" previousBinding="ILh-bF-9ZV" id="zFL-cv-Mlu">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="76" name="hidden" keyPath="canRemove" id="ILh-bF-9ZV">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </textField>
                 <textField verticalHuggingPriority="750" id="575">
-                    <rect key="frame" x="320" y="93" width="302" height="21"/>
+                    <rect key="frame" x="320" y="203" width="302" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Checksum" id="578">
                         <font key="font" metaFont="system"/>
@@ -759,7 +779,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="Bv5-Wj-8Kk">
-                    <rect key="frame" x="320" y="143" width="302" height="21"/>
+                    <rect key="frame" x="320" y="253" width="302" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Emulator" id="Gvk-if-vwg">
                         <font key="font" metaFont="system"/>
@@ -780,10 +800,10 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="JZg-GD-fI5">
-                    <rect key="frame" x="279" y="294" width="343" height="21"/>
+                    <rect key="frame" x="308" y="294" width="314" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Category" id="coL-4X-YfJ">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="smallSystem"/>
                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -800,6 +820,43 @@
                         </binding>
                     </connections>
                 </textField>
+                <button verticalHuggingPriority="750" id="rgs-4R-nvk">
+                    <rect key="frame" x="256" y="293" width="46" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aoC-dr-rcG">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="Dgx-RU-ro3">
+                    <rect key="frame" x="241" y="280" width="379" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <button verticalHuggingPriority="750" id="mnd-h3-EIn">
+                    <rect key="frame" x="256" y="293" width="46" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="mpr-IW-yFN">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <imageView id="142">
+                    <rect key="frame" x="256" y="294" width="46" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="QuestionMarkMac" id="147"/>
+                    <connections>
+                        <binding destination="76" name="value" keyPath="selection.icon" id="551">
+                            <dictionary key="options">
+                                <bool key="NSConditionallySetsEnabled" value="NO"/>
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <string key="NSValueTransformerName">RomIconValueTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </imageView>
             </subviews>
         </customView>
         <customView id="348" userLabel="Emulators SubView">

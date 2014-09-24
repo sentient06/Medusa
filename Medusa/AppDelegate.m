@@ -683,6 +683,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
+- (void)popUpDialog:(NSString *)prompt {
+    NSAlert * alert = [[NSAlert alloc] init];
+    [alert setAlertStyle:NSInformationalAlertStyle];
+    [alert setMessageText:@"Successful migration"];
+    [alert setInformativeText:prompt];
+    [alert runModal];
+}
+
 //------------------------------------------------------------------------------
 // Overwrotten methods.
 
@@ -816,7 +824,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (NSManagedObjectModel *)managedObjectModel {//3 //4 //7 //8 //11 //12
     if (__managedObjectModel) return __managedObjectModel;
     NSURL * modelURL = [[NSBundle mainBundle] URLForResource:@"Medusa" withExtension:@"momd"];
-    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
+    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
     return __managedObjectModel;
 }
 
@@ -828,11 +836,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              the store is created, if necessary.)
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-
-    if (__persistentStoreCoordinator) {
-        return __persistentStoreCoordinator;
-    }
     
+    // Return if already set:
+    if (__persistentStoreCoordinator) return __persistentStoreCoordinator;
+    
+    // Managed object model:
     NSManagedObjectModel * mom = [self managedObjectModel];
     
     if (!mom) {
@@ -840,109 +848,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         return nil;
     }
     
-    NSFileManager * fileManager = [NSFileManager defaultManager];
-    NSURL   * applicationFilesDirectory = [self applicationFilesDirectory];
-    NSError * error = nil;
-    
-    NSDictionary * properties = [
-                                 applicationFilesDirectory
-                                 resourceValuesForKeys:[
-                                                        NSArray arrayWithObject:NSURLIsDirectoryKey
-                                                        ]
-                                 error:&error
-                                 ];
-    
-    if (!properties) {
-        
-        BOOL ok = NO;
-        
-        if ([error code] == NSFileReadNoSuchFileError) {
-            ok = [fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error];
-        }
-        if (!ok) {
-            DDLogError(@"No such file: applicationFilesDirectory");
-            [[NSApplication sharedApplication] presentError:error];
-            return nil;
-        }
-        
-    } else {
-        
-        if ([[properties objectForKey:NSURLIsDirectoryKey] boolValue] != YES) {
-            // Customize and localize this error.
-            NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
-            
-            DDLogError(@"Expected a folder to store application data, found a file.");
-            
-            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-            [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
-            error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:101 userInfo:dict];
-            
-            [[NSApplication sharedApplication] presentError:error];
-            return nil;
-        }
-        
-    }
-    
-    NSURL * url = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];
-    
-    NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
-    
-    NSSet * versionIdentifiers = [[self managedObjectModel] versionIdentifiers];
-    DDLogInfo(@"Current Version of .xcdatamodeld file: %@", [[versionIdentifiers allObjects] objectAtIndex:0]);
-    
-    // This part handles the persistent store upgrade:
-    NSDictionary * options = [ NSDictionary dictionaryWithObjectsAndKeys:
-        [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption
-      , [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
-      , nil
-    ];
-    
-    // The following code was without 'options'. The value was set to 'nil'.
-    
-    id potentialMigration = [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error];    
-    
-    DDLogVerbose(@"%@", versionIdentifiers);
-    
-    if (potentialMigration == nil) {
-//        NSLog(@"%@", [error userInfo]);
-        DDLogError(@"Error: %@\n", [[error userInfo] valueForKey:@"reason"]);
-        
-        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-        //url
-        NSString * errorDescription = [[[NSString alloc] initWithFormat:@"There was an error while trying to verify your data:\n\n\"%@\"\n\nIf you just updated, you can downgrade Medusa. Otherwise, you can delete/move the store file below and report a bug.\n\n%@", [[error userInfo] valueForKey:@"reason"], [[url path] stringByAbbreviatingWithTildeInPath]] autorelease];
-        [dict setValue:errorDescription forKey:NSLocalizedDescriptionKey];
-        [dict setValue:@"Failed to initialise the store coordinator" forKey:NSLocalizedFailureReasonErrorKey];
-        NSError * error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN"
-                                              code:9999
-                                          userInfo:dict];
-        [[NSApplication sharedApplication] presentError:error];
-        [NSApp terminate:nil];
-    }
-    __persistentStoreCoordinator = [coordinator retain];
-    
-    return __persistentStoreCoordinator;
-}
-
-/**
- * @method      persistentStoreCoordinator:
- * @abstract    Returns the persistent store coordinator for the application.
- *              This implementation creates and return a coordinator, having
- *              added the store for the application to it. (The directory for
- *              the store is created, if necessary.)
- */
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinatorNew {
-
-    if (__persistentStoreCoordinator) {
-        return __persistentStoreCoordinator;
-    }
-
-    NSManagedObjectModel * mom = [self managedObjectModel];
-    
-    if (!mom) {
-        DDLogError(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
-        return nil;
-    }
-
+    // Locate the existent data dir:
     NSFileManager * fileManager = [NSFileManager defaultManager];
     NSURL         * applicationFilesDirectory = [self applicationFilesDirectory];
     NSError       * error = nil;
@@ -953,207 +859,464 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         ]
         error:&error
     ];
-        
+
     if (!properties) {
-        
         if ([error code] == NSFileReadNoSuchFileError) {
+            DDLogError(@"No application files dir, attempting to create one");
             if (![fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error]){
-                DDLogError(@"No such file: applicationFilesDirectory");
+                DDLogError(@"Couldn't create application files dir!");
                 [[NSApplication sharedApplication] presentError:error];
                 return nil;
             }
         }
-
-    } else {
-        
-        if (![[properties objectForKey:NSURLIsDirectoryKey] boolValue]) {
-
-            // Customise and localise this error.
-            NSString * failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
-
-            DDLogError(@"Expected a folder to store application data, found a file.");
-
-            NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-            [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
-            error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:101 userInfo:dict];
-            
-            [[NSApplication sharedApplication] presentError:error];
-            return nil;
-
-        }
-
     }
-    
-    //--------------------------------------------------------------------------
-    // Gets persistent store
-    
-    NSURL * persistentStoreUrl = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];    
-    NSSet * versionIdentifiers = [mom versionIdentifiers];
-    NSString * sourceVersion = [[[NSString alloc] initWithString:[[versionIdentifiers allObjects] objectAtIndex:0]] autorelease];
-    NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
-    
-    DDLogVerbose(@"Current Version of .xcdatamodeld file: %@", sourceVersion);
-    
-    // This part handles the persistent store upgrade:
 
-    NSDictionary * persistentStoreMetadata = [NSPersistentStoreCoordinator
+    // Getting data file:
+    NSURL * persistentStoreUrl = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];
+
+    // Load metadata:
+    NSDictionary * persistentStoreMetadata = [
+        NSPersistentStoreCoordinator
         metadataForPersistentStoreOfType:NSSQLiteStoreType
                                      URL:persistentStoreUrl
                                    error:&error
     ];
+
+    // Fetch current version:
+    NSArray  * sourceVersionIdentifiers = [persistentStoreMetadata objectForKey:NSStoreModelVersionIdentifiersKey];
+    NSString * sourceVersion = [[[NSString alloc] initWithString:[sourceVersionIdentifiers lastObject]] autorelease];
+    DDLogVerbose(@"Current Version of .xcdatamodeld file: %@", sourceVersion);
     
-    BOOL compatibleCoreData = [mom isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
+    // A new coordinator:
+    NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
     
-    if (compatibleCoreData) {
-
-        id storeAdded = [coordinator
-            addPersistentStoreWithType:NSSQLiteStoreType
-                         configuration:nil
-                                   URL:persistentStoreUrl
-                               options:nil
-                                 error:&error
-        ];
-
-        if (storeAdded == nil) {
-            DDLogError(@"%@", [error userInfo]);
-            DDLogError(@"Error: %@\n------", [[error userInfo] valueForKey:@"reason"]);
-        }
-
-    } else {
-        DDLogWarn(@"Warning: Persistent store is not compatible. Attempting migration.");
+    // Check if data is compatible and requires migration:
+    BOOL pscCompatibile = [mom isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
+    
+    if (pscCompatibile == NO) {
+        DDLogVerbose(@"Need to migrate!");
         
-        NSManagedObjectModel * destinationModel = [self managedObjectModel];
-        NSArray * bundlesForSourceModel = nil;
-        NSManagedObjectModel * sourceModel = [NSManagedObjectModel mergedModelFromBundles:bundlesForSourceModel forStoreMetadata:persistentStoreMetadata];
+        // Migrate!
+        //------------------------------------
+        
+        NSArray      * mappingModelNames  = [NSArray arrayWithObjects:@"MappingModel-1.1.0.8-1.2.0.1", nil];
+        NSString     * sourceStoreType    = NSSQLiteStoreType;
+        NSDictionary * sourceStoreOptions = nil;
+        
+        NSURL        * destinationStoreURL     = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa2.sqlite"];
+        NSString     * destinationStoreType    = NSSQLiteStoreType;
+        NSDictionary * destinationStoreOptions = nil;
+        
+        DDLogVerbose(@"%@", destinationStoreURL);
+        
+        // Fancy thingys I don't know what they do:
+        NSManagedObjectModel * sourceModel      = [NSManagedObjectModel mergedModelFromBundles:nil forStoreMetadata:persistentStoreMetadata];
+        NSMigrationManager   * migrationManager = [
+            [NSMigrationManager alloc]
+                initWithSourceModel:sourceModel
+                   destinationModel:mom
+        ];
+        
+        BOOL allMigrationsSuceeded = YES;
 
-        if (sourceModel == nil) {
-            DDLogWarn(@"source model is nil");
-        } else {
-//            NSLog(@"\n\nSource model: %@", sourceModel);
+        // Loop to iterate migration maps:
+        for (NSString * mappingModelName in mappingModelNames) {
+            NSURL * fileURL = [[NSBundle mainBundle] URLForResource:mappingModelName withExtension:@"cdm"];
             
+            NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
             
-            NSMigrationManager * migrationManager = [
-                [NSMigrationManager alloc]
-                    initWithSourceModel:sourceModel
-                       destinationModel:destinationModel
-            ];
-            //---
+            BOOL ok = [migrationManager migrateStoreFromURL:persistentStoreUrl
+                                                       type:sourceStoreType
+                                                    options:sourceStoreOptions
+                                           withMappingModel:mappingModel
+                                           toDestinationURL:destinationStoreURL
+                                            destinationType:destinationStoreType
+                                         destinationOptions:destinationStoreOptions
+                                                      error:&error];
+            if (ok) {
+                DDLogVerbose(@"Migration named '%@' successful", mappingModelName);
+            } else {
+                DDLogVerbose(@"Migration named '%@' failed", mappingModelName);
+                allMigrationsSuceeded = NO;
+            }
+            [mappingModel release];
+        }
+        
+        //------------------------------------
+//[NSApp terminate:nil];
+        if (allMigrationsSuceeded) {
+            // Replace old database for new
+            NSError * error2 = nil;
+            NSFileManager * fileManager = [[NSFileManager alloc] init];
             
-            
-//            NSArray * bundlesForMappingModel = [NSArray arrayWithObjects:@"Medusa.xcdatamodeld", nil];
-//            NSError * error = nil;
-//            NSMappingModel * mappingModel = [NSMappingModel
-//                mappingModelFromBundles:bundlesForMappingModel
-//                         forSourceModel:sourceModel
-//                       destinationModel:destinationModel
-//            ];
-            
-            DDLogInfo(@"sourceVersion: %@", sourceVersion);
-            NSArray * mappingModelNames = [[NSArray alloc] initWithObjects:
-                  [NSString stringWithFormat:@"MappingModel-%@-1.2.0.1", sourceVersion]
-//                , [NSString stringWithFormat:@"MappingModelDiskFiles-%@-1.1.0.8", sourceVersion]
-//                , [NSString stringWithFormat:@"MappingModelVirtualMachines-%@-1.1.0.8", sourceVersion]
-//                , [NSString stringWithFormat:@"MappingModelRelationshipVirtualMachinesDiskFiles-%@-1.1.0.8", sourceVersion]
-                , nil
-            ];
-
-            NSURL * destinationStoreURL = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa2.storedata"];
-            
-            for (NSString * mappingModelName in mappingModelNames) {
-
-                NSURL * mappingModelURL = [[NSBundle mainBundle] URLForResource:mappingModelName withExtension:@"cdm"];
-                NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:mappingModelURL];
-                
-                if (mappingModel == nil) DDLogWarn(@"Error on mapping model");
-                
-                NSError * error2 = nil;
-                DDLogInfo(@"\n\npersistentStoreUrl = %@\ndestinationStoreURL = %@", persistentStoreUrl, destinationStoreURL);
-                
-//                NSDictionary * options = [[NSDictionary alloc] init];
-                
-                BOOL teste = [migrationManager
-                      migrateStoreFromURL:persistentStoreUrl
-                                     type:NSSQLiteStoreType
-                                  options:nil
-                         withMappingModel:mappingModel
-                         toDestinationURL:destinationStoreURL
-                          destinationType:NSSQLiteStoreType
-                       destinationOptions:nil
-                                    error:&error2
-                 ];
-                    
-                [mappingModel release];
-                DDLogVerbose(@"%@ - %@", mappingModelName, teste ? @"OK" : @"Not OK");
-                
-                if (!teste) {
-                    DDLogVerbose(@"%@", error2);
-                }
-                
+            if ([fileManager fileExistsAtPath:[persistentStoreUrl path]] == YES) {
+                if ([fileManager removeItemAtPath:[persistentStoreUrl path] error:&error2])
+                    DDLogInfo(@"Datastore removed");
+                else
+                    DDLogError(@"Datastore not removed");
+            } else {
+                DDLogError(@"Datastore doesn't exist!");
             }
             
-            [mappingModelNames release];
-//            BOOL ok = [migrationManager
-//                migrateStoreFromURL:persistentStoreUrl
-//                               type:NSSQLiteStoreType
-//                            options:nil
-//                   withMappingModel:mappingModel
-//                   toDestinationURL:destinationStoreURL
-//                    destinationType:NSSQLiteStoreType
-//                 destinationOptions:nil
-//                              error:&error
-//            ];
+            if ([fileManager moveItemAtURL:destinationStoreURL toURL:persistentStoreUrl error:&error2]) {
+                DDLogInfo(@"Datastore moved");
+                [self popUpDialog:@"Medusa sucessfully migrated your data from the previous version. However, your Virtual Machines may be using a different Mac model based on the ROM files.\nYou can override this behaviour in the Preferences window if you wish.\nThis message will not be displayed again."];
+            } else {
+                DDLogError(@"Datastore not moved");
+            }
             
-            
-            [migrationManager release];
-        
         }
-        
-        //----------
-        
-        
     }
-    
-//    [NSApp terminate:nil];
-    /*
-    NSDictionary * options = [ NSDictionary dictionaryWithObjectsAndKeys:
-          [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption
-        , [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
-        , nil
-    ];
-    
-    // The following code was without 'options'. The value was set to 'nil'.
-    
-    id potentialMigration = [coordinator
-        addPersistentStoreWithType:NSSQLiteStoreType
-                     configuration:nil
-                               URL:persistentStoreUrl
-                           options:options
-                             error:&error
-    ];
-    
-    
-    NSLog(@"%@", versionIdentifiers);
-    
-    if (potentialMigration == nil) {
-        NSLog(@"%@", [error userInfo]);
-        DDLogError(@"Error: %@\n------", [[error userInfo] valueForKey:@"reason"]);
-        
-        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
-        //url
-        NSString * errorDescription = [[[NSString alloc] initWithFormat:@"There was an error while trying to migrate your data to the new version:\n\n\"%@\"\n\nYou can either downgrade or delete/move the store file below and report a bug.\n\n%@", [[error userInfo] valueForKey:@"reason"], [[persistentStoreUrl path] stringByAbbreviatingWithTildeInPath]] autorelease];
-        [dict setValue:errorDescription forKey:NSLocalizedDescriptionKey];
-        [dict setValue:@"Failed to initialise the store coordinator" forKey:NSLocalizedFailureReasonErrorKey];
-        NSError * error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN"
-                                              code:9999
-                                          userInfo:dict];
-        [[NSApplication sharedApplication] presentError:error];
-        [NSApp terminate:nil];
-    }
-     */
-    __persistentStoreCoordinator = [coordinator retain];
 
+    [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:persistentStoreUrl options:nil error:&error];
+    __persistentStoreCoordinator = [coordinator retain];
     return __persistentStoreCoordinator;
 }
+
+//- (NSPersistentStoreCoordinator *)persistentStoreCoordinatorOld {
+//
+//    return [self persistentStoreCoordinatorTwo];
+//
+//    if (__persistentStoreCoordinator) {
+//        return __persistentStoreCoordinator;
+//    }
+//
+//    NSManagedObjectModel * mom = [self managedObjectModel];
+//
+//    if (!mom) {
+//        DDLogError(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
+//        return nil;
+//    }
+//
+//    NSFileManager * fileManager = [NSFileManager defaultManager];
+//    NSURL   * applicationFilesDirectory = [self applicationFilesDirectory];
+//    NSError * error = nil;
+//
+//    NSDictionary * properties = [
+//        applicationFilesDirectory
+//        resourceValuesForKeys:[
+//            NSArray arrayWithObject:NSURLIsDirectoryKey
+//        ]
+//        error:&error
+//    ];
+//
+//    if (!properties) {
+//
+//        BOOL ok = NO;
+//
+//        if ([error code] == NSFileReadNoSuchFileError) {
+//            ok = [fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error];
+//        }
+//        if (!ok) {
+//            DDLogError(@"No such file: applicationFilesDirectory");
+//            [[NSApplication sharedApplication] presentError:error];
+//            return nil;
+//        }
+//
+//    } else {
+//
+//        if ([[properties objectForKey:NSURLIsDirectoryKey] boolValue] != YES) {
+//            // Customize and localize this error.
+//            NSString *failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
+//
+//            DDLogError(@"Expected a folder to store application data, found a file.");
+//
+//            NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//            [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
+//            error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:101 userInfo:dict];
+//
+//            [[NSApplication sharedApplication] presentError:error];
+//            return nil;
+//        }
+//
+//    }
+//
+//    NSURL * url = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];
+//
+//    NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
+//
+//    NSSet * versionIdentifiers = [[self managedObjectModel] versionIdentifiers];
+//    DDLogInfo(@"Current Version of .xcdatamodeld file: %@", [[versionIdentifiers allObjects] objectAtIndex:0]);
+//
+//    // This part handles the persistent store upgrade:
+//    NSDictionary * options = [ NSDictionary dictionaryWithObjectsAndKeys:
+//        [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption
+//      , [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
+//      , nil
+//    ];
+//
+//    // The following code was without 'options'. The value was set to 'nil'.
+//
+//    DDLogInfo(@"Attempting migration...");
+//    id potentialMigration = [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:options error:&error];
+//
+//    DDLogVerbose(@"%@", versionIdentifiers);
+//
+//    if (potentialMigration == nil) {
+//        NSLog(@"%@", [error userInfo]);
+//        DDLogError(@"Error: %@\n", [[error userInfo] valueForKey:@"reason"]);
+//
+//        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+//        //url
+//        NSString * errorDescription = [[[NSString alloc] initWithFormat:@"There was an error while trying to verify your data:\n\n\"%@\"\n\nIf you just updated, you can downgrade Medusa. Otherwise, you can delete/move the store file below and report a bug.\n\n%@", [[error userInfo] valueForKey:@"reason"], [[url path] stringByAbbreviatingWithTildeInPath]] autorelease];
+//        [dict setValue:errorDescription forKey:NSLocalizedDescriptionKey];
+//        [dict setValue:@"Failed to initialise the store coordinator" forKey:NSLocalizedFailureReasonErrorKey];
+//        NSError * error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN"
+//                                              code:9999
+//                                          userInfo:dict];
+//        [[NSApplication sharedApplication] presentError:error];
+//        [NSApp terminate:nil];
+//    }
+//    __persistentStoreCoordinator = [coordinator retain];
+//
+//    return __persistentStoreCoordinator;
+//}
+
+///**
+// * @method      persistentStoreCoordinator:
+// * @abstract    Returns the persistent store coordinator for the application.
+// *              This implementation creates and return a coordinator, having
+// *              added the store for the application to it. (The directory for
+// *              the store is created, if necessary.)
+// */
+//- (NSPersistentStoreCoordinator *)persistentStoreCoordinatorNew {
+//
+//    if (__persistentStoreCoordinator) {
+//        return __persistentStoreCoordinator;
+//    }
+//
+//    NSManagedObjectModel * mom = [self managedObjectModel];
+//    
+//    if (!mom) {
+//        DDLogError(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
+//        return nil;
+//    }
+//
+//    NSFileManager * fileManager = [NSFileManager defaultManager];
+//    NSURL         * applicationFilesDirectory = [self applicationFilesDirectory];
+//    NSError       * error = nil;
+//    NSDictionary  * properties = [
+//        applicationFilesDirectory
+//        resourceValuesForKeys:[
+//            NSArray arrayWithObject:NSURLIsDirectoryKey
+//        ]
+//        error:&error
+//    ];
+//        
+//    if (!properties) {
+//        
+//        if ([error code] == NSFileReadNoSuchFileError) {
+//            if (![fileManager createDirectoryAtPath:[applicationFilesDirectory path] withIntermediateDirectories:YES attributes:nil error:&error]){
+//                DDLogError(@"No such file: applicationFilesDirectory");
+//                [[NSApplication sharedApplication] presentError:error];
+//                return nil;
+//            }
+//        }
+//
+//    } else {
+//        
+//        if (![[properties objectForKey:NSURLIsDirectoryKey] boolValue]) {
+//
+//            // Customise and localise this error.
+//            NSString * failureDescription = [NSString stringWithFormat:@"Expected a folder to store application data, found a file (%@).", [applicationFilesDirectory path]];
+//
+//            DDLogError(@"Expected a folder to store application data, found a file.");
+//
+//            NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+//            [dict setValue:failureDescription forKey:NSLocalizedDescriptionKey];
+//            error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN" code:101 userInfo:dict];
+//            
+//            [[NSApplication sharedApplication] presentError:error];
+//            return nil;
+//
+//        }
+//
+//    }
+//    
+//    //--------------------------------------------------------------------------
+//    // Gets persistent store
+//    
+//    NSURL * persistentStoreUrl = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];    
+////    NSSet * versionIdentifiers = [mom versionIdentifiers];
+////    NSLog(@"%@", );
+//
+//    
+//    // This part handles the persistent store upgrade:
+//
+//    NSDictionary * persistentStoreMetadata = [NSPersistentStoreCoordinator
+//        metadataForPersistentStoreOfType:NSSQLiteStoreType
+//                                     URL:persistentStoreUrl
+//                                   error:&error
+//    ];
+//    
+//    // Fetch current version:
+//    
+//    NSArray  * sourceVersionIdentifiers = [persistentStoreMetadata objectForKey:NSStoreModelVersionIdentifiersKey];
+//    NSString * sourceVersion = [[[NSString alloc] initWithString:[sourceVersionIdentifiers lastObject]] autorelease];
+//    NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
+//    DDLogVerbose(@"Current Version of .xcdatamodeld file: %@", sourceVersion);
+//    
+//    if ([sourceVersion isEqualToString:@"1.0.2.3"]) {
+//        sourceVersion = @"1.1.0.8";
+//    }
+//    
+//    BOOL compatibleCoreData = [mom isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
+//    
+//    if (compatibleCoreData) {
+//        DDLogVerbose(@"Compatible data");
+//        id storeAdded = [coordinator
+//            addPersistentStoreWithType:NSSQLiteStoreType
+//                         configuration:nil
+//                                   URL:persistentStoreUrl
+//                               options:nil
+//                                 error:&error
+//        ];
+//
+//        if (storeAdded == nil) {
+//            DDLogError(@"%@", [error userInfo]);
+//            DDLogError(@"Error: %@\n------", [[error userInfo] valueForKey:@"reason"]);
+//        }
+//
+//    } else {
+//        DDLogWarn(@"Warning: Persistent store is not compatible. Attempting migration.");
+//        
+//        NSManagedObjectModel * destinationModel = [self managedObjectModel];
+//        NSArray * bundlesForSourceModel = nil;
+//        NSManagedObjectModel * sourceModel = [NSManagedObjectModel mergedModelFromBundles:bundlesForSourceModel forStoreMetadata:persistentStoreMetadata];
+//
+//        if (sourceModel == nil) {
+//            DDLogWarn(@"source model is nil");
+//        } else {
+////            NSLog(@"\n\nSource model: %@", sourceModel);
+//            
+//            
+//            NSMigrationManager * migrationManager = [
+//                [NSMigrationManager alloc]
+//                    initWithSourceModel:sourceModel
+//                       destinationModel:destinationModel
+//            ];
+//            //---
+//            
+//            
+////            NSArray * bundlesForMappingModel = [NSArray arrayWithObjects:@"Medusa.xcdatamodeld", nil];
+////            NSError * error = nil;
+////            NSMappingModel * mappingModel = [NSMappingModel
+////                mappingModelFromBundles:bundlesForMappingModel
+////                         forSourceModel:sourceModel
+////                       destinationModel:destinationModel
+////            ];
+//            
+//            DDLogInfo(@"sourceVersion: %@", sourceVersion);
+//            NSArray * mappingModelNames = [[NSArray alloc] initWithObjects:
+//                  [NSString stringWithFormat:@"MappingModel-%@-1.2.0.1", sourceVersion]
+////                , [NSString stringWithFormat:@"MappingModelDiskFiles-%@-1.1.0.8", sourceVersion]
+////                , [NSString stringWithFormat:@"MappingModelVirtualMachines-%@-1.1.0.8", sourceVersion]
+////                , [NSString stringWithFormat:@"MappingModelRelationshipVirtualMachinesDiskFiles-%@-1.1.0.8", sourceVersion]
+//                , nil
+//            ];
+//
+//            NSURL * destinationStoreURL = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa2.storedata"];
+//            
+//            for (NSString * mappingModelName in mappingModelNames) {
+//
+//                NSURL * mappingModelURL = [[NSBundle mainBundle] URLForResource:mappingModelName withExtension:@"cdm"];
+//                NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:mappingModelURL];
+//                
+//                DDLogVerbose(@"%@", mappingModelURL);
+////                DDLogVerbose(@"%@", mappingModel);
+//                //MappingModel-1.1.0.8-1.2.0.1.cdm
+//                //MappingModel-1.0.2.3-1.2.0.1.cdm
+//                //MappingModel-1.1.0.8-1.2.0.1.cdm
+//                if (mappingModel == nil) DDLogWarn(@"Error on mapping model");
+////[NSApp terminate:nil];
+//                NSError * error2 = nil;
+//                DDLogInfo(@"\n\npersistentStoreUrl = %@\ndestinationStoreURL = %@", persistentStoreUrl, destinationStoreURL);
+//                
+////                NSDictionary * options = [[NSDictionary alloc] init];
+//                
+//                BOOL teste = [migrationManager
+//                      migrateStoreFromURL:persistentStoreUrl
+//                                     type:NSSQLiteStoreType
+//                                  options:nil
+//                         withMappingModel:mappingModel
+//                         toDestinationURL:destinationStoreURL
+//                          destinationType:NSSQLiteStoreType
+//                       destinationOptions:nil
+//                                    error:&error2
+//                 ];
+//[NSApp terminate:nil];
+//                [mappingModel release];
+//                DDLogVerbose(@"%@ - %@", mappingModelName, teste ? @"OK" : @"Not OK");
+//                
+//                if (!teste) {
+//                    DDLogVerbose(@"%@", error2);
+//                }
+//                
+//            }
+//            
+//            [mappingModelNames release];
+////            BOOL ok = [migrationManager
+////                migrateStoreFromURL:persistentStoreUrl
+////                               type:NSSQLiteStoreType
+////                            options:nil
+////                   withMappingModel:mappingModel
+////                   toDestinationURL:destinationStoreURL
+////                    destinationType:NSSQLiteStoreType
+////                 destinationOptions:nil
+////                              error:&error
+////            ];
+//            
+//            
+//            [migrationManager release];
+//        
+//        }
+//        
+//        //----------
+//        
+//        
+//    }
+//    
+////    [NSApp terminate:nil];
+//    /*
+//    NSDictionary * options = [ NSDictionary dictionaryWithObjectsAndKeys:
+//          [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption
+//        , [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption
+//        , nil
+//    ];
+//    
+//    // The following code was without 'options'. The value was set to 'nil'.
+//    
+//    id potentialMigration = [coordinator
+//        addPersistentStoreWithType:NSSQLiteStoreType
+//                     configuration:nil
+//                               URL:persistentStoreUrl
+//                           options:options
+//                             error:&error
+//    ];
+//    
+//    
+//    NSLog(@"%@", versionIdentifiers);
+//    
+//    if (potentialMigration == nil) {
+//        NSLog(@"%@", [error userInfo]);
+//        DDLogError(@"Error: %@\n------", [[error userInfo] valueForKey:@"reason"]);
+//        
+//        NSMutableDictionary * dict = [NSMutableDictionary dictionary];
+//        //url
+//        NSString * errorDescription = [[[NSString alloc] initWithFormat:@"There was an error while trying to migrate your data to the new version:\n\n\"%@\"\n\nYou can either downgrade or delete/move the store file below and report a bug.\n\n%@", [[error userInfo] valueForKey:@"reason"], [[persistentStoreUrl path] stringByAbbreviatingWithTildeInPath]] autorelease];
+//        [dict setValue:errorDescription forKey:NSLocalizedDescriptionKey];
+//        [dict setValue:@"Failed to initialise the store coordinator" forKey:NSLocalizedFailureReasonErrorKey];
+//        NSError * error = [NSError errorWithDomain:@"YOUR_ERROR_DOMAIN"
+//                                              code:9999
+//                                          userInfo:dict];
+//        [[NSApplication sharedApplication] presentError:error];
+//        [NSApp terminate:nil];
+//    }
+//     */
+//    __persistentStoreCoordinator = [coordinator retain];
+//
+//    return __persistentStoreCoordinator;
+//}
 
 /**
  * @method        managedObjectContext:

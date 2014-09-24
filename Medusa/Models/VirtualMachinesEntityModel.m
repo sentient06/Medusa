@@ -114,9 +114,12 @@
 }
 
 - (BOOL)canRun {
-    int icon = [[self icon] intValue];
-    if ( icon == 1 || icon == 2) return YES;
-    else return NO;
+    if ([self romFile]      == nil ||
+        [self emulator]     == nil ||
+       [[self disks] count] == 0)
+        return NO;
+    else
+        return YES;
 }
 
 - (NSNumber *)nextDiskIndex {

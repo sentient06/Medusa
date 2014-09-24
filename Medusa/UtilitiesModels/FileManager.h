@@ -37,5 +37,6 @@
 + (NSData *)createBookmarkFromUrl:(NSURL *)filePath;
 + (void)resolveBookmarksInObjectContext:(NSManagedObjectContext *)currentContext;
 + (NSString *)resolveAlias:(NSData *)aliasData;
+//+ 
 
 @end

@@ -55,7 +55,9 @@ typedef enum {
     //--------------------------------------------------------------------------
     //Standard variables
 
-    NSObject               * selectedGestaltModel;
+//    NSObject               * selectedGestaltModel;
+    NSNumber               * selectedGestaltModel;
+    NSMutableDictionary    * gestaltModelsAvailable;
     NSManagedObjectContext * managedObjectContext;
     NSMutableArray         * menuObjectsArray;
     NSMutableArray         * subviewsArray;
@@ -65,7 +67,7 @@ typedef enum {
     //--------------------------------------------------------------------------
     //Controllers
 
-    IBOutlet NSArrayController       * availableGestaltModels;
+    IBOutlet NSArrayController       * availableGestaltModelsController;
     IBOutlet NSArrayController       * availableDisksController;
     IBOutlet NSArrayController       * romFilesController;
     IBOutlet SortableArrayController * usedDisksController;
@@ -100,7 +102,10 @@ typedef enum {
 @property (assign) IBOutlet NSWindow * VMWindow;
 @property (copy) NSMutableArray * menuObjectsArray;
 @property (copy) NSMutableArray * allGestaltModelsArray;
-@property (assign) NSObject * selectedGestaltModel;
+
+
+@property (nonatomic, retain) NSNumber * selectedGestaltModel;
+//@property (assign) NSObject * selectedGestaltModel;
 
 //------------------------------------------------------------------------------
 // Application properties.
@@ -138,6 +143,7 @@ typedef enum {
 - (IBAction)savePreferencesFromView:(id)sender;
 - (IBAction)useSelectedDisks:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;
+- (void)updateMacModelFromList:(NSNumber *)listIndex;
 - (void)resetDriveOrder;
 
 // Views

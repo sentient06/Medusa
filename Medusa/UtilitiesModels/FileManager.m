@@ -82,7 +82,8 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
         while (object = [rowEnumerator nextObject]) {
             NSData * aliasData = [object fileAlias];
             NSString * currentPath = [self resolveAlias:aliasData];
-            if ([currentPath isEqualToString:@""]) {
+//            if ([currentPath isEqualToString:@""]) {
+            if ([currentPath isEqualTo:nil]) {
                 [object setFileMissing:[NSNumber numberWithBool:YES]];
             }
         }
@@ -111,7 +112,7 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
             return [NSString stringWithCString: pathC encoding: NSUTF8StringEncoding];
         }
     }
-    return @"";
+    return nil; //@"";
 }
 
 @end
