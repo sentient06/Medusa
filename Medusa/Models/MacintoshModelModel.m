@@ -154,7 +154,7 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
 
 + (NSDictionary *)fetchAllAvailableModelsForChecksum:(NSString *)checksum andEmulator:(int)emulatorType {
     
-    NSDictionary * allowedGestalt = [[[NSDictionary alloc] init] autorelease];
+    NSDictionary * allowedGestalt;
     uint intChecksum = 0;
     NSScanner * scanner = [NSScanner scannerWithString:checksum];
     [scanner scanHexInt:&intChecksum];

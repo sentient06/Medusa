@@ -39,9 +39,25 @@
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     
-    NSPasteboard * pboard    = [sender draggingPasteboard];
-    NSArray      * urls      = [pboard propertyListForType:NSFilenamesPboardType];
-    RomController     * romObject = [[RomController alloc] autorelease];
+    // Doesn't work:
+//    NSLog(@"%@", [self isEnabled] ? @"enabled" : @"disabled");
+//    NSLog(@"%@", self);
+//    if ([self isEnabled] == NO) {
+//        return NO;
+//    }
+    // Investigate!
+    
+    // Workaround:
+    if (currentMachine) {
+        VirtualMachinesEntityModel * newVirtualMachineObject = [currentMachine content];
+        if ([[newVirtualMachineObject running] intValue] == 1)
+            return NO;
+    }
+    // Meh!
+    
+    NSPasteboard  * pboard    = [sender draggingPasteboard];
+    NSArray       * urls      = [pboard propertyListForType:NSFilenamesPboardType];
+    RomController * romObject = [[RomController alloc] autorelease];
     
     [romObject parseRomFilesAndSave:urls];
     
@@ -50,8 +66,7 @@
         [newVirtualMachineObject setRomFile:[romObject currentRomObject]];
     }
     
-    return YES;    
-    
+    return YES;
 }
 
 @end

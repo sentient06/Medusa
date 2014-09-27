@@ -82,6 +82,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSData * data = [NSData dataWithContentsOfFile:filePath];
     fileSize = (int) [data length];
     Byte * byteData = (Byte *)malloc(fileSize);
+    uint32 result;
     memcpy(byteData, [data bytes], fileSize);
     
 //    NSNumber * size = [[NSNumber alloc] initWithUnsignedLong:fileSize/2^20];
@@ -96,9 +97,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         case 3072: fileSize = rom3MB;   break;
         case 4096: fileSize = rom4MB;   break;
         default:   fileSize = romNull;  break;
-    }    
-    
-    return ntohl(*(uint32 *)byteData);
+    }
+
+    result = ntohl(*(uint32 *)byteData);
+    free(byteData);
+    // The ntohl() function converts the unsigned integer netlong from network byte order to host byte order.
+    return result;
 }
 
 /*!
@@ -109,8 +113,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                 inObjectContext:(NSManagedObjectContext *)currentContext {
     
     if (![RomController validateFile:filePath]) {
+        DDLogInfo(@"File did not pass validation for ROM.");
         return nil;
     } else {
+        DDLogInfo(@"Parsing ROM file.");
         uint32 intChecksum = [self extractChecksumForFile:filePath];
         NSData * data = [NSData dataWithContentsOfFile:filePath];
         NSString * md5Hash = [data MD5];

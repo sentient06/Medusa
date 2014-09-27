@@ -35,6 +35,7 @@
 #import "DiskFilesEntityModel.h"
 #import "VirtualMachinesEntityModel.h"
 #import "RomFilesEntityModel.h"
+#import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -437,22 +438,45 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
     if ([[virtualMachine rawKeycodes] boolValue]) {
 
-        BOOL keyCodeFile = [fileManager fileExistsAtPath:@"/usr/local/share/BasiliskII/keycodes"];
-
-        if (keyCodeFile) {
-            NSDictionary * rawKeycodesSettings = [[NSDictionary alloc]
-                initWithObjectsAndKeys:
-                    @"true", @"keycodes",
-                    nil
+        NSString * keycodesFile = [
+             [NSString alloc] initWithFormat:@"%@/BasiliskII_keycodes",
+            [[NSApp delegate] applicationSupportDirectory]
+        ];
+        
+        BOOL existingKeycodesFile = [fileManager fileExistsAtPath:keycodesFile];
+        
+        if (!existingKeycodesFile) {
+            NSString * originalKeycodeFile = [
+                [NSString alloc] initWithString:[
+                    [NSBundle mainBundle] pathForResource:@"BasiliskII_keycodes" ofType:nil
+                ]
             ];
-            [allData addObject:rawKeycodesSettings];
-            [rawKeycodesSettings release];
-            // true looks for file in /usr/local/share/BasiliskII/keycodes
-            // or it uses keycodefile
-            // the file won't be found in snow leopard
+            NSLog(@"No keycodes file, copying %@", originalKeycodeFile);
+            [fileManager copyItemAtPath:originalKeycodeFile toPath:keycodesFile error:&error];
         }
+        NSDictionary * rawKeycodesSettings = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                @"true", @"keycodes",
+                nil
+        ];
+        [allData addObject:rawKeycodesSettings];
+        [rawKeycodesSettings release];
+        
+        NSDictionary * keycodesFileData = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                keycodesFile, @"keycodefile",
+                nil
+        ];
+        [allData addObject:keycodesFileData];
+        [keycodesFileData release];
+        
+        // true looks for file in /usr/local/share/BasiliskII/keycodes
+        // or it uses keycodefile
+        // the file won't be found in snow leopard
+
 
     } else {
+        NSLog(@"Else");
         if ([virtualMachine keyboardLayout]) {
             NSDictionary * keycodesSettings = [[NSDictionary alloc]
                 initWithObjectsAndKeys:

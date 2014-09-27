@@ -35,6 +35,7 @@
 #import "AppDelegate.h"
 #import "EmulatorController.h"
 #import "ASIHTTPRequest.h"
+#import "RomFilesEntityModel.h"
 #import "RomController.h"
 #import "DiskController.h"
 
@@ -43,7 +44,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_WARN;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation AssetsWindowController
@@ -269,6 +270,15 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [request startAsynchronous];
 }
 
+- (IBAction)showFinderRomItem:(id)sender {
+    RomFilesEntityModel * currentRom = [[RomFilesArrayController selectedObjects] objectAtIndex:0];
+    [self showFinderItemAtPath:[currentRom filePath]];
+}
+
+- (IBAction)showFinderDiskItem:(id)sender {
+    DDLogVerbose(@"%@", RomFilesArrayController);
+}
+
 //------------------------------------------------------------------------------
 // Utility methods
 
@@ -299,6 +309,18 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [downloadPanel orderOut:nil];
 }
 
+- (void)showFinderItemAtPath:(NSString *)path {
+//    NSString * preferencesFilePath = [
+//        [NSMutableString alloc] initWithFormat:
+//            @"%@/%@Preferences",
+//            [self applicationSupportDirectory],
+//            [virtualMachine uniqueName]
+//    ];
+
+    NSWorkspace * ws = [NSWorkspace sharedWorkspace];
+    [ws selectFile:path inFileViewerRootedAtPath:nil];
+//    [preferencesFilePath release];
+}
 //------------------------------------------------------------------------------
 // Init methods
 

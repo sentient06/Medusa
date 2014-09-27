@@ -58,10 +58,14 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
     DDLogVerbose(@"VM Icon Value Transformer - value: %@ -- %ld", value, iconValue);
     
     switch (iconValue) {
+        case BlackAndWhiteHappyVMLocked:
+            return [NSImage imageNamed:@"BlackAndWhiteHappyMacLocked.png"];
+        case ColouredHappyVMLocked:
+            return [NSImage imageNamed:@"ColouredHappyMacLocked.png"];
         case BlackAndWhiteHappyVM:
-            return [NSImage imageNamed:@"BlackAndWhiteHappyMac.png"];
+            return [NSImage imageNamed:@"BlackAndWhiteHappyMac2x.png"];
         case ColouredHappyVM:
-            return [NSImage imageNamed:@"ColouredHappyMac.png"];
+            return [NSImage imageNamed:@"ColouredHappyMac2x.png"];
         case BlackAndWhiteNoDisk:
             return [NSImage imageNamed:@"noDiskBW.png"];
         case ColouredNoDisk:

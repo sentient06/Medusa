@@ -67,4 +67,6 @@
 - (IBAction)openSubView:(id)sender;
 - (IBAction)openSharePath:(id)sender;
 
+- (IBAction)deleteXPRAM:(id)sender;
+
 @end

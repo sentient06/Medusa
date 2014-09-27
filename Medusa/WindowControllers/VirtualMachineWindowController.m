@@ -587,6 +587,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     
     if ([keyPath isEqualToString:@"virtualMachine.romFile"]) {
+        if ([virtualMachine romFile] == nil) return;
         [self repopulateGestaltList];
     }
     
@@ -781,7 +782,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 -(void)awakeFromNib {
-
     [super awakeFromNib];
     NSSortDescriptor * mySortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"positionIndex" ascending:YES];
     [usedDisksController setSortDescriptors:[NSArray arrayWithObject:mySortDescriptor]];

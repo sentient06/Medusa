@@ -102,10 +102,18 @@
             }
         } else {
             if (category == OldWorldROM) {
-                value = BlackAndWhiteHappyVM;
+                if ([[self running] intValue] == 1) {
+                    value = BlackAndWhiteHappyVMLocked;
+                } else {
+                    value = BlackAndWhiteHappyVM;
+                }
             }
             if (category == NewWorldROM) {
-                value = ColouredHappyVM;
+                if ([[self running] intValue] == 1) {
+                    value = ColouredHappyVMLocked;
+                } else {
+                    value = ColouredHappyVM;
+                }
             }
         }
     }

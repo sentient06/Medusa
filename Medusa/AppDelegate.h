@@ -169,7 +169,10 @@
 
 - (IBAction)savePreferencesFile:(id)sender;
 - (IBAction)openPreferencesFileFolder:(id)sender;
+
+- (IBAction)toggleEmulator:(id)sender;
 - (IBAction)stopEmulator:(id)sender;
+- (IBAction)killEmulator:(id)sender;
 - (IBAction)showInformationWindow:(id)sender;
 
 @end

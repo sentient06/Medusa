@@ -33,13 +33,14 @@
 #import "FileManager.h"
 #import "RomFilesEntityModel.h"
 #import "AppDelegate.h"
+#import <libproc.h>
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_OFF;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation FileManager
@@ -113,6 +114,56 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
         }
     }
     return nil; //@"";
+}
+
+
+// http://stackoverflow.com/questions/8645831/detect-file-in-use-by-other-process
+// http://web.archiveorange.com/archive/v/SEb6ahosyxznFKzz63G1#UyJK53APLLUOd1I
++ (BOOL)pidsAccessingPath: (NSString *)path {
+    
+    //Buggy
+    /*
+    const char * pathFileSystemRepresentation = nil;
+    int result = 0;
+    
+    NSParameterAssert(path && [path length]);
+    
+    pathFileSystemRepresentation = [path cStringUsingEncoding: NSUTF8StringEncoding];
+    result = proc_listpidspath(
+        PROC_ALL_PIDS, 0,
+        pathFileSystemRepresentation,
+        PROC_LISTPIDSPATH_EXCLUDE_EVTONLY, nil, 0
+    );
+
+    return result;
+     */
+    NSString * busyPath = [[NSString alloc] initWithFormat:@"/usr/sbin/lsof"];
+    NSTask * busyTask = [[[NSTask alloc] init] autorelease];
+    NSPipe * busyPipe = [NSPipe pipe];
+    [busyTask setLaunchPath:busyPath];
+    [busyTask setArguments:[NSArray arrayWithObjects:@"-Fc", path,nil]];
+    [busyTask setStandardOutput: busyPipe];
+    [busyTask launch];
+    [busyTask waitUntilExit];
+    
+    NSData * outputData = [[[busyTask standardOutput] fileHandleForReading] availableData];
+    
+    [busyPath release];
+    
+    if ((outputData != nil) && [outputData length])
+        return YES;
+    else
+        return NO;
+    
+}
+
++ (void)deleteXPRAMFile {
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSError * error;
+    if (![fileManager removeItemAtPath:[@"~/.basilisk_ii_xpram" stringByExpandingTildeInPath] error:&error])
+        DDLogError(@"Couldn't delete Basilisk's XPRAM file!\n\n%@\n\n%@", [error localizedDescription], [error userInfo]);
+    else
+        DDLogInfo(@"XPRAM deleted");
 }
 
 @end

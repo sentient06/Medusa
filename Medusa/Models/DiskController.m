@@ -40,7 +40,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_ERROR;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation DiskController
@@ -306,6 +306,8 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
 
     BOOL unsupportedExtension = NO;
 
+    DDLogVerbose(@"Size: %lu", diskSize);
+    
     // Creates symlink for unsupported extensions hfv and dsk:
     
     DDLogVerbose(@"Checking file extension...");

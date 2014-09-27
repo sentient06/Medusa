@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1060" defaultVersion="1060" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5056"/>
@@ -310,7 +310,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="245">
-                    <rect key="frame" x="231" y="316" width="392" height="21"/>
+                    <rect key="frame" x="308" y="318" width="314" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="fileName" id="252">
                         <font key="font" metaFont="system"/>
@@ -326,7 +326,7 @@
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="246">
-                    <rect key="frame" x="231" y="266" width="392" height="50"/>
+                    <rect key="frame" x="233" y="103" width="392" height="50"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="left" title="filePath" id="251">
                         <font key="font" metaFont="smallSystem"/>
@@ -389,7 +389,7 @@
                     </connections>
                 </textField>
                 <textField hidden="YES" verticalHuggingPriority="750" id="451">
-                    <rect key="frame" x="231" y="109" width="296" height="17"/>
+                    <rect key="frame" x="226" y="40" width="296" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="&lt;- There is an image wheel over the table! =P" id="452">
                         <font key="font" metaFont="system"/>
@@ -468,6 +468,34 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                 </button>
+                <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="upb-8w-ytY">
+                    <rect key="frame" x="241" y="280" width="379" height="5"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                    <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <font key="titleFont" metaFont="system"/>
+                </box>
+                <button verticalHuggingPriority="750" id="n0u-Jq-3Sg">
+                    <rect key="frame" x="256" y="294" width="46" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NHD-fF-1dn">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" id="XWh-zS-gSO">
+                    <rect key="frame" x="256" y="294" width="46" height="48"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="Plv-lZ-A5J">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <imageView id="IfC-aq-yQE">
+                    <rect key="frame" x="256" y="297" width="46" height="46"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="noDiskColour" id="yEt-yM-C9r"/>
+                </imageView>
             </subviews>
         </customView>
         <customView wantsLayer="YES" id="37" userLabel="Rom SubView">
@@ -501,12 +529,12 @@
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <connections>
-                                            <binding destination="76" name="value" keyPath="arrangedObjects.modelName" id="79"/>
                                             <binding destination="76" name="textColor" keyPath="arrangedObjects.fileMissing" id="8y5-FH-rw9">
                                                 <dictionary key="options">
                                                     <string key="NSValueTransformerName">BoolValueToRedColourTransformer</string>
                                                 </dictionary>
                                             </binding>
+                                            <binding destination="76" name="value" keyPath="arrangedObjects.modelName" id="79"/>
                                         </connections>
                                     </tableColumn>
                                 </tableColumns>
@@ -562,12 +590,12 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="76" name="value" keyPath="selection.modelName" id="453"/>
                         <binding destination="76" name="textColor" keyPath="selection.fileMissing" id="RQ2-P1-2Zj">
                             <dictionary key="options">
                                 <string key="NSValueTransformerName">BoolValueToRedColourTransformer</string>
                             </dictionary>
                         </binding>
+                        <binding destination="76" name="value" keyPath="selection.modelName" id="453"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="144">
@@ -636,7 +664,7 @@
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" id="543">
-                    <rect key="frame" x="64" y="22" width="156" height="23"/>
+                    <rect key="frame" x="86" y="22" width="134" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="546">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -644,7 +672,7 @@
                     </buttonCell>
                 </button>
                 <button verticalHuggingPriority="750" id="544">
-                    <rect key="frame" x="64" y="22" width="156" height="23"/>
+                    <rect key="frame" x="86" y="22" width="134" height="23"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="545">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -745,17 +773,17 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="76" name="hidden" keyPath="canRemove" id="ILh-bF-9ZV">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="76" name="hidden2" keyPath="selection.fileMissing" previousBinding="ILh-bF-9ZV" id="zFL-cv-Mlu">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                 <integer key="NSNoSelectionPlaceholder" value="-1"/>
                                 <integer key="NSNotApplicablePlaceholder" value="-1"/>
                                 <integer key="NSNullPlaceholder" value="-1"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="76" name="hidden" keyPath="canRemove" id="ILh-bF-9ZV">
-                            <dictionary key="options">
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
@@ -857,6 +885,18 @@
                         </binding>
                     </connections>
                 </imageView>
+                <button verticalHuggingPriority="750" id="q3q-zd-95K">
+                    <rect key="frame" x="64" y="22" width="23" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="P4P-b8-Ng0">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showFinderRomItem:" target="-2" id="55j-kV-Plw"/>
+                        <binding destination="76" name="enabled" keyPath="canRemove" id="IjD-fz-BaU"/>
+                    </connections>
+                </button>
             </subviews>
         </customView>
         <customView id="348" userLabel="Emulators SubView">
@@ -1135,9 +1175,11 @@
         <image name="NSAddTemplate" width="8" height="8"/>
         <image name="NSRefreshTemplate" width="10" height="12"/>
         <image name="NSRemoveTemplate" width="8" height="8"/>
+        <image name="NSRevealFreestandingTemplate" width="14" height="14"/>
         <image name="NSStopProgressFreestandingTemplate" width="83" height="83"/>
         <image name="QuestionMarkMac" width="32" height="32"/>
         <image name="RecentDocumentsFolderIcon" width="32" height="32"/>
         <image name="RomImageDocument" width="512" height="512"/>
+        <image name="noDiskColour" width="32" height="32"/>
     </resources>
 </document>

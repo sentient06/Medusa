@@ -39,7 +39,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_ERROR;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation DropAllView
@@ -105,7 +105,11 @@ static const int ddLogLevel = LOG_LEVEL_ERROR;
         [driveObject release];
         disksParsed++;
     } else {
-        if ([kind isEqualToString:@"Unix Executable File"] || [kind isEqualToString:@"Document"] ){
+        if (
+         [kind isEqualToString:@"Unix Executable File"] ||
+         [kind isEqualToString:@"Document"] ||
+         [kind isEqualToString:@"ROM Image"]
+            ){
             RomController * romObject = [[RomController alloc] init];
             [romObject parseRomFileAndSave:[url relativePath]];
             [romObject release];

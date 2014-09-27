@@ -31,6 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "PreferencesWindowController.h"
+#import "FileManager.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -201,6 +202,11 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 	windowFrame.origin.y = NSMaxY([[self window] frame]) - NSHeight(windowFrame);
 	
 	return windowFrame;
+}
+
+- (IBAction)deleteXPRAM:(id)sender {
+    NSLog(@"XPRAM triggered");
+    [FileManager deleteXPRAMFile];
 }
 
 //------------------------------------------------------------------------------

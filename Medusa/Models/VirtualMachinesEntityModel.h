@@ -106,6 +106,8 @@ enum VirtualMachineIcons {
     , BlackAndWhiteHappyVM
     , ColouredHappyVM
     , QuestionMarkVM
+    , BlackAndWhiteHappyVMLocked
+    , ColouredHappyVMLocked
 };
 
 @class RelationshipVirtualMachinesDiskFilesEntityModel, RomFilesEntityModel, EmulatorsEntityModel;

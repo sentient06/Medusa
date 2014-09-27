@@ -9,6 +9,15 @@
 /* Begin PBXBuildFile section */
 		4047CFAF194B4C0A003847C7 /* BoolValueToRedColourTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */; };
 		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
+		408D8B7219D60DAA00100A14 /* OnOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7119D60DAA00100A14 /* OnOff.png */; };
+		408D8B7719D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7319D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png */; };
+		408D8B7819D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7419D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png */; };
+		408D8B7919D6C41D00100A14 /* ColouredHappyMac2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7519D6C41D00100A14 /* ColouredHappyMac2x.png */; };
+		408D8B7A19D6C41D00100A14 /* ColouredHappyMacLocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7619D6C41D00100A14 /* ColouredHappyMacLocked.png */; };
+		408D8B7D19D6F7D300100A14 /* BasiliskII_keycodes in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7C19D6F7D300100A14 /* BasiliskII_keycodes */; };
+		408D8B7F19D7448100100A14 /* KeyboardMouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7E19D7448000100A14 /* KeyboardMouse.png */; };
+		4096510319D49B7A00D8AD39 /* ArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4096510219D49B7A00D8AD39 /* ArrowRight.png */; };
+		4096510519D49EFF00D8AD39 /* Magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 4096510419D49EFF00D8AD39 /* Magnifier.png */; };
 		40A2261719C8C3CD003916C4 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40A2261319C8C3CD003916C4 /* Medusa.xcdatamodeld */; };
 		40A2262019C8C819003916C4 /* RomFilesMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A2261F19C8C819003916C4 /* RomFilesMigrationPolicy.m */; };
 		40B0F3B61949B54100F5CEC7 /* RomEmulatorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0F3B51949B54100F5CEC7 /* RomEmulatorTransformer.m */; };
@@ -160,6 +169,15 @@
 		4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToRedColourTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.m; sourceTree = "<group>"; };
 		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
 		405EDCB21945C71B00DA78CE /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = UtilitiesModels/FileManager.m; sourceTree = "<group>"; };
+		408D8B7119D60DAA00100A14 /* OnOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OnOff.png; path = Images/SimpleIcons/OnOff.png; sourceTree = "<group>"; };
+		408D8B7319D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackAndWhiteHappyMac2x.png; path = Images/RomIcons/BlackAndWhiteHappyMac2x.png; sourceTree = "<group>"; };
+		408D8B7419D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackAndWhiteHappyMacLocked.png; path = Images/RomIcons/BlackAndWhiteHappyMacLocked.png; sourceTree = "<group>"; };
+		408D8B7519D6C41D00100A14 /* ColouredHappyMac2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ColouredHappyMac2x.png; path = Images/RomIcons/ColouredHappyMac2x.png; sourceTree = "<group>"; };
+		408D8B7619D6C41D00100A14 /* ColouredHappyMacLocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ColouredHappyMacLocked.png; path = Images/RomIcons/ColouredHappyMacLocked.png; sourceTree = "<group>"; };
+		408D8B7C19D6F7D300100A14 /* BasiliskII_keycodes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BasiliskII_keycodes; path = Resources/EmulatorFiles/BasiliskII_keycodes; sourceTree = "<group>"; };
+		408D8B7E19D7448000100A14 /* KeyboardMouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = KeyboardMouse.png; path = Images/Icons/KeyboardMouse.png; sourceTree = "<group>"; };
+		4096510219D49B7A00D8AD39 /* ArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ArrowRight.png; path = Images/SimpleIcons/ArrowRight.png; sourceTree = "<group>"; };
+		4096510419D49EFF00D8AD39 /* Magnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Magnifier.png; path = Images/SimpleIcons/Magnifier.png; sourceTree = "<group>"; };
 		40A2261419C8C3CD003916C4 /* Medusa 1.0.2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2.3.xcdatamodel"; sourceTree = "<group>"; };
 		40A2261519C8C3CD003916C4 /* Medusa 1.1.0.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.1.0.8.xcdatamodel"; sourceTree = "<group>"; };
 		40A2261619C8C3CD003916C4 /* Medusa 1.2.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.1.xcdatamodel"; sourceTree = "<group>"; };
@@ -346,7 +364,7 @@
 		81D733EA15A4AC8800DEA523 /* LinkedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedView.h; path = SubClasses/LinkedView.h; sourceTree = "<group>"; };
 		81D733EB15A4AC8800DEA523 /* LinkedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinkedView.m; path = SubClasses/LinkedView.m; sourceTree = "<group>"; };
 		81D733EE15A4AD6300DEA523 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		81DB823F159F91F8003D4C5D /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Clone.png; path = Images/Clone.png; sourceTree = "<group>"; };
+		81DB823F159F91F8003D4C5D /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Clone.png; path = Images/SimpleIcons/Clone.png; sourceTree = "<group>"; };
 		81DB8247159FAED8003D4C5D /* AssetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetsWindowController.h; path = WindowControllers/AssetsWindowController.h; sourceTree = "<group>"; };
 		81DB8248159FAED8003D4C5D /* AssetsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetsWindowController.m; path = WindowControllers/AssetsWindowController.m; sourceTree = "<group>"; };
 		81E02B1617FD97510091CDA1 /* Medusa.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Medusa.help; sourceTree = "<group>"; };
@@ -379,6 +397,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		408D8B7B19D6F7BD00100A14 /* EmulatorFiles */ = {
+			isa = PBXGroup;
+			children = (
+				408D8B7C19D6F7D300100A14 /* BasiliskII_keycodes */,
+			);
+			name = EmulatorFiles;
+			sourceTree = "<group>";
+		};
+		4096510619D49F0400D8AD39 /* SimpleIcons */ = {
+			isa = PBXGroup;
+			children = (
+				408D8B7119D60DAA00100A14 /* OnOff.png */,
+				4096510419D49EFF00D8AD39 /* Magnifier.png */,
+				4096510219D49B7A00D8AD39 /* ArrowRight.png */,
+				81C2B75117D646AB000E4A01 /* linenPattern.png */,
+				81895CFD17D4F51000752E51 /* NoiseGrey.png */,
+				81DB823F159F91F8003D4C5D /* Clone.png */,
+			);
+			name = SimpleIcons;
+			sourceTree = "<group>";
+		};
 		40A2261A19C8C780003916C4 /* MigrationPolicies */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +486,10 @@
 		814804F217D5FFB40070DAD9 /* RomIcons */ = {
 			isa = PBXGroup;
 			children = (
+				408D8B7319D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png */,
+				408D8B7419D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png */,
+				408D8B7519D6C41D00100A14 /* ColouredHappyMac2x.png */,
+				408D8B7619D6C41D00100A14 /* ColouredHappyMacLocked.png */,
 				814804F417D5FFD00070DAD9 /* ColouredHappyMac.png */,
 				814804F517D5FFD00070DAD9 /* BlackAndWhiteHappyMac.png */,
 				814804FA17D6022F0070DAD9 /* DeadMac.png */,
@@ -519,6 +562,7 @@
 		8168995717CE17AA00058B9F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				408D8B7B19D6F7BD00100A14 /* EmulatorFiles */,
 				8168995817CE17B600058B9F /* SparkleKey */,
 				8190AC5817FC88520017198B /* MedusaHelp */,
 				81FAA927159F3968004F5F11 /* Images */,
@@ -672,6 +716,7 @@
 		817CAF4015357EF90038E9A0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				408D8B7E19D7448000100A14 /* KeyboardMouse.png */,
 				81F9022318142AF90024DB8B /* ClassicFolderIcon.icns */,
 				819DB78217F9D213006E7367 /* Emulators.icns */,
 				81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */,
@@ -876,9 +921,7 @@
 		81FAA927159F3968004F5F11 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				81C2B75117D646AB000E4A01 /* linenPattern.png */,
-				81895CFD17D4F51000752E51 /* NoiseGrey.png */,
-				81DB823F159F91F8003D4C5D /* Clone.png */,
+				4096510619D49F0400D8AD39 /* SimpleIcons */,
 				819DC09017F1906900480073 /* ClassicIcons */,
 				814804F217D5FFB40070DAD9 /* RomIcons */,
 				817CAF4015357EF90038E9A0 /* Icons */,
@@ -969,18 +1012,24 @@
 			files = (
 				81756F3D1534743500FCBA8E /* InfoPlist.strings in Resources */,
 				81756F431534743500FCBA8E /* Credits.rtf in Resources */,
+				408D8B7719D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png in Resources */,
 				81756F491534743500FCBA8E /* MainMenu.xib in Resources */,
+				408D8B7D19D6F7D300100A14 /* BasiliskII_keycodes in Resources */,
 				81756F60153483C400FCBA8E /* VirtualMachineWindow.xib in Resources */,
 				817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */,
 				815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */,
 				81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */,
+				408D8B7819D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png in Resources */,
 				81DB8240159F91F8003D4C5D /* Clone.png in Resources */,
 				8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */,
 				8168996917CE2C7900058B9F /* Configuration.icns in Resources */,
+				4096510319D49B7A00D8AD39 /* ArrowRight.png in Resources */,
 				8168996A17CE2C7900058B9F /* Display.icns in Resources */,
 				8168996B17CE2C7900058B9F /* Drive.icns in Resources */,
+				408D8B7A19D6C41D00100A14 /* ColouredHappyMacLocked.png in Resources */,
 				8168996C17CE2C7900058B9F /* FinderBlue.icns in Resources */,
 				8168996D17CE2C7900058B9F /* FinderGrey.icns in Resources */,
+				4096510519D49EFF00D8AD39 /* Magnifier.png in Resources */,
 				8168996E17CE2C7900058B9F /* GenericQuestionMarkIcon.icns in Resources */,
 				8168996F17CE2C7900058B9F /* Info.icns in Resources */,
 				8168997017CE2C7900058B9F /* RomFile.icns in Resources */,
@@ -1015,7 +1064,9 @@
 				8132D41918048C4E0068428D /* 005 - Apple ISO Extended Keyboard.gif in Resources */,
 				8132D41A18048C4E0068428D /* 006 - Macintosh Portable Keyboard.gif in Resources */,
 				8132D41B18048C4E0068428D /* 007 - Macintosh Portable International Keyboard.gif in Resources */,
+				408D8B7219D60DAA00100A14 /* OnOff.png in Resources */,
 				40B0F3BA1949B80000F5CEC7 /* MiniVMacMac.png in Resources */,
+				408D8B7919D6C41D00100A14 /* ColouredHappyMac2x.png in Resources */,
 				8132D41C18048C4E0068428D /* 008 - Macintosh Keyboard II.gif in Resources */,
 				8132D41D18048C4E0068428D /* 009 - Macintosh International Keyboard II.gif in Resources */,
 				40B0F3B81949B7FA00F5CEC7 /* QuestionMarkMac.png in Resources */,
@@ -1029,6 +1080,7 @@
 				8132D42518048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif in Resources */,
 				8132D42618048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */,
 				8132D42718048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif in Resources */,
+				408D8B7F19D7448100100A14 /* KeyboardMouse.png in Resources */,
 				81F9022418142AF90024DB8B /* ClassicFolderIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
