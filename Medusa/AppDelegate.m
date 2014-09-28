@@ -973,93 +973,97 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                                    error:&error
     ];
 
-    // Fetch current version:
-    NSArray  * sourceVersionIdentifiers = [persistentStoreMetadata objectForKey:NSStoreModelVersionIdentifiersKey];
-    NSString * sourceVersion = [[[NSString alloc] initWithString:[sourceVersionIdentifiers lastObject]] autorelease];
-    DDLogInfo(@"Current Version of .xcdatamodeld file: %@", sourceVersion);
+    BOOL persistentStoreExists = [fileManager fileExistsAtPath:[persistentStoreUrl path]];
     
     // A new coordinator:
     NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
+    if (persistentStoreExists == YES) {
     
-    // Check if data is compatible and requires migration:
-    BOOL pscCompatibile = [mom isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
-    
-    if (pscCompatibile == NO) {
-        DDLogWarn(@"Need to migrate!");
+        // Fetch current version:
+        NSArray  * sourceVersionIdentifiers = [persistentStoreMetadata objectForKey:NSStoreModelVersionIdentifiersKey];
+        NSString * sourceVersion = [[[NSString alloc] initWithString:[sourceVersionIdentifiers lastObject]] autorelease];
+        DDLogInfo(@"Current Version of .xcdatamodeld file: %@", sourceVersion);
         
-        // Migrate!
-        //------------------------------------
+        // Check if data is compatible and requires migration:
+        BOOL pscCompatibile = [mom isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
         
-        NSArray      * mappingModelNames  = [NSArray arrayWithObjects:@"MappingModel-1.1.0.8-1.2.0.1", nil];
-        NSString     * sourceStoreType    = NSSQLiteStoreType;
-        NSDictionary * sourceStoreOptions = nil;
-        
-        NSURL        * destinationStoreURL     = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa2.sqlite"];
-        NSString     * destinationStoreType    = NSSQLiteStoreType;
-        NSDictionary * destinationStoreOptions = nil;
-        
-        DDLogVerbose(@"%@", destinationStoreURL);
-        
-        // Fancy thingys I don't know what they do:
-        NSManagedObjectModel * sourceModel      = [NSManagedObjectModel mergedModelFromBundles:nil forStoreMetadata:persistentStoreMetadata];
-        NSMigrationManager   * migrationManager = [
-            [NSMigrationManager alloc]
-                initWithSourceModel:sourceModel
-                   destinationModel:mom
-        ];
-        
-        BOOL allMigrationsSuceeded = YES;
+        if (pscCompatibile == NO) {
+            DDLogWarn(@"Need to migrate!");
+            
+            // Migrate!
+            //------------------------------------
+            
+            NSArray      * mappingModelNames  = [NSArray arrayWithObjects:@"MappingModel-1.1.0.8-1.2.0.1", nil];
+            NSString     * sourceStoreType    = NSSQLiteStoreType;
+            NSDictionary * sourceStoreOptions = nil;
+            
+            NSURL        * destinationStoreURL     = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa2.sqlite"];
+            NSString     * destinationStoreType    = NSSQLiteStoreType;
+            NSDictionary * destinationStoreOptions = nil;
+            
+            DDLogVerbose(@"%@", destinationStoreURL);
+            
+            // Fancy thingys I don't know what they do:
+            NSManagedObjectModel * sourceModel      = [NSManagedObjectModel mergedModelFromBundles:nil forStoreMetadata:persistentStoreMetadata];
+            NSMigrationManager   * migrationManager = [
+                [NSMigrationManager alloc]
+                    initWithSourceModel:sourceModel
+                       destinationModel:mom
+            ];
+            
+            BOOL allMigrationsSuceeded = YES;
 
-        // Loop to iterate migration maps:
-        for (NSString * mappingModelName in mappingModelNames) {
-            NSURL * fileURL = [[NSBundle mainBundle] URLForResource:mappingModelName withExtension:@"cdm"];
-            
-            NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
-            
-            BOOL ok = [migrationManager migrateStoreFromURL:persistentStoreUrl
-                                                       type:sourceStoreType
-                                                    options:sourceStoreOptions
-                                           withMappingModel:mappingModel
-                                           toDestinationURL:destinationStoreURL
-                                            destinationType:destinationStoreType
-                                         destinationOptions:destinationStoreOptions
-                                                      error:&error];
-            if (ok) {
-                DDLogInfo(@"Migration named '%@' successful", mappingModelName);
-            } else {
-                DDLogError(@"Migration named '%@' failed", mappingModelName);
-                allMigrationsSuceeded = NO;
-            }
-            [mappingModel release];
-        }
-        
-        [migrationManager release];
-        
-        //------------------------------------
-//[NSApp terminate:nil];
-        if (allMigrationsSuceeded) {
-            // Replace old database for new
-            NSError * error2 = nil;
-            NSFileManager * fileManager = [[NSFileManager alloc] init];
-            
-            if ([fileManager fileExistsAtPath:[persistentStoreUrl path]] == YES) {
-                if ([fileManager removeItemAtPath:[persistentStoreUrl path] error:&error2])
-                    DDLogInfo(@"Datastore removed");
-                else
-                    DDLogError(@"Datastore not removed");
-            } else {
-                DDLogError(@"Datastore doesn't exist!");
+            // Loop to iterate migration maps:
+            for (NSString * mappingModelName in mappingModelNames) {
+                NSURL * fileURL = [[NSBundle mainBundle] URLForResource:mappingModelName withExtension:@"cdm"];
+                
+                NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
+                
+                BOOL ok = [migrationManager migrateStoreFromURL:persistentStoreUrl
+                                                           type:sourceStoreType
+                                                        options:sourceStoreOptions
+                                               withMappingModel:mappingModel
+                                               toDestinationURL:destinationStoreURL
+                                                destinationType:destinationStoreType
+                                             destinationOptions:destinationStoreOptions
+                                                          error:&error];
+                if (ok) {
+                    DDLogInfo(@"Migration named '%@' successful", mappingModelName);
+                } else {
+                    DDLogError(@"Migration named '%@' failed", mappingModelName);
+                    allMigrationsSuceeded = NO;
+                }
+                [mappingModel release];
             }
             
-            if ([fileManager moveItemAtURL:destinationStoreURL toURL:persistentStoreUrl error:&error2]) {
-                DDLogInfo(@"Datastore moved");
-                [self popUpDialog:@"Medusa sucessfully migrated your data from the previous version. However, your Virtual Machines may be using a different Mac model based on the ROM files.\nYou can override this behaviour in the Preferences window if you wish.\nThis message will not be displayed again."];
-            } else {
-                DDLogError(@"Datastore not moved");
-            }
+            [migrationManager release];
+            
+            //------------------------------------
+    //[NSApp terminate:nil];
+            if (allMigrationsSuceeded) {
+                // Replace old database for new
+                NSError * error2 = nil;
+                NSFileManager * fileManager = [[NSFileManager alloc] init];
+                
+                if ([fileManager fileExistsAtPath:[persistentStoreUrl path]] == YES) {
+                    if ([fileManager removeItemAtPath:[persistentStoreUrl path] error:&error2])
+                        DDLogInfo(@"Datastore removed");
+                    else
+                        DDLogError(@"Datastore not removed");
+                } else {
+                    DDLogError(@"Datastore doesn't exist!");
+                }
+                
+                if ([fileManager moveItemAtURL:destinationStoreURL toURL:persistentStoreUrl error:&error2]) {
+                    DDLogInfo(@"Datastore moved");
+                    [self popUpDialog:@"Medusa sucessfully migrated your data from the previous version. However, your Virtual Machines may be using a different Mac model based on the ROM files.\nYou can override this behaviour in the Preferences window if you wish.\nThis message will not be displayed again."];
+                } else {
+                    DDLogError(@"Datastore not moved");
+                }
 
-            [fileManager release];
-            
+                [fileManager release];
+                
+            }
         }
     }
 
