@@ -451,7 +451,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
                     [NSBundle mainBundle] pathForResource:@"BasiliskII_keycodes" ofType:nil
                 ]
             ];
-            NSLog(@"No keycodes file, copying %@", originalKeycodeFile);
+            DDLogVerbose(@"No keycodes file, copying %@", originalKeycodeFile);
             [fileManager copyItemAtPath:originalKeycodeFile toPath:keycodesFile error:&error];
         }
         NSDictionary * rawKeycodesSettings = [[NSDictionary alloc]
@@ -474,9 +474,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         // or it uses keycodefile
         // the file won't be found in snow leopard
 
-
     } else {
-        NSLog(@"Else");
         if ([virtualMachine keyboardLayout]) {
             NSDictionary * keycodesSettings = [[NSDictionary alloc]
                 initWithObjectsAndKeys:

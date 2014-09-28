@@ -492,9 +492,17 @@
                     </buttonCell>
                 </button>
                 <imageView id="IfC-aq-yQE">
-                    <rect key="frame" x="256" y="297" width="46" height="46"/>
+                    <rect key="frame" x="263" y="301" width="32" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="noDiskColour" id="yEt-yM-C9r"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="HFSFileIcon" id="yEt-yM-C9r"/>
+                    <connections>
+                        <binding destination="71" name="hidden" keyPath="canRemove" id="B6D-Yd-1tH">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
                 </imageView>
             </subviews>
         </customView>
@@ -1180,6 +1188,5 @@
         <image name="QuestionMarkMac" width="32" height="32"/>
         <image name="RecentDocumentsFolderIcon" width="32" height="32"/>
         <image name="RomImageDocument" width="512" height="512"/>
-        <image name="noDiskColour" width="32" height="32"/>
     </resources>
 </document>

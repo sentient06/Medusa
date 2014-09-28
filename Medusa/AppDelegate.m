@@ -47,7 +47,6 @@
 #import "PreferencesController.h"
 #import "VirtualMachineController.h"
 #import "DiskFilesEntityModel.h"
-
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 
 #import "EmulatorHandleController.h" //testing
@@ -58,7 +57,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -308,6 +307,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 }
 
+/*!
+ * @method      deleteVirtualMachine:
+ * @abstract    Deletes a virtual machine.
+ * @discussion  It deletes the DB entry of the selected VM, deletes the
+ *              preferences file and releases the window assigned to this
+ *              VM. The releasing will make XCode complain, but the counting
+ *              should be fine and there should be no memory leaks.
+ */
 - (IBAction)deleteVirtualMachine:(id)sender {
     
     NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
@@ -328,7 +335,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [virtualMachine uniqueName]
     ];
 
-    NSFileManager * fileManager= [NSFileManager defaultManager];
+    NSFileManager * fileManager = [NSFileManager defaultManager];
     NSError * error;
 
     DDLogInfo(@"Attempting to delete file: %@", preferencesFilePath);
@@ -388,10 +395,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [preferencesFilePath release];
 }
 
+/*!
+ * @method      openPreferencesFileFolder:
+ * @abstract    Shows preferences file on Finder.
+ */
 - (IBAction)openPreferencesFileFolder:(id)sender {
-    
     [self saveCoreData];
-    
     VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
 
     NSString * preferencesFilePath = [
@@ -406,31 +415,46 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [preferencesFilePath release];
 }
 
+/*!
+ * @method      showInformationWindow:
+ * @abstract    Shows the advanced information window.
+ * @discussion  The advanced information window is just like the VM list window,
+ *              except that it displays the PID and some other handy info.
+ */
 - (IBAction)showInformationWindow:(id)sender {
-//    if ([informationWindow retainCount] == 0) {
-//        informationWindow = [[NSWindow alloc] init];
-//    }
-//    NSLog(@"%lu", [informationWindow retainCount]);
     [informationWindow setIsVisible:YES];
     [informationWindow makeKeyAndOrderFront:sender];
-
 }
 
+/*!
+ * @method      toggleEmulator:
+ * @abstract    Turns virtual machine on and off.
+ * @discussion  The original version had a button to turn the VM on and a button
+ *              to stop it. I thought it could be much more simple to use a single
+ *              button to handle both operations.
+ */
 - (IBAction)toggleEmulator:(id)sender {
     VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
-    NSLog(@"Toggling %@", [virtualMachine running]);
-    
+    DDLogVerbose(@"Toggling %@", [virtualMachine running]);
     int currentStatus = [[virtualMachine running] intValue];
-    
     if (currentStatus == 1) {
-        NSLog(@"running, stop it!");
+        DDLogVerbose(@"running, stop it!");
         [self stopEmulator:sender];
     } else {
-        NSLog(@"still, run it!");
+        DDLogVerbose(@"still, run it!");
         [self run:sender];
     }
 }
 
+/*!
+ * @method      stopEmulator:
+ * @abstract    Sends a terminate signal to emulator process.
+ * @discussion  This was originally intended to kill the emulator, but sending
+ *              a termination signal simply prompts the emulator to shut down
+ *              just like trying to turn off a real Macintosh. It will then
+ *              proceed to prompt the user about it. The function is handy,
+ *              nevertheless, and remained here.
+ */
 - (IBAction)stopEmulator:(id)sender {
     VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
     if ([virtualMachine running]) {
@@ -439,25 +463,35 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
+/*!
+ * @method      killEmulator:
+ * @abstract    Kills emulator process (SIGKILL).
+ * @discussion  This is not the optimal solution, but it is all that could be
+ *              done for the moment. The best way would be adding the emulator
+ *              process into Medusa's process group and sending a message to
+ *              the emulator to be terminated. Somehow, I can't use C to force
+ *              a NSTask to belong to the parent's group, and if the parent
+ *              dies, the children are re-assigned and keep running. So the
+ *              only solution was to use the 'kill' command.
+ */
 - (IBAction)killEmulator:(id)sender {
     DDLogInfo(@"Attemptying to kill emulator.");
     VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
-    
     NSTask * runningTask = [virtualMachineTasks objectForKey:[virtualMachine uniqueName]];
-    
     if ([virtualMachine running]) {
-        // SIGKILL
         NSString * command = [[[NSString alloc] initWithFormat:@"kill -9 %d", [runningTask processIdentifier]] autorelease];
         system([command UTF8String]);
-//        [command release];
     }
 }
 
 /*!
  * @method      run:
  * @abstract    Saves preferences and lauches emulator.
- * @discussion  There is a replica in the virtual machine controller that must be
- *              taken care of.
+ * @discussion  This will launch the emulator as a child process.
+ *              There is an issue on the parenting, refer to the kill
+ *              method for more information.
+ *
+ * Old comment to be checked:
  * This will crash if the application support dir doesn't exist. Fix it!
  */
 - (IBAction)run:(id)sender {
@@ -645,14 +679,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     VirtualMachineWindowController * newWindowController = [windowsForVirtualMachines objectForKey:[selectedVirtualMachine uniqueName]];
     
     if (newWindowController == nil) {
-        DDLogWarn(@"Missing window for key %@", [selectedVirtualMachine uniqueName]);
+        DDLogVerbose(@"Missing window for key %@", [selectedVirtualMachine uniqueName]);
         newWindowController = [
             [VirtualMachineWindowController alloc]
                 initWithVirtualMachine: selectedVirtualMachine
                 inManagedObjectContext: [self managedObjectContext]
         ]; //closing won't release it.
         [windowsForVirtualMachines setObject:newWindowController forKey:[selectedVirtualMachine uniqueName]];
-//        [newWindowController release];
     }
 
     [newWindowController showWindow:sender];
@@ -693,13 +726,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [preferencesWindowController showWindow:self];  
     
 }
-
-//- (void)releaseWindowFor:(NSString *)virtualMachineUniqueName {
-////    VirtualMachineWindowController * newWindowController = [windowsForVirtualMachines objectForKey:virtualMachineUniqueName];
-////    [newWindowController release];
-////    [windowsForVirtualMachines removeObjectForKey:virtualMachineUniqueName];
-//}
-
 
 //------------------------------------------------------------------------------
 // Utility methods
@@ -886,7 +912,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @abstract    Creates if necessary and returns the managed object model for
  *              the application.
  */
-- (NSManagedObjectModel *)managedObjectModel {//3 //4 //7 //8 //11 //12
+- (NSManagedObjectModel *)managedObjectModel {
     if (__managedObjectModel) return __managedObjectModel;
     NSURL * modelURL = [[NSBundle mainBundle] URLForResource:@"Medusa" withExtension:@"momd"];
     __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
@@ -950,7 +976,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // Fetch current version:
     NSArray  * sourceVersionIdentifiers = [persistentStoreMetadata objectForKey:NSStoreModelVersionIdentifiersKey];
     NSString * sourceVersion = [[[NSString alloc] initWithString:[sourceVersionIdentifiers lastObject]] autorelease];
-    DDLogVerbose(@"Current Version of .xcdatamodeld file: %@", sourceVersion);
+    DDLogInfo(@"Current Version of .xcdatamodeld file: %@", sourceVersion);
     
     // A new coordinator:
     NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
@@ -959,7 +985,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     BOOL pscCompatibile = [mom isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
     
     if (pscCompatibile == NO) {
-        DDLogVerbose(@"Need to migrate!");
+        DDLogWarn(@"Need to migrate!");
         
         // Migrate!
         //------------------------------------
@@ -999,9 +1025,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                                          destinationOptions:destinationStoreOptions
                                                       error:&error];
             if (ok) {
-                DDLogVerbose(@"Migration named '%@' successful", mappingModelName);
+                DDLogInfo(@"Migration named '%@' successful", mappingModelName);
             } else {
-                DDLogVerbose(@"Migration named '%@' failed", mappingModelName);
+                DDLogError(@"Migration named '%@' failed", mappingModelName);
                 allMigrationsSuceeded = NO;
             }
             [mappingModel release];

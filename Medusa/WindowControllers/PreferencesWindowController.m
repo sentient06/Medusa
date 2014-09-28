@@ -205,7 +205,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 }
 
 - (IBAction)deleteXPRAM:(id)sender {
-    NSLog(@"XPRAM triggered");
+    DDLogInfo(@"XPRAM triggered");
     [FileManager deleteXPRAMFile];
 }
 

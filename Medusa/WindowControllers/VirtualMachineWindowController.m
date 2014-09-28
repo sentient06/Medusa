@@ -49,7 +49,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -602,7 +602,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (void)repopulateGestaltList {
 
-    DDLogInfo(@"Repopulating gestalt list");
+    DDLogVerbose(@"Repopulating gestalt list");
     
     NSDictionary * allModels = [
         [NSDictionary alloc] initWithDictionary:
