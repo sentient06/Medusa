@@ -577,43 +577,43 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         case 0x9FEB69B3:
             macModel = @"Power Mac 6100/7100/8100";
             emulator = Sheepshaver;
-            fileCond = OldWorldROM;
+            fileCond = UnsupportedRom;
             break;
         case 0x9C7C98F7:
             macModel = @"Workgroup Server 9150 80MHz";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = UnsupportedRom;
             break;
         case 0x9B7A3AAD:
             macModel = @"Power Mac 7100 (newer)";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = UnsupportedRom;
             break;
         case 0x63ABFD3F:
             macModel = @"Power Mac & Performa 5200/5300/6200/6300";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = UnsupportedRom;
             break;
         case 0x9B037F6F:
             macModel = @"Workgroup Server 9150 120MHz";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = UnsupportedRom;
             break;
         case 0x83C54F75:
             macModel = @"PowerBook 2300 & PB5x0 PPC Upgrade";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = UnsupportedRom;
             break;
         case 0x9630C68B:
             macModel = @"Power Mac 7200/7500/8500/9500 v2";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = IgnoreIllegalMemoryInstructionsDisableJIT;
             break;
         case 0x96CD923D:
             macModel = @"Power Mac 7200/7500/8500/9500 v1";
             comments = @"Runs on Sheepshaver";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = IgnoreIllegalMemoryInstructionsDisableJIT;
             break;
         case 0x6F5724C0:
             macModel = @"PowerM ac/Performa 6400";
@@ -626,24 +626,24 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             fileCond = NormalCondition;
             break;
         case 0x6E92FE08:
-            macModel = @"Power Mac 6500";
+            macModel = @"Power Mac 6500";//Tested
             emulator = Sheepshaver;
             fileCond = NormalCondition;
             break;
         case 0x960E4BE9:
-            macModel = @"Power Mac 7300/7600/8600/9600 (v1)";
+            macModel = @"Power Mac 7300/7600/8600/9600 (v1)";//Tested
             emulator = Sheepshaver;
             fileCond = NormalCondition;
             break;
         case 0x960FC647:
-            macModel = @"Power Mac 8600 or 9600 (v2)";
+            macModel = @"Power Mac 8600 or 9600 (v2)";//Tested
             emulator = Sheepshaver;
             fileCond = NormalCondition;
             break;
         case 0x78F57389:
             macModel = @"Power Mac G3 (v3)";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = UnsupportedRom;
             break;
         case 0x79D68D63:
             macModel = @"Power Mac G3 desktop";
@@ -653,12 +653,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         case 0xCBB01212:
             macModel = @"PowerBook G3 Wallstreet";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = UnsupportedRom;
             break;
         case 0xB46FFB63:
             macModel = @"PowerBook G3 Wallstreet PDQ";
             emulator = Sheepshaver;
-            fileCond = NormalCondition;
+            fileCond = UnsupportedRom;
             break;
         //------------------------------------------------
         // New World ROM
@@ -686,6 +686,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             if ([md5Hash isEqualToString:@"483233f45e8ca33fd2fbe5201f06ac18"]) {
                 macModel = @"Mac OS ROM 1.2.1";
                 comments = @"Version from the iMac Update 1.1.\nAlso bundled on Mac OS 8.5.1 (Colors iMac 266 MHz Bundle).";
+                fileCond = NormalCondition;
             } else
             if ([md5Hash isEqualToString:@"1bf445c27513dba473cca51219184b07"]) {
                 macModel = @"Mac OS ROM 1.4";
@@ -694,6 +695,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             if ([md5Hash isEqualToString:@"be65e1c4f04a3f2881d6e8de47d66454"]) {
                 macModel = @"Mac OS ROM 1.6";
                 comments = @"Very popular ROM extracted from the Mac OS ROM Update 1.0.\nAlso available on the Macintosh PowerBook G3 Series 8.6 Bundle.";
+                fileCond = NormalCondition;
             } else
             if ([md5Hash isEqualToString:@"dd26176882d14c39219aca668d7e97cb"]) {
                 macModel = @"Mac OS ROM 1.7.1";
@@ -707,6 +709,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             if ([md5Hash isEqualToString:@"4bb3e019c5d7bfd5f3a296c13ad7f08f"]) {
                 macModel = @"Mac OS ROM 2.5.1";
                 comments = @"ROM from the Mac OS 8.6 bundled on Power Mac G4 (AGP).\nThis was rare before being seeded as a torrent (still difficult to get, though).";
+                fileCond = NormalCondition;
             } else
             if ([md5Hash isEqualToString:@"d387acd4503ce24e941f1131433bbc0f"]) {
                 macModel = @"Mac OS ROM 3.0";

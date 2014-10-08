@@ -41,15 +41,17 @@
 #import "AppDelegate.h"
 #import "EmulatorController.h"
 #import "EmulatorsEntityModel.h"
+#import "EmulatorModel.h"
 #import "HelpDocumentationController.h"
 #import "MacintoshModelModel.h"
+#import "EmulatorModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
@@ -61,8 +63,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @synthesize menuObjectsArray;
 @synthesize virtualMachine;
 
+// Bools
+@synthesize enableEmulatorList;
+@synthesize showGestaltList;
+@synthesize sheepshaverSetup;
+
 @synthesize allGestaltModelsArray;
 @synthesize selectedGestaltModel;
+@synthesize selectedEmulator;
 
 //------------------------------------------------------------------------------
 // Application synthesizers.
@@ -72,6 +80,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 //------------------------------------------------------------------------------
 // Manual getters
+
+#pragma mark – Manual getters
 
 /*!
  * @method      managedObjectContext:
@@ -148,6 +158,23 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 #pragma mark – Methods
+
+//------------------------------------------------------------------------------
+// Utility methods
+#pragma mark – Utility
+
+/*!
+ * @method      savePreferencesFromView:
+ * @abstract    Saves all preferences in current object context.
+ */
+- (void)savePreferences {
+    DDLogVerbose(@"Saving...");
+    NSError * error;
+    if (![managedObjectContext save:&error]) {
+        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        DDLogVerbose(@"Check 'vm window controller' class. (savePreferences)");
+    }
+}
 
 //------------------------------------------------------------------------------
 // View change methods
@@ -306,6 +333,16 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 }
 
+- (void)updateEmulatorFromList:(NSNumber *)listIndex {
+    DDLogVerbose(@"updated emulator: %@", listIndex);
+    // Handles empty emulator:
+    if ([listIndex intValue] == -1) return;
+    // Handles selection from list:
+    id obj = [[self managedObjectContext] objectWithID:[emulatorsAvailable objectForKey:listIndex]];
+    [virtualMachine setEmulator:obj];
+    [[NSApp delegate] saveCoreData];
+}
+
 - (void)updateMacModelFromList:(NSNumber *)listIndex {
     
     DDLogVerbose(@"updated gestalt model: %@", listIndex);
@@ -432,17 +469,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self savePreferences];
 }
 
-/*!
- * @method      savePreferencesFromView:
- * @abstract    Saves all preferences in current object context.
- */
-- (void)savePreferences {
-    DDLogVerbose(@"Saving...");
-    NSError * error;
-    if (![managedObjectContext save:&error]) {
-        DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
-        DDLogVerbose(@"Check 'vm window controller' class. (savePreferences)");
-    }
+- (IBAction)displayHelpForAdvancedView:(id)sender {
+    [HelpDocumentationController openHelpPage:@"01.html"];
+}
+
+- (IBAction)logVM:(id)sender {
+    DDLogVerbose(@"%@", virtualMachine);
 }
 
 //------------------------------------------------------------------------------
@@ -562,9 +594,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
      
 }
 
-- (IBAction)displayHelpForAdvancedView:(id)sender {
-    [HelpDocumentationController openHelpPage:@"01.html"];
-}
 
 //------------------------------------------------------------------------------
 // Observers
@@ -581,20 +610,105 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                       ofObject:(id)object 
                         change:(NSDictionary *)change 
                        context:(void *)context {
+    DDLogVerbose(@"-----------------------------");
+    DDLogVerbose(@"Observed keyPath: %@", keyPath);
+    DDLogVerbose(@"-----------------------------");
     
     if ([keyPath isEqualToString:@"selectedGestaltModel"]) {
         [self updateMacModelFromList:[object valueForKeyPath:keyPath]];
     }
     
+    if ([keyPath isEqualToString:@"selectedEmulator"]) {
+        [self updateEmulatorFromList:[object valueForKeyPath:keyPath]];
+    }
+    
     if ([keyPath isEqualToString:@"virtualMachine.romFile"]) {
         if ([virtualMachine romFile] == nil) return;
+        [self repopulateEmulatorList];
         [self repopulateGestaltList];
+        [self updateEmulatorFamily];
+        [self updateProcessor];
+        [[NSApp delegate] saveCoreData];
     }
     
 }
 
 //------------------------------------------------------------------------------
 // Workflow Methods
+
+/*!
+ * @method      repopulateEmulatorList
+ * @abstract    Populates the list of allowed emulators and selects current one.
+ */
+- (void)repopulateEmulatorList {
+    DDLogVerbose(@"Repopulating emulator list");
+    
+    // Fetches all emulators for this rom:
+    NSArray * emulators = [
+        EmulatorModel fetchAllAvailableEmulatorsForEmulatorType:[
+            [[virtualMachine romFile] emulatorType] intValue
+        ]
+    ];
+    
+    // Clear lists of emulators:
+    [[availableEmulatorsController content] removeAllObjects];
+    [emulatorsAvailable release];
+    emulatorsAvailable = [[NSMutableDictionary alloc] init];
+    
+    if ([emulators count] == 0) {
+        NSDictionary * thisEmulator = [
+            [NSDictionary alloc] initWithObjectsAndKeys:
+            nil, @"name"
+            , nil, @"key"
+            , nil
+        ];
+        [availableEmulatorsController addObject:thisEmulator];
+        [self setSelectedEmulator:[NSNumber numberWithInt:-1]];
+        [self setEnableEmulatorList: NO];
+        [virtualMachine setEmulator:nil];
+        return;
+    }
+    
+    // Iterates all emulators available:
+    
+    int counter = 0;
+    int emulatorInUse = -1;
+    
+    for (EmulatorsEntityModel * emulator in emulators) {
+
+        NSDictionary * thisEmulator = [
+            [NSDictionary alloc] initWithObjectsAndKeys:
+            [emulator name], @"name"
+            , [NSNumber numberWithInt:counter], @"key"
+            , nil
+        ];
+        
+        // Add emulator to lists:
+        [availableEmulatorsController addObject:thisEmulator];
+        [emulatorsAvailable setObject:[emulator objectID] forKey:[NSNumber numberWithInt:counter]];
+
+        // Select matched emulator:
+        if ([[emulator objectID] isEqualTo:[[virtualMachine emulator] objectID]]) {
+            emulatorInUse = counter;
+        }
+
+        [thisEmulator release];
+        counter++;
+    }
+    
+    // Select emulator in use or the first one:
+    if (emulatorInUse > -1) {
+        [self setSelectedEmulator:[NSNumber numberWithInt:emulatorInUse]];
+    } else {
+        DDLogWarn(@"Emulator is not in the list, selecting first item");
+        [self setSelectedEmulator:[NSNumber numberWithInt:0]];
+    }
+
+    [self setEnableEmulatorList:YES];
+    DDLogVerbose(@"selectedEmulator: %@", selectedEmulator);
+    DDLogVerbose(@"emulatorsAvailable: %@", emulatorsAvailable);
+    
+}
 
 /*!
  * @method      repopulateGestaltList
@@ -604,11 +718,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
     DDLogVerbose(@"Repopulating gestalt list");
     
+    int emulatorType = [[[virtualMachine romFile] emulatorType] intValue];
+
     NSDictionary * allModels = [
         [NSDictionary alloc] initWithDictionary:
             [MacintoshModelModel
                 fetchAllAvailableModelsForChecksum:[[virtualMachine romFile] checksum]
-                                       andEmulator:[[[virtualMachine romFile] emulatorType] intValue]
+                                       andEmulator:emulatorType
             ]
     ];
 
@@ -649,23 +765,42 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [gestaltModelsAvailable release];
     gestaltModelsAvailable = [[NSMutableDictionary alloc] initWithDictionary:allModels];
     
-    BOOL useSimpleModel = [
-        [NSUserDefaults standardUserDefaults]
-            boolForKey:@"useSimpleModel"
-    ];
     
-    if (useSimpleModel) {
-        [self setSelectedGestaltModel:selectedModel];
-    } else {
-        if (selectedInThisList == NO) {
-            DDLogWarn(@"Mac model is not in the list, selecting first item");
-            [self setSelectedGestaltModel:[NSNumber numberWithInt:0]];
-            [self updateMacModelFromList:[NSNumber numberWithInt:0]];
-        }
+    // If simple model selection is chosen, it only shows when emulator is from Basilisk family.
+    // Else, we should see the drop-down list.
+    
+    if (selectedInThisList == NO) {
+        DDLogWarn(@"Mac model is not in the list, selecting first item");
+        [self setSelectedGestaltModel:[NSNumber numberWithInt:0]];
+        [self updateMacModelFromList:[NSNumber numberWithInt:0]];
     }
     
     [allModels release];
+}
 
+- (void)updateEmulatorFamily {
+    int family = [EmulatorModel familyFromEmulatorType:[[[virtualMachine romFile] emulatorType] intValue]];
+    if (family == sheepshaverFamily) {
+        [self setSheepshaverSetup:YES];
+    } else {
+        [self setSheepshaverSetup:NO];
+    }
+}
+
+- (void)updateProcessor {
+    int family = [EmulatorModel familyFromEmulatorType:[[[virtualMachine romFile] emulatorType] intValue]];
+    int processor = [[virtualMachine processorType] intValue];
+    if (family == sheepshaverFamily) {
+        [virtualMachine setProcessorType:[NSNumber numberWithInt:PPC7400]];
+    } else {
+        if (processor == PPC7400)
+            [virtualMachine setProcessorType:[NSNumber numberWithInt:MC68040]];
+    }
+}
+
+- (void)updateWindow {
+    DDLogVerbose(@"Update window");
+    [self repopulateGestaltList];
 }
 
 //------------------------------------------------------------------------------
@@ -806,14 +941,27 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [defaultMemorySlider setMaxValue:[memoryDefaultValues count]-1];
     [defaultMemorySlider setAllowsTickMarkValuesOnly:YES];
     
-    int emulatorType = [[[virtualMachine romFile] emulatorType] intValue];
     
-    if (emulatorType) {
+    if ([virtualMachine romFile]) {
+        [self repopulateEmulatorList];
         [self repopulateGestaltList];
+        [self updateEmulatorFamily];
     }
+
+//    int emulatorType = [[[virtualMachine romFile] emulatorType] intValue];
+    
+//    if (emulatorType) {
+//        [self repopulateGestaltList];
+//    }
     
     [ self addObserver:self
             forKeyPath:@"virtualMachine.romFile"
+               options:NSKeyValueObservingOptionNew
+               context:nil
+    ];
+
+    [ self addObserver:self
+            forKeyPath:@"selectedEmulator"
                options:NSKeyValueObservingOptionNew
                context:nil
     ];

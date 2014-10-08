@@ -45,6 +45,7 @@ enum RomConditions {
   , FPURequired
   , NoAppleTalkAndFPURequired
   , UnsupportedRom
+  , IgnoreIllegalMemoryInstructionsDisableJIT
 };
 
 enum RomSizes {

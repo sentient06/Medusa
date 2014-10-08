@@ -78,6 +78,8 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     //Do something
 }
 
+// SheepShaver emulates a G4 processor, 100MHz and reports Gestalt 67 - Power Mac 9500
+
 - (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath {
     DDLogVerbose(@"Save data: %@", dataToSave);
     

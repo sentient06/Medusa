@@ -33,10 +33,14 @@
 #import <CoreData/CoreData.h>
 
 enum emulatorfamily {
-    undefinedFamily   = 0,
-    miniVMacFamily    = 1,
-    basiliskFamily    = 2,
-    sheepshaverFamily = 3
+    undefinedFamily = 0,
+    miniVMacFamily,
+    basiliskFamily,
+    sheepshaverFamily,
+    qemuFamily,
+    m68kFamily,
+    ppcFamily,
+    noFamily
 };
 
 // I decided to insert a shitload of emulators here to avoid annoying data

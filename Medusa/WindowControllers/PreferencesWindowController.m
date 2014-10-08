@@ -32,13 +32,14 @@
 
 #import "PreferencesWindowController.h"
 #import "FileManager.h"
+#import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_WARN;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation PreferencesWindowController
@@ -58,6 +59,14 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [_contentSubview release];
     [super dealloc];
 }
+
+///**
+// * Try to update open windows when closing....
+// */
+//- (void)windowWillClose:(NSNotification *)notification {
+//    DDLogVerbose(@"preferences's window will close");
+//    [[NSApp delegate] updateVMWindows];
+//}
 
 - (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
@@ -88,6 +97,15 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     [self changeWindowSubview:0 animate:NO];
     
 }
+
+//-(void)awakeFromNib {
+//    [[NSNotificationCenter defaultCenter]
+//     addObserver:self
+//        selector:@selector(windowWillClose:)
+//            name:NSWindowWillCloseNotification
+//          object:self.window
+//    ];
+//}
 
 //------------------------------------------------------------------------------
 // Methods
@@ -207,6 +225,10 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 - (IBAction)deleteXPRAM:(id)sender {
     DDLogInfo(@"XPRAM triggered");
     [FileManager deleteXPRAMFile];
+}
+
+- (IBAction)updateVirtualMachines:(id)sender {
+    [[NSApp delegate] updateVMWindows];
 }
 
 //------------------------------------------------------------------------------

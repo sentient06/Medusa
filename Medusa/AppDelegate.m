@@ -57,7 +57,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -763,6 +763,53 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [alert runModal];
 }
 
+- (void)performCleanUp {
+    BOOL leaveXPRAM = [
+                       [NSUserDefaults standardUserDefaults]
+                       boolForKey:@"leaveXPRAM"
+                       ];
+    if (leaveXPRAM == NO)
+        if ([virtualMachineTasks count] == 0)
+            [FileManager deleteXPRAMFile];
+    [self resetButtons];
+}
+
+- (void)resetButtons {
+    DDLogVerbose(@"Reseting buttons");
+    [virtualMachinesList reloadData];
+    if ([[virtualMachinesArrayController selectedObjects] count] > 0){
+        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun]) {
+            [runButton setEnabled:YES];
+        } else {
+            [runButton setEnabled:NO];
+        }
+    }
+    
+    //    if ([[virtualMachinesArrayController selectedObjects] count] > 0){
+    //        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun] &&
+    //          ![[[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] running] boolValue]) {
+    //            [runButton setEnabled:YES];
+    //        } else {
+    //            [runButton setEnabled:NO];
+    //        }
+    //    }
+}
+
+- (void)windowDidBecomeKey:(NSNotification *)notification {
+    [self resetButtons];
+}
+
+- (void)updateVMWindows {
+//    DDLogVerbose(@"app delegate update windows: %@", windowsForVirtualMachines);
+    
+    for(NSString * currentWindowControllerKey in windowsForVirtualMachines) {
+        VirtualMachineWindowController * currentWindowController = [windowsForVirtualMachines valueForKey:currentWindowControllerKey];
+//        DDLogVerbose(@"%@", currentWindowController);
+        [currentWindowController updateWindow];
+    }
+
+}
+
 //------------------------------------------------------------------------------
 // Overwrotten methods.
 
@@ -853,42 +900,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 }
 
-- (void)performCleanUp {
-    BOOL leaveXPRAM = [
-        [NSUserDefaults standardUserDefaults]
-            boolForKey:@"leaveXPRAM"
-    ];
-    if (leaveXPRAM == NO)
-        if ([virtualMachineTasks count] == 0)
-            [FileManager deleteXPRAMFile];
-    [self resetButtons];
-}
-    
-- (void)resetButtons {
-    DDLogVerbose(@"Reseting buttons");
-    [virtualMachinesList reloadData];
-    if ([[virtualMachinesArrayController selectedObjects] count] > 0){
-        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun]) {
-            [runButton setEnabled:YES];
-        } else {
-            [runButton setEnabled:NO];
-        }
-    }
-    
-//    if ([[virtualMachinesArrayController selectedObjects] count] > 0){
-//        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun] &&
-//          ![[[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] running] boolValue]) {
-//            [runButton setEnabled:YES];
-//        } else {
-//            [runButton setEnabled:NO];
-//        }
-//    }
-}
-
-- (void)windowDidBecomeKey:(NSNotification *)notification {
-    [self resetButtons];
-}
-
 /*!
  * @method      applicationFilesDirectory:
  * @abstract    Returns the directory the application uses to store the Core Data
@@ -927,6 +938,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  *              the store is created, if necessary.)
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    
+//    NSString * currentVersion = [[NSString alloc] initWithString:@"1.2.0.1"];
     
     // Return if already set:
     if (__persistentStoreCoordinator) return __persistentStoreCoordinator;
@@ -993,7 +1006,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             // Migrate!
             //------------------------------------
             
-            NSArray      * mappingModelNames  = [NSArray arrayWithObjects:@"MappingModel-1.1.0.8-1.2.0.1", nil];
+            NSArray      * mappingModelNames  = [NSArray arrayWithObjects:@"MappingModel-1.1.0.8-1.2.0.1", @"MappingModel-1.2.0.1-1.2.0.2", nil];
             NSString     * sourceStoreType    = NSSQLiteStoreType;
             NSDictionary * sourceStoreOptions = nil;
             
@@ -1010,60 +1023,98 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                     initWithSourceModel:sourceModel
                        destinationModel:mom
             ];
-            
-            BOOL allMigrationsSuceeded = YES;
 
+            // Assemble prefix of the first mapping to be used.
+            NSString * originalVersionString = [[NSString alloc] initWithFormat:@"MappingModel-%@", sourceVersion];
+            BOOL migrateFurther = NO;
+            
             // Loop to iterate migration maps:
             for (NSString * mappingModelName in mappingModelNames) {
                 NSURL * fileURL = [[NSBundle mainBundle] URLForResource:mappingModelName withExtension:@"cdm"];
                 
-                NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
-                
-                BOOL ok = [migrationManager migrateStoreFromURL:persistentStoreUrl
-                                                           type:sourceStoreType
-                                                        options:sourceStoreOptions
-                                               withMappingModel:mappingModel
-                                               toDestinationURL:destinationStoreURL
-                                                destinationType:destinationStoreType
-                                             destinationOptions:destinationStoreOptions
-                                                          error:&error];
-                if (ok) {
-                    DDLogInfo(@"Migration named '%@' successful", mappingModelName);
-                } else {
-                    DDLogError(@"Migration named '%@' failed", mappingModelName);
-                    allMigrationsSuceeded = NO;
+                NSRange mapHasVersion = [mappingModelName rangeOfString:originalVersionString];
+
+                // First migration:
+                if (mapHasVersion.location != NSNotFound) {
+                    NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
+                    BOOL ok = NO;
+                    @try {
+                        ok = [migrationManager migrateStoreFromURL:persistentStoreUrl
+                                                              type:sourceStoreType
+                                                           options:sourceStoreOptions
+                                                  withMappingModel:mappingModel
+                                                  toDestinationURL:destinationStoreURL
+                                                   destinationType:destinationStoreType
+                                                destinationOptions:destinationStoreOptions
+                                                             error:&error];
+
+                    } @catch (id theException) {
+                        DDLogInfo(@"%@ won't respond to migration method", mappingModelName);
+                    } @finally {
+                        if (ok) {
+                            DDLogInfo(@"Migration named '%@' successful", mappingModelName);
+                            migrateFurther = YES;
+                        } else {
+                            DDLogError(@"Migration named '%@' failed", mappingModelName);
+                        }
+                    }
+                    [mappingModel release];
+                } else
+                // Further migrations:
+                if (migrateFurther) {
+                    NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
+                    BOOL ok = NO;
+                    @try {
+                        ok = [migrationManager migrateStoreFromURL:destinationStoreURL
+                                                              type:sourceStoreType
+                                                           options:sourceStoreOptions
+                                                  withMappingModel:mappingModel
+                                                  toDestinationURL:destinationStoreURL
+                                                   destinationType:destinationStoreType
+                                                destinationOptions:destinationStoreOptions
+                                                             error:&error];
+                        
+                    } @catch (id theException) {
+                        DDLogInfo(@"%@ won't respond to migration method", mappingModelName);
+                    } @finally {
+                        if (ok) {
+                            DDLogInfo(@"Migration named '%@' successful", mappingModelName);
+                            migrateFurther = YES;
+                        } else {
+                            DDLogError(@"Migration named '%@' failed", mappingModelName);
+                        }
+                    }
+                    [mappingModel release];
                 }
-                [mappingModel release];
             }
-            
+            [originalVersionString release];
             [migrationManager release];
             
             //------------------------------------
-    //[NSApp terminate:nil];
-            if (allMigrationsSuceeded) {
-                // Replace old database for new
-                NSError * error2 = nil;
-                NSFileManager * fileManager = [[NSFileManager alloc] init];
-                
-                if ([fileManager fileExistsAtPath:[persistentStoreUrl path]] == YES) {
-                    if ([fileManager removeItemAtPath:[persistentStoreUrl path] error:&error2])
-                        DDLogInfo(@"Datastore removed");
-                    else
-                        DDLogError(@"Datastore not removed");
-                } else {
-                    DDLogError(@"Datastore doesn't exist!");
-                }
-                
-                if ([fileManager moveItemAtURL:destinationStoreURL toURL:persistentStoreUrl error:&error2]) {
-                    DDLogInfo(@"Datastore moved");
-                    [self popUpDialog:@"Medusa sucessfully migrated your data from the previous version. However, your Virtual Machines may be using a different Mac model based on the ROM files.\nYou can override this behaviour in the Preferences window if you wish.\nThis message will not be displayed again."];
-                } else {
-                    DDLogError(@"Datastore not moved");
-                }
-
-                [fileManager release];
-                
+//            if (allMigrationsSuceeded) {
+            // Replace old database for new
+            NSError * error2 = nil;
+            NSFileManager * fileManager = [[NSFileManager alloc] init];
+            
+            if ([fileManager fileExistsAtPath:[persistentStoreUrl path]] == YES) {
+                if ([fileManager removeItemAtPath:[persistentStoreUrl path] error:&error2])
+                    DDLogInfo(@"Datastore removed");
+                else
+                    DDLogError(@"Datastore not removed");
+            } else {
+                DDLogError(@"Datastore doesn't exist!");
             }
+            
+            if ([fileManager moveItemAtURL:destinationStoreURL toURL:persistentStoreUrl error:&error2]) {
+                DDLogInfo(@"Datastore moved");
+                [self popUpDialog:@"Medusa sucessfully migrated your data from the previous version."];
+            } else {
+                DDLogError(@"Datastore not moved");
+            }
+
+            [fileManager release];
+                
+//            }
         }
     }
 

@@ -68,5 +68,6 @@
 - (IBAction)openSharePath:(id)sender;
 
 - (IBAction)deleteXPRAM:(id)sender;
+- (IBAction)updateVirtualMachines:(id)sender;
 
 @end

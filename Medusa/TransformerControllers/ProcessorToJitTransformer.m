@@ -31,6 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "ProcessorToJitTransformer.h"
+#import "VirtualMachinesEntityModel.h"
 
 @implementation ProcessorToJitTransformer
 
@@ -43,8 +44,10 @@
 }
 
 - (id)transformedValue:(id)value {
-    if ([value intValue] == 4) return [NSNumber numberWithBool:YES];
-    return [NSNumber numberWithBool:NO];
+    if ([value intValue] == MC68040 || [value intValue] == PPC7400)
+        return [NSNumber numberWithBool:YES];
+    else
+        return [NSNumber numberWithBool:NO];
 }
 
 @end

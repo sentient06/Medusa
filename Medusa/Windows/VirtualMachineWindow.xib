@@ -8,6 +8,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="VirtualMachineWindowController">
             <connections>
                 <outlet property="availableDisksController" destination="333" id="371"/>
+                <outlet property="availableEmulatorsController" destination="Ejh-O9-aGW" id="awQ-LO-xHk"/>
                 <outlet property="availableGestaltModelsController" destination="1703" id="Pr8-tb-89K"/>
                 <outlet property="defaultMemorySlider" destination="593" id="1034"/>
                 <outlet property="openSharePathButton" destination="465" id="542"/>
@@ -104,7 +105,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <textField verticalHuggingPriority="750" id="231">
-                    <rect key="frame" x="17" y="295" width="146" height="17"/>
+                    <rect key="frame" x="17" y="286" width="146" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="ROM image:" id="232">
                         <font key="font" metaFont="system"/>
@@ -113,7 +114,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" id="1205">
-                    <rect key="frame" x="17" y="216" width="146" height="17"/>
+                    <rect key="frame" x="17" y="197" width="146" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Emulator:" id="1206">
                         <font key="font" metaFont="system"/>
@@ -122,7 +123,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" id="578">
-                    <rect key="frame" x="17" y="191" width="146" height="17"/>
+                    <rect key="frame" x="17" y="172" width="146" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Mac model:" id="579">
                         <font key="font" metaFont="system"/>
@@ -157,13 +158,13 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
+                        <binding destination="140" name="value" keyPath="selection.name" id="252"/>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="VM4-gg-fh3">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.name" id="252"/>
                     </connections>
                 </textField>
                 <slider verticalHuggingPriority="750" id="593">
@@ -272,13 +273,13 @@
                     </textFieldCell>
                     <connections>
                         <action selector="personalMemoryValueChanged:" target="-2" id="1053"/>
+                        <binding destination="140" name="value" keyPath="selection.memory" id="625"/>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="17N-aW-XHH">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.memory" id="625"/>
                     </connections>
                 </textField>
                 <textField verticalHuggingPriority="750" id="627">
@@ -291,26 +292,26 @@
                     </textFieldCell>
                 </textField>
                 <imageView id="712" customClass="DropRomView">
-                    <rect key="frame" x="165" y="241" width="48" height="48"/>
+                    <rect key="frame" x="165" y="232" width="48" height="48"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" image="DeadMac" id="713"/>
                     <connections>
+                        <binding destination="140" name="value" keyPath="selection.romFile.icon" id="1477">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">RomIconValueTransformer</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="jVU-ye-EEs">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.romFile.icon" id="1477">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">RomIconValueTransformer</string>
-                            </dictionary>
-                        </binding>
                         <outlet property="currentMachine" destination="140" id="1072"/>
                     </connections>
                 </imageView>
                 <textField verticalHuggingPriority="750" id="714">
-                    <rect key="frame" x="215" y="269" width="258" height="17"/>
+                    <rect key="frame" x="216" y="260" width="258" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="...or drop here" id="715">
                         <font key="font" metaFont="system"/>
@@ -326,7 +327,7 @@
                     </connections>
                 </textField>
                 <popUpButton verticalHuggingPriority="750" id="728">
-                    <rect key="frame" x="165" y="289" width="311" height="26"/>
+                    <rect key="frame" x="166" y="280" width="310" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="729">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -353,11 +354,11 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="selectedObject" keyPath="selection.romFile" previousBinding="787" id="789"/>
+                        <binding destination="-2" name="selectedObject" keyPath="virtualMachine.romFile" previousBinding="787" id="da3-Tc-yhe"/>
                     </connections>
                 </popUpButton>
                 <textField verticalHuggingPriority="750" id="807">
-                    <rect key="frame" x="215" y="244" width="258" height="19"/>
+                    <rect key="frame" x="216" y="235" width="258" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Multiline Label" id="808">
                         <font key="font" metaFont="smallSystem"/>
@@ -372,41 +373,6 @@
                         </binding>
                     </connections>
                 </textField>
-                <popUpButton verticalHuggingPriority="750" id="1196">
-                    <rect key="frame" x="165" y="210" width="311" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="1201" id="1197">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" title="OtherViews" id="1198">
-                            <items>
-                                <menuItem title="Item 1" state="on" id="1201"/>
-                                <menuItem title="Item 2" id="1200"/>
-                                <menuItem title="Item 3" id="1199"/>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                    <connections>
-                        <binding destination="1140" name="content" keyPath="arrangedObjects" id="1202"/>
-                        <binding destination="1140" name="contentValues" keyPath="arrangedObjects.name" previousBinding="1202" id="1203">
-                            <dictionary key="options">
-                                <string key="NSNoSelectionPlaceholder">No emulator selected</string>
-                                <string key="NSNullPlaceholder">No emulator selected</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="enabled" keyPath="selection.running" id="EfR-eF-vO8">
-                            <dictionary key="options">
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="selectedObject" keyPath="selection.emulator" previousBinding="1203" id="1462">
-                            <dictionary key="options">
-                                <bool key="NSValidatesImmediately" value="YES"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </popUpButton>
                 <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="1404">
                     <rect key="frame" x="507" y="17" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -416,7 +382,7 @@
                     </buttonCell>
                 </button>
                 <button id="1468">
-                    <rect key="frame" x="481" y="214" width="19" height="19"/>
+                    <rect key="frame" x="482" y="195" width="19" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="1469">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -433,7 +399,7 @@
                     </connections>
                 </button>
                 <button id="1471">
-                    <rect key="frame" x="481" y="293" width="19" height="19"/>
+                    <rect key="frame" x="482" y="284" width="19" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyDown" inset="2" id="1472">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -450,7 +416,7 @@
                     </connections>
                 </button>
                 <popUpButton verticalHuggingPriority="750" id="1596">
-                    <rect key="frame" x="165" y="185" width="311" height="26"/>
+                    <rect key="frame" x="166" y="166" width="310" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="1597">
                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -466,57 +432,71 @@
                     <connections>
                         <binding destination="1703" name="content" keyPath="arrangedObjects" id="DDb-uP-YQD"/>
                         <binding destination="1703" name="contentValues" keyPath="arrangedObjects.name" previousBinding="DDb-uP-YQD" id="VZp-SF-8RD"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="selectedGestaltModel" previousBinding="VZp-SF-8RD" id="M6Y-Fn-brm">
+                            <dictionary key="options">
+                                <bool key="NSValidatesImmediately" value="YES"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="lfW-P6-kDP">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="495" name="hidden" keyPath="values.useSimpleModel" previousBinding="lfW-P6-kDP" id="KOl-TD-s9B"/>
-                        <binding destination="-2" name="selectedIndex" keyPath="selectedGestaltModel" previousBinding="VZp-SF-8RD" id="M6Y-Fn-brm">
+                        <binding destination="-2" name="enabled2" keyPath="virtualMachine.sheepShaverSetup" previousBinding="lfW-P6-kDP" id="iKJ-px-aKN">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </popUpButton>
+                <popUpButton verticalHuggingPriority="750" id="mkk-xz-xMQ">
+                    <rect key="frame" x="166" y="192" width="310" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="yL5-5b-UAP">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" title="OtherViews" id="2U8-mh-07z"/>
+                    </popUpButtonCell>
+                    <connections>
+                        <binding destination="Ejh-O9-aGW" name="content" keyPath="arrangedObjects" id="0FD-aF-D0d">
+                            <dictionary key="options">
+                                <string key="NSNullPlaceholder">No emulators found</string>
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="Ejh-O9-aGW" name="contentValues" keyPath="arrangedObjects.name" previousBinding="0FD-aF-D0d" id="ZGb-49-Owz">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="enabled" keyPath="enableEmulatorList" id="VmQ-VR-clU">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="selectedIndex" keyPath="selectedEmulator" previousBinding="ZGb-49-Owz" id="L02-nM-yVo">
                             <dictionary key="options">
                                 <bool key="NSValidatesImmediately" value="YES"/>
                             </dictionary>
                         </binding>
                     </connections>
                 </popUpButton>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="CBA-Z8-1mw">
-                    <rect key="frame" x="167" y="170" width="306" height="38"/>
+                <button verticalHuggingPriority="750" id="5Y4-cV-fzx">
+                    <rect key="frame" x="12" y="13" width="87" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="306" height="18"/>
-                    <size key="intercellSpacing" width="4" height="2"/>
-                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="nkd-gC-nhH">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                    <buttonCell key="cell" type="push" title="Log VM" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pkr-xx-Iyw">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="radio" title="Mac IIci (System 7 - 7.5)" imagePosition="left" alignment="left" state="on" tag="11" inset="2" id="A48-IR-xhp">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="Quadra 900 (Mac OS 7.5 - 8.1)" imagePosition="left" alignment="left" tag="20" inset="2" id="tji-Br-9OT">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
                     <connections>
-                        <binding destination="140" name="enabled" keyPath="selection.running" id="k8a-uJ-a7t">
-                            <dictionary key="options">
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="495" name="hidden" keyPath="values.useSimpleModel" previousBinding="k8a-uJ-a7t" id="tS6-A3-6c8">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="-2" name="selectedTag" keyPath="selectedGestaltModel" id="Gm9-Xr-iCV"/>
+                        <action selector="logVM:" target="-2" id="S2T-N3-myy"/>
                     </connections>
-                </matrix>
+                </button>
             </subviews>
         </customView>
         <customView id="97" userLabel="Drives Subview">
@@ -861,257 +841,6 @@
             <rect key="frame" x="0.0" y="0.0" width="550" height="360"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" id="853">
-                    <rect key="frame" x="17" y="323" width="172" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Processor:" id="860">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" id="867">
-                    <rect key="frame" x="17" y="195" width="172" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="JIT cache size:" id="868">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="140" name="enabled" keyPath="selection.jitEnabled" id="888"/>
-                    </connections>
-                </textField>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="855">
-                    <rect key="frame" x="194" y="282" width="196" height="58"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="196" height="18"/>
-                    <size key="intercellSpacing" width="4" height="2"/>
-                    <buttonCell key="prototype" type="radio" title="68020 CPU" imagePosition="left" alignment="left" state="on" inset="2" id="876">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="radio" title="68020 CPU (68881/68882)" imagePosition="left" alignment="left" state="on" tag="2" inset="2" id="857">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="68030 CPU (68881/68882)" imagePosition="left" alignment="left" tag="3" inset="2" id="856">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="68040 CPU or 68LC040" imagePosition="left" alignment="left" tag="4" inset="2" id="861">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
-                    <connections>
-                        <binding destination="140" name="enabled" keyPath="selection.running" id="nJM-VS-uKN">
-                            <dictionary key="options">
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="selectedTag" keyPath="selection.processorType" id="880"/>
-                    </connections>
-                </matrix>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="1305">
-                    <rect key="frame" x="398" y="302" width="96" height="38"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="96" height="18"/>
-                    <size key="intercellSpacing" width="4" height="2"/>
-                    <buttonCell key="prototype" type="radio" title="68020 CPU" imagePosition="left" alignment="left" state="on" inset="2" id="1315">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="radio" title="68000 CPU" imagePosition="left" alignment="left" state="on" inset="2" id="1308">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="68010 CPU" imagePosition="left" alignment="left" tag="1" inset="2" id="1309">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
-                    <connections>
-                        <binding destination="140" name="enabled" keyPath="selection.running" id="NXL-WK-eEa">
-                            <dictionary key="options">
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="495" name="hidden" keyPath="values.showAdvanced" previousBinding="NXL-WK-eEa" id="z7x-9Z-okh">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="selectedTag" keyPath="selection.processorType" id="1310"/>
-                    </connections>
-                </matrix>
-                <textField hidden="YES" verticalHuggingPriority="750" id="863">
-                    <rect key="frame" x="65" y="256" width="126" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Suggested for this VM" id="864">
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button id="865">
-                    <rect key="frame" x="194" y="258" width="288" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Translate floating-point instructions (FPU)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="866">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="1475" id="sM0-Qt-vUs">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="value" keyPath="selection.fpuEnabled" id="882"/>
-                        <binding destination="140" name="enabled" keyPath="selection.processorType" id="1475">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </button>
-                <button id="872">
-                    <rect key="frame" x="194" y="218" width="192" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Use lazy cache invalidation" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="873">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="140" name="enabled3" keyPath="selection.running" previousBinding="924" id="4cY-3M-hB6">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="enabled" keyPath="selection.jitEnabled" id="923">
-                            <dictionary key="options">
-                                <integer key="NSNullPlaceholder" value="0"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="value" keyPath="selection.lazyCacheEnabled" id="883"/>
-                        <binding destination="140" name="enabled2" keyPath="selection.processorType" previousBinding="923" id="924">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                                <string key="NSValueTransformerName">ProcessorToJitTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </button>
-                <button id="877">
-                    <rect key="frame" x="194" y="238" width="144" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Use JIT compilation" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="878">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="933" id="o1Y-aO-zh7">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="value" keyPath="selection.jitEnabled" id="937"/>
-                        <binding destination="140" name="enabled" keyPath="selection.processorType" id="933">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="0"/>
-                                <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                <integer key="NSNullPlaceholder" value="0"/>
-                                <string key="NSValueTransformerName">ProcessorToJitTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </button>
-                <textField verticalHuggingPriority="750" id="869">
-                    <rect key="frame" x="194" y="193" width="96" height="19"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="870">
-                        <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="871"/>
-                        <font key="font" metaFont="smallSystem"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="140" name="enabled4" keyPath="selection.running" previousBinding="919" id="TPo-d4-Qaj">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="value" keyPath="selection.jitCacheSize" id="905">
-                            <dictionary key="options">
-                                <real key="NSNullPlaceholder" value="8192"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="enabled" keyPath="selection.jitEnabled" previousBinding="908" id="909"/>
-                        <binding destination="140" name="editable" keyPath="selection.lazyCacheEnabled" id="908"/>
-                        <binding destination="140" name="enabled2" keyPath="selection.lazyCacheEnabled" previousBinding="909" id="910">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="enabled3" keyPath="selection.processorType" previousBinding="910" id="919">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                                <string key="NSValueTransformerName">ProcessorToJitTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </textField>
-                <textField hidden="YES" verticalHuggingPriority="750" id="1223">
-                    <rect key="frame" x="17" y="167" width="172" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Macintosh model override:" id="1224">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <popUpButton hidden="YES" verticalHuggingPriority="750" id="1226">
                     <rect key="frame" x="18" y="17" width="290" height="26"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1202,6 +931,340 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <customView id="2FK-hW-p5J">
+                    <rect key="frame" x="20" y="229" width="396" height="111"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <button id="xkT-Hf-UVI">
+                            <rect key="frame" x="96" y="50" width="289" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="check" title="Enable 68K dymanic recompiling emulator" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="Zb8-Ir-goe">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <binding destination="140" name="value" keyPath="selection.enable68k" id="Gve-UU-K7u"/>
+                            </connections>
+                        </button>
+                        <button id="3O5-zr-kbU">
+                            <rect key="frame" x="96" y="10" width="120" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="check" title="Sleep when idle" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="C33-s8-DXU">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <binding destination="140" name="value" keyPath="selection.idleWait" id="Yot-Zi-avX"/>
+                            </connections>
+                        </button>
+                        <button id="a3y-8a-gRe">
+                            <rect key="frame" x="96" y="30" width="237" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="check" title="Do not convert clipboard contents" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="S8w-Yx-VLK">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <binding destination="140" name="value" keyPath="selection.noClipboardConversion" id="6Wc-hv-1tr"/>
+                            </connections>
+                        </button>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="fkb-Ie-5Oj">
+                            <rect key="frame" x="96" y="94" width="126" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="PowerPC 7400 (G4)" id="tIe-Ns-AbT">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" id="hfO-iJ-BrU">
+                            <rect key="frame" x="-2" y="94" width="93" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Processor:" id="N5g-CR-d6s">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <button id="6eA-5J-fa6">
+                            <rect key="frame" x="96" y="70" width="144" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="check" title="Use JIT compilation" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Xg4-3X-gjM">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="QzM-1X-6Vb" id="OTD-Co-Yk5">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="enabled" keyPath="selection.processorType" id="QzM-1X-6Vb">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                        <integer key="NSNullPlaceholder" value="0"/>
+                                        <string key="NSValueTransformerName">ProcessorToJitTransformer</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="value" keyPath="selection.jitEnabled" id="gqm-4g-4mn"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="sheepshaverSetup" id="e50-Qk-gKS">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </customView>
+                <customView id="bnP-Q3-xj3">
+                    <rect key="frame" x="20" y="193" width="396" height="147"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <textField verticalHuggingPriority="750" id="m14-9w-kvS">
+                            <rect key="frame" x="-2" y="130" width="93" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Processor:" id="XgM-m1-kwB">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <textField verticalHuggingPriority="750" id="3SA-yz-8pE">
+                            <rect key="frame" x="-2" y="2" width="93" height="17"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="JIT cache size:" id="0TC-4J-YWo">
+                                <font key="font" metaFont="system"/>
+                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="140" name="enabled" keyPath="selection.jitEnabled" id="t2h-l3-unH"/>
+                            </connections>
+                        </textField>
+                        <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="zFn-oo-dqX">
+                            <rect key="frame" x="96" y="89" width="196" height="58"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            <size key="cellSize" width="196" height="18"/>
+                            <size key="intercellSpacing" width="4" height="2"/>
+                            <buttonCell key="prototype" type="radio" title="68020 CPU" imagePosition="left" alignment="left" state="on" inset="2" id="cjg-pP-nej">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <cells>
+                                <column>
+                                    <buttonCell type="radio" title="68020 CPU (68881/68882)" imagePosition="left" alignment="left" state="on" tag="2" inset="2" id="TO4-Yp-rId">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <buttonCell type="radio" title="68030 CPU (68881/68882)" imagePosition="left" alignment="left" tag="3" inset="2" id="HA2-Un-bJY">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <buttonCell type="radio" title="68040 CPU or 68LC040" imagePosition="left" alignment="left" tag="4" inset="2" id="eUn-TB-6uD">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </column>
+                            </cells>
+                            <connections>
+                                <binding destination="140" name="enabled" keyPath="selection.running" id="L3J-Zx-myN">
+                                    <dictionary key="options">
+                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="selectedTag" keyPath="selection.processorType" id="Q5K-Ug-ybA"/>
+                            </connections>
+                        </matrix>
+                        <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="op1-sT-dL7">
+                            <rect key="frame" x="300" y="109" width="96" height="38"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                            <size key="cellSize" width="96" height="18"/>
+                            <size key="intercellSpacing" width="4" height="2"/>
+                            <buttonCell key="prototype" type="radio" title="68020 CPU" imagePosition="left" alignment="left" state="on" inset="2" id="DbN-Ii-x2k">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <cells>
+                                <column>
+                                    <buttonCell type="radio" title="68000 CPU" imagePosition="left" alignment="left" state="on" inset="2" id="qPs-rl-WH2">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <buttonCell type="radio" title="68010 CPU" imagePosition="left" alignment="left" tag="1" inset="2" id="IIH-Sz-SPa">
+                                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                </column>
+                            </cells>
+                            <connections>
+                                <binding destination="140" name="enabled" keyPath="selection.running" id="6bb-53-zKq">
+                                    <dictionary key="options">
+                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="495" name="hidden" keyPath="values.showAdvanced" previousBinding="6bb-53-zKq" id="Zo8-Vr-ATP">
+                                    <dictionary key="options">
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="selectedTag" keyPath="selection.processorType" id="ni7-em-SO6"/>
+                            </connections>
+                        </matrix>
+                        <button id="gec-dj-zob">
+                            <rect key="frame" x="96" y="65" width="288" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="check" title="Translate floating-point instructions (FPU)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="BBW-f2-Ta8">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="grf-op-agq" id="GwY-6s-sfR">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="enabled" keyPath="selection.processorType" id="grf-op-agq"/>
+                                <binding destination="140" name="value" keyPath="selection.fpuEnabled" id="rGd-jz-iU9"/>
+                            </connections>
+                        </button>
+                        <button id="odB-Tk-frJ">
+                            <rect key="frame" x="96" y="25" width="192" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="check" title="Use lazy cache invalidation" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Wm8-Qb-7Jr">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <binding destination="140" name="enabled2" keyPath="selection.processorType" previousBinding="zZX-SN-Y9T" id="n6d-uh-Agg">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                        <string key="NSValueTransformerName">ProcessorToJitTransformer</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="enabled3" keyPath="selection.running" previousBinding="n6d-uh-Agg" id="nAC-tc-20b">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="enabled" keyPath="selection.jitEnabled" id="zZX-SN-Y9T">
+                                    <dictionary key="options">
+                                        <integer key="NSNullPlaceholder" value="0"/>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="value" keyPath="selection.lazyCacheEnabled" id="mu1-4C-2Lg"/>
+                            </connections>
+                        </button>
+                        <button id="Mm7-es-RDz">
+                            <rect key="frame" x="96" y="45" width="144" height="18"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="check" title="Use JIT compilation" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="3gi-St-8jh">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="Dgu-2y-yvo" id="THC-No-tEz">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                        <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="enabled" keyPath="selection.processorType" id="Dgu-2y-yvo">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="0"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                        <integer key="NSNullPlaceholder" value="0"/>
+                                        <string key="NSValueTransformerName">ProcessorToJitTransformer</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="value" keyPath="selection.jitEnabled" id="2Od-tr-AXv"/>
+                            </connections>
+                        </button>
+                        <textField verticalHuggingPriority="750" id="y4m-YY-Bim">
+                            <rect key="frame" x="96" y="0.0" width="96" height="19"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="ODv-RF-lmn">
+                                <numberFormatter key="formatter" formatterBehavior="default10_4" numberStyle="decimal" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" id="Bmv-d7-OsR"/>
+                                <font key="font" metaFont="smallSystem"/>
+                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                            <connections>
+                                <binding destination="140" name="editable" keyPath="selection.lazyCacheEnabled" id="xuF-TT-ny3"/>
+                                <binding destination="140" name="enabled2" keyPath="selection.lazyCacheEnabled" previousBinding="n0V-B5-PqI" id="lfk-9h-bfn">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="enabled3" keyPath="selection.processorType" previousBinding="lfk-9h-bfn" id="sdt-jS-l4f">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                        <string key="NSValueTransformerName">ProcessorToJitTransformer</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="enabled4" keyPath="selection.running" previousBinding="sdt-jS-l4f" id="efO-M6-xjF">
+                                    <dictionary key="options">
+                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                        <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                    </dictionary>
+                                </binding>
+                                <binding destination="140" name="enabled" keyPath="selection.jitEnabled" previousBinding="xuF-TT-ny3" id="n0V-B5-PqI"/>
+                                <binding destination="140" name="value" keyPath="selection.jitCacheSize" id="ako-Yr-CGz">
+                                    <dictionary key="options">
+                                        <real key="NSNullPlaceholder" value="8192"/>
+                                    </dictionary>
+                                </binding>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <connections>
+                        <binding destination="-2" name="hidden" keyPath="sheepshaverSetup" id="GbW-5m-cuI">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </customView>
             </subviews>
         </customView>
         <customView id="100" userLabel="Network Subview">
@@ -1217,48 +1280,8 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="460">
-                    <rect key="frame" x="32" y="169" width="204" height="76"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    <size key="cellSize" width="204" height="24"/>
-                    <size key="intercellSpacing" width="4" height="2"/>
-                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="461">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <cells>
-                        <column>
-                            <buttonCell type="radio" title="Use standard path" imagePosition="left" alignment="left" state="on" inset="2" id="462">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="Use a different path" imagePosition="left" alignment="left" tag="1" inset="2" id="463">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <buttonCell type="radio" title="Don't use shared path" imagePosition="left" alignment="left" tag="2" inset="2" id="464">
-                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                        </column>
-                    </cells>
-                    <connections>
-                        <action selector="changeShareType:" target="-2" id="541"/>
-                        <binding destination="-2" name="selectedIndex" keyPath="currentPathOption" id="573">
-                            <dictionary key="options">
-                                <bool key="NSValidatesImmediately" value="YES"/>
-                            </dictionary>
-                        </binding>
-                        <binding destination="140" name="enabled" keyPath="selection.running" id="K4s-hk-mop">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </matrix>
                 <button verticalHuggingPriority="750" id="465">
-                    <rect key="frame" x="189" y="197" width="71" height="19"/>
+                    <rect key="frame" x="188" y="206" width="71" height="19"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="roundRect" title="Search..." bezelStyle="roundedRect" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="466">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1275,7 +1298,7 @@
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" id="468">
-                    <rect key="frame" x="17" y="114" width="516" height="17"/>
+                    <rect key="frame" x="17" y="137" width="516" height="17"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Some/path" id="469">
                         <font key="font" metaFont="smallSystem"/>
@@ -1284,7 +1307,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" id="472">
-                    <rect key="frame" x="17" y="139" width="44" height="17"/>
+                    <rect key="frame" x="17" y="162" width="44" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Using:" id="473">
                         <font key="font" metaFont="system"/>
@@ -1320,13 +1343,13 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="140" name="value" keyPath="selection.network" id="1174"/>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="5yY-Ze-psy">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.network" id="1174"/>
                     </connections>
                 </button>
                 <button id="1168">
@@ -1337,13 +1360,13 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="140" name="value" keyPath="selection.networkUDP" id="1177"/>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="3hI-Gs-4uW">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.networkUDP" id="1177"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" id="1170">
@@ -1356,15 +1379,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                     <connections>
-                        <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="1194" id="bXM-Dq-aHJ">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                         <binding destination="140" name="enabled" keyPath="selection.networkUDP" id="1194">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
@@ -1373,6 +1387,15 @@
                         <binding destination="140" name="value" keyPath="selection.networkUDPPort" id="1193">
                             <dictionary key="options">
                                 <string key="NSNullPlaceholder">None</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="1194" id="bXM-Dq-aHJ">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
                     </connections>
@@ -1385,15 +1408,63 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="140" name="value" keyPath="selection.networkTap0" id="1389"/>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="9jC-1B-DEX">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.networkTap0" id="1389"/>
                     </connections>
                 </button>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="3lw-A8-nQC">
+                    <rect key="frame" x="507" y="17" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ykc-1K-wZl">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="460">
+                    <rect key="frame" x="31" y="187" width="204" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    <size key="cellSize" width="204" height="18"/>
+                    <size key="intercellSpacing" width="4" height="2"/>
+                    <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="461">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <cells>
+                        <column>
+                            <buttonCell type="radio" title="Use standard path" imagePosition="left" alignment="left" state="on" inset="2" id="462">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <buttonCell type="radio" title="Use a different path" imagePosition="left" alignment="left" tag="1" inset="2" id="463">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <buttonCell type="radio" title="Don't use shared path" imagePosition="left" alignment="left" tag="2" inset="2" id="464">
+                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </column>
+                    </cells>
+                    <connections>
+                        <action selector="changeShareType:" target="-2" id="541"/>
+                        <binding destination="-2" name="selectedIndex" keyPath="currentPathOption" id="573">
+                            <dictionary key="options">
+                                <bool key="NSValidatesImmediately" value="YES"/>
+                            </dictionary>
+                        </binding>
+                        <binding destination="140" name="enabled" keyPath="selection.running" id="K4s-hk-mop">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </matrix>
             </subviews>
         </customView>
         <customView id="91" userLabel="Display Subview">
@@ -1429,6 +1500,12 @@
                     </textFieldCell>
                     <connections>
                         <action selector="savePreferencesFromView:" target="-2" id="446"/>
+                        <binding destination="140" name="value" keyPath="selection.displayWidth" id="299"/>
+                        <binding destination="140" name="enabled" keyPath="selection.fullScreen" id="439">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="439" id="NxM-0L-Mo5">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -1439,15 +1516,9 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.displayWidth" id="299"/>
-                        <binding destination="140" name="enabled" keyPath="selection.fullScreen" id="439">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" id="243">
+                <textField verticalHuggingPriority="750" tag="1" id="243">
                     <rect key="frame" x="128" y="294" width="190" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="244">
@@ -1458,6 +1529,12 @@
                     </textFieldCell>
                     <connections>
                         <action selector="savePreferencesFromView:" target="-2" id="447"/>
+                        <binding destination="140" name="value" keyPath="selection.displayHeight" id="300"/>
+                        <binding destination="140" name="enabled" keyPath="selection.fullScreen" id="442">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="442" id="goX-e3-eDr">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -1468,15 +1545,9 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.displayHeight" id="300"/>
-                        <binding destination="140" name="enabled" keyPath="selection.fullScreen" id="442">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                     </connections>
                 </textField>
-                <textField verticalHuggingPriority="750" id="1111">
+                <textField verticalHuggingPriority="750" tag="4" id="1111">
                     <rect key="frame" x="130" y="180" width="190" height="22"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="1112">
@@ -1487,16 +1558,6 @@
                     </textFieldCell>
                     <connections>
                         <action selector="savePreferencesFromView:" target="-2" id="1116"/>
-                        <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="1128" id="Ocp-UK-GT6">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                         <binding destination="140" name="enabled" keyPath="selection.displayDynamicUpdate" id="1128">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
@@ -1508,9 +1569,19 @@
                                 <bool key="NSConditionallySetsEditable" value="NO"/>
                             </dictionary>
                         </binding>
+                        <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="1128" id="Ocp-UK-GT6">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </textField>
-                <button id="291">
+                <button tag="2" id="291">
                     <rect key="frame" x="128" y="270" width="118" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Use full-screen" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="292">
@@ -1519,13 +1590,13 @@
                     </buttonCell>
                     <connections>
                         <action selector="savePreferencesFromView:" target="-2" id="448"/>
+                        <binding destination="140" name="value" keyPath="selection.fullScreen" id="296"/>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="Bgu-lY-AJ8">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.fullScreen" id="296"/>
                     </connections>
                 </button>
                 <button id="1095">
@@ -1537,13 +1608,13 @@
                     </buttonCell>
                     <connections>
                         <action selector="savePreferencesFromView:" target="-2" id="1098"/>
+                        <binding destination="140" name="value" keyPath="selection.displayDynamicUpdate" id="1129"/>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="j7r-Qe-O6s">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.displayDynamicUpdate" id="1129"/>
                     </connections>
                 </button>
                 <textField verticalHuggingPriority="750" id="1086">
@@ -1564,7 +1635,7 @@
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="1090">
+                <matrix verticalHuggingPriority="750" tag="3" allowsEmptySelection="NO" id="1090">
                     <rect key="frame" x="128" y="206" width="190" height="58"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1591,15 +1662,53 @@
                         </column>
                     </cells>
                     <connections>
+                        <binding destination="140" name="selectedTag" keyPath="selection.displayColourDepth" id="1126"/>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="SR1-uq-mKc">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="selectedTag" keyPath="selection.displayColourDepth" id="1126"/>
                     </connections>
                 </matrix>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="ke8-d9-m7k">
+                    <rect key="frame" x="507" y="17" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="y9k-b9-2NH">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button tag="8" id="wnn-71-pkT">
+                    <rect key="frame" x="128" y="136" width="216" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Enable QuickDraw acceleration" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="pyF-FE-J8J">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <binding destination="140" name="enabled" keyPath="selection.running" id="28r-d3-OTL">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="-2" name="hidden" keyPath="sheepshaverSetup" previousBinding="28r-d3-OTL" id="Uof-LY-oP5">
+                            <dictionary key="options">
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="140" name="value" keyPath="selection.quickdrawAcceleration" id="Pz9-j2-9X7">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="0"/>
+                                <integer key="NSNotApplicablePlaceholder" value="0"/>
+                                <integer key="NSNullPlaceholder" value="0"/>
+                                <bool key="NSValidatesImmediately" value="YES"/>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
             </subviews>
         </customView>
         <customView id="1325" userLabel="Keyboard Subview">
@@ -1655,6 +1764,12 @@
                         </menu>
                     </popUpButtonCell>
                     <connections>
+                        <binding destination="140" name="selectedTag" keyPath="selection.keyboardLayout" id="1362"/>
+                        <binding destination="140" name="enabled" keyPath="selection.rawKeycodes" id="1373">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
                         <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="1373" id="Y2E-tT-bvU">
                             <dictionary key="options">
                                 <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -1665,12 +1780,6 @@
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="selectedTag" keyPath="selection.keyboardLayout" id="1362"/>
-                        <binding destination="140" name="enabled" keyPath="selection.rawKeycodes" id="1373">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                     </connections>
                 </popUpButton>
                 <imageView id="1351">
@@ -1678,16 +1787,6 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="topLeft" image="001 - Apple Keyboard" id="1352"/>
                     <connections>
-                        <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="1375" id="k7e-dh-R8O">
-                            <dictionary key="options">
-                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                <integer key="NSNullPlaceholder" value="-1"/>
-                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
                         <binding destination="140" name="value" keyPath="selection.keyboardLayout" id="1368">
                             <dictionary key="options">
                                 <bool key="NSConditionallySetsEnabled" value="NO"/>
@@ -1696,6 +1795,16 @@
                         </binding>
                         <binding destination="140" name="enabled" keyPath="selection.rawKeycodes" id="1375">
                             <dictionary key="options">
+                                <string key="NSValueTransformerName">NSNegateBoolean</string>
+                            </dictionary>
+                        </binding>
+                        <binding destination="140" name="enabled2" keyPath="selection.running" previousBinding="1375" id="k7e-dh-R8O">
+                            <dictionary key="options">
+                                <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                <integer key="NSNullPlaceholder" value="-1"/>
+                                <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
@@ -1709,13 +1818,13 @@
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
+                        <binding destination="140" name="value" keyPath="selection.rawKeycodes" id="1284"/>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="Cmf-c3-dFC">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="140" name="value" keyPath="selection.rawKeycodes" id="1284"/>
                     </connections>
                 </button>
                 <matrix hidden="YES" verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="tDz-PB-XtO">
@@ -1741,6 +1850,14 @@
                         </column>
                     </cells>
                 </matrix>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" id="7UF-F0-DLl">
+                    <rect key="frame" x="507" y="17" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nhf-pa-Txo">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
         </customView>
         <customView id="1434">
@@ -1902,12 +2019,14 @@
         </arrayController>
         <objectController mode="entity" entityName="VirtualMachine" automaticallyPreparesContent="YES" id="140" userLabel="Virtual Machine Controller">
             <connections>
-                <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="142"/>
-                <binding destination="-2" name="contentObject" keyPath="virtualMachine" id="425">
+                <binding destination="-2" name="contentObject" keyPath="virtualMachine" id="syA-Z2-8SR">
                     <dictionary key="options">
                         <bool key="NSDeletesObjectsOnRemove" value="YES"/>
+                        <bool key="NSHandlesContentAsCompoundValue" value="YES"/>
+                        <bool key="NSValidatesImmediately" value="YES"/>
                     </dictionary>
                 </binding>
+                <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="142"/>
             </connections>
         </objectController>
         <arrayController mode="entity" entityName="RomFiles" automaticallyPreparesContent="YES" id="253" userLabel="Rom Files Controller">
@@ -1928,11 +2047,7 @@
                 <outlet property="windowOwner" destination="-2" id="979"/>
             </connections>
         </arrayController>
-        <arrayController mode="entity" entityName="Emulators" automaticallyPreparesContent="YES" id="1140" userLabel="Emulators Controller">
-            <connections>
-                <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="1162"/>
-            </connections>
-        </arrayController>
+        <arrayController id="Ejh-O9-aGW" userLabel="Available Emulators Controller"/>
         <arrayController id="1703" userLabel="Gestalt Models Controller"/>
         <userDefaultsController representsSharedInstance="YES" id="495"/>
     </objects>

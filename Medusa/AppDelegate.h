@@ -166,6 +166,7 @@
 - (NSString *)applicationSupportDirectory;
 - (void)saveCoreData;
 - (void)resetButtons;
+- (void)updateVMWindows;
 
 - (IBAction)savePreferencesFile:(id)sender;
 - (IBAction)openPreferencesFileFolder:(id)sender;

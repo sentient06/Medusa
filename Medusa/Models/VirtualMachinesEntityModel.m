@@ -34,6 +34,7 @@
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 #import "RomFilesEntityModel.h"
 #import "EmulatorsEntityModel.h"
+#import "EmulatorModel.h"
 
 @implementation VirtualMachinesEntityModel
 
@@ -49,11 +50,15 @@
 @dynamic displayHeight;
 @dynamic displayWidth;
 @dynamic fullScreen;
+@dynamic quickdrawAcceleration;
 
 @dynamic fpuEnabled;
 @dynamic jitCacheSize;
 @dynamic jitEnabled;
 @dynamic lazyCacheEnabled;
+@dynamic enable68k;
+@dynamic idleWait;
+@dynamic noClipboardConversion;
 
 @dynamic network;
 @dynamic networkUDP;
@@ -85,8 +90,12 @@
     NSInteger totalDisks = [[self disks] count];
 
     if ([self romFile] == NULL) {
-        if (totalDisks == 0) {
-            value = NewVM;
+        if ([self emulator] == NULL) {
+            if (totalDisks == 0) {
+                value = NewVM;
+            } else {
+                value = QuestionMarkVM;
+            }
         } else {
             value = QuestionMarkVM;
         }
@@ -94,25 +103,33 @@
         value = DeadVM;
     } else {
         if (totalDisks == 0) {
-            if (category == OldWorldROM) {
-                value = BlackAndWhiteNoDisk;
-            }
-            if (category == NewWorldROM) {
-                value = ColouredNoDisk;
-            }
-        } else {
-            if (category == OldWorldROM) {
-                if ([[self running] intValue] == 1) {
-                    value = BlackAndWhiteHappyVMLocked;
-                } else {
-                    value = BlackAndWhiteHappyVM;
+            if ([self emulator] == NULL) {
+                value = QuestionMarkVM;
+            } else {
+                if (category == OldWorldROM) {
+                    value = BlackAndWhiteNoDisk;
+                }
+                if (category == NewWorldROM) {
+                    value = ColouredNoDisk;
                 }
             }
-            if (category == NewWorldROM) {
-                if ([[self running] intValue] == 1) {
-                    value = ColouredHappyVMLocked;
-                } else {
-                    value = ColouredHappyVM;
+        } else {
+            if ([self emulator] == NULL) {
+                value = QuestionMarkVM;
+            } else {
+                if (category == OldWorldROM) {
+                    if ([[self running] intValue] == 1) {
+                        value = BlackAndWhiteHappyVMLocked;
+                    } else {
+                        value = BlackAndWhiteHappyVM;
+                    }
+                }
+                if (category == NewWorldROM) {
+                    if ([[self running] intValue] == 1) {
+                        value = ColouredHappyVMLocked;
+                    } else {
+                        value = ColouredHappyVM;
+                    }
                 }
             }
         }
@@ -135,12 +152,29 @@
 }
 
 - (BOOL)sheepShaverSetup {
-    return [[[self romFile] emulatorType] intValue] >= Sheepshaver;
+    int type = [EmulatorModel familyFromEmulatorType:[[[self romFile] emulatorType] intValue]];
+    return type == sheepshaverFamily;
 }
 
 - (BOOL)basilisk2Setup {
-    int emulatorType = [[[self romFile] emulatorType] intValue];
-    return emulatorType >= BasiliskII && emulatorType <= BasiliskIIOther2;
+    int type = [EmulatorModel familyFromEmulatorType:[[[self romFile] emulatorType] intValue]];
+    return type == basiliskFamily;
+}
+
+- (BOOL)showGestaltList {
+    BOOL useSimpleModel = [
+        [NSUserDefaults standardUserDefaults]
+            boolForKey:@"useSimpleModel"
+    ];
+    if ([self basilisk2Setup]) {
+        if (useSimpleModel) {
+            return NO;
+        } else {
+            return YES;
+        }
+    } else {
+        return YES;
+    }
 }
 
 @end

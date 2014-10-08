@@ -31,6 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "MacintoshModelModel.h"
+#import "EmulatorModel.h"
 #import "EmulatorsEntityModel.h"
 
 //------------------------------------------------------------------------------
@@ -140,7 +141,7 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
         case SheepshaverOther1:
         case SheepshaverOther2:
             return [NSDictionary dictionaryWithObjectsAndKeys:
-                    @"Power Macintosh 9600", [NSNumber numberWithInt:67]
+                    @"Power Macintosh 9500/9600", [NSNumber numberWithInt:67]
                     , nil];
             break;            
             
@@ -152,14 +153,35 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
     }
 }
 
+
 + (NSDictionary *)fetchAllAvailableModelsForChecksum:(NSString *)checksum andEmulator:(int)emulatorType {
     
     NSDictionary * allowedGestalt;
+    
+    BOOL useSimpleModel = [
+        [NSUserDefaults standardUserDefaults]
+            boolForKey:@"useSimpleModel"
+    ];
+    
+    int emulatorFamily = [EmulatorModel familyFromEmulatorType: emulatorType];
+    
+    if (useSimpleModel && emulatorFamily == basiliskFamily) {
+        allowedGestalt = [
+            NSDictionary dictionaryWithObjectsAndKeys: // 11 20 IIci 900
+                [NSString stringWithFormat:@"%d. Mac IIci (System 7 - 7.5)", gestaltMacIIci]
+              , [NSNumber numberWithInt:gestaltMacIIci]
+              , [NSString stringWithFormat:@"%d. Mac Quadra 900 (Mac OS 7.5 - 8.1)", gestaltMacQuadra900]
+              , [NSNumber numberWithInt:gestaltMacQuadra900]
+              , nil
+        ];
+        return allowedGestalt;
+    }
+    
     uint intChecksum = 0;
     NSScanner * scanner = [NSScanner scannerWithString:checksum];
     [scanner scanHexInt:&intChecksum];
-    DDLogCVerbose(@"String checksum ... %@", checksum);
-    DDLogCVerbose(@"Integer checksum .. %X", intChecksum);
+    DDLogVerbose(@"String checksum ... %@", checksum);
+    DDLogVerbose(@"Integer checksum .. %X", intChecksum);
 
     switch (emulatorType) {
         case Sheepshaver:

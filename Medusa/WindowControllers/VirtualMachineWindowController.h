@@ -53,11 +53,8 @@ typedef enum {
 @interface VirtualMachineWindowController : NSWindowController {
     
     //--------------------------------------------------------------------------
-    //Standard variables
+    // Standard variables
 
-//    NSObject               * selectedGestaltModel;
-    NSNumber               * selectedGestaltModel;
-    NSMutableDictionary    * gestaltModelsAvailable;
     NSManagedObjectContext * managedObjectContext;
     NSMutableArray         * menuObjectsArray;
     NSMutableArray         * subviewsArray;
@@ -65,15 +62,27 @@ typedef enum {
     NSArray                * memoryDefaultValues;
     
     //--------------------------------------------------------------------------
-    //Controllers
+    // Binding variables
+
+    NSMutableDictionary * gestaltModelsAvailable;
+    NSMutableDictionary * emulatorsAvailable;
+    NSNumber * selectedGestaltModel;
+    NSNumber * selectedEmulator;
+    BOOL showGestaltList;
+    BOOL enableEmulatorList;
+    BOOL sheepshaverSetup;
+    
+    //--------------------------------------------------------------------------
+    // Controllers
 
     IBOutlet NSArrayController       * availableGestaltModelsController;
+    IBOutlet NSArrayController       * availableEmulatorsController;
     IBOutlet NSArrayController       * availableDisksController;
     IBOutlet NSArrayController       * romFilesController;
     IBOutlet SortableArrayController * usedDisksController;
     
     //--------------------------------------------------------------------------
-    //Interface objects
+    // Interface objects
 
     IBOutlet NSToolbar * settingsToolbar;
     IBOutlet NSView    * placeholderView;
@@ -103,9 +112,13 @@ typedef enum {
 @property (copy) NSMutableArray * menuObjectsArray;
 @property (copy) NSMutableArray * allGestaltModelsArray;
 
-
+//--------------------------------------------------------------------------
+// Binding variables properties.
 @property (nonatomic, retain) NSNumber * selectedGestaltModel;
-//@property (assign) NSObject * selectedGestaltModel;
+@property (nonatomic, retain) NSNumber * selectedEmulator;
+@property (nonatomic) BOOL enableEmulatorList;
+@property (nonatomic) BOOL showGestaltList;
+@property (nonatomic) BOOL sheepshaverSetup;
 
 //------------------------------------------------------------------------------
 // Application properties.
@@ -134,7 +147,11 @@ typedef enum {
 //------------------------------------------------------------------------------
 // Workflow Methods
 
+- (void)repopulateEmulatorList;
 - (void)repopulateGestaltList;
+- (void)updateEmulatorFamily;
+- (void)updateProcessor;
+- (void)updateWindow;
 
 //------------------------------------------------------------------------------
 // Interface Methods
@@ -143,6 +160,7 @@ typedef enum {
 - (IBAction)savePreferencesFromView:(id)sender;
 - (IBAction)useSelectedDisks:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;
+- (void)updateEmulatorFromList:(NSNumber *)listIndex;
 - (void)updateMacModelFromList:(NSNumber *)listIndex;
 - (void)resetDriveOrder;
 
@@ -170,5 +188,8 @@ typedef enum {
 
 // Help showing
 - (IBAction)displayHelpForAdvancedView:(id)sender;
+
+// Development
+- (IBAction)logVM:(id)sender;
 
 @end

@@ -110,6 +110,15 @@ enum VirtualMachineIcons {
     , ColouredHappyVMLocked
 };
 
+enum Processors {
+      MC68000 = 0
+    , MC68010
+    , MC68020
+    , MC68030
+    , MC68040
+    , PPC7400
+};
+
 @class RelationshipVirtualMachinesDiskFilesEntityModel, RomFilesEntityModel, EmulatorsEntityModel;
 
 @interface VirtualMachinesEntityModel : NSManagedObject
@@ -126,11 +135,15 @@ enum VirtualMachineIcons {
 @property (nonatomic, retain) NSNumber * displayHeight;
 @property (nonatomic, retain) NSNumber * displayWidth;
 @property (nonatomic, retain) NSNumber * fullScreen;
+@property (nonatomic, retain) NSNumber * quickdrawAcceleration; // SS
 
-@property (nonatomic, retain) NSNumber * fpuEnabled;
-@property (nonatomic, retain) NSNumber * jitCacheSize;
+@property (nonatomic, retain) NSNumber * fpuEnabled; // B2
+@property (nonatomic, retain) NSNumber * jitCacheSize; // B2
 @property (nonatomic, retain) NSNumber * jitEnabled;
-@property (nonatomic, retain) NSNumber * lazyCacheEnabled;
+@property (nonatomic, retain) NSNumber * lazyCacheEnabled; //B2
+@property (nonatomic, retain) NSNumber * enable68k; // SS
+@property (nonatomic, retain) NSNumber * idleWait; // SS
+@property (nonatomic, retain) NSNumber * noClipboardConversion; //SS
 
 @property (nonatomic, retain) NSNumber * network;
 @property (nonatomic, retain) NSNumber * networkUDP;
@@ -165,5 +178,6 @@ enum VirtualMachineIcons {
 
 - (BOOL)sheepShaverSetup;
 - (BOOL)basilisk2Setup;
+- (BOOL)showGestaltList;
 
 @end
