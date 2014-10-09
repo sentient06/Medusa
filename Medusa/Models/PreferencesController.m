@@ -35,6 +35,7 @@
 #import "DiskFilesEntityModel.h"
 #import "VirtualMachinesEntityModel.h"
 #import "RomFilesEntityModel.h"
+#import "EmulatorsEntityModel.h"
 #import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
@@ -83,9 +84,14 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 - (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath {
     DDLogVerbose(@"Save data: %@", dataToSave);
     
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    NSError * error;
+    if ([fileManager fileExistsAtPath:filePath])
+        [fileManager removeItemAtPath:filePath error:&error];
+    
     //NSString *filePath = [[NSString alloc] initWithFormat:@"%@%@", NSHomeDirectory(), @".basilisk_ii_prefs"];
     
-    NSMutableString * newContent = [[NSMutableString alloc] init];
+    NSMutableString * newContent = [[NSMutableString alloc] initWithString:@""];
     
     for (NSDictionary * dataElement in dataToSave) {
         for(id key in dataElement){
@@ -95,12 +101,16 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         }
     }
     DDLogVerbose(@"%@", filePath);
-    [newContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+//    dispatch_async(queue, ^{
+    [newContent writeToFile:filePath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+//    });
     [newContent release];
     
 }
 
-- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesEntityModel *)virtualMachine {
+- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesEntityModel *)virtualMachine
+                       forEmulatorFamily:(int)emulatorFamily {
     
     //The idea here is to return an array with dictionaries inside.
     //The returning object is the array that follows.
@@ -118,17 +128,19 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     //--------------------------------------------------------------------------
     //1. The Macintosh Model
     
-    int modelId = [[virtualMachine macModel] intValue] - 6;
-    
-    NSDictionary * macModelSettings = [
-        [NSDictionary alloc]
-        initWithObjectsAndKeys: [NSString stringWithFormat:@"%d", modelId]
-        , @"modelid"
-        , nil
-    ];
-    
-    [allData addObject:macModelSettings];
-    [macModelSettings release];
+    if (emulatorFamily == basiliskFamily) {
+        int modelId = [[virtualMachine macModel] intValue] - 6;
+        
+        NSDictionary * macModelSettings = [
+            [NSDictionary alloc]
+            initWithObjectsAndKeys: [NSString stringWithFormat:@"%d", modelId]
+            , @"modelid"
+            , nil
+        ];
+        
+        [allData addObject:macModelSettings];
+        [macModelSettings release];
+    }
 
     //--------------------------------------------------------------------------
     //2. The processor
@@ -138,24 +150,23 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     //    processorType
     //    cpu 1/2/3/0 check!
-    
     int processorId = [[virtualMachine processorType] intValue];
-    
-    NSDictionary * macProcessorType = [[NSDictionary alloc]
-        initWithObjectsAndKeys:
-            [NSString stringWithFormat:@"%d", processorId]
-            , @"cpu"
-            , nil
-    ];
-    
-    [allData addObject:macProcessorType];
-    [macProcessorType release];
-    
+
+    if (emulatorFamily == basiliskFamily) {
+        NSDictionary * macProcessorType = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                [NSString stringWithFormat:@"%d", processorId]
+                , @"cpu"
+                , nil
+        ];
+        [allData addObject:macProcessorType];
+        [macProcessorType release];
+    }
     
     //    jitEnabled
     //    jit <true/false>
     
-    if ( [[virtualMachine jitEnabled] boolValue] && processorId == 4) {
+    if ( [[virtualMachine jitEnabled] boolValue] && (processorId == MC68040 || processorId == PPC7400)) {
         
         NSDictionary * macJitEnabled = [[NSDictionary alloc]
             initWithObjectsAndKeys:
@@ -167,50 +178,51 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         [allData addObject:macJitEnabled];
         [macJitEnabled release];
         
-        
-        //    lazyCacheEnabled
-        //    jitlazyflush <"true" or "false">
-        
-        NSDictionary * macLazyCache = [[NSDictionary alloc]
-            initWithObjectsAndKeys:
-                [[virtualMachine lazyCacheEnabled] boolValue] ? @"true" : @"false"
-                , @"jitlazyflush"
-                , nil
-        ];
-        
-        [allData addObject:macLazyCache];
-        [macLazyCache release];
-        
-        //    fpuEnabled
-        //    fpu
-        NSDictionary * macFpu = [[NSDictionary alloc]
-            initWithObjectsAndKeys:
-                [[virtualMachine fpuEnabled] boolValue] ? @"true" : @"false"
-                , @"jitfpu"
-                , nil
-        ];
-        
-        [allData addObject:macFpu];
-        [macFpu release];
-        
-        
-        //    jitCacheSize
-        //    jitcachesize <size>
-        
-        int chacheKbSize = [[virtualMachine processorType] intValue];
-        
-        if (chacheKbSize != 8192 && chacheKbSize > 2048) {
+        if (emulatorFamily == basiliskFamily) {
+            //    lazyCacheEnabled
+            //    jitlazyflush <"true" or "false">
             
-            NSDictionary * macJitCache = [[NSDictionary alloc]
-            initWithObjectsAndKeys:
-                [NSString stringWithFormat:@"%d", chacheKbSize]
-                , @"jitcachesize"
-                , nil
+            NSDictionary * macLazyCache = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                    [[virtualMachine lazyCacheEnabled] boolValue] ? @"true" : @"false"
+                    , @"jitlazyflush"
+                    , nil
             ];
             
-            [allData addObject:macJitCache];
-            [macJitCache release];
+            [allData addObject:macLazyCache];
+            [macLazyCache release];
             
+            //    fpuEnabled
+            //    fpu
+            NSDictionary * macFpu = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                    [[virtualMachine fpuEnabled] boolValue] ? @"true" : @"false"
+                    , @"jitfpu"
+                    , nil
+            ];
+            
+            [allData addObject:macFpu];
+            [macFpu release];
+            
+            
+            //    jitCacheSize
+            //    jitcachesize <size>
+            
+            int chacheKbSize = [[virtualMachine processorType] intValue];
+            
+            if (chacheKbSize != 8192 && chacheKbSize > 2048) {
+                
+                NSDictionary * macJitCache = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                    [NSString stringWithFormat:@"%d", chacheKbSize]
+                    , @"jitcachesize"
+                    , nil
+                ];
+                
+                [allData addObject:macJitCache];
+                [macJitCache release];
+                
+            }
         }
         
     } else {
@@ -222,6 +234,17 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         ];        
         [allData addObject:macJitEnabled];
         [macJitEnabled release]; 
+    }
+    
+    if (emulatorFamily == sheepshaverFamily) {
+        NSDictionary * compilation68k = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                [[virtualMachine enable68k] boolValue] ? @"true" : @"false"
+                , @"jit68k"
+                , nil
+        ];
+        [allData addObject:compilation68k];
+        [compilation68k release];
     }
     
     //--------------------------------------------------------------------------
@@ -279,7 +302,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         
         NSString * networkInterface;
         
-        if ( [[virtualMachine networkTap0] boolValue] == YES) {
+        if ( [[virtualMachine networkTap0] boolValue] == YES && emulatorFamily == basiliskFamily) {
             networkInterface = @"etherhelper/tap0/bridge0/en0";
         } else {
             networkInterface = @"slirp";
@@ -295,28 +318,29 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         [networkSettings release];
 //        [networkInterface release];
     }
-    
-    if ( [[virtualMachine networkUDP] boolValue] == YES) {
-        NSDictionary * udpSettings = [[NSDictionary alloc]
-            initWithObjectsAndKeys:
-                @"true", @"udptunnel",
-                nil
-        ];
-        
-        [allData addObject:udpSettings];
-        [udpSettings release];
-        
-        if ( [[virtualMachine networkUDPPort] intValue] != 6066) {
-            NSDictionary * udpPortSettings = [[NSDictionary alloc]
+    if (emulatorFamily == basiliskFamily) {
+        if ( [[virtualMachine networkUDP] boolValue] == YES) {
+            NSDictionary * udpSettings = [[NSDictionary alloc]
                 initWithObjectsAndKeys:
-                    [[virtualMachine networkUDPPort] stringValue]
-                    , @"udpport"
-                    , nil
+                    @"true", @"udptunnel",
+                    nil
             ];
-            [allData addObject:udpPortSettings];
-            [udpPortSettings release];
+            
+            [allData addObject:udpSettings];
+            [udpSettings release];
+            
+            if ( [[virtualMachine networkUDPPort] intValue] != 6066) {
+                NSDictionary * udpPortSettings = [[NSDictionary alloc]
+                    initWithObjectsAndKeys:
+                        [[virtualMachine networkUDPPort] stringValue]
+                        , @"udpport"
+                        , nil
+                ];
+                [allData addObject:udpPortSettings];
+                [udpPortSettings release];
+            }
+            
         }
-        
     }
 
     // ether <ethernet card description> slirp
@@ -395,6 +419,18 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         [frameSkipSettings release];
     }
 
+    if (emulatorFamily == sheepshaverFamily) {
+        // gfxaccel <"true" or "false">
+        NSDictionary * quickdraw = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                [[virtualMachine quickdrawAcceleration] boolValue] ? @"true" : @"false"
+                , @"gfxaccel"
+                , nil
+        ];
+        [allData addObject:quickdraw];
+        [quickdraw release];
+    }
+    
     //--------------------------------------------------------------------------
     //7. Serial data
 
@@ -489,6 +525,30 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         }
 
     }
+    
+    //--------------------------------------------------------------------------
+    // Others
+    
+    if (emulatorFamily == sheepshaverFamily) {
+        // gfxaccel <"true" or "false">
+        NSDictionary * idle = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                [[virtualMachine idleWait] boolValue] ? @"true" : @"false"
+                , @"idlewait"
+                , nil
+        ];
+        [allData addObject:idle];
+        [idle release];
+        
+        NSDictionary * noclip = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                [[virtualMachine noClipboardConversion] boolValue] ? @"true" : @"false"
+                , @"noclipconversion"
+                , nil
+        ];
+        [allData addObject:noclip];
+        [noclip release];        
+    }
 
     [request release];
 
@@ -498,10 +558,60 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 }
 
-- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
-    //[NSApp delegate]
-    NSArray  * currentVmData = [self getVirtualMachineData: virtualMachine];
-    [self savePreferencesFile:currentVmData ForFile: preferencesFilePath];
+- (void)savePreferencesFile:(NSString *)preferencesFilePath
+          ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
+
+    NSMutableString * filePath = [[NSMutableString alloc] initWithString:preferencesFilePath];
+    int emulatorFamily = [[[virtualMachine emulator] family] intValue];
+    
+    NSLog(@"%@", [virtualMachine emulator]);
+    NSLog(@"%@", [virtualMachine emulator] == nil ? @"nil" : @"not nil");
+    if ([virtualMachine emulator] == nil) {
+        DDLogInfo(@"Emulator is nil, aborting file creation.");
+        return;
+    }
+
+    NSMutableArray * currentVmData = [[[NSMutableArray alloc] init] autorelease];
+
+    if (emulatorFamily == basiliskFamily || emulatorFamily == sheepshaverFamily) {
+        currentVmData = [self getVirtualMachineData: virtualMachine forEmulatorFamily:emulatorFamily];
+    } else {
+        DDLogInfo(@"Emulator not supported, aborting file creation.");
+        return;
+    }
+    
+    if (emulatorFamily == sheepshaverFamily) {
+
+        NSFileManager * fileManager = [NSFileManager defaultManager];
+
+        NSString * sheepShaverPreferencesPath = [
+            [NSString alloc] initWithFormat:
+                @"%@.sheepvm",
+                filePath
+        ];
+
+        BOOL isDir = NO;
+
+        if(![fileManager fileExistsAtPath:sheepShaverPreferencesPath isDirectory:&isDir])
+            if(![fileManager createDirectoryAtPath:sheepShaverPreferencesPath withIntermediateDirectories:YES attributes:nil error:NULL])
+                DDLogError(@"Error: Create -.sheepvm dir failed.");
+        // Releases current path to generate again:
+
+        filePath = [NSMutableString stringWithFormat: @"%@/prefs", sheepShaverPreferencesPath];
+        
+        NSString * nvramFile = [[[NSString alloc] initWithFormat: @"%@/nvram", sheepShaverPreferencesPath] autorelease];
+
+        [sheepShaverPreferencesPath release];
+        
+        NSError * error;
+        if ([fileManager fileExistsAtPath:nvramFile])
+            if ([fileManager removeItemAtPath:nvramFile error:&error])
+                [@"" writeToFile:nvramFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+//        [nvramFile release];
+    }
+    
+    [self savePreferencesFile:currentVmData ForFile: filePath];
+//    [currentVmData release];
 }
 
 @end

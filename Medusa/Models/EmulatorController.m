@@ -39,7 +39,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation EmulatorController
@@ -68,7 +68,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             DDLogError(@"Error: Could not create folder %@", emulatorsDirectory);
     } else {
         [self scanEmulatorFamily:basiliskFamily];
-//        [self scanEmulatorFamily:sheepshaverFamily];
+        [self scanEmulatorFamily:sheepshaverFamily];
     }
 
 }

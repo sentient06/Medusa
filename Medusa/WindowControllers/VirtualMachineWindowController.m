@@ -656,6 +656,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     emulatorsAvailable = [[NSMutableDictionary alloc] init];
     
     if ([emulators count] == 0) {
+        DDLogVerbose(@"no emulators found");
         NSDictionary * thisEmulator = [
             [NSDictionary alloc] initWithObjectsAndKeys:
             nil, @"name"
@@ -695,12 +696,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [thisEmulator release];
         counter++;
     }
-    
+
     // Select emulator in use or the first one:
     if (emulatorInUse > -1) {
         [self setSelectedEmulator:[NSNumber numberWithInt:emulatorInUse]];
     } else {
         DDLogWarn(@"Emulator is not in the list, selecting first item");
+        [self updateEmulatorFromList:[NSNumber numberWithInt:0]];
         [self setSelectedEmulator:[NSNumber numberWithInt:0]];
     }
 

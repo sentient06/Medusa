@@ -160,10 +160,15 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 + (void)deleteXPRAMFile {
     NSFileManager * fileManager = [NSFileManager defaultManager];
     NSError * error;
-    if (![fileManager removeItemAtPath:[@"~/.basilisk_ii_xpram" stringByExpandingTildeInPath] error:&error])
-        DDLogError(@"Couldn't delete Basilisk's XPRAM file!\n\n%@\n\n%@", [error localizedDescription], [error userInfo]);
+    NSString * xpramPath = [[NSString alloc] initWithString:[@"~/.basilisk_ii_xpram" stringByExpandingTildeInPath]];
+    if ([fileManager fileExistsAtPath:xpramPath])
+        if (![fileManager removeItemAtPath:xpramPath error:&error])
+            DDLogError(@"Couldn't delete Basilisk's XPRAM file!\n\n%@\n\n%@", [error localizedDescription], [error userInfo]);
+        else
+            DDLogInfo(@"XPRAM deleted");
     else
-        DDLogInfo(@"XPRAM deleted");
+        DDLogInfo(@"XPRAM doesn't exist, nothing to do!");
+    [xpramPath release];
 }
 
 @end

@@ -49,8 +49,10 @@
 - (void)insertNewVirtualMachineWithData:(NSDictionary *)newData;
 - (void)insertNewData:(NSDictionary *)newData inVirtualMachine:(NSManagedObject*)virtualMachine;
 
-- (NSMutableArray *)getVirtualMachineData:(VirtualMachinesEntityModel*)virtualMachine;
+- (NSMutableArray *)getVirtualMachineData:(VirtualMachinesEntityModel*)virtualMachine
+                        forEmulatorFamily:(int)emulatorFamily;
 - (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath;
-- (void)savePreferencesFile:(NSString *)preferencesFilePath ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
+- (void)savePreferencesFile:(NSString *)preferencesFilePath
+          ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
 
 @end

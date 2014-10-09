@@ -377,9 +377,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              by the emulator.
  */
 - (IBAction)savePreferencesFile:(id)sender {
-    
     [self saveCoreData];
-    
     VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
 
     NSString * preferencesFilePath = [
@@ -390,7 +388,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     ];
    
     PreferencesController * preferences = [[PreferencesController alloc] autorelease];
-    [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];   
+    [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
     [preferencesFilePath release];
 }
@@ -548,7 +546,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     ];
    
     PreferencesController * preferences = [[PreferencesController alloc] autorelease];
-    [preferences savePreferencesFile:preferencesFilePath ForVirtualMachine:virtualMachine];   
+    [preferences savePreferencesFile:preferencesFilePath
+                   ForVirtualMachine:virtualMachine];
+
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
     
 ///-----------------------------------------------------------------------------
@@ -572,7 +572,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         if (!emulatorPath) {
             emulatorPath = [[virtualMachine emulator] unixPath];
         } else {
-            emulatorPath = [emulatorPath stringByAppendingString:@"/Contents/MacOS/BasiliskII"];
+            if ([[[virtualMachine emulator] family] intValue] == basiliskFamily) {
+                emulatorPath = [emulatorPath stringByAppendingString:@"/Contents/MacOS/BasiliskII"];
+            } else
+            if ([[[virtualMachine emulator] family] intValue] == sheepshaverFamily) {
+                emulatorPath = [emulatorPath stringByAppendingString:@"/Contents/MacOS/SheepShaver"];
+            }
         }
 //        NSLog(@"Emulator path:\n%@", emulatorPath);
         
@@ -583,14 +588,23 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         NSTask * emulatorTask = [[[NSTask alloc] init] autorelease];
         [emulatorTask setLaunchPath:emulatorPath];
 
-        [emulatorTask setArguments:
-            [NSArray arrayWithObjects:
-                 @"--config"
-               , preferencesFilePath
-               ,nil
-            ]
-        ];
-        
+        if ([[[virtualMachine emulator] family] intValue] == basiliskFamily) {
+            [emulatorTask setArguments:
+                [NSArray arrayWithObjects:
+                     @"--config"
+                   , preferencesFilePath
+                   ,nil
+                ]
+            ];
+        } else
+        if ([[[virtualMachine emulator] family] intValue] == sheepshaverFamily) {
+            [emulatorTask setArguments:
+                [NSArray arrayWithObjects:
+                    [NSString stringWithFormat:@"%@.sheepvm", preferencesFilePath], nil
+                ]
+            ];
+        }
+    
         [preferencesFilePath release];
         [emulatorTask launch];
         
@@ -765,9 +779,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 - (void)performCleanUp {
     BOOL leaveXPRAM = [
-                       [NSUserDefaults standardUserDefaults]
-                       boolForKey:@"leaveXPRAM"
-                       ];
+        [NSUserDefaults standardUserDefaults]
+            boolForKey:@"leaveXPRAM"
+    ];
     if (leaveXPRAM == NO)
         if ([virtualMachineTasks count] == 0)
             [FileManager deleteXPRAMFile];
