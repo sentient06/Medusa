@@ -69,4 +69,14 @@
     return YES;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    [acceptedTypes release];
+    acceptedTypes = [[NSArray alloc] initWithObjects:
+          @"Unix Executable File"
+        , @"ROM Image"
+        , nil
+    ];
+}
+
 @end

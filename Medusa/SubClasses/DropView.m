@@ -38,13 +38,18 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_WARN;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation DropView
 
 //@synthesize computerModel;
 //@synthesize acceptedTypes;
+
+- (void)dealloc {
+    [acceptedTypes release];
+    [super dealloc];
+}
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
     if ((NSDragOperationGeneric & [sender draggingSourceOperationMask])
@@ -75,16 +80,6 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     
     returnValue = NO;
     
-    NSArray * acceptedTypes = [[NSArray alloc] initWithObjects:
-          @"Application"
-        , @"Unix Executable File"
-        , @"Document"
-        , @"NDIF Disk Image"
-        , @"Disk Image"
-        , @"ROM Image"
-        , nil
-    ];
-    
     for (int i=0; i<[urls count]; i++) {
         
         NSString * currentElement = [urls objectAtIndex:i];
@@ -96,6 +91,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
 
         DDLogVerbose(@"Dropped type is: %@", kind);
+        DDLogVerbose(@"Accepted types: %@", acceptedTypes);
         
         if ([acceptedTypes containsObject:kind]) {
             returnValue = YES;
@@ -104,7 +100,6 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         
     }
     
-    [acceptedTypes release];
     [fileManager release];
     [firstElement release];
     
@@ -114,6 +109,20 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 - (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
     return YES;
+}
+
+- (void)awakeFromNib {
+    DDLogVerbose(@"init drop view");
+    [super awakeFromNib];
+    acceptedTypes = [[NSArray alloc] initWithObjects:
+          @"Application"
+        , @"Unix Executable File"
+        , @"Document"
+        , @"NDIF Disk Image"
+        , @"Disk Image"
+        , @"ROM Image"
+        , nil
+    ];
 }
 
 @end

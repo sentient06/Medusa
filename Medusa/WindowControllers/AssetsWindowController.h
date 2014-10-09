@@ -49,6 +49,7 @@
     IBOutlet NSView            * subViewEmulators;
     IBOutlet NSArrayController * emulatorsArrayController;
     IBOutlet NSArrayController * RomFilesArrayController;
+    IBOutlet NSArrayController * DiskFilesArrayController;
     
     IBOutlet NSPanel             * downloadPanel;
     IBOutlet NSProgressIndicator * downloadProgressIndicator;

@@ -78,4 +78,16 @@
     return YES;
 }
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    acceptedTypes = [[NSArray alloc] initWithObjects:
+          @"Unix Executable File"
+        , @"Document"
+        , @"NDIF Disk Image"
+        , @"Disk Image"
+        , nil
+    ];
+}
+
+
 @end

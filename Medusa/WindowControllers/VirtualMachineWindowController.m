@@ -664,6 +664,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             , nil
         ];
         [availableEmulatorsController addObject:thisEmulator];
+        [thisEmulator release];
         [self setSelectedEmulator:[NSNumber numberWithInt:-1]];
         [self setEnableEmulatorList: NO];
         [virtualMachine setEmulator:nil];

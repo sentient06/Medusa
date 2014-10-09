@@ -491,6 +491,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             ];
             DDLogVerbose(@"No keycodes file, copying %@", originalKeycodeFile);
             [fileManager copyItemAtPath:originalKeycodeFile toPath:keycodesFile error:&error];
+            [originalKeycodeFile release];
         }
         NSDictionary * rawKeycodesSettings = [[NSDictionary alloc]
             initWithObjectsAndKeys:
@@ -511,6 +512,8 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         // true looks for file in /usr/local/share/BasiliskII/keycodes
         // or it uses keycodefile
         // the file won't be found in snow leopard
+        
+        [keycodesFile release];
 
     } else {
         if ([virtualMachine keyboardLayout]) {
@@ -561,7 +564,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 - (void)savePreferencesFile:(NSString *)preferencesFilePath
           ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
 
-    NSMutableString * filePath = [[NSMutableString alloc] initWithString:preferencesFilePath];
+    NSMutableString * filePath = [[[NSMutableString alloc] initWithString:preferencesFilePath] autorelease];
     int emulatorFamily = [[[virtualMachine emulator] family] intValue];
     
     NSLog(@"%@", [virtualMachine emulator]);
@@ -571,7 +574,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         return;
     }
 
-    NSMutableArray * currentVmData = [[[NSMutableArray alloc] init] autorelease];
+    NSMutableArray * currentVmData;
 
     if (emulatorFamily == basiliskFamily || emulatorFamily == sheepshaverFamily) {
         currentVmData = [self getVirtualMachineData: virtualMachine forEmulatorFamily:emulatorFamily];

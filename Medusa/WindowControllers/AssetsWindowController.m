@@ -44,7 +44,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation AssetsWindowController
@@ -276,7 +276,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 - (IBAction)showFinderDiskItem:(id)sender {
-    DDLogVerbose(@"%@", RomFilesArrayController);
+    DiskFilesEntityModel * disk = [[DiskFilesArrayController selectedObjects] objectAtIndex:0];
+    [self showFinderItemAtPath:[disk filePath]];
 }
 
 //------------------------------------------------------------------------------

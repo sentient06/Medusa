@@ -7,6 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="AssetsWindowController">
             <connections>
+                <outlet property="DiskFilesArrayController" destination="71" id="Ji2-6U-LGi"/>
                 <outlet property="RomFilesArrayController" destination="76" id="181"/>
                 <outlet property="assetsToolbar" destination="114" id="141"/>
                 <outlet property="downloadPanel" destination="468" id="475"/>
@@ -452,22 +453,6 @@
                         </binding>
                     </connections>
                 </textField>
-                <button verticalHuggingPriority="750" id="533">
-                    <rect key="frame" x="64" y="22" width="156" height="23"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="534">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
-                <button verticalHuggingPriority="750" id="538">
-                    <rect key="frame" x="64" y="22" width="156" height="23"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="539">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                </button>
                 <box autoresizesSubviews="NO" verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="upb-8w-ytY">
                     <rect key="frame" x="241" y="280" width="379" height="5"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -504,6 +489,34 @@
                         </binding>
                     </connections>
                 </imageView>
+                <button verticalHuggingPriority="750" id="pd1-7l-uCX">
+                    <rect key="frame" x="86" y="22" width="134" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="vN4-u0-obG">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" id="p8e-OP-CP2">
+                    <rect key="frame" x="86" y="22" width="134" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" transparent="YES" imageScaling="proportionallyDown" inset="2" id="GFt-hK-cdF">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
+                <button verticalHuggingPriority="750" id="4Xq-NV-t47">
+                    <rect key="frame" x="64" y="22" width="23" height="23"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UHT-UI-LfU">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="showFinderDiskItem:" target="-2" id="7Zp-Jd-fF1"/>
+                        <binding destination="76" name="enabled" keyPath="canRemove" id="FzR-Rp-LWH"/>
+                    </connections>
+                </button>
             </subviews>
         </customView>
         <customView wantsLayer="YES" id="37" userLabel="Rom SubView">
