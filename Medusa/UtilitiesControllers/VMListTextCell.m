@@ -39,15 +39,47 @@
     titleRect = NSInsetRect(titleRect, 0, 8);
     NSAttributedString * title = [self attributedStringValue];
     if (title) [title drawInRect:titleRect];
-    
+
 //    if ([self isHighlighted]) {
+//        [[NSColor colorWithDeviceRed:0 green:0 blue:0 alpha:0.5] set];
 //        [[NSColor colorWithDeviceRed:0.29 green:0.27 blue:0.42 alpha:1] set];
 //    }
     
 }
 
 //- (NSColor *)highlightColorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
-//    return nil;
+//    return nil; //[NSColor colorWithDeviceRed:0 green:0 blue:0 alpha:0.5];
 //}
+/*
+- (void)drawInRect:(NSRect)aRect withAttributes:(NSDictionary *)attributes {
+    [[self title] drawInRect:aRect withAttributes:nil];
+}
 
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView*)controlView {
+    if([self isHighlighted])
+        colour = [NSColor colorWithDeviceRed:0 green:255 blue:0 alpha:0.5];
+    else
+        colour = [NSColor colorWithDeviceRed:0 green:0 blue:0 alpha:0];
+    cellFrame.size.width += 5;
+    [colour set];
+    NSRectFill(cellFrame);
+    [[self title] drawInRect:cellFrame withAttributes:nil];
+}
+*/
+/*
+- (void)drawWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+	if( [self isHighlighted] ) {
+		NSColor *oldColor = [self textColor];
+		[self setTextColor:[NSColor alternateSelectedControlTextColor]];
+		[super drawWithFrame:cellFrame inView:controlView];
+		[self setTextColor:oldColor];
+	} else {
+		[super drawWithFrame:cellFrame inView:controlView];
+	}
+}
+
+- (NSColor *)highlightColorWithFrame:(NSRect)cellFrame inView:(NSView *)controlView {
+    return nil;
+}
+*/
 @end

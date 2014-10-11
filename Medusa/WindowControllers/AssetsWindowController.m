@@ -38,6 +38,7 @@
 #import "RomFilesEntityModel.h"
 #import "RomController.h"
 #import "DiskController.h"
+#import "EmulatorsEntityModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -297,7 +298,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [downloadPanel orderOut:nil];
     
     EmulatorController * emulatorObject = [[EmulatorController alloc] init];
-    [emulatorObject assembleEmulatorsFromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"BasiliskExecutables"]];
+    [emulatorObject assembleEmulatorsOfFamily:basiliskFamily
+                                    FromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"BasiliskExecutables"]];
+    [emulatorObject assembleEmulatorsOfFamily:sheepshaverFamily
+                                    FromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"SheepshaverExecutables"]];
     [emulatorObject release];
 
 

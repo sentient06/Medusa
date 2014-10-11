@@ -431,17 +431,37 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              to stop it. I thought it could be much more simple to use a single
  *              button to handle both operations.
  */
-- (IBAction)toggleEmulator:(id)sender {
-    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+- (IBAction)toggleEmulator:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender {
     DDLogVerbose(@"Toggling %@", [virtualMachine running]);
     int currentStatus = [[virtualMachine running] intValue];
     if (currentStatus == 1) {
         DDLogVerbose(@"running, stop it!");
-        [self stopEmulator:sender];
+        [self stopEmulator:virtualMachine];
     } else {
         DDLogVerbose(@"still, run it!");
-        [self run:sender];
+        [self run:virtualMachine andSender:sender];
     }
+}
+
+//- (IBAction)toggleEmulator:(id)sender {
+//    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+//    DDLogVerbose(@"Toggling %@", [virtualMachine running]);
+//    int currentStatus = [[virtualMachine running] intValue];
+//    if (currentStatus == 1) {
+//        DDLogVerbose(@"running, stop it!");
+//        [self stopEmulator:sender];
+//    } else {
+//        DDLogVerbose(@"still, run it!");
+//        [self run:sender];
+//    }
+//}
+
+- (IBAction)toggleVirtualMachine:(id)sender {
+    DDLogVerbose(@"toggling inline!");
+    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController arrangedObjects] objectAtIndex:[sender clickedRow]];
+//    NSLog(@"%@", [virtualMachine name]);
+    [self toggleEmulator:virtualMachine andSender:sender];
+    
 }
 
 /*!
@@ -453,8 +473,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              proceed to prompt the user about it. The function is handy,
  *              nevertheless, and remained here.
  */
-- (IBAction)stopEmulator:(id)sender {
-    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+//- (IBAction)stopEmulator:(id)sender {
+- (IBAction)stopEmulator:(VirtualMachinesEntityModel *)virtualMachine {
+//    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
     if ([virtualMachine running]) {
         NSTask * theTask = [virtualMachineTasks objectForKey:[virtualMachine uniqueName]];        
         [theTask terminate];
@@ -492,11 +513,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * Old comment to be checked:
  * This will crash if the application support dir doesn't exist. Fix it!
  */
-- (IBAction)run:(id)sender {
+- (IBAction)run:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender {
+//(id)sender {
     
     [self saveCoreData];
     
-    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+//    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
     
     if (![[virtualMachine emulator] unixPath] && ![[NSUserDefaults standardUserDefaults] stringForKey:@"BasiliskPath"]){
         [errorSheetLabel setStringValue:@"There is no emulator associated with this virtual machine!\nPlease check your emulator on the assets manager and then use the general tab in your machine's settings.\nIf you need help, refer to the help menu."];

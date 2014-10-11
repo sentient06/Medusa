@@ -32,6 +32,8 @@
 
 #import <AppKit/AppKit.h>
 
-@interface VMListTextCell : NSTextFieldCell
+@interface VMListTextCell : NSTextFieldCell {
+    NSColor * colour;
+}
 
 @end

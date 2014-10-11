@@ -35,6 +35,7 @@
 @class AssetsWindowController;          //Assets Window
 @class PreferencesWindowController;     //Preferences Window
 @class SplashWindowController;
+@class VirtualMachinesEntityModel;
 
 /*!
  * @class       AppDelegate:
@@ -171,9 +172,12 @@
 - (IBAction)savePreferencesFile:(id)sender;
 - (IBAction)openPreferencesFileFolder:(id)sender;
 
-- (IBAction)toggleEmulator:(id)sender;
-- (IBAction)stopEmulator:(id)sender;
+//- (IBAction)toggleEmulator:(id)sender;
+//- (IBAction)stopEmulator:(id)sender;
 - (IBAction)killEmulator:(id)sender;
 - (IBAction)showInformationWindow:(id)sender;
+- (IBAction)toggleEmulator:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender;
+- (IBAction)stopEmulator:(VirtualMachinesEntityModel *)virtualMachine;
+- (IBAction)toggleVirtualMachine:(id)sender;
 
 @end

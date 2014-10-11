@@ -32,6 +32,6 @@
 
 #import <AppKit/AppKit.h>
 
-@interface VMList : NSScrollView
+@interface VMListScrollView : NSScrollView
 
 @end

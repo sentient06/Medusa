@@ -180,4 +180,6 @@ enum Processors {
 - (BOOL)basilisk2Setup;
 - (BOOL)showGestaltList;
 
+- (BOOL)busy;
+
 @end

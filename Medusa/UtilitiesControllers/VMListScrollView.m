@@ -30,9 +30,9 @@
 //
 //------------------------------------------------------------------------------
 
-#import "VMList.h"
+#import "VMListScrollView.h"
 
-@implementation VMList
+@implementation VMListScrollView
 
 - (void)drawRect:(NSRect)dirtyRect {    
     NSGraphicsContext * theContext = [NSGraphicsContext currentContext];

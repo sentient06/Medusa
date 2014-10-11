@@ -346,8 +346,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [[NSApp delegate] saveCoreData];
 }
 
-- (void)assembleEmulatorsFromZip:(NSString *)emulatorsTempDirectory {
+/**
+ * Creates emulator app executables from plist and unix executable files.
+ */
+- (void)assembleEmulatorsOfFamily:(int)emulatorFamily FromZip:(NSString *)emulatorsTempDirectory {
 
+    // Unzips files:
     NSTask * unzipTask = [[NSTask alloc] init];
     
     [unzipTask setLaunchPath:@"/usr/bin/unzip"];
@@ -366,6 +370,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [unzipTask waitUntilExit];
     [unzipTask release];
 
+    // Iterates directory and assembles each of the emulators:
+
     NSFileManager * fileManager = [NSFileManager defaultManager];
     
     NSMutableArray * shallowDirectoryList =[[NSMutableArray alloc]
@@ -375,7 +381,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [shallowDirectoryList removeObject:@"BasiliskII.icns"];
     
     for (NSString * folderName in shallowDirectoryList) {
-        BOOL success = [self assembleBasiliskInDirectory:emulatorsTempDirectory withName:folderName];
+        BOOL success = [self assembleEmulatorOfFamily:emulatorFamily
+                                          InDirectory:emulatorsTempDirectory
+                                             withName:folderName];
         
         if (success) {
             NSString * originalFolder       = [NSString stringWithFormat:@"%@/%@", emulatorsTempDirectory, folderName];
@@ -410,71 +418,85 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 }
 
-- (BOOL)assembleBasiliskInDirectory:(NSString *)directory withName:(NSString *)folderName {
+- (BOOL)assembleEmulatorOfFamily:(int)emulatorFamily InDirectory:(NSString *)directory withName:(NSString *)folderName {
 
+//    Basilisk II
+//    SheepShaver
+    
+    NSString * emulatorName = [[NSString alloc] init];
+    NSString * emulatorUnix = [[NSString alloc] init];
+    
+    if (true) { // Basilisk
+        emulatorName = @"Basilisk II";
+        emulatorUnix = @"BasiliskII";
+    } else {
+        emulatorName = @"SheepShaver";
+        emulatorUnix = @"SheepShaver";
+    }
+    
     DDLogVerbose(@"Assembling");
     
     int errors = 0;
     
     NSString * finalDirectory     = [[NSString alloc] initWithFormat:@"%@/%@", directory, folderName];
-    NSString * appDirectory       = [[NSString alloc] initWithFormat:@"%@/Basilisk II.app", finalDirectory];
+    NSString * appDirectory       = [[NSString alloc] initWithFormat:@"%@/%@.app", finalDirectory, emulatorName];
     NSString * contentsDirectory  = [[NSString alloc] initWithFormat:@"%@/Contents", appDirectory];
     NSString * macOSDirectory     = [[NSString alloc] initWithFormat:@"%@/MacOS", contentsDirectory];
     NSString * resourcesDirectory = [[NSString alloc] initWithFormat:@"%@/Resources", contentsDirectory];
 
     NSString * plistFilePathFrom  = [[NSString alloc] initWithFormat:@"%@/Info.plist", finalDirectory];
-    NSString * unixFilePathFrom   = [[NSString alloc] initWithFormat:@"%@/BasiliskII", finalDirectory];
-    NSString * iconFilePathFrom   = [[NSString alloc] initWithFormat:@"%@/BasiliskII.icns", directory];
+    NSString * unixFilePathFrom   = [[NSString alloc] initWithFormat:@"%@/%@", finalDirectory, emulatorUnix];
+    NSString * iconFilePathFrom   = [[NSString alloc] initWithFormat:@"%@/%@.icns", directory, emulatorUnix];
 
     NSString * plistFilePathTo    = [[NSString alloc] initWithFormat:@"%@/Info.plist", contentsDirectory];
-    NSString * unixFilePathTo     = [[NSString alloc] initWithFormat:@"%@/BasiliskII", macOSDirectory];
-    NSString * iconFilePathTo     = [[NSString alloc] initWithFormat:@"%@/BasiliskII.icns", resourcesDirectory];
+    NSString * unixFilePathTo     = [[NSString alloc] initWithFormat:@"%@/%@", macOSDirectory, emulatorUnix];
+    NSString * iconFilePathTo     = [[NSString alloc] initWithFormat:@"%@/%@.icns", resourcesDirectory, emulatorUnix];
 
     NSFileManager * fileManager = [NSFileManager defaultManager];
     
-    // 1. Create Basilisk II.app
+    // 1. Creates Basilisk II.app
     
     if(![fileManager createDirectoryAtPath:appDirectory withIntermediateDirectories:YES attributes:nil error:NULL]) {
         DDLogError(@"Error: Could not create folder %@", appDirectory);
         errors++;
     }
 
-    // 2. Create Basilisk II.app/Contents
+    // 2. Creates Basilisk II.app/Contents
 
     if(![fileManager createDirectoryAtPath:contentsDirectory withIntermediateDirectories:YES attributes:nil error:NULL]) {
         DDLogError(@"Error: Could not create folder %@", contentsDirectory);
         errors++;
     }
 
-    // 3. Create Basilisk II.app/Contents/MacOS
+    // 3. Creates Basilisk II.app/Contents/MacOS
 
     if(![fileManager createDirectoryAtPath:macOSDirectory withIntermediateDirectories:YES attributes:nil error:NULL]) {
         DDLogError(@"Error: Could not create folder %@", macOSDirectory);
         errors++;
     }
 
-    // 4. Create Basilisk II.app/Contents/Resources
+    // 4. Creates Basilisk II.app/Contents/Resources
 
     if(![fileManager createDirectoryAtPath:resourcesDirectory withIntermediateDirectories:YES attributes:nil error:NULL]) {
         DDLogError(@"Error: Could not create folder %@", resourcesDirectory);
         errors++;
     }
 
-    // 5. Move Info.plist into Basilisk II.app/Contents/
+    // 5. Moves Info.plist into Basilisk II.app/Contents/
     
     if(![fileManager moveItemAtPath:plistFilePathFrom toPath:plistFilePathTo error:NULL]) {
         DDLogError(@"Error: Could not move plist to %@", plistFilePathTo);
         errors++;
     }
     
-    // 6. Move BasiliskII into Basilisk II.app/Contents/MacOS/
+    // 6. Moves BasiliskII into Basilisk II.app/Contents/MacOS/
     
     if(![fileManager moveItemAtPath:unixFilePathFrom toPath:unixFilePathTo error:NULL]) {
         DDLogError(@"Error: Could not move unix file to %@", unixFilePathTo);
         errors++;
     }
     
-    // 7. Copy ../BasiliskII.icns to Basilisk II.app/Contents/Resources/
+    // 7. Copies ../BasiliskII.icns to Basilisk II.app/Contents/Resources/
     
     if(![fileManager copyItemAtPath:iconFilePathFrom toPath:iconFilePathTo error:NULL]) {
         DDLogError(@"Error: Could not copy icon to %@", iconFilePathTo);
@@ -492,6 +514,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [contentsDirectory release];
     [appDirectory release];
     [finalDirectory release];
+    [emulatorUnix release];
+    [emulatorName release];
     
     if (errors > 0) return NO;
     else return YES;

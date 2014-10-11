@@ -7,7 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4006AF6519E815E00052B22A /* VMListTablelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006AF6419E815E00052B22A /* VMListTablelView.m */; };
 		4028B65D19DAD57C008CD002 /* EmulatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028B65C19DAD57C008CD002 /* EmulatorModel.m */; };
+		40394FD619E7E0F7003893E1 /* ToggleOffDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 40394FD219E7E0F7003893E1 /* ToggleOffDown.png */; };
+		40394FD719E7E0F7003893E1 /* ToggleOffUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 40394FD319E7E0F7003893E1 /* ToggleOffUp.png */; };
+		40394FD819E7E0F7003893E1 /* ToggleOnDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 40394FD419E7E0F7003893E1 /* ToggleOnDown.png */; };
+		40394FD919E7E0F7003893E1 /* ToggleOnUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 40394FD519E7E0F7003893E1 /* ToggleOnUp.png */; };
+		40394FDC19E7E653003893E1 /* ToggleButtonImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40394FDB19E7E653003893E1 /* ToggleButtonImageTransformer.m */; };
 		4047CFAF194B4C0A003847C7 /* BoolValueToRedColourTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */; };
 		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
 		408D8B7219D60DAA00100A14 /* OnOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7119D60DAA00100A14 /* OnOff.png */; };
@@ -21,6 +27,7 @@
 		4096510519D49EFF00D8AD39 /* Magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 4096510419D49EFF00D8AD39 /* Magnifier.png */; };
 		40A2261719C8C3CD003916C4 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 40A2261319C8C3CD003916C4 /* Medusa.xcdatamodeld */; };
 		40A2262019C8C819003916C4 /* RomFilesMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 40A2261F19C8C819003916C4 /* RomFilesMigrationPolicy.m */; };
+		40AAA30219E7D16900EFFB00 /* VMListButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AAA30119E7D16900EFFB00 /* VMListButtonCell.m */; };
 		40AAE6BE19E34E12005959F1 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 40AAE6BD19E34E12005959F1 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */; };
 		40B0F3B61949B54100F5CEC7 /* RomEmulatorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0F3B51949B54100F5CEC7 /* RomEmulatorTransformer.m */; };
 		40B0F3B81949B7FA00F5CEC7 /* QuestionMarkMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B0F3B71949B7FA00F5CEC7 /* QuestionMarkMac.png */; };
@@ -101,7 +108,7 @@
 		8178DEC61804003D004CCC8B /* SettingsIconClassic16px.png in Resources */ = {isa = PBXBuildFile; fileRef = 8178DEC51804003D004CCC8B /* SettingsIconClassic16px.png */; };
 		817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF56153580100038E9A0 /* MedusaIcon.icns */; };
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
-		817E319D17D1078200131E2D /* VMList.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMList.m */; };
+		817E319D17D1078200131E2D /* VMListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMListScrollView.m */; };
 		818313F21802DA2000DACD71 /* Diskette.icns in Resources */ = {isa = PBXBuildFile; fileRef = 818313F11802DA2000DACD71 /* Diskette.icns */; };
 		8188A59217F97A6800BAB33B /* VirtualMachineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59117F97A6800BAB33B /* VirtualMachineController.m */; };
 		8188A59617F97A7A00BAB33B /* EmulatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorController.m */; };
@@ -167,8 +174,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4006AF6319E815E00052B22A /* VMListTablelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMListTablelView.h; path = UtilitiesControllers/VMListTablelView.h; sourceTree = "<group>"; };
+		4006AF6419E815E00052B22A /* VMListTablelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMListTablelView.m; path = UtilitiesControllers/VMListTablelView.m; sourceTree = "<group>"; };
 		4028B65B19DAD57C008CD002 /* EmulatorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorModel.h; path = Models/EmulatorModel.h; sourceTree = "<group>"; };
 		4028B65C19DAD57C008CD002 /* EmulatorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorModel.m; path = Models/EmulatorModel.m; sourceTree = "<group>"; };
+		40394FD219E7E0F7003893E1 /* ToggleOffDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ToggleOffDown.png; path = Images/Buttons/Toggle/ToggleOffDown.png; sourceTree = "<group>"; };
+		40394FD319E7E0F7003893E1 /* ToggleOffUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ToggleOffUp.png; path = Images/Buttons/Toggle/ToggleOffUp.png; sourceTree = "<group>"; };
+		40394FD419E7E0F7003893E1 /* ToggleOnDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ToggleOnDown.png; path = Images/Buttons/Toggle/ToggleOnDown.png; sourceTree = "<group>"; };
+		40394FD519E7E0F7003893E1 /* ToggleOnUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ToggleOnUp.png; path = Images/Buttons/Toggle/ToggleOnUp.png; sourceTree = "<group>"; };
+		40394FDA19E7E653003893E1 /* ToggleButtonImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleButtonImageTransformer.h; path = TransformerControllers/ImageTransformers/ToggleButtonImageTransformer.h; sourceTree = "<group>"; };
+		40394FDB19E7E653003893E1 /* ToggleButtonImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToggleButtonImageTransformer.m; path = TransformerControllers/ImageTransformers/ToggleButtonImageTransformer.m; sourceTree = "<group>"; };
 		4047CFAD194B4C0A003847C7 /* BoolValueToRedColourTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToRedColourTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.h; sourceTree = "<group>"; };
 		4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToRedColourTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.m; sourceTree = "<group>"; };
 		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
@@ -187,6 +202,8 @@
 		40A2261619C8C3CD003916C4 /* Medusa 1.2.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.1.xcdatamodel"; sourceTree = "<group>"; };
 		40A2261E19C8C819003916C4 /* RomFilesMigrationPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFilesMigrationPolicy.h; path = MigrationPolicies/RomFilesMigrationPolicy.h; sourceTree = "<group>"; };
 		40A2261F19C8C819003916C4 /* RomFilesMigrationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFilesMigrationPolicy.m; path = MigrationPolicies/RomFilesMigrationPolicy.m; sourceTree = "<group>"; };
+		40AAA30019E7D16900EFFB00 /* VMListButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMListButtonCell.h; path = UtilitiesControllers/VMListButtonCell.h; sourceTree = "<group>"; };
+		40AAA30119E7D16900EFFB00 /* VMListButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMListButtonCell.m; path = UtilitiesControllers/VMListButtonCell.m; sourceTree = "<group>"; };
 		40AAE6BC19E34B9A005959F1 /* Medusa 1.2.0.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.2.xcdatamodel"; sourceTree = "<group>"; };
 		40AAE6BD19E34E12005959F1 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel"; sourceTree = "<group>"; };
 		40B0F3B41949B54100F5CEC7 /* RomEmulatorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomEmulatorTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomEmulatorTransformer.h; sourceTree = "<group>"; };
@@ -303,8 +320,8 @@
 		817CAF56153580100038E9A0 /* MedusaIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon.icns; path = Medusa/Images/Icons/MedusaIcon.icns; sourceTree = SOURCE_ROOT; };
 		817CAF601535B5CB0038E9A0 /* TableLineInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableLineInformationController.h; path = UtilitiesControllers/TableLineInformationController.h; sourceTree = "<group>"; };
 		817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableLineInformationController.m; path = UtilitiesControllers/TableLineInformationController.m; sourceTree = "<group>"; };
-		817E319B17D1078200131E2D /* VMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMList.h; path = UtilitiesControllers/VMList.h; sourceTree = "<group>"; };
-		817E319C17D1078200131E2D /* VMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMList.m; path = UtilitiesControllers/VMList.m; sourceTree = "<group>"; };
+		817E319B17D1078200131E2D /* VMListScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMListScrollView.h; path = UtilitiesControllers/VMListScrollView.h; sourceTree = "<group>"; };
+		817E319C17D1078200131E2D /* VMListScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMListScrollView.m; path = UtilitiesControllers/VMListScrollView.m; sourceTree = "<group>"; };
 		818313F11802DA2000DACD71 /* Diskette.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Diskette.icns; path = Images/ClassicIcons/Diskette.icns; sourceTree = "<group>"; };
 		8188A59017F97A6800BAB33B /* VirtualMachineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineController.h; path = Models/VirtualMachineController.h; sourceTree = "<group>"; };
 		8188A59117F97A6800BAB33B /* VirtualMachineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineController.m; path = Models/VirtualMachineController.m; sourceTree = "<group>"; };
@@ -403,6 +420,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40394FD119E7E0EB003893E1 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				40394FD219E7E0F7003893E1 /* ToggleOffDown.png */,
+				40394FD319E7E0F7003893E1 /* ToggleOffUp.png */,
+				40394FD419E7E0F7003893E1 /* ToggleOnDown.png */,
+				40394FD519E7E0F7003893E1 /* ToggleOnUp.png */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
 		408D8B7B19D6F7BD00100A14 /* EmulatorFiles */ = {
 			isa = PBXGroup;
 			children = (
@@ -417,8 +445,6 @@
 				408D8B7119D60DAA00100A14 /* OnOff.png */,
 				4096510419D49EFF00D8AD39 /* Magnifier.png */,
 				4096510219D49B7A00D8AD39 /* ArrowRight.png */,
-				81C2B75117D646AB000E4A01 /* linenPattern.png */,
-				81895CFD17D4F51000752E51 /* NoiseGrey.png */,
 				81DB823F159F91F8003D4C5D /* Clone.png */,
 			);
 			name = SimpleIcons;
@@ -431,6 +457,15 @@
 				40A2261F19C8C819003916C4 /* RomFilesMigrationPolicy.m */,
 			);
 			name = MigrationPolicies;
+			sourceTree = "<group>";
+		};
+		40E787B419E7DE7B0098583E /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				81C2B75117D646AB000E4A01 /* linenPattern.png */,
+				81895CFD17D4F51000752E51 /* NoiseGrey.png */,
+			);
+			name = Backgrounds;
 			sourceTree = "<group>";
 		};
 		810E38451554414300949BE1 /* DataModel */ = {
@@ -527,19 +562,23 @@
 			name = WindowControllers;
 			sourceTree = "<group>";
 		};
-		815FEEF8153627A100B9E5C5 /* HelpingControllers */ = {
+		815FEEF8153627A100B9E5C5 /* Tables */ = {
 			isa = PBXGroup;
 			children = (
 				817CAF601535B5CB0038E9A0 /* TableLineInformationController.h */,
 				817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */,
 				8175CBE517D0D18C0003294E /* VMListTextCell.h */,
 				8175CBE617D0D18C0003294E /* VMListTextCell.m */,
-				817E319B17D1078200131E2D /* VMList.h */,
-				817E319C17D1078200131E2D /* VMList.m */,
+				40AAA30019E7D16900EFFB00 /* VMListButtonCell.h */,
+				40AAA30119E7D16900EFFB00 /* VMListButtonCell.m */,
+				817E319B17D1078200131E2D /* VMListScrollView.h */,
+				817E319C17D1078200131E2D /* VMListScrollView.m */,
 				8139BB4B1826BCA0003BAD98 /* HelpDocumentationController.h */,
 				8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */,
+				4006AF6319E815E00052B22A /* VMListTablelView.h */,
+				4006AF6419E815E00052B22A /* VMListTablelView.m */,
 			);
-			name = HelpingControllers;
+			name = Tables;
 			sourceTree = "<group>";
 		};
 		8162FF3C17EC4EA4000413C2 /* DropViews */ = {
@@ -705,7 +744,6 @@
 				817334F4182D54A500EDBF05 /* BackEndControllers */,
 				815FEEF61536279000B9E5C5 /* WindowControllers */,
 				81C84439153E184E00E94443 /* SubClasses */,
-				815FEEF8153627A100B9E5C5 /* HelpingControllers */,
 				816BAF8C153863ED00B68091 /* Transformers */,
 			);
 			name = Controllers;
@@ -856,6 +894,8 @@
 				811EF6EA1804B4160011DDBD /* KeyboardLayoutValueTransformer.m */,
 				810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */,
 				810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */,
+				40394FDA19E7E653003893E1 /* ToggleButtonImageTransformer.h */,
+				40394FDB19E7E653003893E1 /* ToggleButtonImageTransformer.m */,
 			);
 			name = ImageTransformers;
 			sourceTree = "<group>";
@@ -902,6 +942,7 @@
 		81C84439153E184E00E94443 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
+				815FEEF8153627A100B9E5C5 /* Tables */,
 				819DC08B17F18B7300480073 /* ArrayController */,
 				8162FF3C17EC4EA4000413C2 /* DropViews */,
 				81D733EA15A4AC8800DEA523 /* LinkedView.h */,
@@ -930,6 +971,8 @@
 		81FAA927159F3968004F5F11 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				40394FD119E7E0EB003893E1 /* Buttons */,
+				40E787B419E7DE7B0098583E /* Backgrounds */,
 				4096510619D49F0400D8AD39 /* SimpleIcons */,
 				819DC09017F1906900480073 /* ClassicIcons */,
 				814804F217D5FFB40070DAD9 /* RomIcons */,
@@ -1044,6 +1087,7 @@
 				8168997017CE2C7900058B9F /* RomFile.icns in Resources */,
 				8168997117CE2C7900058B9F /* RomImageDocument.icns in Resources */,
 				8168997217CE2C7900058B9F /* Shared.icns in Resources */,
+				40394FD919E7E0F7003893E1 /* ToggleOnUp.png in Resources */,
 				8168997317CE2C7900058B9F /* Stop.icns in Resources */,
 				8168997417CE2C7900058B9F /* Unsupported.icns in Resources */,
 				816792A617D08F27002B991B /* newVm.icns in Resources */,
@@ -1068,6 +1112,7 @@
 				8178DEC61804003D004CCC8B /* SettingsIconClassic16px.png in Resources */,
 				8132D41518048C4E0068428D /* 001 - Apple Keyboard.gif in Resources */,
 				8132D41618048C4E0068428D /* 002 - Apple Extended Keyboard.gif in Resources */,
+				40394FD819E7E0F7003893E1 /* ToggleOnDown.png in Resources */,
 				8132D41718048C4E0068428D /* 003 - Macintosh 512K Keyboard.gif in Resources */,
 				8132D41818048C4E0068428D /* 004 - Apple ISO Keyboard.gif in Resources */,
 				8132D41918048C4E0068428D /* 005 - Apple ISO Extended Keyboard.gif in Resources */,
@@ -1090,6 +1135,8 @@
 				8132D42618048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */,
 				8132D42718048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif in Resources */,
 				408D8B7F19D7448100100A14 /* KeyboardMouse.png in Resources */,
+				40394FD619E7E0F7003893E1 /* ToggleOffDown.png in Resources */,
+				40394FD719E7E0F7003893E1 /* ToggleOffUp.png in Resources */,
 				81F9022418142AF90024DB8B /* ClassicFolderIcon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1117,19 +1164,22 @@
 				81134C4415540B2900785866 /* PreferencesController.m in Sources */,
 				81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m in Sources */,
 				81E84DF01565BE820002D4DA /* DiskFilesEntityModel.m in Sources */,
+				40AAA30219E7D16900EFFB00 /* VMListButtonCell.m in Sources */,
 				81E84DF91565BE820002D4DA /* RomFilesEntityModel.m in Sources */,
 				814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */,
 				40AAE6BE19E34E12005959F1 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel in Sources */,
+				40394FDC19E7E653003893E1 /* ToggleButtonImageTransformer.m in Sources */,
 				815C26391587EEA5003FA9EB /* VirtualMachinesEntityModel.m in Sources */,
 				81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */,
 				816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */,
 				40D3FFCF19CAE1910053CD3F /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel in Sources */,
 				81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */,
 				8175CBE717D0D18C0003294E /* VMListTextCell.m in Sources */,
-				817E319D17D1078200131E2D /* VMList.m in Sources */,
+				817E319D17D1078200131E2D /* VMListScrollView.m in Sources */,
 				814804E817D5D56D0070DAD9 /* RomController.m in Sources */,
 				81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */,
 				810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */,
+				4006AF6519E815E00052B22A /* VMListTablelView.m in Sources */,
 				8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */,
 				815EEE0117EB1954002D8A02 /* EmulatorHandleController.m in Sources */,
 				8162FF4017EC4EDD000413C2 /* DropAllView.m in Sources */,

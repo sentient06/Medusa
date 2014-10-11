@@ -177,4 +177,8 @@
     }
 }
 
+- (BOOL)busy {
+    return [[self running] boolValue];
+}
+
 @end
