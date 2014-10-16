@@ -418,7 +418,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 }
 
-- (BOOL)assembleEmulatorOfFamily:(int)emulatorFamily InDirectory:(NSString *)directory withName:(NSString *)folderName {
++ (BOOL)assembleEmulatorOfFamily:(int)emulatorFamily InDirectory:(NSString *)directory withName:(NSString *)folderName {
 
 //    Basilisk II
 //    SheepShaver
@@ -426,7 +426,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSString * emulatorName = [[NSString alloc] init];
     NSString * emulatorUnix = [[NSString alloc] init];
     
-    if (true) { // Basilisk
+    if (emulatorFamily == basiliskFamily) {
         emulatorName = @"Basilisk II";
         emulatorUnix = @"BasiliskII";
     } else {
@@ -503,6 +503,36 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         errors++;
     }
     
+    // 8. Copies ../SheepShaverVM.icns to SheepShaver.app/Contents/Resources/
+    if (emulatorFamily == sheepshaverFamily) {
+        NSString * frameworksDirectory = [[NSString alloc] initWithFormat:@"%@/Frameworks", contentsDirectory];
+        NSString * SDLFilePathFrom = [[NSString alloc] initWithFormat:@"%@/SDL.framework", directory];
+        NSString * SDLFilePathTo = [[NSString alloc] initWithFormat:@"%@/SDL.framework", frameworksDirectory];
+        NSString * iconVMFilePathFrom = [[NSString alloc] initWithFormat:@"%@/%@VM.icns", directory, emulatorUnix];
+        NSString * iconVMFilePathTo = [[NSString alloc] initWithFormat:@"%@/%@VM.icns", resourcesDirectory, emulatorUnix];
+
+        if(![fileManager createDirectoryAtPath:frameworksDirectory withIntermediateDirectories:YES attributes:nil error:NULL]) {
+            DDLogError(@"Error: Could not create folder %@", frameworksDirectory);
+            errors++;
+        }
+        
+        if(![fileManager copyItemAtPath:iconVMFilePathFrom toPath:iconVMFilePathTo error:NULL]) {
+            DDLogError(@"Error: Could not copy icon to %@", iconFilePathTo);
+            errors++;
+        }
+
+        if(![fileManager copyItemAtPath:SDLFilePathFrom toPath:SDLFilePathTo error:NULL]) {
+            DDLogError(@"Error: Could not copy icon to %@", iconFilePathTo);
+            errors++;
+        }
+
+        [iconVMFilePathTo release];
+        [iconVMFilePathFrom release];
+        [SDLFilePathTo release];
+        [SDLFilePathFrom release];
+        [frameworksDirectory release];
+    }
+    
     [iconFilePathTo release];
     [unixFilePathTo release];
     [plistFilePathTo release];
@@ -519,6 +549,99 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     if (errors > 0) return NO;
     else return YES;
+}
+
++ (BOOL)assembleEmulatorInDirectory:(NSString *)directory withName:(NSString *)folderName {
+    if ([[folderName substringToIndex:1] isEqualToString:@"S"]) {
+        return [EmulatorController assembleEmulatorOfFamily:sheepshaverFamily InDirectory:directory withName:folderName];
+    }
+    if ([[folderName substringToIndex:1] isEqualToString:@"B"]) {
+        return [EmulatorController assembleEmulatorOfFamily:basiliskFamily InDirectory:directory withName:folderName];
+    }
+    return NO;
+}
+
++ (void)assembleAppsFromZip:(NSString *)emulatorsTempDirectory {
+    // Unzips files:
+    NSTask * unzipTask = [[NSTask alloc] init];
+    
+    [unzipTask setLaunchPath:@"/usr/bin/unzip"];
+    
+    [unzipTask setArguments:
+    [NSArray arrayWithObjects:
+              @"-o"
+            , [NSString stringWithFormat:@"%@.zip", emulatorsTempDirectory]
+            , @"-d"
+            , [emulatorsTempDirectory stringByDeletingLastPathComponent]
+            ,nil
+        ]
+    ];
+    
+    [unzipTask launch];
+    [unzipTask waitUntilExit];
+    [unzipTask release];
+    
+    // Iterates directory and assembles each of the emulators:
+    
+    NSFileManager * fileManager = [NSFileManager defaultManager];
+    
+    NSMutableArray * shallowDirectoryList =[[NSMutableArray alloc]
+        initWithArray:[fileManager contentsOfDirectoryAtPath:emulatorsTempDirectory error:nil]
+    ];
+    
+    // The dir is composed by two icon files and directories that contain data for each bundle.
+    // Here we ignore the icons for the moment:
+    [shallowDirectoryList removeObject:@"BasiliskII.icns"];
+    [shallowDirectoryList removeObject:@"SheepShaver.icns"];
+    [shallowDirectoryList removeObject:@"SheepShaverVM.icns"];
+    [shallowDirectoryList removeObject:@"SDL.framework"];
+
+    int family;
+    
+    NSLog(@"+++++++++++++++++++++++++++++++++++");
+    NSLog(@"%@", shallowDirectoryList);
+
+    for (NSString * folderName in shallowDirectoryList) {
+        BOOL success = [EmulatorController assembleEmulatorInDirectory:emulatorsTempDirectory withName:folderName];
+///HERE
+        if (success) {
+            
+            if ([[folderName substringToIndex:1] isEqualToString:@"S"]) {
+                family = sheepshaverFamily;
+            } else {
+                family = basiliskFamily;
+            }
+            
+            NSString * originalFolder       = [NSString stringWithFormat:@"%@/%@", emulatorsTempDirectory, folderName];
+            NSString * destinyFolderParent  = [NSString
+                stringWithFormat:@"%@/Emulators/%@",
+                    [[NSApp delegate] applicationSupportDirectory],
+                    family == sheepshaverFamily ? @"SheepShaver" : @"Basilisk"
+            ];
+            NSString * destinyFolder = [NSString stringWithFormat:@"%@/%@", destinyFolderParent, [folderName substringFromIndex:1]];
+            
+            BOOL destinyFolderParentIsDir;
+            
+            if(![fileManager fileExistsAtPath:destinyFolderParent isDirectory:&destinyFolderParentIsDir])
+                if(![fileManager createDirectoryAtPath:destinyFolderParent withIntermediateDirectories:YES attributes:nil error:NULL])
+                    DDLogError(@"Error: Could not create folder %@", destinyFolderParent);
+            
+            DDLogVerbose(@"Destiny: %@", destinyFolder);
+            
+            if(![fileManager moveItemAtPath:originalFolder toPath:destinyFolder error:NULL]) {
+                DDLogError(@"Error: Could not move basilisk named %@", folderName);
+                if(![fileManager removeItemAtPath:originalFolder error:nil]){
+                    DDLogError(@"Error: Could not delete either!");
+                }
+            }
+            
+        }
+        
+    }
+    
+    [fileManager removeItemAtPath:emulatorsTempDirectory error:nil];
+    [fileManager removeItemAtPath:[NSString stringWithFormat:@"%@.zip", emulatorsTempDirectory] error:nil];
+    [shallowDirectoryList release];
 }
 
 /*!

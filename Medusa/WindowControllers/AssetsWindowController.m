@@ -260,12 +260,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     [self showDownloadPanel:sender];
     
-    NSURL * url = [NSURL URLWithString:@"http://medusa.mariot.me.uk/emulators/download/BasiliskExecutables.zip"];
+//    NSURL * url = [NSURL URLWithString:@"http://medusa.mariot.me.uk/emulators/download/EmulatorsExecutables.zip"];
+    NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/EmulatorExecutables.zip"];
     
     request = [ASIHTTPRequest requestWithURL:url];
     
     [request setDownloadProgressDelegate:downloadProgressIndicator];
-    [request setDownloadDestinationPath:[downloadDirectory stringByAppendingPathComponent:@"BasiliskExecutables.zip"]];
+    [request setDownloadDestinationPath:[downloadDirectory stringByAppendingPathComponent:@"EmulatorExecutables.zip"]];
     
     [request setDelegate:self];
     [request startAsynchronous];
@@ -298,10 +299,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [downloadPanel orderOut:nil];
     
     EmulatorController * emulatorObject = [[EmulatorController alloc] init];
-    [emulatorObject assembleEmulatorsOfFamily:basiliskFamily
-                                    FromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"BasiliskExecutables"]];
-    [emulatorObject assembleEmulatorsOfFamily:sheepshaverFamily
-                                    FromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"SheepshaverExecutables"]];
+    [EmulatorController assembleAppsFromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"EmulatorExecutables"]];
+    [emulatorObject scanEmulators];
+//    [emulatorObject assembleEmulatorsOfFamily:basiliskFamily FromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"BasiliskExecutables"]];
+//    [emulatorObject assembleEmulatorsOfFamily:sheepshaverFamily FromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"SheepshaverExecutables"]];
     [emulatorObject release];
 
 

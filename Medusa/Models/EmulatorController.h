@@ -38,10 +38,13 @@
 }
 
 - (void)scanEmulators;
-- (void)scanEmulatorFamily:(int)emulatorFamily;
++ (void)scanEmulatorFamily:(int)emulatorFamily;
 - (id)parseEmulator:(NSString *)applicationPath;
 - (void)parseEmulatorsAndSave:(NSArray *)filesList;
 - (void)assembleEmulatorsOfFamily:(int)emulatorFamily FromZip:(NSString *)emulatorsTempDirectory;
-- (BOOL)assembleEmulatorOfFamily:(int)emulatorFamily InDirectory:(NSString *)directory withName:(NSString *)folderName;
+
++ (BOOL)assembleEmulatorOfFamily:(int)emulatorFamily InDirectory:(NSString *)directory withName:(NSString *)folderName;
++ (BOOL)assembleEmulatorInDirectory:(NSString *)directory withName:(NSString *)folderName;
++ (void)assembleAppsFromZip:(NSString *)emulatorsTempDirectory;
 
 @end
