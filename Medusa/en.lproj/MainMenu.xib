@@ -76,22 +76,37 @@
                 <menuItem title="File" id="83">
                     <menu key="submenu" title="File" id="81">
                         <items>
-                            <menuItem title="New" keyEquivalent="n" id="82">
+                            <menuItem title="New" tag="1" keyEquivalent="n" id="82">
                                 <connections>
-                                    <action selector="newDocument:" target="-1" id="373"/>
+                                    <action selector="showNewMachineView:" target="494" id="eBX-N9-g5f"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open…" keyEquivalent="o" id="72">
+                            <menuItem title="Duplicate" tag="2" keyEquivalent="d" id="aTi-8A-Os1">
                                 <connections>
-                                    <action selector="openDocument:" target="-1" id="374"/>
+                                    <action selector="showNewMachineView:" target="494" id="N2g-Jl-8tU"/>
+                                    <binding destination="542" name="enabled" keyPath="canRemove" id="bYI-2T-ut2"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open Recent" id="124">
-                                <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
+                            <menuItem title="Display Settings" keyEquivalent="s" id="mBR-Na-JqQ">
+                                <connections>
+                                    <action selector="openVirtualMachineWindow:" target="494" id="gck-0G-XlY"/>
+                                    <binding destination="542" name="enabled" keyPath="canRemove" id="0z7-q7-oNF"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem title="Import" id="JVS-rN-fZ2">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Import" id="5b1-TV-aQe">
                                     <items>
-                                        <menuItem title="Clear Menu" id="126">
+                                        <menuItem title="Basilisk II preferences" tag="3" id="MQn-nV-hIQ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="clearRecentDocuments:" target="-1" id="127"/>
+                                                <action selector="showNewMachineView:" target="494" id="4Ni-BB-0tB"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Sheepshaver preferences" tag="4" id="gEP-uc-MVy">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showNewMachineView:" target="494" id="SQL-GN-BDp"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -103,37 +118,6 @@
                             <menuItem title="Close" keyEquivalent="w" id="73">
                                 <connections>
                                     <action selector="performClose:" target="-1" id="193"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Save" keyEquivalent="s" id="75">
-                                <connections>
-                                    <action selector="saveDocument:" target="-1" id="362"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Save As…" keyEquivalent="S" id="80">
-                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                <connections>
-                                    <action selector="saveDocumentAs:" target="-1" id="363"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Revert to Saved" id="112">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="revertDocumentToSaved:" target="-1" id="364"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="74">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
-                            <menuItem title="Page Setup..." keyEquivalent="P" id="77">
-                                <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
-                                <connections>
-                                    <action selector="runPageLayout:" target="-1" id="87"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Print…" keyEquivalent="p" id="78">
-                                <connections>
-                                    <action selector="print:" target="-1" id="86"/>
                                 </connections>
                             </menuItem>
                         </items>
@@ -256,7 +240,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES"/>
             <rect key="contentRect" x="573" y="353" width="300" height="363"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="300" height="360"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="300" height="363"/>
@@ -265,7 +249,7 @@
                     <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="641" customClass="VMListScrollView">
                         <rect key="frame" x="0.0" y="27" width="300" height="336"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="wgq-qn-0LV">
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="cel-gZ-cdb">
                             <rect key="frame" x="0.0" y="0.0" width="300" height="336"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -353,7 +337,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <button verticalHuggingPriority="750" id="604">
+                    <button verticalHuggingPriority="750" tag="1" id="604">
                         <rect key="frame" x="2" y="2" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="605">
@@ -388,18 +372,12 @@
                     <button verticalHuggingPriority="750" id="795">
                         <rect key="frame" x="92" y="2" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OnOff" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="796">
+                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OnOff" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="796">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
                             <action selector="toggleEmulator:" target="494" id="Ccr-Rf-R6e"/>
-                            <binding destination="809" name="hidden" keyPath="values.showAdvanced" previousBinding="1037" id="3ox-L5-ZBp">
-                                <dictionary key="options">
-                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                </dictionary>
-                            </binding>
                             <binding destination="542" name="enabled" keyPath="selection.canRun" id="1037">
                                 <dictionary key="options">
                                     <integer key="NSMultipleValuesPlaceholder" value="0"/>
@@ -409,9 +387,15 @@
                                     <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 </dictionary>
                             </binding>
+                            <binding destination="809" name="hidden" keyPath="values.showAdvanced" previousBinding="1037" id="3ox-L5-ZBp">
+                                <dictionary key="options">
+                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
+                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
+                                </dictionary>
+                            </binding>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" id="803">
+                    <button verticalHuggingPriority="750" tag="2" id="803">
                         <rect key="frame" x="46" y="2" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="Clone" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="804">
@@ -419,7 +403,7 @@
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                         <connections>
-                            <action selector="showCloneMachineView:" target="494" id="874"/>
+                            <action selector="showNewMachineView:" target="494" id="EvP-Mj-PDx"/>
                             <binding destination="542" name="enabled" keyPath="canRemove" id="888"/>
                         </connections>
                     </button>
@@ -532,7 +516,7 @@
         <window title="Status list" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="1110">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <rect key="contentRect" x="109" y="132" width="300" height="336"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <value key="minSize" type="size" width="300" height="336"/>
             <view key="contentView" id="1111">
                 <rect key="frame" x="0.0" y="0.0" width="300" height="336"/>
@@ -541,7 +525,7 @@
                     <scrollView focusRingType="none" borderType="none" autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" id="1112" customClass="VMListScrollView">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="336"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="qyC-VN-gKf">
+                        <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="5la-Uk-0vZ">
                             <rect key="frame" x="0.0" y="17" width="300" height="319"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
@@ -671,7 +655,7 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" visibleAtLaunch="NO" animationBehavior="default" id="565" userLabel="New Machine Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <rect key="contentRect" x="557" y="403" width="413" height="139"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="566">
                 <rect key="frame" x="0.0" y="0.0" width="413" height="139"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -702,9 +686,9 @@ DQ
                         </connections>
                     </button>
                     <textField verticalHuggingPriority="750" id="578">
-                        <rect key="frame" x="17" y="102" width="176" height="17"/>
+                        <rect key="frame" x="17" y="102" width="378" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Create new virtual machine" id="583">
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="new vm" id="583">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -751,97 +735,11 @@ DQ
                 </subviews>
             </view>
         </window>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" visibleAtLaunch="NO" animationBehavior="default" id="834" userLabel="Clone Machine Panel" customClass="NSPanel">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
-            <rect key="contentRect" x="557" y="403" width="413" height="153"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
-            <view key="contentView" id="835">
-                <rect key="frame" x="0.0" y="0.0" width="413" height="153"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button verticalHuggingPriority="750" id="838">
-                        <rect key="frame" x="237" y="18" width="74" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="859">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="endCloneMachineView:" target="494" id="875"/>
-                        </connections>
-                    </button>
-                    <button verticalHuggingPriority="750" id="837">
-                        <rect key="frame" x="319" y="18" width="74" height="25"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="roundTextured" title="Create" bezelStyle="texturedRounded" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="860">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                        </buttonCell>
-                        <connections>
-                            <action selector="saveCloneVirtualMachine:" target="494" id="876"/>
-                        </connections>
-                    </button>
-                    <textField verticalHuggingPriority="750" id="845">
-                        <rect key="frame" x="17" y="116" width="379" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Duplicate virtual machine" id="846">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="844">
-                        <rect key="frame" x="17" y="67" width="138" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Name:" id="847">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                    <textField verticalHuggingPriority="750" id="843">
-                        <rect key="frame" x="160" y="64" width="233" height="22"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="848">
-                            <font key="font" metaFont="system"/>
-                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                        <connections>
-                            <binding destination="678" name="enabled" keyPath="canRemove" id="862"/>
-                        </connections>
-                    </textField>
-                    <button id="836">
-                        <rect key="frame" x="18" y="22" width="178" height="18"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="check" title="Open the details window" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="861">
-                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <binding destination="809" name="value" keyPath="values.openDetailsAfterCreation" id="878"/>
-                        </connections>
-                    </button>
-                    <textField hidden="YES" verticalHuggingPriority="750" id="984">
-                        <rect key="frame" x="155" y="94" width="239" height="17"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Error" id="985">
-                            <font key="font" metaFont="smallSystem"/>
-                            <color key="textColor" red="1" green="0.25882352939999997" blue="0.27450980390000002" alpha="1" colorSpace="calibratedRGB"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                </subviews>
-            </view>
-        </window>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" visibleAtLaunch="NO" animationBehavior="default" id="966" userLabel="Delete Machine Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="196" y="112" width="413" height="139"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="967">
                 <rect key="frame" x="0.0" y="0.0" width="413" height="139"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -891,7 +789,7 @@ DQ
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" oneShot="NO" visibleAtLaunch="NO" animationBehavior="default" id="988" userLabel="Error Panel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" utility="YES"/>
             <rect key="contentRect" x="196" y="112" width="400" height="170"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1028"/>
             <view key="contentView" id="989">
                 <rect key="frame" x="0.0" y="0.0" width="400" height="170"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -929,13 +827,11 @@ DQ
         </window>
         <customObject id="494" customClass="AppDelegate">
             <connections>
-                <outlet property="cloneMachineErrorLabel" destination="984" id="986"/>
-                <outlet property="cloneMachineNameField" destination="843" id="873"/>
-                <outlet property="cloneMachineView" destination="834" id="872"/>
                 <outlet property="deleteMachineView" destination="966" id="980"/>
                 <outlet property="errorSheetLabel" destination="992" id="997"/>
                 <outlet property="errorSheetView" destination="988" id="996"/>
                 <outlet property="informationWindow" destination="1110" id="1134"/>
+                <outlet property="newMachineDescriptionLabel" destination="578" id="oQZ-aO-dnS"/>
                 <outlet property="newMachineErrorLabel" destination="982" id="987"/>
                 <outlet property="newMachineNameField" destination="580" id="592"/>
                 <outlet property="newMachineView" destination="565" id="567"/>

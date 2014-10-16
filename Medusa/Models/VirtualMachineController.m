@@ -34,17 +34,21 @@
 #import "VirtualMachinesEntityModel.h"
 #import "ManagedObjectCloner.h" //Clone core-data objects
 #import "AppDelegate.h"
+#import "PreferencesController.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation VirtualMachineController
 
+/**
+ * Checks for a name on coredata.
+ */
 - (BOOL)existsMachineNamed:(NSString *)nameToCheck {
    
     NSError * error;
@@ -69,6 +73,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 }
 
+/**
+ * Creates new empty machine.
+ */
 - (void)insertMachineNamed:(NSString *)newMachineName {
 
     int currentTime = CFAbsoluteTimeGetCurrent();
@@ -90,9 +97,39 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     DDLogVerbose(@"%@", newVirtualMachineObject);
     
     [[NSApp delegate] saveCoreData];
-
 }
 
+- (void)insertMachineNamed:(NSString *)newMachineName withType:(int)emulatorType andData:(NSArray *)data {
+    int currentTime = CFAbsoluteTimeGetCurrent();
+    DDLogVerbose(@"Creating machine with data called '%@'", newMachineName);
+
+    //Sets a new vm object.
+    VirtualMachinesEntityModel * newVirtualMachineObject = [
+        NSEntityDescription
+        insertNewObjectForEntityForName:@"VirtualMachines"
+                 inManagedObjectContext:managedObjectContext
+    ];
+
+    //Here we have all the fields to be inserted.
+    [newVirtualMachineObject setName:newMachineName];
+    [newVirtualMachineObject setUniqueName:[NSString stringWithFormat:@"vm%d", currentTime]];
+    [[NSApp delegate] saveCoreData];
+    PreferencesController * preferencesObj = [[PreferencesController alloc] init];
+    [preferencesObj setManagedObjectContext:managedObjectContext];
+    [preferencesObj insertData:data intoVirtualMachine:newVirtualMachineObject];
+    [preferencesObj release];
+
+//    [[NSApp delegate] saveCoreData];
+    // Model must be 5 or 14 IIci 7-7.5 or Quadra 900 7.5-8.1
+
+    DDLogVerbose(@"%@", newVirtualMachineObject);
+    
+    
+}
+
+/**
+ * Clones existing machine into new one.
+ */
 - (void)cloneMachine:(VirtualMachinesEntityModel *)machineToClone withName:(NSString *)newMachineName {
 
     int currentTime = CFAbsoluteTimeGetCurrent();

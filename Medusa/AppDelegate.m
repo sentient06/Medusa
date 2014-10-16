@@ -88,16 +88,56 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 // Application methods.
 
-#pragma mark – Main Window actions
-
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Virtual machine sheets
+
+#pragma mark – Sheet actions
 
 /*!
  * @method      showNewMachineView:
  * @abstract    Displays the new VM sheet.
  */
 - (IBAction)showNewMachineView:(id)sender {
+   
+//    if ([[sender className] isEqualToString:@"NSButton"]) {
+//        if ([[sender identifier] isEqualToString:@"addButton"]) {
+//            newVirtualMachineIdentifier = addNew;
+//        } else if ([[sender identifier] isEqualToString:@"duplicateButton"]) {
+//            newVirtualMachineIdentifier = duplicate;
+//        } else {
+//            newVirtualMachineIdentifier = newVMError;
+//        }
+//    } else if ([[sender className] isEqualToString:@"NSMenuItem"]) {
+        if ([sender tag] == 1) {
+            newVirtualMachineIdentifier = addNew;
+        } else if ([sender tag] == 2) {
+            newVirtualMachineIdentifier = duplicate;
+        } else if ([sender tag] == 3) {
+            newVirtualMachineIdentifier = importBasilisk;
+        } else if ([sender tag] == 4) {
+            newVirtualMachineIdentifier = importSheepShaver;
+        } else {
+            newVirtualMachineIdentifier = newVMError;
+        }
+//    }
+    
+    switch (newVirtualMachineIdentifier) {
+        case addNew:
+            [newMachineDescriptionLabel setStringValue:@"Create new virtual machine:"];
+            break;
+        case duplicate:
+            [newMachineDescriptionLabel setStringValue:@"Duplicate virtual machine:"];
+            break;
+        case importBasilisk:
+            [newMachineDescriptionLabel setStringValue:@"Import Basilisk II's preferences into new virtual machine:"];
+            break;
+        case importSheepShaver:
+            [newMachineDescriptionLabel setStringValue:@"Import SheepShaver's preferences into new virtual machine:"];
+            break;
+        default:
+            break;
+    }
+
     [ NSApp
             beginSheet: newMachineView
         modalForWindow: (NSWindow *)_window
@@ -107,19 +147,19 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     ];
 }
 
-/*!
- * @method      showNewMachineView:
- * @abstract    Displays the new VM sheet.
- */
-- (IBAction)showCloneMachineView:(id)sender {
-    [ NSApp
-            beginSheet: cloneMachineView
-        modalForWindow: (NSWindow *)_window
-         modalDelegate: self
-        didEndSelector: nil
-           contextInfo: nil
-    ];
-}
+///*!
+// * @method      showCloneMachineView:
+// * @abstract    Displays the new VM sheet.
+// */
+//- (IBAction)showCloneMachineView:(id)sender {
+//    [ NSApp
+//            beginSheet: cloneMachineView
+//        modalForWindow: (NSWindow *)_window
+//         modalDelegate: self
+//        didEndSelector: nil
+//           contextInfo: nil
+//    ];
+//}
 
 /*!
  * @method      showDeleteMachineView:
@@ -149,7 +189,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     ];
 }
 
-
 /*!
  * @method      endNewMachineView:
  * @abstract    Closes the new VM sheet.
@@ -161,16 +200,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [newMachineView orderOut:sender];
 }
 
-/*!
- * @method      endNewMachineView:
- * @abstract    Closes the new VM sheet.
- */
-- (IBAction)endCloneMachineView:(id)sender {
-    [cloneMachineErrorLabel setHidden:YES];
-    [cloneMachineNameField setStringValue:@""];
-    [NSApp endSheet:cloneMachineView];
-    [cloneMachineView orderOut:sender];
-}
+///*!
+// * @method      endNewMachineView:
+// * @abstract    Closes the new VM sheet.
+// */
+//- (IBAction)endCloneMachineView:(id)sender {
+//    [cloneMachineErrorLabel setHidden:YES];
+//    [cloneMachineNameField setStringValue:@""];
+//    [NSApp endSheet:cloneMachineView];
+//    [cloneMachineView orderOut:sender];
+//}
 
 /*!
  * @method      endNewMachineView:
@@ -190,6 +229,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [errorSheetView orderOut:sender];
 }
 
+//- (void)saveVirtualMachine
+
 /*!
  * @method      saveNewVirtualMachine:
  * @abstract    Saves the new virtual machine created by the user to the
@@ -200,6 +241,26 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              not needed. Remember to refactor in the near future.
  */
 - (IBAction)saveNewVirtualMachine:(id)sender {
+    
+    
+//    switch (newVirtualMachineIdentifier) {
+//        case addNew:
+//            [newMachineDescriptionLabel setStringValue:@"Create new virtual machine:"];
+//            break;
+//        case duplicate:
+//            [newMachineDescriptionLabel setStringValue:@"Duplicate virtual machine:"];
+//            break;
+//        case importBasilisk:
+//            [newMachineDescriptionLabel setStringValue:@"Import Basilisk II's preferences into new virtual machine:"];
+//            break;
+//        case importSheepShaver:
+//            [newMachineDescriptionLabel setStringValue:@"Import SheepShaver's preferences into new virtual machine:"];
+//            break;
+//        default:
+//            break;
+//    }
+//    
+//    importedData = [[PreferencesController parsePreferencesFor:BasiliskII] retain];
     
     // Parses name:
     NSString * newMachineName = [[NSString alloc] initWithString:[newMachineNameField stringValue]];
@@ -213,8 +274,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 
     //Gets the Managed Object Context:
-    NSManagedObjectContext * managedObjectContext      = [self managedObjectContext];
-    VirtualMachineController    * virtualMachineModelObject = [[VirtualMachineController alloc] initWithManagedObjectContext:managedObjectContext];
+    NSManagedObjectContext   * managedObjectContext      = [self managedObjectContext];
+    VirtualMachineController * virtualMachineModelObject = [[VirtualMachineController alloc] initWithManagedObjectContext:managedObjectContext];
     
     if ([virtualMachineModelObject existsMachineNamed:newMachineName]) {
         DDLogVerbose(@"VM name is being used.");
@@ -225,86 +286,96 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         return;
     }
     
-    [virtualMachineModelObject insertMachineNamed:newMachineName];
+    if (newVirtualMachineIdentifier == addNew) {
+        [virtualMachineModelObject insertMachineNamed:newMachineName];
+    } else if (newVirtualMachineIdentifier == duplicate) {
+        //Machine to clone:
+        VirtualMachinesEntityModel * machineToClone = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+        [virtualMachineModelObject cloneMachine:machineToClone withName:newMachineName];
+    } else if (newVirtualMachineIdentifier == importBasilisk) {
+        NSArray * importedData = [[PreferencesController parsePreferencesFor:BasiliskII] retain];
+        [virtualMachineModelObject insertMachineNamed:newMachineName withType:BasiliskII andData:importedData];
+        [importedData release];
+    } else if (newVirtualMachineIdentifier == importSheepShaver) {
+        NSArray * importedData = [[PreferencesController parsePreferencesFor:Sheepshaver] retain];
+        [virtualMachineModelObject insertMachineNamed:newMachineName withType:Sheepshaver andData:importedData];
+        [importedData release];
+    }
+    
     [self selectLastCreatedVirtualMachine:sender];
     [self endNewMachineView:sender];
     [virtualMachineModelObject release];
     [newMachineName release];
+    newVirtualMachineIdentifier = noAction;
 
 }
 
 // Clones VM:
 
-/*!
- * @method      saveNewVirtualMachine:
- * @abstract    Saves the new virtual machine created by the user to the
- *              coredata.
- * @discussion  This method is sort of messed. There is a need to check
- *              the existence of the vm model before proceeding and this
- *              leads to a whole new world of lines that I suppose are
- *              not needed. Remember to refactor in the near future.
- */
-- (IBAction)saveCloneVirtualMachine:(id)sender {
-    
-    // Parses name:
-    NSString * newMachineName = [[NSString alloc] initWithString:[cloneMachineNameField stringValue]];
-    
-    if ([newMachineName length] == 0) {
-        DDLogVerbose(@"VM name is empty.");
-        [cloneMachineErrorLabel setStringValue:@"Name cannot be empty."];
-        [cloneMachineErrorLabel setHidden:NO];
-        [newMachineName release];
-        return;
-    }
-    
-    //Gets the Managed Object Context:
-    NSManagedObjectContext * managedObjectContext      = [self managedObjectContext];
-    VirtualMachineController    * virtualMachineModelObject = [[VirtualMachineController alloc] initWithManagedObjectContext:managedObjectContext];
-    
-    if ([virtualMachineModelObject existsMachineNamed:newMachineName]) {
-        DDLogVerbose(@"VM name is being used.");
-        [cloneMachineErrorLabel setStringValue:@"Name is already in use."];
-        [cloneMachineErrorLabel setHidden:NO];
-        [newMachineName release];
-        [virtualMachineModelObject release];
-        return;
-    }
-    
-    //Machine to clone:
-    VirtualMachinesEntityModel * machineToClone = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
-    
-    [virtualMachineModelObject cloneMachine:machineToClone withName:newMachineName];
-    [self selectLastCreatedVirtualMachine:sender];
-    [self endCloneMachineView:sender];
-    [virtualMachineModelObject release];
-    [newMachineName release];
-    
-}
+///*!
+// * @method      saveNewVirtualMachine:
+// * @abstract    Saves the new virtual machine created by the user to the
+// *              coredata.
+// * @discussion  This method is sort of messed. There is a need to check
+// *              the existence of the vm model before proceeding and this
+// *              leads to a whole new world of lines that I suppose are
+// *              not needed. Remember to refactor in the near future.
+// */
+//- (IBAction)saveCloneVirtualMachine:(id)sender {
+//    
+//    // Parses name:
+//    NSString * newMachineName = [[NSString alloc] initWithString:[cloneMachineNameField stringValue]];
+//    
+//    if ([newMachineName length] == 0) {
+//        DDLogVerbose(@"VM name is empty.");
+//        [cloneMachineErrorLabel setStringValue:@"Name cannot be empty."];
+//        [cloneMachineErrorLabel setHidden:NO];
+//        [newMachineName release];
+//        return;
+//    }
+//    
+//    //Gets the Managed Object Context:
+//    NSManagedObjectContext   * managedObjectContext      = [self managedObjectContext];
+//    VirtualMachineController * virtualMachineModelObject = [[VirtualMachineController alloc] initWithManagedObjectContext:managedObjectContext];
+//    
+//    if ([virtualMachineModelObject existsMachineNamed:newMachineName]) {
+//        DDLogVerbose(@"VM name is being used.");
+//        [cloneMachineErrorLabel setStringValue:@"Name is already in use."];
+//        [cloneMachineErrorLabel setHidden:NO];
+//        [newMachineName release];
+//        [virtualMachineModelObject release];
+//        return;
+//    }
+//    
+//    //Machine to clone:
+//    VirtualMachinesEntityModel * machineToClone = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+//    
+//    [virtualMachineModelObject cloneMachine:machineToClone withName:newMachineName];
+//    [self selectLastCreatedVirtualMachine:sender];
+//    [self endCloneMachineView:sender];
+//    [virtualMachineModelObject release];
+//    [newMachineName release];
+//    
+//}
 
 - (void)selectLastCreatedVirtualMachine:(id)sender {
-
     BOOL openDetailsAfterCreation = [
         [NSUserDefaults standardUserDefaults]
             boolForKey:@"openDetailsAfterCreation"
     ];
-
     //--------------------------------------------------------------------------
     //Focus in the new item.
-    
     [virtualMachinesArrayController
         setSelectedObjects:
         [NSArray arrayWithObject:
             [[virtualMachinesArrayController arrangedObjects] lastObject]
         ]
     ];
-
     //--------------------------------------------------------------------------
     //Release all
-    
     if (openDetailsAfterCreation == YES) {
         [self openVirtualMachineWindow:sender];
     }
-
 }
 
 /*!
@@ -370,6 +441,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self saveCoreData];
 
 }
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Buttons' actions
+
+#pragma mark – Button actions
 
 /*!
  * @method      savePreferencesFile:
@@ -520,8 +596,20 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 //    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
     
-    if (![[virtualMachine emulator] unixPath] && ![[NSUserDefaults standardUserDefaults] stringForKey:@"BasiliskPath"]){
+    if (![virtualMachine romFile]){
+        [errorSheetLabel setStringValue:@"There is no ROM file associated with this virtual machine!\nPlease check your ROM files on the assets manager and then use the general tab in your machine's settings.\nIf you need help, refer to the help menu."];
+        [self showErrorSheetView:sender];
+        return;
+    }
+    
+    if (![[virtualMachine emulator] unixPath]){
         [errorSheetLabel setStringValue:@"There is no emulator associated with this virtual machine!\nPlease check your emulator on the assets manager and then use the general tab in your machine's settings.\nIf you need help, refer to the help menu."];
+        [self showErrorSheetView:sender];
+        return;
+    }
+    
+    if ([[virtualMachine disks] count] == 0){
+        [errorSheetLabel setStringValue:@"There are no disk files associated with this virtual machine!\nPlease check your disk files on the assets manager and then use the disks tab in your machine's settings.\nIf you need help, refer to the help menu."];
         [self showErrorSheetView:sender];
         return;
     }
@@ -590,17 +678,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [driveObject setBlocked:[NSNumber numberWithBool:YES]];
         }
         
-        NSString * emulatorPath = [[NSUserDefaults standardUserDefaults] stringForKey:@"BasiliskPath"];
-        if (!emulatorPath) {
-            emulatorPath = [[virtualMachine emulator] unixPath];
-        } else {
-            if ([[[virtualMachine emulator] family] intValue] == basiliskFamily) {
-                emulatorPath = [emulatorPath stringByAppendingString:@"/Contents/MacOS/BasiliskII"];
-            } else
-            if ([[[virtualMachine emulator] family] intValue] == sheepshaverFamily) {
-                emulatorPath = [emulatorPath stringByAppendingString:@"/Contents/MacOS/SheepShaver"];
-            }
-        }
+        NSString * emulatorPath = [[virtualMachine emulator] unixPath];
+
 //        NSLog(@"Emulator path:\n%@", emulatorPath);
         
 //        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
@@ -882,6 +961,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         windowsForVirtualMachines = [[NSMutableDictionary alloc] init];
         virtualMachineTasks = [[NSMutableDictionary alloc] init];
         //[[NSWorkspace sharedWorkspace] setIcon:[NSImage imageNamed:@"ClassicFolderIcon.icns"] forFile:[@"~/Classic" stringByExpandingTildeInPath] options:0];
+        newVirtualMachineIdentifier = noAction;
     }
     return self;
 }

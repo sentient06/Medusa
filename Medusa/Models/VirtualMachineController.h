@@ -40,7 +40,9 @@
 
 - (BOOL)existsMachineNamed:(NSString *)nameToCheck;
 - (void)insertMachineNamed:(NSString *)newMachineName;
+- (void)insertMachineNamed:(NSString *)newMachineName withType:(int)emulatorType andData:(NSArray *)data;
 - (void)cloneMachine:(VirtualMachinesEntityModel *)machineToClone withName:(NSString *)newMachineName;
+
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)newManagedObjectContext;
 
 //+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine;

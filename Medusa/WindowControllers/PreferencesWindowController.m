@@ -270,37 +270,37 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
-/*!
- * @method      openBasiliskPath:
- * @abstract    Displays the open dialog to find Basilisk II executable.
- */
-- (IBAction)openBasiliskPath:(id)sender {
-    
-    //Array of accepted file types:
-    NSArray * fileTypesArray = [NSArray arrayWithObjects:@"app", nil];
-    NSArray * filePath = [self openDialogForExtensions:fileTypesArray];
-    
-    if ([filePath count] == 1) {
-        [[NSUserDefaults standardUserDefaults] setURL:[filePath objectAtIndex:0] forKey:@"BasiliskPath"];
-    }
-    
-}
+///*!
+// * @method      openBasiliskPath:
+// * @abstract    Displays the open dialog to find Basilisk II executable.
+// */
+//- (IBAction)openBasiliskPath:(id)sender {
+//    
+//    //Array of accepted file types:
+//    NSArray * fileTypesArray = [NSArray arrayWithObjects:@"app", nil];
+//    NSArray * filePath = [self openDialogForExtensions:fileTypesArray];
+//    
+//    if ([filePath count] == 1) {
+//        [[NSUserDefaults standardUserDefaults] setURL:[filePath objectAtIndex:0] forKey:@"BasiliskPath"];
+//    }
+//    
+//}
 
-/*!
- * @method      openBasiliskPath:
- * @abstract    Displays the open dialog to find Sheepshaver executable.
- */
-- (IBAction)openSheepshaverPath:(id)sender {
-    
-    //Array of accepted file types:
-    NSArray * fileTypesArray = [NSArray arrayWithObjects:@"app", nil];
-    NSArray * filePath = [self openDialogForExtensions:fileTypesArray];
-    
-    if ([filePath count] == 1) {
-        [[NSUserDefaults standardUserDefaults] setURL:[filePath objectAtIndex:0] forKey:@"SheepshaverPath"];
-    }
-    
-}
+///*!
+// * @method      openBasiliskPath:
+// * @abstract    Displays the open dialog to find Sheepshaver executable.
+// */
+//- (IBAction)openSheepshaverPath:(id)sender {
+//    
+//    //Array of accepted file types:
+//    NSArray * fileTypesArray = [NSArray arrayWithObjects:@"app", nil];
+//    NSArray * filePath = [self openDialogForExtensions:fileTypesArray];
+//    
+//    if ([filePath count] == 1) {
+//        [[NSUserDefaults standardUserDefaults] setURL:[filePath objectAtIndex:0] forKey:@"SheepshaverPath"];
+//    }
+//    
+//}
 
 /*!
  * @method      openSharePath:

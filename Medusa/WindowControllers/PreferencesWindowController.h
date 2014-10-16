@@ -61,8 +61,8 @@
 //------------------------------------------------------------------------------
 // Interface actions
 
-- (IBAction)openBasiliskPath:(id)sender;
-- (IBAction)openSheepshaverPath:(id)sender;
+//- (IBAction)openBasiliskPath:(id)sender;
+//- (IBAction)openSheepshaverPath:(id)sender;
 
 - (IBAction)openSubView:(id)sender;
 - (IBAction)openSharePath:(id)sender;

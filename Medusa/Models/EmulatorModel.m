@@ -74,7 +74,7 @@
 
 //    if (resultCount > 0) {
 //        DDLogVerbose(@"Got emulators");
-        NSArray * drivesResult = [managedObjectContext executeFetchRequest:request error:&error];
+    NSArray * drivesResult = [managedObjectContext executeFetchRequest:request error:&error];
 //        NSEnumerator * rowEnumerator = [drivesResult objectEnumerator];
 //        id * object;
 //

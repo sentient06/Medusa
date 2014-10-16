@@ -58,51 +58,27 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="225"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" id="97">
-                    <rect key="frame" x="20" y="158" width="358" height="22"/>
+                <button id="273">
+                    <rect key="frame" x="18" y="189" width="223" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="112">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                    <connections>
-                        <binding destination="13" name="value" keyPath="values.BasiliskPath" id="114"/>
-                    </connections>
-                </textField>
-                <textField verticalHuggingPriority="750" id="98">
-                    <rect key="frame" x="17" y="188" width="230" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Override all Basilisk emulators with:" id="111">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button verticalHuggingPriority="750" id="101">
-                    <rect key="frame" x="380" y="150" width="82" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Search" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="108">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="openBasiliskPath:" target="-2" id="118"/>
-                    </connections>
-                </button>
-                <button hidden="YES" id="104">
-                    <rect key="frame" x="18" y="103" width="222" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Show splash window on startup" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="105">
+                    <buttonCell key="cell" type="check" title="Open settings after VM creation" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="274">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <binding destination="13" name="value" keyPath="values.hideSplash" id="117">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">NSNegateBoolean</string>
-                            </dictionary>
-                        </binding>
+                        <binding destination="13" name="value" keyPath="values.openDetailsAfterCreation" id="275"/>
+                    </connections>
+                </button>
+                <button id="9uk-qh-l0D">
+                    <rect key="frame" x="18" y="169" width="389" height="18"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="check" title="Use simple model selection (Either Mac IIci or Quadra 900)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="QBp-Vz-nco">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateVirtualMachines:" target="-2" id="Ll8-V1-Nm0"/>
+                        <binding destination="13" name="value" keyPath="values.useSimpleModel" id="nhg-eF-LBj"/>
                     </connections>
                 </button>
             </subviews>
@@ -150,7 +126,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <button hidden="YES" id="186">
-                    <rect key="frame" x="17" y="18" width="311" height="18"/>
+                    <rect key="frame" x="17" y="59" width="311" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Allow me to edit assets data (checkboxes on!)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="187">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -171,17 +147,6 @@
                         <binding destination="13" name="value" keyPath="values.emulatorsUsed" id="272"/>
                     </connections>
                 </button>
-                <button id="273">
-                    <rect key="frame" x="18" y="181" width="223" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Open settings after VM creation" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="274">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <binding destination="13" name="value" keyPath="values.openDetailsAfterCreation" id="275"/>
-                    </connections>
-                </button>
                 <textField verticalHuggingPriority="750" id="276">
                     <rect key="frame" x="17" y="225" width="205" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -192,7 +157,7 @@
                     </textFieldCell>
                 </textField>
                 <button id="278">
-                    <rect key="frame" x="18" y="161" width="340" height="18"/>
+                    <rect key="frame" x="18" y="181" width="340" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Display advanced information and hidden controls" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="279">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -202,20 +167,8 @@
                         <binding destination="13" name="value" keyPath="values.showAdvanced" id="280"/>
                     </connections>
                 </button>
-                <button id="9uk-qh-l0D">
-                    <rect key="frame" x="18" y="141" width="389" height="18"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Use simple model selection (Either Mac IIci or Quadra 900)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="QBp-Vz-nco">
-                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="updateVirtualMachines:" target="-2" id="Ll8-V1-Nm0"/>
-                        <binding destination="13" name="value" keyPath="values.useSimpleModel" id="nhg-eF-LBj"/>
-                    </connections>
-                </button>
                 <button verticalHuggingPriority="750" id="b4j-Pb-C45">
-                    <rect key="frame" x="13" y="75" width="152" height="32"/>
+                    <rect key="frame" x="13" y="13" width="152" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Delete XPRAM file" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tT5-RS-qfF">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -226,7 +179,7 @@
                     </connections>
                 </button>
                 <button id="Jhw-jo-pWA">
-                    <rect key="frame" x="18" y="121" width="375" height="18"/>
+                    <rect key="frame" x="18" y="161" width="375" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="check" title="Do NOT delete Basilisk's XPRAM file when all VMs are off" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="Myv-pG-PhQ">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>

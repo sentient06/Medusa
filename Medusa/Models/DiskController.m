@@ -88,6 +88,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [request setPredicate: predicate];
     NSInteger resultCount = [currentContext countForFetchRequest:request error:&error];
     
+    //*****
+    NSArray * drivesResult = [currentContext executeFetchRequest:request error:&error];
+    currentDriveObject = [drivesResult objectAtIndex:0];
+    //*****
+    
     [request release];
     
     if (resultCount > 0) {

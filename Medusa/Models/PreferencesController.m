@@ -37,6 +37,10 @@
 #import "RomFilesEntityModel.h"
 #import "EmulatorsEntityModel.h"
 #import "AppDelegate.h"
+#import "RomController.h"
+#import "DiskController.h"
+#import "RomFilesEntityModel.h"
+#import "EmulatorModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -208,7 +212,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             //    jitCacheSize
             //    jitcachesize <size>
             
-            int chacheKbSize = [[virtualMachine processorType] intValue];
+            int chacheKbSize = [[virtualMachine jitCacheSize] intValue];
             
             if (chacheKbSize != 8192 && chacheKbSize > 2048) {
                 
@@ -361,9 +365,9 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         } else  if ([virtualMachine sharedFolder] != nil ) {
             [shareSettings setValue:[virtualMachine sharedFolder] forKey:@"extfs"];
         }
+        [allData addObject:shareSettings];
     }
-
-    [allData addObject:shareSettings];
+    
     [shareSettings release];
 
     //--------------------------------------------------------------------------
@@ -520,7 +524,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             NSDictionary * keycodesSettings = [[NSDictionary alloc]
                 initWithObjectsAndKeys:
                   [virtualMachine keyboardLayout]
-                    , @"keycodes"
+                    , @"keyboardtype"
                     , nil
             ];
             [allData addObject:keycodesSettings];
@@ -617,4 +621,291 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 //    [currentVmData release];
 }
 
++ (NSMutableArray *)parsePreferencesFor:(int)emulatorType {
+    
+    NSMutableArray * allData = [[NSMutableArray alloc] initWithCapacity:1]; //Return object.
+    
+    NSString * filePath;
+    
+    if (emulatorType == BasiliskII) {
+        filePath = [@"~/.basilisk_ii_prefs" stringByExpandingTildeInPath];
+    } else {
+        filePath = [@"~/.sheepshaver_prefs" stringByExpandingTildeInPath];
+    }
+    
+    // read everything from text
+    NSString * fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    
+    // first, separate by new line
+    NSArray * allLinedStrings = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
+    
+    // then break down even further
+    // NSString * strsInOneLine = [allLinedStrings objectAtIndex:0];
+    
+    for (NSString * line in allLinedStrings) {
+        if (line.length) {
+            NSRange spacePosition = [line rangeOfString:@" "];
+            NSDictionary * valuePair = [[NSDictionary alloc]
+                initWithObjectsAndKeys:
+                      [line substringFromIndex:spacePosition.location+1]
+                    , [line   substringToIndex:spacePosition.location]
+                    , nil
+            ];
+            [allData addObject:valuePair];
+        }
+    }
+    
+//    NSLog(@"%@", allData);
+    
+    // choose whatever input identity you have decided. in this case ;
+//    NSArray * singleStrs = [currentPointString componentsSeparatedByCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@" "]];
+    return [allData autorelease];
+}
+/*
++ (NSMutableArray *)translateDataFromPreferencesFile:(NSArray *)preferences {
+    NSMutableArray * translated = [[NSMutableArray alloc] initWithCapacity:1];
+    
+    for (NSDictionary * dataElement in preferences) {
+        for(id key in dataElement){
+            
+            NSMutableString * newKey = [[NSMutableString alloc] initWithCapacity:20];
+            
+            if (key == @"") {
+                
+            }
+            
+        }
+    }
+    
+    return [translated autorelease];
+}
+*/
+- (void)insertData:(NSArray *)preferences intoVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
+    NSLog(@"-------------------------");
+    NSLog(@"Parsing data");
+    NSLog(@"-------------------------");
+    [virtualMachine retain];
+    NSMutableArray * notParsed = [[NSMutableArray alloc] initWithCapacity:1];
+    for (NSDictionary * dataElement in preferences) {
+        for(id key in dataElement){
+            
+            BOOL boolValueTrue  = [[dataElement objectForKey:key] isEqualToString:@"true" ] ||
+                                  [[dataElement objectForKey:key] isEqualToString:@"yes"  ] ||
+                                  [[dataElement objectForKey:key] isEqualToString:@"on"   ];
+            BOOL boolValueFalse = [[dataElement objectForKey:key] isEqualToString:@"false"] ||
+                                  [[dataElement objectForKey:key] isEqualToString:@"no"   ] ||
+                                  [[dataElement objectForKey:key] isEqualToString:@"off"  ];
+            
+            BOOL valueIsBool = boolValueTrue || boolValueFalse;
+            BOOL boolValue = boolValueTrue ? YES : NO;
+ 
+            
+            NSMutableString * newKey = [[NSMutableString alloc] initWithCapacity:20];
+            //--------------------------------------------------------------------------
+            // 1. The ROM
+            if ([key isEqualToString: @"rom"]) {
+                NSLog(@"Parsing rom");
+                RomController * romObject = [[RomController alloc] autorelease];
+                [romObject parseSingleRomFileAndSave:[dataElement objectForKey:key] inObjectContext:managedObjectContext];
+                [virtualMachine setRomFile:[romObject currentRomObject]];
+            } else
+            //--------------------------------------------------------------------------
+            // 2. The Macintosh Model
+            if ([key isEqualToString: @"modelid"]) {
+                NSLog(@"Parsing model");
+                [virtualMachine setMacModel:
+                    [NSNumber numberWithInt:[[dataElement objectForKey:key] intValue]+6]
+                ];
+            } else
+            //--------------------------------------------------------------------------
+            // 3. The processor
+
+            // Basilisk:
+            if ([key isEqualToString: @"cpu"]) {
+                int processor = [[dataElement objectForKey:key] intValue];
+                [virtualMachine setProcessorType:[NSNumber numberWithInt:processor]];
+            } else
+
+            if ([key isEqualToString: @"jit"]) {
+                if (valueIsBool)
+                    [virtualMachine setJitEnabled:[NSNumber numberWithBool:boolValue]];
+            } else
+            
+            if ([key isEqualToString: @"jitlazyflush"]) {
+                if (valueIsBool)
+                    [virtualMachine setLazyCacheEnabled:[NSNumber numberWithBool:boolValue]];
+            } else
+            
+            if ([key isEqualToString: @"jitcachesize"]) {
+                int size = [[dataElement objectForKey:key] intValue];
+                [virtualMachine setJitCacheSize:[NSNumber numberWithInt:size]];
+            } else
+            if ([key isEqualToString: @"jitfpu"]) {
+                int size = [[dataElement objectForKey:key] intValue];
+                [virtualMachine setFpuEnabled:[NSNumber numberWithInt:size]];
+            } else
+
+            // SheepShaver:
+            if ([key isEqualToString: @"jit68k"]) {
+                if (valueIsBool)
+                    [virtualMachine setEnable68k:[NSNumber numberWithBool:boolValue]];
+            } else
+            //--------------------------------------------------------------------------
+            // 4. The disks
+            
+            if ([key isEqualToString: @"disk"]) {
+                DiskController * diskObject = [[DiskController alloc] autorelease];
+                [diskObject parseSingleDriveFileAndSave:[dataElement objectForKey:key] inObjectContext:managedObjectContext];
+                RelationshipVirtualMachinesDiskFilesEntityModel * newRelationship = [
+                NSEntityDescription
+                    insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
+                    inManagedObjectContext:managedObjectContext
+                ];
+                [newRelationship setDiskFile:[diskObject currentDriveObject]];
+                [newRelationship setPositionIndex:[virtualMachine nextDiskIndex]];
+                [virtualMachine addDisksObject:newRelationship];
+            } else
+            
+            //--------------------------------------------------------------------------
+            // 5. Networking
+            
+            if ([key isEqualToString:@"ether"]) {
+                [virtualMachine setNetwork:[NSNumber numberWithBool:YES]];
+                // Basilisk:
+                if ([[dataElement objectForKey:key] isEqualToString:@"etherhelper/tap0/bridge0/en0"]) {
+                    [virtualMachine setNetworkTap0:[NSNumber numberWithBool:YES]];
+                }
+            } else
+
+            // Basilisk:
+            if ([key isEqualToString:@"udptunnel"]) {
+                if (valueIsBool)
+                    [virtualMachine setNetworkUDP:[NSNumber numberWithBool:boolValue]];
+            } else
+            if ([key isEqualToString:@"udpport"]) {
+                [virtualMachine setNetworkUDPPort:[NSNumber numberWithInt:[[dataElement objectForKey:key] intValue]]];
+            } else
+            
+            // Share settings:
+            if ([key isEqualToString:@"extfs"]) {
+                [virtualMachine setShareEnabled:[NSNumber numberWithBool:YES]];
+                NSString * defaultSharePath = [[NSUserDefaults standardUserDefaults] stringForKey:@"StandardSharePath"];
+                if ([[dataElement valueForKey:key] isEqualToString:defaultSharePath]) {
+                    [virtualMachine setUseDefaultShare:[NSNumber numberWithBool:YES]];
+                } else {
+                    [virtualMachine setSharedFolder:[dataElement valueForKey:key]];
+                }
+            } else
+            //--------------------------------------------------------------------------
+            // 6. Display
+            if ([key isEqualToString:@"screen"]) {
+                
+                // e.g dga/1024/768/2
+                NSMutableString * screen = [[[NSMutableString alloc] initWithString:[dataElement valueForKey:key]] autorelease];
+                NSMutableString * values = [[[NSMutableString alloc] initWithCapacity:1] autorelease];
+                NSRange strokePosition;
+
+                // Fullscreen (dga/win) - - - - - - - - - - - - - - - - - - - - - - - -
+                // First stroke, e.g dga + /1024/768/2
+                strokePosition = [screen rangeOfString:@"/"];
+                values = [NSMutableString stringWithString:[screen substringToIndex:strokePosition.location]];
+                if ([values isEqualToString:@"dga"]) {
+                    [virtualMachine setFullScreen:[NSNumber numberWithBool:YES]];
+                } else {
+                    [virtualMachine setFullScreen:[NSNumber numberWithBool:NO]];
+                }
+                
+                // Width  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                // Get past the stroke, e.g 1024/768/2
+                screen = [NSMutableString stringWithString:[screen substringFromIndex:strokePosition.location+1]];
+                // Second stroke, e.g 1024 + /768/2
+                strokePosition = [screen rangeOfString:@"/"];
+                values = [NSMutableString stringWithString:[screen substringToIndex:strokePosition.location]];
+                [virtualMachine setDisplayWidth:[NSNumber numberWithInt:[values intValue]]];
+                
+                // Height - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                // Get past the stroke, e.g 768/2
+                screen = [NSMutableString stringWithString:[screen substringFromIndex:strokePosition.location+1]];
+                // Second stroke, e.g 768 + /2
+                strokePosition = [screen rangeOfString:@"/"];
+                values = [NSMutableString stringWithString:[screen substringToIndex:strokePosition.location]];
+                [virtualMachine setDisplayHeight:[NSNumber numberWithInt:[values intValue]]];
+
+                // Colour depth - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+                // Get past the stroke, e.g 2
+                screen = [NSMutableString stringWithString:[screen substringFromIndex:strokePosition.location+1]];
+                [virtualMachine setDisplayColourDepth:[NSNumber numberWithInt:[screen intValue]]];
+                
+            } else
+            
+            // Frame skip:
+            if ([key isEqualToString:@"frameskip"]) {
+                if ([[dataElement objectForKey:key] intValue] == 0) {
+                    [virtualMachine setDisplayDynamicUpdate:[NSNumber numberWithBool:YES]];
+                } else {
+                    [virtualMachine setDisplayDynamicUpdate:[NSNumber numberWithBool:NO]];
+                }
+                [virtualMachine setDisplayFrameSkip:[NSNumber numberWithInt:[[dataElement objectForKey:key] intValue]]];
+            } else
+            
+            // SheepShaver:
+            if ([key isEqualToString:@"gfxaccel"]) {
+                if (valueIsBool)
+                    [virtualMachine setQuickdrawAcceleration:[NSNumber numberWithBool:boolValue]];
+            } else
+            //--------------------------------------------------------------------------
+            // 7. Memory
+            if ([key isEqualToString:@"ramsize"]) {
+                NSLog(@"Memory: %d", [[dataElement objectForKey:key] intValue]);
+                int memory = [[dataElement objectForKey:key] intValue] / 1024 / 1024;
+                [virtualMachine setMemory:[NSNumber numberWithInt:memory]];
+            } else
+            //--------------------------------------------------------------------------
+            // 8. Keyboard
+            if ([key isEqualToString:@"keycodes"]) {
+                if (valueIsBool)
+                    [virtualMachine setRawKeycodes:[NSNumber numberWithBool:boolValue]];
+            } else
+            if ([key isEqualToString:@"keycodefile"]) {
+                [virtualMachine setRawKeycodes:[NSNumber numberWithBool:NO]];
+            } else
+            if ([key isEqualToString:@"keyboardtype"]) {
+                [virtualMachine setKeyboardLayout:[NSNumber numberWithInt:[[dataElement objectForKey:key] intValue]]];
+            } else
+            //--------------------------------------------------------------------------
+            // 9. SheepShaver specifics
+            if ([key isEqualToString:@"idlewait"]) {
+                if (valueIsBool)
+                    [virtualMachine setIdleWait:[NSNumber numberWithBool:boolValue]];
+            } else
+            if ([key isEqualToString:@"noclipconversion"]) {
+                if (valueIsBool)
+                    [virtualMachine setNoClipboardConversion:[NSNumber numberWithBool:boolValue]];
+            } else
+            //--------------------------------------------------------------------------
+            {
+                [notParsed addObject:key];
+            }
+            //--------------------------------------------------------------------------
+            [newKey release];
+        }
+    }
+
+    // Fetches all emulators for this rom:
+    NSArray * emulators = [
+        EmulatorModel fetchAllAvailableEmulatorsForEmulatorType:[
+            [[virtualMachine romFile] emulatorType] intValue
+        ]
+    ];
+    if ([emulators count] > 0) {
+        [virtualMachine setEmulator:[emulators objectAtIndex:0]];
+    }
+
+    NSLog(@"These keys were not parsed: %@", notParsed);
+    [notParsed release];
+//    NSLog(@"V;M: %@", virtualMachine);
+    [[NSApp delegate] saveCoreData];
+    [virtualMachine release];
+    NSLog(@"-------------------------");
+}
 @end

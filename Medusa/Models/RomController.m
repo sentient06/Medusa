@@ -41,7 +41,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation RomController
@@ -146,6 +146,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             [request setPredicate: predicate];
             NSInteger resultCount = [currentContext countForFetchRequest:request error:&error];
 
+            //*****
+            NSArray * romsResult = [currentContext executeFetchRequest:request error:&error];
+//            RomFilesEntityModel * returningROM
+            currentRomObject = [romsResult objectAtIndex:0];
+            //*****
+            
             [request release];
                     
             if (resultCount > 0) {

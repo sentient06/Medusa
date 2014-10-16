@@ -154,7 +154,7 @@ enum Processors {
 @property (nonatomic, retain) NSNumber * useDefaultShare;
 @property (nonatomic, retain) NSNumber * keyboardLayout;
 
-@property (nonatomic, retain) NSString * rawKeycodes;
+@property (nonatomic, retain) NSNumber * rawKeycodes;
 
 @property (nonatomic, retain) NSNumber * running;
 @property (nonatomic, retain) NSNumber * taskPID;

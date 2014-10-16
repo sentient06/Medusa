@@ -32,6 +32,15 @@
 
 #import <Cocoa/Cocoa.h>
 
+enum newVirtualMachineIdentifiers {
+           newVMError = -1,
+             noAction =  0,
+               addNew =  1,
+            duplicate =  2,
+       importBasilisk =  3,
+    importSheepShaver =  4
+};
+
 @class AssetsWindowController;          //Assets Window
 @class PreferencesWindowController;     //Preferences Window
 @class SplashWindowController;
@@ -64,12 +73,13 @@
     //New VM - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
     IBOutlet NSPanel            * newMachineView;
+    IBOutlet NSTextField        * newMachineDescriptionLabel;
     IBOutlet NSTextField        * newMachineNameField;
     IBOutlet NSTextField        * newMachineErrorLabel;
     
     //Clone VM - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
-    IBOutlet NSPanel            * cloneMachineView;
+//    IBOutlet NSPanel            * cloneMachineView;
     IBOutlet NSTextField        * cloneMachineNameField;
     IBOutlet NSTextField        * cloneMachineErrorLabel;
     
@@ -99,6 +109,10 @@
     NSMutableDictionary * windowsForVirtualMachines;
     NSMutableDictionary * virtualMachineTasks;
     
+    // Private vars
+    int newVirtualMachineIdentifier;
+//    NSArray * importedData;
+    
     /// 32-bit compatibility -------    
     id _window;
     id __persistentStoreCoordinator;
@@ -124,11 +138,17 @@
 //------------------------------------------------------------------------------
 // New methods ahead.
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Menu
+//- (void)importBasiliskPreferences;
+//- (void)importSheepshaverPreferences;
+
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Buttons
 // Actions to the buttons that create and delete VM entries in the coredata.
 
 - (IBAction)saveNewVirtualMachine:(id)sender;
-- (IBAction)saveCloneVirtualMachine:(id)sender;
+//- (IBAction)saveCloneVirtualMachine:(id)sender;
 - (IBAction)deleteVirtualMachine:(id)sender;
 - (void)selectLastCreatedVirtualMachine:(id)sender;
 
@@ -151,13 +171,13 @@
 
 // Open all sheets:
 - (IBAction)showNewMachineView:(id)sender;
-- (IBAction)showCloneMachineView:(id)sender;
+//- (IBAction)showCloneMachineView:(id)sender;
 - (IBAction)showDeleteMachineView:(id)sender;
 - (IBAction)showErrorSheetView:(id)sender;
 
 // Close all sheets:
 - (IBAction)endNewMachineView:(id)sender;
-- (IBAction)endCloneMachineView:(id)sender;
+//- (IBAction)endCloneMachineView:(id)sender;
 - (IBAction)endDeleteMachineView:(id)sender;
 - (IBAction)endErrorSheetView:(id)sender;
 

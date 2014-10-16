@@ -55,4 +55,8 @@
 - (void)savePreferencesFile:(NSString *)preferencesFilePath
           ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
 
++ (NSMutableArray *)parsePreferencesFor:(int)emulatorType;
+//+ (NSMutableArray *)translateDataFromPreferencesFile:(NSArray *)preferences;
+- (void)insertData:(NSArray *)preferences intoVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
+
 @end
