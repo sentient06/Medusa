@@ -27,7 +27,7 @@
            inView:(NSView *)controlView {
 
     
-    NSString * imageName = [[NSString alloc] init];
+    NSString * imageName; // = [[[NSString alloc] init] autorelease];
     
     if([self intValue]) {
         if ([self isEnabled]) {

@@ -130,6 +130,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
     [self removeObserver:self forKeyPath:@"selectedGestaltModel"];
     [self removeObserver:self forKeyPath:@"virtualMachine.romFile"];
+    [self removeObserver:self forKeyPath:@"selectedEmulator"];
 
     [managedObjectContext processPendingChanges];
     [managedObjectContext release];

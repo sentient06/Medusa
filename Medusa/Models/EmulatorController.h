@@ -38,7 +38,7 @@
 }
 
 - (void)scanEmulators;
-+ (void)scanEmulatorFamily:(int)emulatorFamily;
+- (void)scanEmulatorFamily:(int)emulatorFamily;
 - (id)parseEmulator:(NSString *)applicationPath;
 - (void)parseEmulatorsAndSave:(NSArray *)filesList;
 - (void)assembleEmulatorsOfFamily:(int)emulatorFamily FromZip:(NSString *)emulatorsTempDirectory;

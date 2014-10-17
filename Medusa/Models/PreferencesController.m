@@ -796,7 +796,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
                 
                 // e.g dga/1024/768/2
                 NSMutableString * screen = [[[NSMutableString alloc] initWithString:[dataElement valueForKey:key]] autorelease];
-                NSMutableString * values = [[[NSMutableString alloc] initWithCapacity:1] autorelease];
+                NSMutableString * values; // = [[[NSMutableString alloc] initWithCapacity:1] autorelease];
                 NSRange strokePosition;
 
                 // Fullscreen (dga/win) - - - - - - - - - - - - - - - - - - - - - - - -
@@ -829,7 +829,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
                 // Get past the stroke, e.g 2
                 screen = [NSMutableString stringWithString:[screen substringFromIndex:strokePosition.location+1]];
                 [virtualMachine setDisplayColourDepth:[NSNumber numberWithInt:[screen intValue]]];
-                
+               
             } else
             
             // Frame skip:

@@ -381,9 +381,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [shallowDirectoryList removeObject:@"BasiliskII.icns"];
     
     for (NSString * folderName in shallowDirectoryList) {
-        BOOL success = [self assembleEmulatorOfFamily:emulatorFamily
-                                          InDirectory:emulatorsTempDirectory
-                                             withName:folderName];
+        BOOL success = [EmulatorController assembleEmulatorOfFamily:emulatorFamily
+                                                        InDirectory:emulatorsTempDirectory
+                                                           withName:folderName];
         
         if (success) {
             NSString * originalFolder       = [NSString stringWithFormat:@"%@/%@", emulatorsTempDirectory, folderName];
@@ -423,8 +423,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //    Basilisk II
 //    SheepShaver
     
-    NSString * emulatorName = [[NSString alloc] init];
-    NSString * emulatorUnix = [[NSString alloc] init];
+    NSString * emulatorName;// = [[NSString alloc] init];
+    NSString * emulatorUnix;// = [[NSString alloc] init];
     
     if (emulatorFamily == basiliskFamily) {
         emulatorName = @"Basilisk II";
@@ -544,8 +544,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [contentsDirectory release];
     [appDirectory release];
     [finalDirectory release];
-    [emulatorUnix release];
-    [emulatorName release];
+//    [emulatorUnix release];
+//    [emulatorName release];
     
     if (errors > 0) return NO;
     else return YES;
