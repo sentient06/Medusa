@@ -46,8 +46,6 @@
 - (void)setManagedObjectContext:(NSManagedObjectContext *)value;
 
 //------------------------------------------------------------------------------
-- (void)insertNewVirtualMachineWithData:(NSDictionary *)newData;
-- (void)insertNewData:(NSDictionary *)newData inVirtualMachine:(NSManagedObject*)virtualMachine;
 
 - (NSMutableArray *)getVirtualMachineData:(VirtualMachinesEntityModel*)virtualMachine
                         forEmulatorFamily:(int)emulatorFamily;
@@ -56,7 +54,6 @@
           ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
 
 + (NSMutableArray *)parsePreferencesFor:(int)emulatorType;
-//+ (NSMutableArray *)translateDataFromPreferencesFile:(NSArray *)preferences;
 - (void)insertData:(NSArray *)preferences intoVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
 
 @end

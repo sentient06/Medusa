@@ -44,21 +44,15 @@
 }
 
 - (id)transformedValue:(id)value {
-
     switch ([value intValue]) {
-        case miniVMacFamily  :
+        case miniVMacFamily:
             return @"Mini vMac";
-            
         case basiliskFamily:
             return @"Basilisk II";
-            
         case sheepshaverFamily:
             return @"Sheepshaver";
-            
     }
-    
     return @"Undefined";
-    
 }
 
 @end

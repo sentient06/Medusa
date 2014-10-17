@@ -33,13 +33,13 @@
 #import <Foundation/Foundation.h>
 
 @interface TableLineInformationController : NSObject {
-    NSString    *lineTitle;
-    NSImage     *lineIcon;
+    NSString * lineTitle;
+    NSImage  * lineIcon;
 }
 
-@property (copy)    NSString    *lineTitle;
-@property (retain)  NSImage     *lineIcon;
+@property (copy)   NSString *lineTitle;
+@property (retain) NSImage  *lineIcon;
 
-- (id)initWithTitle:(NSString*)newTitle andIcon:(NSString*)newImage;
+- (id)initWithTitle:(NSString *)newTitle andIcon:(NSString *)newImage;
 
 @end

@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-
+/*
 enum GestaltMacModels {
     Classic                 =  1,
     // Unsupported -------------
@@ -96,7 +96,7 @@ enum GestaltMacModels {
     PowerBookDuo280c        = 103,
     PowerBook150            = 115
 };
-
+*/
 enum VirtualMachineIcons {
       NewVM
     , DeadVM
@@ -153,7 +153,6 @@ enum Processors {
 @property (nonatomic, retain) NSString * sharedFolder;
 @property (nonatomic, retain) NSNumber * useDefaultShare;
 @property (nonatomic, retain) NSNumber * keyboardLayout;
-
 @property (nonatomic, retain) NSNumber * rawKeycodes;
 
 @property (nonatomic, retain) NSNumber * running;
@@ -172,14 +171,11 @@ enum Processors {
 - (void)addDisks:(NSSet *)values;
 - (void)removeDisks:(NSSet *)values;
 - (NSNumber *)nextDiskIndex;
-
 - (NSNumber *)icon;
 - (BOOL)canRun;
-
 - (BOOL)sheepShaverSetup;
 - (BOOL)basilisk2Setup;
 - (BOOL)showGestaltList;
-
 - (BOOL)busy;
 
 @end

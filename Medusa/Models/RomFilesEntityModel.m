@@ -46,12 +46,6 @@
 @dynamic romCondition;
 @dynamic romCategory;
 @dynamic machines;
-
-//@dynamic mac68kOld;
-//@dynamic mac68kNew;
-//@dynamic macPPCOld;
-//@dynamic macPPCNew;
-
 @dynamic fileSize;
 
 - (NSNumber *)icon {

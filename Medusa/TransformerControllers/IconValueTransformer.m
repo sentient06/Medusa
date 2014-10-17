@@ -37,7 +37,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_OFF;
 //------------------------------------------------------------------------------
 
 @implementation IconValueTransformer

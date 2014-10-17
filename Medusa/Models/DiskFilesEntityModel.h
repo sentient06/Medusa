@@ -57,7 +57,6 @@ enum diskFormat {
 @property (nonatomic, retain) NSNumber * size;
 @property (nonatomic, retain) NSSet    * virtualMachines;
 @property (nonatomic, retain) NSString * fileName;
-//@property (nonatomic, retain) NSString * filePath;
 @property (nonatomic, retain) NSData   * fileAlias;
 
 @end

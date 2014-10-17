@@ -34,11 +34,7 @@
 
 @interface DropView : NSImageView {
     NSArray * acceptedTypes;
-//    NSString       * computerModel;
 }
-
-//@property (copy) NSString       * computerModel;
-//@property (copy) NSArray * acceptedTypes;
 
 @end
 

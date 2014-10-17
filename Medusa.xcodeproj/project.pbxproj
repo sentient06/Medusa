@@ -71,21 +71,16 @@
 		8159C790154F1205001E43D4 /* DropRomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C78F154F1205001E43D4 /* DropRomView.m */; };
 		8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C797154F2E29001E43D4 /* DropDiskView.m */; };
 		815C26391587EEA5003FA9EB /* VirtualMachinesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 815C26381587EEA5003FA9EB /* VirtualMachinesEntityModel.m */; };
-		815EEE0117EB1954002D8A02 /* EmulatorHandleController.m in Sources */ = {isa = PBXBuildFile; fileRef = 815EEE0017EB1954002D8A02 /* EmulatorHandleController.m */; };
 		815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815F4F67156EC324001712CB /* PreferencesWindow.xib */; };
 		8160BB0915502F74005F6DBF /* DiskIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0815502F74005F6DBF /* DiskIconValueTransformer.m */; };
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
 		8162FF4017EC4EDD000413C2 /* DropAllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8162FF3F17EC4EDD000413C2 /* DropAllView.m */; };
 		816792A617D08F27002B991B /* newVm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 816792A517D08F27002B991B /* newVm.icns */; };
 		8167977C17FAC76100E6F869 /* SettingsWindowTitleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8167977B17FAC76100E6F869 /* SettingsWindowTitleTransformer.m */; };
-		8167977F17FAC83500E6F869 /* SplashWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8167977E17FAC83500E6F869 /* SplashWindowController.m */; };
 		8167978217FADA4E00E6F869 /* DropEmulatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8167978117FADA4D00E6F869 /* DropEmulatorView.m */; };
 		8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8168995917CE17CE00058B9F /* dsa_pub.pem */; };
 		8168996917CE2C7900058B9F /* Configuration.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995D17CE2C7800058B9F /* Configuration.icns */; };
 		8168996A17CE2C7900058B9F /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995E17CE2C7800058B9F /* Display.icns */; };
-		8168996B17CE2C7900058B9F /* Drive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995F17CE2C7900058B9F /* Drive.icns */; };
-		8168996C17CE2C7900058B9F /* FinderBlue.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996017CE2C7900058B9F /* FinderBlue.icns */; };
-		8168996D17CE2C7900058B9F /* FinderGrey.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996117CE2C7900058B9F /* FinderGrey.icns */; };
 		8168996E17CE2C7900058B9F /* GenericQuestionMarkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */; };
 		8168996F17CE2C7900058B9F /* Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996317CE2C7900058B9F /* Info.icns */; };
 		8168997017CE2C7900058B9F /* RomFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996417CE2C7900058B9F /* RomFile.icns */; };
@@ -112,7 +107,6 @@
 		818313F21802DA2000DACD71 /* Diskette.icns in Resources */ = {isa = PBXBuildFile; fileRef = 818313F11802DA2000DACD71 /* Diskette.icns */; };
 		8188A59217F97A6800BAB33B /* VirtualMachineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59117F97A6800BAB33B /* VirtualMachineController.m */; };
 		8188A59617F97A7A00BAB33B /* EmulatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorController.m */; };
-		81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */ = {isa = PBXBuildFile; fileRef = 81895CFD17D4F51000752E51 /* NoiseGrey.png */; };
 		81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */; };
 		819DB78317F9D213006E7367 /* Emulators.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DB78217F9D213006E7367 /* Emulators.icns */; };
 		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
@@ -263,8 +257,6 @@
 		8159C797154F2E29001E43D4 /* DropDiskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropDiskView.m; path = SubClasses/DropDiskView.m; sourceTree = "<group>"; };
 		815C26371587EEA5003FA9EB /* VirtualMachinesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachinesEntityModel.h; path = Models/VirtualMachinesEntityModel.h; sourceTree = "<group>"; };
 		815C26381587EEA5003FA9EB /* VirtualMachinesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachinesEntityModel.m; path = Models/VirtualMachinesEntityModel.m; sourceTree = "<group>"; };
-		815EEDFF17EB1954002D8A02 /* EmulatorHandleController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorHandleController.h; path = UtilitiesControllers/EmulatorHandleController.h; sourceTree = "<group>"; };
-		815EEE0017EB1954002D8A02 /* EmulatorHandleController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorHandleController.m; path = UtilitiesControllers/EmulatorHandleController.m; sourceTree = "<group>"; };
 		815F4F67156EC324001712CB /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindow.xib; path = Windows/PreferencesWindow.xib; sourceTree = "<group>"; };
 		8160BB0715502F74005F6DBF /* DiskIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiskIconValueTransformer.h; path = TransformerControllers/DiskIconValueTransformer.h; sourceTree = "<group>"; };
 		8160BB0815502F74005F6DBF /* DiskIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiskIconValueTransformer.m; path = TransformerControllers/DiskIconValueTransformer.m; sourceTree = "<group>"; };
@@ -275,17 +267,12 @@
 		816792A517D08F27002B991B /* newVm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = newVm.icns; path = Images/Icons/newVm.icns; sourceTree = "<group>"; };
 		8167977A17FAC76100E6F869 /* SettingsWindowTitleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsWindowTitleTransformer.h; path = TransformerControllers/StringTransformers/SettingsWindowTitleTransformer.h; sourceTree = "<group>"; };
 		8167977B17FAC76100E6F869 /* SettingsWindowTitleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsWindowTitleTransformer.m; path = TransformerControllers/StringTransformers/SettingsWindowTitleTransformer.m; sourceTree = "<group>"; };
-		8167977D17FAC83500E6F869 /* SplashWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplashWindowController.h; path = WindowControllers/SplashWindowController.h; sourceTree = "<group>"; };
-		8167977E17FAC83500E6F869 /* SplashWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplashWindowController.m; path = WindowControllers/SplashWindowController.m; sourceTree = "<group>"; };
 		8167978017FADA4D00E6F869 /* DropEmulatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropEmulatorView.h; path = SubClasses/DropEmulatorView.h; sourceTree = "<group>"; };
 		8167978117FADA4D00E6F869 /* DropEmulatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropEmulatorView.m; path = SubClasses/DropEmulatorView.m; sourceTree = "<group>"; };
 		8168994F17CE16AC00058B9F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Medusa/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		8168995917CE17CE00058B9F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/SparkleKey/dsa_pub.pem; sourceTree = "<group>"; };
 		8168995D17CE2C7800058B9F /* Configuration.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Configuration.icns; path = Images/Icons/Configuration.icns; sourceTree = "<group>"; };
 		8168995E17CE2C7800058B9F /* Display.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Display.icns; path = Images/Icons/Display.icns; sourceTree = "<group>"; };
-		8168995F17CE2C7900058B9F /* Drive.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Drive.icns; path = Images/Icons/Drive.icns; sourceTree = "<group>"; };
-		8168996017CE2C7900058B9F /* FinderBlue.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = FinderBlue.icns; path = Images/Icons/FinderBlue.icns; sourceTree = "<group>"; };
-		8168996117CE2C7900058B9F /* FinderGrey.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = FinderGrey.icns; path = Images/Icons/FinderGrey.icns; sourceTree = "<group>"; };
 		8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericQuestionMarkIcon.icns; path = Images/Icons/GenericQuestionMarkIcon.icns; sourceTree = "<group>"; };
 		8168996317CE2C7900058B9F /* Info.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Info.icns; path = Images/Icons/Info.icns; sourceTree = "<group>"; };
 		8168996417CE2C7900058B9F /* RomFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RomFile.icns; path = Images/Icons/RomFile.icns; sourceTree = "<group>"; };
@@ -327,7 +314,6 @@
 		8188A59117F97A6800BAB33B /* VirtualMachineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineController.m; path = Models/VirtualMachineController.m; sourceTree = "<group>"; };
 		8188A59417F97A7A00BAB33B /* EmulatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorController.h; path = Models/EmulatorController.h; sourceTree = "<group>"; };
 		8188A59517F97A7A00BAB33B /* EmulatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorController.m; path = Models/EmulatorController.m; sourceTree = "<group>"; };
-		81895CFD17D4F51000752E51 /* NoiseGrey.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NoiseGrey.png; path = Images/Backgrounds/NoiseGrey.png; sourceTree = "<group>"; };
 		81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericNetworkIcon.icns; path = Images/Icons/GenericNetworkIcon.icns; sourceTree = "<group>"; };
 		819DB78217F9D213006E7367 /* Emulators.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Emulators.icns; path = Images/Icons/Emulators.icns; sourceTree = "<group>"; };
 		819DC08717F18B7000480073 /* SortableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortableArrayController.h; path = SubClasses/SortableArrayController.h; sourceTree = "<group>"; };
@@ -463,7 +449,6 @@
 			isa = PBXGroup;
 			children = (
 				81C2B75117D646AB000E4A01 /* linenPattern.png */,
-				81895CFD17D4F51000752E51 /* NoiseGrey.png */,
 			);
 			name = Backgrounds;
 			sourceTree = "<group>";
@@ -548,16 +533,12 @@
 			children = (
 				81756F441534743500FCBA8E /* AppDelegate.h */,
 				81756F451534743500FCBA8E /* AppDelegate.m */,
-				815EEDFF17EB1954002D8A02 /* EmulatorHandleController.h */,
-				815EEE0017EB1954002D8A02 /* EmulatorHandleController.m */,
 				81756F5A15347F2B00FCBA8E /* VirtualMachineWindowController.h */,
 				81756F5B15347F2B00FCBA8E /* VirtualMachineWindowController.m */,
 				814FAD871570ED0D008D3223 /* PreferencesWindowController.h */,
 				814FAD881570ED0D008D3223 /* PreferencesWindowController.m */,
 				81DB8247159FAED8003D4C5D /* AssetsWindowController.h */,
 				81DB8248159FAED8003D4C5D /* AssetsWindowController.m */,
-				8167977D17FAC83500E6F869 /* SplashWindowController.h */,
-				8167977E17FAC83500E6F869 /* SplashWindowController.m */,
 			);
 			name = WindowControllers;
 			sourceTree = "<group>";
@@ -567,6 +548,8 @@
 			children = (
 				817CAF601535B5CB0038E9A0 /* TableLineInformationController.h */,
 				817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */,
+				4006AF6319E815E00052B22A /* VMListTablelView.h */,
+				4006AF6419E815E00052B22A /* VMListTablelView.m */,
 				8175CBE517D0D18C0003294E /* VMListTextCell.h */,
 				8175CBE617D0D18C0003294E /* VMListTextCell.m */,
 				40AAA30019E7D16900EFFB00 /* VMListButtonCell.h */,
@@ -575,8 +558,6 @@
 				817E319C17D1078200131E2D /* VMListScrollView.m */,
 				8139BB4B1826BCA0003BAD98 /* HelpDocumentationController.h */,
 				8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */,
-				4006AF6319E815E00052B22A /* VMListTablelView.h */,
-				4006AF6419E815E00052B22A /* VMListTablelView.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -774,9 +755,6 @@
 				817CAF56153580100038E9A0 /* MedusaIcon.icns */,
 				8168995D17CE2C7800058B9F /* Configuration.icns */,
 				8168995E17CE2C7800058B9F /* Display.icns */,
-				8168995F17CE2C7900058B9F /* Drive.icns */,
-				8168996017CE2C7900058B9F /* FinderBlue.icns */,
-				8168996117CE2C7900058B9F /* FinderGrey.icns */,
 				8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */,
 				8168996317CE2C7900058B9F /* Info.icns */,
 				816792A517D08F27002B991B /* newVm.icns */,
@@ -1077,10 +1055,7 @@
 				8168996917CE2C7900058B9F /* Configuration.icns in Resources */,
 				4096510319D49B7A00D8AD39 /* ArrowRight.png in Resources */,
 				8168996A17CE2C7900058B9F /* Display.icns in Resources */,
-				8168996B17CE2C7900058B9F /* Drive.icns in Resources */,
 				408D8B7A19D6C41D00100A14 /* ColouredHappyMacLocked.png in Resources */,
-				8168996C17CE2C7900058B9F /* FinderBlue.icns in Resources */,
-				8168996D17CE2C7900058B9F /* FinderGrey.icns in Resources */,
 				4096510519D49EFF00D8AD39 /* Magnifier.png in Resources */,
 				8168996E17CE2C7900058B9F /* GenericQuestionMarkIcon.icns in Resources */,
 				8168996F17CE2C7900058B9F /* Info.icns in Resources */,
@@ -1091,7 +1066,6 @@
 				8168997317CE2C7900058B9F /* Stop.icns in Resources */,
 				8168997417CE2C7900058B9F /* Unsupported.icns in Resources */,
 				816792A617D08F27002B991B /* newVm.icns in Resources */,
-				81895CFE17D4F51000752E51 /* NoiseGrey.png in Resources */,
 				814804F717D5FFD00070DAD9 /* ColouredHappyMac.png in Resources */,
 				814804F817D5FFD00070DAD9 /* BlackAndWhiteHappyMac.png in Resources */,
 				814804FB17D6022F0070DAD9 /* DeadMac.png in Resources */,
@@ -1181,7 +1155,6 @@
 				810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */,
 				4006AF6519E815E00052B22A /* VMListTablelView.m in Sources */,
 				8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */,
-				815EEE0117EB1954002D8A02 /* EmulatorHandleController.m in Sources */,
 				8162FF4017EC4EDD000413C2 /* DropAllView.m in Sources */,
 				812A83A217EF5FF100B355BD /* DiskController.m in Sources */,
 				81A54CC217F0915900B1EFD0 /* ASIDataCompressor.m in Sources */,
@@ -1209,7 +1182,6 @@
 				8188A59617F97A7A00BAB33B /* EmulatorController.m in Sources */,
 				81BBBC5417F9B5B700C151FE /* EmulatorFamilyValueTransformer.m in Sources */,
 				8167977C17FAC76100E6F869 /* SettingsWindowTitleTransformer.m in Sources */,
-				8167977F17FAC83500E6F869 /* SplashWindowController.m in Sources */,
 				8167978217FADA4E00E6F869 /* DropEmulatorView.m in Sources */,
 				81E3A26017FB2BFF0026B842 /* RomFileSizeTransformer.m in Sources */,
 				811EF6EB1804B4160011DDBD /* KeyboardLayoutValueTransformer.m in Sources */,

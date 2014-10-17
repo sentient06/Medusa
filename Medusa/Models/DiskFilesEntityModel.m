@@ -44,7 +44,6 @@
 @dynamic size;
 @dynamic virtualMachines;
 @dynamic fileName;
-//@dynamic filePath;
 @dynamic fileAlias;
 
 - (NSString *)description {

@@ -52,5 +52,4 @@
 - (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath startingAt:(int)readingStartPoint;
 - (void)readDiskFileFrom:(NSString *)filePath;
 
-//+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine;
 @end

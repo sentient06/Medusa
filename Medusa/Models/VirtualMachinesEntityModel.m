@@ -68,7 +68,6 @@
 @dynamic sharedFolder;
 @dynamic useDefaultShare;
 @dynamic keyboardLayout;
-
 @dynamic rawKeycodes;
 
 @dynamic running;

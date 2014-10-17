@@ -211,9 +211,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         }
     }];
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
     [diskModelObject release];
-    
 }
 
 /*!
@@ -253,30 +251,34 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 /*!
  * @method      downloadEmulators:
  * @discussion  Downloads emulators to Application Support folder.
+ * @see         requestFinished:
+ * @see         requestFailed:
  */
 - (IBAction)downloadEmulators:(id)sender {
-    
-//    NSLog(@"Temp dir: %@", downloadDirectory);
-    
     [self showDownloadPanel:sender];
-    
     NSURL * url = [NSURL URLWithString:@"https://github.com/sentient06/Medusa/raw/master/Downloads/EmulatorExecutables.zip"];
-//    NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/EmulatorExecutables.zip"];
-    
-    request = [ASIHTTPRequest requestWithURL:url];
-    
+     request = [ASIHTTPRequest requestWithURL:url];
     [request setDownloadProgressDelegate:downloadProgressIndicator];
     [request setDownloadDestinationPath:[downloadDirectory stringByAppendingPathComponent:@"EmulatorExecutables.zip"]];
-    
     [request setDelegate:self];
     [request startAsynchronous];
 }
 
+/*!
+ * @method      showFinderRomItem:
+ * @discussion  Opens Finder and selects ROM file.
+ * @see         showFinderItemAtPath:
+ */
 - (IBAction)showFinderRomItem:(id)sender {
     RomFilesEntityModel * currentRom = [[RomFilesArrayController selectedObjects] objectAtIndex:0];
     [self showFinderItemAtPath:[currentRom filePath]];
 }
 
+/*!
+ * @method      showFinderDiskItem:
+ * @discussion  Opens Finder and selects Disk image file.
+ * @see         showFinderItemAtPath:
+ */
 - (IBAction)showFinderDiskItem:(id)sender {
     DiskFilesEntityModel * disk = [[DiskFilesArrayController selectedObjects] objectAtIndex:0];
     [self showFinderItemAtPath:[disk filePath]];
@@ -284,30 +286,25 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 //------------------------------------------------------------------------------
 // Utility methods
-
 #pragma mark – Utility
 
+/*!
+ * @method      requestFinished:
+ * @discussion  Triggered when download is complete.
+ */
 - (void)requestFinished:(ASIHTTPRequest *)thisRequest {
-    DDLogVerbose(@"finished");
-//    // Use when fetching text data
-//    NSString *responseString = [request responseString];
-//    
-//    // Use when fetching binary data
-//    NSData *responseData = [request responseData];
-    
     [NSApp endSheet:downloadPanel];
     [downloadPanel orderOut:nil];
-    
     EmulatorController * emulatorObject = [[EmulatorController alloc] init];
     [EmulatorController assembleAppsFromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"EmulatorExecutables"]];
     [emulatorObject scanEmulators];
-//    [emulatorObject assembleEmulatorsOfFamily:basiliskFamily FromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"BasiliskExecutables"]];
-//    [emulatorObject assembleEmulatorsOfFamily:sheepshaverFamily FromZip:[NSString stringWithFormat:@"%@%@", downloadDirectory, @"SheepshaverExecutables"]];
     [emulatorObject release];
-
-
 }
 
+/*!
+ * @method      requestFailed:
+ * @discussion  Triggered when download failed.
+ */
 - (void)requestFailed:(ASIHTTPRequest *)thisRequest {
     NSError * error = [thisRequest error];
     DDLogError(@"Request failed: %@", error);
@@ -315,17 +312,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [downloadPanel orderOut:nil];
 }
 
+/*!
+ * @method      showFinderItemAtPath:
+ * @discussion  Opens highlights file in Finder.
+ */
 - (void)showFinderItemAtPath:(NSString *)path {
-//    NSString * preferencesFilePath = [
-//        [NSMutableString alloc] initWithFormat:
-//            @"%@/%@Preferences",
-//            [self applicationSupportDirectory],
-//            [virtualMachine uniqueName]
-//    ];
-
     NSWorkspace * ws = [NSWorkspace sharedWorkspace];
     [ws selectFile:path inFileViewerRootedAtPath:nil];
-//    [preferencesFilePath release];
 }
 //------------------------------------------------------------------------------
 // Init methods
@@ -342,20 +335,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         managedObjectContext = theManagedObjectContext;
         [self setManagedObjectContext:theManagedObjectContext];
         downloadDirectory = [[NSString alloc] initWithString:NSTemporaryDirectory()];
-//        [[NSNotificationCenter defaultCenter]
-//         addObserver:self
-//         selector:@selector(updateManagedObjectContext:)
-//         name:NSManagedObjectContextDidSaveNotification
-//         object:managedObjectContext];
     }
     return self;
 }
-
-//- (void)updateManagedObjectContext:(NSNotification *)notification {
-//        NSLog(@"Merging in assets");
-//    [managedObjectContext processPendingChanges];
-//    [managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
-//}
 
 /*!
  * @method      initWithWindow:
@@ -376,18 +358,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              Default for NSWindowController classes.
  */
 - (void)windowDidLoad {
-
     [super windowDidLoad];
-    
-    //----------------------------------------------------------
-    //Interface view
-    
     NSSortDescriptor * romSorting = [[[NSSortDescriptor alloc] initWithKey:@"modelName" ascending:YES] autorelease];
     [RomFilesArrayController setSortDescriptors:[NSArray arrayWithObject: romSorting]];
     [placeholderView addSubview: subViewDropFiles];
     [assetsToolbar setSelectedItemIdentifier:@"dropFilesButton"];
-//[emulatorsArrayController setManagedObjectContext:managedObjectContext];
-    
 }
 
 @end

@@ -145,13 +145,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [request setEntity:entity];
             [request setPredicate: predicate];
             NSInteger resultCount = [currentContext countForFetchRequest:request error:&error];
-
-            //*****
-            NSArray * romsResult = [currentContext executeFetchRequest:request error:&error];
-//            RomFilesEntityModel * returningROM
-            currentRomObject = [romsResult objectAtIndex:0];
-            //*****
-            
+            if (resultCount > 0) {
+                NSArray * romsResult = [currentContext executeFetchRequest:request error:&error];
+                currentRomObject = [romsResult objectAtIndex:0];
+            }
             [request release];
                     
             if (resultCount > 0) {
@@ -161,11 +158,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             
             [self getDetailsForChecksum:intChecksum AndMD5:md5Hash];
 
-//            if (emulator == EmulatorUnsupported) {
-//                DDLogError(@"Unsupported file");
-//                return NO;
-//            }
-            
             //----------------------------------------------------------------------
             
             RomFilesEntityModel * managedObject = [
@@ -227,15 +219,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @abstract    Reads a list of files and inserts into the data model.
  */
 - (void)parseRomFilesAndSave:(NSArray *)filesList {
-    
     for (int i = 0; i < [filesList count]; i++) {
-        
         if ([[filesList objectAtIndex:i] isKindOfClass:[NSURL class]]) {
             [self parseRomFileAndSave:[[filesList objectAtIndex:i] path]];
         } else {
             [self parseRomFileAndSave:[filesList objectAtIndex:i]];
         }
-        // bool checking?
     }
 }
 

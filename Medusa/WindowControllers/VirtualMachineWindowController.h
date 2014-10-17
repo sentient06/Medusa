@@ -189,7 +189,9 @@ typedef enum {
 // Help showing
 - (IBAction)displayHelpForAdvancedView:(id)sender;
 
+#if ENVIRONMENT_DEV
 // Development
 - (IBAction)logVM:(id)sender;
+#endif
 
 @end

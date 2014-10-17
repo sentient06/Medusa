@@ -52,8 +52,7 @@
     return self;
 }
 
-- (id)initWithTitle:(NSString*)newTitle
-            andIcon:(NSString*)newImage {
+- (id)initWithTitle:(NSString*)newTitle andIcon:(NSString*)newImage {
     self = [super init];
     if (self) {
         lineTitle = [[NSString alloc] initWithString:newTitle];

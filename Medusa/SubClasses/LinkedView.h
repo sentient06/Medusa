@@ -36,7 +36,6 @@
 @interface LinkedView : NSView {
     IBOutlet LinkedView * previousView;
     IBOutlet LinkedView * nextView;
-    
     IBOutlet NSButton * nextButton;
     IBOutlet NSButton * previousButton;
 }

@@ -30,6 +30,8 @@
 //
 //------------------------------------------------------------------------------
 
+#define ENVIRONMENT_DEV true
+
 #import <Cocoa/Cocoa.h>
 
 enum newVirtualMachineIdentifiers {
@@ -43,7 +45,6 @@ enum newVirtualMachineIdentifiers {
 
 @class AssetsWindowController;          //Assets Window
 @class PreferencesWindowController;     //Preferences Window
-@class SplashWindowController;
 @class VirtualMachinesEntityModel;
 
 /*!
@@ -77,12 +78,6 @@ enum newVirtualMachineIdentifiers {
     IBOutlet NSTextField        * newMachineNameField;
     IBOutlet NSTextField        * newMachineErrorLabel;
     
-    //Clone VM - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
-//    IBOutlet NSPanel            * cloneMachineView;
-    IBOutlet NSTextField        * cloneMachineNameField;
-    IBOutlet NSTextField        * cloneMachineErrorLabel;
-    
     //Delete VM - - -  - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     
     IBOutlet NSPanel            * deleteMachineView;
@@ -104,14 +99,12 @@ enum newVirtualMachineIdentifiers {
 
     AssetsWindowController      * assetsWindowController;
     PreferencesWindowController * preferencesWindowController;
-    SplashWindowController      * splashWindowController;
     
     NSMutableDictionary * windowsForVirtualMachines;
     NSMutableDictionary * virtualMachineTasks;
     
     // Private vars
     int newVirtualMachineIdentifier;
-//    NSArray * importedData;
     
     /// 32-bit compatibility -------    
     id _window;
@@ -139,16 +132,10 @@ enum newVirtualMachineIdentifiers {
 // New methods ahead.
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-// Menu
-//- (void)importBasiliskPreferences;
-//- (void)importSheepshaverPreferences;
-
-// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Buttons
 // Actions to the buttons that create and delete VM entries in the coredata.
 
 - (IBAction)saveNewVirtualMachine:(id)sender;
-//- (IBAction)saveCloneVirtualMachine:(id)sender;
 - (IBAction)deleteVirtualMachine:(id)sender;
 - (void)selectLastCreatedVirtualMachine:(id)sender;
 
@@ -171,13 +158,11 @@ enum newVirtualMachineIdentifiers {
 
 // Open all sheets:
 - (IBAction)showNewMachineView:(id)sender;
-//- (IBAction)showCloneMachineView:(id)sender;
 - (IBAction)showDeleteMachineView:(id)sender;
 - (IBAction)showErrorSheetView:(id)sender;
 
 // Close all sheets:
 - (IBAction)endNewMachineView:(id)sender;
-//- (IBAction)endCloneMachineView:(id)sender;
 - (IBAction)endDeleteMachineView:(id)sender;
 - (IBAction)endErrorSheetView:(id)sender;
 
@@ -191,9 +176,6 @@ enum newVirtualMachineIdentifiers {
 
 - (IBAction)savePreferencesFile:(id)sender;
 - (IBAction)openPreferencesFileFolder:(id)sender;
-
-//- (IBAction)toggleEmulator:(id)sender;
-//- (IBAction)stopEmulator:(id)sender;
 - (IBAction)killEmulator:(id)sender;
 - (IBAction)showInformationWindow:(id)sender;
 - (IBAction)toggleEmulator:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender;

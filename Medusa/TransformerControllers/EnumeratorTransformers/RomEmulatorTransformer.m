@@ -43,7 +43,6 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
 
 @implementation RomEmulatorTransformer
 
-
 + (Class)transformedValueClass {
     return [NSString class];
 }

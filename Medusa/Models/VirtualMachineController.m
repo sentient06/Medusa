@@ -41,13 +41,16 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation VirtualMachineController
 
-/**
- * Checks for a name on coredata.
+//------------------------------------------------------------------------------
+
+/*!
+ * @method      existsMachineNamed:
+ * @abstract    Checks for a name on coredata.
  */
 - (BOOL)existsMachineNamed:(NSString *)nameToCheck {
    
@@ -74,7 +77,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- * Creates new empty machine.
+ * @method      insertMachineNamed:
+ * @abstract    Creates new empty machine.
  */
 - (void)insertMachineNamed:(NSString *)newMachineName {
 
@@ -99,6 +103,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [[NSApp delegate] saveCoreData];
 }
 
+/**
+ * @method      insertMachineNamed:withType:andData:
+ * @abstract    Creates new empty machine.
+ */
 - (void)insertMachineNamed:(NSString *)newMachineName withType:(int)emulatorType andData:(NSArray *)data {
     int currentTime = CFAbsoluteTimeGetCurrent();
     DDLogVerbose(@"Creating machine with data called '%@'", newMachineName);
@@ -119,16 +127,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [preferencesObj insertData:data intoVirtualMachine:newVirtualMachineObject];
     [preferencesObj release];
 
-//    [[NSApp delegate] saveCoreData];
     // Model must be 5 or 14 IIci 7-7.5 or Quadra 900 7.5-8.1
 
     DDLogVerbose(@"%@", newVirtualMachineObject);
-    
-    
+
 }
 
 /**
- * Clones existing machine into new one.
+ * @method      cloneMachine:withName:
+ * @abstract    Clones existing machine into new one.
  */
 - (void)cloneMachine:(VirtualMachinesEntityModel *)machineToClone withName:(NSString *)newMachineName {
 
@@ -146,19 +153,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 }
 
+/**
+ * @method      init:
+ */
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)newManagedObjectContext {
     self = [super init];
     if (self) {
         managedObjectContext = newManagedObjectContext;
     }
-    return self;    
-}
-
-- (void)blockDisks {
-    DDLogVerbose(@"blocking disks");
-}
-- (void)unblockDisks {
-    DDLogVerbose(@"unblocking disks");
+    return self;
 }
 
 @end

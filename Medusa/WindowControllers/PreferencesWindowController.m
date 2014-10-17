@@ -39,7 +39,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation PreferencesWindowController
@@ -60,14 +60,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [super dealloc];
 }
 
-///**
-// * Try to update open windows when closing....
-// */
-//- (void)windowWillClose:(NSNotification *)notification {
-//    DDLogVerbose(@"preferences's window will close");
-//    [[NSApp delegate] updateVMWindows];
-//}
-
+/*!
+ * @method      initWithWindow:
+ */
 - (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
     if (self) {
@@ -98,15 +93,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
-//-(void)awakeFromNib {
-//    [[NSNotificationCenter defaultCenter]
-//     addObserver:self
-//        selector:@selector(windowWillClose:)
-//            name:NSWindowWillCloseNotification
-//          object:self.window
-//    ];
-//}
-
 //------------------------------------------------------------------------------
 // Methods
 
@@ -118,9 +104,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @return      Array of files selected.
  */
 - (NSArray*)openDialogForExtensions:(NSArray *)extensions {
-    
     NSArray * selectedFiles = [[[NSArray alloc] init] autorelease];
-    
     NSOpenPanel * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
     
     //Dialog options:
@@ -132,9 +116,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if ([openDialog runModal] == NSOKButton) {
         selectedFiles = [openDialog URLs];        
     }
-    
     return selectedFiles;
-    
 }
 
 /*!
@@ -222,11 +204,21 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 	return windowFrame;
 }
 
+/*!
+ * @method      deleteXPRAM:
+ * @abstract    Deletes XPRam file from home dir.
+ * @see         deleteXPRAMFile:
+ */
 - (IBAction)deleteXPRAM:(id)sender {
-    DDLogInfo(@"XPRAM triggered");
+    DDLogVerbose(@"XPRAM triggered");
     [FileManager deleteXPRAMFile];
 }
 
+/*!
+ * @method      frameForView:
+ * @abstract    Retrieves frame information from view.
+ * @return      NSRect (with size and origin) from view.
+ */
 - (IBAction)updateVirtualMachines:(id)sender {
     [[NSApp delegate] updateVMWindows];
 }
@@ -241,66 +233,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @abstract    Displays a subview in the main window.
  */
 - (IBAction)openSubView:(id)sender {
-    
     [self changeWindowSubview: [sender tag] animate:YES];
-    /*
-    
-    [[[primaryView subviews] objectAtIndex:0] removeFromSuperview];
-    
-    switch ([sender tag]) {
-        default:
-        case 0:
-            [primaryView addSubview: generalSubView];
-            break;
-            
-        case 1:
-            [primaryView addSubview: shareSubView];
-            break;
-            
-        case 2:
-            [primaryView addSubview: advancedSubView];
-            break;
-            
-        case 3:
-            [primaryView addSubview: developerSubView];
-            break;
-            
-    }
-     */
-    
 }
-
-///*!
-// * @method      openBasiliskPath:
-// * @abstract    Displays the open dialog to find Basilisk II executable.
-// */
-//- (IBAction)openBasiliskPath:(id)sender {
-//    
-//    //Array of accepted file types:
-//    NSArray * fileTypesArray = [NSArray arrayWithObjects:@"app", nil];
-//    NSArray * filePath = [self openDialogForExtensions:fileTypesArray];
-//    
-//    if ([filePath count] == 1) {
-//        [[NSUserDefaults standardUserDefaults] setURL:[filePath objectAtIndex:0] forKey:@"BasiliskPath"];
-//    }
-//    
-//}
-
-///*!
-// * @method      openBasiliskPath:
-// * @abstract    Displays the open dialog to find Sheepshaver executable.
-// */
-//- (IBAction)openSheepshaverPath:(id)sender {
-//    
-//    //Array of accepted file types:
-//    NSArray * fileTypesArray = [NSArray arrayWithObjects:@"app", nil];
-//    NSArray * filePath = [self openDialogForExtensions:fileTypesArray];
-//    
-//    if ([filePath count] == 1) {
-//        [[NSUserDefaults standardUserDefaults] setURL:[filePath objectAtIndex:0] forKey:@"SheepshaverPath"];
-//    }
-//    
-//}
 
 /*!
  * @method      openSharePath:

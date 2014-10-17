@@ -88,10 +88,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [request setPredicate: predicate];
     NSInteger resultCount = [currentContext countForFetchRequest:request error:&error];
     
-    //*****
-    NSArray * drivesResult = [currentContext executeFetchRequest:request error:&error];
-    currentDriveObject = [drivesResult objectAtIndex:0];
-    //*****
+    if (resultCount > 0) {
+        NSArray * drivesResult = [currentContext executeFetchRequest:request error:&error];
+        currentDriveObject = [drivesResult objectAtIndex:0];
+    }
     
     [request release];
     
@@ -168,6 +168,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
 }
 
+/*!
+ * @method      checkIfDiskImageIsBootable:startingAt:
+ * @abstract    Checks if a disk image is bootable.
+ */
 - (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath startingAt:(int)readingStartPoint {
     
     FILE * f;
@@ -211,12 +215,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
 }
 
+/*!
+ * @method      checkIfDiskImageIsBootable:
+ * @abstract    Checks if a disk image is bootable.
+ * @discussion  Checks 400 bytes into sector 0, the rest doesn't matter.
+ * @link        https://en.wikipedia.org/wiki/HFS_Plus#Design
+ */
 - (BOOL)checkIfDiskImageIsBootable:(NSString *)filePath {
-    
-    // Refer to:
-    // https://en.wikipedia.org/wiki/HFS_Plus#Design
-    // for details.
-    // Actually, we must check 400 bytes into sector 0, the rest doesn't matter.
     
     NSString * bootableDriveBootBlock = @""
     "4C4B6000 00864418 00000653 79737465 6D000000 00000000 00000646 696E6465 72000000 00000000"
@@ -261,8 +266,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         DDLogCVerbose(@"There's a partition scheme to check");
     }
     
-//    DDLogCVerbose(@"Image first bytes:");
-//    DDLogVerbose(@"%s", headerFirstBytes);
+    DDLogVerbose(@"Image first bytes:");
+    DDLogVerbose(@"%s", headerFirstBytes);
 
     //--------------------------------------------------------------------------
     // If pure HFS, check for bootable header:
@@ -294,6 +299,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 }
 
+/*!
+ * @method      readDiskFileFrom:
+ * @abstract    Reads disk image file and parses its attributes.
+ * @attention   For the DSK and HFV extensions, I create an alias with DMG 
+ *              extension. This allows me to use HDIUtil with these files!
+ */
 - (void)readDiskFileFrom:(NSString *)filePath {
     
     totalPartitions = 0;
@@ -463,9 +474,5 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [originalFilePath release];
 
 }
-
-//+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine {
-//    VirtualMachinesEntityModel
-//}
 
 @end

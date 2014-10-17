@@ -37,7 +37,7 @@
 + (NSData *)createBookmarkFromUrl:(NSURL *)filePath;
 + (void)resolveBookmarksInObjectContext:(NSManagedObjectContext *)currentContext;
 + (NSString *)resolveAlias:(NSData *)aliasData;
-+ (BOOL)pidsAccessingPath: (NSString *)path;
++ (BOOL)pidsAccessingPath:(NSString *)path;
 + (void)deleteXPRAMFile;
 
 @end

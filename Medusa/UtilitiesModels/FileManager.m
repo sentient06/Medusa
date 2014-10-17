@@ -46,7 +46,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 @implementation FileManager
 
 + (NSData *)createBookmarkFromUrl:(NSURL *)filePath {
-
     FSRef fsFile, fsOriginal;
     AliasHandle aliasHandle;
     NSString * fileOriginalPath = [[filePath absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -57,9 +56,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     OSErr err = FSNewAlias(&fsOriginal, &fsFile, &aliasHandle);
     NSAssert(err == noErr, @"FSNewAlias failed");
     NSData * aliasData = [NSData dataWithBytes: *aliasHandle length: GetAliasSize(aliasHandle)];
-    
     DDLogVerbose(@"Data: %@", aliasData);
-    
     return aliasData;
 }
 
@@ -83,7 +80,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         while (object = [rowEnumerator nextObject]) {
             NSData * aliasData = [object fileAlias];
             NSString * currentPath = [self resolveAlias:aliasData];
-//            if ([currentPath isEqualToString:@""]) {
             if ([currentPath isEqualTo:nil]) {
                 [object setFileMissing:[NSNumber numberWithBool:YES]];
             }
@@ -116,9 +112,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     return nil; //@"";
 }
 
-
-// http://stackoverflow.com/questions/8645831/detect-file-in-use-by-other-process
-// http://web.archiveorange.com/archive/v/SEb6ahosyxznFKzz63G1#UyJK53APLLUOd1I
+/*!
+ * @link  http://stackoverflow.com/questions/8645831/detect-file-in-use-by-other-process
+ * @link  http://web.archiveorange.com/archive/v/SEb6ahosyxznFKzz63G1#UyJK53APLLUOd1I
+ */
 + (BOOL)pidsAccessingPath: (NSString *)path {
     
     //Buggy

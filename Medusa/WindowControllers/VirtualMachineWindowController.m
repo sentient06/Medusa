@@ -31,57 +31,55 @@
 //------------------------------------------------------------------------------
 
 #import "VirtualMachineWindowController.h"
-#import "TableLineInformationController.h"  //Generic table lines object.
-#import "PreferencesController.h"                //Object to handle coredata information.
-#import "RelationshipVirtualMachinesDiskFilesEntityModel.h" //Model for coredata entity.
+
+// Controllers
+//import "TableLineInformationController.h"  // Generic table lines object.
+//import "PreferencesController.h"           // Object to handle coredata information.
+#import "RomController.h"
+#import "EmulatorController.h"
+#import "HelpDocumentationController.h"
+
+// Models
+#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 #import "VirtualMachinesEntityModel.h"
 #import "RomFilesEntityModel.h"
-#import "RomController.h"
 #import "DiskFilesEntityModel.h"
-#import "AppDelegate.h"
-#import "EmulatorController.h"
 #import "EmulatorsEntityModel.h"
 #import "EmulatorModel.h"
-#import "HelpDocumentationController.h"
 #import "MacintoshModelModel.h"
 #import "EmulatorModel.h"
+#import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
 @implementation VirtualMachineWindowController
 
 //------------------------------------------------------------------------------
-// Standard variables synthesizers.
+// Standard variables synthesisers.
+
 @synthesize VMWindow;
 @synthesize menuObjectsArray;
 @synthesize virtualMachine;
-
-// Bools
 @synthesize enableEmulatorList;
 @synthesize showGestaltList;
 @synthesize sheepshaverSetup;
-
 @synthesize allGestaltModelsArray;
 @synthesize selectedGestaltModel;
 @synthesize selectedEmulator;
-
-//------------------------------------------------------------------------------
-// Application synthesizers.
-//@synthesize subviewsArray;
 @synthesize windowTitle;
 @synthesize currentPathOption;
 
 //------------------------------------------------------------------------------
 // Manual getters
 
-#pragma mark – Manual getters
+#pragma mark – Manual getters and setters
 
 /*!
  * @method      managedObjectContext:
@@ -144,16 +142,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 }
 
 /**
- * This will not work for multiple windows. However, probably the class is called only once.
+ * @method      windowWillClose:
+ * @abstract    Triggers just before closing the window.
+ * @discussion  This will not work for multiple windows. However, probably the
+ *              class is called only once.
  */
 - (void)windowWillClose:(NSNotification *)notification {
     DDLogVerbose(@"%@'s window will close", [virtualMachine name]);
     [[NSApp delegate] saveCoreData];
-    
-
-    
-//    [[NSApp delegate] releaseWindowFor:[virtualMachine uniqueName]];
-//    [self autorelease];
 }
 
 //------------------------------------------------------------------------------
@@ -214,43 +210,106 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 // Interface action methods
 #pragma mark – Interface action methods
+#pragma mark – General view
 
+/*!
+ * @method      updateEmulatorFromList:
+ * @abstract    Updates VM's emulator.
+ */
+- (void)updateEmulatorFromList:(NSNumber *)listIndex {
+    DDLogVerbose(@"updated emulator: %@", listIndex);
+    // Handles empty emulator:
+    if ([listIndex intValue] == -1) return;
+    // Handles selection from list:
+    id obj = [[self managedObjectContext] objectWithID:[emulatorsAvailable objectForKey:listIndex]];
+    [virtualMachine setEmulator:obj];
+    [[NSApp delegate] saveCoreData];
+}
+
+/*!
+ * @method      updateMacModelFromList:
+ * @abstract    Updates VM's model.
+ */
+- (void)updateMacModelFromList:(NSNumber *)listIndex {
+    DDLogVerbose(@"updated gestalt model: %@", listIndex);
+    BOOL useSimpleModel = [
+        [NSUserDefaults standardUserDefaults]
+            boolForKey:@"useSimpleModel"
+    ];
+
+    // The first block is when there are a couple of radio buttons for Mac IIci and Q900.
+    if (useSimpleModel) {
+        [virtualMachine setMacModel:listIndex];
+    } else {
+        // The gestalt controller is an array and each item is a dictionary.
+        // This means that we must fetch the item at a given index and then match the index of the dictionary.
+        int i = 0;
+        long max = [listIndex longValue];
+        long selectedItem = 0;
+        NSArray * keys = [gestaltModelsAvailable allKeys];
+        NSArray * sortedKeys = [keys sortedArrayUsingSelector:@selector(compare:)];
+        for (NSString * dKey in sortedKeys) {
+            if (max == i) {
+                selectedItem = [dKey longLongValue];
+                break;
+            }
+            i++;
+        }
+        [virtualMachine setMacModel:[NSNumber numberWithLongLong:selectedItem]];
+    }
+    [[NSApp delegate] saveCoreData];
+}
+
+/*!
+ * @method      personalMemoryValueChanged:
+ * @abstract    Updates current memory value.
+ * @discussion  It is triggered by typing a new value in the general view.
+ * @see         defaultMemorySliderChanged:
+ */
 - (IBAction)personalMemoryValueChanged:(id)sender {
     
     NSNumber * currentMemoryValue = [NSNumber numberWithInt:[personalMemoryField intValue]];
     
-    DDLogCVerbose(@"original: %@", currentMemoryValue);
+    DDLogVerbose(@"original: %@", currentMemoryValue);
     
     NSInteger indexOfCurrentMemoryValue = [memoryDefaultValues indexOfObject:currentMemoryValue];
     
     if (NSNotFound == indexOfCurrentMemoryValue) {
-//        [defaultMemorySlider setAllowsTickMarkValuesOnly:NO];
-        DDLogCVerbose(@"Not found");
+
+        DDLogVerbose(@"Not found");
         
         for (int i = 0; i < [memoryDefaultValues count]; i++) {
             int intTempValue = [[memoryDefaultValues objectAtIndex:i] intValue]; //inside array
             int intMemoryValue = [currentMemoryValue intValue]; //in the field
-            DDLogCVerbose(@"if (%d < %d)", intMemoryValue, intTempValue);
+            DDLogVerbose(@"if (%d < %d)", intMemoryValue, intTempValue);
             if (intMemoryValue < intTempValue) {
-                DDLogCVerbose(@"before %d, %u", i, i-0.5);
+                DDLogVerbose(@"before %d, %u", i, i-0.5);
                 [defaultMemorySlider setDoubleValue:i];
                 break;
             }
         }
-        
-//        [defaultMemorySlider setDoubleValue:[memoryDefaultValues count]-1];
-//        [defaultMemorySlider setAllowsTickMarkValuesOnly:YES];
+
     } else {
         [defaultMemorySlider setDoubleValue:indexOfCurrentMemoryValue];
     }
 }
 
+/*!
+ * @method      defaultMemorySliderChanged:
+ * @abstract    Updates current memory value.
+ * @discussion  It is triggered by moving the slider in the general view.
+ * @see         personalMemoryValueChanged:
+ */
 - (IBAction)defaultMemorySliderChanged:(id)sender {
     int current = [defaultMemorySlider intValue];
     NSNumber * selectedMemory = [memoryDefaultValues objectAtIndex:current];
-    DDLogCVerbose(@"Memory chosen: %d - %@", current, selectedMemory);
+    DDLogVerbose(@"Memory chosen: %d - %@", current, selectedMemory);
     [virtualMachine setMemory:selectedMemory];
 }
+
+//------------------------------------------------------------------------------
+// Disk view
+#pragma mark – Disk view
 
 /*!
  * @method      useSelectedDisks:
@@ -283,18 +342,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     // Filter:
     if ( [currentSelectedDrives count] > 0 ) {
         for (DiskFilesEntityModel * currentDrive in currentSelectedDrives) {
-            
-        //for (id object in firstSelectedDrives) {
             allowed = YES;
-            
             for (RelationshipVirtualMachinesDiskFilesEntityModel * oldDriveRelationship in oldDriveRelationships) {
-                
                 if ([[currentDrive filePath] isEqual:[[oldDriveRelationship diskFile] filePath]]) {
                     allowed = NO;
                 }
-
             }
-            
             if (allowed) {
                 [selectedDrives addObject:currentDrive];
             }
@@ -302,94 +355,42 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
     
     // New updated data:
-    
     long nextIndex = [oldDriveRelationships count];
     
     for (int i = 0; i < [selectedDrives count]; i++) {
-        
         // Create new relationship.
-        
         RelationshipVirtualMachinesDiskFilesEntityModel * newDriveRelationship = [
             NSEntityDescription
                 insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
                          inManagedObjectContext:managedObjectContext
         ];
-
         [newDriveRelationship setDiskFile:[selectedDrives objectAtIndex:i]];
         [newDriveRelationship setVirtualMachine:virtualMachine];
         [newDriveRelationship setPositionIndex:[NSNumber numberWithLong:nextIndex + i]];
-        
         [newDriveRelationships addObject:newDriveRelationship];
-        
     }
 
     //Finally:
-    
     [newDriveRelationships unionSet:oldDriveRelationships];
     [virtualMachine setValue:newDriveRelationships forKey:@"disks"]; //Re-set the value.
-    
     [self resetDriveOrder];
-    
     [selectedDrives release];
-
 }
 
-- (void)updateEmulatorFromList:(NSNumber *)listIndex {
-    DDLogVerbose(@"updated emulator: %@", listIndex);
-    // Handles empty emulator:
-    if ([listIndex intValue] == -1) return;
-    // Handles selection from list:
-    id obj = [[self managedObjectContext] objectWithID:[emulatorsAvailable objectForKey:listIndex]];
-    [virtualMachine setEmulator:obj];
-    [[NSApp delegate] saveCoreData];
-}
-
-- (void)updateMacModelFromList:(NSNumber *)listIndex {
-    
-    DDLogVerbose(@"updated gestalt model: %@", listIndex);
-    
-    BOOL useSimpleModel = [
-        [NSUserDefaults standardUserDefaults]
-            boolForKey:@"useSimpleModel"
-    ];
-    
-    // The first block is when there are a couple of radio buttons for Mac IIci and Q900.
-    if (useSimpleModel) {
-        [virtualMachine setMacModel:listIndex];
-    } else {
-        // The gestalt controller is an array and each item is a dictionary.
-        // This means that we must fetch the item at a given index and then match the index of the dictionary.
-        
-        int i = 0;
-        long max = [listIndex longValue];
-        long selectedItem = 0;
-        
-        NSArray * keys = [gestaltModelsAvailable allKeys];
-        NSArray * sortedKeys = [keys sortedArrayUsingSelector:@selector(compare:)];
-        for (NSString * dKey in sortedKeys) {
-            if (max == i) {
-                selectedItem = [dKey longLongValue];
-                break;
-            }
-            i++;
-        }
-        [virtualMachine setMacModel:[NSNumber numberWithLongLong:selectedItem]];
-    }
-    [[NSApp delegate] saveCoreData];
-}
-
-//// comment this
+/*!
+ * @method      resetDriveOrder:
+ * @abstract    Resets drive index.
+ * @discussion  This method is triggered when there is a change in the disks'
+ *              table in the disks view.
+ */
 - (void)resetDriveOrder {
-    DDLogCVerbose(@"Reseting drives order");
+    DDLogVerbose(@"Reseting drives order");
     NSArray * allDrives = [usedDisksController arrangedObjects];
-
     // Iterate through all drives and set them to i.
     for (int i = 0; i < [allDrives count]; i++) {
         [[allDrives objectAtIndex:i] setValue:[NSNumber numberWithInt:i] forKey:@"positionIndex"];
     }
-
     [self savePreferences];
-    
 }
 
 /*!
@@ -470,13 +471,25 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self savePreferences];
 }
 
+/*!
+ * @method      displayHelpForAdvancedView:
+ * @abstract    Saves all preferences in current object context.
+ */
 - (IBAction)displayHelpForAdvancedView:(id)sender {
     [HelpDocumentationController openHelpPage:@"01.html"];
 }
 
+#if ENVIRONMENT_DEV
+/*!
+ * @method      logVM:
+ * @abstract    Sends VM object to log.
+ * @discussion  This is for development-mode only and should not be available
+ *              in the final version!
+ */
 - (IBAction)logVM:(id)sender {
-    DDLogVerbose(@"%@", virtualMachine);
+    DDLogInfo(@"%@", virtualMachine);
 }
+#endif
 
 //------------------------------------------------------------------------------
 // Open file methods
@@ -562,9 +575,13 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
+/*!
+ * @method      openEmulatorPath:
+ * @abstract    Displays open panel to select an emulator bundle.
+ */
 - (IBAction)openEmulatorPath:(id)sender {
 
-    NSOpenPanel   * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
+    NSOpenPanel * openDialog = [NSOpenPanel openPanel]; //File open dialog class.
     EmulatorController * emulatorsModelObject = [[EmulatorController alloc] init];
     
     //Dialog options:
@@ -590,9 +607,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         }
     }];
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    
     [emulatorsModelObject release];
-     
 }
 
 
@@ -601,10 +616,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 #pragma mark – Observers
 
 /*!
- * @method      observeValueForKeyPath:
- *              ofObject:
- *              change:
- *              context:
+ * @method      observeValueForKeyPath:ofObject:change:context:
  * @abstract    Observer method.
  */
 - (void)observeValueForKeyPath:(NSString *)keyPath 
@@ -782,6 +794,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [allModels release];
 }
 
+/*!
+ * @method      updateEmulatorFamily:
+ */
 - (void)updateEmulatorFamily {
     int family = [EmulatorModel familyFromEmulatorType:[[[virtualMachine romFile] emulatorType] intValue]];
     if (family == sheepshaverFamily) {
@@ -791,6 +806,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
+/*!
+ * @method      updateProcessor:
+ */
 - (void)updateProcessor {
     int family = [EmulatorModel familyFromEmulatorType:[[[virtualMachine romFile] emulatorType] intValue]];
     int processor = [[virtualMachine processorType] intValue];
@@ -802,6 +820,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
+/*!
+ * @method      updateWindow:
+ */
 - (void)updateWindow {
     DDLogVerbose(@"Update window");
     [self repopulateGestaltList];
@@ -863,16 +884,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 - (id)initWithWindow:(NSWindow *)window {
     self = [super initWithWindow:window];
     if (self) {
-        // Initialization code here.
-//        [[NSNotificationCenter defaultCenter]
-//         addObserver:self
-//         selector:@selector(windowWillClose:)
-//         name:NSWindowWillCloseNotification
-//         object:window];
         DDLogVerbose(@"new vm controller init");
-
     }
-    
     return self;
 }
 
@@ -920,7 +933,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
--(void)awakeFromNib {
+- (void)awakeFromNib {
     [super awakeFromNib];
     NSSortDescriptor * mySortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"positionIndex" ascending:YES];
     [usedDisksController setSortDescriptors:[NSArray arrayWithObject:mySortDescriptor]];
@@ -951,12 +964,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [self repopulateGestaltList];
         [self updateEmulatorFamily];
     }
-
-//    int emulatorType = [[[virtualMachine romFile] emulatorType] intValue];
-    
-//    if (emulatorType) {
-//        [self repopulateGestaltList];
-//    }
     
     [ self addObserver:self
             forKeyPath:@"virtualMachine.romFile"
@@ -975,11 +982,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                options:NSKeyValueObservingOptionNew
                context:nil
     ];
-
-//{STR_JIT_CACHE_SIZE_2MB_LAB, "2048"},
-//{STR_JIT_CACHE_SIZE_4MB_LAB, "4096"},
-//{STR_JIT_CACHE_SIZE_8MB_LAB, "8192"},
-//{STR_JIT_CACHE_SIZE_16MB_LAB, "16384"},
     
     [self personalMemoryValueChanged:nil];
 

@@ -39,10 +39,12 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation EmulatorController
+
+//------------------------------------------------------------------------------
 
 /*!
  * @method      dealloc:
@@ -136,6 +138,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
+/*!
+ * @method      parseEmulator:
+ * @abstract    Finds application attributes and tries to create an updated
+ *              coredata version of it.
+ */
 - (id)parseEmulator:(NSString *)applicationPath {
 
     int thisEmulatorFamily = undefinedFamily;
@@ -335,6 +342,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 }
 
+/*!
+ * @method      parseEmulatorsAndSave:
+ * @abstract    Parses an array of emulator bundles.
+ */
 - (void)parseEmulatorsAndSave:(NSArray *)filesList {
     DDLogVerbose(@"%d files to parse...", [filesList count]);
     for (int i = 0; i < [filesList count]; i++) {
@@ -346,8 +357,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [[NSApp delegate] saveCoreData];
 }
 
-/**
- * Creates emulator app executables from plist and unix executable files.
+/*!
+ * @method      assembleEmulatorsOfFamily:FromZip:
+ * @abstract    Creates emulator bundles from ZIP file with binaries.
  */
 - (void)assembleEmulatorsOfFamily:(int)emulatorFamily FromZip:(NSString *)emulatorsTempDirectory {
 
@@ -418,6 +430,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 }
 
+/*!
+ * @method      assembleEmulatorOfFamily:InDirectory:withName:
+ * @abstract    Creates an emulator bundle from extracted folder with binaries.
+ */
 + (BOOL)assembleEmulatorOfFamily:(int)emulatorFamily InDirectory:(NSString *)directory withName:(NSString *)folderName {
 
 //    Basilisk II
@@ -544,13 +560,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [contentsDirectory release];
     [appDirectory release];
     [finalDirectory release];
-//    [emulatorUnix release];
-//    [emulatorName release];
     
     if (errors > 0) return NO;
     else return YES;
 }
 
+/*!
+ * @method      assembleEmulatorInDirectory:withName:
+ * @abstract    Redirects data to assembler method based on emulator type.
+ */
 + (BOOL)assembleEmulatorInDirectory:(NSString *)directory withName:(NSString *)folderName {
     if ([[folderName substringToIndex:1] isEqualToString:@"S"]) {
         return [EmulatorController assembleEmulatorOfFamily:sheepshaverFamily InDirectory:directory withName:folderName];
@@ -561,6 +579,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     return NO;
 }
 
+/*!
+ * @method      assembleAppsFromZip:
+ * @abstract    Unzips compressed binaries and prepares for assembling bundle.
+ */
 + (void)assembleAppsFromZip:(NSString *)emulatorsTempDirectory {
     // Unzips files:
     NSTask * unzipTask = [[NSTask alloc] init];

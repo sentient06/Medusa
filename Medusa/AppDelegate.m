@@ -37,27 +37,29 @@
 #import "VirtualMachineWindowController.h"  //VM Window
 #import "AssetsWindowController.h"          //Assets Window
 #import "PreferencesWindowController.h"     //Preferences Window
-#import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
-//Helpers:
 
-//Models:
+// Transformers
+#import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
+
+// Models:
 #import "VirtualMachinesEntityModel.h"
-#import "RomFilesEntityModel.h"
-#import "EmulatorsEntityModel.h"
+#import "DiskFilesEntityModel.h"
+
+// COntrollers
 #import "PreferencesController.h"
 #import "VirtualMachineController.h"
-#import "DiskFilesEntityModel.h"
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-
-#import "EmulatorHandleController.h" //testing
 #import "FileManager.h"
+
+// Enums and structs
+#import "EmulatorsEntityModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation AppDelegate
@@ -98,28 +100,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @abstract    Displays the new VM sheet.
  */
 - (IBAction)showNewMachineView:(id)sender {
-   
-//    if ([[sender className] isEqualToString:@"NSButton"]) {
-//        if ([[sender identifier] isEqualToString:@"addButton"]) {
-//            newVirtualMachineIdentifier = addNew;
-//        } else if ([[sender identifier] isEqualToString:@"duplicateButton"]) {
-//            newVirtualMachineIdentifier = duplicate;
-//        } else {
-//            newVirtualMachineIdentifier = newVMError;
-//        }
-//    } else if ([[sender className] isEqualToString:@"NSMenuItem"]) {
-        if ([sender tag] == 1) {
-            newVirtualMachineIdentifier = addNew;
-        } else if ([sender tag] == 2) {
-            newVirtualMachineIdentifier = duplicate;
-        } else if ([sender tag] == 3) {
-            newVirtualMachineIdentifier = importBasilisk;
-        } else if ([sender tag] == 4) {
-            newVirtualMachineIdentifier = importSheepShaver;
-        } else {
-            newVirtualMachineIdentifier = newVMError;
-        }
-//    }
+
+    if ([sender tag] == 1) {
+        newVirtualMachineIdentifier = addNew;
+    } else if ([sender tag] == 2) {
+        newVirtualMachineIdentifier = duplicate;
+    } else if ([sender tag] == 3) {
+        newVirtualMachineIdentifier = importBasilisk;
+    } else if ([sender tag] == 4) {
+        newVirtualMachineIdentifier = importSheepShaver;
+    } else {
+        newVirtualMachineIdentifier = newVMError;
+    }
     
     switch (newVirtualMachineIdentifier) {
         case addNew:
@@ -146,20 +138,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
            contextInfo: nil
     ];
 }
-
-///*!
-// * @method      showCloneMachineView:
-// * @abstract    Displays the new VM sheet.
-// */
-//- (IBAction)showCloneMachineView:(id)sender {
-//    [ NSApp
-//            beginSheet: cloneMachineView
-//        modalForWindow: (NSWindow *)_window
-//         modalDelegate: self
-//        didEndSelector: nil
-//           contextInfo: nil
-//    ];
-//}
 
 /*!
  * @method      showDeleteMachineView:
@@ -200,17 +178,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [newMachineView orderOut:sender];
 }
 
-///*!
-// * @method      endNewMachineView:
-// * @abstract    Closes the new VM sheet.
-// */
-//- (IBAction)endCloneMachineView:(id)sender {
-//    [cloneMachineErrorLabel setHidden:YES];
-//    [cloneMachineNameField setStringValue:@""];
-//    [NSApp endSheet:cloneMachineView];
-//    [cloneMachineView orderOut:sender];
-//}
-
 /*!
  * @method      endNewMachineView:
  * @abstract    Closes the new VM sheet.
@@ -229,8 +196,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [errorSheetView orderOut:sender];
 }
 
-//- (void)saveVirtualMachine
-
 /*!
  * @method      saveNewVirtualMachine:
  * @abstract    Saves the new virtual machine created by the user to the
@@ -241,26 +206,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              not needed. Remember to refactor in the near future.
  */
 - (IBAction)saveNewVirtualMachine:(id)sender {
-    
-    
-//    switch (newVirtualMachineIdentifier) {
-//        case addNew:
-//            [newMachineDescriptionLabel setStringValue:@"Create new virtual machine:"];
-//            break;
-//        case duplicate:
-//            [newMachineDescriptionLabel setStringValue:@"Duplicate virtual machine:"];
-//            break;
-//        case importBasilisk:
-//            [newMachineDescriptionLabel setStringValue:@"Import Basilisk II's preferences into new virtual machine:"];
-//            break;
-//        case importSheepShaver:
-//            [newMachineDescriptionLabel setStringValue:@"Import SheepShaver's preferences into new virtual machine:"];
-//            break;
-//        default:
-//            break;
-//    }
-//    
-//    importedData = [[PreferencesController parsePreferencesFor:BasiliskII] retain];
     
     // Parses name:
     NSString * newMachineName = [[NSString alloc] initWithString:[newMachineNameField stringValue]];
@@ -310,60 +255,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 }
 
-// Clones VM:
-
-///*!
-// * @method      saveNewVirtualMachine:
-// * @abstract    Saves the new virtual machine created by the user to the
-// *              coredata.
-// * @discussion  This method is sort of messed. There is a need to check
-// *              the existence of the vm model before proceeding and this
-// *              leads to a whole new world of lines that I suppose are
-// *              not needed. Remember to refactor in the near future.
-// */
-//- (IBAction)saveCloneVirtualMachine:(id)sender {
-//    
-//    // Parses name:
-//    NSString * newMachineName = [[NSString alloc] initWithString:[cloneMachineNameField stringValue]];
-//    
-//    if ([newMachineName length] == 0) {
-//        DDLogVerbose(@"VM name is empty.");
-//        [cloneMachineErrorLabel setStringValue:@"Name cannot be empty."];
-//        [cloneMachineErrorLabel setHidden:NO];
-//        [newMachineName release];
-//        return;
-//    }
-//    
-//    //Gets the Managed Object Context:
-//    NSManagedObjectContext   * managedObjectContext      = [self managedObjectContext];
-//    VirtualMachineController * virtualMachineModelObject = [[VirtualMachineController alloc] initWithManagedObjectContext:managedObjectContext];
-//    
-//    if ([virtualMachineModelObject existsMachineNamed:newMachineName]) {
-//        DDLogVerbose(@"VM name is being used.");
-//        [cloneMachineErrorLabel setStringValue:@"Name is already in use."];
-//        [cloneMachineErrorLabel setHidden:NO];
-//        [newMachineName release];
-//        [virtualMachineModelObject release];
-//        return;
-//    }
-//    
-//    //Machine to clone:
-//    VirtualMachinesEntityModel * machineToClone = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
-//    
-//    [virtualMachineModelObject cloneMachine:machineToClone withName:newMachineName];
-//    [self selectLastCreatedVirtualMachine:sender];
-//    [self endCloneMachineView:sender];
-//    [virtualMachineModelObject release];
-//    [newMachineName release];
-//    
-//}
-
+/*!
+ * @method      selectLastCreatedVirtualMachine:
+ * @abstract    Selects last inserted VM.
+ */
 - (void)selectLastCreatedVirtualMachine:(id)sender {
     BOOL openDetailsAfterCreation = [
         [NSUserDefaults standardUserDefaults]
             boolForKey:@"openDetailsAfterCreation"
     ];
-    //--------------------------------------------------------------------------
+
     //Focus in the new item.
     [virtualMachinesArrayController
         setSelectedObjects:
@@ -371,7 +272,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [[virtualMachinesArrayController arrangedObjects] lastObject]
         ]
     ];
-    //--------------------------------------------------------------------------
+
     //Release all
     if (openDetailsAfterCreation == YES) {
         [self openVirtualMachineWindow:sender];
@@ -519,25 +420,15 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
-//- (IBAction)toggleEmulator:(id)sender {
-//    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
-//    DDLogVerbose(@"Toggling %@", [virtualMachine running]);
-//    int currentStatus = [[virtualMachine running] intValue];
-//    if (currentStatus == 1) {
-//        DDLogVerbose(@"running, stop it!");
-//        [self stopEmulator:sender];
-//    } else {
-//        DDLogVerbose(@"still, run it!");
-//        [self run:sender];
-//    }
-//}
-
+/*!
+ * @method      toggleVirtualMachine:
+ * @abstract    Turns virtual machine on and off.
+ * @see         toggleEmulator:
+ * @discussion  This action is triggered inside the table row.
+ */
 - (IBAction)toggleVirtualMachine:(id)sender {
-    DDLogVerbose(@"toggling inline!");
     VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController arrangedObjects] objectAtIndex:[sender clickedRow]];
-//    NSLog(@"%@", [virtualMachine name]);
     [self toggleEmulator:virtualMachine andSender:sender];
-    
 }
 
 /*!
@@ -549,9 +440,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *              proceed to prompt the user about it. The function is handy,
  *              nevertheless, and remained here.
  */
-//- (IBAction)stopEmulator:(id)sender {
 - (IBAction)stopEmulator:(VirtualMachinesEntityModel *)virtualMachine {
-//    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
     if ([virtualMachine running]) {
         NSTask * theTask = [virtualMachineTasks objectForKey:[virtualMachine uniqueName]];        
         [theTask terminate];
@@ -590,12 +479,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * This will crash if the application support dir doesn't exist. Fix it!
  */
 - (IBAction)run:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender {
-//(id)sender {
     
     [self saveCoreData];
-    
-//    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
-    
+   
     if (![virtualMachine romFile]){
         [errorSheetLabel setStringValue:@"There is no ROM file associated with this virtual machine!\nPlease check your ROM files on the assets manager and then use the general tab in your machine's settings.\nIf you need help, refer to the help menu."];
         [self showErrorSheetView:sender];
@@ -662,11 +548,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     DDLogVerbose(@"Prefs file ....: %@", preferencesFilePath);
     
 ///-----------------------------------------------------------------------------
-/// Emulator launching:
-//        [NSThread detachNewThreadSelector:@selector(executeBasiliskII:) toTarget:[EmulatorHandleController class] withObject:preferencesFilePath];
-///-----------------------------------------------------------------------------
-/// Or...
-///-----------------------------------------------------------------------------
+
     // Use GCD to execute emulator in an async thread:
     dispatch_async(queue, ^{
         
@@ -680,10 +562,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         
         NSString * emulatorPath = [[virtualMachine emulator] unixPath];
 
-//        NSLog(@"Emulator path:\n%@", emulatorPath);
-        
-//        NSString * emulatorPath = [[NSString alloc] initWithString:[[ NSBundle mainBundle ] pathForAuxiliaryExecutable: @"Emulators/Basilisk II" ]];
-        
         // Starts emulator:
         
         NSTask * emulatorTask = [[[NSTask alloc] init] autorelease];
@@ -709,51 +587,20 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [preferencesFilePath release];
         [emulatorTask launch];
         
-        
-//        pid_t group = setsid();
-//        if (group == -1) {
-//            group = getpgrp();
-//        }
-//[emulatorTask launch];
-//        if (setpgid([emulatorTask processIdentifier], group) == -1) {
-//            NSLog(@"unable to put task into same group as self");
-//        }
-        
-        
-        // launch the task
-//        pid_t group = setsid();
-//        [emulatorTask launch];
-//        
-//        
-//        if (group == -1) {
-//            NSLog(@"setsid() == -1");
-//            group = getpgrp();
-//        }
-//        if (setpgid([emulatorTask processIdentifier], group) == -1) {
-//            NSLog(@"unable to put task into same group as self: errno = %i", errno);
-//        }
-//        NSLog(@"new task process id = %i", [emulatorTask processIdentifier]);
-//        NSLog(@"pgid = %i", group);
-        
-        
         [virtualMachine setRunning:[NSNumber numberWithBool:YES]];
-//        [virtualMachineTasks setObject:[NSValue valueWithPointer:emulatorTask] forKey:[virtualMachine uniqueName]];
+
         [virtualMachineTasks setObject:emulatorTask forKey:[virtualMachine uniqueName]];
         
-//        NSLog(@"hey! --- %@", [NSValue valueWithPointer:emulatorTask]);
         [virtualMachine setTaskPID:[NSNumber numberWithInt:[emulatorTask processIdentifier]]];
-//        [virtualMachine setTaskPointer:[[NSValue valueWithPointer:emulatorTask] value]];
 
         [emulatorTask waitUntilExit];
 
         [virtualMachine setRunning:[NSNumber numberWithBool:NO]];
         [virtualMachine setTaskPID:[NSNumber numberWithInt:0]];
-        // Unblocks all used disks:
-//                NSLog(@"count: %lu", [theTask retainCount]);
+
         [virtualMachineTasks removeObjectForKey:[virtualMachine uniqueName]];
-        
-//        NSLog(@"count (2): %lu", [emulatorTask retainCount]);
-        
+
+        // Unblocks all used disks:
         rowEnumerator = [[virtualMachine disks] objectEnumerator];
         while (object = [rowEnumerator nextObject]) {
             DiskFilesEntityModel * driveObject = [object diskFile];
@@ -787,10 +634,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     NSArray * selectedVirtualMachines = [[
         [NSArray alloc] initWithArray:[virtualMachinesArrayController selectedObjects]
     ] autorelease];
-    //The user can select only one in the current interface, but anyway...
-    
+    // The user can select only one in the current interface, but anyway...
+
     VirtualMachinesEntityModel * selectedVirtualMachine = [selectedVirtualMachines objectAtIndex:0];
-    
     VirtualMachineWindowController * newWindowController = [windowsForVirtualMachines objectForKey:[selectedVirtualMachine uniqueName]];
     
     if (newWindowController == nil) {
@@ -799,7 +645,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [VirtualMachineWindowController alloc]
                 initWithVirtualMachine: selectedVirtualMachine
                 inManagedObjectContext: [self managedObjectContext]
-        ]; //closing won't release it.
+        ]; // Closing won't release it.
         [windowsForVirtualMachines setObject:newWindowController forKey:[selectedVirtualMachine uniqueName]];
     }
 
@@ -812,10 +658,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  * @abstract    Displays the Assets Window.
  */
 - (IBAction)showAssetsWindow:(id)sender {
-    
-    //Gets the Managed Object Context:
     NSManagedObjectContext * managedObjectContext = [self managedObjectContext];
-    
     if (!assetsWindowController) {
         assetsWindowController = [
             [AssetsWindowController alloc]
@@ -823,23 +666,18 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         ];
     }
     [assetsWindowController showWindow:self];
-    
 }
 
 // Preferences:
-
 /*!
  * @method      showPreferencesWindow:
  * @abstract    Displays the Preferences.
  */
 - (IBAction)showPreferencesWindow:(id)sender {
-    DDLogVerbose(@"Show preferences window: %@", sender);
-    
     if (!preferencesWindowController) {
         preferencesWindowController = [[PreferencesWindowController alloc] initWithWindowNibName:@"PreferencesWindow"];
     }
-    [preferencesWindowController showWindow:self];  
-    
+    [preferencesWindowController showWindow:self];
 }
 
 //------------------------------------------------------------------------------
@@ -870,6 +708,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     }
 }
 
+/*!
+ * @method      popUpDialog:
+ * @abstract    Triggers a pop-up window.
+ */
 - (void)popUpDialog:(NSString *)prompt {
     NSAlert * alert = [[[NSAlert alloc] init] autorelease];
     [alert setAlertStyle:NSInformationalAlertStyle];
@@ -878,6 +720,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [alert runModal];
 }
 
+/*!
+ * @method      performCleanUp:
+ * @abstract    Removes XPRAM files from home dir.
+ */
 - (void)performCleanUp {
     BOOL leaveXPRAM = [
         [NSUserDefaults standardUserDefaults]
@@ -889,6 +735,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self resetButtons];
 }
 
+/*!
+ * @method      resetButtons:
+ * @abstract    Re-designs interface.
+ * @warning     I think this is outdated.
+ */
 - (void)resetButtons {
     DDLogVerbose(@"Reseting buttons");
     [virtualMachinesList reloadData];
@@ -899,34 +750,30 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [runButton setEnabled:NO];
         }
     }
-    
-    //    if ([[virtualMachinesArrayController selectedObjects] count] > 0){
-    //        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun] &&
-    //          ![[[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] running] boolValue]) {
-    //            [runButton setEnabled:YES];
-    //        } else {
-    //            [runButton setEnabled:NO];
-    //        }
-    //    }
 }
 
+/*!
+ * @method      windowDidBecomeKey:
+ * @abstract    Triggered by observer every time the window gets focus.
+ */
 - (void)windowDidBecomeKey:(NSNotification *)notification {
     [self resetButtons];
 }
 
+/*!
+ * @method      updateVMWindows:
+ * @abstract    Triggered by other controllers every time something must be
+ *              updated in the VM interface.
+ */
 - (void)updateVMWindows {
-//    DDLogVerbose(@"app delegate update windows: %@", windowsForVirtualMachines);
-    
     for(NSString * currentWindowControllerKey in windowsForVirtualMachines) {
         VirtualMachineWindowController * currentWindowController = [windowsForVirtualMachines valueForKey:currentWindowControllerKey];
-//        DDLogVerbose(@"%@", currentWindowController);
         [currentWindowController updateWindow];
     }
-
 }
 
 //------------------------------------------------------------------------------
-// Overwrotten methods.
+// Overwritten methods.
 
 #pragma mark – Rewrotten
 
@@ -1207,7 +1054,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             [migrationManager release];
             
             //------------------------------------
-//            if (allMigrationsSuceeded) {
             // Replace old database for new
             NSError * error2 = nil;
             NSFileManager * fileManager = [[NSFileManager alloc] init];
@@ -1229,8 +1075,6 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             }
 
             [fileManager release];
-                
-//            }
         }
     }
 
@@ -1245,11 +1089,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  *                bound to the persistent store coordinator for the application.) 
  */
 - (NSManagedObjectContext *)managedObjectContext {
-//1 //error, then 5 //9
     if (__managedObjectContext) {
         return __managedObjectContext;
     }
-
     NSPersistentStoreCoordinator * coordinator = [self persistentStoreCoordinator];
     if (!coordinator) {
         NSMutableDictionary * dict = [NSMutableDictionary dictionary];
@@ -1259,38 +1101,41 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [[NSApplication sharedApplication] presentError:error];
         return nil;
     }
-    __managedObjectContext = [[NSManagedObjectContext alloc] init];
+     __managedObjectContext = [[NSManagedObjectContext alloc] init];
     [__managedObjectContext setPersistentStoreCoordinator:coordinator];
 
     return __managedObjectContext;
-
 }
 
 /**
- * @discussion    Returns the NSUndoManager for the application. In this case, the manager returned is that of the managed object context for the application.
+ * @method        windowWillReturnUndoManager:
+ * @discussion    Returns the NSUndoManager for the application. In this case,
+ *                the manager returned is that of the managed object context for
+ *                the application.
  */
 - (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window {
     return [[self managedObjectContext] undoManager];
 }
 
 /**
+ * @method        saveAction:
  * @discussion    Performs the save action for the application, which is to send
  *                the save: message to the application's managed object context.
  *                Any encountered errors are presented to the user.
  */
 - (IBAction)saveAction:(id)sender {
     NSError * error = nil;
-    
     if (![[self managedObjectContext] commitEditing]) {
         DDLogError(@"%@:%@ unable to commit editing before saving", [self class], NSStringFromSelector(_cmd));
     }
-
     if (![[self managedObjectContext] save:&error]) {
         [[NSApplication sharedApplication] presentError:error];
     }
-    
 }
 
+/**
+ * @method        applicationShouldTerminate:
+ */
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
 
     // Save changes in the application's managed object context before the application terminates.
@@ -1337,8 +1182,11 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     return NSTerminateNow;
 }
 
+/**
+ * @method        initialize:
+ */
 + (void)initialize {
-    IconValueTransformer *transformer = [[IconValueTransformer alloc] init];
+    IconValueTransformer * transformer = [[IconValueTransformer alloc] init];
     [NSValueTransformer setValueTransformer:transformer forName:@"IconValueTransformer"];
     [transformer release];
 }

@@ -39,7 +39,6 @@
 #import "AppDelegate.h"
 #import "RomController.h"
 #import "DiskController.h"
-#import "RomFilesEntityModel.h"
 #import "EmulatorModel.h"
 
 //------------------------------------------------------------------------------
@@ -47,13 +46,15 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_WARN;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation PreferencesController
 
 //------------------------------------------------------------------------------
 // Manual getters
+
+#pragma mark – Manual getters
 
 /*!
  * @method      managedObjectContext:
@@ -73,18 +74,17 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     managedObjectContext = value;
 }
 
-//------------------------------------------------------------------------------
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Writting actions
 
-- (void)insertNewVirtualMachineWithData:(NSDictionary*)newData{
-    //Do something
-}
+#pragma mark – Writting actions
 
-- (void)insertNewData:(NSDictionary*)newData inVirtualMachine:(NSManagedObject*)virtualMachine{
-    //Do something
-}
-
-// SheepShaver emulates a G4 processor, 100MHz and reports Gestalt 67 - Power Mac 9500
-
+/*!
+ * @method      savePreferencesFile:ForFile:
+ * @abstract    Saves text file with preferences.
+ * @discussion  SheepShaver emulates a G4 processor, 100MHz and reports Gestalt
+ *              67 - Power Mac 9500
+ */
 - (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath {
     DDLogVerbose(@"Save data: %@", dataToSave);
     
@@ -105,14 +105,14 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         }
     }
     DDLogVerbose(@"%@", filePath);
-//    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-//    dispatch_async(queue, ^{
     [newContent writeToFile:filePath atomically:NO encoding:NSUTF8StringEncoding error:nil];
-//    });
     [newContent release];
-    
 }
 
+/*!
+ * @method      getVirtualMachineData:
+ * @abstract    Returns an array with key-value pairs of settings from the coredata.
+ */
 - (NSMutableArray*)getVirtualMachineData:(VirtualMachinesEntityModel *)virtualMachine
                        forEmulatorFamily:(int)emulatorFamily {
     
@@ -565,6 +565,10 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 
 }
 
+/*!
+ * @method      savePreferencesFile:ForVirtualMachine:
+ * @abstract    Creates preferences file path and directories for a given VM.
+ */
 - (void)savePreferencesFile:(NSString *)preferencesFilePath
           ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
 
@@ -600,8 +604,8 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         if(![fileManager fileExistsAtPath:sheepShaverPreferencesPath isDirectory:&isDir])
             if(![fileManager createDirectoryAtPath:sheepShaverPreferencesPath withIntermediateDirectories:YES attributes:nil error:NULL])
                 DDLogError(@"Error: Create -.sheepvm dir failed.");
+        
         // Releases current path to generate again:
-
         filePath = [NSMutableString stringWithFormat: @"%@/prefs", sheepShaverPreferencesPath];
         
         NSString * nvramFile = [[[NSString alloc] initWithFormat: @"%@/nvram", sheepShaverPreferencesPath] autorelease];
@@ -612,13 +616,21 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         if ([fileManager fileExistsAtPath:nvramFile])
             if ([fileManager removeItemAtPath:nvramFile error:&error])
                 [@"" writeToFile:nvramFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
-//        [nvramFile release];
     }
     
-    [self savePreferencesFile:currentVmData ForFile: filePath];
-//    [currentVmData release];
+    [self savePreferencesFile:currentVmData ForFile:filePath];
+
 }
 
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// Reading actions
+
+#pragma mark – Reading actions
+
+/*!
+ * @method      parsePreferencesFor:
+ * @abstract    Reads text file and creates key-value pairs for insertion in coredata.
+ */
 + (NSMutableArray *)parsePreferencesFor:(int)emulatorType {
     
     NSMutableArray * allData = [[NSMutableArray alloc] initWithCapacity:1]; //Return object.
@@ -631,14 +643,11 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         filePath = [@"~/.sheepshaver_prefs" stringByExpandingTildeInPath];
     }
     
-    // read everything from text
+    // Reads everything from text:
     NSString * fileContents = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     
-    // first, separate by new line
+    // Separates by new line:
     NSArray * allLinedStrings = [fileContents componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
-    
-    // then break down even further
-    // NSString * strsInOneLine = [allLinedStrings objectAtIndex:0];
     
     for (NSString * line in allLinedStrings) {
         if (line.length) {
@@ -653,31 +662,13 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         }
     }
     
-//    NSLog(@"%@", allData);
-    
-    // choose whatever input identity you have decided. in this case ;
-//    NSArray * singleStrs = [currentPointString componentsSeparatedByCharactersInSet: [NSCharacterSet characterSetWithCharactersInString:@" "]];
     return [allData autorelease];
 }
-/*
-+ (NSMutableArray *)translateDataFromPreferencesFile:(NSArray *)preferences {
-    NSMutableArray * translated = [[NSMutableArray alloc] initWithCapacity:1];
-    
-    for (NSDictionary * dataElement in preferences) {
-        for(id key in dataElement){
-            
-            NSMutableString * newKey = [[NSMutableString alloc] initWithCapacity:20];
-            
-            if (key == @"") {
-                
-            }
-            
-        }
-    }
-    
-    return [translated autorelease];
-}
-*/
+
+/*!
+ * @method      insertData:intoVirtualMachine:
+ * @abstract    Reads inserts parsed data into coredata's VM.
+ */
 - (void)insertData:(NSArray *)preferences intoVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
     DDLogInfo(@"Parsing imported data");
     [virtualMachine retain];

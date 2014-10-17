@@ -45,9 +45,4 @@
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)newManagedObjectContext;
 
-//+ (void)blockDisksFor:(VirtualMachinesEntityModel *)virtualMachine;
-
-- (void)blockDisks;
-- (void)unblockDisks;
-
 @end
