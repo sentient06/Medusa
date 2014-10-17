@@ -20,7 +20,7 @@
 
 - (id)transformedValue:(id)value {
     
-    NSLog(@"%@", [value class]);
+//    NSLog(@"%@", [value class]);
 //    int running = [value intValue];
     
 //    if (running == 1)

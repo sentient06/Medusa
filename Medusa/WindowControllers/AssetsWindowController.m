@@ -260,8 +260,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
     [self showDownloadPanel:sender];
     
-//    NSURL * url = [NSURL URLWithString:@"http://medusa.mariot.me.uk/emulators/download/EmulatorsExecutables.zip"];
-    NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/EmulatorExecutables.zip"];
+    NSURL * url = [NSURL URLWithString:@"https://github.com/sentient06/Medusa/raw/master/Downloads/EmulatorExecutables.zip"];
+//    NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/EmulatorExecutables.zip"];
     
     request = [ASIHTTPRequest requestWithURL:url];
     

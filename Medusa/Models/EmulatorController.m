@@ -598,12 +598,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
     int family;
     
-    NSLog(@"+++++++++++++++++++++++++++++++++++");
-    NSLog(@"%@", shallowDirectoryList);
-
     for (NSString * folderName in shallowDirectoryList) {
         BOOL success = [EmulatorController assembleEmulatorInDirectory:emulatorsTempDirectory withName:folderName];
-///HERE
+
         if (success) {
             
             if ([[folderName substringToIndex:1] isEqualToString:@"S"]) {

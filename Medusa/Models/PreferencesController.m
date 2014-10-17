@@ -571,8 +571,6 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
     NSMutableString * filePath = [[[NSMutableString alloc] initWithString:preferencesFilePath] autorelease];
     int emulatorFamily = [[[virtualMachine emulator] family] intValue];
     
-    NSLog(@"%@", [virtualMachine emulator]);
-    NSLog(@"%@", [virtualMachine emulator] == nil ? @"nil" : @"not nil");
     if ([virtualMachine emulator] == nil) {
         DDLogInfo(@"Emulator is nil, aborting file creation.");
         return;
@@ -681,9 +679,7 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
 }
 */
 - (void)insertData:(NSArray *)preferences intoVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
-    NSLog(@"-------------------------");
-    NSLog(@"Parsing data");
-    NSLog(@"-------------------------");
+    DDLogInfo(@"Parsing imported data");
     [virtualMachine retain];
     NSMutableArray * notParsed = [[NSMutableArray alloc] initWithCapacity:1];
     for (NSDictionary * dataElement in preferences) {
@@ -704,7 +700,6 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             //--------------------------------------------------------------------------
             // 1. The ROM
             if ([key isEqualToString: @"rom"]) {
-                NSLog(@"Parsing rom");
                 RomController * romObject = [[RomController alloc] autorelease];
                 [romObject parseSingleRomFileAndSave:[dataElement objectForKey:key] inObjectContext:managedObjectContext];
                 [virtualMachine setRomFile:[romObject currentRomObject]];
@@ -712,7 +707,6 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             //--------------------------------------------------------------------------
             // 2. The Macintosh Model
             if ([key isEqualToString: @"modelid"]) {
-                NSLog(@"Parsing model");
                 [virtualMachine setMacModel:
                     [NSNumber numberWithInt:[[dataElement objectForKey:key] intValue]+6]
                 ];
@@ -856,7 +850,6 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
             //--------------------------------------------------------------------------
             // 7. Memory
             if ([key isEqualToString:@"ramsize"]) {
-                NSLog(@"Memory: %d", [[dataElement objectForKey:key] intValue]);
                 int memory = [[dataElement objectForKey:key] intValue] / 1024 / 1024;
                 [virtualMachine setMemory:[NSNumber numberWithInt:memory]];
             } else
@@ -901,11 +894,9 @@ static const int ddLogLevel = LOG_LEVEL_WARN;
         [virtualMachine setEmulator:[emulators objectAtIndex:0]];
     }
 
-    NSLog(@"These keys were not parsed: %@", notParsed);
+    DDLogInfo(@"These keys were not parsed: %@", notParsed);
     [notParsed release];
-//    NSLog(@"V;M: %@", virtualMachine);
     [[NSApp delegate] saveCoreData];
     [virtualMachine release];
-    NSLog(@"-------------------------");
 }
 @end
