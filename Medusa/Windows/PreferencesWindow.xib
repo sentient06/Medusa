@@ -137,9 +137,9 @@
                     </connections>
                 </button>
                 <button id="270">
-                    <rect key="frame" x="18" y="201" width="424" height="18"/>
+                    <rect key="frame" x="18" y="201" width="451" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="An emulator was inserted (opens Asset Manager on starting up)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="271">
+                    <buttonCell key="cell" type="check" title="Don't open Asset Manager on starting up (an emulator was inserted)" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="271">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>

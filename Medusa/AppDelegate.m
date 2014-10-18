@@ -732,33 +732,34 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (leaveXPRAM == NO)
         if ([virtualMachineTasks count] == 0)
             [FileManager deleteXPRAMFile];
-    [self resetButtons];
-}
-
-/*!
- * @method      resetButtons:
- * @abstract    Re-designs interface.
- * @warning     I think this is outdated.
- */
-- (void)resetButtons {
-    DDLogVerbose(@"Reseting buttons");
+//    [self resetButtons];
     [virtualMachinesList reloadData];
-    if ([[virtualMachinesArrayController selectedObjects] count] > 0){
-        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun]) {
-            [runButton setEnabled:YES];
-        } else {
-            [runButton setEnabled:NO];
-        }
-    }
 }
 
-/*!
- * @method      windowDidBecomeKey:
- * @abstract    Triggered by observer every time the window gets focus.
- */
-- (void)windowDidBecomeKey:(NSNotification *)notification {
-    [self resetButtons];
-}
+///*!
+// * @method      resetButtons:
+// * @abstract    Re-designs interface.
+// * @warning     I think this is outdated.
+// */
+//- (void)resetButtons {
+//    DDLogVerbose(@"Reseting buttons");
+//    [virtualMachinesList reloadData];
+//    if ([[virtualMachinesArrayController selectedObjects] count] > 0){
+//        if ([[[virtualMachinesArrayController selectedObjects] objectAtIndex:0] canRun]) {
+//            [runButton setEnabled:YES];
+//        } else {
+//            [runButton setEnabled:NO];
+//        }
+//    }
+//}
+
+///*!
+// * @method      windowDidBecomeKey:
+// * @abstract    Triggered by observer every time the window gets focus.
+// */
+//- (void)windowDidBecomeKey:(NSNotification *)notification {
+//    [self resetButtons];
+//}
 
 /*!
  * @method      updateVMWindows:
@@ -859,7 +860,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         [assetsWindowController displayEmulatorsView:self];
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:nil];
 
 }
 

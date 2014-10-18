@@ -369,32 +369,6 @@
                             </binding>
                         </connections>
                     </button>
-                    <button verticalHuggingPriority="750" id="795">
-                        <rect key="frame" x="92" y="2" width="23" height="23"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="OnOff" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="796">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="toggleEmulator:" target="494" id="Ccr-Rf-R6e"/>
-                            <binding destination="542" name="enabled" keyPath="selection.canRun" id="1037">
-                                <dictionary key="options">
-                                    <integer key="NSMultipleValuesPlaceholder" value="0"/>
-                                    <integer key="NSNoSelectionPlaceholder" value="0"/>
-                                    <integer key="NSNotApplicablePlaceholder" value="0"/>
-                                    <integer key="NSNullPlaceholder" value="0"/>
-                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                </dictionary>
-                            </binding>
-                            <binding destination="809" name="hidden" keyPath="values.showAdvanced" previousBinding="1037" id="3ox-L5-ZBp">
-                                <dictionary key="options">
-                                    <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
-                                    <string key="NSValueTransformerName">NSNegateBoolean</string>
-                                </dictionary>
-                            </binding>
-                        </connections>
-                    </button>
                     <button verticalHuggingPriority="750" tag="2" id="803">
                         <rect key="frame" x="46" y="2" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -420,7 +394,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="1063">
-                        <rect key="frame" x="158" y="2" width="23" height="23"/>
+                        <rect key="frame" x="136" y="2" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRevealFreestandingTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1064">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -437,7 +411,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="1065">
-                        <rect key="frame" x="136" y="2" width="23" height="23"/>
+                        <rect key="frame" x="114" y="2" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSMenuOnStateTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1066">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -454,7 +428,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="e3y-HZ-ceV">
-                        <rect key="frame" x="114" y="2" width="23" height="23"/>
+                        <rect key="frame" x="92" y="2" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSStopProgressTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cx3-2G-UlI">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -479,7 +453,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="1131">
-                        <rect key="frame" x="183" y="2" width="23" height="23"/>
+                        <rect key="frame" x="161" y="2" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="Info" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1132">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -495,7 +469,7 @@
                         </connections>
                     </button>
                     <button verticalHuggingPriority="750" id="cTo-pk-Jkn">
-                        <rect key="frame" x="205" y="2" width="23" height="23"/>
+                        <rect key="frame" x="183" y="2" width="23" height="23"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="RecentDocumentsFolderIcon" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ccK-AW-Iit">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -836,7 +810,6 @@ DQ
                 <outlet property="newMachineNameField" destination="580" id="592"/>
                 <outlet property="newMachineView" destination="565" id="567"/>
                 <outlet property="romFilesController" destination="678" id="725"/>
-                <outlet property="runButton" destination="795" id="1038"/>
                 <outlet property="virtualMachinesArrayController" destination="542" id="559"/>
                 <outlet property="virtualMachinesList" destination="642" id="1062"/>
                 <outlet property="window" destination="371" id="532"/>
@@ -870,7 +843,6 @@ DQ
         <image name="NSRemoveTemplate" width="8" height="8"/>
         <image name="NSRevealFreestandingTemplate" width="14" height="14"/>
         <image name="NSStopProgressTemplate" width="11" height="11"/>
-        <image name="OnOff" width="192" height="192"/>
         <image name="RecentDocumentsFolderIcon" width="32" height="32"/>
         <image name="RubbishFullClassic" width="32" height="32"/>
     </resources>

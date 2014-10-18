@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#define ENVIRONMENT_DEV true
+#define ENVIRONMENT_DEV false
 
 #import <Cocoa/Cocoa.h>
 
@@ -90,7 +90,7 @@ enum newVirtualMachineIdentifiers {
     //--------------------------------------------------------------------------
     
     // Interface elements    
-    IBOutlet NSButton * runButton;
+//    IBOutlet NSButton * runButton;
     IBOutlet NSWindow * informationWindow;
     
     //Controllers
@@ -171,7 +171,7 @@ enum newVirtualMachineIdentifiers {
 
 - (NSString *)applicationSupportDirectory;
 - (void)saveCoreData;
-- (void)resetButtons;
+//- (void)resetButtons;
 - (void)updateVMWindows;
 
 - (IBAction)savePreferencesFile:(id)sender;

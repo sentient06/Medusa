@@ -483,30 +483,19 @@
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                             </dictionary>
                         </binding>
+                        <binding destination="-2" name="selectedIndex" keyPath="selectedEmulator" previousBinding="ZGb-49-Owz" id="L02-nM-yVo">
+                            <dictionary key="options">
+                                <bool key="NSValidatesImmediately" value="YES"/>
+                            </dictionary>
+                        </binding>
                         <binding destination="140" name="enabled" keyPath="selection.running" id="nHx-bU-hht">
                             <dictionary key="options">
                                 <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                 <string key="NSValueTransformerName">NSNegateBoolean</string>
                             </dictionary>
                         </binding>
-                        <binding destination="-2" name="selectedIndex" keyPath="selectedEmulator" previousBinding="ZGb-49-Owz" id="L02-nM-yVo">
-                            <dictionary key="options">
-                                <bool key="NSValidatesImmediately" value="YES"/>
-                            </dictionary>
-                        </binding>
                     </connections>
                 </popUpButton>
-                <button verticalHuggingPriority="750" id="5Y4-cV-fzx">
-                    <rect key="frame" x="12" y="13" width="87" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Log VM" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pkr-xx-Iyw">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="logVM:" target="-2" id="S2T-N3-myy"/>
-                    </connections>
-                </button>
             </subviews>
         </customView>
         <customView id="97" userLabel="Drives Subview">
@@ -971,13 +960,13 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
+                                <binding destination="140" name="value" keyPath="selection.enable68k" id="Gve-UU-K7u"/>
                                 <binding destination="140" name="enabled" keyPath="selection.running" id="btm-UL-gYP">
                                     <dictionary key="options">
                                         <bool key="NSRaisesForNotApplicableKeys" value="NO"/>
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="140" name="value" keyPath="selection.enable68k" id="Gve-UU-K7u"/>
                             </connections>
                         </button>
                         <button id="3O5-zr-kbU">
@@ -988,12 +977,12 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
+                                <binding destination="140" name="value" keyPath="selection.idleWait" id="Yot-Zi-avX"/>
                                 <binding destination="140" name="enabled" keyPath="selection.running" id="XCE-kf-TgI">
                                     <dictionary key="options">
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="140" name="value" keyPath="selection.idleWait" id="Yot-Zi-avX"/>
                             </connections>
                         </button>
                         <button id="a3y-8a-gRe">
@@ -1004,12 +993,12 @@
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
                             <connections>
+                                <binding destination="140" name="value" keyPath="selection.noClipboardConversion" id="6Wc-hv-1tr"/>
                                 <binding destination="140" name="enabled" keyPath="selection.running" id="TG2-g6-RKL">
                                     <dictionary key="options">
                                         <string key="NSValueTransformerName">NSNegateBoolean</string>
                                     </dictionary>
                                 </binding>
-                                <binding destination="140" name="value" keyPath="selection.noClipboardConversion" id="6Wc-hv-1tr"/>
                             </connections>
                         </button>
                         <button id="6eA-5J-fa6">
@@ -2058,6 +2047,14 @@
                         </column>
                     </cells>
                 </matrix>
+                <button verticalHuggingPriority="750" id="5Y4-cV-fzx">
+                    <rect key="frame" x="14" y="13" width="87" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Log VM" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pkr-xx-Iyw">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                </button>
             </subviews>
         </customView>
         <arrayController objectClassName="TableLineInformationController" id="39" userLabel="MenuItems">
