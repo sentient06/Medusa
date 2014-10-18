@@ -16,6 +16,7 @@
 		40394FDC19E7E653003893E1 /* ToggleButtonImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40394FDB19E7E653003893E1 /* ToggleButtonImageTransformer.m */; };
 		4047CFAF194B4C0A003847C7 /* BoolValueToRedColourTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */; };
 		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
+		406A761319F27E4D0087CDDC /* Drive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 406A761219F27E4D0087CDDC /* Drive.icns */; };
 		408D8B7219D60DAA00100A14 /* OnOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7119D60DAA00100A14 /* OnOff.png */; };
 		408D8B7719D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7319D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png */; };
 		408D8B7819D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7419D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png */; };
@@ -182,6 +183,7 @@
 		4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToRedColourTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.m; sourceTree = "<group>"; };
 		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
 		405EDCB21945C71B00DA78CE /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = UtilitiesModels/FileManager.m; sourceTree = "<group>"; };
+		406A761219F27E4D0087CDDC /* Drive.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Drive.icns; path = Images/Icons/Drive.icns; sourceTree = "<group>"; };
 		408D8B7119D60DAA00100A14 /* OnOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OnOff.png; path = Images/SimpleIcons/OnOff.png; sourceTree = "<group>"; };
 		408D8B7319D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackAndWhiteHappyMac2x.png; path = Images/RomIcons/BlackAndWhiteHappyMac2x.png; sourceTree = "<group>"; };
 		408D8B7419D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackAndWhiteHappyMacLocked.png; path = Images/RomIcons/BlackAndWhiteHappyMacLocked.png; sourceTree = "<group>"; };
@@ -744,6 +746,7 @@
 		817CAF4015357EF90038E9A0 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				406A761219F27E4D0087CDDC /* Drive.icns */,
 				408D8B7E19D7448000100A14 /* KeyboardMouse.png */,
 				81F9022318142AF90024DB8B /* ClassicFolderIcon.icns */,
 				819DB78217F9D213006E7367 /* Emulators.icns */,
@@ -1061,6 +1064,7 @@
 				8168996F17CE2C7900058B9F /* Info.icns in Resources */,
 				8168997017CE2C7900058B9F /* RomFile.icns in Resources */,
 				8168997117CE2C7900058B9F /* RomImageDocument.icns in Resources */,
+				406A761319F27E4D0087CDDC /* Drive.icns in Resources */,
 				8168997217CE2C7900058B9F /* Shared.icns in Resources */,
 				40394FD919E7E0F7003893E1 /* ToggleOnUp.png in Resources */,
 				8168997317CE2C7900058B9F /* Stop.icns in Resources */,
