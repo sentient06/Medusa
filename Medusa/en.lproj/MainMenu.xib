@@ -97,14 +97,14 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Import" id="5b1-TV-aQe">
                                     <items>
-                                        <menuItem title="Basilisk II preferences" tag="3" id="MQn-nV-hIQ">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Basilisk II preferences" tag="3" keyEquivalent="b" id="MQn-nV-hIQ">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="showNewMachineView:" target="494" id="4Ni-BB-0tB"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Sheepshaver preferences" tag="4" id="gEP-uc-MVy">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Sheepshaver preferences" tag="4" keyEquivalent="s" id="gEP-uc-MVy">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                             <connections>
                                                 <action selector="showNewMachineView:" target="494" id="SQL-GN-BDp"/>
                                             </connections>
@@ -199,14 +199,14 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="667"/>
-                            <menuItem title="Virtual Machine List" id="1002">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Virtual Machine List" keyEquivalent="l" id="1002">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="showMainWindow:" target="494" id="1003"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Assets Manager" id="962">
-                                <modifierMask key="keyEquivalentModifierMask"/>
+                            <menuItem title="Assets Manager" keyEquivalent="a" id="962">
+                                <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
                                 <connections>
                                     <action selector="showAssetsWindow:" target="494" id="963"/>
                                 </connections>
