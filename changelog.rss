@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>HFSUtilsGUI Changelog</title>
+    <link>http://medusa.mariot.me.uk/changelogs.rss</link>
+    <description>Most recent changes and updates</description>
+    <language>en-gb</language>
+    <item>
+      <title>Version 1.2.0B3</title>
+      <description>&lt;p&gt;
+    This is the second of the heavily updated versions of Medusa. It is **NOT** backwards compatible. This version took some user reviews into account.
+&lt;/p&gt;
+
+&lt;h4&gt;New features&lt;/h4&gt;
+&lt;ul&gt;
+    &lt;li&gt;Support for SheepShaver&lt;/li&gt;
+    &lt;li&gt;Ability to import existent preferences&lt;/li&gt;
+    &lt;li&gt;Ability to '''really''' kill the emulator's process&lt;/li&gt;
+    &lt;li&gt;Ability to delete the NVRAM file&lt;/li&gt;
+    &lt;li&gt;Partial support for keycodes file&lt;/li&gt;
+    &lt;li&gt;Ability to resolve path of files that moved or were renamed&lt;/li&gt;
+    &lt;li&gt;Display emulators' list according to ROM file, then first available emulator&lt;/li&gt;
+    &lt;li&gt;Toggle button per line in the VM's list window, instead of buttons in the footer&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Under the hood&lt;/h4&gt;
+&lt;ul&gt;
+    &lt;li&gt;Major re-factoring to detect emulator's supported models&lt;/li&gt;
+&lt;/ul&gt;</description>
+      <pubDate>Sat, 18 Oct 2014 09:48:00 +0000</pubDate>
+      <sparkle:releaseNotesLink>http://medusa.mariot.me.uk/changelogs/5</sparkle:releaseNotesLink>
+      <enclosure url="https://github.com/sentient06/Medusa/releases/download/v1.2.0b3/Medusa.1.2.0b3.dmg" sparkle:version="2.0" length="4043885" type="application/octet-stream" sparkle:dsaSignature="MCwCFGea0QuGjY4DVg1C8J/w8IzdtuCLAhR+67Io+zFZWYJcFbah4GEdyVPVSQ=="/>
+    </item>
+  </channel>
+</rss>
