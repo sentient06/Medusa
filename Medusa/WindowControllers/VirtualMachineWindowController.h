@@ -52,11 +52,14 @@ typedef enum {
  */
 @interface VirtualMachineWindowController : NSWindowController {
     
+    VirtualMachinesEntityModel * virtualMachine;
+    
     //--------------------------------------------------------------------------
     // Standard variables
 
     NSManagedObjectContext * managedObjectContext;
     NSMutableArray         * menuObjectsArray;
+    NSMutableArray         * allGestaltModelsArray;
     NSMutableArray         * subviewsArray;
     NSString               * windowTitle;
     NSArray                * memoryDefaultValues;
@@ -71,7 +74,7 @@ typedef enum {
     BOOL showGestaltList;
     BOOL enableEmulatorList;
     BOOL sheepshaverSetup;
-    
+
     //--------------------------------------------------------------------------
     // Controllers
 
@@ -84,6 +87,7 @@ typedef enum {
     //--------------------------------------------------------------------------
     // Interface objects
 
+    IBOutlet NSWindow  * VMWindow;
     IBOutlet NSToolbar * settingsToolbar;
     IBOutlet NSView    * placeholderView;
     IBOutlet NSView    * subViewConfiguration;
@@ -101,8 +105,8 @@ typedef enum {
     IBOutlet NSMatrix    * sharedPathMatrix;
     IBOutlet NSButton    * openSharePathButton;
     IBOutlet NSTextField * sharePathLabel;
-    
-    /// 32-bit compatibility -------    
+
+    /// 32-bit compatibility -------
     pathOptions currentPathOption;
     /// ----------------------------
 }

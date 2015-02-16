@@ -35,6 +35,7 @@
 @class RomFilesEntityModel;
 
 @interface RomController : NSObject {
+    RomFilesEntityModel * currentRomObject;
     NSString * macModel; // Name of compatible models.
     NSString * comments; // General details.
     NSString * checksum; // Checksum. =P

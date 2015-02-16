@@ -41,15 +41,13 @@
     IBOutlet NSView  * generalSubView;
     IBOutlet NSView  * shareSubView;
     IBOutlet NSView  * advancedSubView;
-    
     NSButton * flushDatabase;
+    NSView   * _contentSubview;
 }
 
 //------------------------------------------------------------------------------
 // Properties
-
 @property (nonatomic, strong) NSView * contentSubview;
-
 
 //------------------------------------------------------------------------------
 // Methods
