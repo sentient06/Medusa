@@ -31,6 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "EmulatorsEntityModel.h"
+#import "FileManager.h"
 
 @implementation EmulatorsEntityModel
 
@@ -41,5 +42,47 @@
 @dynamic unixPath;
 @dynamic version;
 @dynamic machines;
+@dynamic appMissing;
+@dynamic appAlias;
+@dynamic useCount;
+
+
+- (NSString *)filePath {
+    NSData * alias;    
+    if (![self appAlias])
+        alias = [self fixAliasAndReturn];
+    else
+        alias = [self appAlias];
+    NSString * resolvedFilePath = [FileManager resolveAlias:[self appAlias]];
+    NSLog(@"App alias: %@", [self appAlias]);
+    NSLog(@"Missing: %@", resolvedFilePath == nil ? @"YES" : @"NO");
+    if (resolvedFilePath == nil)
+        [self setAppMissing:[NSNumber numberWithBool:YES]];
+    return resolvedFilePath;
+//    return @"whatever";
+}
+
+//- (NSNumber *)appMissing {
+//    return [self zappMissing];
+//}
+//- (void)setAppMissing:(NSNumber *)appMissing {
+//    [self setZappMissing:appMissing];
+//}
+//- (NSData *)appAlias {
+//    return [self zappAlias];
+//}
+//- (void)setAppAlias:(NSData *)appAlias {
+//    [self setZappAlias:appAlias];
+//}
+
+- (NSData *)fixAliasAndReturn {
+    NSLog(@"Alias missing, fixing it");
+    // Path from string to alias:
+    NSString * oldPath     = [self readablePath];
+    NSString * escapedPath = [oldPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSData   * fileAlias   = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
+    [self setAppAlias:fileAlias];
+    return [self appAlias];
+}
 
 @end

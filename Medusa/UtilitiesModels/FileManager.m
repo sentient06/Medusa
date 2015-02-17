@@ -49,6 +49,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     FSRef fsFile, fsOriginal;
     AliasHandle aliasHandle;
     NSString * fileOriginalPath = [[filePath absoluteString] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    //OSStatus status = FSMakeFSRefUnicode();
     OSStatus status = FSPathMakeRef((unsigned char*)[fileOriginalPath cStringUsingEncoding: NSUTF8StringEncoding], &fsOriginal, NULL);
     NSAssert(status == 0, @"FSPathMakeRef fsHome failed");
     status = FSPathMakeRef((unsigned char*)[fileOriginalPath cStringUsingEncoding: NSUTF8StringEncoding], &fsFile, NULL);
@@ -166,6 +167,30 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     else
         DDLogInfo(@"XPRAM doesn't exist, nothing to do!");
     [xpramPath release];
+}
+
++ (NSString *)bundlePathFromUnixPath:(NSString *)unixPath {
+    
+    // e.g dga/1024/768/2
+    
+    
+    DDLogVerbose(@"Got unix path: %@", unixPath);
+    
+    NSMutableString * bundlePath;// = [[[NSMutableString alloc] initWithString:unixPath] autorelease];
+//    NSMutableString * values;
+    NSRange strokePosition = [unixPath rangeOfString:@"/"];
+    
+    DDLogVerbose(@"Got range: %@", strokePosition);
+    bundlePath = [NSMutableString stringWithString:[unixPath substringToIndex:strokePosition.location]];
+    
+    DDLogVerbose(@"Got string: %@", bundlePath);
+//    if ([values isEqualToString:@"dga"]) {
+//        [virtualMachine setFullScreen:[NSNumber numberWithBool:YES]];
+//    } else {
+//        [virtualMachine setFullScreen:[NSNumber numberWithBool:NO]];
+//    }
+
+    return bundlePath;
 }
 
 @end

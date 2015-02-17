@@ -284,6 +284,16 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     [self showFinderItemAtPath:[disk filePath]];
 }
 
+/*!
+ * @method      showFinderAppItem:
+ * @discussion  Opens Finder and selects Application (emulator) bundle.
+ * @see         showFinderItemAtPath:
+ */
+- (IBAction)showFinderAppItem:(id)sender {
+    EmulatorsEntityModel * emulatorBundle = [[emulatorsArrayController selectedObjects] objectAtIndex:0];
+    [self showFinderItemAtPath:[emulatorBundle filePath]];
+}
+
 //------------------------------------------------------------------------------
 // Utility methods
 #pragma mark – Utility

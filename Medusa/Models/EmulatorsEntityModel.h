@@ -68,11 +68,14 @@ enum EmulatorTypes {
 
 @interface EmulatorsEntityModel : NSManagedObject
 
+@property (nonatomic, retain) NSData   * appAlias;
+@property (nonatomic, retain) NSNumber * appMissing;
 @property (nonatomic, retain) NSNumber * family;
 @property (nonatomic, retain) NSNumber * maintained;
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * readablePath;
 @property (nonatomic, retain) NSString * unixPath;
+@property (nonatomic, retain) NSNumber * useCount;
 @property (nonatomic, retain) NSString * version;
 @property (nonatomic, retain) NSSet    * machines;
 
@@ -84,5 +87,12 @@ enum EmulatorTypes {
 - (void)removeMachinesObject:(VirtualMachinesEntityModel *)value;
 - (void)addMachines:(NSSet *)values;
 - (void)removeMachines:(NSSet *)values;
+- (NSString *)filePath;
+//- (NSData *)fixAliasAndReturn;
+
+//- (NSNumber *)appMissing;
+//- (void)setAppMissing:(NSNumber *)appMissing;
+//- (NSData *)appAlias;
+//- (void)setAppAlias:(NSData *)appAlias;
 
 @end

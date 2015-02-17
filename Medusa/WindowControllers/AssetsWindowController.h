@@ -81,5 +81,6 @@
 - (IBAction)cancelDownloadEmulators:(id)sender;
 - (IBAction)showFinderRomItem:(id)sender;
 - (IBAction)showFinderDiskItem:(id)sender;
+- (IBAction)showFinderAppItem:(id)sender;
 
 @end

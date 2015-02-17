@@ -1,9 +1,9 @@
 //
-//  FileManager.h
+//  MigrationAssistant.h
 //  Medusa
 //
-//  Created by Gian2 on 09/06/2014.
-//  Copyright (c) 2014 Giancarlo Mariot. All rights reserved.
+//  Created by Gian2 on 12/02/2015.
+//  Copyright (c) 2015 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -32,13 +32,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FileManager : NSObject
+@interface MigrationAssistant : NSObject
 
-+ (NSData *)createBookmarkFromUrl:(NSURL *)filePath;
-+ (void)resolveBookmarksInObjectContext:(NSManagedObjectContext *)currentContext;
-+ (NSString *)resolveAlias:(NSData *)aliasData;
-+ (BOOL)pidsAccessingPath:(NSString *)path;
-+ (void)deleteXPRAMFile;
-+ (NSString *)bundlePathFromUnixPath:(NSString *)unixPath;
++ (void)executeMigrationChangesFor:(NSString *)mapping
+            InManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (void)createEmulatorAliasesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
++ (void)createEmulatorAppMissingInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
