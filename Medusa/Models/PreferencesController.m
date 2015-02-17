@@ -46,7 +46,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation PreferencesController
@@ -279,7 +279,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
     while (object = [rowEnumerator nextObject]) {
         DiskFilesEntityModel * unbootableDriveObject = [object diskFile];
-        DDLogCInfo(@"DAMN --- %@", [unbootableDriveObject fileName]);
+        DDLogVerbose(@"DAMN --- %@", [unbootableDriveObject fileName]);
         NSDictionary * unbootableDrive = [[NSDictionary alloc]
             initWithObjectsAndKeys:
                 [unbootableDriveObject filePath], @"disk",

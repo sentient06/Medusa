@@ -386,8 +386,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 - (void)resetDriveOrder {
     DDLogVerbose(@"Reseting drives order");
     NSArray * allDrives = [usedDisksController arrangedObjects];
+    DDLogVerbose(@"All drives: %@", allDrives);
     // Iterate through all drives and set them to i.
     for (int i = 0; i < [allDrives count]; i++) {
+        DDLogVerbose(@"i: %d", i);
         [[allDrives objectAtIndex:i] setValue:[NSNumber numberWithInt:i] forKey:@"positionIndex"];
     }
     [self savePreferences];
@@ -400,17 +402,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  *              and delete them.
  */
 - (IBAction)deleteUsedDrive:(id)sender {
-    
     NSArray * selectedDrives = [usedDisksController selectedObjects]; //Selected drives
-    
     // Iterate through all drives and set to NO.
     for (int i = 0; i < [selectedDrives count]; i++) {
         [managedObjectContext deleteObject:[selectedDrives objectAtIndex:i]];
     }
+    [self savePreferences]; // We must save it before reseting.
     [self resetDriveOrder];
-    
-    [self savePreferences];
-    
 }
 
 //------------------------------------------------------------------------------
@@ -715,7 +713,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (emulatorInUse > -1) {
         [self setSelectedEmulator:[NSNumber numberWithInt:emulatorInUse]];
     } else {
-        DDLogWarn(@"Emulator is not in the list, selecting first item");
+        DDLogVerbose(@"Emulator is not in the list, selecting first item");
         [self updateEmulatorFromList:[NSNumber numberWithInt:0]];
         [self setSelectedEmulator:[NSNumber numberWithInt:0]];
     }
@@ -786,7 +784,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     // Else, we should see the drop-down list.
     
     if (selectedInThisList == NO) {
-        DDLogWarn(@"Mac model is not in the list, selecting first item");
+        DDLogVerbose(@"Mac model is not in the list, selecting first item");
         [self setSelectedGestaltModel:[NSNumber numberWithInt:0]];
         [self updateMacModelFromList:[NSNumber numberWithInt:0]];
     }

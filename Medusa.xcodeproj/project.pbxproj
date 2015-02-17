@@ -20,6 +20,9 @@
 		404286E11A8A0847003F3B92 /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = 404286E01A8A0847003F3B92 /* Target.png */; };
 		4047CFAF194B4C0A003847C7 /* BoolValueToRedColourTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */; };
 		404E76A91A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */; };
+		404E76AD1A9367D100240E35 /* FilesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 404E76AC1A9367D100240E35 /* FilesIcon.png */; };
+		404E76AF1A93684100240E35 /* FilesIcon16.png in Resources */ = {isa = PBXBuildFile; fileRef = 404E76AE1A93684100240E35 /* FilesIcon16.png */; };
+		404E76B11A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns in Resources */ = {isa = PBXBuildFile; fileRef = 404E76B01A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns */; };
 		404EC1B51A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */; };
 		404EC1B61A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */; };
 		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
@@ -193,6 +196,9 @@
 		4047CFAD194B4C0A003847C7 /* BoolValueToRedColourTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToRedColourTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.h; sourceTree = "<group>"; };
 		4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToRedColourTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.m; sourceTree = "<group>"; };
 		404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel"; sourceTree = "<group>"; };
+		404E76AC1A9367D100240E35 /* FilesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FilesIcon.png; path = Images/SimpleIcons/FilesIcon.png; sourceTree = "<group>"; };
+		404E76AE1A93684100240E35 /* FilesIcon16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FilesIcon16.png; path = Images/SimpleIcons/FilesIcon16.png; sourceTree = "<group>"; };
+		404E76B01A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = ROMImageIcon2SnowLeopard.icns; path = Images/Icons/ROMImageIcon2SnowLeopard.icns; sourceTree = "<group>"; };
 		404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel"; sourceTree = "<group>"; };
 		404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel"; sourceTree = "<group>"; };
 		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
@@ -792,6 +798,7 @@
 				8168996617CE2C7900058B9F /* Shared.icns */,
 				8168996717CE2C7900058B9F /* Stop.icns */,
 				8168996817CE2C7900058B9F /* Unsupported.icns */,
+				404E76B01A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns */,
 			);
 			name = Icons;
 			sourceTree = "<group>";
@@ -833,6 +840,8 @@
 				81E9A44617F5D4EB008C2A31 /* RubbishFullClassic.png */,
 				81BBBC5617F9B72F00C151FE /* ErrorIconClassic.png */,
 				8178DEC51804003D004CCC8B /* SettingsIconClassic16px.png */,
+				404E76AC1A9367D100240E35 /* FilesIcon.png */,
+				404E76AE1A93684100240E35 /* FilesIcon16.png */,
 			);
 			name = ClassicIcons;
 			sourceTree = "<group>";
@@ -1106,6 +1115,8 @@
 				81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */,
 				81AD5BC517E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns in Resources */,
 				81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */,
+				404E76AF1A93684100240E35 /* FilesIcon16.png in Resources */,
+				404E76B11A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns in Resources */,
 				819DC09217F1909200480073 /* HDClassic.icns in Resources */,
 				819DC09417F1926C00480073 /* RubbishBinClassic.icns in Resources */,
 				81E9A44717F5D4EB008C2A31 /* RubbishFullClassic.png in Resources */,
@@ -1136,6 +1147,7 @@
 				8132D42318048C4E0068428D /* 016 - Apple Adjustable Keyboard.gif in Resources */,
 				8132D42418048C4E0068428D /* 017 - Apple Adjustable ISO Keyboard.gif in Resources */,
 				8132D42518048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif in Resources */,
+				404E76AD1A9367D100240E35 /* FilesIcon.png in Resources */,
 				8132D42618048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */,
 				8132D42718048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif in Resources */,
 				408D8B7F19D7448100100A14 /* KeyboardMouse.png in Resources */,
