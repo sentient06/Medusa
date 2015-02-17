@@ -19,6 +19,7 @@
 		40394FDC19E7E653003893E1 /* ToggleButtonImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40394FDB19E7E653003893E1 /* ToggleButtonImageTransformer.m */; };
 		404286E11A8A0847003F3B92 /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = 404286E01A8A0847003F3B92 /* Target.png */; };
 		4047CFAF194B4C0A003847C7 /* BoolValueToRedColourTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */; };
+		404E76A91A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */; };
 		404EC1B51A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */; };
 		404EC1B61A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */; };
 		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
@@ -33,7 +34,6 @@
 		4096510319D49B7A00D8AD39 /* ArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4096510219D49B7A00D8AD39 /* ArrowRight.png */; };
 		4096510519D49EFF00D8AD39 /* Magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 4096510419D49EFF00D8AD39 /* Magnifier.png */; };
 		4096FFDA1A9233360016BE57 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4096FFD41A9233360016BE57 /* Medusa.xcdatamodeld */; };
-		4096FFDC1A9248FB0016BE57 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 4096FFDB1A9248FB0016BE57 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */; };
 		40AAA30219E7D16900EFFB00 /* VMListButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AAA30119E7D16900EFFB00 /* VMListButtonCell.m */; };
 		40B0F3B61949B54100F5CEC7 /* RomEmulatorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0F3B51949B54100F5CEC7 /* RomEmulatorTransformer.m */; };
 		40B0F3B81949B7FA00F5CEC7 /* QuestionMarkMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B0F3B71949B7FA00F5CEC7 /* QuestionMarkMac.png */; };
@@ -192,6 +192,7 @@
 		404286E01A8A0847003F3B92 /* Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Target.png; path = Images/SimpleIcons/Target.png; sourceTree = "<group>"; };
 		4047CFAD194B4C0A003847C7 /* BoolValueToRedColourTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToRedColourTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.h; sourceTree = "<group>"; };
 		4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToRedColourTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.m; sourceTree = "<group>"; };
+		404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel"; sourceTree = "<group>"; };
 		404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel"; sourceTree = "<group>"; };
 		404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel"; sourceTree = "<group>"; };
 		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
@@ -211,7 +212,6 @@
 		4096FFD71A9233360016BE57 /* Medusa 1.2.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.1.xcdatamodel"; sourceTree = "<group>"; };
 		4096FFD81A9233360016BE57 /* Medusa 1.2.0.2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.2.xcdatamodel"; sourceTree = "<group>"; };
 		4096FFD91A9233360016BE57 /* Medusa 1.2.0.3.xcdatamodel */ = {isa = PBXFileReference; explicitFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.3.xcdatamodel"; sourceTree = "<group>"; };
-		4096FFDB1A9248FB0016BE57 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel"; sourceTree = "<group>"; };
 		40AAA30019E7D16900EFFB00 /* VMListButtonCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMListButtonCell.h; path = UtilitiesControllers/VMListButtonCell.h; sourceTree = "<group>"; };
 		40AAA30119E7D16900EFFB00 /* VMListButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMListButtonCell.m; path = UtilitiesControllers/VMListButtonCell.m; sourceTree = "<group>"; };
 		40B0F3B41949B54100F5CEC7 /* RomEmulatorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomEmulatorTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomEmulatorTransformer.h; sourceTree = "<group>"; };
@@ -483,7 +483,7 @@
 			children = (
 				404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */,
 				404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */,
-				4096FFDB1A9248FB0016BE57 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */,
+				404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */,
 				4096FFD41A9233360016BE57 /* Medusa.xcdatamodeld */,
 				4021088B1A8C9C9400F811F9 /* MigrationAssistants */,
 				4022065F1A91FD8300F0FC40 /* MigrationPolicies */,
@@ -1215,7 +1215,7 @@
 				405EDCB31945C71B00DA78CE /* FileManager.m in Sources */,
 				81A54CC717F0915900B1EFD0 /* ASIInputStream.m in Sources */,
 				81A54CC817F0915900B1EFD0 /* ASINetworkQueue.m in Sources */,
-				4096FFDC1A9248FB0016BE57 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel in Sources */,
+				404E76A91A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel in Sources */,
 				404EC1B51A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel in Sources */,
 				81A54CF817F0AC1E00B1EFD0 /* DDASLLogger.m in Sources */,
 				81A54CF917F0AC1E00B1EFD0 /* DDFileLogger.m in Sources */,

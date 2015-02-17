@@ -64,7 +64,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 + (void)createEmulatorAliasesInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
 //    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
-    DDLogVerbose(@"Creating alias");
+    DDLogVerbose(@" + Creating alias");
     NSError * error;
     
     NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
@@ -76,8 +76,8 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     if (resultCount > 0) {
         NSArray * emulatorsResult = [managedObjectContext executeFetchRequest:request error:&error];
         for (id dataElement in emulatorsResult) {
-            DDLogVerbose(@"Name: %@", [dataElement name]);
-            DDLogVerbose(@"Path: %@", [dataElement readablePath]);
+            DDLogVerbose(@" | Name: %@", [dataElement name]);
+            DDLogVerbose(@" | Path: %@", [dataElement readablePath]);
             NSString * escapedPath = [[dataElement readablePath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 //            DDLogVerbose(@"Escaped path: %@", escapedPath);
             NSData * fileAlias = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
@@ -90,7 +90,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 
 + (void)createEmulatorAppMissingInManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
 //    NSManagedObjectContext * managedObjectContext = [[NSApp delegate] managedObjectContext];
-    DDLogVerbose(@"Checking alias");
+    DDLogVerbose(@" + Checking alias");
     NSError * error;
     
     NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
@@ -103,9 +103,9 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         NSArray * emulatorsResult = [managedObjectContext executeFetchRequest:request error:&error];
         for (id dataElement in emulatorsResult) {
 //            DDLogVerbose(@"Element: %@", dataElement);
-            DDLogVerbose(@"Name: %@", [dataElement name]);
+            DDLogVerbose(@" | Name: %@", [dataElement name]);
             NSString * resolvedFilePath = [FileManager resolveAlias:[dataElement appAlias]];
-            DDLogVerbose(@"Resolved path: %@", resolvedFilePath==nil? @"yes" : @"no");
+            DDLogVerbose(@" | Resolved path: %@", resolvedFilePath==nil? @"yes" : @"no");
             if (resolvedFilePath == nil)
                 [dataElement setAppMissing:[NSNumber numberWithBool:YES]];
             else

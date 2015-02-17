@@ -908,20 +908,23 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
 
-    NSString * bundlesVersionString = [[NSString alloc] initWithString:@"1.2.0.3"];
-    int bundlesVersion = 1203;
-    
     // Return if already set:
     if (__persistentStoreCoordinator) return __persistentStoreCoordinator;
-    
+
+    // Core-data information
+    int bundlesVersion = 1203;
+    NSString * bundlesVersionString = [[NSString alloc] initWithString:@"1.2.0.3"];
+    //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
     // Managed object model:
-    NSManagedObjectModel * mom = [self managedObjectModel];
+    // (A file containing the definition of an application's data structure)
+    NSManagedObjectModel * managedObjectModel = [self managedObjectModel];
     
-    if (!mom) {
+    if (!managedObjectModel) {
         DDLogError(@"%@:%@ No model to generate a store from", [self class], NSStringFromSelector(_cmd));
         return nil;
     }
-    
+   
+    // -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
     // Locate the existent data dir:
     NSFileManager * fileManager = [NSFileManager defaultManager];
     NSURL         * applicationFilesDirectory = [self applicationFilesDirectory];
@@ -945,34 +948,40 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         }
     }
 
+    // -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
     // Getting data file:
     NSURL * persistentStoreUrl = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa.storedata"];
-
-    // Load metadata:
-    NSDictionary * persistentStoreMetadata = [
-        NSPersistentStoreCoordinator
-        metadataForPersistentStoreOfType:NSSQLiteStoreType
-                                     URL:persistentStoreUrl
-                                   error:&error
-    ];
-
     BOOL persistentStoreExists = [fileManager fileExistsAtPath:[persistentStoreUrl path]];
-    
-    // A new coordinator:
-    NSPersistentStoreCoordinator * coordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom] autorelease];
+
     if (persistentStoreExists == YES) {
-    
-        // Fetch current version:
+        
+        //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+        // Load metadata:
+        NSDictionary * persistentStoreMetadata = [
+            NSPersistentStoreCoordinator
+                metadataForPersistentStoreOfType:NSSQLiteStoreType
+                                             URL:persistentStoreUrl
+                                           error:&error
+        ];
+
+        //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+        // Read current version:
         NSArray  * sourceVersionIdentifiers = [persistentStoreMetadata objectForKey:NSStoreModelVersionIdentifiersKey];
         NSString * sourceVersionString = [[[NSString alloc] initWithString:[sourceVersionIdentifiers lastObject]] autorelease];
-        DDLogInfo(@"Current Version of .xcdatamodeld file: %@", sourceVersionString);
+        DDLogInfo(@"... Current version of .xcdatamodeld file: %@", sourceVersionString);
+        DDLogVerbose(@"... Version expected in this bundle .....: %@", bundlesVersionString);
         
+        //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
         // Check if data is compatible and requires migration:
-        BOOL pscCompatibile = [mom isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
+        BOOL pscCompatibile = [managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
         
+        //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+        // Migration code!
+
         if (pscCompatibile == NO) {
-            DDLogWarn(@"Need to migrate!");
+            DDLogWarn(@"### Need to migrate!");
             
+            // Integer version:
             NSRegularExpression * regex = [
                 NSRegularExpression
                     regularExpressionWithPattern:@"\\."
@@ -987,6 +996,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             ];
             int persistedVersion = [versionString intValue];
             
+            // Persisted version is higher than current app supports:
             if (persistedVersion > bundlesVersion) {
                 [self popUpDialog:[NSString stringWithFormat:@"Medusa seems to have found a newer version of its data file. (%@ < %@)\nPlease either update Medusa or delete the data file, in which case your data will be lost. =(", bundlesVersionString, sourceVersionString]];
                 DDLogWarn(@"Medusa is terminating because data is from newer version!");
@@ -995,69 +1005,65 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                 [NSApp terminate:nil];
             }
             
-            // Migrate!
-            //------------------------------------
+            //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+            // Migration process:
             
-            NSArray      * mappingModelNames  = [NSArray arrayWithObjects:@"MappingModel-1.1.0.8-1.2.0.1", @"MappingModel-1.2.0.1-1.2.0.2", @"MappingModel-1.2.0.2-1.2.0.3", nil]; //@"MappingModel-1.2.0.3-1.2.0.4"
-            NSString     * sourceStoreType    = NSSQLiteStoreType;
-            NSDictionary * sourceStoreOptions = nil;
-            
+            NSArray * mappingModelNames = [NSArray arrayWithObjects:
+                @"MappingModel-1.1.0.8-1.2.0.1",
+                @"MappingModel-1.2.0.1-1.2.0.2",
+                @"MappingModel-1.2.0.2-1.2.0.3",
+                //@"MappingModel-1.2.0.3-1.2.0.4"
+            nil];
+
+            NSString     * sourceStoreType         = NSSQLiteStoreType;
+            NSDictionary * sourceStoreOptions      = nil;
             NSURL        * destinationStoreURL     = [applicationFilesDirectory URLByAppendingPathComponent:@"Medusa2.sqlite"];
             NSString     * destinationStoreType    = NSSQLiteStoreType;
             NSDictionary * destinationStoreOptions = nil;
-//            NSDictionary * destinationStoreOptions = [NSDictionary dictionaryWithObjectsAndKeys:
-//               [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-//               [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
-//               nil];
-            DDLogVerbose(@"destinationStoreURL: %@", destinationStoreURL);
+            DDLogVerbose(@" ->  persistentStoreUrl: %@", persistentStoreUrl);
+            DDLogVerbose(@" -> destinationStoreURL: %@", destinationStoreURL);
             
-            // Fancy thingys I don't know what they do:
-            NSManagedObjectModel * sourceModel      = [NSManagedObjectModel mergedModelFromBundles:nil forStoreMetadata:persistentStoreMetadata];
-            NSMigrationManager   * migrationManager = [
+            // Creates a new Object Model for original data and a Migration Manager:
+            NSManagedObjectModel * sourceObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil forStoreMetadata:persistentStoreMetadata];
+            NSMigrationManager   * migrationManager  = [
                 [NSMigrationManager alloc]
-                    initWithSourceModel:sourceModel
-                       destinationModel:mom
+                    initWithSourceModel:sourceObjectModel
+                       destinationModel:managedObjectModel
             ];
 
-            // Assemble prefix of the first mapping to be used.
+            // Assembles prefix of the first mapping to be used:
             NSString * originalVersionString = [[NSString alloc] initWithFormat:@"MappingModel-%@", sourceVersionString];
             BOOL migrateFurther = NO;
             BOOL allOkay = YES;
 
+            //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
             // Loop to iterate migration maps:
             for (NSString * mappingModelName in mappingModelNames) {
                 NSURL * fileURL = [[NSBundle mainBundle] URLForResource:mappingModelName withExtension:@"cdm"];
-                BOOL ok = NO;
                 NSRange mapHasVersion = [mappingModelName rangeOfString:originalVersionString];
+                BOOL ok = NO;
 
                 // First migration:
                 if (mapHasVersion.location != NSNotFound) {
-//                    DDLogVerbose(@"Map fileURL: %@", fileURL);
-                    DDLogVerbose(@"Migration step 1");
+                    DDLogVerbose(@"-+- First migration step");
                     
+                    // -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+                    // Attempting to fix hashes for entities:
+                    // This is being tested.
                     
-                    
-                    ///======================
-                    
-                    NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
-                    
-                    NSArray * newEntityMappings = [NSArray arrayWithArray:mappingModel.entityMappings];
+                    NSMappingModel * mappingModel      = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
+                    NSArray        * newEntityMappings = [NSArray arrayWithArray:mappingModel.entityMappings];
                     for (NSEntityMapping * entityMapping in newEntityMappings) {
                         [entityMapping setSourceEntityVersionHash:[
-                             sourceModel.entityVersionHashesByName valueForKey:entityMapping.sourceEntityName
+                             sourceObjectModel.entityVersionHashesByName valueForKey:entityMapping.sourceEntityName
                         ]];
                         [entityMapping setDestinationEntityVersionHash:[
-                             mom.entityVersionHashesByName valueForKey:entityMapping.destinationEntityName
+                             managedObjectModel.entityVersionHashesByName valueForKey:entityMapping.destinationEntityName
                         ]];
                     }
                     mappingModel.entityMappings = newEntityMappings;
                     
-                    
-                    ///======================
-                    
-                    
-                    
-//                    NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
+                    // -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
                     
                     @try {
                         ok = [migrationManager migrateStoreFromURL:persistentStoreUrl
@@ -1075,54 +1081,56 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                         DDLogError(@"Error: %@ (mapping model: %@)\n", error==nil?theException:error, mappingModelName);
                     } @finally {
                         if (ok) {
-                            DDLogInfo(@"Migration named '%@' successful", mappingModelName);
+                            DDLogInfo(@"+++ Migration named '%@' successful", mappingModelName);
                             migrateFurther = YES;
                             allOkay = allOkay && YES;
                         } else {
-                            DDLogError(@"Migration named '%@' failed", mappingModelName);
+                            DDLogError(@"+++ Migration named '%@' failed", mappingModelName);
                             allOkay = allOkay && NO;
                             [self popUpDialog:@"Migration failed!"];
                             [NSApp terminate:nil];
                         }
                     }
                     [mappingModel release];
+                    
+                    // -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+                    
                 } else
+
                 // Further migrations:
                 if (migrateFurther) {
                     
-                    DDLogVerbose(@"Migrate further");
+                    DDLogVerbose(@"-+- Migrate further");
                     
                     
-                    //================================
-                    
-                    
-                    //                     [migrationManager release];
-                    //                     sourceModel = nil;
+                    // -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+                    // New data reference to be able to save new information.
+                    // This is being tested.
                     
                     
                     NSDictionary * newPersistentStoreMetadata = [
-                                                                 NSPersistentStoreCoordinator
-                                                                 metadataForPersistentStoreOfType:NSSQLiteStoreType
-                                                                 URL:persistentStoreUrl
-                                                                 error:&error
-                                                                 ];
+                        NSPersistentStoreCoordinator
+                            metadataForPersistentStoreOfType:NSSQLiteStoreType
+                                                         URL:persistentStoreUrl
+                                                       error:&error
+                    ];
                     
-                    NSManagedObjectModel * newSourceModel = [NSManagedObjectModel mergedModelFromBundles:nil forStoreMetadata:newPersistentStoreMetadata];
+                    NSManagedObjectModel * newSourceModel = [
+                        NSManagedObjectModel
+                            mergedModelFromBundles:nil
+                                  forStoreMetadata:newPersistentStoreMetadata
+                    ];
                     
                     
                     NSMigrationManager * newMigrationManager = [
-                                                                [NSMigrationManager alloc]
-                                                                initWithSourceModel:newSourceModel
-                                                                destinationModel:mom
-                                                                ];
+                        [NSMigrationManager alloc]
+                            initWithSourceModel:newSourceModel
+                               destinationModel:managedObjectModel
+                    ];
                     
-                    
-                    
-                    
-                    //=============================
-                    
-                    
-                    ///======================
+                    // -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+                    // Attempting to fix hashes for entities:
+                    // This is being tested.
 
                     NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
 
@@ -1132,40 +1140,23 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                              newSourceModel.entityVersionHashesByName valueForKey:entityMapping.sourceEntityName
                         ]];
                         [entityMapping setDestinationEntityVersionHash:[
-                             mom.entityVersionHashesByName valueForKey:entityMapping.destinationEntityName
+                             managedObjectModel.entityVersionHashesByName valueForKey:entityMapping.destinationEntityName
                         ]];
                     }
                     mappingModel.entityMappings = newEntityMappings;
                     
                     
-                    ///======================
+                    // -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
 
-                    
-                    
-
-                    
-                    
-                    
-                    
-//                    NSMappingModel * mappingModel = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
-//                    BOOL ok = NO;
                     @try {
-//                        ok = [newMigrationManager migrateStoreFromURL:destinationStoreURL
-//                                                              type:destinationStoreType
-//                                                           options:destinationStoreOptions
-//                                                  withMappingModel:mappingModel
-//                                                  toDestinationURL:destinationStoreURL
-//                                                   destinationType:destinationStoreType
-//                                                destinationOptions:destinationStoreOptions
-//                                                             error:&error];
                         ok = [newMigrationManager migrateStoreFromURL:persistentStoreUrl
-                                                              type:sourceStoreType
-                                                           options:sourceStoreOptions
-                                                  withMappingModel:mappingModel
-                                                  toDestinationURL:destinationStoreURL
-                                                   destinationType:destinationStoreType
-                                                destinationOptions:destinationStoreOptions
-                                                             error:&error];
+                                                                 type:sourceStoreType
+                                                              options:sourceStoreOptions
+                                                     withMappingModel:mappingModel
+                                                     toDestinationURL:destinationStoreURL
+                                                      destinationType:destinationStoreType
+                                                   destinationOptions:destinationStoreOptions
+                                                                error:&error];
                         
                     } @catch (id theException) {
                         DDLogInfo(@"%@ won't respond to migration method", mappingModelName);
@@ -1173,29 +1164,29 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                         DDLogError(@"Error: %@ (mapping model: %@)\n", error==nil?theException:error, mappingModelName);
                     } @finally {
                         if (ok) {
-                            DDLogInfo(@"Migration named '%@' successful", mappingModelName);
+                            DDLogInfo(@"+++ Migration named '%@' successful", mappingModelName);
                             migrateFurther = YES;
                             allOkay = allOkay && YES;
                         } else {
                             DDLogError(@"Migration named '%@' failed", mappingModelName);
                             DDLogVerbose(@"\n----\nError:\n\n%@\n\n----\n", error);
                             allOkay = allOkay && NO;
-                            [self popUpDialog:@"Migration failed!"];
+                            [self popUpDialog:@"+++ Migration failed!"];
                             [NSApp terminate:nil];
                         }
                     }
                     [mappingModel release];
-                    
-                    
                     [newMigrationManager release];
-                    
-                    
                 }
+                
+                //  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+                // Manual fixing:
+
                 if (ok) {
                     
-//                    NSLog(@"Trying to use: %@ and %@", sourceVersionString, bundlesVersionString);
-                    
-                    NSPersistentStoreCoordinator * tempCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:mom];
+                    // -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+
+                    NSPersistentStoreCoordinator * tempCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:managedObjectModel];
                     [tempCoordinator addPersistentStoreWithType:NSSQLiteStoreType
                                                   configuration:nil
                                                             URL:destinationStoreURL
@@ -1203,7 +1194,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                                                           error:&error];
                     NSManagedObjectContext * tempMOC = [[NSManagedObjectContext alloc] init];
                     [tempMOC setPersistentStoreCoordinator:tempCoordinator];
-                    DDLogVerbose(@"Assistant for map: %@", mappingModelName);
+                    DDLogVerbose(@"-+- Assistant for map: %@", mappingModelName);
                     [MigrationAssistant
                         executeMigrationChangesFor:mappingModelName
                             InManagedObjectContext:tempMOC
@@ -1211,74 +1202,63 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                     [tempMOC release];
                     [tempCoordinator release];
                      
-                    
-                    
-            //------------------------------------
-            // Replace old database for new
-            NSError * error2 = nil;
-            NSFileManager * fileManager = [[NSFileManager alloc] init];
+                    // -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+                    // Replace old database for new:
 
-            if ([fileManager fileExistsAtPath:[persistentStoreUrl path]] == YES) {
-                if ([fileManager removeItemAtPath:[persistentStoreUrl path] error:&error2])
-                    DDLogInfo(@"Datastore removed");
-                else
-                    DDLogError(@"Datastore not removed");
-            } else {
-                DDLogError(@"Datastore doesn't exist!");
-            }
+                    NSError * error2 = nil;
+                    NSFileManager * fileManager = [[NSFileManager alloc] init];
 
-            if ([fileManager moveItemAtURL:destinationStoreURL toURL:persistentStoreUrl error:&error2]) {
-                DDLogInfo(@"Datastore moved");
-//                [self popUpDialog:@"Medusa sucessfully migrated your data from the previous version."];
-//                [NSApp terminate:nil];
-            } else {
-                DDLogError(@"Datastore not moved");
-            }
+                    if ([fileManager fileExistsAtPath:[persistentStoreUrl path]] == YES) {
+                        if ([fileManager removeItemAtPath:[persistentStoreUrl path] error:&error2])
+                            DDLogInfo(@"Datastore removed");
+                        else
+                            DDLogError(@"Datastore not removed");
+                    } else {
+                        DDLogError(@"Datastore doesn't exist!");
+                    }
 
-            [fileManager release];
-            //-------------------------------------
+                    if ([fileManager moveItemAtURL:destinationStoreURL toURL:persistentStoreUrl error:&error2]) {
+                        DDLogInfo(@"Datastore moved");
+                    } else {
+                        DDLogError(@"Datastore not moved");
+                    }
 
+                    [fileManager release];
                     
-                    
-                    
+                    // -   -   -   -   -   -   -   -   -   -   -   -   -   -   -   -
+
                 }
             }
+
+            //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+
             [originalVersionString release];
             [migrationManager release];
             
-            if (allOkay == YES)
+            if (allOkay == YES) {
                 [self popUpDialog:@"Medusa sucessfully migrated your data from the previous version."];
-            
-            
-            
-//            //------------------------------------
-//            // Replace old database for new
-//            NSError * error2 = nil;
-//            NSFileManager * fileManager = [[NSFileManager alloc] init];
-//            
-//            if ([fileManager fileExistsAtPath:[persistentStoreUrl path]] == YES) {
-//                if ([fileManager removeItemAtPath:[persistentStoreUrl path] error:&error2])
-//                    DDLogInfo(@"Datastore removed");
-//                else
-//                    DDLogError(@"Datastore not removed");
-//            } else {
-//                DDLogError(@"Datastore doesn't exist!");
-//            }
-//            
-//            if ([fileManager moveItemAtURL:destinationStoreURL toURL:persistentStoreUrl error:&error2]) {
-//                DDLogInfo(@"Datastore moved");
-//                [self popUpDialog:@"Medusa sucessfully migrated your data from the previous version."];
-////                [NSApp terminate:nil];
-//            } else {
-//                DDLogError(@"Datastore not moved");
-//            }
-//
-//            [fileManager release];
-//            //-------------------------------------
+            }
         }
     }
 
     [bundlesVersionString release];
+
+    // -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
+    // A new coordinator:
+    // (An object that mediates between Persistent Stores and Managed Object
+    // Contexts as per the Managed Object Model)
+    NSPersistentStoreCoordinator * coordinator = [
+        [[NSPersistentStoreCoordinator alloc]
+             initWithManagedObjectModel:managedObjectModel
+        ] autorelease
+    ];
+
+// Lightweight migrations:
+//    NSDictionary * storeOptions = [NSDictionary dictionaryWithObjectsAndKeys:
+//       [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
+//       [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
+//    nil];
+    
     [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:persistentStoreUrl options:nil error:&error];
     __persistentStoreCoordinator = [coordinator retain];
     return __persistentStoreCoordinator;

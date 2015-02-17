@@ -48,7 +48,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                                       entityMapping:(NSEntityMapping *)mapping
                                             manager:(NSMigrationManager *)manager
                                               error:(NSError **)error {
-    DDLogInfo(@"Migrating Emulator");
+    DDLogVerbose(@" + Migrating Emulator");
 
     // Create a new object for the model context
     
@@ -61,7 +61,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //    DDLogVerbose(@"New data will be stored here: %@", newObject);
     
     for(id key in [[[sInstance entity] attributesByName] allKeys]) {
-        NSLog(@"key=%@ value=%@", key, [sInstance valueForKey:key]);
+//        NSLog(@"key=%@ value=%@", key, [sInstance valueForKey:key]);
         [newObject setValue:[sInstance valueForKey:key] forKey:key];
     }
 
@@ -77,12 +77,12 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         [newObject setValue:[sInstance valueForKey:@"appMissing"] forKey:@"appMissing"];
     }
     @catch (NSException * e) {
-        DDLogVerbose(@"No key for appMissing");
+        DDLogVerbose(@" | No key for appMissing");
         @try {
             [newObject setValue:[sInstance valueForKey:@"appAlias"] forKey:@"appAlias"];
         }
         @catch (NSException * e) {
-            DDLogVerbose(@"No key for appAlias");
+            DDLogVerbose(@" | No key for appAlias");
             NSString * escapedPath = [[sInstance valueForKey:@"readablePath"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
             NSData * fileAlias = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
             [newObject setValue:fileAlias forKey:@"appAlias"];
@@ -95,7 +95,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
                     [newObject setValue:[NSNumber numberWithBool:NO] forKey:@"appMissing"];
             }
             @catch (NSException * e) {
-                DDLogVerbose(@"No key for appMissing");
+                DDLogVerbose(@" || No key for appMissing");
             }
             
         }
@@ -103,7 +103,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
     
 //    [newObject setValue:[NSNumber numberWithBool:NO] forKey:@"missing"];
     
-    DDLogVerbose(@"\n======================\nNew object:\n%@\n======================\n", newObject);
+//    DDLogVerbose(@"\n======================\nNew object:\n%@\n======================\n", newObject);
     
     BOOL validated = NO;
     
@@ -111,10 +111,10 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         validated = [self performCustomValidationForEntityMapping:mapping manager:manager error:error];
     }
     @catch (NSException * e) {
-        DDLogVerbose(@"Error on validating: %@", error);
+        DDLogVerbose(@" || Error on validating: %@", error);
     }
     @finally {
-        DDLogVerbose(@"Validation result: %@", validated ? @"Fine" : @"Fucked");
+        DDLogVerbose(@" | Validation result: %@", validated ? @"Fine" : @"Fucked");
     }
     
     [manager associateSourceInstance:sInstance withDestinationInstance:newObject forEntityMapping:mapping];
