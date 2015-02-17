@@ -39,6 +39,8 @@
     int disksParsed;
     int filesRejected;
     int depthReached;
+    // Properties:
+    IBOutlet NSTextField * reportField;
 }
 
 @property (assign) IBOutlet NSTextField * reportField;

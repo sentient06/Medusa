@@ -176,10 +176,13 @@ enum newVirtualMachineIdentifiers {
 
 - (IBAction)savePreferencesFile:(id)sender;
 - (IBAction)openPreferencesFileFolder:(id)sender;
+- (IBAction)stopEmulator:(VirtualMachinesEntityModel *)virtualMachine;
 - (IBAction)killEmulator:(id)sender;
+- (IBAction)run:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender;
 - (IBAction)showInformationWindow:(id)sender;
 - (IBAction)toggleEmulator:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender;
-- (IBAction)stopEmulator:(VirtualMachinesEntityModel *)virtualMachine;
 - (IBAction)toggleVirtualMachine:(id)sender;
+
+- (void)performCleanUp;
 
 @end

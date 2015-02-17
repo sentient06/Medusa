@@ -32,7 +32,9 @@
 
 #import "DropView.h"
 
-@interface DropEmulatorView : DropView
+@interface DropEmulatorView : DropView {
+    IBOutlet NSObjectController * currentMachine;
+}
 
 @property (assign) IBOutlet NSObjectController * currentMachine;
 
