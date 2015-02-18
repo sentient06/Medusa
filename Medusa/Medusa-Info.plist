@@ -28,14 +28,16 @@
 	<string>1</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
+	<key>NSHighResolutionCapable</key>
+	<false/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2013 Giancarlo Mariot. All rights reserved. Released under BSD 2-Clause License</string>
+	<string>Copyright © 2012-2015 Giancarlo Mariot. All rights reserved. Released under BSD 2-Clause License</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://medusa.mariot.me.uk/changelog.xml</string>
+	<string>https://raw.githubusercontent.com/sentient06/Medusa/master/changelog.rss</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 </dict>

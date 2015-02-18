@@ -53,7 +53,7 @@
         alias = [self fixAliasAndReturn];
     else
         alias = [self appAlias];
-    NSString * resolvedFilePath = [FileManager resolveAlias:[self appAlias]];
+    NSString * resolvedFilePath = [FileManager resolveAlias:alias];
     NSLog(@"App alias: %@", [self appAlias]);
     NSLog(@"Missing: %@", resolvedFilePath == nil ? @"YES" : @"NO");
     if (resolvedFilePath == nil)
