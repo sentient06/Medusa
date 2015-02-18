@@ -12,69 +12,86 @@
 		402206621A91FD8300F0FC40 /* RomFilesMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 402206611A91FD8300F0FC40 /* RomFilesMigrationPolicy.m */; };
 		402206651A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 402206641A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m */; };
 		4028B65D19DAD57C008CD002 /* EmulatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028B65C19DAD57C008CD002 /* EmulatorModel.m */; };
-		40394FD619E7E0F7003893E1 /* ToggleOffDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 40394FD219E7E0F7003893E1 /* ToggleOffDown.png */; };
-		40394FD719E7E0F7003893E1 /* ToggleOffUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 40394FD319E7E0F7003893E1 /* ToggleOffUp.png */; };
-		40394FD819E7E0F7003893E1 /* ToggleOnDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 40394FD419E7E0F7003893E1 /* ToggleOnDown.png */; };
-		40394FD919E7E0F7003893E1 /* ToggleOnUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 40394FD519E7E0F7003893E1 /* ToggleOnUp.png */; };
 		40394FDC19E7E653003893E1 /* ToggleButtonImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40394FDB19E7E653003893E1 /* ToggleButtonImageTransformer.m */; };
-		404286E11A8A0847003F3B92 /* Target.png in Resources */ = {isa = PBXBuildFile; fileRef = 404286E01A8A0847003F3B92 /* Target.png */; };
 		4047CFAF194B4C0A003847C7 /* BoolValueToRedColourTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */; };
 		404E76A91A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */; };
-		404E76AD1A9367D100240E35 /* FilesIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 404E76AC1A9367D100240E35 /* FilesIcon.png */; };
-		404E76AF1A93684100240E35 /* FilesIcon16.png in Resources */ = {isa = PBXBuildFile; fileRef = 404E76AE1A93684100240E35 /* FilesIcon16.png */; };
-		404E76B11A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns in Resources */ = {isa = PBXBuildFile; fileRef = 404E76B01A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns */; };
 		404EC1B51A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */; };
 		404EC1B61A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */; };
 		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
-		406A761319F27E4D0087CDDC /* Drive.icns in Resources */ = {isa = PBXBuildFile; fileRef = 406A761219F27E4D0087CDDC /* Drive.icns */; };
-		408D8B7219D60DAA00100A14 /* OnOff.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7119D60DAA00100A14 /* OnOff.png */; };
-		408D8B7719D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7319D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png */; };
-		408D8B7819D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7419D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png */; };
-		408D8B7919D6C41D00100A14 /* ColouredHappyMac2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7519D6C41D00100A14 /* ColouredHappyMac2x.png */; };
-		408D8B7A19D6C41D00100A14 /* ColouredHappyMacLocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7619D6C41D00100A14 /* ColouredHappyMacLocked.png */; };
+		4062B0121A9514ED001DC474 /* medusaHelp in Resources */ = {isa = PBXBuildFile; fileRef = 4062B0111A9514ED001DC474 /* medusaHelp */; };
+		406E55A81A95233F00012DDD /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55681A95233F00012DDD /* linenPattern.png */; };
+		406E55A91A95233F00012DDD /* ToggleOffDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556A1A95233F00012DDD /* ToggleOffDown.png */; };
+		406E55AA1A95233F00012DDD /* ToggleOffUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556B1A95233F00012DDD /* ToggleOffUp.png */; };
+		406E55AB1A95233F00012DDD /* ToggleOnDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556C1A95233F00012DDD /* ToggleOnDown.png */; };
+		406E55AC1A95233F00012DDD /* ToggleOnUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556D1A95233F00012DDD /* ToggleOnUp.png */; };
+		406E55AD1A95233F00012DDD /* ClassicFolderIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */; };
+		406E55AE1A95233F00012DDD /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 406E55701A95233F00012DDD /* MedusaIcon5.icns */; };
+		406E55AF1A95233F00012DDD /* 001 - Apple Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55721A95233F00012DDD /* 001 - Apple Keyboard.gif */; };
+		406E55B01A95233F00012DDD /* 002 - Apple Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55731A95233F00012DDD /* 002 - Apple Extended Keyboard.gif */; };
+		406E55B11A95233F00012DDD /* 003 - Macintosh 512K Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55741A95233F00012DDD /* 003 - Macintosh 512K Keyboard.gif */; };
+		406E55B21A95233F00012DDD /* 004 - Apple ISO Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55751A95233F00012DDD /* 004 - Apple ISO Keyboard.gif */; };
+		406E55B31A95233F00012DDD /* 005 - Apple ISO Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55761A95233F00012DDD /* 005 - Apple ISO Extended Keyboard.gif */; };
+		406E55B41A95233F00012DDD /* 006 - Macintosh Portable Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55771A95233F00012DDD /* 006 - Macintosh Portable Keyboard.gif */; };
+		406E55B51A95233F00012DDD /* 007 - Macintosh Portable International Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55781A95233F00012DDD /* 007 - Macintosh Portable International Keyboard.gif */; };
+		406E55B61A95233F00012DDD /* 008 - Macintosh Keyboard II.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55791A95233F00012DDD /* 008 - Macintosh Keyboard II.gif */; };
+		406E55B71A95233F00012DDD /* 009 - Macintosh International Keyboard II.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E557A1A95233F00012DDD /* 009 - Macintosh International Keyboard II.gif */; };
+		406E55B81A95233F00012DDD /* 010 - Unknown Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E557B1A95233F00012DDD /* 010 - Unknown Keyboard.gif */; };
+		406E55B91A95233F00012DDD /* 011 - Macintosh Plus Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E557C1A95233F00012DDD /* 011 - Macintosh Plus Keyboard.gif */; };
+		406E55BA1A95233F00012DDD /* 012 - PowerBook Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E557D1A95233F00012DDD /* 012 - PowerBook Keyboard.gif */; };
+		406E55BB1A95233F00012DDD /* 013 - PowerBook ISO Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E557E1A95233F00012DDD /* 013 - PowerBook ISO Keyboard.gif */; };
+		406E55BC1A95233F00012DDD /* 014 - Apple Adjustable Numeric Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E557F1A95233F00012DDD /* 014 - Apple Adjustable Numeric Keyboard.gif */; };
+		406E55BD1A95233F00012DDD /* 016 - Apple Adjustable Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55801A95233F00012DDD /* 016 - Apple Adjustable Keyboard.gif */; };
+		406E55BE1A95233F00012DDD /* 017 - Apple Adjustable ISO Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55811A95233F00012DDD /* 017 - Apple Adjustable ISO Keyboard.gif */; };
+		406E55BF1A95233F00012DDD /* 020 - PowerBook Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55821A95233F00012DDD /* 020 - PowerBook Extended Keyboard.gif */; };
+		406E55C01A95233F00012DDD /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55831A95233F00012DDD /* 024 - PowerBook ISO Extended Keyboard.gif */; };
+		406E55C11A95233F00012DDD /* 259 - Macintosh 512K International Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55841A95233F00012DDD /* 259 - Macintosh 512K International Keyboard.gif */; };
+		406E55CC1A95233F00012DDD /* ArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55911A95233F00012DDD /* ArrowRight.png */; };
+		406E55CD1A95233F00012DDD /* Clone.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55921A95233F00012DDD /* Clone.png */; };
+		406E55CE1A95233F00012DDD /* FilesIcon16.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55931A95233F00012DDD /* FilesIcon16.png */; };
+		406E55D01A95233F00012DDD /* Configuration.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55961A95233F00012DDD /* Configuration.png */; };
+		406E55D11A95233F00012DDD /* Display.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55971A95233F00012DDD /* Display.png */; };
+		406E55D21A95233F00012DDD /* Drive.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55981A95233F00012DDD /* Drive.png */; };
+		406E55D31A95233F00012DDD /* Emulators.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55991A95233F00012DDD /* Emulators.png */; };
+		406E55D41A95233F00012DDD /* ErrorIconClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E559A1A95233F00012DDD /* ErrorIconClassic.png */; };
+		406E55D51A95233F00012DDD /* GenericNetworkIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E559B1A95233F00012DDD /* GenericNetworkIcon.png */; };
+		406E55D61A95233F00012DDD /* GenericQuestionMarkIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E559C1A95233F00012DDD /* GenericQuestionMarkIcon.png */; };
+		406E55D71A95233F00012DDD /* HDClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E559D1A95233F00012DDD /* HDClassic.png */; };
+		406E55D81A95233F00012DDD /* HFSFileIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E559E1A95233F00012DDD /* HFSFileIcon.png */; };
+		406E55D91A95233F00012DDD /* Info.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E559F1A95233F00012DDD /* Info.png */; };
+		406E55DA1A95233F00012DDD /* KeyboardMouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55A01A95233F00012DDD /* KeyboardMouse.png */; };
+		406E55DB1A95233F00012DDD /* RecentDocumentsFolderIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55A11A95233F00012DDD /* RecentDocumentsFolderIcon.png */; };
+		406E55DC1A95233F00012DDD /* RomFile.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55A21A95233F00012DDD /* RomFile.png */; };
+		406E55DD1A95233F00012DDD /* ROMImageIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55A31A95233F00012DDD /* ROMImageIcon.png */; };
+		406E55DE1A95233F00012DDD /* RubbishBinClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55A41A95233F00012DDD /* RubbishBinClassic.png */; };
+		406E55DF1A95233F00012DDD /* RubbishFullClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55A51A95233F00012DDD /* RubbishFullClassic.png */; };
+		406E55E01A95233F00012DDD /* Shared.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55A61A95233F00012DDD /* Shared.png */; };
+		406E55E11A95233F00012DDD /* Unsupported.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55A71A95233F00012DDD /* Unsupported.png */; };
+		406E55E31A95238100012DDD /* Crosshair.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55E21A95238100012DDD /* Crosshair.png */; };
+		406E56021A9525F100012DDD /* BlackAndWhiteHappyMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55F81A9525F100012DDD /* BlackAndWhiteHappyMac.png */; };
+		406E56031A9525F100012DDD /* BlackAndWhiteHappyMacLocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55F91A9525F100012DDD /* BlackAndWhiteHappyMacLocked.png */; };
+		406E56041A9525F100012DDD /* ColouredHappyMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55FA1A9525F100012DDD /* ColouredHappyMac.png */; };
+		406E56051A9525F100012DDD /* ColouredHappyMacLocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55FB1A9525F100012DDD /* ColouredHappyMacLocked.png */; };
+		406E56061A9525F100012DDD /* DeadMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55FC1A9525F100012DDD /* DeadMac.png */; };
+		406E56071A9525F100012DDD /* MiniVMacMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55FD1A9525F100012DDD /* MiniVMacMac.png */; };
+		406E56081A9525F100012DDD /* newVm.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55FE1A9525F100012DDD /* newVm.png */; };
+		406E56091A9525F100012DDD /* noDiskBW.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55FF1A9525F100012DDD /* noDiskBW.png */; };
+		406E560A1A9525F100012DDD /* noDiskColour.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E56001A9525F100012DDD /* noDiskColour.png */; };
+		406E560B1A9525F100012DDD /* QuestionMarkMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E56011A9525F100012DDD /* QuestionMarkMac.png */; };
 		408D8B7D19D6F7D300100A14 /* BasiliskII_keycodes in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7C19D6F7D300100A14 /* BasiliskII_keycodes */; };
-		408D8B7F19D7448100100A14 /* KeyboardMouse.png in Resources */ = {isa = PBXBuildFile; fileRef = 408D8B7E19D7448000100A14 /* KeyboardMouse.png */; };
-		4096510319D49B7A00D8AD39 /* ArrowRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 4096510219D49B7A00D8AD39 /* ArrowRight.png */; };
-		4096510519D49EFF00D8AD39 /* Magnifier.png in Resources */ = {isa = PBXBuildFile; fileRef = 4096510419D49EFF00D8AD39 /* Magnifier.png */; };
 		4096FFDA1A9233360016BE57 /* Medusa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4096FFD41A9233360016BE57 /* Medusa.xcdatamodeld */; };
 		40AAA30219E7D16900EFFB00 /* VMListButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AAA30119E7D16900EFFB00 /* VMListButtonCell.m */; };
 		40B0F3B61949B54100F5CEC7 /* RomEmulatorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0F3B51949B54100F5CEC7 /* RomEmulatorTransformer.m */; };
-		40B0F3B81949B7FA00F5CEC7 /* QuestionMarkMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B0F3B71949B7FA00F5CEC7 /* QuestionMarkMac.png */; };
-		40B0F3BA1949B80000F5CEC7 /* MiniVMacMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 40B0F3B91949B80000F5CEC7 /* MiniVMacMac.png */; };
 		40B0F3BD1949BA0300F5CEC7 /* RomCategoryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0F3BC1949BA0300F5CEC7 /* RomCategoryTransformer.m */; };
 		810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */; };
 		81134C4415540B2900785866 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesController.m */; };
 		811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 811C770818369E7800C681C6 /* MacintoshModelModel.m */; };
 		811EF6EB1804B4160011DDBD /* KeyboardLayoutValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 811EF6EA1804B4160011DDBD /* KeyboardLayoutValueTransformer.m */; };
-		8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8126596817D724DE00395990 /* MedusaIcon5.icns */; };
 		812A83A217EF5FF100B355BD /* DiskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 812A83A117EF5FF000B355BD /* DiskController.m */; };
 		812AFB4E1833F57600C1FF36 /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 812AFB4D1833F57600C1FF36 /* NSData+MD5.m */; };
 		8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */; };
-		8132D41518048C4E0068428D /* 001 - Apple Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40218048C4E0068428D /* 001 - Apple Keyboard.gif */; };
-		8132D41618048C4E0068428D /* 002 - Apple Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40318048C4E0068428D /* 002 - Apple Extended Keyboard.gif */; };
-		8132D41718048C4E0068428D /* 003 - Macintosh 512K Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40418048C4E0068428D /* 003 - Macintosh 512K Keyboard.gif */; };
-		8132D41818048C4E0068428D /* 004 - Apple ISO Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40518048C4E0068428D /* 004 - Apple ISO Keyboard.gif */; };
-		8132D41918048C4E0068428D /* 005 - Apple ISO Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40618048C4E0068428D /* 005 - Apple ISO Extended Keyboard.gif */; };
-		8132D41A18048C4E0068428D /* 006 - Macintosh Portable Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40718048C4E0068428D /* 006 - Macintosh Portable Keyboard.gif */; };
-		8132D41B18048C4E0068428D /* 007 - Macintosh Portable International Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40818048C4E0068428D /* 007 - Macintosh Portable International Keyboard.gif */; };
-		8132D41C18048C4E0068428D /* 008 - Macintosh Keyboard II.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40918048C4E0068428D /* 008 - Macintosh Keyboard II.gif */; };
-		8132D41D18048C4E0068428D /* 009 - Macintosh International Keyboard II.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40A18048C4E0068428D /* 009 - Macintosh International Keyboard II.gif */; };
-		8132D41E18048C4E0068428D /* 010 - Unknown Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40B18048C4E0068428D /* 010 - Unknown Keyboard.gif */; };
-		8132D41F18048C4E0068428D /* 011 - Macintosh Plus Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40C18048C4E0068428D /* 011 - Macintosh Plus Keyboard.gif */; };
-		8132D42018048C4E0068428D /* 012 - PowerBook Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40D18048C4E0068428D /* 012 - PowerBook Keyboard.gif */; };
-		8132D42118048C4E0068428D /* 013 - PowerBook ISO Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40E18048C4E0068428D /* 013 - PowerBook ISO Keyboard.gif */; };
-		8132D42218048C4E0068428D /* 014 - Apple Adjustable Numeric Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D40F18048C4E0068428D /* 014 - Apple Adjustable Numeric Keyboard.gif */; };
-		8132D42318048C4E0068428D /* 016 - Apple Adjustable Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D41018048C4E0068428D /* 016 - Apple Adjustable Keyboard.gif */; };
-		8132D42418048C4E0068428D /* 017 - Apple Adjustable ISO Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D41118048C4E0068428D /* 017 - Apple Adjustable ISO Keyboard.gif */; };
-		8132D42518048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D41218048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif */; };
-		8132D42618048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D41318048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif */; };
-		8132D42718048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8132D41418048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif */; };
 		8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */; };
 		813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */; };
 		814804E817D5D56D0070DAD9 /* RomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomController.m */; };
-		814804F717D5FFD00070DAD9 /* ColouredHappyMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F417D5FFD00070DAD9 /* ColouredHappyMac.png */; };
-		814804F817D5FFD00070DAD9 /* BlackAndWhiteHappyMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804F517D5FFD00070DAD9 /* BlackAndWhiteHappyMac.png */; };
-		814804FB17D6022F0070DAD9 /* DeadMac.png in Resources */ = {isa = PBXBuildFile; fileRef = 814804FA17D6022F0070DAD9 /* DeadMac.png */; };
 		814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FAD881570ED0D008D3223 /* PreferencesWindowController.m */; };
 		8159C790154F1205001E43D4 /* DropRomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C78F154F1205001E43D4 /* DropRomView.m */; };
 		8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C797154F2E29001E43D4 /* DropDiskView.m */; };
@@ -83,19 +100,9 @@
 		8160BB0915502F74005F6DBF /* DiskIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0815502F74005F6DBF /* DiskIconValueTransformer.m */; };
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
 		8162FF4017EC4EDD000413C2 /* DropAllView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8162FF3F17EC4EDD000413C2 /* DropAllView.m */; };
-		816792A617D08F27002B991B /* newVm.icns in Resources */ = {isa = PBXBuildFile; fileRef = 816792A517D08F27002B991B /* newVm.icns */; };
 		8167977C17FAC76100E6F869 /* SettingsWindowTitleTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8167977B17FAC76100E6F869 /* SettingsWindowTitleTransformer.m */; };
 		8167978217FADA4E00E6F869 /* DropEmulatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8167978117FADA4D00E6F869 /* DropEmulatorView.m */; };
 		8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = 8168995917CE17CE00058B9F /* dsa_pub.pem */; };
-		8168996917CE2C7900058B9F /* Configuration.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995D17CE2C7800058B9F /* Configuration.icns */; };
-		8168996A17CE2C7900058B9F /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168995E17CE2C7800058B9F /* Display.icns */; };
-		8168996E17CE2C7900058B9F /* GenericQuestionMarkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */; };
-		8168996F17CE2C7900058B9F /* Info.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996317CE2C7900058B9F /* Info.icns */; };
-		8168997017CE2C7900058B9F /* RomFile.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996417CE2C7900058B9F /* RomFile.icns */; };
-		8168997117CE2C7900058B9F /* RomImageDocument.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996517CE2C7900058B9F /* RomImageDocument.icns */; };
-		8168997217CE2C7900058B9F /* Shared.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996617CE2C7900058B9F /* Shared.icns */; };
-		8168997317CE2C7900058B9F /* Stop.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996717CE2C7900058B9F /* Stop.icns */; };
-		8168997417CE2C7900058B9F /* Unsupported.icns in Resources */ = {isa = PBXBuildFile; fileRef = 8168996817CE2C7900058B9F /* Unsupported.icns */; };
 		816BAF8A153863E400B68091 /* IconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 816BAF89153863E300B68091 /* IconValueTransformer.m */; };
 		816F654D15A19C6400687FA2 /* ManagedObjectCloner.m in Sources */ = {isa = PBXBuildFile; fileRef = 816F654C15A19C6400687FA2 /* ManagedObjectCloner.m */; };
 		81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81733FB2159F2ED000711709 /* AssetsWindow.xib */; };
@@ -108,18 +115,11 @@
 		81756F5C15347F2B00FCBA8E /* VirtualMachineWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81756F5B15347F2B00FCBA8E /* VirtualMachineWindowController.m */; };
 		81756F60153483C400FCBA8E /* VirtualMachineWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 81756F5F153483C400FCBA8E /* VirtualMachineWindow.xib */; };
 		8175CBE717D0D18C0003294E /* VMListTextCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8175CBE617D0D18C0003294E /* VMListTextCell.m */; };
-		8178DEC61804003D004CCC8B /* SettingsIconClassic16px.png in Resources */ = {isa = PBXBuildFile; fileRef = 8178DEC51804003D004CCC8B /* SettingsIconClassic16px.png */; };
-		817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 817CAF56153580100038E9A0 /* MedusaIcon.icns */; };
 		817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */; };
 		817E319D17D1078200131E2D /* VMListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMListScrollView.m */; };
-		818313F21802DA2000DACD71 /* Diskette.icns in Resources */ = {isa = PBXBuildFile; fileRef = 818313F11802DA2000DACD71 /* Diskette.icns */; };
 		8188A59217F97A6800BAB33B /* VirtualMachineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59117F97A6800BAB33B /* VirtualMachineController.m */; };
 		8188A59617F97A7A00BAB33B /* EmulatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorController.m */; };
-		81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */; };
-		819DB78317F9D213006E7367 /* Emulators.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DB78217F9D213006E7367 /* Emulators.icns */; };
 		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
-		819DC09217F1909200480073 /* HDClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DC09117F1909200480073 /* HDClassic.icns */; };
-		819DC09417F1926C00480073 /* RubbishBinClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = 819DC09317F1926C00480073 /* RubbishBinClassic.icns */; };
 		819DC09F17F1B9D500480073 /* BootableDiskTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC09E17F1B9D500480073 /* BootableDiskTransformer.m */; };
 		81A54CC217F0915900B1EFD0 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CB217F0915900B1EFD0 /* ASIDataCompressor.m */; };
 		81A54CC317F0915900B1EFD0 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CB417F0915900B1EFD0 /* ASIDataDecompressor.m */; };
@@ -135,31 +135,21 @@
 		81A54CF917F0AC1E00B1EFD0 /* DDFileLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CF517F0AC1E00B1EFD0 /* DDFileLogger.m */; };
 		81A54CFA17F0AC1E00B1EFD0 /* DDLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CF617F0AC1E00B1EFD0 /* DDLog.m */; };
 		81A54CFB17F0AC1E00B1EFD0 /* DDTTYLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CF717F0AC1E00B1EFD0 /* DDTTYLogger.m */; };
-		81AD5BBF17E4F9110072F4F1 /* noDiskBW.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */; };
-		81AD5BC017E4F9110072F4F1 /* noDiskColour.png in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */; };
-		81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */; };
-		81AD5BC517E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81AD5BC417E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns */; };
 		81B08F1C17F43FE5000954C6 /* ByteValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F1B17F43FE5000954C6 /* ByteValueTransformer.m */; };
 		81B08F2317F44198000954C6 /* DiskFormatValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2217F44198000954C6 /* DiskFormatValueTransformer.m */; };
 		81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2617F44648000954C6 /* BoolValueTransformer.m */; };
 		81BBBC5417F9B5B700C151FE /* EmulatorFamilyValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BBBC5317F9B5B700C151FE /* EmulatorFamilyValueTransformer.m */; };
-		81BBBC5717F9B72F00C151FE /* ErrorIconClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 81BBBC5617F9B72F00C151FE /* ErrorIconClassic.png */; };
-		81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 81C2B75117D646AB000E4A01 /* linenPattern.png */; };
 		81C84438153E183700E94443 /* DropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84437153E183700E94443 /* DropView.m */; };
 		81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */; };
 		81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81D733EB15A4AC8800DEA523 /* LinkedView.m */; };
 		81D733EF15A4AD6300DEA523 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D733EE15A4AD6300DEA523 /* QuartzCore.framework */; };
-		81DB8240159F91F8003D4C5D /* Clone.png in Resources */ = {isa = PBXBuildFile; fileRef = 81DB823F159F91F8003D4C5D /* Clone.png */; };
 		81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DB8248159FAED8003D4C5D /* AssetsWindowController.m */; };
-		81E02B1717FD97510091CDA1 /* Medusa.help in Resources */ = {isa = PBXBuildFile; fileRef = 81E02B1617FD97510091CDA1 /* Medusa.help */; };
 		81E3A26017FB2BFF0026B842 /* RomFileSizeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E3A25F17FB2BFF0026B842 /* RomFileSizeTransformer.m */; };
 		81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m */; };
 		81E84DF01565BE820002D4DA /* DiskFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEF1565BE820002D4DA /* DiskFilesEntityModel.m */; };
 		81E84DF91565BE820002D4DA /* RomFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DF81565BE820002D4DA /* RomFilesEntityModel.m */; };
-		81E9A44717F5D4EB008C2A31 /* RubbishFullClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 81E9A44617F5D4EB008C2A31 /* RubbishFullClassic.png */; };
 		81F0857617CF8DF000188A2E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
 		81F085E417CF8E9A00188A2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
-		81F9022418142AF90024DB8B /* ClassicFolderIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81F9022318142AF90024DB8B /* ClassicFolderIcon.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -186,33 +176,75 @@
 		402206641A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmulatorsMigrationPolicy.m; sourceTree = "<group>"; };
 		4028B65B19DAD57C008CD002 /* EmulatorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorModel.h; path = Models/EmulatorModel.h; sourceTree = "<group>"; };
 		4028B65C19DAD57C008CD002 /* EmulatorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorModel.m; path = Models/EmulatorModel.m; sourceTree = "<group>"; };
-		40394FD219E7E0F7003893E1 /* ToggleOffDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ToggleOffDown.png; path = Images/Buttons/Toggle/ToggleOffDown.png; sourceTree = "<group>"; };
-		40394FD319E7E0F7003893E1 /* ToggleOffUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ToggleOffUp.png; path = Images/Buttons/Toggle/ToggleOffUp.png; sourceTree = "<group>"; };
-		40394FD419E7E0F7003893E1 /* ToggleOnDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ToggleOnDown.png; path = Images/Buttons/Toggle/ToggleOnDown.png; sourceTree = "<group>"; };
-		40394FD519E7E0F7003893E1 /* ToggleOnUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ToggleOnUp.png; path = Images/Buttons/Toggle/ToggleOnUp.png; sourceTree = "<group>"; };
 		40394FDA19E7E653003893E1 /* ToggleButtonImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleButtonImageTransformer.h; path = TransformerControllers/ImageTransformers/ToggleButtonImageTransformer.h; sourceTree = "<group>"; };
 		40394FDB19E7E653003893E1 /* ToggleButtonImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToggleButtonImageTransformer.m; path = TransformerControllers/ImageTransformers/ToggleButtonImageTransformer.m; sourceTree = "<group>"; };
-		404286E01A8A0847003F3B92 /* Target.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Target.png; path = Images/SimpleIcons/Target.png; sourceTree = "<group>"; };
 		4047CFAD194B4C0A003847C7 /* BoolValueToRedColourTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToRedColourTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.h; sourceTree = "<group>"; };
 		4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToRedColourTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.m; sourceTree = "<group>"; };
 		404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel"; sourceTree = "<group>"; };
-		404E76AC1A9367D100240E35 /* FilesIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FilesIcon.png; path = Images/SimpleIcons/FilesIcon.png; sourceTree = "<group>"; };
-		404E76AE1A93684100240E35 /* FilesIcon16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FilesIcon16.png; path = Images/SimpleIcons/FilesIcon16.png; sourceTree = "<group>"; };
-		404E76B01A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = ROMImageIcon2SnowLeopard.icns; path = Images/Icons/ROMImageIcon2SnowLeopard.icns; sourceTree = "<group>"; };
 		404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel"; sourceTree = "<group>"; };
 		404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel"; sourceTree = "<group>"; };
 		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
 		405EDCB21945C71B00DA78CE /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = UtilitiesModels/FileManager.m; sourceTree = "<group>"; };
-		406A761219F27E4D0087CDDC /* Drive.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Drive.icns; path = Images/Icons/Drive.icns; sourceTree = "<group>"; };
-		408D8B7119D60DAA00100A14 /* OnOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = OnOff.png; path = Images/SimpleIcons/OnOff.png; sourceTree = "<group>"; };
-		408D8B7319D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackAndWhiteHappyMac2x.png; path = Images/RomIcons/BlackAndWhiteHappyMac2x.png; sourceTree = "<group>"; };
-		408D8B7419D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackAndWhiteHappyMacLocked.png; path = Images/RomIcons/BlackAndWhiteHappyMacLocked.png; sourceTree = "<group>"; };
-		408D8B7519D6C41D00100A14 /* ColouredHappyMac2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ColouredHappyMac2x.png; path = Images/RomIcons/ColouredHappyMac2x.png; sourceTree = "<group>"; };
-		408D8B7619D6C41D00100A14 /* ColouredHappyMacLocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ColouredHappyMacLocked.png; path = Images/RomIcons/ColouredHappyMacLocked.png; sourceTree = "<group>"; };
+		4062B0111A9514ED001DC474 /* medusaHelp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = medusaHelp; sourceTree = "<group>"; };
+		406E55681A95233F00012DDD /* linenPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linenPattern.png; sourceTree = "<group>"; };
+		406E556A1A95233F00012DDD /* ToggleOffDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOffDown.png; sourceTree = "<group>"; };
+		406E556B1A95233F00012DDD /* ToggleOffUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOffUp.png; sourceTree = "<group>"; };
+		406E556C1A95233F00012DDD /* ToggleOnDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOnDown.png; sourceTree = "<group>"; };
+		406E556D1A95233F00012DDD /* ToggleOnUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOnUp.png; sourceTree = "<group>"; };
+		406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ClassicFolderIcon.icns; sourceTree = "<group>"; };
+		406E55701A95233F00012DDD /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MedusaIcon5.icns; sourceTree = "<group>"; };
+		406E55721A95233F00012DDD /* 001 - Apple Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "001 - Apple Keyboard.gif"; sourceTree = "<group>"; };
+		406E55731A95233F00012DDD /* 002 - Apple Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "002 - Apple Extended Keyboard.gif"; sourceTree = "<group>"; };
+		406E55741A95233F00012DDD /* 003 - Macintosh 512K Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "003 - Macintosh 512K Keyboard.gif"; sourceTree = "<group>"; };
+		406E55751A95233F00012DDD /* 004 - Apple ISO Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "004 - Apple ISO Keyboard.gif"; sourceTree = "<group>"; };
+		406E55761A95233F00012DDD /* 005 - Apple ISO Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "005 - Apple ISO Extended Keyboard.gif"; sourceTree = "<group>"; };
+		406E55771A95233F00012DDD /* 006 - Macintosh Portable Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "006 - Macintosh Portable Keyboard.gif"; sourceTree = "<group>"; };
+		406E55781A95233F00012DDD /* 007 - Macintosh Portable International Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "007 - Macintosh Portable International Keyboard.gif"; sourceTree = "<group>"; };
+		406E55791A95233F00012DDD /* 008 - Macintosh Keyboard II.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "008 - Macintosh Keyboard II.gif"; sourceTree = "<group>"; };
+		406E557A1A95233F00012DDD /* 009 - Macintosh International Keyboard II.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "009 - Macintosh International Keyboard II.gif"; sourceTree = "<group>"; };
+		406E557B1A95233F00012DDD /* 010 - Unknown Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "010 - Unknown Keyboard.gif"; sourceTree = "<group>"; };
+		406E557C1A95233F00012DDD /* 011 - Macintosh Plus Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "011 - Macintosh Plus Keyboard.gif"; sourceTree = "<group>"; };
+		406E557D1A95233F00012DDD /* 012 - PowerBook Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "012 - PowerBook Keyboard.gif"; sourceTree = "<group>"; };
+		406E557E1A95233F00012DDD /* 013 - PowerBook ISO Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "013 - PowerBook ISO Keyboard.gif"; sourceTree = "<group>"; };
+		406E557F1A95233F00012DDD /* 014 - Apple Adjustable Numeric Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "014 - Apple Adjustable Numeric Keyboard.gif"; sourceTree = "<group>"; };
+		406E55801A95233F00012DDD /* 016 - Apple Adjustable Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "016 - Apple Adjustable Keyboard.gif"; sourceTree = "<group>"; };
+		406E55811A95233F00012DDD /* 017 - Apple Adjustable ISO Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "017 - Apple Adjustable ISO Keyboard.gif"; sourceTree = "<group>"; };
+		406E55821A95233F00012DDD /* 020 - PowerBook Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "020 - PowerBook Extended Keyboard.gif"; sourceTree = "<group>"; };
+		406E55831A95233F00012DDD /* 024 - PowerBook ISO Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "024 - PowerBook ISO Extended Keyboard.gif"; sourceTree = "<group>"; };
+		406E55841A95233F00012DDD /* 259 - Macintosh 512K International Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "259 - Macintosh 512K International Keyboard.gif"; sourceTree = "<group>"; };
+		406E55911A95233F00012DDD /* ArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ArrowRight.png; sourceTree = "<group>"; };
+		406E55921A95233F00012DDD /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clone.png; sourceTree = "<group>"; };
+		406E55931A95233F00012DDD /* FilesIcon16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilesIcon16.png; sourceTree = "<group>"; };
+		406E55961A95233F00012DDD /* Configuration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Configuration.png; sourceTree = "<group>"; };
+		406E55971A95233F00012DDD /* Display.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Display.png; sourceTree = "<group>"; };
+		406E55981A95233F00012DDD /* Drive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Drive.png; sourceTree = "<group>"; };
+		406E55991A95233F00012DDD /* Emulators.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Emulators.png; sourceTree = "<group>"; };
+		406E559A1A95233F00012DDD /* ErrorIconClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ErrorIconClassic.png; sourceTree = "<group>"; };
+		406E559B1A95233F00012DDD /* GenericNetworkIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GenericNetworkIcon.png; sourceTree = "<group>"; };
+		406E559C1A95233F00012DDD /* GenericQuestionMarkIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GenericQuestionMarkIcon.png; sourceTree = "<group>"; };
+		406E559D1A95233F00012DDD /* HDClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HDClassic.png; sourceTree = "<group>"; };
+		406E559E1A95233F00012DDD /* HFSFileIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HFSFileIcon.png; sourceTree = "<group>"; };
+		406E559F1A95233F00012DDD /* Info.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Info.png; sourceTree = "<group>"; };
+		406E55A01A95233F00012DDD /* KeyboardMouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = KeyboardMouse.png; sourceTree = "<group>"; };
+		406E55A11A95233F00012DDD /* RecentDocumentsFolderIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RecentDocumentsFolderIcon.png; sourceTree = "<group>"; };
+		406E55A21A95233F00012DDD /* RomFile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RomFile.png; sourceTree = "<group>"; };
+		406E55A31A95233F00012DDD /* ROMImageIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ROMImageIcon.png; sourceTree = "<group>"; };
+		406E55A41A95233F00012DDD /* RubbishBinClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RubbishBinClassic.png; sourceTree = "<group>"; };
+		406E55A51A95233F00012DDD /* RubbishFullClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RubbishFullClassic.png; sourceTree = "<group>"; };
+		406E55A61A95233F00012DDD /* Shared.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Shared.png; sourceTree = "<group>"; };
+		406E55A71A95233F00012DDD /* Unsupported.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Unsupported.png; sourceTree = "<group>"; };
+		406E55E21A95238100012DDD /* Crosshair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Crosshair.png; sourceTree = "<group>"; };
+		406E55F81A9525F100012DDD /* BlackAndWhiteHappyMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackAndWhiteHappyMac.png; sourceTree = "<group>"; };
+		406E55F91A9525F100012DDD /* BlackAndWhiteHappyMacLocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BlackAndWhiteHappyMacLocked.png; sourceTree = "<group>"; };
+		406E55FA1A9525F100012DDD /* ColouredHappyMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColouredHappyMac.png; sourceTree = "<group>"; };
+		406E55FB1A9525F100012DDD /* ColouredHappyMacLocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ColouredHappyMacLocked.png; sourceTree = "<group>"; };
+		406E55FC1A9525F100012DDD /* DeadMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DeadMac.png; sourceTree = "<group>"; };
+		406E55FD1A9525F100012DDD /* MiniVMacMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MiniVMacMac.png; sourceTree = "<group>"; };
+		406E55FE1A9525F100012DDD /* newVm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = newVm.png; sourceTree = "<group>"; };
+		406E55FF1A9525F100012DDD /* noDiskBW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noDiskBW.png; sourceTree = "<group>"; };
+		406E56001A9525F100012DDD /* noDiskColour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = noDiskColour.png; sourceTree = "<group>"; };
+		406E56011A9525F100012DDD /* QuestionMarkMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = QuestionMarkMac.png; sourceTree = "<group>"; };
 		408D8B7C19D6F7D300100A14 /* BasiliskII_keycodes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = BasiliskII_keycodes; path = Resources/EmulatorFiles/BasiliskII_keycodes; sourceTree = "<group>"; };
-		408D8B7E19D7448000100A14 /* KeyboardMouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = KeyboardMouse.png; path = Images/Icons/KeyboardMouse.png; sourceTree = "<group>"; };
-		4096510219D49B7A00D8AD39 /* ArrowRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ArrowRight.png; path = Images/SimpleIcons/ArrowRight.png; sourceTree = "<group>"; };
-		4096510419D49EFF00D8AD39 /* Magnifier.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Magnifier.png; path = Images/SimpleIcons/Magnifier.png; sourceTree = "<group>"; };
 		4096FFD51A9233360016BE57 /* Medusa 1.0.2.3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.0.2.3.xcdatamodel"; sourceTree = "<group>"; };
 		4096FFD61A9233360016BE57 /* Medusa 1.1.0.8.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.1.0.8.xcdatamodel"; sourceTree = "<group>"; };
 		4096FFD71A9233360016BE57 /* Medusa 1.2.0.1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.1.xcdatamodel"; sourceTree = "<group>"; };
@@ -222,8 +254,6 @@
 		40AAA30119E7D16900EFFB00 /* VMListButtonCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMListButtonCell.m; path = UtilitiesControllers/VMListButtonCell.m; sourceTree = "<group>"; };
 		40B0F3B41949B54100F5CEC7 /* RomEmulatorTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomEmulatorTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomEmulatorTransformer.h; sourceTree = "<group>"; };
 		40B0F3B51949B54100F5CEC7 /* RomEmulatorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomEmulatorTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomEmulatorTransformer.m; sourceTree = "<group>"; };
-		40B0F3B71949B7FA00F5CEC7 /* QuestionMarkMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = QuestionMarkMac.png; path = Images/RomIcons/QuestionMarkMac.png; sourceTree = "<group>"; };
-		40B0F3B91949B80000F5CEC7 /* MiniVMacMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MiniVMacMac.png; path = Images/RomIcons/MiniVMacMac.png; sourceTree = "<group>"; };
 		40B0F3BB1949BA0300F5CEC7 /* RomCategoryTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomCategoryTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomCategoryTransformer.h; sourceTree = "<group>"; };
 		40B0F3BC1949BA0300F5CEC7 /* RomCategoryTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomCategoryTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomCategoryTransformer.m; sourceTree = "<group>"; };
 		810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineIconValueTransformer.h; path = TransformerControllers/VirtualMachineIconValueTransformer.h; sourceTree = "<group>"; };
@@ -233,41 +263,18 @@
 		811C770818369E7800C681C6 /* MacintoshModelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MacintoshModelModel.m; path = Models/MacintoshModelModel.m; sourceTree = "<group>"; };
 		811EF6E91804B4160011DDBD /* KeyboardLayoutValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardLayoutValueTransformer.h; path = TransformerControllers/ImageTransformers/KeyboardLayoutValueTransformer.h; sourceTree = "<group>"; };
 		811EF6EA1804B4160011DDBD /* KeyboardLayoutValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardLayoutValueTransformer.m; path = TransformerControllers/ImageTransformers/KeyboardLayoutValueTransformer.m; sourceTree = "<group>"; };
-		8126596817D724DE00395990 /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon5.icns; path = Medusa/Images/Icons/MedusaIcon5.icns; sourceTree = SOURCE_ROOT; };
 		812A83A017EF5FF000B355BD /* DiskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiskController.h; path = Models/DiskController.h; sourceTree = "<group>"; };
 		812A83A117EF5FF000B355BD /* DiskController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiskController.m; path = Models/DiskController.m; sourceTree = "<group>"; };
 		812AFB4C1833F57600C1FF36 /* NSData+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+MD5.h"; path = "Categories/NSData+MD5.h"; sourceTree = "<group>"; };
 		812AFB4D1833F57600C1FF36 /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+MD5.m"; path = "Categories/NSData+MD5.m"; sourceTree = "<group>"; };
 		8131AA4317E76F1500682879 /* ProcessorToJitTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessorToJitTransformer.h; path = TransformerControllers/ProcessorToJitTransformer.h; sourceTree = "<group>"; };
 		8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessorToJitTransformer.m; path = TransformerControllers/ProcessorToJitTransformer.m; sourceTree = "<group>"; };
-		8132D40218048C4E0068428D /* 001 - Apple Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "001 - Apple Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40318048C4E0068428D /* 002 - Apple Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "002 - Apple Extended Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40418048C4E0068428D /* 003 - Macintosh 512K Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "003 - Macintosh 512K Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40518048C4E0068428D /* 004 - Apple ISO Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "004 - Apple ISO Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40618048C4E0068428D /* 005 - Apple ISO Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "005 - Apple ISO Extended Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40718048C4E0068428D /* 006 - Macintosh Portable Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "006 - Macintosh Portable Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40818048C4E0068428D /* 007 - Macintosh Portable International Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "007 - Macintosh Portable International Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40918048C4E0068428D /* 008 - Macintosh Keyboard II.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "008 - Macintosh Keyboard II.gif"; sourceTree = "<group>"; };
-		8132D40A18048C4E0068428D /* 009 - Macintosh International Keyboard II.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "009 - Macintosh International Keyboard II.gif"; sourceTree = "<group>"; };
-		8132D40B18048C4E0068428D /* 010 - Unknown Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "010 - Unknown Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40C18048C4E0068428D /* 011 - Macintosh Plus Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "011 - Macintosh Plus Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40D18048C4E0068428D /* 012 - PowerBook Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "012 - PowerBook Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40E18048C4E0068428D /* 013 - PowerBook ISO Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "013 - PowerBook ISO Keyboard.gif"; sourceTree = "<group>"; };
-		8132D40F18048C4E0068428D /* 014 - Apple Adjustable Numeric Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "014 - Apple Adjustable Numeric Keyboard.gif"; sourceTree = "<group>"; };
-		8132D41018048C4E0068428D /* 016 - Apple Adjustable Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "016 - Apple Adjustable Keyboard.gif"; sourceTree = "<group>"; };
-		8132D41118048C4E0068428D /* 017 - Apple Adjustable ISO Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "017 - Apple Adjustable ISO Keyboard.gif"; sourceTree = "<group>"; };
-		8132D41218048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "020 - PowerBook Extended Keyboard.gif"; sourceTree = "<group>"; };
-		8132D41318048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "024 - PowerBook ISO Extended Keyboard.gif"; sourceTree = "<group>"; };
-		8132D41418048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "259 - Macintosh 512K International Keyboard.gif"; sourceTree = "<group>"; };
 		8139BB4B1826BCA0003BAD98 /* HelpDocumentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpDocumentationController.h; path = UtilitiesControllers/HelpDocumentationController.h; sourceTree = "<group>"; };
 		8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpDocumentationController.m; path = UtilitiesControllers/HelpDocumentationController.m; sourceTree = "<group>"; };
 		813DB9C817F5AABE00CB7EA2 /* EmulatorsEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorsEntityModel.h; path = Models/EmulatorsEntityModel.h; sourceTree = "<group>"; };
 		813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorsEntityModel.m; path = Models/EmulatorsEntityModel.m; sourceTree = "<group>"; };
 		814804E617D5D56D0070DAD9 /* RomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomController.h; path = Models/RomController.h; sourceTree = "<group>"; };
 		814804E717D5D56D0070DAD9 /* RomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomController.m; path = Models/RomController.m; sourceTree = "<group>"; };
-		814804F417D5FFD00070DAD9 /* ColouredHappyMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ColouredHappyMac.png; path = Images/RomIcons/ColouredHappyMac.png; sourceTree = "<group>"; };
-		814804F517D5FFD00070DAD9 /* BlackAndWhiteHappyMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = BlackAndWhiteHappyMac.png; path = Images/RomIcons/BlackAndWhiteHappyMac.png; sourceTree = "<group>"; };
-		814804FA17D6022F0070DAD9 /* DeadMac.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DeadMac.png; path = Images/RomIcons/DeadMac.png; sourceTree = "<group>"; };
 		814FAD871570ED0D008D3223 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = WindowControllers/PreferencesWindowController.h; sourceTree = "<group>"; };
 		814FAD881570ED0D008D3223 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = WindowControllers/PreferencesWindowController.m; sourceTree = "<group>"; };
 		8159C78E154F1205001E43D4 /* DropRomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropRomView.h; path = SubClasses/DropRomView.h; sourceTree = "<group>"; };
@@ -283,22 +290,12 @@
 		8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomIconValueTransformer.m; path = TransformerControllers/RomIconValueTransformer.m; sourceTree = "<group>"; };
 		8162FF3E17EC4EDD000413C2 /* DropAllView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropAllView.h; path = SubClasses/DropAllView.h; sourceTree = "<group>"; };
 		8162FF3F17EC4EDD000413C2 /* DropAllView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropAllView.m; path = SubClasses/DropAllView.m; sourceTree = "<group>"; };
-		816792A517D08F27002B991B /* newVm.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = newVm.icns; path = Images/Icons/newVm.icns; sourceTree = "<group>"; };
 		8167977A17FAC76100E6F869 /* SettingsWindowTitleTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsWindowTitleTransformer.h; path = TransformerControllers/StringTransformers/SettingsWindowTitleTransformer.h; sourceTree = "<group>"; };
 		8167977B17FAC76100E6F869 /* SettingsWindowTitleTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsWindowTitleTransformer.m; path = TransformerControllers/StringTransformers/SettingsWindowTitleTransformer.m; sourceTree = "<group>"; };
 		8167978017FADA4D00E6F869 /* DropEmulatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropEmulatorView.h; path = SubClasses/DropEmulatorView.h; sourceTree = "<group>"; };
 		8167978117FADA4D00E6F869 /* DropEmulatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropEmulatorView.m; path = SubClasses/DropEmulatorView.m; sourceTree = "<group>"; };
 		8168994F17CE16AC00058B9F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Medusa/Frameworks/Sparkle.framework; sourceTree = "<group>"; };
 		8168995917CE17CE00058B9F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = Resources/SparkleKey/dsa_pub.pem; sourceTree = "<group>"; };
-		8168995D17CE2C7800058B9F /* Configuration.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Configuration.icns; path = Images/Icons/Configuration.icns; sourceTree = "<group>"; };
-		8168995E17CE2C7800058B9F /* Display.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Display.icns; path = Images/Icons/Display.icns; sourceTree = "<group>"; };
-		8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericQuestionMarkIcon.icns; path = Images/Icons/GenericQuestionMarkIcon.icns; sourceTree = "<group>"; };
-		8168996317CE2C7900058B9F /* Info.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Info.icns; path = Images/Icons/Info.icns; sourceTree = "<group>"; };
-		8168996417CE2C7900058B9F /* RomFile.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RomFile.icns; path = Images/Icons/RomFile.icns; sourceTree = "<group>"; };
-		8168996517CE2C7900058B9F /* RomImageDocument.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RomImageDocument.icns; path = Images/Icons/RomImageDocument.icns; sourceTree = "<group>"; };
-		8168996617CE2C7900058B9F /* Shared.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Shared.icns; path = Images/Icons/Shared.icns; sourceTree = "<group>"; };
-		8168996717CE2C7900058B9F /* Stop.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Stop.icns; path = Images/Icons/Stop.icns; sourceTree = "<group>"; };
-		8168996817CE2C7900058B9F /* Unsupported.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Unsupported.icns; path = Images/Icons/Unsupported.icns; sourceTree = "<group>"; };
 		816BAF88153863E300B68091 /* IconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IconValueTransformer.h; path = TransformerControllers/IconValueTransformer.h; sourceTree = "<group>"; };
 		816BAF89153863E300B68091 /* IconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IconValueTransformer.m; path = TransformerControllers/IconValueTransformer.m; sourceTree = "<group>"; };
 		816F654B15A19C6400687FA2 /* ManagedObjectCloner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ManagedObjectCloner.h; path = UtilitiesModels/ManagedObjectCloner.h; sourceTree = "<group>"; };
@@ -322,23 +319,16 @@
 		81756F5F153483C400FCBA8E /* VirtualMachineWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = VirtualMachineWindow.xib; path = Windows/VirtualMachineWindow.xib; sourceTree = "<group>"; };
 		8175CBE517D0D18C0003294E /* VMListTextCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMListTextCell.h; path = UtilitiesControllers/VMListTextCell.h; sourceTree = "<group>"; };
 		8175CBE617D0D18C0003294E /* VMListTextCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMListTextCell.m; path = UtilitiesControllers/VMListTextCell.m; sourceTree = "<group>"; };
-		8178DEC51804003D004CCC8B /* SettingsIconClassic16px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = SettingsIconClassic16px.png; path = Images/ClassicIcons/SettingsIconClassic16px.png; sourceTree = "<group>"; };
-		817CAF56153580100038E9A0 /* MedusaIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = MedusaIcon.icns; path = Medusa/Images/Icons/MedusaIcon.icns; sourceTree = SOURCE_ROOT; };
 		817CAF601535B5CB0038E9A0 /* TableLineInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableLineInformationController.h; path = UtilitiesControllers/TableLineInformationController.h; sourceTree = "<group>"; };
 		817CAF611535B5CB0038E9A0 /* TableLineInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableLineInformationController.m; path = UtilitiesControllers/TableLineInformationController.m; sourceTree = "<group>"; };
 		817E319B17D1078200131E2D /* VMListScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMListScrollView.h; path = UtilitiesControllers/VMListScrollView.h; sourceTree = "<group>"; };
 		817E319C17D1078200131E2D /* VMListScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMListScrollView.m; path = UtilitiesControllers/VMListScrollView.m; sourceTree = "<group>"; };
-		818313F11802DA2000DACD71 /* Diskette.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Diskette.icns; path = Images/ClassicIcons/Diskette.icns; sourceTree = "<group>"; };
 		8188A59017F97A6800BAB33B /* VirtualMachineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineController.h; path = Models/VirtualMachineController.h; sourceTree = "<group>"; };
 		8188A59117F97A6800BAB33B /* VirtualMachineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineController.m; path = Models/VirtualMachineController.m; sourceTree = "<group>"; };
 		8188A59417F97A7A00BAB33B /* EmulatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorController.h; path = Models/EmulatorController.h; sourceTree = "<group>"; };
 		8188A59517F97A7A00BAB33B /* EmulatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorController.m; path = Models/EmulatorController.m; sourceTree = "<group>"; };
-		81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = GenericNetworkIcon.icns; path = Images/Icons/GenericNetworkIcon.icns; sourceTree = "<group>"; };
-		819DB78217F9D213006E7367 /* Emulators.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = Emulators.icns; path = Images/Icons/Emulators.icns; sourceTree = "<group>"; };
 		819DC08717F18B7000480073 /* SortableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortableArrayController.h; path = SubClasses/SortableArrayController.h; sourceTree = "<group>"; };
 		819DC08817F18B7000480073 /* SortableArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortableArrayController.m; path = SubClasses/SortableArrayController.m; sourceTree = "<group>"; };
-		819DC09117F1909200480073 /* HDClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HDClassic.icns; path = Images/ClassicIcons/HDClassic.icns; sourceTree = "<group>"; };
-		819DC09317F1926C00480073 /* RubbishBinClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RubbishBinClassic.icns; path = Images/ClassicIcons/RubbishBinClassic.icns; sourceTree = "<group>"; };
 		819DC09D17F1B9D500480073 /* BootableDiskTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BootableDiskTransformer.h; path = TransformerControllers/BootableDiskTransformer.h; sourceTree = "<group>"; };
 		819DC09E17F1B9D500480073 /* BootableDiskTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BootableDiskTransformer.m; path = TransformerControllers/BootableDiskTransformer.m; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesController.h; path = Models/PreferencesController.h; sourceTree = "<group>"; };
@@ -371,10 +361,6 @@
 		81A54CF517F0AC1E00B1EFD0 /* DDFileLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDFileLogger.m; sourceTree = "<group>"; };
 		81A54CF617F0AC1E00B1EFD0 /* DDLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDLog.m; sourceTree = "<group>"; };
 		81A54CF717F0AC1E00B1EFD0 /* DDTTYLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDTTYLogger.m; sourceTree = "<group>"; };
-		81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noDiskBW.png; path = Images/Icons/noDiskBW.png; sourceTree = "<group>"; };
-		81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = noDiskColour.png; path = Images/Icons/noDiskColour.png; sourceTree = "<group>"; };
-		81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = HFSFileIcon.icns; path = Images/Icons/HFSFileIcon.icns; sourceTree = "<group>"; };
-		81AD5BC417E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = RecentDocumentsFolderIcon.icns; path = Images/Icons/RecentDocumentsFolderIcon.icns; sourceTree = "<group>"; };
 		81B08F1A17F43FE5000954C6 /* ByteValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ByteValueTransformer.h; path = TransformerControllers/ByteValueTransformer.h; sourceTree = "<group>"; };
 		81B08F1B17F43FE5000954C6 /* ByteValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ByteValueTransformer.m; path = TransformerControllers/ByteValueTransformer.m; sourceTree = "<group>"; };
 		81B08F2117F44198000954C6 /* DiskFormatValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiskFormatValueTransformer.h; path = TransformerControllers/EnumeratorTransformers/DiskFormatValueTransformer.h; sourceTree = "<group>"; };
@@ -383,8 +369,6 @@
 		81B08F2617F44648000954C6 /* BoolValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueTransformer.m; sourceTree = "<group>"; };
 		81BBBC5217F9B5B700C151FE /* EmulatorFamilyValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorFamilyValueTransformer.h; path = TransformerControllers/EnumeratorTransformers/EmulatorFamilyValueTransformer.h; sourceTree = "<group>"; };
 		81BBBC5317F9B5B700C151FE /* EmulatorFamilyValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorFamilyValueTransformer.m; path = TransformerControllers/EnumeratorTransformers/EmulatorFamilyValueTransformer.m; sourceTree = "<group>"; };
-		81BBBC5617F9B72F00C151FE /* ErrorIconClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ErrorIconClassic.png; path = Images/ClassicIcons/ErrorIconClassic.png; sourceTree = "<group>"; };
-		81C2B75117D646AB000E4A01 /* linenPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = linenPattern.png; path = Images/Backgrounds/linenPattern.png; sourceTree = "<group>"; };
 		81C84436153E183700E94443 /* DropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropView.h; path = SubClasses/DropView.h; sourceTree = "<group>"; };
 		81C84437153E183700E94443 /* DropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropView.m; path = SubClasses/DropView.m; sourceTree = "<group>"; };
 		81CE19CE17D63EA300596C79 /* RomFileConditionTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFileConditionTransformer.h; path = TransformerControllers/RomFileConditionTransformer.h; sourceTree = "<group>"; };
@@ -392,10 +376,8 @@
 		81D733EA15A4AC8800DEA523 /* LinkedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LinkedView.h; path = SubClasses/LinkedView.h; sourceTree = "<group>"; };
 		81D733EB15A4AC8800DEA523 /* LinkedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LinkedView.m; path = SubClasses/LinkedView.m; sourceTree = "<group>"; };
 		81D733EE15A4AD6300DEA523 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		81DB823F159F91F8003D4C5D /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Clone.png; path = Images/SimpleIcons/Clone.png; sourceTree = "<group>"; };
 		81DB8247159FAED8003D4C5D /* AssetsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AssetsWindowController.h; path = WindowControllers/AssetsWindowController.h; sourceTree = "<group>"; };
 		81DB8248159FAED8003D4C5D /* AssetsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetsWindowController.m; path = WindowControllers/AssetsWindowController.m; sourceTree = "<group>"; };
-		81E02B1617FD97510091CDA1 /* Medusa.help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Medusa.help; sourceTree = "<group>"; };
 		81E3A25E17FB2BFF0026B842 /* RomFileSizeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFileSizeTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomFileSizeTransformer.h; sourceTree = "<group>"; };
 		81E3A25F17FB2BFF0026B842 /* RomFileSizeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFileSizeTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomFileSizeTransformer.m; sourceTree = "<group>"; };
 		81E84DEB1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RelationshipVirtualMachinesDiskFilesEntityModel.h; path = Models/RelationshipVirtualMachinesDiskFilesEntityModel.h; sourceTree = "<group>"; };
@@ -404,8 +386,6 @@
 		81E84DEF1565BE820002D4DA /* DiskFilesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiskFilesEntityModel.m; path = Models/DiskFilesEntityModel.m; sourceTree = "<group>"; };
 		81E84DF71565BE820002D4DA /* RomFilesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFilesEntityModel.h; path = Models/RomFilesEntityModel.h; sourceTree = "<group>"; };
 		81E84DF81565BE820002D4DA /* RomFilesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFilesEntityModel.m; path = Models/RomFilesEntityModel.m; sourceTree = "<group>"; };
-		81E9A44617F5D4EB008C2A31 /* RubbishFullClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RubbishFullClassic.png; path = Images/ClassicIcons/RubbishFullClassic.png; sourceTree = "<group>"; };
-		81F9022318142AF90024DB8B /* ClassicFolderIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = ClassicFolderIcon.icns; path = Images/Icons/ClassicFolderIcon.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -445,15 +425,118 @@
 			path = MigrationPolicies;
 			sourceTree = "<group>";
 		};
-		40394FD119E7E0EB003893E1 /* Buttons */ = {
+		406E55671A95233F00012DDD /* Backgrounds */ = {
 			isa = PBXGroup;
 			children = (
-				40394FD219E7E0F7003893E1 /* ToggleOffDown.png */,
-				40394FD319E7E0F7003893E1 /* ToggleOffUp.png */,
-				40394FD419E7E0F7003893E1 /* ToggleOnDown.png */,
-				40394FD519E7E0F7003893E1 /* ToggleOnUp.png */,
+				406E55681A95233F00012DDD /* linenPattern.png */,
+			);
+			name = Backgrounds;
+			path = Images/Backgrounds;
+			sourceTree = "<group>";
+		};
+		406E55691A95233F00012DDD /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				406E556A1A95233F00012DDD /* ToggleOffDown.png */,
+				406E556B1A95233F00012DDD /* ToggleOffUp.png */,
+				406E556C1A95233F00012DDD /* ToggleOnDown.png */,
+				406E556D1A95233F00012DDD /* ToggleOnUp.png */,
 			);
 			name = Buttons;
+			path = Images/Buttons;
+			sourceTree = "<group>";
+		};
+		406E556E1A95233F00012DDD /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */,
+				406E55701A95233F00012DDD /* MedusaIcon5.icns */,
+			);
+			name = Icons;
+			path = Images/Icons;
+			sourceTree = "<group>";
+		};
+		406E55711A95233F00012DDD /* Keyboards */ = {
+			isa = PBXGroup;
+			children = (
+				406E55721A95233F00012DDD /* 001 - Apple Keyboard.gif */,
+				406E55731A95233F00012DDD /* 002 - Apple Extended Keyboard.gif */,
+				406E55741A95233F00012DDD /* 003 - Macintosh 512K Keyboard.gif */,
+				406E55751A95233F00012DDD /* 004 - Apple ISO Keyboard.gif */,
+				406E55761A95233F00012DDD /* 005 - Apple ISO Extended Keyboard.gif */,
+				406E55771A95233F00012DDD /* 006 - Macintosh Portable Keyboard.gif */,
+				406E55781A95233F00012DDD /* 007 - Macintosh Portable International Keyboard.gif */,
+				406E55791A95233F00012DDD /* 008 - Macintosh Keyboard II.gif */,
+				406E557A1A95233F00012DDD /* 009 - Macintosh International Keyboard II.gif */,
+				406E557B1A95233F00012DDD /* 010 - Unknown Keyboard.gif */,
+				406E557C1A95233F00012DDD /* 011 - Macintosh Plus Keyboard.gif */,
+				406E557D1A95233F00012DDD /* 012 - PowerBook Keyboard.gif */,
+				406E557E1A95233F00012DDD /* 013 - PowerBook ISO Keyboard.gif */,
+				406E557F1A95233F00012DDD /* 014 - Apple Adjustable Numeric Keyboard.gif */,
+				406E55801A95233F00012DDD /* 016 - Apple Adjustable Keyboard.gif */,
+				406E55811A95233F00012DDD /* 017 - Apple Adjustable ISO Keyboard.gif */,
+				406E55821A95233F00012DDD /* 020 - PowerBook Extended Keyboard.gif */,
+				406E55831A95233F00012DDD /* 024 - PowerBook ISO Extended Keyboard.gif */,
+				406E55841A95233F00012DDD /* 259 - Macintosh 512K International Keyboard.gif */,
+			);
+			name = Keyboards;
+			path = Images/Keyboards;
+			sourceTree = "<group>";
+		};
+		406E55851A95233F00012DDD /* RomIcons */ = {
+			isa = PBXGroup;
+			children = (
+				406E55F81A9525F100012DDD /* BlackAndWhiteHappyMac.png */,
+				406E55F91A9525F100012DDD /* BlackAndWhiteHappyMacLocked.png */,
+				406E55FA1A9525F100012DDD /* ColouredHappyMac.png */,
+				406E55FB1A9525F100012DDD /* ColouredHappyMacLocked.png */,
+				406E55FC1A9525F100012DDD /* DeadMac.png */,
+				406E55FD1A9525F100012DDD /* MiniVMacMac.png */,
+				406E55FE1A9525F100012DDD /* newVm.png */,
+				406E55FF1A9525F100012DDD /* noDiskBW.png */,
+				406E56001A9525F100012DDD /* noDiskColour.png */,
+				406E56011A9525F100012DDD /* QuestionMarkMac.png */,
+			);
+			name = RomIcons;
+			path = Images/RomIcons;
+			sourceTree = "<group>";
+		};
+		406E55901A95233F00012DDD /* SimpleIcons */ = {
+			isa = PBXGroup;
+			children = (
+				406E55E21A95238100012DDD /* Crosshair.png */,
+				406E55911A95233F00012DDD /* ArrowRight.png */,
+				406E55921A95233F00012DDD /* Clone.png */,
+				406E55931A95233F00012DDD /* FilesIcon16.png */,
+			);
+			name = SimpleIcons;
+			path = Images/SimpleIcons;
+			sourceTree = "<group>";
+		};
+		406E55951A95233F00012DDD /* TabIcons */ = {
+			isa = PBXGroup;
+			children = (
+				406E55961A95233F00012DDD /* Configuration.png */,
+				406E55971A95233F00012DDD /* Display.png */,
+				406E55981A95233F00012DDD /* Drive.png */,
+				406E55991A95233F00012DDD /* Emulators.png */,
+				406E559A1A95233F00012DDD /* ErrorIconClassic.png */,
+				406E559B1A95233F00012DDD /* GenericNetworkIcon.png */,
+				406E559C1A95233F00012DDD /* GenericQuestionMarkIcon.png */,
+				406E559D1A95233F00012DDD /* HDClassic.png */,
+				406E559E1A95233F00012DDD /* HFSFileIcon.png */,
+				406E559F1A95233F00012DDD /* Info.png */,
+				406E55A01A95233F00012DDD /* KeyboardMouse.png */,
+				406E55A11A95233F00012DDD /* RecentDocumentsFolderIcon.png */,
+				406E55A21A95233F00012DDD /* RomFile.png */,
+				406E55A31A95233F00012DDD /* ROMImageIcon.png */,
+				406E55A41A95233F00012DDD /* RubbishBinClassic.png */,
+				406E55A51A95233F00012DDD /* RubbishFullClassic.png */,
+				406E55A61A95233F00012DDD /* Shared.png */,
+				406E55A71A95233F00012DDD /* Unsupported.png */,
+			);
+			name = TabIcons;
+			path = Images/TabIcons;
 			sourceTree = "<group>";
 		};
 		408D8B7B19D6F7BD00100A14 /* EmulatorFiles */ = {
@@ -462,26 +545,6 @@
 				408D8B7C19D6F7D300100A14 /* BasiliskII_keycodes */,
 			);
 			name = EmulatorFiles;
-			sourceTree = "<group>";
-		};
-		4096510619D49F0400D8AD39 /* SimpleIcons */ = {
-			isa = PBXGroup;
-			children = (
-				408D8B7119D60DAA00100A14 /* OnOff.png */,
-				4096510419D49EFF00D8AD39 /* Magnifier.png */,
-				4096510219D49B7A00D8AD39 /* ArrowRight.png */,
-				81DB823F159F91F8003D4C5D /* Clone.png */,
-				404286E01A8A0847003F3B92 /* Target.png */,
-			);
-			name = SimpleIcons;
-			sourceTree = "<group>";
-		};
-		40E787B419E7DE7B0098583E /* Backgrounds */ = {
-			isa = PBXGroup;
-			children = (
-				81C2B75117D646AB000E4A01 /* linenPattern.png */,
-			);
-			name = Backgrounds;
 			sourceTree = "<group>";
 		};
 		810E38451554414300949BE1 /* DataModel */ = {
@@ -516,49 +579,6 @@
 				812AFB4D1833F57600C1FF36 /* NSData+MD5.m */,
 			);
 			name = Categories;
-			sourceTree = "<group>";
-		};
-		8132D40118048C4E0068428D /* Keyboards */ = {
-			isa = PBXGroup;
-			children = (
-				8132D40218048C4E0068428D /* 001 - Apple Keyboard.gif */,
-				8132D40318048C4E0068428D /* 002 - Apple Extended Keyboard.gif */,
-				8132D40418048C4E0068428D /* 003 - Macintosh 512K Keyboard.gif */,
-				8132D40518048C4E0068428D /* 004 - Apple ISO Keyboard.gif */,
-				8132D40618048C4E0068428D /* 005 - Apple ISO Extended Keyboard.gif */,
-				8132D40718048C4E0068428D /* 006 - Macintosh Portable Keyboard.gif */,
-				8132D40818048C4E0068428D /* 007 - Macintosh Portable International Keyboard.gif */,
-				8132D40918048C4E0068428D /* 008 - Macintosh Keyboard II.gif */,
-				8132D40A18048C4E0068428D /* 009 - Macintosh International Keyboard II.gif */,
-				8132D40B18048C4E0068428D /* 010 - Unknown Keyboard.gif */,
-				8132D40C18048C4E0068428D /* 011 - Macintosh Plus Keyboard.gif */,
-				8132D40D18048C4E0068428D /* 012 - PowerBook Keyboard.gif */,
-				8132D40E18048C4E0068428D /* 013 - PowerBook ISO Keyboard.gif */,
-				8132D40F18048C4E0068428D /* 014 - Apple Adjustable Numeric Keyboard.gif */,
-				8132D41018048C4E0068428D /* 016 - Apple Adjustable Keyboard.gif */,
-				8132D41118048C4E0068428D /* 017 - Apple Adjustable ISO Keyboard.gif */,
-				8132D41218048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif */,
-				8132D41318048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif */,
-				8132D41418048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif */,
-			);
-			name = Keyboards;
-			path = Images/Keyboards;
-			sourceTree = "<group>";
-		};
-		814804F217D5FFB40070DAD9 /* RomIcons */ = {
-			isa = PBXGroup;
-			children = (
-				408D8B7319D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png */,
-				408D8B7419D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png */,
-				408D8B7519D6C41D00100A14 /* ColouredHappyMac2x.png */,
-				408D8B7619D6C41D00100A14 /* ColouredHappyMacLocked.png */,
-				814804F417D5FFD00070DAD9 /* ColouredHappyMac.png */,
-				814804F517D5FFD00070DAD9 /* BlackAndWhiteHappyMac.png */,
-				814804FA17D6022F0070DAD9 /* DeadMac.png */,
-				40B0F3B91949B80000F5CEC7 /* MiniVMacMac.png */,
-				40B0F3B71949B7FA00F5CEC7 /* QuestionMarkMac.png */,
-			);
-			name = RomIcons;
 			sourceTree = "<group>";
 		};
 		815FEEF61536279000B9E5C5 /* WindowControllers */ = {
@@ -624,9 +644,9 @@
 		8168995717CE17AA00058B9F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4062B0111A9514ED001DC474 /* medusaHelp */,
 				408D8B7B19D6F7BD00100A14 /* EmulatorFiles */,
 				8168995817CE17B600058B9F /* SparkleKey */,
-				8190AC5817FC88520017198B /* MedusaHelp */,
 				81FAA927159F3968004F5F11 /* Images */,
 			);
 			name = Resources;
@@ -774,35 +794,6 @@
 			name = Views;
 			sourceTree = "<group>";
 		};
-		817CAF4015357EF90038E9A0 /* Icons */ = {
-			isa = PBXGroup;
-			children = (
-				406A761219F27E4D0087CDDC /* Drive.icns */,
-				408D8B7E19D7448000100A14 /* KeyboardMouse.png */,
-				81F9022318142AF90024DB8B /* ClassicFolderIcon.icns */,
-				819DB78217F9D213006E7367 /* Emulators.icns */,
-				81958E3917E7B58C00E73E92 /* GenericNetworkIcon.icns */,
-				81AD5BBD17E4F9110072F4F1 /* noDiskBW.png */,
-				81AD5BBE17E4F9110072F4F1 /* noDiskColour.png */,
-				81AD5BC217E4FF390072F4F1 /* HFSFileIcon.icns */,
-				8126596817D724DE00395990 /* MedusaIcon5.icns */,
-				817CAF56153580100038E9A0 /* MedusaIcon.icns */,
-				8168995D17CE2C7800058B9F /* Configuration.icns */,
-				8168995E17CE2C7800058B9F /* Display.icns */,
-				8168996217CE2C7900058B9F /* GenericQuestionMarkIcon.icns */,
-				8168996317CE2C7900058B9F /* Info.icns */,
-				816792A517D08F27002B991B /* newVm.icns */,
-				81AD5BC417E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns */,
-				8168996417CE2C7900058B9F /* RomFile.icns */,
-				8168996517CE2C7900058B9F /* RomImageDocument.icns */,
-				8168996617CE2C7900058B9F /* Shared.icns */,
-				8168996717CE2C7900058B9F /* Stop.icns */,
-				8168996817CE2C7900058B9F /* Unsupported.icns */,
-				404E76B01A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns */,
-			);
-			name = Icons;
-			sourceTree = "<group>";
-		};
 		818987D31538D41900A32B6A /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -813,15 +804,6 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
-		8190AC5817FC88520017198B /* MedusaHelp */ = {
-			isa = PBXGroup;
-			children = (
-				81E02B1617FD97510091CDA1 /* Medusa.help */,
-			);
-			name = MedusaHelp;
-			path = Resources/MedusaHelp;
-			sourceTree = "<group>";
-		};
 		819DC08B17F18B7300480073 /* ArrayController */ = {
 			isa = PBXGroup;
 			children = (
@@ -829,21 +811,6 @@
 				819DC08817F18B7000480073 /* SortableArrayController.m */,
 			);
 			name = ArrayController;
-			sourceTree = "<group>";
-		};
-		819DC09017F1906900480073 /* ClassicIcons */ = {
-			isa = PBXGroup;
-			children = (
-				818313F11802DA2000DACD71 /* Diskette.icns */,
-				819DC09117F1909200480073 /* HDClassic.icns */,
-				819DC09317F1926C00480073 /* RubbishBinClassic.icns */,
-				81E9A44617F5D4EB008C2A31 /* RubbishFullClassic.png */,
-				81BBBC5617F9B72F00C151FE /* ErrorIconClassic.png */,
-				8178DEC51804003D004CCC8B /* SettingsIconClassic16px.png */,
-				404E76AC1A9367D100240E35 /* FilesIcon.png */,
-				404E76AE1A93684100240E35 /* FilesIcon16.png */,
-			);
-			name = ClassicIcons;
 			sourceTree = "<group>";
 		};
 		81A54CAE17F0915900B1EFD0 /* ExternalWrappers */ = {
@@ -986,13 +953,13 @@
 		81FAA927159F3968004F5F11 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				40394FD119E7E0EB003893E1 /* Buttons */,
-				40E787B419E7DE7B0098583E /* Backgrounds */,
-				4096510619D49F0400D8AD39 /* SimpleIcons */,
-				819DC09017F1906900480073 /* ClassicIcons */,
-				814804F217D5FFB40070DAD9 /* RomIcons */,
-				817CAF4015357EF90038E9A0 /* Icons */,
-				8132D40118048C4E0068428D /* Keyboards */,
+				406E55671A95233F00012DDD /* Backgrounds */,
+				406E55691A95233F00012DDD /* Buttons */,
+				406E556E1A95233F00012DDD /* Icons */,
+				406E55711A95233F00012DDD /* Keyboards */,
+				406E55851A95233F00012DDD /* RomIcons */,
+				406E55901A95233F00012DDD /* SimpleIcons */,
+				406E55951A95233F00012DDD /* TabIcons */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -1078,83 +1045,73 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				406E55E01A95233F00012DDD /* Shared.png in Resources */,
+				406E55BC1A95233F00012DDD /* 014 - Apple Adjustable Numeric Keyboard.gif in Resources */,
 				81756F3D1534743500FCBA8E /* InfoPlist.strings in Resources */,
+				406E55DC1A95233F00012DDD /* RomFile.png in Resources */,
+				406E55BA1A95233F00012DDD /* 012 - PowerBook Keyboard.gif in Resources */,
+				406E56051A9525F100012DDD /* ColouredHappyMacLocked.png in Resources */,
+				406E55C11A95233F00012DDD /* 259 - Macintosh 512K International Keyboard.gif in Resources */,
+				406E55CE1A95233F00012DDD /* FilesIcon16.png in Resources */,
+				406E55DD1A95233F00012DDD /* ROMImageIcon.png in Resources */,
+				406E56081A9525F100012DDD /* newVm.png in Resources */,
+				406E56061A9525F100012DDD /* DeadMac.png in Resources */,
+				406E55D81A95233F00012DDD /* HFSFileIcon.png in Resources */,
+				406E55AF1A95233F00012DDD /* 001 - Apple Keyboard.gif in Resources */,
+				406E55D51A95233F00012DDD /* GenericNetworkIcon.png in Resources */,
+				406E55DA1A95233F00012DDD /* KeyboardMouse.png in Resources */,
+				406E56021A9525F100012DDD /* BlackAndWhiteHappyMac.png in Resources */,
+				406E560B1A9525F100012DDD /* QuestionMarkMac.png in Resources */,
+				406E55B01A95233F00012DDD /* 002 - Apple Extended Keyboard.gif in Resources */,
+				406E55D31A95233F00012DDD /* Emulators.png in Resources */,
+				406E55D21A95233F00012DDD /* Drive.png in Resources */,
+				406E55B91A95233F00012DDD /* 011 - Macintosh Plus Keyboard.gif in Resources */,
+				406E55AB1A95233F00012DDD /* ToggleOnDown.png in Resources */,
+				406E55E11A95233F00012DDD /* Unsupported.png in Resources */,
+				406E55D01A95233F00012DDD /* Configuration.png in Resources */,
+				406E55B11A95233F00012DDD /* 003 - Macintosh 512K Keyboard.gif in Resources */,
+				406E55A91A95233F00012DDD /* ToggleOffDown.png in Resources */,
+				406E55D91A95233F00012DDD /* Info.png in Resources */,
 				81756F431534743500FCBA8E /* Credits.rtf in Resources */,
-				408D8B7719D6C41D00100A14 /* BlackAndWhiteHappyMac2x.png in Resources */,
 				81756F491534743500FCBA8E /* MainMenu.xib in Resources */,
+				406E55CC1A95233F00012DDD /* ArrowRight.png in Resources */,
+				406E56031A9525F100012DDD /* BlackAndWhiteHappyMacLocked.png in Resources */,
+				406E55AC1A95233F00012DDD /* ToggleOnUp.png in Resources */,
+				406E55E31A95238100012DDD /* Crosshair.png in Resources */,
+				406E55CD1A95233F00012DDD /* Clone.png in Resources */,
+				406E55DB1A95233F00012DDD /* RecentDocumentsFolderIcon.png in Resources */,
+				406E55B61A95233F00012DDD /* 008 - Macintosh Keyboard II.gif in Resources */,
+				406E55BB1A95233F00012DDD /* 013 - PowerBook ISO Keyboard.gif in Resources */,
+				406E55AA1A95233F00012DDD /* ToggleOffUp.png in Resources */,
+				406E55A81A95233F00012DDD /* linenPattern.png in Resources */,
+				406E55B31A95233F00012DDD /* 005 - Apple ISO Extended Keyboard.gif in Resources */,
+				406E55D71A95233F00012DDD /* HDClassic.png in Resources */,
+				406E56091A9525F100012DDD /* noDiskBW.png in Resources */,
+				406E55B81A95233F00012DDD /* 010 - Unknown Keyboard.gif in Resources */,
+				406E55B21A95233F00012DDD /* 004 - Apple ISO Keyboard.gif in Resources */,
+				406E55C01A95233F00012DDD /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */,
+				406E55AE1A95233F00012DDD /* MedusaIcon5.icns in Resources */,
 				408D8B7D19D6F7D300100A14 /* BasiliskII_keycodes in Resources */,
+				406E55AD1A95233F00012DDD /* ClassicFolderIcon.icns in Resources */,
+				406E56041A9525F100012DDD /* ColouredHappyMac.png in Resources */,
 				81756F60153483C400FCBA8E /* VirtualMachineWindow.xib in Resources */,
-				817CAF57153580100038E9A0 /* MedusaIcon.icns in Resources */,
+				406E55DE1A95233F00012DDD /* RubbishBinClassic.png in Resources */,
+				406E56071A9525F100012DDD /* MiniVMacMac.png in Resources */,
+				406E560A1A9525F100012DDD /* noDiskColour.png in Resources */,
+				406E55D41A95233F00012DDD /* ErrorIconClassic.png in Resources */,
+				406E55B71A95233F00012DDD /* 009 - Macintosh International Keyboard II.gif in Resources */,
 				815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */,
 				81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */,
-				408D8B7819D6C41D00100A14 /* BlackAndWhiteHappyMacLocked.png in Resources */,
-				81DB8240159F91F8003D4C5D /* Clone.png in Resources */,
+				406E55D61A95233F00012DDD /* GenericQuestionMarkIcon.png in Resources */,
+				406E55B51A95233F00012DDD /* 007 - Macintosh Portable International Keyboard.gif in Resources */,
+				406E55D11A95233F00012DDD /* Display.png in Resources */,
+				406E55BF1A95233F00012DDD /* 020 - PowerBook Extended Keyboard.gif in Resources */,
 				8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */,
-				8168996917CE2C7900058B9F /* Configuration.icns in Resources */,
-				4096510319D49B7A00D8AD39 /* ArrowRight.png in Resources */,
-				8168996A17CE2C7900058B9F /* Display.icns in Resources */,
-				408D8B7A19D6C41D00100A14 /* ColouredHappyMacLocked.png in Resources */,
-				4096510519D49EFF00D8AD39 /* Magnifier.png in Resources */,
-				8168996E17CE2C7900058B9F /* GenericQuestionMarkIcon.icns in Resources */,
-				8168996F17CE2C7900058B9F /* Info.icns in Resources */,
-				8168997017CE2C7900058B9F /* RomFile.icns in Resources */,
-				8168997117CE2C7900058B9F /* RomImageDocument.icns in Resources */,
-				406A761319F27E4D0087CDDC /* Drive.icns in Resources */,
-				8168997217CE2C7900058B9F /* Shared.icns in Resources */,
-				40394FD919E7E0F7003893E1 /* ToggleOnUp.png in Resources */,
-				8168997317CE2C7900058B9F /* Stop.icns in Resources */,
-				8168997417CE2C7900058B9F /* Unsupported.icns in Resources */,
-				816792A617D08F27002B991B /* newVm.icns in Resources */,
-				814804F717D5FFD00070DAD9 /* ColouredHappyMac.png in Resources */,
-				814804F817D5FFD00070DAD9 /* BlackAndWhiteHappyMac.png in Resources */,
-				814804FB17D6022F0070DAD9 /* DeadMac.png in Resources */,
-				81C2B75217D646AB000E4A01 /* linenPattern.png in Resources */,
-				8126596917D724DE00395990 /* MedusaIcon5.icns in Resources */,
-				81AD5BBF17E4F9110072F4F1 /* noDiskBW.png in Resources */,
-				81AD5BC017E4F9110072F4F1 /* noDiskColour.png in Resources */,
-				81AD5BC317E4FF390072F4F1 /* HFSFileIcon.icns in Resources */,
-				81AD5BC517E5011B0072F4F1 /* RecentDocumentsFolderIcon.icns in Resources */,
-				81958E3A17E7B58C00E73E92 /* GenericNetworkIcon.icns in Resources */,
-				404E76AF1A93684100240E35 /* FilesIcon16.png in Resources */,
-				404E76B11A93714B00240E35 /* ROMImageIcon2SnowLeopard.icns in Resources */,
-				819DC09217F1909200480073 /* HDClassic.icns in Resources */,
-				819DC09417F1926C00480073 /* RubbishBinClassic.icns in Resources */,
-				81E9A44717F5D4EB008C2A31 /* RubbishFullClassic.png in Resources */,
-				81BBBC5717F9B72F00C151FE /* ErrorIconClassic.png in Resources */,
-				819DB78317F9D213006E7367 /* Emulators.icns in Resources */,
-				81E02B1717FD97510091CDA1 /* Medusa.help in Resources */,
-				818313F21802DA2000DACD71 /* Diskette.icns in Resources */,
-				8178DEC61804003D004CCC8B /* SettingsIconClassic16px.png in Resources */,
-				8132D41518048C4E0068428D /* 001 - Apple Keyboard.gif in Resources */,
-				8132D41618048C4E0068428D /* 002 - Apple Extended Keyboard.gif in Resources */,
-				40394FD819E7E0F7003893E1 /* ToggleOnDown.png in Resources */,
-				8132D41718048C4E0068428D /* 003 - Macintosh 512K Keyboard.gif in Resources */,
-				8132D41818048C4E0068428D /* 004 - Apple ISO Keyboard.gif in Resources */,
-				8132D41918048C4E0068428D /* 005 - Apple ISO Extended Keyboard.gif in Resources */,
-				8132D41A18048C4E0068428D /* 006 - Macintosh Portable Keyboard.gif in Resources */,
-				8132D41B18048C4E0068428D /* 007 - Macintosh Portable International Keyboard.gif in Resources */,
-				408D8B7219D60DAA00100A14 /* OnOff.png in Resources */,
-				40B0F3BA1949B80000F5CEC7 /* MiniVMacMac.png in Resources */,
-				408D8B7919D6C41D00100A14 /* ColouredHappyMac2x.png in Resources */,
-				8132D41C18048C4E0068428D /* 008 - Macintosh Keyboard II.gif in Resources */,
-				8132D41D18048C4E0068428D /* 009 - Macintosh International Keyboard II.gif in Resources */,
-				40B0F3B81949B7FA00F5CEC7 /* QuestionMarkMac.png in Resources */,
-				8132D41E18048C4E0068428D /* 010 - Unknown Keyboard.gif in Resources */,
-				8132D41F18048C4E0068428D /* 011 - Macintosh Plus Keyboard.gif in Resources */,
-				8132D42018048C4E0068428D /* 012 - PowerBook Keyboard.gif in Resources */,
-				8132D42118048C4E0068428D /* 013 - PowerBook ISO Keyboard.gif in Resources */,
-				8132D42218048C4E0068428D /* 014 - Apple Adjustable Numeric Keyboard.gif in Resources */,
-				8132D42318048C4E0068428D /* 016 - Apple Adjustable Keyboard.gif in Resources */,
-				8132D42418048C4E0068428D /* 017 - Apple Adjustable ISO Keyboard.gif in Resources */,
-				8132D42518048C4E0068428D /* 020 - PowerBook Extended Keyboard.gif in Resources */,
-				404E76AD1A9367D100240E35 /* FilesIcon.png in Resources */,
-				8132D42618048C4E0068428D /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */,
-				8132D42718048C4E0068428D /* 259 - Macintosh 512K International Keyboard.gif in Resources */,
-				408D8B7F19D7448100100A14 /* KeyboardMouse.png in Resources */,
-				404286E11A8A0847003F3B92 /* Target.png in Resources */,
-				40394FD619E7E0F7003893E1 /* ToggleOffDown.png in Resources */,
-				40394FD719E7E0F7003893E1 /* ToggleOffUp.png in Resources */,
-				81F9022418142AF90024DB8B /* ClassicFolderIcon.icns in Resources */,
+				406E55B41A95233F00012DDD /* 006 - Macintosh Portable Keyboard.gif in Resources */,
+				406E55BE1A95233F00012DDD /* 017 - Apple Adjustable ISO Keyboard.gif in Resources */,
+				406E55DF1A95233F00012DDD /* RubbishFullClassic.png in Resources */,
+				4062B0121A9514ED001DC474 /* medusaHelp in Resources */,
+				406E55BD1A95233F00012DDD /* 016 - Apple Adjustable Keyboard.gif in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1163,7 +1120,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		40A4E1F81A91E3130020BB5E /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -1171,7 +1128,7 @@
 			name = "Run Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "rm -rf /Users/gian2/Library/Medusa && cp -R /Users/gian2/Library/Medusa\\ 2 /Users/gian2/Library/Medusa";
 		};

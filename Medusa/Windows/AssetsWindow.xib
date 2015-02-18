@@ -74,7 +74,7 @@
 							<nil key="NSToolbarItemView"/>
 							<object class="NSCustomResource" key="NSToolbarItemImage">
 								<string key="NSClassName">NSImage</string>
-								<string key="NSResourceName">ROMImageIcon2SnowLeopard</string>
+								<string key="NSResourceName">ROMImageIcon</string>
 							</object>
 							<nil key="NSToolbarItemTarget"/>
 							<nil key="NSToolbarItemAction"/>
@@ -5679,15 +5679,15 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="Emulators">{512, 512}</string>
-			<string key="HFSFileIcon">{512, 512}</string>
+			<string key="Emulators">{128, 128}</string>
+			<string key="HFSFileIcon">{128, 128}</string>
 			<string key="NSAddTemplate">{8, 8}</string>
 			<string key="NSRefreshTemplate">{10, 12}</string>
 			<string key="NSRemoveTemplate">{8, 8}</string>
 			<string key="NSRevealFreestandingTemplate">{14, 14}</string>
-			<string key="NSStopProgressFreestandingTemplate">{12, 12}</string>
+			<string key="NSStopProgressFreestandingTemplate">{83, 83}</string>
 			<string key="QuestionMarkMac">{32, 32}</string>
-			<string key="ROMImageIcon2SnowLeopard">{512, 512}</string>
+			<string key="ROMImageIcon">{128, 128}</string>
 			<string key="RecentDocumentsFolderIcon">{32, 32}</string>
 		</dictionary>
 	</data>

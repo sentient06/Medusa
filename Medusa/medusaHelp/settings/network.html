@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medusa Help</title>
+  <meta charset="utf-8" />
+  <link href="../assets/img/MedusaHelp16px.png" rel="shortcut icon" />
+</head>
+<link rel='stylesheet' href='../assets/css/main.css'>
+<script src='../assets/js/main.js'></script>
+<body>
+<div class="nav">
+  <div>
+    <a href="../index.html">
+      <img src="../assets/img/MedusaHelp32px.png" alt="Medusa" />
+    </a>
+    <a href="../index.html">
+      <span>Home</span>
+    </a>
+  </div>
+</div>
+<div id="sidemenu" class="menu">
+  <ul>
+    <li><a href="../intro.html">Introduction</a></li>
+    <li><a href="../assets.html">The Assets Window</a></li>
+    <li><a href="../main.html">The Virtual Machines Window</a></li>
+    <li>
+    <li class="more">
+      <li class='current-parent'><a class='current-parent' href="index.html">The Settings Window</a></li>
+      <ul>
+        <li><a href="general.html">General tab</a></li>
+        <li><a href="disks.html">Disks tab</a></li>
+        <li><a href="display.html">Display tab</a></li>
+        <li class='current'><a class='current' href="network.html">Network tab</a></li>
+        <li><a href="devices.html">Devices tab</a></li>
+        <li><a href="advanced.html">Advanced tab</a></li>
+      </ul>
+    </li>
+    <li><a href="../preferences.html">Preferences</a></li>
+  </ul>
+</div>
+<div class="content">
+<div class="lead-title">
+  <img src="../assets/img/MedusaHelp128px.png" alt="Medusa" />
+  <h1>Network settings tab</h1>
+</div>
+<div class="centre">
+  <img src="../assets/img/SettingsNetwork.jpg" />
+</div>
+<p>
+  The network tab allows you to give the virtual machine the ability to access a folder shared with the host machine and to use the local network driver.
+</p>
+
+<h2>Enable ethernet</h2>
+<p>
+  This simply allows the virtual machine to access the ethernet.
+</p>
+
+<h2>Folder path</h2>
+<p>
+  This is the path to the folder that will be shared between the host and the guest systems. The standard path is the user's home folder. A different path can be used by clicking in the "search" button.
+</p>
+
+<h2>Using tap0</h2>
+<p>
+  This is an advanced setting for users that want to use the <strong>tap0</strong> network interface instead of OSX's default interface <strong>slirp</strong>.
+</p>
+<p>
+  This is used to enable Appletalk in the latest releases of OSX. However, this driver must be installed manually for this to work.
+</p>
+  If you don't know if you need this, just leave the setting turned off.
+</p>
+
+<h2>UDP settings</h2>
+<p>
+  This is an advanced setting for users that want to use <strong>User Datagram Protocol</strong> (UDP). If you don't know if you need this, just leave the setting turned off.
+</p>
+</div>
+</body>
+</html>

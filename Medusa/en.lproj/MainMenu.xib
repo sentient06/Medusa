@@ -930,7 +930,7 @@
 								<int key="NSButtonFlags2">162</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Target</string>
+									<string key="NSResourceName">Crosshair</string>
 								</object>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
@@ -982,11 +982,11 @@
 								<string key="NSContents"/>
 								<reference key="NSSupport" ref="961003686"/>
 								<reference key="NSControlView" ref="498900857"/>
-								<int key="NSButtonFlags">-2034483200</int>
-								<int key="NSButtonFlags2">162</int>
+								<int key="NSButtonFlags">-2030813184</int>
+								<int key="NSButtonFlags2">34</int>
 								<object class="NSCustomResource" key="NSNormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">FilesIcon</string>
+									<string key="NSResourceName">FilesIcon16</string>
 								</object>
 								<string key="NSAlternateContents"/>
 								<string key="NSKeyEquivalent"/>
@@ -1259,7 +1259,6 @@
 							<reference key="NSHScroller" ref="920699840"/>
 							<reference key="NSContentView" ref="875442002"/>
 							<reference key="NSHeaderClipView" ref="327316391"/>
-							<reference key="NSCornerView" ref="206282283"/>
 							<bytes key="NSScrollAmts">QSAAAEEgAABCFAAAQhQAAA</bytes>
 							<double key="NSMinMagnification">0.25</double>
 							<double key="NSMaxMagnification">4</double>
@@ -4262,8 +4261,9 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="Clone">{16, 16}</string>
+			<string key="Crosshair">{64, 64}</string>
 			<string key="ErrorIconClassic">{32, 32}</string>
-			<string key="FilesIcon">{32, 32}</string>
+			<string key="FilesIcon16">{16, 16}</string>
 			<string key="Info">{128, 128}</string>
 			<string key="NSActionTemplate">{14, 14}</string>
 			<string key="NSAddTemplate">{8, 8}</string>
@@ -4275,7 +4275,6 @@
 			<string key="NSRevealFreestandingTemplate">{14, 14}</string>
 			<string key="NSSwitch">{15, 15}</string>
 			<string key="RubbishFullClassic">{32, 32}</string>
-			<string key="Target">{128, 128}</string>
 		</dictionary>
 	</data>
 </archive>

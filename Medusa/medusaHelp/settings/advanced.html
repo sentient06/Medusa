@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medusa Help</title>
+  <meta charset="utf-8" />
+  <link href="../assets/img/MedusaHelp16px.png" rel="shortcut icon" />
+</head>
+<link rel='stylesheet' href='../assets/css/main.css'>
+<script src='../assets/js/main.js'></script>
+<body>
+<div class="nav">
+  <div>
+    <a href="../index.html">
+      <img src="../assets/img/MedusaHelp32px.png" alt="Medusa" />
+    </a>
+    <a href="../index.html">
+      <span>Home</span>
+    </a>
+  </div>
+</div>
+<div id="sidemenu" class="menu">
+  <ul>
+    <li><a href="../intro.html">Introduction</a></li>
+    <li><a href="../assets.html">The Assets Window</a></li>
+    <li><a href="../main.html">The Virtual Machines Window</a></li>
+    <li>
+    <li class="more">
+      <li class='current-parent'><a class='current-parent' href="index.html">The Settings Window</a></li>
+      <ul>
+        <li><a href="general.html">General tab</a></li>
+        <li><a href="disks.html">Disks tab</a></li>
+        <li><a href="display.html">Display tab</a></li>
+        <li><a href="network.html">Network tab</a></li>
+        <li><a href="devices.html">Devices tab</a></li>
+        <li class='current'><a class='current' href="advanced.html">Advanced tab</a></li>
+      </ul>
+    </li>
+    <li><a href="../preferences.html">Preferences</a></li>
+  </ul>
+</div>
+<div class="content">
+<div class="lead-title">
+  <img src="../assets/img/MedusaHelp128px.png" alt="Medusa" />
+  <h1>Advanced settings tab</h1>
+</div>
+<div class="centre">
+  <img src="../assets/img/SettingsAdvancedB2.jpg" />
+  <img src="../assets/img/SettingsAdvancedSS.jpg" />
+</div>
+<p>
+  This tab allows the use of advanced settings. The options are different according to the emulator being used.
+</p>
+
+<hr />
+
+<h2>Processor</h2>
+<p>
+  It may be necessary to emulate a different processor depending on your ROM image. The processor types supported by Basilisk II are Motorola 68020, 68030 and 68040. For SheepShaver virtual machines, the processor is always PowerPC 7400 (G4).
+</p>
+<h2>Floating-point instructions</h2>
+<p>
+  For Basilisk II machines, there is an option for floating-point instructions (FPU) emulation. This enables the emulation of the co-processor 68881 and, in case 68040 is selected, the FPU is emulated within the processor emulation. Sometimes the ROM image requires the FPU setting. Pay attention to the information available about the ROM Image at the <a href="../assets.html">Assets Manager</a>.
+</p>
+
+<hr />
+
+<h2>JIT compilation</h2>
+<p>
+  A Just-In-Time (JIT) translation engine aims at translating 68040 instructions to native equivalent code sequences, thus providing faster emulation speeds.
+</p>
+<p>
+  Set this to "true" to enable the JIT compiler in Basilisk II and SheepShaver. The default value is "true". This feature is enabled only if the virtual machine is configured to emulate a 68040 processor.
+</p>
+
+<h2>Lazy cache invalidation</h2>
+<p>
+  Set this to "true" to enable lazy invalidation of the translation cache on Basilisk II. This is always recommended as it usually makes the system more responsive and faster, especially while running MacOS 8.X. Default value is "true".
+</p>
+
+<h2>JIT cache size</h2>
+<p>
+  This field allows to specify size in kilobytes of RAM for the translation cache. The value given will be rounded down to the nearest multiple of a page size. Minimal value is "2048" (2MB). Default value is "8192" (8MB). This field is visible only for Basilisk II machines.
+</p>
+
+<hr />
+
+<h2>68K dynamic recompilation</h2>
+<p>
+  This checkbox enables 68K dynamic recompilation emulator on SheepShaver.
+</p>
+
+<h2>Do not convert clipboard contents</h2>
+<p>
+  Don't convert clipboard contents. Default value is "false".
+</p>
+
+<h2>Sleep when idle</h2>
+<p>
+  When this option is enabled, the virtual machine will sleep when the emulator becomes idle.
+</p>
+
+<hr />
+
+<h2>Hidden settings</h2>
+<p>
+  There is a hidden option to use processors 68000 and 68010 and 68060. The 68000 processor was used in a few Mac models and 68010 processor was used nowhere. Basilisk II can, however, emulate these processors. This feature was not properly tested and may result in crashes.
+</p>
+<p>
+  To learn how to enable hidden features, refer to the <a href="../preferences.html">preferences help page</a>.
+</p>
+
+</div>
+</body>
+</html>

@@ -43,7 +43,7 @@
 }
 
 - (id)transformedValue:(id)value {
-	return [NSImage imageNamed:@"HDClassic.icns"];
+	return [NSImage imageNamed:@"HDClassic.png"];
 }
 
 @end

@@ -63,9 +63,9 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
         case ColouredHappyVMLocked:
             return [NSImage imageNamed:@"ColouredHappyMacLocked.png"];
         case BlackAndWhiteHappyVM:
-            return [NSImage imageNamed:@"BlackAndWhiteHappyMac2x.png"];
+            return [NSImage imageNamed:@"BlackAndWhiteHappyMac.png"];
         case ColouredHappyVM:
-            return [NSImage imageNamed:@"ColouredHappyMac2x.png"];
+            return [NSImage imageNamed:@"ColouredHappyMac.png"];
         case BlackAndWhiteNoDisk:
             return [NSImage imageNamed:@"noDiskBW.png"];
         case ColouredNoDisk:
@@ -77,7 +77,7 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
             
     }
     
-    return [NSImage imageNamed:@"newVm.icns"];
+    return [NSImage imageNamed:@"newVm.png"];
 }
 
 @end

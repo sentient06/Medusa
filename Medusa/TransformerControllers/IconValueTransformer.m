@@ -60,23 +60,23 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
     switch (_icon) {
         default:
         case 0:
-            return [NSImage imageNamed:@"newVm.icns"];
+            return [NSImage imageNamed:@"newVm.png"];
             break;
             
         case 1:
-            return [NSImage imageNamed:@"GenericQuestionMarkIcon.icns"];
+            return [NSImage imageNamed:@"GenericQuestionMarkIcon.png"];
             break;
             
         case 2:
-            return [NSImage imageNamed:@"FinderGrey.icns"];
+            return [NSImage imageNamed:@"FinderGrey.png"];
             break;
             
         case 3:
-            return [NSImage imageNamed:@"FinderBlue.icns"];
+            return [NSImage imageNamed:@"FinderBlue.png"];
             break;
     }
 	
-	return [NSImage imageNamed:@"GenericQuestionMarkIcon.icns"];
+	return [NSImage imageNamed:@"GenericQuestionMarkIcon.png"];
 }
 
 @end

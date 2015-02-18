@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Medusa Help</title>
+  <meta charset="utf-8" />
+  <link href="../assets/img/MedusaHelp16px.png" rel="shortcut icon" />
+</head>
+<link rel='stylesheet' href='../assets/css/main.css'>
+<script src='../assets/js/main.js'></script>
+<body>
+<div class="nav">
+  <div>
+    <a href="../index.html">
+      <img src="../assets/img/MedusaHelp32px.png" alt="Medusa" />
+    </a>
+    <a href="../index.html">
+      <span>Home</span>
+    </a>
+  </div>
+</div>
+<div id="sidemenu" class="menu">
+  <ul>
+    <li><a href="../intro.html">Introduction</a></li>
+    <li><a href="../assets.html">The Assets Window</a></li>
+    <li><a href="../main.html">The Virtual Machines Window</a></li>
+    <li>
+    <li class="more">
+      <li class='current-parent'><a class='current-parent' href="index.html">The Settings Window</a></li>
+      <ul>
+        <li class='current'><a class='current' href="general.html">General tab</a></li>
+        <li><a href="disks.html">Disks tab</a></li>
+        <li><a href="display.html">Display tab</a></li>
+        <li><a href="network.html">Network tab</a></li>
+        <li><a href="devices.html">Devices tab</a></li>
+        <li><a href="advanced.html">Advanced tab</a></li>
+      </ul>
+    </li>
+    <li><a href="../preferences.html">Preferences</a></li>
+  </ul>
+</div>
+<div class="content">
+<div class="lead-title">
+  <img src="../assets/img/MedusaHelp128px.png" alt="Medusa" />
+  <h1>General settings tab</h1>
+</div>
+<div class="centre">
+  <img src="../assets/img/SettingsGeneral.jpg" />
+</div>
+<p>
+  This tab represents the most basic settings of the emulated machine. Here you will be able to choose the macintosh model to be emulated, the ROM file to be used and the amount of memory. You can also change the name of the virtual machine to anything you like.
+</p>
+<h2>Name</h2>
+<p>
+  In this field you can change the virtual machine's name. If you type "return" on your keyboard, the new name will be automatically saved.
+</p>
+<h2>Rom file</h2>
+<p>
+  You can set a previously saved ROM image file associate a new ROM image file by clicking "open" and choosing the file or using drag &amp; drop from a Finder window to drop the file into the icon area. If a ROM file is chosen, it won't become empty again unless the chosen file is removed using the Assets Window. The reason for that is that the virtual machine cannot work without a ROM image file and removing the file renders the machine useless.
+</p>
+<p>
+  Any limitations or important details of the chosen ROM image will be displayed in the comments area.
+</p>
+<h2>Model</h2>
+<p>
+  This field is where you can choose a macintosh model for this virtual machine. Please note that only a few models will be available depending on the ROM image used. The default value is 'Quadra 900'.
+</p>
+<p>
+  This field is disabled for SheepShaver virtual machines, because SheepShaver emulates only one model, which is the Power Macintosh 9500.
+</p>
+<h2>Memory</h2>
+<p>
+  This field defined the memory the emulator will be allowed to use for the virtual machine. The legacy Macintosh emulators usually won't use more than 2GB, and that's why there are no further options. Different values can be edited manually into the text field with the number.
+</p>
+<p>
+  The default value is 32.
+</p>
+</div>
+</body>
+</html>

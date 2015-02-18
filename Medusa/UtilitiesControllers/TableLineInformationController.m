@@ -47,7 +47,7 @@
     self = [super init];
     if (self) {
         lineTitle = [[NSString alloc] initWithFormat:@"None"];
-        lineIcon = [NSImage imageNamed:@"GenericQuestionMarkIcon.icns"];
+        lineIcon = [NSImage imageNamed:@"GenericQuestionMarkIcon.png"];
     }
     return self;
 }
