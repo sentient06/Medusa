@@ -36,7 +36,7 @@
                                url="https://github.com/sentient06/Medusa/releases/download/v1.2.0b3/Medusa.1.2.0b3.dmg"
                               type="application/octet-stream"
                             length="4043885"
-                   sparkle:version="1.2.0.3"
+                   sparkle:version="3"
               sparkle:dsaSignature="MCwCFGea0QuGjY4DVg1C8J/w8IzdtuCLAhR+67Io+zFZWYJcFbah4GEdyVPVSQ=="
         sparkle:shortVersionString="1.2.0B3"
       />
@@ -70,7 +70,7 @@
                                url="https://github.com/sentient06/Medusa/releases/download/v1.2.0rc1/Medusa.1.2.0rc1.dmg"
                               type="application/octet-stream"
                             length="2827888"
-                   sparkle:version="1.2.0.4"
+                   sparkle:version="4"
               sparkle:dsaSignature="MCwCFFCBX3jgcGLuDbvJDwSrtcttZqfSAhRRDtjbv50rK5T5j8ZIjMBlIiNaMA=="
         sparkle:shortVersionString="1.2.0RC1"
       />
