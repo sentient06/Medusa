@@ -9,26 +9,27 @@
       <title>Version 1.2.0B3</title>
       <description>
         <![CDATA[
-          <p>
-              This is the second of the heavily updated versions of Medusa. It is **NOT** backwards compatible. This version took some user reviews into account.
-          </p>
-
-          <h4>New features</h4>
-          <ul>
-              <li>Support for SheepShaver</li>
-              <li>Ability to import existent preferences</li>
-              <li>Ability to '''really''' kill the emulator's process</li>
-              <li>Ability to delete the NVRAM file</li>
-              <li>Partial support for keycodes file</li>
-              <li>Ability to resolve path of files that moved or were renamed</li>
-              <li>Display emulators' list according to ROM file, then first available emulator</li>
-              <li>Toggle button per line in the VM's list window, instead of buttons in the footer</li>
-          </ul>
-
-          <h4>Under the hood</h4>
-          <ul>
-              <li>Major re-factoring to detect emulator's supported models</li>
-          </ul>
+          <div style="font-family: 'Helvetica'; font-size: 0.9em;">
+            <h1>Medusa 1.2.0B3</h1>
+            <p>
+                This is the second of the heavily updated versions of Medusa. It is **NOT** backwards compatible. This version took some user reviews into account.
+            </p>
+            <h2>New features</h2>
+            <ul>
+                <li>Support for SheepShaver</li>
+                <li>Ability to import existent preferences</li>
+                <li>Ability to '''really''' kill the emulator's process</li>
+                <li>Ability to delete the NVRAM file</li>
+                <li>Partial support for keycodes file</li>
+                <li>Ability to resolve path of files that moved or were renamed</li>
+                <li>Display emulators' list according to ROM file, then first available emulator</li>
+                <li>Toggle button per line in the VM's list window, instead of buttons in the footer</li>
+            </ul>
+            <h2>Under the hood</h2>
+            <ul>
+                <li>Major re-factoring to detect emulator's supported models</li>
+            </ul>
+          </div>
         ]]>
       </description>
       <pubDate>Sat, 18 Oct 2014 09:48:00 +0000</pubDate>
@@ -45,24 +46,27 @@
       <title>Version 1.2.0RC1</title>
       <description>
         <![CDATA[
-          <p>
-              This is the Release Candidate 1. It should be backwards compatible with v1.2B3.
-          </p>
+          <div style="font-family: 'Helvetica'; font-size: 0.9em;">
+            <h1>Medusa 1.2.0RC1</h1>
+            <p>
+                This is the Release Candidate 1. It should be backwards compatible with v1.2B3.
+            </p>
 
-          <h4>New features</h4>
-          <ul>
-              <li>Complete help book</li>
-              <li>Emulators now are saved with path aliases</li>
-              <li>The bundle's size is 2MB smaller thanks to less resources (reduced images)</li>
-              <li>The application is now automatically flagged as "low resolution" on retina displays</li>
-              <li>Medusa can now report proper migration issues' messages</li>
-              <li>Ability to open Assets Manager from Virtual Machines' list window</li>
-          </ul>
+            <h2>New features</h2>
+            <ul>
+                <li>Complete help book</li>
+                <li>Emulators now are saved with path aliases</li>
+                <li>The bundle's size is 2MB smaller thanks to less resources (reduced images)</li>
+                <li>The application is now automatically flagged as "low resolution" on retina displays</li>
+                <li>Medusa can now report proper migration issues' messages</li>
+                <li>Ability to open Assets Manager from Virtual Machines' list window</li>
+            </ul>
 
-          <h4>Under the hood</h4>
-          <ul>
-              <li>Lots of code for migrations and some workarounds for missing data.</li>
-          </ul>
+            <h2>Under the hood</h2>
+            <ul>
+                <li>Lots of code for migrations and some workarounds for missing data.</li>
+            </ul>
+          </div>
         ]]>
       </description>
       <pubDate>Wed, 18 Feb 2015 21:00:00 +0000</pubDate>
