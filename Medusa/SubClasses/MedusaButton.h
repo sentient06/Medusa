@@ -1,9 +1,9 @@
 //
-//  HelpDocumentationController.m
+//  MedusaButton.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 03/11/2013.
-//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 20/02/2015.
+//  Copyright (c) 2015 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,23 +30,10 @@
 //
 //------------------------------------------------------------------------------
 
-#import "HelpDocumentationController.h"
+#import <Cocoa/Cocoa.h>
 
-//------------------------------------------------------------------------------
-// Lumberjack logger
-#import "DDLog.h"
-#import "DDASLLogger.h"
-#import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
-//------------------------------------------------------------------------------
+@interface MedusaButton : NSButton
 
-@implementation HelpDocumentationController
-
-+ (void)openHelpAnchor:(NSString *)anchor {
-    NSString * book = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleHelpBookName"];
-    NSString * anchorName = [NSString stringWithFormat:@"anchor_%@", anchor];
-    DDLogVerbose(@"Anchor: %@, book: %@", anchorName, book);
-    [[NSHelpManager sharedHelpManager] openHelpAnchor:anchorName inBook:book];
-}
+@property (copy) NSString * helpAnchor;
 
 @end

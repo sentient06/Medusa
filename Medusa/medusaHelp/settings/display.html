@@ -3,11 +3,12 @@
 <head>
   <title>Medusa Help</title>
   <meta charset="utf-8" />
-  <link href="../assets/img/MedusaHelp16px.png" rel="shortcut icon" />
+  <meta name="description" content="Display Settings" />
+  <meta name="keywords" content="display, settings, resolution, width, height, colour, color, depth, pixel, pixels, frame, skip, skipping, quickdraw, acceleration, video, screen, window, windowed, full, fullscreen, screen" />
+  <link rel='stylesheet' href='../a559de26a0d49aae97419322d291f309.css'>
 </head>
-<link rel='stylesheet' href='../assets/css/main.css'>
-<script src='../assets/js/main.js'></script>
 <body>
+<a name="anchor_settings_display"></a>
 <div class="nav">
   <div>
     <a href="../index.html">
@@ -59,7 +60,10 @@
 <p>
   Tick the "use fullscreen" checkbox to have fullscreen enabled. If this option is active, the emulator will ignore the width and height values from the previous fields and will execute in full screen.
 </p>
-8 15 24
+
+<hr />
+<a name="anchor_settings_display_colour"></a>
+
 <h2>Colour depth</h2>
 <p>
   Colour depth is the number of bits used for each colour component of a single pixel. Basilisk II and SheepShaver support 8, 15 and 24 bits of colour depth.
@@ -75,6 +79,9 @@
 <p>
   This setting specifies how many frames to skip after drawing one frame. Higher values make the video display more responsive but require more processing power. A value of "0" selects a "dynamic" update mode that cuts the display into rectangles and updates each rectangle individually, depending on display changes. The default value in Medusa is "0". Basilisk II and SheepShaver original default is "8".
 </p>
+
+<hr />
+<a name="anchor_settings_display_quickdraw"></a>
 
 <h2>QuickDraw acceleration</h2>
 <p>

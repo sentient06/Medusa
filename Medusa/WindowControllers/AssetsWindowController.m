@@ -39,6 +39,7 @@
 #import "RomController.h"
 #import "DiskController.h"
 #import "EmulatorsEntityModel.h"
+#import "HelpDocumentationController.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -330,6 +331,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSWorkspace * ws = [NSWorkspace sharedWorkspace];
     [ws selectFile:path inFileViewerRootedAtPath:nil];
 }
+
+
+- (IBAction)openHelpAnchor:(id)sender { //emulators
+    [HelpDocumentationController openHelpAnchor:[sender helpAnchor]];
+}
+
 //------------------------------------------------------------------------------
 // Init methods
 

@@ -473,8 +473,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @method      displayHelpForAdvancedView:
  * @abstract    Saves all preferences in current object context.
  */
-- (IBAction)displayHelpForAdvancedView:(id)sender {
-    [HelpDocumentationController openHelpPage:@"01.html"];
+- (IBAction)openHelpAnchor:(id)sender { //emulators
+    [HelpDocumentationController openHelpAnchor:[sender helpAnchor]];
 }
 
 #if ENVIRONMENT_DEV

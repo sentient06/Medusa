@@ -82,5 +82,6 @@
 - (IBAction)showFinderRomItem:(id)sender;
 - (IBAction)showFinderDiskItem:(id)sender;
 - (IBAction)showFinderAppItem:(id)sender;
+- (IBAction)openHelpAnchor:(id)sender;
 
 @end

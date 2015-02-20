@@ -726,6 +726,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 }
 
 /*!
+ * @method      popUpMessage:WithTitle:
+ * @abstract    Triggers a pop-up window.
+ */
+- (void)popUpMessage:(NSString *)message WithTitle:(NSString *)title {
+    NSAlert * alert = [[[NSAlert alloc] init] autorelease];
+    [alert setAlertStyle:NSInformationalAlertStyle];
+    [alert setMessageText:title];
+    [alert setInformativeText:message];
+    [alert runModal];
+}
+
+/*!
  * @method      performCleanUp:
  * @abstract    Removes XPRAM files from home dir.
  */
@@ -866,6 +878,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     }
     
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidBecomeKey:) name:NSWindowDidBecomeKeyNotification object:nil];
+//    NSLog(@"registering");
+    if (![[NSHelpManager sharedHelpManager] registerBooksInBundle:[NSBundle mainBundle]]) {
+        DDLogError(@"Failed to register Help Book.");
+    }
 
 }
 
@@ -1236,7 +1252,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             [migrationManager release];
             
             if (allOkay == YES) {
-                [self popUpDialog:@"Medusa sucessfully migrated your data from the previous version."];
+                [self popUpMessage:@"Medusa sucessfully migrated your data from the previous version." WithTitle:@"Success"];
             }
         }
     }

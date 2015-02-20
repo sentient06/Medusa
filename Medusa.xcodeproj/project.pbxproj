@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4006AF6519E815E00052B22A /* VMListTablelView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4006AF6419E815E00052B22A /* VMListTablelView.m */; };
+		4009A9771A9740980044A0BB /* MedusaButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 4009A9761A9740980044A0BB /* MedusaButton.m */; };
 		4021088E1A8C9CCA00F811F9 /* MigrationAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4021088D1A8C9CCA00F811F9 /* MigrationAssistant.m */; };
 		402206621A91FD8300F0FC40 /* RomFilesMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 402206611A91FD8300F0FC40 /* RomFilesMigrationPolicy.m */; };
 		402206651A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 402206641A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m */; };
@@ -168,6 +169,8 @@
 /* Begin PBXFileReference section */
 		4006AF6319E815E00052B22A /* VMListTablelView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VMListTablelView.h; path = UtilitiesControllers/VMListTablelView.h; sourceTree = "<group>"; };
 		4006AF6419E815E00052B22A /* VMListTablelView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VMListTablelView.m; path = UtilitiesControllers/VMListTablelView.m; sourceTree = "<group>"; };
+		4009A9751A9740980044A0BB /* MedusaButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MedusaButton.h; path = SubClasses/MedusaButton.h; sourceTree = "<group>"; };
+		4009A9761A9740980044A0BB /* MedusaButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedusaButton.m; path = SubClasses/MedusaButton.m; sourceTree = "<group>"; };
 		4021088C1A8C9CCA00F811F9 /* MigrationAssistant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MigrationAssistant.h; path = MigrationAssistants/MigrationAssistant.h; sourceTree = "<group>"; };
 		4021088D1A8C9CCA00F811F9 /* MigrationAssistant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MigrationAssistant.m; path = MigrationAssistants/MigrationAssistant.m; sourceTree = "<group>"; };
 		402206601A91FD8300F0FC40 /* RomFilesMigrationPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RomFilesMigrationPolicy.h; sourceTree = "<group>"; };
@@ -256,6 +259,7 @@
 		40B0F3B51949B54100F5CEC7 /* RomEmulatorTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomEmulatorTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomEmulatorTransformer.m; sourceTree = "<group>"; };
 		40B0F3BB1949BA0300F5CEC7 /* RomCategoryTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomCategoryTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomCategoryTransformer.h; sourceTree = "<group>"; };
 		40B0F3BC1949BA0300F5CEC7 /* RomCategoryTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomCategoryTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomCategoryTransformer.m; sourceTree = "<group>"; };
+		40DD07D21A962AD800FAA870 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 		810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineIconValueTransformer.h; path = TransformerControllers/VirtualMachineIconValueTransformer.h; sourceTree = "<group>"; };
 		810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineIconValueTransformer.m; path = TransformerControllers/VirtualMachineIconValueTransformer.m; sourceTree = "<group>"; };
 		81134C4315540B2900785866 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Models/PreferencesController.m; sourceTree = "<group>"; };
@@ -405,6 +409,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4009A9741A9740650044A0BB /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				4009A9751A9740980044A0BB /* MedusaButton.h */,
+				4009A9761A9740980044A0BB /* MedusaButton.m */,
+			);
+			name = Buttons;
+			sourceTree = "<group>";
+		};
+		4009A9781A9744A70044A0BB /* HelpingControllers */ = {
+			isa = PBXGroup;
+			children = (
+				8139BB4B1826BCA0003BAD98 /* HelpDocumentationController.h */,
+				8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */,
+			);
+			name = HelpingControllers;
+			sourceTree = "<group>";
+		};
 		4021088B1A8C9C9400F811F9 /* MigrationAssistants */ = {
 			isa = PBXGroup;
 			children = (
@@ -609,8 +631,6 @@
 				40AAA30119E7D16900EFFB00 /* VMListButtonCell.m */,
 				817E319B17D1078200131E2D /* VMListScrollView.h */,
 				817E319C17D1078200131E2D /* VMListScrollView.m */,
-				8139BB4B1826BCA0003BAD98 /* HelpDocumentationController.h */,
-				8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */,
 			);
 			name = Tables;
 			sourceTree = "<group>";
@@ -725,6 +745,7 @@
 		81756F311534743500FCBA8E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				40DD07D21A962AD800FAA870 /* Carbon.framework */,
 				81A54CCF17F091EF00B1EFD0 /* libz.dylib */,
 				81A54CCC17F091DB00B1EFD0 /* CoreServices.framework */,
 				81A54CC917F091C600B1EFD0 /* SystemConfiguration.framework */,
@@ -775,6 +796,7 @@
 		81756F5D15347F3300FCBA8E /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				4009A9781A9744A70044A0BB /* HelpingControllers */,
 				817334F4182D54A500EDBF05 /* BackEndControllers */,
 				815FEEF61536279000B9E5C5 /* WindowControllers */,
 				81C84439153E184E00E94443 /* SubClasses */,
@@ -924,6 +946,7 @@
 		81C84439153E184E00E94443 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
+				4009A9741A9740650044A0BB /* Buttons */,
 				815FEEF8153627A100B9E5C5 /* Tables */,
 				819DC08B17F18B7300480073 /* ArrayController */,
 				8162FF3C17EC4EA4000413C2 /* DropViews */,
@@ -1143,6 +1166,7 @@
 				81756F461534743500FCBA8E /* AppDelegate.m in Sources */,
 				81756F5C15347F2B00FCBA8E /* VirtualMachineWindowController.m in Sources */,
 				817CAF621535B5CB0038E9A0 /* TableLineInformationController.m in Sources */,
+				4009A9771A9740980044A0BB /* MedusaButton.m in Sources */,
 				816BAF8A153863E400B68091 /* IconValueTransformer.m in Sources */,
 				81C84438153E183700E94443 /* DropView.m in Sources */,
 				40B0F3BD1949BA0300F5CEC7 /* RomCategoryTransformer.m in Sources */,

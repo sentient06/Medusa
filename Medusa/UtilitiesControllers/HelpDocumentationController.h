@@ -31,12 +31,9 @@
 //------------------------------------------------------------------------------
 
 #import <Foundation/Foundation.h>
-#import <AppKit/AppKit.h>
-#import <Carbon/Carbon.h>
 
 @interface HelpDocumentationController : NSObject
 
-OSStatus goToHelpPage (CFStringRef pagePath, CFStringRef anchorName);
-+ (void)openHelpPage:(NSString *)page;
++ (void)openHelpAnchor:(NSString *)anchor;
 
 @end

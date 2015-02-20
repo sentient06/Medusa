@@ -191,7 +191,7 @@ typedef enum {
 - (IBAction)openEmulatorPath:(id)sender;
 
 // Help showing
-- (IBAction)displayHelpForAdvancedView:(id)sender;
+- (IBAction)openHelpAnchor:(id)sender;
 
 #if ENVIRONMENT_DEV
 // Development
