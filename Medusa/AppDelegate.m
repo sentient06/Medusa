@@ -986,7 +986,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         NSString * sourceVersionString = [[[NSString alloc] initWithString:[sourceVersionIdentifiers lastObject]] autorelease];
         DDLogInfo(@"... Current version of .xcdatamodeld file: %@", sourceVersionString);
         DDLogVerbose(@"... Version expected in this bundle .....: %@", bundlesVersionString);
-        
         //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
         // Check if data is compatible and requires migration:
         BOOL pscCompatibile = [managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
@@ -996,20 +995,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
         if (pscCompatibile == NO) {
             DDLogWarn(@"### Need to migrate!");
-            
-            // Integer version:
-            NSRegularExpression * regex = [
-                NSRegularExpression
-                    regularExpressionWithPattern:@"\\."
-                                         options:NSRegularExpressionCaseInsensitive
-                                           error:nil
-            ];
-            NSString * versionString = [
-                regex stringByReplacingMatchesInString:sourceVersionString
-                                               options:0
-                                                 range:NSMakeRange(0, [sourceVersionString length])
-                                          withTemplate:@""
-            ];
+            NSString * versionString = [sourceVersionString stringByReplacingOccurrencesOfString:@"." withString:@""];
             int persistedVersion = [versionString intValue];
             
             // Persisted version is higher than current app supports:
