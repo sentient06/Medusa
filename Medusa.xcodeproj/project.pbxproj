@@ -26,7 +26,7 @@
 		406E55AB1A95233F00012DDD /* ToggleOnDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556C1A95233F00012DDD /* ToggleOnDown.png */; };
 		406E55AC1A95233F00012DDD /* ToggleOnUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556D1A95233F00012DDD /* ToggleOnUp.png */; };
 		406E55AD1A95233F00012DDD /* ClassicFolderIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */; };
-		406E55AE1A95233F00012DDD /* MedusaIcon5.icns in Resources */ = {isa = PBXBuildFile; fileRef = 406E55701A95233F00012DDD /* MedusaIcon5.icns */; };
+		406E55AE1A95233F00012DDD /* MedusaIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 406E55701A95233F00012DDD /* MedusaIcon.icns */; };
 		406E55AF1A95233F00012DDD /* 001 - Apple Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55721A95233F00012DDD /* 001 - Apple Keyboard.gif */; };
 		406E55B01A95233F00012DDD /* 002 - Apple Extended Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55731A95233F00012DDD /* 002 - Apple Extended Keyboard.gif */; };
 		406E55B11A95233F00012DDD /* 003 - Macintosh 512K Keyboard.gif in Resources */ = {isa = PBXBuildFile; fileRef = 406E55741A95233F00012DDD /* 003 - Macintosh 512K Keyboard.gif */; };
@@ -195,7 +195,7 @@
 		406E556C1A95233F00012DDD /* ToggleOnDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOnDown.png; sourceTree = "<group>"; };
 		406E556D1A95233F00012DDD /* ToggleOnUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOnUp.png; sourceTree = "<group>"; };
 		406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ClassicFolderIcon.icns; sourceTree = "<group>"; };
-		406E55701A95233F00012DDD /* MedusaIcon5.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MedusaIcon5.icns; sourceTree = "<group>"; };
+		406E55701A95233F00012DDD /* MedusaIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MedusaIcon.icns; sourceTree = "<group>"; };
 		406E55721A95233F00012DDD /* 001 - Apple Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "001 - Apple Keyboard.gif"; sourceTree = "<group>"; };
 		406E55731A95233F00012DDD /* 002 - Apple Extended Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "002 - Apple Extended Keyboard.gif"; sourceTree = "<group>"; };
 		406E55741A95233F00012DDD /* 003 - Macintosh 512K Keyboard.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "003 - Macintosh 512K Keyboard.gif"; sourceTree = "<group>"; };
@@ -472,7 +472,7 @@
 			isa = PBXGroup;
 			children = (
 				406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */,
-				406E55701A95233F00012DDD /* MedusaIcon5.icns */,
+				406E55701A95233F00012DDD /* MedusaIcon.icns */,
 			);
 			name = Icons;
 			path = Images/Icons;
@@ -1113,7 +1113,7 @@
 				406E55B81A95233F00012DDD /* 010 - Unknown Keyboard.gif in Resources */,
 				406E55B21A95233F00012DDD /* 004 - Apple ISO Keyboard.gif in Resources */,
 				406E55C01A95233F00012DDD /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */,
-				406E55AE1A95233F00012DDD /* MedusaIcon5.icns in Resources */,
+				406E55AE1A95233F00012DDD /* MedusaIcon.icns in Resources */,
 				408D8B7D19D6F7D300100A14 /* BasiliskII_keycodes in Resources */,
 				406E55AD1A95233F00012DDD /* ClassicFolderIcon.icns in Resources */,
 				406E56041A9525F100012DDD /* ColouredHappyMac.png in Resources */,

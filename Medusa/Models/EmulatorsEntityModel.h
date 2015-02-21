@@ -88,11 +88,6 @@ enum EmulatorTypes {
 - (void)addMachines:(NSSet *)values;
 - (void)removeMachines:(NSSet *)values;
 - (NSString *)filePath;
-//- (NSData *)fixAliasAndReturn;
-
-//- (NSNumber *)appMissing;
-//- (void)setAppMissing:(NSNumber *)appMissing;
-//- (NSData *)appAlias;
-//- (void)setAppAlias:(NSData *)appAlias;
+- (NSData *)fixAliasAndReturn;
 
 @end

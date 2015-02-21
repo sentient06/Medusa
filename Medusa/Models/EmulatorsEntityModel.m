@@ -59,21 +59,7 @@
     if (resolvedFilePath == nil)
         [self setAppMissing:[NSNumber numberWithBool:YES]];
     return resolvedFilePath;
-//    return @"whatever";
 }
-
-//- (NSNumber *)appMissing {
-//    return [self zappMissing];
-//}
-//- (void)setAppMissing:(NSNumber *)appMissing {
-//    [self setZappMissing:appMissing];
-//}
-//- (NSData *)appAlias {
-//    return [self zappAlias];
-//}
-//- (void)setAppAlias:(NSData *)appAlias {
-//    [self setZappAlias:appAlias];
-//}
 
 - (NSData *)fixAliasAndReturn {
     NSLog(@"Alias missing, fixing it");

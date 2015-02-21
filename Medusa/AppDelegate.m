@@ -985,7 +985,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         NSArray  * sourceVersionIdentifiers = [persistentStoreMetadata objectForKey:NSStoreModelVersionIdentifiersKey];
         NSString * sourceVersionString = [[[NSString alloc] initWithString:[sourceVersionIdentifiers lastObject]] autorelease];
         DDLogInfo(@"... Current version of .xcdatamodeld file: %@", sourceVersionString);
-        DDLogVerbose(@"... Version expected in this bundle .....: %@", bundlesVersionString);
+        DDLogInfo(@"... Version expected in this bundle .....: %@", bundlesVersionString);
         //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
         // Check if data is compatible and requires migration:
         BOOL pscCompatibile = [managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:persistentStoreMetadata];
@@ -1237,9 +1237,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             [originalVersionString release];
             [migrationManager release];
             
-            if (allOkay == YES) {
-                [self popUpMessage:@"Medusa sucessfully migrated your data from the previous version." WithTitle:@"Success"];
-            }
+//            if (allOkay == YES) {
+//                [self popUpMessage:@"Medusa sucessfully migrated your data from the previous version." WithTitle:@"Success"];
+//            }
         }
     }
 

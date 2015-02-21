@@ -68,6 +68,9 @@
 // Init methods
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext;
 
+// Other methods
+- (void)showFinderItemAtPath:(NSString *)path;
+
 //------------------------------------------------------------------------------
 
 - (IBAction)displayDropFilesView:(id)sender;
