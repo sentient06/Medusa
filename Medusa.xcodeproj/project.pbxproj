@@ -19,7 +19,6 @@
 		404EC1B51A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */; };
 		404EC1B61A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */; };
 		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
-		4062B0121A9514ED001DC474 /* medusaHelp in Resources */ = {isa = PBXBuildFile; fileRef = 4062B0111A9514ED001DC474 /* medusaHelp */; };
 		406E55A81A95233F00012DDD /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55681A95233F00012DDD /* linenPattern.png */; };
 		406E55A91A95233F00012DDD /* ToggleOffDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556A1A95233F00012DDD /* ToggleOffDown.png */; };
 		406E55AA1A95233F00012DDD /* ToggleOffUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556B1A95233F00012DDD /* ToggleOffUp.png */; };
@@ -120,6 +119,7 @@
 		817E319D17D1078200131E2D /* VMListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMListScrollView.m */; };
 		8188A59217F97A6800BAB33B /* VirtualMachineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59117F97A6800BAB33B /* VirtualMachineController.m */; };
 		8188A59617F97A7A00BAB33B /* EmulatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorController.m */; };
+		8191B5C71A9BB89200BE2006 /* medusa.help in Resources */ = {isa = PBXBuildFile; fileRef = 8191B5C61A9BB89200BE2006 /* medusa.help */; };
 		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
 		819DC09F17F1B9D500480073 /* BootableDiskTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC09E17F1B9D500480073 /* BootableDiskTransformer.m */; };
 		81A54CC217F0915900B1EFD0 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CB217F0915900B1EFD0 /* ASIDataCompressor.m */; };
@@ -188,7 +188,6 @@
 		404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel"; sourceTree = "<group>"; };
 		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
 		405EDCB21945C71B00DA78CE /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = UtilitiesModels/FileManager.m; sourceTree = "<group>"; };
-		4062B0111A9514ED001DC474 /* medusaHelp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = medusaHelp; sourceTree = "<group>"; };
 		406E55681A95233F00012DDD /* linenPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linenPattern.png; sourceTree = "<group>"; };
 		406E556A1A95233F00012DDD /* ToggleOffDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOffDown.png; sourceTree = "<group>"; };
 		406E556B1A95233F00012DDD /* ToggleOffUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOffUp.png; sourceTree = "<group>"; };
@@ -331,6 +330,7 @@
 		8188A59117F97A6800BAB33B /* VirtualMachineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineController.m; path = Models/VirtualMachineController.m; sourceTree = "<group>"; };
 		8188A59417F97A7A00BAB33B /* EmulatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorController.h; path = Models/EmulatorController.h; sourceTree = "<group>"; };
 		8188A59517F97A7A00BAB33B /* EmulatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorController.m; path = Models/EmulatorController.m; sourceTree = "<group>"; };
+		8191B5C61A9BB89200BE2006 /* medusa.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = medusa.help; path = Resources/medusa.help; sourceTree = "<group>"; };
 		819DC08717F18B7000480073 /* SortableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortableArrayController.h; path = SubClasses/SortableArrayController.h; sourceTree = "<group>"; };
 		819DC08817F18B7000480073 /* SortableArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortableArrayController.m; path = SubClasses/SortableArrayController.m; sourceTree = "<group>"; };
 		819DC09D17F1B9D500480073 /* BootableDiskTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BootableDiskTransformer.h; path = TransformerControllers/BootableDiskTransformer.h; sourceTree = "<group>"; };
@@ -664,7 +664,7 @@
 		8168995717CE17AA00058B9F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4062B0111A9514ED001DC474 /* medusaHelp */,
+				8191B5C61A9BB89200BE2006 /* medusa.help */,
 				408D8B7B19D6F7BD00100A14 /* EmulatorFiles */,
 				8168995817CE17B600058B9F /* SparkleKey */,
 				81FAA927159F3968004F5F11 /* Images */,
@@ -1133,8 +1133,8 @@
 				406E55B41A95233F00012DDD /* 006 - Macintosh Portable Keyboard.gif in Resources */,
 				406E55BE1A95233F00012DDD /* 017 - Apple Adjustable ISO Keyboard.gif in Resources */,
 				406E55DF1A95233F00012DDD /* RubbishFullClassic.png in Resources */,
-				4062B0121A9514ED001DC474 /* medusaHelp in Resources */,
 				406E55BD1A95233F00012DDD /* 016 - Apple Adjustable Keyboard.gif in Resources */,
+				8191B5C71A9BB89200BE2006 /* medusa.help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1153,7 +1153,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "rm -rf /Users/gian2/Library/Medusa && cp -R /Users/gian2/Library/Medusa\\ 2 /Users/gian2/Library/Medusa";
+			shellScript = "/usr/bin/killall \"helpd\"\nrm -rf ~/Library/Caches/com.apple.helpviewer\nrm -rf ~/Library/Caches/com.apple.helpd\nrm -rf ~/Library/Preferences/com.apple.help*.plist";
 		};
 /* End PBXShellScriptBuildPhase section */
 
