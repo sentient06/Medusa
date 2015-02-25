@@ -928,8 +928,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (__persistentStoreCoordinator) return __persistentStoreCoordinator;
 
     // Core-data information
-    int bundlesVersion = 1203;
-    NSString * bundlesVersionString = [[NSString alloc] initWithString:@"1.2.0.3"];
+    int bundlesVersion = 1204;
+    NSString * bundlesVersionString = [[NSString alloc] initWithString:@"1.2.0.4"];
     //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
     // Managed object model:
     // (A file containing the definition of an application's data structure)
@@ -1014,8 +1014,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 @"MappingModel-1.1.0.8-1.2.0.1",
                 @"MappingModel-1.2.0.1-1.2.0.2",
                 @"MappingModel-1.2.0.2-1.2.0.3",
-                //@"MappingModel-1.2.0.3-1.2.0.4"
-            nil];
+                @"MappingModel-1.2.0.3-1.2.0.4"
+            , nil];
 
             NSString     * sourceStoreType         = NSSQLiteStoreType;
             NSDictionary * sourceStoreOptions      = nil;

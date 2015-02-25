@@ -66,6 +66,7 @@
 @dynamic networkTap0;
 @dynamic shareEnabled;
 @dynamic sharedFolder;
+@dynamic extraPreferences;
 @dynamic useDefaultShare;
 @dynamic keyboardLayout;
 @dynamic rawKeycodes;

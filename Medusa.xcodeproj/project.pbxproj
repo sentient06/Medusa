@@ -89,6 +89,7 @@
 		812A83A217EF5FF100B355BD /* DiskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 812A83A117EF5FF000B355BD /* DiskController.m */; };
 		812AFB4E1833F57600C1FF36 /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 812AFB4D1833F57600C1FF36 /* NSData+MD5.m */; };
 		8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */; };
+		8138246C1A9E457700D629C7 /* MedusaTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138246B1A9E457700D629C7 /* MedusaTextField.m */; };
 		8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */; };
 		813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */; };
 		814804E817D5D56D0070DAD9 /* RomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomController.m */; };
@@ -122,6 +123,7 @@
 		8191B5C71A9BB89200BE2006 /* medusa.help in Resources */ = {isa = PBXBuildFile; fileRef = 8191B5C61A9BB89200BE2006 /* medusa.help */; };
 		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
 		819DC09F17F1B9D500480073 /* BootableDiskTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC09E17F1B9D500480073 /* BootableDiskTransformer.m */; };
+		81A3A7A51A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81A3A7A41A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel */; };
 		81A54CC217F0915900B1EFD0 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CB217F0915900B1EFD0 /* ASIDataCompressor.m */; };
 		81A54CC317F0915900B1EFD0 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CB417F0915900B1EFD0 /* ASIDataDecompressor.m */; };
 		81A54CC417F0915900B1EFD0 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 81A54CB617F0915900B1EFD0 /* ASIDownloadCache.m */; };
@@ -272,6 +274,8 @@
 		812AFB4D1833F57600C1FF36 /* NSData+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+MD5.m"; path = "Categories/NSData+MD5.m"; sourceTree = "<group>"; };
 		8131AA4317E76F1500682879 /* ProcessorToJitTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProcessorToJitTransformer.h; path = TransformerControllers/ProcessorToJitTransformer.h; sourceTree = "<group>"; };
 		8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProcessorToJitTransformer.m; path = TransformerControllers/ProcessorToJitTransformer.m; sourceTree = "<group>"; };
+		8138246A1A9E457700D629C7 /* MedusaTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MedusaTextField.h; path = SubClasses/MedusaTextField.h; sourceTree = "<group>"; };
+		8138246B1A9E457700D629C7 /* MedusaTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedusaTextField.m; path = SubClasses/MedusaTextField.m; sourceTree = "<group>"; };
 		8139BB4B1826BCA0003BAD98 /* HelpDocumentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpDocumentationController.h; path = UtilitiesControllers/HelpDocumentationController.h; sourceTree = "<group>"; };
 		8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpDocumentationController.m; path = UtilitiesControllers/HelpDocumentationController.m; sourceTree = "<group>"; };
 		813DB9C817F5AABE00CB7EA2 /* EmulatorsEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorsEntityModel.h; path = Models/EmulatorsEntityModel.h; sourceTree = "<group>"; };
@@ -336,6 +340,8 @@
 		819DC09D17F1B9D500480073 /* BootableDiskTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BootableDiskTransformer.h; path = TransformerControllers/BootableDiskTransformer.h; sourceTree = "<group>"; };
 		819DC09E17F1B9D500480073 /* BootableDiskTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BootableDiskTransformer.m; path = TransformerControllers/BootableDiskTransformer.m; sourceTree = "<group>"; };
 		819ED68C15725214000C03B4 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesController.h; path = Models/PreferencesController.h; sourceTree = "<group>"; };
+		81A3A7A31A9E3BC700630C3D /* Medusa 1.2.0.4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.4.xcdatamodel"; sourceTree = "<group>"; };
+		81A3A7A41A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel"; sourceTree = "<group>"; };
 		81A54CB017F0915900B1EFD0 /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
 		81A54CB117F0915900B1EFD0 /* ASIDataCompressor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIDataCompressor.h; sourceTree = "<group>"; };
 		81A54CB217F0915900B1EFD0 /* ASIDataCompressor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIDataCompressor.m; sourceTree = "<group>"; };
@@ -575,6 +581,7 @@
 				404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */,
 				404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */,
 				404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */,
+				81A3A7A41A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel */,
 				4096FFD41A9233360016BE57 /* Medusa.xcdatamodeld */,
 				4021088B1A8C9C9400F811F9 /* MigrationAssistants */,
 				4022065F1A91FD8300F0FC40 /* MigrationPolicies */,
@@ -601,6 +608,15 @@
 				812AFB4D1833F57600C1FF36 /* NSData+MD5.m */,
 			);
 			name = Categories;
+			sourceTree = "<group>";
+		};
+		813824681A9E452300D629C7 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				8138246A1A9E457700D629C7 /* MedusaTextField.h */,
+				8138246B1A9E457700D629C7 /* MedusaTextField.m */,
+			);
+			name = Text;
 			sourceTree = "<group>";
 		};
 		815FEEF61536279000B9E5C5 /* WindowControllers */ = {
@@ -946,6 +962,7 @@
 		81C84439153E184E00E94443 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
+				813824681A9E452300D629C7 /* Text */,
 				4009A9741A9740650044A0BB /* Buttons */,
 				815FEEF8153627A100B9E5C5 /* Tables */,
 				819DC08B17F18B7300480073 /* ArrayController */,
@@ -1153,7 +1170,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/killall \"helpd\"\nrm -rf ~/Library/Caches/com.apple.helpviewer\nrm -rf ~/Library/Caches/com.apple.helpd\nrm -rf ~/Library/Preferences/com.apple.help*.plist";
+			shellScript = "/usr/bin/killall \"helpd\"\nrm -rf ~/Library/Caches/com.apple.helpviewer\nrm -rf ~/Library/Caches/com.apple.helpd\nrm -rf ~/Library/Preferences/com.apple.help*.plist\nrm -rf ~/Library/Medusa\ncp -R ~/Library/MedusaBackup ~/Library/Medusa";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1232,6 +1249,8 @@
 				8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */,
 				812AFB4E1833F57600C1FF36 /* NSData+MD5.m in Sources */,
 				811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */,
+				81A3A7A51A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel in Sources */,
+				8138246C1A9E457700D629C7 /* MedusaTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1393,13 +1412,14 @@
 		4096FFD41A9233360016BE57 /* Medusa.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				81A3A7A31A9E3BC700630C3D /* Medusa 1.2.0.4.xcdatamodel */,
 				4096FFD51A9233360016BE57 /* Medusa 1.0.2.3.xcdatamodel */,
 				4096FFD61A9233360016BE57 /* Medusa 1.1.0.8.xcdatamodel */,
 				4096FFD71A9233360016BE57 /* Medusa 1.2.0.1.xcdatamodel */,
 				4096FFD81A9233360016BE57 /* Medusa 1.2.0.2.xcdatamodel */,
 				4096FFD91A9233360016BE57 /* Medusa 1.2.0.3.xcdatamodel */,
 			);
-			currentVersion = 4096FFD91A9233360016BE57 /* Medusa 1.2.0.3.xcdatamodel */;
+			currentVersion = 81A3A7A31A9E3BC700630C3D /* Medusa 1.2.0.4.xcdatamodel */;
 			path = Medusa.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
