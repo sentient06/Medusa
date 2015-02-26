@@ -1,8 +1,8 @@
 //
-//  MedusaTextField.h
+//  TextFieldTransformer.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 25/02/2015.
+//  Created by Giancarlo Mariot on 26/02/2015.
 //  Copyright (c) 2015 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,8 +30,23 @@
 //
 //------------------------------------------------------------------------------
 
-#import <AppKit/AppKit.h>
+#import "TextFieldTransformer.h"
 
-@interface MedusaTextView : NSTextView
+@implementation TextFieldTransformer
 
++ (Class)transformedValueClass {   
+    return [NSAttributedString class]; 
+}
++ (BOOL)allowsReverseTransformation { 
+    return YES; 
+}
+- (id)transformedValue:(id)value {
+    return (value == nil) ? nil : [
+        [[NSAttributedString alloc] initWithString:value] autorelease
+    ];
+}
+
+- (id)reverseTransformedValue:(id)value {
+    return (value == nil) ? nil : [[(NSAttributedString *)value string] copy];
+}
 @end

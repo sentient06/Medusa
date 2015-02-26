@@ -32,7 +32,7 @@
 
 #import "MedusaTextField.h"
 
-@implementation MedusaTextField
+@implementation MedusaTextView
 
 // Try this:
 // https://developer.apple.com/library/mac/qa/qa1454/_index.html
@@ -46,5 +46,14 @@
 //        return [super textShouldEndEditing:textObject];
 //    }
 //}
+
+- (void)textDidChange:(NSNotification *)notification {
+    NSLog(@"qwqwq");
+}
+
+
+- (void)controlTextDidChange:(NSNotification*)aNotification {
+    NSLog(@"aaa");
+}
 
 @end

@@ -1,8 +1,8 @@
 //
-//  MedusaTextField.h
+//  TextFieldTransformer.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 25/02/2015.
+//  Created by Giancarlo Mariot on 26/02/2015.
 //  Copyright (c) 2015 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
@@ -30,8 +30,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
 
-@interface MedusaTextView : NSTextView
+@interface TextFieldTransformer : NSValueTransformer
 
 @end
