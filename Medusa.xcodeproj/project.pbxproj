@@ -82,6 +82,7 @@
 		40AAA30219E7D16900EFFB00 /* VMListButtonCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40AAA30119E7D16900EFFB00 /* VMListButtonCell.m */; };
 		40B0F3B61949B54100F5CEC7 /* RomEmulatorTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0F3B51949B54100F5CEC7 /* RomEmulatorTransformer.m */; };
 		40B0F3BD1949BA0300F5CEC7 /* RomCategoryTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40B0F3BC1949BA0300F5CEC7 /* RomCategoryTransformer.m */; };
+		40F9BE3E1A9F197D00FC73A6 /* medusa.help in Resources */ = {isa = PBXBuildFile; fileRef = 40F9BE3D1A9F197D00FC73A6 /* medusa.help */; };
 		810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */; };
 		81134C4415540B2900785866 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesController.m */; };
 		811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 811C770818369E7800C681C6 /* MacintoshModelModel.m */; };
@@ -120,7 +121,6 @@
 		817E319D17D1078200131E2D /* VMListScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 817E319C17D1078200131E2D /* VMListScrollView.m */; };
 		8188A59217F97A6800BAB33B /* VirtualMachineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59117F97A6800BAB33B /* VirtualMachineController.m */; };
 		8188A59617F97A7A00BAB33B /* EmulatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8188A59517F97A7A00BAB33B /* EmulatorController.m */; };
-		8191B5C71A9BB89200BE2006 /* medusa.help in Resources */ = {isa = PBXBuildFile; fileRef = 8191B5C61A9BB89200BE2006 /* medusa.help */; };
 		819DC08917F18B7000480073 /* SortableArrayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC08817F18B7000480073 /* SortableArrayController.m */; };
 		819DC09F17F1B9D500480073 /* BootableDiskTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 819DC09E17F1B9D500480073 /* BootableDiskTransformer.m */; };
 		81A3A7A51A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 81A3A7A41A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel */; };
@@ -261,6 +261,7 @@
 		40B0F3BB1949BA0300F5CEC7 /* RomCategoryTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomCategoryTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomCategoryTransformer.h; sourceTree = "<group>"; };
 		40B0F3BC1949BA0300F5CEC7 /* RomCategoryTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomCategoryTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomCategoryTransformer.m; sourceTree = "<group>"; };
 		40DD07D21A962AD800FAA870 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		40F9BE3D1A9F197D00FC73A6 /* medusa.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = medusa.help; path = Resources/medusa.help; sourceTree = "<group>"; };
 		810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineIconValueTransformer.h; path = TransformerControllers/VirtualMachineIconValueTransformer.h; sourceTree = "<group>"; };
 		810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineIconValueTransformer.m; path = TransformerControllers/VirtualMachineIconValueTransformer.m; sourceTree = "<group>"; };
 		81134C4315540B2900785866 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Models/PreferencesController.m; sourceTree = "<group>"; };
@@ -334,7 +335,6 @@
 		8188A59117F97A6800BAB33B /* VirtualMachineController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineController.m; path = Models/VirtualMachineController.m; sourceTree = "<group>"; };
 		8188A59417F97A7A00BAB33B /* EmulatorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorController.h; path = Models/EmulatorController.h; sourceTree = "<group>"; };
 		8188A59517F97A7A00BAB33B /* EmulatorController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorController.m; path = Models/EmulatorController.m; sourceTree = "<group>"; };
-		8191B5C61A9BB89200BE2006 /* medusa.help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = medusa.help; path = Resources/medusa.help; sourceTree = "<group>"; };
 		819DC08717F18B7000480073 /* SortableArrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SortableArrayController.h; path = SubClasses/SortableArrayController.h; sourceTree = "<group>"; };
 		819DC08817F18B7000480073 /* SortableArrayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SortableArrayController.m; path = SubClasses/SortableArrayController.m; sourceTree = "<group>"; };
 		819DC09D17F1B9D500480073 /* BootableDiskTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BootableDiskTransformer.h; path = TransformerControllers/BootableDiskTransformer.h; sourceTree = "<group>"; };
@@ -680,7 +680,7 @@
 		8168995717CE17AA00058B9F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8191B5C61A9BB89200BE2006 /* medusa.help */,
+				40F9BE3D1A9F197D00FC73A6 /* medusa.help */,
 				408D8B7B19D6F7BD00100A14 /* EmulatorFiles */,
 				8168995817CE17B600058B9F /* SparkleKey */,
 				81FAA927159F3968004F5F11 /* Images */,
@@ -1149,9 +1149,9 @@
 				8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */,
 				406E55B41A95233F00012DDD /* 006 - Macintosh Portable Keyboard.gif in Resources */,
 				406E55BE1A95233F00012DDD /* 017 - Apple Adjustable ISO Keyboard.gif in Resources */,
+				40F9BE3E1A9F197D00FC73A6 /* medusa.help in Resources */,
 				406E55DF1A95233F00012DDD /* RubbishFullClassic.png in Resources */,
 				406E55BD1A95233F00012DDD /* 016 - Apple Adjustable Keyboard.gif in Resources */,
-				8191B5C71A9BB89200BE2006 /* medusa.help in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,7 +1160,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		40A4E1F81A91E3130020BB5E /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -1168,7 +1168,7 @@
 			name = "Run Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/bin/killall \"helpd\"\nrm -rf ~/Library/Caches/com.apple.helpviewer\nrm -rf ~/Library/Caches/com.apple.helpd\nrm -rf ~/Library/Preferences/com.apple.help*.plist\nrm -rf ~/Library/Medusa\ncp -R ~/Library/MedusaBackup ~/Library/Medusa";
 		};

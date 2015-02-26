@@ -1,31 +1,66 @@
-<!DOCTYPE html><html><head><title>Emulators</title><meta charset="utf-8" /><meta name="description" content="Emulators" /><meta name="keywords" content="assets manager, assets, manager, window, emulators" /><link rel='stylesheet' href='../c326d8d7989b6c27490edfcb416b6059.css'></head><body><a name="anchor_assets_emulator"></a><div class="nav"><div><a href="../index.html"><img src="../assets/img/MedusaHelp32px.png" alt="Medusa" /></a><a href="../index.html"><span>Home</span></a></div></div><div id="sidemenu" class="menu"><ul><li><a href="../intro.html">Introduction</a></li><li><a href="../main.html">Virtual Machines Window</a></li><li class="current-parent more"><a class='current-parent' href="index.html">Assets Manager</a><ul><li><a href="drop_area.html">The Drop Area</a></li><li><a href="rom.html">ROM files tab</a></li><li><a href="disk.html">Disk images tab</a></li><li class='current'><a class='current' href="emulators.html">Emulators</a></li></ul></li><li><li class="more"><a href="../virtual_machine_settings/index.html">Virtual Machine Settings</a><ul><li><a href="../virtual_machine_settings/general.html">General tab</a></li><li><a href="../virtual_machine_settings/disks.html">Disks tab</a></li><li><a href="../virtual_machine_settings/display.html">Display tab</a></li><li><a href="../virtual_machine_settings/network.html">Network tab</a></li><li><a href="../virtual_machine_settings/devices.html">Devices tab</a></li><li><a href="../virtual_machine_settings/advanced.html">Advanced tab</a></li></ul></li><li><a href="../preferences.html">Preferences</a></li></ul></div><div class="content"><div class="lead-title"><img src="../assets/img/MedusaHelp128px.png" alt="Medusa" /><h1>Emulators</h1></div>
+<!DOCTYPE html>
+<html><head>
+<title>Emulators</title>
+<meta charset="utf-8" />
+<meta name="description" content="Emulators" />
+<meta name="keywords" content="assets manager,assets,manager,emulators,basilisk,sheepshaver" />
+<link rel='stylesheet' href='../c326d8d7989b6c27490edfcb416b6059.css' />
+</head><body>
+<a name="anchor_assets_emulator"></a>
+<div class="nav"><div><a href="../index.html"><img src="../img/MedusaHelp32px.png" alt="Medusa" /></a><a href="../index.html"><span>Home</span></a></div></div><div id="sidemenu" class="menu">
+  <ul>
+    <li><a href="../intro.html">Introduction</a></li>
+    <li><a href="../main.html">Virtual Machines Window</a></li>
+    <li class="current-parent more">
+      <a class='current-parent' href="index.html">Assets Manager</a>
+      <ul>
+        <li><a href="drop_area.html">Drop Area</a></li>
+        <li><a href="rom.html">ROM files tab</a></li>
+        <li><a href="disk.html">Disk images tab</a></li>
+        <li class='current'><a class='current' href="emulators.html">Emulators</a></li>
+      </ul>
+    </li>
+    <li class="more">
+      <a href="../virtual_machine_settings/index.html">Virtual Machine Settings</a>
+      <ul>
+        <li><a href="../virtual_machine_settings/general.html">General tab</a></li>
+        <li><a href="../virtual_machine_settings/disks.html">Disks tab</a></li>
+        <li><a href="../virtual_machine_settings/display.html">Display tab</a></li>
+        <li><a href="../virtual_machine_settings/network.html">Network tab</a></li>
+        <li><a href="../virtual_machine_settings/devices.html">Devices tab</a></li>
+        <li><a href="../virtual_machine_settings/advanced.html">Advanced tab</a></li>
+      </ul>
+    </li>
+    <li><a href="../preferences.html">Preferences</a></li>
+  </ul>
+</div>
+<div class="content">
+<div class="lead-title">
+  <img src="../img/MedusaHelp128px.png" alt="Medusa" />
+  <h1>Emulators</h1>
+</div>
 <p>
-The only emulators supported by Medusa are <a href="http://basilisk.cebix.net" target="_blank">Basilisk II</a> and <a href="http://sheepshaver.cebix.net" target="_blank">SheepShaver</a>.
+  The only emulators supported by Medusa are <a href="http://basilisk.cebix.net" target="_blank">Basilisk II</a> and <a href="http://sheepshaver.cebix.net" target="_blank">SheepShaver</a>.
 </p>
 <p>
-Basilisk II was developed using a Macintosh Quadra 950 as blueprint, although any of Apple's gestalt ids can be reported to the guest operating system. It emulates the Motorola processors that belong to the 68000 family.
+  Basilisk II was developed using a Macintosh Quadra 900 and a IIci as blueprints, although any of Apple's gestalt ids can be reported to the guest operating system. It emulates the Motorola processors that belong to the 68000 family.
 </p>
 <p>
-SheepShaver was developed following the Power Macintosh 9500, but it doesn't necessarily emulates this particular model, since it emulates Quickdraw Acceleration, which was available only in a later model.
+  SheepShaver was developed based on the Power Macintosh 9500, but although this is the model reported to the guest system, the processor is not the original PowerPC 604, but rather a PowerPC G4 (it contains some AltiVec instructions).
 </p>
 <p>
-Both emulators need a ROM image to be able to run. The ROM image is then patched and the calls made to the hardware are redirected to the host system. Some aspects of Basilisk and SheepShaver are not entirely emulated, such as disk images: they behave like big diskettes instead of hard drives.
+  Both emulators need a ROM image to be able to run. The ROM image is then patched and the calls made to the hardware are redirected to the host system. Some aspects of Basilisk and SheepShaver are not entirely emulated, such as disk images: they behave like big diskettes instead of hard drives.
 </p>
 <p>
-If you don't know where to download the emulators or are not in the mood for that, Medusa can download and organise them for you.
+  If you don't know where to download the emulators or are not in the mood for that, Medusa can download and organise them for you.
 </p>
 <p>
-To do that, simply click the "download automatically" button at the Emulators tab. Medusa will then download different binaries for both Basilisk II and SheepShaver and then assemble the application files in its Application Support directory.
+  To do that, simply click the "download automatically" button at the Emulators tab. Medusa will then download different binaries for both Basilisk II and SheepShaver and then assemble the application files in its Application Support directory.
 </p>
-<div class="centre"><img src="../assets/img/DownloadEmulatorsButton.jpg" /></div><div class="centre"><img src="../assets/img/DownloadEmulators.jpg" /></div>
-<p>
-If you accidentally delete one of these emulators from the list, simply hit the "refresh" button, so they will be identified and added to the list again.
-</p>
-<p>
-You can also locate the emulator application by clicking the magnifier button and add your own version of Basilisk II and SheepShaver to be used with Medusa.
-</p>
-<div class="warning">
-<p>
-Please note: if you are using a retina display, you must set the emulators to run in low resolution before using them. If you do not do it, they will work at half the resolution intended.
-</p>
-</div></div></body></html>
+<div class="centre">
+  <img src="../img/DownloadEmulatorsButton.jpg" />
+</div>
+<div class="centre">
+  <img src="../img/DownloadEmulators.jpg" />
+</div>
+</div></body></html>

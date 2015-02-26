@@ -1,69 +1,137 @@
-<!DOCTYPE html><html><head><title>Virtual Machines Window</title><meta charset="utf-8" /><meta name="description" content="Virtual Machines Window" /><meta name="keywords" content="virtual, machine, list, window, icon, happy mac, sad mac, create, new, duplicate, delete, preferences file, import, run, kill, stop" /><link rel='stylesheet' href='c326d8d7989b6c27490edfcb416b6059.css'></head><body><a name="anchor_main"></a><div class="nav"><div><a href="index.html"><img src="assets/img/MedusaHelp32px.png" alt="Medusa" /></a><a href="index.html"><span>Home</span></a></div></div><div id="sidemenu" class="menu"><ul><li><a href="intro.html">Introduction</a></li><li class='current'><a class='current' href="main.html">Virtual Machines Window</a></li><li class="more"><a href="assets_manager/index.html">Assets Manager</a><ul><li><a href="assets_manager/drop_area.html">The Drop Area</a></li><li><a href="assets_manager/rom.html">ROM files tab</a></li><li><a href="assets_manager/disk.html">Disk images tab</a></li><li><a href="assets_manager/emulators.html">Emulators</a></li></ul></li><li><li class="more"><a href="virtual_machine_settings/index.html">Virtual Machine Settings</a><ul><li><a href="virtual_machine_settings/general.html">General tab</a></li><li><a href="virtual_machine_settings/disks.html">Disks tab</a></li><li><a href="virtual_machine_settings/display.html">Display tab</a></li><li><a href="virtual_machine_settings/network.html">Network tab</a></li><li><a href="virtual_machine_settings/devices.html">Devices tab</a></li><li><a href="virtual_machine_settings/advanced.html">Advanced tab</a></li></ul></li><li><a href="preferences.html">Preferences</a></li></ul></div><div class="content"><div class="lead-title"><img src="assets/img/MedusaHelp128px.png" alt="Medusa" /><h1>Virtual Machines Window</h1></div><div class="centre"><img src="assets/img/VMWindow.jpg" alt="Virtual Machines Manager" /></div>
+<!DOCTYPE html>
+<html><head>
+<title>Virtual Machines Window</title>
+<meta charset="utf-8" />
+<meta name="description" content="Virtual Machines Window" />
+<meta name="keywords" content="virtual,machine,list,window,icon,happy mac,sad mac,create,new,duplicate,delete,preferences file,import,run,kill,stop" />
+<link rel='stylesheet' href='c326d8d7989b6c27490edfcb416b6059.css' />
+</head><body>
+<a name="anchor_main"></a>
+<div class="nav"><div><a href="index.html"><img src="img/MedusaHelp32px.png" alt="Medusa" /></a><a href="index.html"><span>Home</span></a></div></div><div id="sidemenu" class="menu">
+  <ul>
+    <li><a href="intro.html">Introduction</a></li>
+    <li class='current'><a class='current' href="main.html">Virtual Machines Window</a></li>
+    <li class="more">
+      <a href="assets_manager/index.html">Assets Manager</a>
+      <ul>
+        <li><a href="assets_manager/drop_area.html">Drop Area</a></li>
+        <li><a href="assets_manager/rom.html">ROM files tab</a></li>
+        <li><a href="assets_manager/disk.html">Disk images tab</a></li>
+        <li><a href="assets_manager/emulators.html">Emulators</a></li>
+      </ul>
+    </li>
+    <li class="more">
+      <a href="virtual_machine_settings/index.html">Virtual Machine Settings</a>
+      <ul>
+        <li><a href="virtual_machine_settings/general.html">General tab</a></li>
+        <li><a href="virtual_machine_settings/disks.html">Disks tab</a></li>
+        <li><a href="virtual_machine_settings/display.html">Display tab</a></li>
+        <li><a href="virtual_machine_settings/network.html">Network tab</a></li>
+        <li><a href="virtual_machine_settings/devices.html">Devices tab</a></li>
+        <li><a href="virtual_machine_settings/advanced.html">Advanced tab</a></li>
+      </ul>
+    </li>
+    <li><a href="preferences.html">Preferences</a></li>
+  </ul>
+</div>
+<div class="content"><div class="lead-title"><img src="img/MedusaHelp128px.png" alt="Medusa" />
+<h1>Virtual Machines Window</h1>
+</div>
+<div class="centre">
+  <img src="img/VMWindow.jpg" alt="Virtual Machines Manager" />
+</div>
 <p>
-This is the main window. This window is responsible for displaying all virtual machines you have and give you tools to do use and configure them as well as to delete, duplicate or create new virtual machines.
-</p><p>
-The layout is simple: there is a main list and an area with buttons.
-</p><hr />
+  This is the main window. This window is responsible for displaying all virtual machines you have and give you tools to do use and configure them as well as to delete, duplicate or create new virtual machines.
+</p>
+<p>
+  The layout is simple: there is a main list and an area with buttons.
+</p>
+
+<hr />
 <a name="anchor_main_list"></a>
+
 <h2>The main list</h2>
 <p>
-The main list shows different virtual machines per row. Each virtual machine can run independently, but can also share characteristics of references to files used by other virtual machines.
+  The main list shows different virtual machines per row. Each virtual machine can run independently, but can also share characteristics of references to files used by other virtual machines.
 </p>
 <p>
-There are three elements in the list: an icon, a name and a power button. The names cannot be duplicated. The buttons runs the virtual machine or, if it is already running, it will ask the emulator to stop. In Basilisk II, it means the guest operating system will prompt you to shut down, whereas in SheepShaver it will simply turn off.
+  There are three elements in the list: an icon, a name and a power button. The names cannot be duplicated. The buttons runs the virtual machine or, if it is already running, it will ask the emulator to stop. In Basilisk II, it means the guest operating system will prompt you to shut down, whereas in SheepShaver it will simply turn off.
 </p>
 <p>
-The icon reflects the state of the virtual machine of that row. There are 4 possible icons:
+  The icon reflects the state of the virtual machine of that row. There are 4 possible icons:
 </p>
+
 <h3>The 'new file' icon</h3>
-<div class="left"><img src="assets/img/IconNew.gif" alt="New virtual machine" /></div>
+<div class="left">
+  <img src="img/IconNew.gif" alt="New virtual machine" />
+</div>
 <p>
-Means that this virtual machine has no relevant settings yet. It has no ROM file nor disk images associated with it. without these elements, it cannot be used.
+  Means that this virtual machine has no relevant settings yet. It has no ROM file nor disk images associated with it. without these elements, it cannot be used.
 </p>
+
 <h3>The 'floppy question mark' icon</h3>
-<div class="left"><img src="assets/img/IconFloppyBW.gif" alt="Floppy black and white" /><img src="assets/img/IconFloppyCl.gif" alt="Floppy coloured" /></div>
+<div class="left">
+  <img src="img/IconFloppyBW.gif" alt="Floppy black and white" />
+  <img src="img/IconFloppyCl.gif" alt="Floppy coloured" />
+</div>
 <p>
-It means this virtual machine can not boot because there are no disks associated with it. When it is black and white, it means it is using an old world ROM. When it is coloured, it means it is using a new world ROM.
+  It means this virtual machine can not boot because there are no disks associated with it. When it is black and white, it means it is using an old world ROM. When it is coloured, it means it is using a new world ROM.
 </p>
+
 <h3>The 'broken mac' icon</h3>
-<div class="left"><img src="assets/img/IconBroken.gif" alt="" /></div>
+<div class="left">
+  <img src="img/IconBroken.gif" alt="" />
+</div>
 <p>
-It means the virtual machine can not boot because there is no ROM image associated with it.
+  It means the virtual machine can not boot because there is no ROM image associated with it.
 </p>
+
 <h3>The 'happy mac' icon</h3>
-<div class="left"><img src="assets/img/IconHappyBW.gif" alt="Happy Mac black and white" /><img src="assets/img/IconHappyCl.gif" alt="Happy Mac coloured" /></div>
+<div class="left">
+  <img src="img/IconHappyBW.gif" alt="Happy Mac black and white" />
+  <img src="img/IconHappyCl.gif" alt="Happy Mac coloured" />
+</div>
 <p>
-It means Medusa has all information necessary to get this virtual machine running. When it is black and white, it means it is using an old world ROM. When it is coloured, it means it is using a new world ROM.
+  It means Medusa has all information necessary to get this virtual machine running. When it is black and white, it means it is using an old world ROM. When it is coloured, it means it is using a new world ROM.
 </p>
 <p>
-When the virtual machine is being used, a picture of a lock will be displayed over the icon. It means the virtual machine cannot be modified, deleted or duplicated. Also, all of the disks being used are being used in read-write mode, which means that a parallel emulation could corrupt the file. Because of that, Medusa will block any attempts to execute a parallel virtual machine that uses the same disk images.
-</p><hr />
+  When the virtual machine is being used, a picture of a lock will be displayed over the icon. It means the virtual machine cannot be modified, deleted or duplicated. Also, all of the disks being used are being used in read-write mode, which means that a parallel emulation could corrupt the file. Because of that, Medusa will block any attempts to execute a parallel virtual machine that uses the same disk images.
+</p>
+
+<hr />
 <a name="anchor_main_buttons"></a>
+
 <h2>The buttons area</h2>
 <p>
-The buttons area encompasses 5 buttons which will trigger different actions:
+  The buttons area encompasses 5 buttons which will trigger different actions:
 </p>
+
 <h3>The 'add' button</h3>
 <p>
-Allows the creation of a new virtual machine. Only the name of the virtual machine is necessary. All other settings, except the file associations will be set automatically.
+  Allows the creation of a new virtual machine. Only the name of the virtual machine is necessary. All other settings, except the file associations will be set automatically.
 </p>
+
 <h3>The 'delete' button</h3>
 <p>
-Allows a selected virtual machine to be excluded. The preferences file, if generated, will be deleted and the virtual machine will be deleted. The associated files will remain untouched. There is no turning back from this action.
+  Allows a selected virtual machine to be excluded. The preferences file, if generated, will be deleted and the virtual machine will be deleted. The associated files will remain untouched. There is no turning back from this action.
 </p>
+
 <h3>The 'duplicate' button</h3>
 <p>
-Allows the duplication of a selected virtual machine. If no machine is selected in the list, it becomes disabled. The second virtual machine will be a copy of the selected one. The name must be different.
+  Allows the duplication of a selected virtual machine. If no machine is selected in the list, it becomes disabled. The second virtual machine will be a copy of the selected one. The name must be different.
 </p>
+
 <h3>The 'settings' button</h3>
 <p>
-This button with a gear wheel icon opens another window (virtual machine window) to change the selected virtual machine's settings.
+  This button with a gear wheel icon opens another window (virtual machine window) to change the selected virtual machine's settings.
 </p>
+
 <h3>The 'assets manager' button</h3>
 <p>
-This is a shortcut to open the <a href="assets_manager/index.html">Assets Manager</a>.
+  This is a shortcut to open the <a href="assets.html">Assets Manager</a>.
 </p>
+
 <h3>Extra buttons</h3>
 <p>
-There is a preference to activate extra buttons in this area. You can learn more details in the <a href="preferences.html">preferences' help page</a>.
+  There is a preference to activate extra buttons in this area. You can learn more details in the <a href="preferences.html">preferences' help page</a>.
 </p></div></body></html>
