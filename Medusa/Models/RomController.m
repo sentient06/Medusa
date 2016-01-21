@@ -244,6 +244,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     emulator = EmulatorUnsupported;
     category = OldWorldROM;
+    comments = nil;
     short macMd[5];
     
     switch( intChecksum ) {
