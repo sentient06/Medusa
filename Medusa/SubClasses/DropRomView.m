@@ -75,6 +75,7 @@
     acceptedTypes = [[NSArray alloc] initWithObjects:
           @"Unix Executable File"
         , @"ROM Image"
+        , @"Mac ROMan.app Document"
         , nil
     ];
 }

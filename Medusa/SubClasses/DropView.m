@@ -118,6 +118,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         , @"NDIF Disk Image"
         , @"Disk Image"
         , @"ROM Image"
+        , @"Mac ROMan.app Document"
         , nil
     ];
 }
