@@ -56,10 +56,10 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (![[[filePath pathExtension] lowercaseString] isEqualTo:@"rom"])
         return NO;
     
-    NSString * kind = nil;
-    NSURL    * url = [NSURL fileURLWithPath:[filePath stringByExpandingTildeInPath]];
-
-    LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
+//    NSString * kind = nil;
+//    NSURL    * url = [NSURL fileURLWithPath:[filePath stringByExpandingTildeInPath]];
+//    LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
+    NSString * kind = (NSString *)UTTypeCopyDescription((CFStringRef)@"public.rom");
 
     NSArray * fileKinds = [[[NSArray alloc]
         initWithObjects:
