@@ -329,7 +329,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  */
 - (void)showFinderItemAtPath:(NSString *)path {
     NSWorkspace * ws = [NSWorkspace sharedWorkspace];
-    [ws selectFile:path inFileViewerRootedAtPath:nil];
+    [ws selectFile:path inFileViewerRootedAtPath:@""];
 }
 
 

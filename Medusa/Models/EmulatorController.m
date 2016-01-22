@@ -241,31 +241,34 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         ]
     ];
     
-    [emulatorTask launch];
-    [emulatorTask waitUntilExit];
-    
-    NSData * outputData = [[[emulatorTask standardOutput] fileHandleForReading] availableData];
-    
-    if ((outputData != nil) && [outputData length]) {
+    NSData * outputData;
 
-        NSString * outputString = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] autorelease];
-        thisEmulatorFamily = basiliskFamily;
-        
-        if ([outputString rangeOfString:@"Basilisk II"].location == NSNotFound) {
-            DDLogVerbose(@"Not Basilisk II.");
-            thisEmulatorFamily = sheepshaverFamily;
-
-            if ([outputString rangeOfString:@"SheepShaver"].location == NSNotFound) {
-                DDLogVerbose(@"Not Sheepshaver.");
-                thisEmulatorFamily = undefinedFamily;
-
-                if ([outputString rangeOfString:@"Christian Bauer"].location == NSNotFound)
-                    DDLogVerbose(@"Not Christian Bauer.");
-
+    @try {
+        [emulatorTask launch];
+        [emulatorTask waitUntilExit];
+        outputData = [[[emulatorTask standardOutput] fileHandleForReading] availableData];
+        if ((outputData != nil) && [outputData length]) {
+            NSString * outputString = [[[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding] autorelease];
+            thisEmulatorFamily = basiliskFamily;
+            
+            if ([outputString rangeOfString:@"Basilisk II"].location == NSNotFound) {
+                DDLogVerbose(@"Not Basilisk II.");
+                thisEmulatorFamily = sheepshaverFamily;
+                
+                if ([outputString rangeOfString:@"SheepShaver"].location == NSNotFound) {
+                    DDLogVerbose(@"Not Sheepshaver.");
+                    thisEmulatorFamily = undefinedFamily;
+                    
+                    if ([outputString rangeOfString:@"Christian Bauer"].location == NSNotFound)
+                        DDLogVerbose(@"Not Christian Bauer.");
+                }
             }
         }
-
     }
+    @catch (NSException * e) {
+        DDLogError(@"Exception trying to execute emulator for parsing: %@\nPath: %@", e, currentEmulatorUnixFile);
+    }
+//    @finally {}
     
     [emulatorTask release];
     [emulatorPipe release];
