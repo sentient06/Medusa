@@ -80,14 +80,18 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 #pragma mark – Writting actions
 
 /*!
- * @method      savePreferencesFile:ForFile:
+ * @method      savePreferences:InPath:ForVirtualMachine:
  * @abstract    Saves text file with preferences.
  * @discussion  SheepShaver emulates a G4 processor, 100MHz and reports Gestalt
  *              67 - Power Mac 9500
  */
-- (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath {
+- (void)savePreferences:(NSArray *)dataToSave
+                 InPath:(NSString*)filePath
+      ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
+
     DDLogVerbose(@"Save data: %@", dataToSave);
-    
+
+    int emulatorFamily = [[[virtualMachine emulator] family] intValue];
     NSFileManager * fileManager = [NSFileManager defaultManager];
     NSError * error;
     if ([fileManager fileExistsAtPath:filePath])
@@ -104,8 +108,45 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             [newContent appendString:@"\n"];
         }
     }
+
+    NSMutableString * emulatorDefaults = [[NSMutableString alloc] initWithString:@""];
+    NSMutableString * universalDefaults = [[NSMutableString alloc] initWithString:
+        [[NSUserDefaults standardUserDefaults] stringForKey:@"extraUniversalPreferences"] ?: @""
+    ];
+
+    if (emulatorFamily == basiliskFamily) {
+        [emulatorDefaults appendString:
+            [[NSUserDefaults standardUserDefaults] stringForKey:@"extraBasiliskPreferences"] ?: @""
+        ];
+    }
+    
+    if (emulatorFamily == sheepshaverFamily) {
+        [emulatorDefaults appendString:
+            [[NSUserDefaults standardUserDefaults] stringForKey:@"extraSheepshaverPreferences"] ?: @""
+        ];
+    }
+    
+    if ([universalDefaults length] > 0) {
+        [newContent appendString:universalDefaults];
+        [newContent appendString:@"\n"];
+    }
+    
+    if ([emulatorDefaults length] > 0) {
+        [newContent appendString:emulatorDefaults];
+        [newContent appendString:@"\n"];
+    }
+    
+    if ([virtualMachine extraPreferences]) {
+        [newContent appendString:[virtualMachine extraPreferences]];
+        [newContent appendString:@"\n"];
+    }
+    
+    DDLogVerbose(@">>> New content: %@", newContent);
+    
     DDLogVerbose(@"%@", filePath);
     [newContent writeToFile:filePath atomically:NO encoding:NSUTF8StringEncoding error:nil];
+    [emulatorDefaults release];
+    [universalDefaults release];
     [newContent release];
 }
 
@@ -618,7 +659,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 [@"" writeToFile:nvramFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
     }
     
-    [self savePreferencesFile:currentVmData ForFile:filePath];
+    [self savePreferences:currentVmData InPath:filePath ForVirtualMachine:virtualMachine];
 
 }
 

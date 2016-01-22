@@ -56,11 +56,14 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (![[[filePath pathExtension] lowercaseString] isEqualTo:@"rom"])
         return NO;
     
-//    NSString * kind = nil;
-//    NSURL    * url = [NSURL fileURLWithPath:[filePath stringByExpandingTildeInPath]];
-//    LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kind);
-    NSString * kind = (NSString *)UTTypeCopyDescription((CFStringRef)@"public.rom");
+    NSString * kindSnowLeop = nil;
+    NSURL    * url = [NSURL fileURLWithPath:[filePath stringByExpandingTildeInPath]];
+    LSCopyKindStringForURL((CFURLRef)url, (CFStringRef *)&kindSnowLeop);
 
+    NSString * kindYosemite = (NSString *)UTTypeCopyDescription((CFStringRef)@"public.rom");
+
+    DDLogVerbose(@"\nsnow leopard: %@\nyosemite: %@", kindSnowLeop, kindYosemite);
+    
     NSArray * fileKinds = [[[NSArray alloc]
         initWithObjects:
             @"Unix Executable File"
@@ -69,7 +72,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
           , nil
     ] autorelease];
     
-    if ([fileKinds containsObject:kind])
+    if ([fileKinds containsObject:kindSnowLeop] ||
+        [fileKinds containsObject:kindYosemite])
          return YES;
     else return NO;
 }

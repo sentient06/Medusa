@@ -49,7 +49,9 @@
 
 - (NSMutableArray *)getVirtualMachineData:(VirtualMachinesEntityModel*)virtualMachine
                         forEmulatorFamily:(int)emulatorFamily;
-- (void)savePreferencesFile:(NSArray *)dataToSave ForFile:(NSString*)filePath;
+- (void)savePreferences:(NSArray *)dataToSave
+                 InPath:(NSString*)filePath
+      ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
 - (void)savePreferencesFile:(NSString *)preferencesFilePath
           ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
 
