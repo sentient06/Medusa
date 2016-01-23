@@ -1,9 +1,9 @@
 //
-//  ToggleButtonImageTransformer.m
+//  BoolValueToTickTransformer.h
 //  Medusa
 //
-//  Created by Gian2 on 10/10/2014.
-//  Copyright (c) 2014 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 22/01/2016.
+//  Copyright (c) 2016 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,27 +30,8 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ToggleButtonImageTransformer.h"
+#import <Foundation/Foundation.h>
 
-@implementation ToggleButtonImageTransformer
-
-+ (Class)transformedValueClass {
-    return [NSImage class];
-}
-
-+ (BOOL)allowsReverseTransformation {
-    return NO;
-}
-
-- (id)transformedValue:(id)value {
-    
-//    NSLog(@"%@", [value class]);
-//    int running = [value intValue];
-    
-//    if (running == 1)
-//        return [NSImage imageNamed:@"ToggleOffUp.png"];
-
-    return [NSImage imageNamed:@"ToggleOnUp.png"];
-}
+@interface BoolValueToTickTransformer : NSValueTransformer
 
 @end

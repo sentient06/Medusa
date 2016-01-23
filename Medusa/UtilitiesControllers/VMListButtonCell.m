@@ -31,13 +31,13 @@
     
     if([self intValue]) {
         if ([self isEnabled]) {
-            imageName = @"ToggleOnDown.png";
+            imageName = @"ToggleOnUp.png";
         } else {
             imageName = @"ToggleOnUp.png";
         }
     } else {
         if ([self isEnabled]) {
-            imageName = @"ToggleOffDown.png";
+            imageName = @"ToggleOffUp.png";
         } else {
             imageName = @"ToggleOffUp.png";
         }
