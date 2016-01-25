@@ -49,7 +49,6 @@
 		406E55CD1A95233F00012DDD /* Clone.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55921A95233F00012DDD /* Clone.png */; };
 		406E55CE1A95233F00012DDD /* FilesIcon16.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55931A95233F00012DDD /* FilesIcon16.png */; };
 		406E55D01A95233F00012DDD /* Configuration.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55961A95233F00012DDD /* Configuration.png */; };
-		406E55D11A95233F00012DDD /* Display.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55971A95233F00012DDD /* Display.png */; };
 		406E55D21A95233F00012DDD /* Drive.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55981A95233F00012DDD /* Drive.png */; };
 		406E55D31A95233F00012DDD /* Emulators.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55991A95233F00012DDD /* Emulators.png */; };
 		406E55D41A95233F00012DDD /* ErrorIconClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E559A1A95233F00012DDD /* ErrorIconClassic.png */; };
@@ -155,6 +154,8 @@
 		81EA87941A9FAC05007EB0DE /* Note.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EA87931A9FAC05007EB0DE /* Note.png */; };
 		81F0857617CF8DF000188A2E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
 		81F085E417CF8E9A00188A2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
+		FE4D08871C5635C7006C0917 /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = FE4D08861C5635C7006C0917 /* Display.icns */; settings = {ASSET_TAGS = (); }; };
+		FE4D088A1C5635F8006C0917 /* BoolValueToTickTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4D08891C5635F8006C0917 /* BoolValueToTickTransformer.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -222,7 +223,6 @@
 		406E55921A95233F00012DDD /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clone.png; sourceTree = "<group>"; };
 		406E55931A95233F00012DDD /* FilesIcon16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilesIcon16.png; sourceTree = "<group>"; };
 		406E55961A95233F00012DDD /* Configuration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Configuration.png; sourceTree = "<group>"; };
-		406E55971A95233F00012DDD /* Display.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Display.png; sourceTree = "<group>"; };
 		406E55981A95233F00012DDD /* Drive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Drive.png; sourceTree = "<group>"; };
 		406E55991A95233F00012DDD /* Emulators.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Emulators.png; sourceTree = "<group>"; };
 		406E559A1A95233F00012DDD /* ErrorIconClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ErrorIconClassic.png; sourceTree = "<group>"; };
@@ -401,6 +401,9 @@
 		81E84DF71565BE820002D4DA /* RomFilesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFilesEntityModel.h; path = Models/RomFilesEntityModel.h; sourceTree = "<group>"; };
 		81E84DF81565BE820002D4DA /* RomFilesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFilesEntityModel.m; path = Models/RomFilesEntityModel.m; sourceTree = "<group>"; };
 		81EA87931A9FAC05007EB0DE /* Note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Note.png; path = Medusa/Images/Note.png; sourceTree = SOURCE_ROOT; };
+		FE4D08861C5635C7006C0917 /* Display.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Display.icns; sourceTree = "<group>"; };
+		FE4D08881C5635F8006C0917 /* BoolValueToTickTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToTickTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToTickTransformer.h; sourceTree = "<group>"; };
+		FE4D08891C5635F8006C0917 /* BoolValueToTickTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToTickTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToTickTransformer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,6 +487,7 @@
 			children = (
 				406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */,
 				406E55701A95233F00012DDD /* MedusaIcon.icns */,
+				FE4D08861C5635C7006C0917 /* Display.icns */,
 			);
 			name = Icons;
 			path = Images/Icons;
@@ -550,7 +554,6 @@
 			isa = PBXGroup;
 			children = (
 				406E55961A95233F00012DDD /* Configuration.png */,
-				406E55971A95233F00012DDD /* Display.png */,
 				406E55981A95233F00012DDD /* Drive.png */,
 				406E55991A95233F00012DDD /* Emulators.png */,
 				406E559A1A95233F00012DDD /* ErrorIconClassic.png */,
@@ -963,6 +966,8 @@
 				81B08F2617F44648000954C6 /* BoolValueTransformer.m */,
 				4047CFAD194B4C0A003847C7 /* BoolValueToRedColourTransformer.h */,
 				4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */,
+				FE4D08881C5635F8006C0917 /* BoolValueToTickTransformer.h */,
+				FE4D08891C5635F8006C0917 /* BoolValueToTickTransformer.m */,
 			);
 			name = BoolTransformers;
 			sourceTree = "<group>";
@@ -1138,6 +1143,7 @@
 				406E55B81A95233F00012DDD /* 010 - Unknown Keyboard.gif in Resources */,
 				406E55B21A95233F00012DDD /* 004 - Apple ISO Keyboard.gif in Resources */,
 				406E55C01A95233F00012DDD /* 024 - PowerBook ISO Extended Keyboard.gif in Resources */,
+				FE4D08871C5635C7006C0917 /* Display.icns in Resources */,
 				406E55AE1A95233F00012DDD /* MedusaIcon.icns in Resources */,
 				408D8B7D19D6F7D300100A14 /* BasiliskII_keycodes in Resources */,
 				406E55AD1A95233F00012DDD /* ClassicFolderIcon.icns in Resources */,
@@ -1152,7 +1158,6 @@
 				81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */,
 				406E55D61A95233F00012DDD /* GenericQuestionMarkIcon.png in Resources */,
 				406E55B51A95233F00012DDD /* 007 - Macintosh Portable International Keyboard.gif in Resources */,
-				406E55D11A95233F00012DDD /* Display.png in Resources */,
 				406E55BF1A95233F00012DDD /* 020 - PowerBook Extended Keyboard.gif in Resources */,
 				8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */,
 				406E55B41A95233F00012DDD /* 006 - Macintosh Portable Keyboard.gif in Resources */,
@@ -1169,7 +1174,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		40A4E1F81A91E3130020BB5E /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -1177,7 +1182,7 @@
 			name = "Run Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "/usr/bin/killall \"helpd\"\nrm -rf ~/Library/Caches/com.apple.helpviewer\nrm -rf ~/Library/Caches/com.apple.helpd\nrm -rf ~/Library/Preferences/com.apple.help*.plist\nrm -rf ~/Library/Medusa\ncp -R ~/Library/MedusaBackup ~/Library/Medusa";
 		};
@@ -1261,6 +1266,7 @@
 				81A3A7A51A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel in Sources */,
 				8138246C1A9E457700D629C7 /* MedusaTextField.m in Sources */,
 				81CADFDC1A9FBD40001BE96E /* TextFieldTransformer.m in Sources */,
+				FE4D088A1C5635F8006C0917 /* BoolValueToTickTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
