@@ -156,6 +156,8 @@
 		81F085E417CF8E9A00188A2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
 		FE4D08871C5635C7006C0917 /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = FE4D08861C5635C7006C0917 /* Display.icns */; settings = {ASSET_TAGS = (); }; };
 		FE4D088A1C5635F8006C0917 /* BoolValueToTickTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = FE4D08891C5635F8006C0917 /* BoolValueToTickTransformer.m */; settings = {ASSET_TAGS = (); }; };
+		FE72C4BA1C64A598002443FF /* Chip.icns in Resources */ = {isa = PBXBuildFile; fileRef = FE72C4B91C64A598002443FF /* Chip.icns */; settings = {ASSET_TAGS = (); }; };
+		FE72C4BE1C64A5E8002443FF /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE72C4BD1C64A5E8002443FF /* SplitViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -404,6 +406,9 @@
 		FE4D08861C5635C7006C0917 /* Display.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Display.icns; sourceTree = "<group>"; };
 		FE4D08881C5635F8006C0917 /* BoolValueToTickTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToTickTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToTickTransformer.h; sourceTree = "<group>"; };
 		FE4D08891C5635F8006C0917 /* BoolValueToTickTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToTickTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToTickTransformer.m; sourceTree = "<group>"; };
+		FE72C4B91C64A598002443FF /* Chip.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Chip.icns; sourceTree = "<group>"; };
+		FE72C4BC1C64A5E8002443FF /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplitViewController.h; path = SubClasses/SplitViewController.h; sourceTree = "<group>"; };
+		FE72C4BD1C64A5E8002443FF /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplitViewController.m; path = SubClasses/SplitViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -485,6 +490,7 @@
 		406E556E1A95233F00012DDD /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				FE72C4B91C64A598002443FF /* Chip.icns */,
 				406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */,
 				406E55701A95233F00012DDD /* MedusaIcon.icns */,
 				FE4D08861C5635C7006C0917 /* Display.icns */,
@@ -975,6 +981,7 @@
 		81C84439153E184E00E94443 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
+				FE72C4BB1C64A5D5002443FF /* SplitPanel */,
 				813824681A9E452300D629C7 /* Text */,
 				4009A9741A9740650044A0BB /* Buttons */,
 				815FEEF8153627A100B9E5C5 /* Tables */,
@@ -1015,6 +1022,15 @@
 				406E55951A95233F00012DDD /* TabIcons */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		FE72C4BB1C64A5D5002443FF /* SplitPanel */ = {
+			isa = PBXGroup;
+			children = (
+				FE72C4BC1C64A5E8002443FF /* SplitViewController.h */,
+				FE72C4BD1C64A5E8002443FF /* SplitViewController.m */,
+			);
+			name = SplitPanel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1102,6 +1118,7 @@
 				406E55BC1A95233F00012DDD /* 014 - Apple Adjustable Numeric Keyboard.gif in Resources */,
 				81756F3D1534743500FCBA8E /* InfoPlist.strings in Resources */,
 				406E55DC1A95233F00012DDD /* RomFile.png in Resources */,
+				FE72C4BA1C64A598002443FF /* Chip.icns in Resources */,
 				406E55BA1A95233F00012DDD /* 012 - PowerBook Keyboard.gif in Resources */,
 				406E56051A9525F100012DDD /* ColouredHappyMacLocked.png in Resources */,
 				406E55C11A95233F00012DDD /* 259 - Macintosh 512K International Keyboard.gif in Resources */,
@@ -1215,6 +1232,7 @@
 				81E84DF91565BE820002D4DA /* RomFilesEntityModel.m in Sources */,
 				404EC1B61A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel in Sources */,
 				814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */,
+				FE72C4BE1C64A5E8002443FF /* SplitViewController.m in Sources */,
 				40394FDC19E7E653003893E1 /* ToggleButtonImageTransformer.m in Sources */,
 				815C26391587EEA5003FA9EB /* VirtualMachinesEntityModel.m in Sources */,
 				402206651A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m in Sources */,
