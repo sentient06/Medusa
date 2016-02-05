@@ -505,7 +505,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             macMd[0] = gestaltPowerBookDuo270c;
             break;
         case 0xEDE66CBD:
-            macModel = @"Color Classic II, LC 550, Performa 275/550/560, Mac TV";//Maybe Performa 450-550";
+            macModel = @"LC 550, Performa 275/550/560, Mac TV";
+            comments = @"...or Color Classic II, maybe Performa 450-550";
             emulator = BasiliskII;
             fileCond = NormalCondition;
             macMd[0] = gestaltPerforma550;
