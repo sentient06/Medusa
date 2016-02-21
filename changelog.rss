@@ -118,7 +118,7 @@
       <description>
         <![CDATA[
           <div style="font-family: 'Helvetica'; font-size: 0.9em;">
-            <h1>Medusa 1.2.0RC2</h1>
+            <h1>Medusa 1.2.0RC4</h1>
             <p>
                 This is the Release Candidate 4. It should be backwards compatible with v1.2RC3, v1.2RC2, v1.2RC1 and v1.2B3.
             </p>
