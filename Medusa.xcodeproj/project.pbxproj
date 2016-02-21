@@ -49,7 +49,6 @@
 		406E55CD1A95233F00012DDD /* Clone.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55921A95233F00012DDD /* Clone.png */; };
 		406E55CE1A95233F00012DDD /* FilesIcon16.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55931A95233F00012DDD /* FilesIcon16.png */; };
 		406E55D01A95233F00012DDD /* Configuration.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55961A95233F00012DDD /* Configuration.png */; };
-		406E55D11A95233F00012DDD /* Display.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55971A95233F00012DDD /* Display.png */; };
 		406E55D21A95233F00012DDD /* Drive.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55981A95233F00012DDD /* Drive.png */; };
 		406E55D31A95233F00012DDD /* Emulators.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55991A95233F00012DDD /* Emulators.png */; };
 		406E55D41A95233F00012DDD /* ErrorIconClassic.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E559A1A95233F00012DDD /* ErrorIconClassic.png */; };
@@ -94,6 +93,7 @@
 		8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */; };
 		813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */; };
 		814804E817D5D56D0070DAD9 /* RomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomController.m */; };
+		814DA6FB1C63DE41001C538A /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814DA6FA1C63DE41001C538A /* SplitViewController.m */; };
 		814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FAD881570ED0D008D3223 /* PreferencesWindowController.m */; };
 		8159C790154F1205001E43D4 /* DropRomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C78F154F1205001E43D4 /* DropRomView.m */; };
 		8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C797154F2E29001E43D4 /* DropDiskView.m */; };
@@ -142,6 +142,8 @@
 		81B08F2317F44198000954C6 /* DiskFormatValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2217F44198000954C6 /* DiskFormatValueTransformer.m */; };
 		81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2617F44648000954C6 /* BoolValueTransformer.m */; };
 		81BBBC5417F9B5B700C151FE /* EmulatorFamilyValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BBBC5317F9B5B700C151FE /* EmulatorFamilyValueTransformer.m */; };
+		81C4288B1C5C0A6400EAD87C /* Chip.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81C4288A1C5C0A6400EAD87C /* Chip.icns */; };
+		81C4288D1C5C0D9E00EAD87C /* Network.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81C4288C1C5C0D9E00EAD87C /* Network.icns */; };
 		81C84438153E183700E94443 /* DropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84437153E183700E94443 /* DropView.m */; };
 		81CADFDC1A9FBD40001BE96E /* TextFieldTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CADFDB1A9FBD40001BE96E /* TextFieldTransformer.m */; };
 		81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */; };
@@ -155,6 +157,8 @@
 		81EA87941A9FAC05007EB0DE /* Note.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EA87931A9FAC05007EB0DE /* Note.png */; };
 		81F0857617CF8DF000188A2E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
 		81F085E417CF8E9A00188A2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
+		81F751531C52E4B9009B9F96 /* BoolValueToTickTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F751521C52E4B9009B9F96 /* BoolValueToTickTransformer.m */; };
+		81F751561C52ED8C009B9F96 /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81F751551C52ED8C009B9F96 /* Display.icns */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -222,7 +226,6 @@
 		406E55921A95233F00012DDD /* Clone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Clone.png; sourceTree = "<group>"; };
 		406E55931A95233F00012DDD /* FilesIcon16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FilesIcon16.png; sourceTree = "<group>"; };
 		406E55961A95233F00012DDD /* Configuration.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Configuration.png; sourceTree = "<group>"; };
-		406E55971A95233F00012DDD /* Display.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Display.png; sourceTree = "<group>"; };
 		406E55981A95233F00012DDD /* Drive.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Drive.png; sourceTree = "<group>"; };
 		406E55991A95233F00012DDD /* Emulators.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Emulators.png; sourceTree = "<group>"; };
 		406E559A1A95233F00012DDD /* ErrorIconClassic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ErrorIconClassic.png; sourceTree = "<group>"; };
@@ -285,6 +288,8 @@
 		813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorsEntityModel.m; path = Models/EmulatorsEntityModel.m; sourceTree = "<group>"; };
 		814804E617D5D56D0070DAD9 /* RomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomController.h; path = Models/RomController.h; sourceTree = "<group>"; };
 		814804E717D5D56D0070DAD9 /* RomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomController.m; path = Models/RomController.m; sourceTree = "<group>"; };
+		814DA6F91C63DE41001C538A /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplitViewController.h; path = SubClasses/SplitViewController.h; sourceTree = "<group>"; };
+		814DA6FA1C63DE41001C538A /* SplitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SplitViewController.m; path = SubClasses/SplitViewController.m; sourceTree = "<group>"; };
 		814FAD871570ED0D008D3223 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PreferencesWindowController.h; path = WindowControllers/PreferencesWindowController.h; sourceTree = "<group>"; };
 		814FAD881570ED0D008D3223 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesWindowController.m; path = WindowControllers/PreferencesWindowController.m; sourceTree = "<group>"; };
 		8159C78E154F1205001E43D4 /* DropRomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropRomView.h; path = SubClasses/DropRomView.h; sourceTree = "<group>"; };
@@ -381,6 +386,8 @@
 		81B08F2617F44648000954C6 /* BoolValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueTransformer.m; sourceTree = "<group>"; };
 		81BBBC5217F9B5B700C151FE /* EmulatorFamilyValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorFamilyValueTransformer.h; path = TransformerControllers/EnumeratorTransformers/EmulatorFamilyValueTransformer.h; sourceTree = "<group>"; };
 		81BBBC5317F9B5B700C151FE /* EmulatorFamilyValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorFamilyValueTransformer.m; path = TransformerControllers/EnumeratorTransformers/EmulatorFamilyValueTransformer.m; sourceTree = "<group>"; };
+		81C4288A1C5C0A6400EAD87C /* Chip.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Chip.icns; sourceTree = "<group>"; };
+		81C4288C1C5C0D9E00EAD87C /* Network.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Network.icns; sourceTree = "<group>"; };
 		81C84436153E183700E94443 /* DropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropView.h; path = SubClasses/DropView.h; sourceTree = "<group>"; };
 		81C84437153E183700E94443 /* DropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropView.m; path = SubClasses/DropView.m; sourceTree = "<group>"; };
 		81CADFDA1A9FBD40001BE96E /* TextFieldTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldTransformer.h; path = TransformerControllers/StringTransformers/TextFieldTransformer.h; sourceTree = "<group>"; };
@@ -401,6 +408,9 @@
 		81E84DF71565BE820002D4DA /* RomFilesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFilesEntityModel.h; path = Models/RomFilesEntityModel.h; sourceTree = "<group>"; };
 		81E84DF81565BE820002D4DA /* RomFilesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFilesEntityModel.m; path = Models/RomFilesEntityModel.m; sourceTree = "<group>"; };
 		81EA87931A9FAC05007EB0DE /* Note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Note.png; path = Medusa/Images/Note.png; sourceTree = SOURCE_ROOT; };
+		81F751511C52E4B9009B9F96 /* BoolValueToTickTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToTickTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToTickTransformer.h; sourceTree = "<group>"; };
+		81F751521C52E4B9009B9F96 /* BoolValueToTickTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToTickTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToTickTransformer.m; sourceTree = "<group>"; };
+		81F751551C52ED8C009B9F96 /* Display.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Display.icns; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,8 +492,11 @@
 		406E556E1A95233F00012DDD /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				81F751551C52ED8C009B9F96 /* Display.icns */,
 				406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */,
 				406E55701A95233F00012DDD /* MedusaIcon.icns */,
+				81C4288A1C5C0A6400EAD87C /* Chip.icns */,
+				81C4288C1C5C0D9E00EAD87C /* Network.icns */,
 			);
 			name = Icons;
 			path = Images/Icons;
@@ -550,7 +563,6 @@
 			isa = PBXGroup;
 			children = (
 				406E55961A95233F00012DDD /* Configuration.png */,
-				406E55971A95233F00012DDD /* Display.png */,
 				406E55981A95233F00012DDD /* Drive.png */,
 				406E55991A95233F00012DDD /* Emulators.png */,
 				406E559A1A95233F00012DDD /* ErrorIconClassic.png */,
@@ -623,6 +635,15 @@
 				8138246B1A9E457700D629C7 /* MedusaTextField.m */,
 			);
 			name = Text;
+			sourceTree = "<group>";
+		};
+		814DA6F81C63DDF9001C538A /* SplitView */ = {
+			isa = PBXGroup;
+			children = (
+				814DA6F91C63DE41001C538A /* SplitViewController.h */,
+				814DA6FA1C63DE41001C538A /* SplitViewController.m */,
+			);
+			name = SplitView;
 			sourceTree = "<group>";
 		};
 		815FEEF61536279000B9E5C5 /* WindowControllers */ = {
@@ -963,6 +984,8 @@
 				81B08F2617F44648000954C6 /* BoolValueTransformer.m */,
 				4047CFAD194B4C0A003847C7 /* BoolValueToRedColourTransformer.h */,
 				4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */,
+				81F751511C52E4B9009B9F96 /* BoolValueToTickTransformer.h */,
+				81F751521C52E4B9009B9F96 /* BoolValueToTickTransformer.m */,
 			);
 			name = BoolTransformers;
 			sourceTree = "<group>";
@@ -970,6 +993,7 @@
 		81C84439153E184E00E94443 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
+				814DA6F81C63DDF9001C538A /* SplitView */,
 				813824681A9E452300D629C7 /* Text */,
 				4009A9741A9740650044A0BB /* Buttons */,
 				815FEEF8153627A100B9E5C5 /* Tables */,
@@ -1152,7 +1176,6 @@
 				81733FB3159F2ED000711709 /* AssetsWindow.xib in Resources */,
 				406E55D61A95233F00012DDD /* GenericQuestionMarkIcon.png in Resources */,
 				406E55B51A95233F00012DDD /* 007 - Macintosh Portable International Keyboard.gif in Resources */,
-				406E55D11A95233F00012DDD /* Display.png in Resources */,
 				406E55BF1A95233F00012DDD /* 020 - PowerBook Extended Keyboard.gif in Resources */,
 				8168995A17CE17CE00058B9F /* dsa_pub.pem in Resources */,
 				406E55B41A95233F00012DDD /* 006 - Macintosh Portable Keyboard.gif in Resources */,
@@ -1161,6 +1184,9 @@
 				406E55DF1A95233F00012DDD /* RubbishFullClassic.png in Resources */,
 				406E55BD1A95233F00012DDD /* 016 - Apple Adjustable Keyboard.gif in Resources */,
 				81EA87941A9FAC05007EB0DE /* Note.png in Resources */,
+				81F751561C52ED8C009B9F96 /* Display.icns in Resources */,
+				81C4288B1C5C0A6400EAD87C /* Chip.icns in Resources */,
+				81C4288D1C5C0D9E00EAD87C /* Network.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1169,7 +1195,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		40A4E1F81A91E3130020BB5E /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -1177,9 +1203,9 @@
 			name = "Run Script";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
-			shellScript = "/usr/bin/killall \"helpd\"\nrm -rf ~/Library/Caches/com.apple.helpviewer\nrm -rf ~/Library/Caches/com.apple.helpd\nrm -rf ~/Library/Preferences/com.apple.help*.plist\nrm -rf ~/Library/Medusa\ncp -R ~/Library/MedusaBackup ~/Library/Medusa";
+			shellScript = "/usr/bin/killall \"helpd\"\nrm -rf ~/Library/Caches/com.apple.helpviewer\nrm -rf ~/Library/Caches/com.apple.helpd\nrm -rf ~/Library/Preferences/com.apple.help*.plist\nrm -rf ~/Library/Medusa\ncp -R ~/Library/MedusaBackup ~/Library/Medusa 2>/dev/null";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1261,6 +1287,8 @@
 				81A3A7A51A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel in Sources */,
 				8138246C1A9E457700D629C7 /* MedusaTextField.m in Sources */,
 				81CADFDC1A9FBD40001BE96E /* TextFieldTransformer.m in Sources */,
+				81F751531C52E4B9009B9F96 /* BoolValueToTickTransformer.m in Sources */,
+				814DA6FB1C63DE41001C538A /* SplitViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -31,7 +31,7 @@
 	<key>NSHighResolutionCapable</key>
 	<false/>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2012-2015 Giancarlo Mariot. All rights reserved. Released under BSD 2-Clause License</string>
+	<string>Copyright © 2012-2016 Giancarlo Mariot. All rights reserved. Released under BSD 2-Clause License</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

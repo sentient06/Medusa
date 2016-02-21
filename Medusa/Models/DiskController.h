@@ -41,6 +41,7 @@
     NSUInteger diskSize;
     NSUInteger capacity;
     NSUInteger totalPartitions;
+    BOOL valid;
     BOOL bootable;
 }
 
