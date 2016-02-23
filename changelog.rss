@@ -113,5 +113,42 @@
         sparkle:shortVersionString="1.2.0RC2"
       />
     </item>
+    <item>
+      <title>Version 1.2.0RC4</title>
+      <description>
+        <![CDATA[
+          <div style="font-family: 'Helvetica'; font-size: 0.9em;">
+            <h1>Medusa 1.2.0RC4</h1>
+            <p>
+                This is the Release Candidate 4. It should be backwards compatible with v1.2RC3, v1.2RC2, v1.2RC1 and v1.2B3.
+            </p>
+
+            <h2>New features</h2>
+            <ul>
+                <li>In the disk settings for the virtual machine, the disk list is more intuitive and the table size can be changed to allow readability.</li>
+                <li>Added option to type manually configuration options for the virtual machine</li>
+                <li>Added option to type manually configuration options for all virtual machines that run with a specific emulator</li>
+                <li>Added option to type manually global configuration options for all virtual machines</li>
+            </ul>
+
+            <h2>Under the hood</h2>
+            <ul>
+                <li>Fixed bug that would parse invalid disk files as valid</li>
+                <li>Fixed bug that would freeze the tool that looks for valid emulator binaries</li>
+                <li>Fixed bug that would make ROM files unreadable without MacROMan, be unable to parse ROM files without extensions and make the application unusable in Yosemite</li>
+            </ul>
+          </div>
+        ]]>
+      </description>
+      <pubDate>Sun, 21 Feb 2016 16:47:00 +0000</pubDate>
+      <enclosure
+                               url="https://github.com/sentient06/Medusa/releases/download/v1.2.0rc4/Medusa.1.2.0rc4.dmg"
+                              type="application/octet-stream"
+                            length="3079331"
+                   sparkle:version="6"
+              sparkle:dsaSignature="MCwCFDinEdR1l63907vdVeVlhnUkYCzvAhQb8aYLJaYJGq0F65Bc2xa8MqelcA=="
+        sparkle:shortVersionString="1.2.0RC4"
+      />
+    </item>
   </channel>
 </rss>

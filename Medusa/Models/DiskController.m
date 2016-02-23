@@ -65,15 +65,19 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 //    Number of Files :   1,586
     // Locked?
     // OS?
-    BOOL success = YES;
     
-//    NSString * pathExtension = [filePath pathExtension];    
+//    NSString * pathExtension = [filePath pathExtension];
+    
+    [self readDiskFileFrom:filePath];
+
+    if (valid == NO) {
+        return nil;
+    }
     
     //----------------------------------------------------------------------
     // Core-data part:
     
-    NSError * error;
-    
+    NSError  * error;    
     NSString * escapedPath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSData   * fileAlias   = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
     
@@ -100,8 +104,6 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         return nil;
     }
     
-    [self readDiskFileFrom:filePath];
-    
     //----------------------------------------------------------------------        
     
     DiskFilesEntityModel * managedObject = [
@@ -125,10 +127,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (![currentContext save:&error]) {
         DDLogError(@"Whoops, couldn't save: %@", [error localizedDescription]);
         DDLogVerbose(@"Check 'drop rom view' subclass.");
-        success = NO;
-    }
-    
-    if (success) {
+    } else {
         currentDriveObject = managedObject;
         return managedObject;
     }
@@ -138,8 +137,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     fileName   = nil;
     diskFormat = -1;
     capacity   = -1;
-    bootable   = NO;
     diskSize   = -1;
+    bootable   = NO;
+    valid      = NO;
     
     return nil;
 }
@@ -307,10 +307,63 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  */
 - (void)readDiskFileFrom:(NSString *)filePath {
     
+    NSArray * acceptableExtensions = [
+        [NSArray alloc] initWithObjects:
+          @""
+        , @"2MG"            // Apple IIGS Disk Image
+        , @"ADF"            // Amiga Disk File
+        , @"BIN"            // Binary Disc Image
+        , @"CDR"            // Macintosh DVD/CD Master
+        , @"CDT"            // CD-Text File
+        , @"CISO"           // Compact ISO File
+        , @"CSO"            // Compressed ISO Disk Image
+        , @"CUE"            // CDRWIN Cue Sheet / Cue Sheet File
+        , @"DAA"            // PowerISO Direct-Access-Archive
+        , @"DISK"           // Linux Virtual Hard Disk
+        , @"DMG"            // Mac OS X Disk Image
+        , @"DMGPART"        // Mac OS X Disk Image Part
+        , @"DSK"            // Disk Image
+        , @"DVDR"           // DVD/CD-R Master Image
+        , @"FLP"            // Floppy Disk Image
+        , @"GI"             // Global Image
+        , @"HDI"            // Hard Disk Image
+        , @"HFS"            // HFS Disk Image File
+        , @"HFV"            // HFS Disk Image
+        , @"IMA"            // Disk Image
+        , @"IMAGE"          // Apple Disk Image
+        , @"IMG"            // Disc Image Data File / Floppy Disk Image / Macintosh Disk Image
+        , @"ISO"            // Disc Image File
+        , @"MD1"            // GEAR CD/DVD Disc Image
+        , @"MDF"            // Media Disc Image File
+        , @"NDIF"           // Apple New Disk Image Format File
+        , @"OMG"            // Image File
+        , @"QCOW"           // QEMU Copy On Write Disk Image
+        , @"QCOW2"          // QEMU Copy On Write Version 2 Disk Image
+        , @"RATDVD"         // RatDVD Disk Image
+        , @"SIMG"           // Synclavier Disk Image File
+        , @"SPARSEBUNDLE"   // Mac OS X Sparse Bundle
+        , @"SPARSEIMAGE"    // Mac OS X Sparse Image
+        , @"SUB"            // CloneCD Subchannel File
+        , @"TAO"            // Track at Once CD/DVD Image
+        , @"TIB"            // Acronis True Image File
+        , @"UDF"            // Universal Disk Format File
+        , @"UIBAK"          // UltraISO Backup Disk Image
+        , @"UIF"            // Universal Image Format Disc Image
+        , @"VC4"            // Virtual CD Disc Image
+        , @"VCD"            // Virtual CD
+        , @"VDI"            // VirtualBox Virtual Disk Image
+        , @"VFD"            // Virtual Floppy Disk
+        , @"VHD"            // Virtual PC Virtual Hard Disk
+        , @"WBI"            // Compact ISO File
+        , @"WIM"            // Windows Imaging Format File
+        , @"XMD"            // Extended Media Disc Image
+        , nil
+    ];
+    
     totalPartitions = 0;
     fileName        = [filePath lastPathComponent];
 
-    NSString        * fileExtension     = [[NSString alloc] initWithString:[[filePath pathExtension] lowercaseString]];
+    NSString        * fileExtension     = [[NSString alloc] initWithString:[[filePath pathExtension] uppercaseString]];
     NSString        * originalFilePath  = [[NSString alloc] initWithString:filePath];
     NSMutableString * operatingFilePath = [[NSMutableString alloc] initWithString:filePath];
     NSFileManager   * fileManager       = [NSFileManager defaultManager];
@@ -326,143 +379,149 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     // Creates symlink for unsupported extensions hfv and dsk:
     
-    DDLogVerbose(@"Checking file extension...");
+    DDLogVerbose(@"Checking file extension %@ %d", fileExtension, [acceptableExtensions indexOfObject:fileExtension]);
     
-    if ([fileExtension isEqualToString:@"hfv"] || [fileExtension isEqualToString:@"dsk"]) {
+    if ([acceptableExtensions containsObject:[fileExtension uppercaseString]]) {
         
-        NSError * linkError = nil;
-        DDLogVerbose(@"Unsupported extension.");
-        unsupportedExtension = YES;
+        valid = YES;
         
-        [operatingFilePath release];
-        
-        operatingFilePath = [
-            [NSMutableString alloc]
-                 initWithFormat:@"%@%@.dmg",
-                 NSTemporaryDirectory(),
-                [fileName stringByDeletingPathExtension]
-        ];
-        DDLogVerbose(@"Creating link: \nfrom: %@\nto: %@", originalFilePath, operatingFilePath);
-        [fileManager createSymbolicLinkAtPath:operatingFilePath withDestinationPath:originalFilePath error:&linkError];
-        
-        if (linkError) {
-            DDLogVerbose(@"Error creating link: %@", linkError);
+        if ([fileExtension isEqualToString:@"HFV"] || [fileExtension isEqualToString:@"DSK"]) {
+
+            NSError * linkError = nil;
+            DDLogVerbose(@"Unsupported extension.");
+            unsupportedExtension = YES;
+            
+            [operatingFilePath release];
+            
+            operatingFilePath = [
+                [NSMutableString alloc]
+                     initWithFormat:@"%@%@.dmg",
+                     NSTemporaryDirectory(),
+                    [fileName stringByDeletingPathExtension]
+            ];
+            DDLogVerbose(@"Creating link: \nfrom: %@\nto: %@", originalFilePath, operatingFilePath);
+            [fileManager createSymbolicLinkAtPath:operatingFilePath withDestinationPath:originalFilePath error:&linkError];
+            
+            if (linkError) {
+                DDLogVerbose(@"Error creating link: %@", linkError);
+            }
+
         }
+
+        // hdiutil imageinfo <image>
+        // hdiutil imageinfo -plist <image>
+
+        DDLogVerbose(@"File path: %@", operatingFilePath);
+        NSTask * task = [NSTask new];
+
+        [task setLaunchPath:@"/usr/bin/hdiutil"];
+        [task setArguments:[NSArray arrayWithObjects:@"imageinfo", @"-plist", operatingFilePath, nil]];
+        [task setStandardOutput:[NSPipe pipe]];
+        [task setStandardError:[task standardOutput]];
+        [task launch];
+        [task waitUntilExit];
+
+        NSData       * plistData = [[[task standardOutput] fileHandleForReading] readDataToEndOfFile];
+        NSDictionary * plist = [NSPropertyListSerialization propertyListWithData:plistData options:0 format:nil error:&error];
         
-    }
-    
-    [fileExtension release];
+        [task release];
+        
+        if (!plist) {
+            DDLogError(@"Error: %@", error);
+            valid = NO;
+        } else {
 
-    // hdiutil imageinfo <image>
-    // hdiutil imageinfo -plist <image>
+            NSUInteger partitionType = formatUnknown;
+           
+            int blockSize = [[[plist objectForKey:@"partitions"] objectForKey:@"block-size"] intValue];
 
-    DDLogVerbose(@"File path: %@", operatingFilePath);
-    NSTask * task = [NSTask new];
-
-    [task setLaunchPath:@"/usr/bin/hdiutil"];
-    [task setArguments:[NSArray arrayWithObjects:@"imageinfo", @"-plist", operatingFilePath, nil]];
-    [task setStandardOutput:[NSPipe pipe]];
-    [task setStandardError:[task standardOutput]];
-    [task launch];
-    [task waitUntilExit];
-
-    NSData       * plistData = [[[task standardOutput] fileHandleForReading] readDataToEndOfFile];
-    NSDictionary * plist = [NSPropertyListSerialization propertyListWithData:plistData options:0 format:nil error:&error];
-    [task release];
-    
-    if(!plist) {
-        DDLogError(@"Error: %@", error);
-    } else {
-
-        NSUInteger partitionType = formatUnknown;
-       
-        int blockSize = [[[plist objectForKey:@"partitions"] objectForKey:@"block-size"] intValue];
-
-        for (id partitionElement in [[plist objectForKey:@"partitions"] objectForKey:@"partitions"]) {
-            if ([partitionElement respondsToSelector:@selector(objectForKey:)]) {
-                
-                NSString * partitionHint = [partitionElement objectForKey:@"partition-hint"];
-                int partitionStartKB = [[partitionElement objectForKey:@"partition-start"] intValue];
-                int partitionStart = partitionStartKB / blockSize * 1024;
-                
-                DDLogVerbose(@"Checking '%@'", partitionHint);
-                
-                if ([partitionHint isEqualToString:@"Apple_HFS"]) {
-                    bootable = bootable | [self checkIfDiskImageIsBootable:operatingFilePath startingAt:partitionStart];
-                }
-                
-                //  Examples:
-                //
-                //  partition-name: Apple
-                //  partition-start: 1
-                //  partition-number: 1
-                //  partition-length: 63
-                //  partition-hint: Apple_partition_map
-                //
-                //  partition-name: disk image
-                //  partition-start: 64
-                //  partition-number: 2
-                //  partition-length: 400000
-                //  partition-hint: Apple_HFS
-                //  partition-filesystems: HFS: Mac HD 8.1
-                
-                
-                NSDictionary * fileSystems = [partitionElement objectForKey:@"partition-filesystems"];
-
-                if (fileSystems) {
+            for (id partitionElement in [[plist objectForKey:@"partitions"] objectForKey:@"partitions"]) {
+                if ([partitionElement respondsToSelector:@selector(objectForKey:)]) {
                     
-                    NSArray * expectedFileSystems = [
-                        [NSArray alloc] initWithObjects:
-                          @""
-                        , @"LFS"
-                        , @"MFS"
-                        , @"HFS"
-                        , @"HFS+"
-                        , @"ISO9660"
-                        , @"FAT12"
-                        , nil
-                    ];
+                    NSString * partitionHint = [partitionElement objectForKey:@"partition-hint"];
+                    int partitionStartKB = [[partitionElement objectForKey:@"partition-start"] intValue];
+                    int partitionStart = partitionStartKB / blockSize * 1024;
                     
-                    //formatLisaFS  = Must test
-                    //formatMFS     = MFS
-                    //formatHFS     = HFS
-                    //formatHFSPlus = HFS+
-                    //formatISO9660 = ISO9660
-                    //formatFAT     = FAT12
-                    //formatOther   = 7, // Other FS
-                    //formatUnknown = 8, // Unknown FS
-                    //formatMisc    = 9  // Partitioned with different FS
+                    DDLogVerbose(@"Checking '%@'", partitionHint);
                     
-                    for (id fileSystem in fileSystems) {
-                        totalPartitions++;
-                        DDLogVerbose(@"key: %@, value: %@", fileSystem, [fileSystems objectForKey:fileSystem]);
+                    if ([partitionHint isEqualToString:@"Apple_HFS"]) {
+                        bootable = bootable | [self checkIfDiskImageIsBootable:operatingFilePath startingAt:partitionStart];
+                    }
+                    
+                    //  Examples:
+                    //
+                    //  partition-name: Apple
+                    //  partition-start: 1
+                    //  partition-number: 1
+                    //  partition-length: 63
+                    //  partition-hint: Apple_partition_map
+                    //
+                    //  partition-name: disk image
+                    //  partition-start: 64
+                    //  partition-number: 2
+                    //  partition-length: 400000
+                    //  partition-hint: Apple_HFS
+                    //  partition-filesystems: HFS: Mac HD 8.1
+                    
+                    NSDictionary * fileSystems = [partitionElement objectForKey:@"partition-filesystems"];
+
+                    if (fileSystems) {
                         
-                        NSUInteger indexFS = [expectedFileSystems indexOfObject:fileSystem];
-
-                        if (totalPartitions > 1 && partitionType != indexFS) partitionType = formatMisc;
-                        else
-                        if (indexFS) partitionType = indexFS;
+                        NSArray * expectedFileSystems = [
+                            [NSArray alloc] initWithObjects:
+                              @""
+                            , @"LFS"
+                            , @"MFS"
+                            , @"HFS"
+                            , @"HFS+"
+                            , @"ISO9660"
+                            , @"FAT12"
+                            , nil
+                        ];
                         
-                        //formatLisaFS  = 1, // Lisa File-system
-                        //formatMFS     = 2, // Macintosh File-system
-                        //formatHFS     = 3, // Hyerarquical File-system
-                        //formatHFSPlus = 4, // Hyerarquical File-system Plus
-                        //formatISO9660 = 5, // ISO 9660 - CD/DVD ROM
-                        //formatFAT     = 6, // FAT 16, FAT 32
+                        //formatLisaFS  = Must test
+                        //formatMFS     = MFS
+                        //formatHFS     = HFS
+                        //formatHFSPlus = HFS+
+                        //formatISO9660 = ISO9660
+                        //formatFAT     = FAT12
                         //formatOther   = 7, // Other FS
                         //formatUnknown = 8, // Unknown FS
                         //formatMisc    = 9  // Partitioned with different FS
                         
+                        for (id fileSystem in fileSystems) {
+                            totalPartitions++;
+                            DDLogVerbose(@"key: %@, value: %@", fileSystem, [fileSystems objectForKey:fileSystem]);
+                            
+                            NSUInteger indexFS = [expectedFileSystems indexOfObject:fileSystem];
+
+                            if (totalPartitions > 1 && partitionType != indexFS) partitionType = formatMisc;
+                            else
+                            if (indexFS) partitionType = indexFS;
+                            
+                            //formatLisaFS  = 1, // Lisa File-system
+                            //formatMFS     = 2, // Macintosh File-system
+                            //formatHFS     = 3, // Hyerarquical File-system
+                            //formatHFSPlus = 4, // Hyerarquical File-system Plus
+                            //formatISO9660 = 5, // ISO 9660 - CD/DVD ROM
+                            //formatFAT     = 6, // FAT 16, FAT 32
+                            //formatOther   = 7, // Other FS
+                            //formatUnknown = 8, // Unknown FS
+                            //formatMisc    = 9  // Partitioned with different FS
+                            
+                        }
                     }
                 }
             }
+            
+            DDLogVerbose(@"%d partitions found", totalPartitions);
+            DDLogVerbose(@"Partitions type is %u", partitionType);
+
+            diskFormat = partitionType;
+
         }
-        
-        DDLogVerbose(@"%d partitions found", totalPartitions);
-        DDLogVerbose(@"Partitions type is %u", partitionType);
-
-        diskFormat = partitionType;
-
+    } else {
+        valid = NO;
     }
     
     // Removes symlink if existant:
@@ -472,6 +531,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     [operatingFilePath release];
     [originalFilePath release];
+    [fileExtension release];
 
 }
 
