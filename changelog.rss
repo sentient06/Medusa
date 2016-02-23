@@ -144,9 +144,9 @@
       <enclosure
                                url="https://github.com/sentient06/Medusa/releases/download/v1.2.0rc4/Medusa.1.2.0rc4.dmg"
                               type="application/octet-stream"
-                            length="3079331"
+                            length="3618725"
                    sparkle:version="6"
-              sparkle:dsaSignature="MCwCFDinEdR1l63907vdVeVlhnUkYCzvAhQb8aYLJaYJGq0F65Bc2xa8MqelcA=="
+              sparkle:dsaSignature="MC0CFQCUog47DOrqffJ7G/ejUqWPzmNYqAIUYJATXC40pbyCJ5eoFJsWiWyW/MQ="
         sparkle:shortVersionString="1.2.0RC4"
       />
     </item>
