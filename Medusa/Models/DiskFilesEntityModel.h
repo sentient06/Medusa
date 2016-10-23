@@ -45,15 +45,27 @@ enum diskFormat {
     formatMisc    = 9  // Partitioned with different FS
 };
 
+enum diskType {
+    typeHardDrive = 1,
+    typeCDROM     = 2,
+    typeDiskette  = 3,
+    typeOther     = 4
+};
+
 @class RelationshipVirtualMachinesDiskFilesEntityModel;
 
 @interface DiskFilesEntityModel : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * blocked;
-@property (nonatomic, retain) NSNumber * bootable;
+
+@property (assign) NSNumber * bootable;
+@property (assign) NSNumber * forceBootable;
+@property (assign) NSNumber * canBoot;
+
 @property (nonatomic, retain) NSNumber * capacity;
 @property (nonatomic, retain) NSNumber * format;
 @property (nonatomic, retain) NSNumber * partitions;
+@property (nonatomic, retain) NSNumber * type;
 @property (nonatomic, retain) NSNumber * size;
 @property (nonatomic, retain) NSSet    * virtualMachines;
 @property (nonatomic, retain) NSString * fileName;
@@ -67,6 +79,14 @@ enum diskFormat {
 - (void)removeVirtualMachinesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
 - (void)addVirtualMachines:(NSSet *)values;
 - (void)removeVirtualMachines:(NSSet *)values;
+- (void)changeType:(int)newType;
+
 - (NSString *)filePath;
+
+
+- (NSNumber *)bootable;
+- (NSNumber *)forceBootable;
+- (void)setBootable:(NSNumber *)bootable;
+- (void)setForceBootable:(NSNumber *)forceBootable;
 
 @end

@@ -31,6 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "DiskIconValueTransformer.h"
+#import "DiskFilesEntityModel.h"
 
 @implementation DiskIconValueTransformer
 
@@ -43,7 +44,16 @@
 }
 
 - (id)transformedValue:(id)value {
-	return [NSImage imageNamed:@"HDClassic.png"];
+    switch ([value intValue]) {
+        case typeOther:
+        case typeHardDrive:
+            return [NSImage imageNamed:@"HDClassic.png"];
+        case typeCDROM:
+            return [NSImage imageNamed:@"CDClassic.icns"];
+        case typeDiskette:
+            return [NSImage imageNamed:@"DKClassic.icns"];
+    }
+    return [NSImage imageNamed:@"HDClassic.png"];
 }
 
 @end

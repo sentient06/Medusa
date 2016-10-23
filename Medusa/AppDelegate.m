@@ -928,8 +928,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     if (__persistentStoreCoordinator) return __persistentStoreCoordinator;
 
     // Core-data information
-    int bundlesVersion = 1204;
-    NSString * bundlesVersionString = [[NSString alloc] initWithString:@"1.2.0.4"];
+    int bundlesVersion = 1205;
+    NSString * bundlesVersionString = [[NSString alloc] initWithString:@"1.2.0.5"];
     //-  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -  -
     // Managed object model:
     // (A file containing the definition of an application's data structure)
@@ -1014,7 +1014,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                 @"MappingModel-1.1.0.8-1.2.0.1",
                 @"MappingModel-1.2.0.1-1.2.0.2",
                 @"MappingModel-1.2.0.2-1.2.0.3",
-                @"MappingModel-1.2.0.3-1.2.0.4"
+                @"MappingModel-1.2.0.3-1.2.0.4",
+                @"MappingModel-1.2.0.4-1.2.0.5"
             , nil];
 
             NSString     * sourceStoreType         = NSSQLiteStoreType;
@@ -1055,6 +1056,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                     
                     NSMappingModel * mappingModel      = [[NSMappingModel alloc] initWithContentsOfURL:fileURL];
                     NSArray        * newEntityMappings = [NSArray arrayWithArray:mappingModel.entityMappings];
+                    
+                    DDLogVerbose(@"map: %@", mappingModelName);
+                    
                     for (NSEntityMapping * entityMapping in newEntityMappings) {
                         [entityMapping setSourceEntityVersionHash:[
                              sourceObjectModel.entityVersionHashesByName valueForKey:entityMapping.sourceEntityName
@@ -1087,6 +1091,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                             migrateFurther = YES;
                             allOkay = allOkay && YES;
                         } else {
+                            DDLogError(@"%@", error);
                             DDLogError(@"+++ Migration named '%@' failed", mappingModelName);
                             allOkay = allOkay && NO;
                             [self popUpDialog:@"Migration failed!"];

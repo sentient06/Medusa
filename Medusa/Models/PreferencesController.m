@@ -46,7 +46,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation PreferencesController
@@ -317,20 +317,50 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSArray * drivesResult = [managedObjectContext executeFetchRequest:request error:&error];
     NSEnumerator * rowEnumerator = [drivesResult objectEnumerator];
     RelationshipVirtualMachinesDiskFilesEntityModel * object;
+    
+    BOOL bootFromCD = NO;
 
     while (object = [rowEnumerator nextObject]) {
         DiskFilesEntityModel * unbootableDriveObject = [object diskFile];
         DDLogVerbose(@"DAMN --- %@", [unbootableDriveObject fileName]);
+
+        int diskType = [[unbootableDriveObject type] intValue];
+        NSString * strType;
+        if (diskType == typeDiskette) {
+            strType = [[NSString alloc] initWithString:@"floppy"];
+        } else
+        if (diskType == typeCDROM) {
+            strType = [[NSString alloc] initWithString:@"cdrom"];
+            if ([[object positionIndex] intValue] == 0) {
+                if ([unbootableDriveObject canBoot]) {
+                    bootFromCD = YES;
+                }
+            }
+        } else {
+            strType = [[NSString alloc] initWithString:@"disk"];
+        }
         NSDictionary * unbootableDrive = [[NSDictionary alloc]
             initWithObjectsAndKeys:
-                [unbootableDriveObject filePath], @"disk",
+                [unbootableDriveObject filePath], strType,
                 nil
         ];
         [allData addObject:unbootableDrive];
         [unbootableDrive release];
+        [strType release];
     }
 
     [sortPosition release];
+    
+    if (bootFromCD) {
+        NSDictionary * bootFromCDEntry = [[NSDictionary alloc]
+            initWithObjectsAndKeys:
+                @"-62", @"bootdriver",
+                nil
+        ];
+        [allData addObject:bootFromCDEntry];
+        [bootFromCDEntry release];
+    }
+
     
 //    bootdriver <driver number>
 //    

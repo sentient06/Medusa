@@ -40,7 +40,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation DiskController
@@ -370,6 +370,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     NSError         * error             = nil;
     NSDictionary    * attributes        = [fileManager attributesOfItemAtPath:filePath error:&error];
     
+    DDLogVerbose(@"Attributes: %@", attributes);
+    
     diskSize   = [attributes fileSize];
     diskFormat = formatUnknown;
 
@@ -447,7 +449,26 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
                     if ([partitionHint isEqualToString:@"Apple_HFS"]) {
                         bootable = bootable | [self checkIfDiskImageIsBootable:operatingFilePath startingAt:partitionStart];
                     }
-                    
+                    // http://disktype.sourceforge.net/doc/ch03s13.html
+                    // Formats:
+                    //
+                    //    UDRW  UDIF read/write image
+                    //    UDRO  UDIF read-only image
+                    //    UDCO  UDIF ADC-compressed image
+                    //    UDZO  UDIF zlib-compressed image
+                    //    UDBZ  UDIF bzip2-compressed image (OS X 10.4+ only)
+                    //    UFBI  UDIF entire image with MD5 checksum
+                    //    UDRo  UDIF read-only (obsolete format)
+                    //    UDCo  UDIF compressed (obsolete format)
+                    //    UDTO  DVD/CD-R master for export
+                    //    UDxx  UDIF stub image
+                    //    UDSP  SPARSE (growable with content)
+                    //    RdWr  NDIF read/write image (deprecated)
+                    //    Rdxx  NDIF read-only image (deprecated, but still usable on OS 9 and OS X)
+                    //    ROCo  NDIF compressed image (deprecated)
+                    //    Rken  NDIF compressed (obsolete format)
+                    //    DC42  Disk Copy 4.2 image
+                    //
                     //  Examples:
                     //
                     //  partition-name: Apple

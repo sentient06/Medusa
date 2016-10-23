@@ -411,6 +411,20 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     [self resetDriveOrder];
 }
 
+/*!
+ * @method      circleUsedDriveType:
+ * @abstract    Changes a drive type.
+ * @discussion  Iterates through all selected drives of the current VM
+ *              and delete them.
+ */
+- (IBAction)circleUsedDriveType:(id)sender {
+    NSArray * selectedDrives = [usedDisksController selectedObjects];
+    DiskFilesEntityModel * currentDrive = [[selectedDrives objectAtIndex:0] diskFile];
+    int currentType = [[currentDrive type] intValue];
+    int nextType    = currentType == 3 ? 1 : currentType + 1;
+    [currentDrive changeType:nextType];
+}
+
 //------------------------------------------------------------------------------
 // Sharing
 

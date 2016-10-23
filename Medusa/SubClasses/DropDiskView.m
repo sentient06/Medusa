@@ -83,6 +83,7 @@
     acceptedTypes = [[NSArray alloc] initWithObjects:
           @"Unix Executable File"
         , @"Document"
+        , @"ISO Disk Image"
         , @"NDIF Disk Image"
         , @"Disk Image"
         , nil

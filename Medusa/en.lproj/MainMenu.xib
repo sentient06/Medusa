@@ -200,6 +200,15 @@
 									<reference key="NSMixedImage" ref="1032506452"/>
 									<int key="NSTag">2</int>
 								</object>
+								<object class="NSMenuItem" id="157042090">
+									<reference key="NSMenu" ref="1062675413"/>
+									<string key="NSTitle">Delete</string>
+									<string type="base64-UTF8" key="NSKeyEquiv">CA</string>
+									<int key="NSKeyEquivModMask">131072</int>
+									<int key="NSMnemonicLoc">2147483647</int>
+									<reference key="NSOnImage" ref="567030208"/>
+									<reference key="NSMixedImage" ref="1032506452"/>
+								</object>
 								<object class="NSMenuItem" id="5530436">
 									<reference key="NSMenu" ref="1062675413"/>
 									<string key="NSTitle">Virtual Machine's Settings</string>
@@ -1425,7 +1434,7 @@
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<object class="NSView" key="NSWindowView" id="382694878">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSImageView" id="35698719">
@@ -1484,6 +1493,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{319, 18}, {74, 25}}</string>
 							<reference key="NSSuperview" ref="382694878"/>
+							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="537524430">
 								<int key="NSCellFlags">-2080374784</int>
@@ -1495,7 +1505,7 @@
 								<int key="NSButtonFlags2">163</int>
 								<reference key="NSAlternateImage" ref="425142034"/>
 								<string key="NSAlternateContents"/>
-								<string key="NSKeyEquivalent"/>
+								<string type="base64-UTF8" key="NSKeyEquivalent">CA</string>
 								<int key="NSPeriodicDelay">400</int>
 								<int key="NSPeriodicInterval">75</int>
 							</object>
@@ -1519,6 +1529,7 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{413, 139}</string>
+					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="35698719"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
@@ -1533,7 +1544,7 @@
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
 				<object class="NSView" key="NSWindowView" id="312666787">
-					<nil key="NSNextResponder"/>
+					<reference key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSImageView" id="12297377">
@@ -1549,6 +1560,7 @@
 							</set>
 							<string key="NSFrame">{{17, 121}, {32, 32}}</string>
 							<reference key="NSSuperview" ref="312666787"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="873116158"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSImageCell" key="NSCell" id="432923068">
@@ -1570,6 +1582,7 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{57, 50}, {323, 103}}</string>
 							<reference key="NSSuperview" ref="312666787"/>
+							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="881352868"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="261202782">
@@ -1587,6 +1600,8 @@
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{306, 18}, {74, 25}}</string>
 							<reference key="NSSuperview" ref="312666787"/>
+							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="1009128891">
 								<int key="NSCellFlags">-2080374784</int>
@@ -1605,6 +1620,8 @@
 						</object>
 					</array>
 					<string key="NSFrameSize">{400, 170}</string>
+					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="12297377"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1680, 1028}}</string>
@@ -2105,6 +2122,14 @@
 						<reference key="destination" ref="147994069"/>
 					</object>
 					<string key="id">1062</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">showDeleteMachineView:</string>
+						<reference key="source" ref="352416787"/>
+						<reference key="destination" ref="157042090"/>
+					</object>
+					<string key="id">FTj-gt-JDy</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2612,6 +2637,46 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: canRemove</string>
+						<reference key="source" ref="157042090"/>
+						<reference key="destination" ref="700301343"/>
+						<object class="NSNibBindingConnector" key="connector" id="730583847">
+							<reference key="NSSource" ref="157042090"/>
+							<reference key="NSDestination" ref="700301343"/>
+							<string key="NSLabel">enabled: canRemove</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">canRemove</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<string key="id">Xv1-Hf-zC5</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled2: selection.running</string>
+						<reference key="source" ref="157042090"/>
+						<reference key="destination" ref="700301343"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="157042090"/>
+							<reference key="NSDestination" ref="700301343"/>
+							<string key="NSLabel">enabled2: selection.running</string>
+							<string key="NSBinding">enabled2</string>
+							<string key="NSKeyPath">selection.running</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">NSNegateBoolean</string>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="730583847"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<string key="id">Lac-jn-kMc</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">canRemove</string>
 						<reference key="source" ref="5530436"/>
 						<reference key="destination" ref="700301343"/>
@@ -2759,6 +2824,7 @@
 							<reference ref="237967175"/>
 							<reference ref="949982071"/>
 							<reference ref="89224214"/>
+							<reference ref="157042090"/>
 						</array>
 						<reference key="parent" ref="565819933"/>
 					</object>
@@ -3594,6 +3660,11 @@
 						<reference key="object" ref="36340081"/>
 						<reference key="parent" ref="398469234"/>
 					</object>
+					<object class="IBObjectRecord">
+						<string key="id">lke-hw-eRF</string>
+						<reference key="object" ref="157042090"/>
+						<reference key="parent" ref="1062675413"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -3962,6 +4033,7 @@
 				<boolean value="NO" key="e3y-HZ-ceV.showNotes"/>
 				<string key="gEP-uc-MVy.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="gEP-uc-MVy.showNotes"/>
+				<string key="lke-hw-eRF.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="mBR-Na-JqQ.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="mBR-Na-JqQ.showNotes"/>
 			</dictionary>
