@@ -57,11 +57,8 @@ enum diskType {
 @interface DiskFilesEntityModel : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * blocked;
-
-@property (assign) NSNumber * bootable;
-@property (assign) NSNumber * forceBootable;
-@property (assign) NSNumber * canBoot;
-
+@property (nonatomic, retain) NSNumber * bootable;
+@property (nonatomic, retain) NSNumber * bootableHeader;
 @property (nonatomic, retain) NSNumber * capacity;
 @property (nonatomic, retain) NSNumber * format;
 @property (nonatomic, retain) NSNumber * partitions;
@@ -82,11 +79,5 @@ enum diskType {
 - (void)changeType:(int)newType;
 
 - (NSString *)filePath;
-
-
-- (NSNumber *)bootable;
-- (NSNumber *)forceBootable;
-- (void)setBootable:(NSNumber *)bootable;
-- (void)setForceBootable:(NSNumber *)forceBootable;
 
 @end

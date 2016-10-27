@@ -36,10 +36,8 @@
 
 @implementation DiskFilesEntityModel
 
-@synthesize bootable = _bootable;
-@synthesize forceBootable = _forceBootable;
-@synthesize canBoot = _canBoot;
-
+@dynamic bootable;
+@dynamic bootableHeader;
 @dynamic blocked;
 @dynamic capacity;
 @dynamic format;
@@ -61,41 +59,5 @@
 - (NSString *)filePath {
     return [FileManager resolveAlias:[self fileAlias]];
 }
-
-- (NSNumber *)bootable {
-    return _bootable;
-}
-
-- (NSNumber *)forceBootable {
-    return _forceBootable;
-}
-
-- (NSNumber *)canBoot {
-    if (_canBoot == nil)
-        if ([_forceBootable intValue] == 1)
-            return _forceBootable;
-        else
-            return _bootable;
-    else
-        return _canBoot;
-}
-
-- (void)setCanBoot:(NSNumber *)canBoot {
-    _canBoot = canBoot;
-}
-
-- (void)setBootable:(NSNumber *)bootable {
-    _bootable = bootable;
-    if ([self forceBootable])
-        [self setCanBoot:[NSNumber numberWithBool:YES]];
-    else
-        [self setCanBoot:bootable];
-}
-
-- (void)setForceBootable:(NSNumber *)forceBootable {
-    _forceBootable = forceBootable;
-    [self setCanBoot:forceBootable];
-}
-
 
 @end

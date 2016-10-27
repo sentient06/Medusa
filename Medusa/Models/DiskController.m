@@ -40,7 +40,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation DiskController
@@ -112,13 +112,14 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
             inManagedObjectContext: currentContext
     ];
     
-    [managedObject setFileAlias : fileAlias];
-    [managedObject setFileName  : fileName];
-    [managedObject setBootable  : [NSNumber numberWithBool:bootable]];
-    [managedObject setPartitions: [NSNumber numberWithUnsignedInteger:totalPartitions]];
-    [managedObject setCapacity  : [NSNumber numberWithUnsignedInteger:capacity]];
-    [managedObject setFormat    : [NSNumber numberWithUnsignedInteger:diskFormat]];
-    [managedObject setSize      : [NSNumber numberWithUnsignedInteger:diskSize]];
+    [managedObject setFileAlias     : fileAlias];
+    [managedObject setFileName      : fileName];
+    [managedObject setBootableHeader: [NSNumber numberWithBool:bootable]];
+    [managedObject setBootable      : [NSNumber numberWithBool:bootable]];
+    [managedObject setPartitions    : [NSNumber numberWithUnsignedInteger:totalPartitions]];
+    [managedObject setCapacity      : [NSNumber numberWithUnsignedInteger:capacity]];
+    [managedObject setFormat        : [NSNumber numberWithUnsignedInteger:diskFormat]];
+    [managedObject setSize          : [NSNumber numberWithUnsignedInteger:diskSize]];
     
     //----------------------------------------------------------------------
     

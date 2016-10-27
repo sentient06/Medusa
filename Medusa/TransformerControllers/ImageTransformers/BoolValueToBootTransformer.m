@@ -10,4 +10,18 @@
 
 @implementation BoolValueToBootTransformer
 
++ (Class)transformedValueClass {
+    return [NSString class]; 
+}
+
++ (BOOL)allowsReverseTransformation { 
+    return NO; 
+}
+
+- (id)transformedValue:(id)value {
+    if ([value intValue] == 1)
+        return [NSImage imageNamed:@"boot.png"];
+    else return nil;
+}
+
 @end

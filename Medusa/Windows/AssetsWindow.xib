@@ -350,20 +350,20 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">274</int>
 				<array class="NSMutableArray" key="NSSubviews">
-					<object class="NSButton" id="416085533">
+					<object class="NSButton" id="642204210">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{234, 50}, {196, 18}}</string>
+						<string key="NSFrame">{{543, 248}, {77, 18}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="666936415"/>
+						<reference key="NSNextKeyView" ref="766599035"/>
 						<bool key="NSEnabled">YES</bool>
-						<object class="NSButtonCell" key="NSCell" id="472736979">
-							<int key="NSCellFlags">-2079719936</int>
+						<object class="NSButtonCell" key="NSCell" id="74735809">
+							<int key="NSCellFlags">-2080244224</int>
 							<int key="NSCellFlags2">0</int>
-							<string key="NSContents">Consider this disk bootable</string>
+							<string key="NSContents">Bootable</string>
 							<reference key="NSSupport" ref="1030733238"/>
-							<reference key="NSControlView" ref="416085533"/>
+							<reference key="NSControlView" ref="642204210"/>
 							<int key="NSButtonFlags">1211912703</int>
 							<int key="NSButtonFlags2">2</int>
 							<object class="NSCustomResource" key="NSNormalImage">
@@ -403,7 +403,7 @@
 						<string key="NSFrame">{{394, 71}, {234, 26}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="416085533"/>
+						<reference key="NSNextKeyView" ref="666936415"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSPopUpButtonCell" key="NSCell" id="183369960">
 							<int key="NSCellFlags">-2076049856</int>
@@ -677,7 +677,7 @@
 					<object class="NSTextField" id="47200893">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{319, 161}, {304, 21}}</string>
+						<string key="NSFrame">{{344, 161}, {279, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="503556374"/>
@@ -695,7 +695,7 @@
 					<object class="NSTextField" id="1043571343">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{231, 161}, {85, 21}}</string>
+						<string key="NSFrame">{{231, 161}, {111, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="47200893"/>
@@ -731,7 +731,7 @@
 					<object class="NSTextField" id="303703742">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{319, 182}, {304, 21}}</string>
+						<string key="NSFrame">{{344, 182}, {279, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1043571343"/>
@@ -749,7 +749,7 @@
 					<object class="NSTextField" id="79127106">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{319, 224}, {304, 21}}</string>
+						<string key="NSFrame">{{344, 224}, {279, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="585905415"/>
@@ -807,10 +807,10 @@
 					<object class="NSTextField" id="376906147">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{319, 245}, {304, 21}}</string>
+						<string key="NSFrame">{{344, 245}, {196, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="766599035"/>
+						<reference key="NSNextKeyView" ref="642204210"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="876200903">
 							<int key="NSCellFlags">68157504</int>
@@ -825,7 +825,7 @@
 					<object class="NSTextField" id="1002982662">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{231, 245}, {85, 21}}</string>
+						<string key="NSFrame">{{231, 245}, {111, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="376906147"/>
@@ -833,7 +833,7 @@
 						<object class="NSTextFieldCell" key="NSCell" id="540526807">
 							<int key="NSCellFlags">68157504</int>
 							<int key="NSCellFlags2">71304192</int>
-							<string key="NSContents">Bootable:</string>
+							<string key="NSContents">Bootable header:</string>
 							<reference key="NSSupport" ref="1030733238"/>
 							<reference key="NSControlView" ref="1002982662"/>
 							<reference key="NSBackgroundColor" ref="4273836"/>
@@ -843,7 +843,7 @@
 					<object class="NSTextField" id="30663089">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{319, 203}, {304, 21}}</string>
+						<string key="NSFrame">{{344, 203}, {279, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="50982916"/>
@@ -861,7 +861,7 @@
 					<object class="NSTextField" id="50982916">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{231, 182}, {85, 21}}</string>
+						<string key="NSFrame">{{231, 182}, {111, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="303703742"/>
@@ -879,7 +879,7 @@
 					<object class="NSTextField" id="766599035">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{231, 224}, {85, 21}}</string>
+						<string key="NSFrame">{{231, 224}, {111, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="79127106"/>
@@ -897,7 +897,7 @@
 					<object class="NSTextField" id="585905415">
 						<reference key="NSNextResponder" ref="478997210"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{231, 203}, {85, 21}}</string>
+						<string key="NSFrame">{{231, 203}, {111, 21}}</string>
 						<reference key="NSSuperview" ref="478997210"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="30663089"/>
@@ -2455,6 +2455,14 @@
 					<string key="id">ygu-kG-ffH</string>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">tickForceBootableBox:</string>
+						<reference key="source" ref="833546558"/>
+						<reference key="destination" ref="642204210"/>
+					</object>
+					<string key="id">8Kp-Mm-Yql</string>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
 						<string key="label">arrangedObjects.fileMissing</string>
 						<reference key="source" ref="622099000"/>
@@ -3061,15 +3069,15 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">selection.bootable</string>
+						<string key="label">value: selection.bootableHeader</string>
 						<reference key="source" ref="376906147"/>
 						<reference key="destination" ref="757101371"/>
 						<object class="NSNibBindingConnector" key="connector">
 							<reference key="NSSource" ref="376906147"/>
 							<reference key="NSDestination" ref="757101371"/>
-							<string key="NSLabel">value: selection.bootable</string>
+							<string key="NSLabel">value: selection.bootableHeader</string>
 							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.bootable</string>
+							<string key="NSKeyPath">selection.bootableHeader</string>
 							<object class="NSDictionary" key="NSOptions">
 								<string key="NS.key.0">NSValueTransformerName</string>
 								<string key="NS.object.0">BoolValueTransformer</string>
@@ -3077,7 +3085,7 @@
 							<int key="NSNibBindingConnectorVersion">2</int>
 						</object>
 					</object>
-					<string key="id">280</string>
+					<string key="id">lwf-tL-JXb</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBActionConnection" key="connection">
@@ -3685,6 +3693,66 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.bootable</string>
+						<reference key="source" ref="642204210"/>
+						<reference key="destination" ref="757101371"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="642204210"/>
+							<reference key="NSDestination" ref="757101371"/>
+							<string key="NSLabel">value: selection.bootable</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.bootable</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<string key="id">IHQ-SE-Ox3</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">hidden: canRemove</string>
+						<reference key="source" ref="642204210"/>
+						<reference key="destination" ref="757101371"/>
+						<object class="NSNibBindingConnector" key="connector" id="397509962">
+							<reference key="NSSource" ref="642204210"/>
+							<reference key="NSDestination" ref="757101371"/>
+							<string key="NSLabel">hidden: canRemove</string>
+							<string key="NSBinding">hidden</string>
+							<string key="NSKeyPath">canRemove</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<string key="id">FhL-Wm-ZWw</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">hidden2: values.showAdvanced</string>
+						<reference key="source" ref="642204210"/>
+						<reference key="destination" ref="654480115"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="642204210"/>
+							<reference key="NSDestination" ref="654480115"/>
+							<string key="NSLabel">hidden2: values.showAdvanced</string>
+							<string key="NSBinding">hidden2</string>
+							<string key="NSKeyPath">values.showAdvanced</string>
+							<dictionary key="NSOptions">
+								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
+								<integer value="-1" key="NSNoSelectionPlaceholder"/>
+								<integer value="-1" key="NSNotApplicablePlaceholder"/>
+								<integer value="-1" key="NSNullPlaceholder"/>
+								<string key="NSValueTransformerName">NSNegateBoolean</string>
+							</dictionary>
+							<reference key="NSPreviousConnector" ref="397509962"/>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<string key="id">7ye-6W-JPb</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedTag: selection.type</string>
 						<reference key="source" ref="571409152"/>
 						<reference key="destination" ref="757101371"/>
@@ -3908,73 +3976,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: selection.forceBootable</string>
-						<reference key="source" ref="416085533"/>
-						<reference key="destination" ref="757101371"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="416085533"/>
-							<reference key="NSDestination" ref="757101371"/>
-							<string key="NSLabel">value: selection.forceBootable</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">selection.forceBootable</string>
-							<dictionary key="NSOptions">
-								<boolean value="NO" key="NSAllowsEditingMultipleValuesSelection"/>
-								<integer value="0" key="NSMultipleValuesPlaceholder"/>
-								<integer value="0" key="NSNoSelectionPlaceholder"/>
-								<integer value="0" key="NSNotApplicablePlaceholder"/>
-								<integer value="0" key="NSNullPlaceholder"/>
-								<boolean value="YES" key="NSValidatesImmediately"/>
-							</dictionary>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<string key="id">hVB-nz-2qx</string>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">hidden: canRemove</string>
-						<reference key="source" ref="416085533"/>
-						<reference key="destination" ref="757101371"/>
-						<object class="NSNibBindingConnector" key="connector" id="366384138">
-							<reference key="NSSource" ref="416085533"/>
-							<reference key="NSDestination" ref="757101371"/>
-							<string key="NSLabel">hidden: canRemove</string>
-							<string key="NSBinding">hidden</string>
-							<string key="NSKeyPath">canRemove</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<string key="id">uFN-mU-Qe4</string>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">hidden2: selection.bootable</string>
-						<reference key="source" ref="416085533"/>
-						<reference key="destination" ref="757101371"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="416085533"/>
-							<reference key="NSDestination" ref="757101371"/>
-							<string key="NSLabel">hidden2: selection.bootable</string>
-							<string key="NSBinding">hidden2</string>
-							<string key="NSKeyPath">selection.bootable</string>
-							<dictionary key="NSOptions">
-								<integer value="-1" key="NSMultipleValuesPlaceholder"/>
-								<integer value="-1" key="NSNoSelectionPlaceholder"/>
-								<integer value="-1" key="NSNotApplicablePlaceholder"/>
-								<integer value="-1" key="NSNullPlaceholder"/>
-							</dictionary>
-							<reference key="NSPreviousConnector" ref="366384138"/>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<string key="id">3hE-YX-0x8</string>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">canRemove</string>
 						<reference key="source" ref="1072652727"/>
 						<reference key="destination" ref="538566511"/>
@@ -4168,7 +4169,6 @@
 							<reference ref="766599035"/>
 							<reference ref="50982916"/>
 							<reference ref="30663089"/>
-							<reference ref="1002982662"/>
 							<reference ref="376906147"/>
 							<reference ref="503556374"/>
 							<reference ref="79127106"/>
@@ -4187,7 +4187,8 @@
 							<reference ref="571409152"/>
 							<reference ref="817053846"/>
 							<reference ref="23004604"/>
-							<reference ref="416085533"/>
+							<reference ref="1002982662"/>
+							<reference ref="642204210"/>
 						</array>
 						<reference key="parent" ref="0"/>
 						<string key="objectName">Disk SubView</string>
@@ -5286,17 +5287,17 @@
 						<reference key="parent" ref="817053846"/>
 					</object>
 					<object class="IBObjectRecord">
-						<string key="id">rTD-5e-9Xv</string>
-						<reference key="object" ref="416085533"/>
+						<string key="id">ENM-r2-Uaf</string>
+						<reference key="object" ref="642204210"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="472736979"/>
+							<reference ref="74735809"/>
 						</array>
 						<reference key="parent" ref="478997210"/>
 					</object>
 					<object class="IBObjectRecord">
-						<string key="id">Nyq-6M-Onu</string>
-						<reference key="object" ref="472736979"/>
-						<reference key="parent" ref="416085533"/>
+						<string key="id">FSD-Rq-pNz</string>
+						<reference key="object" ref="74735809"/>
+						<reference key="parent" ref="642204210"/>
 					</object>
 				</array>
 			</object>
@@ -5747,7 +5748,9 @@
 				<string key="Dgx-RU-ro3.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<reference key="Dgx-RU-ro3.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="Dgx-RU-ro3.showNotes"/>
+				<string key="ENM-r2-Uaf.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="F56-PB-I60.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
+				<string key="FSD-Rq-pNz.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="FsY-HN-dwC.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="GFt-hK-cdF.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="GFt-hK-cdF.showNotes"/>
@@ -5783,7 +5786,6 @@
 				<string key="K8j-34-Ngn.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="NHD-fF-1dn.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="NHD-fF-1dn.showNotes"/>
-				<string key="Nyq-6M-Onu.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<string key="P4P-b8-Ng0.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="P4P-b8-Ng0.showNotes"/>
 				<string key="Plv-lZ-A5J.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -5857,7 +5859,6 @@
 				<string key="q3q-zd-95K.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<reference key="q3q-zd-95K.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="q3q-zd-95K.showNotes"/>
-				<string key="rTD-5e-9Xv.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="rgs-4R-nvk.IBNSControlSetsMaxLayoutWidthAtFirstLayoutMetadataKey"/>
 				<string key="rgs-4R-nvk.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<reference key="rgs-4R-nvk.IBUserGuides" ref="0"/>

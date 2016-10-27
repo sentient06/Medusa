@@ -46,7 +46,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_VERBOSE;
+static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
 @implementation PreferencesController
@@ -332,7 +332,7 @@ static const int ddLogLevel = LOG_LEVEL_VERBOSE;
         if (diskType == typeCDROM) {
             strType = [[NSString alloc] initWithString:@"cdrom"];
             if ([[object positionIndex] intValue] == 0) {
-                if ([unbootableDriveObject canBoot]) {
+                if ([unbootableDriveObject bootable] || [unbootableDriveObject bootableHeader]) {
                     bootFromCD = YES;
                 }
             }
