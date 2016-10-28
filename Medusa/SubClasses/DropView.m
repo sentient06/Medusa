@@ -115,6 +115,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
           @"Application"
         , @"Unix Executable File"
         , @"Document"
+        , @"ISO Disk Image"
         , @"NDIF Disk Image"
         , @"Disk Image"
         , @"ROM Image"

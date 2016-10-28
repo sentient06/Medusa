@@ -164,6 +164,7 @@ typedef enum {
 - (IBAction)savePreferencesFromView:(id)sender;
 - (IBAction)useSelectedDisks:(id)sender;
 - (IBAction)deleteUsedDrive:(id)sender;
+- (IBAction)circleUsedDriveType:(id)sender;
 - (void)updateEmulatorFromList:(NSNumber *)listIndex;
 - (void)updateMacModelFromList:(NSNumber *)listIndex;
 - (void)resetDriveOrder;

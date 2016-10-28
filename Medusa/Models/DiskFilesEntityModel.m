@@ -36,15 +36,21 @@
 
 @implementation DiskFilesEntityModel
 
-@dynamic blocked;
 @dynamic bootable;
+@dynamic bootableHeader;
+@dynamic blocked;
 @dynamic capacity;
 @dynamic format;
 @dynamic partitions;
+@dynamic type;
 @dynamic size;
 @dynamic virtualMachines;
 @dynamic fileName;
 @dynamic fileAlias;
+
+- (void)changeType:(int)newType {
+    [self setType:[NSNumber numberWithInt:newType]];
+}
 
 - (NSString *)description {
     return [self fileName];
