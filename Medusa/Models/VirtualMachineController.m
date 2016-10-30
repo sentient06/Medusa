@@ -32,7 +32,6 @@
 
 #import "VirtualMachineController.h"
 #import "VirtualMachinesEntityModel.h"
-#import "ManagedObjectCloner.h" //Clone core-data objects
 #import "AppDelegate.h"
 #import "PreferencesController.h"
 

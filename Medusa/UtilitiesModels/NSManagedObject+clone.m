@@ -1,5 +1,5 @@
 //
-//  ManagedObjectCloner.m
+//  NSManagedObject+clone.m
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 02/07/2012.
@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "ManagedObjectCloner.h"
+#import "NSManagedObject+clone.h"
 
 @implementation NSManagedObject (DeepCopy)
 

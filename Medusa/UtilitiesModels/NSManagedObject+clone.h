@@ -1,5 +1,5 @@
 //
-//  ManagedObjectCloner.h
+//  NSManagedObject+clone.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 02/07/2012.
