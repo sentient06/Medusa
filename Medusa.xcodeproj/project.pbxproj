@@ -84,6 +84,10 @@
 		40F9BE3E1A9F197D00FC73A6 /* medusa.help in Resources */ = {isa = PBXBuildFile; fileRef = 40F9BE3D1A9F197D00FC73A6 /* medusa.help */; };
 		810BA89417E4E48700CF894B /* VirtualMachineIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */; };
 		81134C4415540B2900785866 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81134C4315540B2900785866 /* PreferencesController.m */; };
+		81147AF91DC3FE0900E4EFA9 /* HDClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81147AF81DC3FE0900E4EFA9 /* HDClassic.icns */; };
+		81147AFD1DC3FFCC00E4EFA9 /* CDClassic16.png in Resources */ = {isa = PBXBuildFile; fileRef = 81147AFA1DC3FFCC00E4EFA9 /* CDClassic16.png */; };
+		81147AFE1DC3FFCC00E4EFA9 /* DKClassic16.png in Resources */ = {isa = PBXBuildFile; fileRef = 81147AFB1DC3FFCC00E4EFA9 /* DKClassic16.png */; };
+		81147AFF1DC3FFCC00E4EFA9 /* HDClassic16.png in Resources */ = {isa = PBXBuildFile; fileRef = 81147AFC1DC3FFCC00E4EFA9 /* HDClassic16.png */; };
 		811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 811C770818369E7800C681C6 /* MacintoshModelModel.m */; };
 		811EF6EB1804B4160011DDBD /* KeyboardLayoutValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 811EF6EA1804B4160011DDBD /* KeyboardLayoutValueTransformer.m */; };
 		812A83A217EF5FF100B355BD /* DiskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 812A83A117EF5FF000B355BD /* DiskController.m */; };
@@ -144,11 +148,13 @@
 		81B08F1C17F43FE5000954C6 /* ByteValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F1B17F43FE5000954C6 /* ByteValueTransformer.m */; };
 		81B08F2317F44198000954C6 /* DiskFormatValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2217F44198000954C6 /* DiskFormatValueTransformer.m */; };
 		81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B08F2617F44648000954C6 /* BoolValueTransformer.m */; };
+		81B9CD341DC4D837003C8710 /* B216.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B9CD321DC4D837003C8710 /* B216.png */; };
+		81B9CD351DC4D837003C8710 /* SS16.png in Resources */ = {isa = PBXBuildFile; fileRef = 81B9CD331DC4D837003C8710 /* SS16.png */; };
+		81B9CD381DC4D87A003C8710 /* EmulatorIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81B9CD371DC4D87A003C8710 /* EmulatorIconValueTransformer.m */; };
 		81BBBC5417F9B5B700C151FE /* EmulatorFamilyValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81BBBC5317F9B5B700C151FE /* EmulatorFamilyValueTransformer.m */; };
 		81BCA7C31DC2A25B003C07FF /* CDClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81BCA7C11DC2A25A003C07FF /* CDClassic.icns */; };
 		81BCA7C41DC2A25B003C07FF /* DKClassic.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81BCA7C21DC2A25A003C07FF /* DKClassic.icns */; };
 		81C4288B1C5C0A6400EAD87C /* Chip.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81C4288A1C5C0A6400EAD87C /* Chip.icns */; };
-		81C4288D1C5C0D9E00EAD87C /* Network.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81C4288C1C5C0D9E00EAD87C /* Network.icns */; };
 		81C84438153E183700E94443 /* DropView.m in Sources */ = {isa = PBXBuildFile; fileRef = 81C84437153E183700E94443 /* DropView.m */; };
 		81CADFDC1A9FBD40001BE96E /* TextFieldTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CADFDB1A9FBD40001BE96E /* TextFieldTransformer.m */; };
 		81CE19D017D63EA400596C79 /* RomFileConditionTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81CE19CF17D63EA400596C79 /* RomFileConditionTransformer.m */; };
@@ -163,6 +169,10 @@
 		81F0857617CF8DF000188A2E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
 		81F085E417CF8E9A00188A2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
 		81F1D6081DBD5FF8007A9FE6 /* BoolToLockValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F1D6071DBD5FF8007A9FE6 /* BoolToLockValueTransformer.m */; };
+		81F5C4E41DC40A3000731C2C /* MiniMacBW.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F5C4E11DC40A3000731C2C /* MiniMacBW.png */; };
+		81F5C4E51DC40A3000731C2C /* MiniMacCL.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F5C4E21DC40A3000731C2C /* MiniMacCL.png */; };
+		81F5C4E61DC40A3000731C2C /* MiniMacFL.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F5C4E31DC40A3000731C2C /* MiniMacFL.png */; };
+		81F5C4E91DC40A5E00731C2C /* MiniRomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F5C4E81DC40A5E00731C2C /* MiniRomIconValueTransformer.m */; };
 		81F751531C52E4B9009B9F96 /* BoolValueToTickTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F751521C52E4B9009B9F96 /* BoolValueToTickTransformer.m */; };
 		81F751561C52ED8C009B9F96 /* Display.icns in Resources */ = {isa = PBXBuildFile; fileRef = 81F751551C52ED8C009B9F96 /* Display.icns */; };
 /* End PBXBuildFile section */
@@ -276,6 +286,10 @@
 		810BA89217E4E48700CF894B /* VirtualMachineIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachineIconValueTransformer.h; path = TransformerControllers/VirtualMachineIconValueTransformer.h; sourceTree = "<group>"; };
 		810BA89317E4E48700CF894B /* VirtualMachineIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachineIconValueTransformer.m; path = TransformerControllers/VirtualMachineIconValueTransformer.m; sourceTree = "<group>"; };
 		81134C4315540B2900785866 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PreferencesController.m; path = Models/PreferencesController.m; sourceTree = "<group>"; };
+		81147AF81DC3FE0900E4EFA9 /* HDClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = HDClassic.icns; sourceTree = "<group>"; };
+		81147AFA1DC3FFCC00E4EFA9 /* CDClassic16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CDClassic16.png; sourceTree = "<group>"; };
+		81147AFB1DC3FFCC00E4EFA9 /* DKClassic16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DKClassic16.png; sourceTree = "<group>"; };
+		81147AFC1DC3FFCC00E4EFA9 /* HDClassic16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HDClassic16.png; sourceTree = "<group>"; };
 		811C770718369E7800C681C6 /* MacintoshModelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacintoshModelModel.h; path = Models/MacintoshModelModel.h; sourceTree = "<group>"; };
 		811C770818369E7800C681C6 /* MacintoshModelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MacintoshModelModel.m; path = Models/MacintoshModelModel.m; sourceTree = "<group>"; };
 		811EF6E91804B4160011DDBD /* KeyboardLayoutValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardLayoutValueTransformer.h; path = TransformerControllers/ImageTransformers/KeyboardLayoutValueTransformer.h; sourceTree = "<group>"; };
@@ -395,12 +409,15 @@
 		81B08F2517F44648000954C6 /* BoolValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueTransformer.h; sourceTree = "<group>"; };
 		81B08F2617F44648000954C6 /* BoolValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueTransformer.m; sourceTree = "<group>"; };
 		81B211641DBD5D500056FF4D /* Medusa 1.2.0.5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Medusa 1.2.0.5.xcdatamodel"; sourceTree = "<group>"; };
+		81B9CD321DC4D837003C8710 /* B216.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = B216.png; sourceTree = "<group>"; };
+		81B9CD331DC4D837003C8710 /* SS16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SS16.png; sourceTree = "<group>"; };
+		81B9CD361DC4D87A003C8710 /* EmulatorIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorIconValueTransformer.h; path = TransformerControllers/ImageTransformers/EmulatorIconValueTransformer.h; sourceTree = "<group>"; };
+		81B9CD371DC4D87A003C8710 /* EmulatorIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorIconValueTransformer.m; path = TransformerControllers/ImageTransformers/EmulatorIconValueTransformer.m; sourceTree = "<group>"; };
 		81BBBC5217F9B5B700C151FE /* EmulatorFamilyValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorFamilyValueTransformer.h; path = TransformerControllers/EnumeratorTransformers/EmulatorFamilyValueTransformer.h; sourceTree = "<group>"; };
 		81BBBC5317F9B5B700C151FE /* EmulatorFamilyValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorFamilyValueTransformer.m; path = TransformerControllers/EnumeratorTransformers/EmulatorFamilyValueTransformer.m; sourceTree = "<group>"; };
 		81BCA7C11DC2A25A003C07FF /* CDClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = CDClassic.icns; sourceTree = "<group>"; };
 		81BCA7C21DC2A25A003C07FF /* DKClassic.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = DKClassic.icns; sourceTree = "<group>"; };
 		81C4288A1C5C0A6400EAD87C /* Chip.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Chip.icns; sourceTree = "<group>"; };
-		81C4288C1C5C0D9E00EAD87C /* Network.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Network.icns; sourceTree = "<group>"; };
 		81C84436153E183700E94443 /* DropView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropView.h; path = SubClasses/DropView.h; sourceTree = "<group>"; };
 		81C84437153E183700E94443 /* DropView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropView.m; path = SubClasses/DropView.m; sourceTree = "<group>"; };
 		81CADFDA1A9FBD40001BE96E /* TextFieldTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TextFieldTransformer.h; path = TransformerControllers/StringTransformers/TextFieldTransformer.h; sourceTree = "<group>"; };
@@ -423,6 +440,11 @@
 		81EA87931A9FAC05007EB0DE /* Note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Note.png; path = Medusa/Images/Note.png; sourceTree = SOURCE_ROOT; };
 		81F1D6061DBD5FF8007A9FE6 /* BoolToLockValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolToLockValueTransformer.h; path = TransformerControllers/ImageTransformers/BoolToLockValueTransformer.h; sourceTree = "<group>"; };
 		81F1D6071DBD5FF8007A9FE6 /* BoolToLockValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolToLockValueTransformer.m; path = TransformerControllers/ImageTransformers/BoolToLockValueTransformer.m; sourceTree = "<group>"; };
+		81F5C4E11DC40A3000731C2C /* MiniMacBW.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MiniMacBW.png; sourceTree = "<group>"; };
+		81F5C4E21DC40A3000731C2C /* MiniMacCL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MiniMacCL.png; sourceTree = "<group>"; };
+		81F5C4E31DC40A3000731C2C /* MiniMacFL.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MiniMacFL.png; sourceTree = "<group>"; };
+		81F5C4E71DC40A5E00731C2C /* MiniRomIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MiniRomIconValueTransformer.h; path = TransformerControllers/ImageTransformers/MiniRomIconValueTransformer.h; sourceTree = "<group>"; };
+		81F5C4E81DC40A5E00731C2C /* MiniRomIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MiniRomIconValueTransformer.m; path = TransformerControllers/ImageTransformers/MiniRomIconValueTransformer.m; sourceTree = "<group>"; };
 		81F751511C52E4B9009B9F96 /* BoolValueToTickTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToTickTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToTickTransformer.h; sourceTree = "<group>"; };
 		81F751521C52E4B9009B9F96 /* BoolValueToTickTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToTickTransformer.m; path = TransformerControllers/BoolTransformers/BoolValueToTickTransformer.m; sourceTree = "<group>"; };
 		81F751551C52ED8C009B9F96 /* Display.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Display.icns; sourceTree = "<group>"; };
@@ -511,7 +533,6 @@
 				406E556F1A95233F00012DDD /* ClassicFolderIcon.icns */,
 				406E55701A95233F00012DDD /* MedusaIcon.icns */,
 				81C4288A1C5C0A6400EAD87C /* Chip.icns */,
-				81C4288C1C5C0D9E00EAD87C /* Network.icns */,
 			);
 			name = Icons;
 			path = Images/Icons;
@@ -557,6 +578,9 @@
 				406E55FF1A9525F100012DDD /* noDiskBW.png */,
 				406E56001A9525F100012DDD /* noDiskColour.png */,
 				406E56011A9525F100012DDD /* QuestionMarkMac.png */,
+				81F5C4E11DC40A3000731C2C /* MiniMacBW.png */,
+				81F5C4E21DC40A3000731C2C /* MiniMacCL.png */,
+				81F5C4E31DC40A3000731C2C /* MiniMacFL.png */,
 			);
 			name = RomIcons;
 			path = Images/RomIcons;
@@ -578,6 +602,9 @@
 		406E55951A95233F00012DDD /* TabIcons */ = {
 			isa = PBXGroup;
 			children = (
+				81147AFA1DC3FFCC00E4EFA9 /* CDClassic16.png */,
+				81147AFB1DC3FFCC00E4EFA9 /* DKClassic16.png */,
+				81147AFC1DC3FFCC00E4EFA9 /* HDClassic16.png */,
 				81BCA7C11DC2A25A003C07FF /* CDClassic.icns */,
 				81BCA7C21DC2A25A003C07FF /* DKClassic.icns */,
 				406E55961A95233F00012DDD /* Configuration.png */,
@@ -586,6 +613,7 @@
 				406E559A1A95233F00012DDD /* ErrorIconClassic.png */,
 				406E559B1A95233F00012DDD /* GenericNetworkIcon.png */,
 				406E559C1A95233F00012DDD /* GenericQuestionMarkIcon.png */,
+				81147AF81DC3FE0900E4EFA9 /* HDClassic.icns */,
 				406E559D1A95233F00012DDD /* HDClassic.png */,
 				406E559E1A95233F00012DDD /* HFSFileIcon.png */,
 				406E559F1A95233F00012DDD /* Info.png */,
@@ -958,6 +986,10 @@
 				816BAF89153863E300B68091 /* IconValueTransformer.m */,
 				8160BB0B15503052005F6DBF /* RomIconValueTransformer.h */,
 				8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */,
+				81F5C4E71DC40A5E00731C2C /* MiniRomIconValueTransformer.h */,
+				81F5C4E81DC40A5E00731C2C /* MiniRomIconValueTransformer.m */,
+				81B9CD361DC4D87A003C8710 /* EmulatorIconValueTransformer.h */,
+				81B9CD371DC4D87A003C8710 /* EmulatorIconValueTransformer.m */,
 				8160BB0715502F74005F6DBF /* DiskIconValueTransformer.h */,
 				8160BB0815502F74005F6DBF /* DiskIconValueTransformer.m */,
 				811EF6E91804B4160011DDBD /* KeyboardLayoutValueTransformer.h */,
@@ -1013,6 +1045,16 @@
 			name = BoolTransformers;
 			sourceTree = "<group>";
 		};
+		81B9CD311DC4D837003C8710 /* TinyIcons */ = {
+			isa = PBXGroup;
+			children = (
+				81B9CD321DC4D837003C8710 /* B216.png */,
+				81B9CD331DC4D837003C8710 /* SS16.png */,
+			);
+			name = TinyIcons;
+			path = Images/TinyIcons;
+			sourceTree = "<group>";
+		};
 		81C84439153E184E00E94443 /* SubClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1055,6 +1097,7 @@
 				406E55851A95233F00012DDD /* RomIcons */,
 				406E55901A95233F00012DDD /* SimpleIcons */,
 				406E55951A95233F00012DDD /* TabIcons */,
+				81B9CD311DC4D837003C8710 /* TinyIcons */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -1209,10 +1252,18 @@
 				81EA87941A9FAC05007EB0DE /* Note.png in Resources */,
 				81F751561C52ED8C009B9F96 /* Display.icns in Resources */,
 				81C4288B1C5C0A6400EAD87C /* Chip.icns in Resources */,
-				81C4288D1C5C0D9E00EAD87C /* Network.icns in Resources */,
 				8152D5E51DBFEA1900D7CAC4 /* boot.png in Resources */,
 				81BCA7C31DC2A25B003C07FF /* CDClassic.icns in Resources */,
 				81BCA7C41DC2A25B003C07FF /* DKClassic.icns in Resources */,
+				81147AF91DC3FE0900E4EFA9 /* HDClassic.icns in Resources */,
+				81147AFD1DC3FFCC00E4EFA9 /* CDClassic16.png in Resources */,
+				81147AFE1DC3FFCC00E4EFA9 /* DKClassic16.png in Resources */,
+				81147AFF1DC3FFCC00E4EFA9 /* HDClassic16.png in Resources */,
+				81F5C4E41DC40A3000731C2C /* MiniMacBW.png in Resources */,
+				81F5C4E51DC40A3000731C2C /* MiniMacCL.png in Resources */,
+				81F5C4E61DC40A3000731C2C /* MiniMacFL.png in Resources */,
+				81B9CD341DC4D837003C8710 /* B216.png in Resources */,
+				81B9CD351DC4D837003C8710 /* SS16.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1318,6 +1369,8 @@
 				81F1D6081DBD5FF8007A9FE6 /* BoolToLockValueTransformer.m in Sources */,
 				8152D5E21DBFE1E100D7CAC4 /* MappingModel-1.2.0.4-1.2.0.5.xcmappingmodel in Sources */,
 				8152D5E91DBFEA7100D7CAC4 /* BoolValueToBootTransformer.m in Sources */,
+				81F5C4E91DC40A5E00731C2C /* MiniRomIconValueTransformer.m in Sources */,
+				81B9CD381DC4D87A003C8710 /* EmulatorIconValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

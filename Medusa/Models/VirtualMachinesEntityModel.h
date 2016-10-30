@@ -174,6 +174,7 @@ enum Processors {
 - (NSNumber *)nextDiskIndex;
 - (NSNumber *)icon;
 - (BOOL)canRun;
+- (BOOL)hasRom;
 - (BOOL)sheepShaverSetup;
 - (BOOL)basilisk2Setup;
 - (BOOL)showGestaltList;

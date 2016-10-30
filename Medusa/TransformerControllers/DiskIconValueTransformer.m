@@ -47,13 +47,13 @@
     switch ([value intValue]) {
         case typeOther:
         case typeHardDrive:
-            return [NSImage imageNamed:@"HDClassic.png"];
+            return [NSImage imageNamed:@"HDClassic.icns"];
         case typeCDROM:
             return [NSImage imageNamed:@"CDClassic.icns"];
         case typeDiskette:
             return [NSImage imageNamed:@"DKClassic.icns"];
     }
-    return [NSImage imageNamed:@"HDClassic.png"];
+    return [NSImage imageNamed:@"HDClassic.icns"];
 }
 
 @end

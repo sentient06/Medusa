@@ -147,6 +147,13 @@
         return YES;
 }
 
+- (BOOL)hasRom {
+    if ([self romFile] == nil)
+        return NO;
+    else
+        return YES;
+}
+
 - (NSNumber *)nextDiskIndex {
     return [NSNumber numberWithUnsignedInteger:[[self disks] count]];
 }
