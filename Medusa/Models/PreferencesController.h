@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class VirtualMachinesEntityModel;
+@class VirtualMachinesModel;
 
 @interface PreferencesController : NSObject {
     NSManagedObjectContext * managedObjectContext;
@@ -47,15 +47,15 @@
 
 //------------------------------------------------------------------------------
 
-- (NSMutableArray *)getVirtualMachineData:(VirtualMachinesEntityModel*)virtualMachine
+- (NSMutableArray *)getVirtualMachineData:(VirtualMachinesModel*)virtualMachine
                         forEmulatorFamily:(int)emulatorFamily;
 - (void)savePreferences:(NSArray *)dataToSave
                  InPath:(NSString*)filePath
-      ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
+      ForVirtualMachine:(VirtualMachinesModel *)virtualMachine;
 - (void)savePreferencesFile:(NSString *)preferencesFilePath
-          ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
+          ForVirtualMachine:(VirtualMachinesModel *)virtualMachine;
 
 + (NSMutableArray *)parsePreferencesFor:(int)emulatorType;
-- (void)insertData:(NSArray *)preferences intoVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine;
+- (void)insertData:(NSArray *)preferences intoVirtualMachine:(VirtualMachinesModel *)virtualMachine;
 
 @end

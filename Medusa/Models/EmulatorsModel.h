@@ -1,5 +1,5 @@
 //
-//  EmulatorsEntityModel.h
+//  EmulatorsModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 27/09/2013.
@@ -64,9 +64,9 @@ enum EmulatorTypes {
   , SheepshaverOther2
 };
 
-@class VirtualMachinesEntityModel;
+@class VirtualMachinesModel;
 
-@interface EmulatorsEntityModel : NSManagedObject
+@interface EmulatorsModel : NSManagedObject
 
 @property (nonatomic, retain) NSData   * appAlias;
 @property (nonatomic, retain) NSNumber * appMissing;
@@ -81,10 +81,10 @@ enum EmulatorTypes {
 
 @end
 
-@interface EmulatorsEntityModel (CoreDataGeneratedAccessors)
+@interface EmulatorsModel (CoreDataGeneratedAccessors)
 
-- (void)addMachinesObject:(VirtualMachinesEntityModel *)value;
-- (void)removeMachinesObject:(VirtualMachinesEntityModel *)value;
+- (void)addMachinesObject:(VirtualMachinesModel *)value;
+- (void)removeMachinesObject:(VirtualMachinesModel *)value;
 - (void)addMachines:(NSSet *)values;
 - (void)removeMachines:(NSSet *)values;
 - (NSString *)filePath;

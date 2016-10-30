@@ -1,9 +1,9 @@
 //
-//  RelationshipVirtualMachinesDiskFilesEntityModel.m
+//  EmulatorsModel.m
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 18/05/2012.
-//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 27/09/2013.
+//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,14 +30,45 @@
 //
 //------------------------------------------------------------------------------
 
-#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-#import "DiskFilesEntityModel.h"
-#import "VirtualMachinesEntityModel.h"
+#import "EmulatorsModel.h"
+#import "SystemFileService.h"
 
-@implementation RelationshipVirtualMachinesDiskFilesEntityModel
+@implementation EmulatorsModel
 
-@dynamic positionIndex;
-@dynamic diskFile;
-@dynamic virtualMachine;
+@dynamic family;
+@dynamic name;
+@dynamic maintained;
+@dynamic readablePath;
+@dynamic unixPath;
+@dynamic version;
+@dynamic machines;
+@dynamic appMissing;
+@dynamic appAlias;
+@dynamic useCount;
+
+
+- (NSString *)filePath {
+    NSData * alias;    
+    if (![self appAlias])
+        alias = [self fixAliasAndReturn];
+    else
+        alias = [self appAlias];
+    NSString * resolvedFilePath = [SystemFileService resolveAlias:alias];
+    NSLog(@"App alias: %@", [self appAlias]);
+    NSLog(@"Missing: %@", resolvedFilePath == nil ? @"YES" : @"NO");
+    if (resolvedFilePath == nil)
+        [self setAppMissing:[NSNumber numberWithBool:YES]];
+    return resolvedFilePath;
+}
+
+- (NSData *)fixAliasAndReturn {
+    NSLog(@"Alias missing, fixing it");
+    // Path from string to alias:
+    NSString * oldPath     = [self readablePath];
+    NSString * escapedPath = [oldPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSData   * fileAlias   = [SystemFileService createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
+    [self setAppAlias:fileAlias];
+    return [self appAlias];
+}
 
 @end

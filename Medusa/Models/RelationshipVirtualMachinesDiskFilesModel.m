@@ -1,5 +1,5 @@
 //
-//  RomFilesEntityModel.h
+//  RelationshipVirtualMachinesDiskFilesModel.m
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -30,68 +30,14 @@
 //
 //------------------------------------------------------------------------------
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "RelationshipVirtualMachinesDiskFilesModel.h"
+#import "DiskFilesModel.h"
+#import "VirtualMachinesModel.h"
 
-enum RomCategory {
-    OldWorldROM = 1
-  , NewWorldROM
-  , NoCategory
-};
+@implementation RelationshipVirtualMachinesDiskFilesModel
 
-enum RomConditions {
-    NormalCondition = 1
-  , NoAppleTalk
-  , FPURequired
-  , NoAppleTalkAndFPURequired
-  , UnsupportedRom
-  , IgnoreIllegalMemoryInstructionsDisableJIT
-};
-
-enum RomSizes {
-    romNull = 0,
-    rom64KB,
-    rom128KB,
-    rom256KB,
-    rom512KB,
-    rom1MB,
-    rom2MB,
-    rom3MB,
-    rom4MB,
-};
-
-enum RomIcons {
-    DeadMac
-  , BlackAndWhiteHappyMac
-  , ColouredHappyMac
-  , MiniVMacMac
-  , QuestionMarkMac
-};
-
-@class VirtualMachinesEntityModel;
-
-@interface RomFilesEntityModel : NSManagedObject
-
-@property (nonatomic, retain) NSString * comments;
-@property (nonatomic, retain) NSNumber * emulatorType;
-@property (nonatomic, retain) NSNumber * fileMissing;
-@property (nonatomic, retain) NSData   * fileAlias;
-@property (nonatomic, retain) NSString * modelName;
-@property (nonatomic, retain) NSString * checksum;
-@property (nonatomic, retain) NSNumber * romCondition;
-@property (nonatomic, retain) NSNumber * romCategory;
-@property (nonatomic, retain) NSNumber * fileSize;
-@property (nonatomic, retain) NSSet    * machines;
-
-@end
-
-@interface RomFilesEntityModel (CoreDataGeneratedAccessors)
-
-- (void)addMachinesObject:(VirtualMachinesEntityModel *)value;
-- (void)removeMachinesObject:(VirtualMachinesEntityModel *)value;
-- (void)addMachines:(NSSet *)values;
-- (void)removeMachines:(NSSet *)values;
-- (NSNumber *)icon;
-- (NSString *)filePath;
+@dynamic positionIndex;
+@dynamic diskFile;
+@dynamic virtualMachine;
 
 @end

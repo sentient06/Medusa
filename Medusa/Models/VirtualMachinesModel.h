@@ -1,5 +1,5 @@
 //
-//  VirtualMachinesEntityModel.h
+//  VirtualMachinesModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 12/06/2012.
@@ -119,9 +119,9 @@ enum Processors {
     , PPC7400
 };
 
-@class RelationshipVirtualMachinesDiskFilesEntityModel, RomFilesEntityModel, EmulatorsEntityModel;
+@class RelationshipVirtualMachinesDiskFilesModel, RomFilesModel, EmulatorsModel;
 
-@interface VirtualMachinesEntityModel : NSManagedObject
+@interface VirtualMachinesModel : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
 @property (nonatomic, retain) NSString * uniqueName;
@@ -160,15 +160,15 @@ enum Processors {
 @property (nonatomic, retain) NSNumber * taskPID;
 
 @property (nonatomic, retain) NSSet    * disks;
-@property (nonatomic, retain) RomFilesEntityModel  * romFile;
-@property (nonatomic, retain) EmulatorsEntityModel * emulator;
+@property (nonatomic, retain) RomFilesModel  * romFile;
+@property (nonatomic, retain) EmulatorsModel * emulator;
 
 @end
 
-@interface VirtualMachinesEntityModel (CoreDataGeneratedAccessors)
+@interface VirtualMachinesModel (CoreDataGeneratedAccessors)
 
-- (void)addDisksObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
-- (void)removeDisksObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
+- (void)addDisksObject:(RelationshipVirtualMachinesDiskFilesModel *)value;
+- (void)removeDisksObject:(RelationshipVirtualMachinesDiskFilesModel *)value;
 - (void)addDisks:(NSSet *)values;
 - (void)removeDisks:(NSSet *)values;
 - (NSNumber *)nextDiskIndex;

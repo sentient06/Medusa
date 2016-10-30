@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "RomIconValueTransformer.h"
-#import "RomFilesEntityModel.h"
+#import "RomFilesModel.h"
 
 @implementation RomIconValueTransformer
 

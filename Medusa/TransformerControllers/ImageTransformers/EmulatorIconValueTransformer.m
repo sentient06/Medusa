@@ -7,7 +7,7 @@
 //
 
 #import "EmulatorIconValueTransformer.h"
-#import "EmulatorsEntityModel.h"
+#import "EmulatorsModel.h"
 
 @implementation EmulatorIconValueTransformer
 

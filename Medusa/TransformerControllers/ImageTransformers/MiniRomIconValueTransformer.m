@@ -7,7 +7,7 @@
 //
 
 #import "MiniRomIconValueTransformer.h"
-#import "RomFilesEntityModel.h"
+#import "RomFilesModel.h"
 
 @implementation MiniRomIconValueTransformer
 

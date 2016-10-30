@@ -95,7 +95,7 @@
 		8131AA4517E76F1500682879 /* ProcessorToJitTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8131AA4417E76F1500682879 /* ProcessorToJitTransformer.m */; };
 		8138246C1A9E457700D629C7 /* MedusaTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8138246B1A9E457700D629C7 /* MedusaTextField.m */; };
 		8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */; };
-		813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */; };
+		813DB9CA17F5AABE00CB7EA2 /* EmulatorsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 813DB9C917F5AABE00CB7EA2 /* EmulatorsModel.m */; };
 		814804E817D5D56D0070DAD9 /* RomController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814804E717D5D56D0070DAD9 /* RomController.m */; };
 		814DA6FB1C63DE41001C538A /* SplitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814DA6FA1C63DE41001C538A /* SplitViewController.m */; };
 		814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 814FAD881570ED0D008D3223 /* PreferencesWindowController.m */; };
@@ -105,7 +105,7 @@
 		8158324E1DC6AAE800F09104 /* NSManagedObject+clone.m in Sources */ = {isa = PBXBuildFile; fileRef = 8158324D1DC6AAE800F09104 /* NSManagedObject+clone.m */; };
 		8159C790154F1205001E43D4 /* DropRomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C78F154F1205001E43D4 /* DropRomView.m */; };
 		8159C798154F2E29001E43D4 /* DropDiskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8159C797154F2E29001E43D4 /* DropDiskView.m */; };
-		815C26391587EEA5003FA9EB /* VirtualMachinesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 815C26381587EEA5003FA9EB /* VirtualMachinesEntityModel.m */; };
+		815C26391587EEA5003FA9EB /* VirtualMachinesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 815C26381587EEA5003FA9EB /* VirtualMachinesModel.m */; };
 		815F4F68156EC324001712CB /* PreferencesWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 815F4F67156EC324001712CB /* PreferencesWindow.xib */; };
 		8160BB0915502F74005F6DBF /* DiskIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0815502F74005F6DBF /* DiskIconValueTransformer.m */; };
 		8160BB0D15503053005F6DBF /* RomIconValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8160BB0C15503052005F6DBF /* RomIconValueTransformer.m */; };
@@ -162,9 +162,9 @@
 		81D733EF15A4AD6300DEA523 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D733EE15A4AD6300DEA523 /* QuartzCore.framework */; };
 		81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81DB8248159FAED8003D4C5D /* AssetsWindowController.m */; };
 		81E3A26017FB2BFF0026B842 /* RomFileSizeTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E3A25F17FB2BFF0026B842 /* RomFileSizeTransformer.m */; };
-		81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m */; };
-		81E84DF01565BE820002D4DA /* DiskFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEF1565BE820002D4DA /* DiskFilesEntityModel.m */; };
-		81E84DF91565BE820002D4DA /* RomFilesEntityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DF81565BE820002D4DA /* RomFilesEntityModel.m */; };
+		81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesModel.m */; };
+		81E84DF01565BE820002D4DA /* DiskFilesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DEF1565BE820002D4DA /* DiskFilesModel.m */; };
+		81E84DF91565BE820002D4DA /* RomFilesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 81E84DF81565BE820002D4DA /* RomFilesModel.m */; };
 		81EA87941A9FAC05007EB0DE /* Note.png in Resources */ = {isa = PBXBuildFile; fileRef = 81EA87931A9FAC05007EB0DE /* Note.png */; };
 		81F0857617CF8DF000188A2E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
 		81F085E417CF8E9A00188A2E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8168994F17CE16AC00058B9F /* Sparkle.framework */; };
@@ -304,8 +304,8 @@
 		8138246B1A9E457700D629C7 /* MedusaTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MedusaTextField.m; path = SubClasses/MedusaTextField.m; sourceTree = "<group>"; };
 		8139BB4B1826BCA0003BAD98 /* HelpDocumentationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpDocumentationController.h; path = UtilitiesControllers/HelpDocumentationController.h; sourceTree = "<group>"; };
 		8139BB4C1826BCA0003BAD98 /* HelpDocumentationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpDocumentationController.m; path = UtilitiesControllers/HelpDocumentationController.m; sourceTree = "<group>"; };
-		813DB9C817F5AABE00CB7EA2 /* EmulatorsEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorsEntityModel.h; path = Models/EmulatorsEntityModel.h; sourceTree = "<group>"; };
-		813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorsEntityModel.m; path = Models/EmulatorsEntityModel.m; sourceTree = "<group>"; };
+		813DB9C817F5AABE00CB7EA2 /* EmulatorsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; name = EmulatorsModel.h; path = Models/EmulatorsModel.h; sourceTree = "<group>"; };
+		813DB9C917F5AABE00CB7EA2 /* EmulatorsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorsModel.m; path = Models/EmulatorsModel.m; sourceTree = "<group>"; };
 		814804E617D5D56D0070DAD9 /* RomController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomController.h; path = Models/RomController.h; sourceTree = "<group>"; };
 		814804E717D5D56D0070DAD9 /* RomController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomController.m; path = Models/RomController.m; sourceTree = "<group>"; };
 		814DA6F91C63DE41001C538A /* SplitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SplitViewController.h; path = SubClasses/SplitViewController.h; sourceTree = "<group>"; };
@@ -322,8 +322,8 @@
 		8159C78F154F1205001E43D4 /* DropRomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropRomView.m; path = SubClasses/DropRomView.m; sourceTree = "<group>"; };
 		8159C796154F2E28001E43D4 /* DropDiskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropDiskView.h; path = SubClasses/DropDiskView.h; sourceTree = "<group>"; };
 		8159C797154F2E29001E43D4 /* DropDiskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropDiskView.m; path = SubClasses/DropDiskView.m; sourceTree = "<group>"; };
-		815C26371587EEA5003FA9EB /* VirtualMachinesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualMachinesEntityModel.h; path = Models/VirtualMachinesEntityModel.h; sourceTree = "<group>"; };
-		815C26381587EEA5003FA9EB /* VirtualMachinesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachinesEntityModel.m; path = Models/VirtualMachinesEntityModel.m; sourceTree = "<group>"; };
+		815C26371587EEA5003FA9EB /* VirtualMachinesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; name = VirtualMachinesModel.h; path = Models/VirtualMachinesModel.h; sourceTree = "<group>"; };
+		815C26381587EEA5003FA9EB /* VirtualMachinesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualMachinesModel.m; path = Models/VirtualMachinesModel.m; sourceTree = "<group>"; };
 		815F4F67156EC324001712CB /* PreferencesWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PreferencesWindow.xib; path = Windows/PreferencesWindow.xib; sourceTree = "<group>"; };
 		8160BB0715502F74005F6DBF /* DiskIconValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiskIconValueTransformer.h; path = TransformerControllers/DiskIconValueTransformer.h; sourceTree = "<group>"; };
 		8160BB0815502F74005F6DBF /* DiskIconValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiskIconValueTransformer.m; path = TransformerControllers/DiskIconValueTransformer.m; sourceTree = "<group>"; };
@@ -431,12 +431,12 @@
 		81DB8248159FAED8003D4C5D /* AssetsWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetsWindowController.m; path = WindowControllers/AssetsWindowController.m; sourceTree = "<group>"; };
 		81E3A25E17FB2BFF0026B842 /* RomFileSizeTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFileSizeTransformer.h; path = TransformerControllers/EnumeratorTransformers/RomFileSizeTransformer.h; sourceTree = "<group>"; };
 		81E3A25F17FB2BFF0026B842 /* RomFileSizeTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFileSizeTransformer.m; path = TransformerControllers/EnumeratorTransformers/RomFileSizeTransformer.m; sourceTree = "<group>"; };
-		81E84DEB1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RelationshipVirtualMachinesDiskFilesEntityModel.h; path = Models/RelationshipVirtualMachinesDiskFilesEntityModel.h; sourceTree = "<group>"; };
-		81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RelationshipVirtualMachinesDiskFilesEntityModel.m; path = Models/RelationshipVirtualMachinesDiskFilesEntityModel.m; sourceTree = "<group>"; };
-		81E84DEE1565BE820002D4DA /* DiskFilesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiskFilesEntityModel.h; path = Models/DiskFilesEntityModel.h; sourceTree = "<group>"; };
-		81E84DEF1565BE820002D4DA /* DiskFilesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiskFilesEntityModel.m; path = Models/DiskFilesEntityModel.m; sourceTree = "<group>"; };
-		81E84DF71565BE820002D4DA /* RomFilesEntityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFilesEntityModel.h; path = Models/RomFilesEntityModel.h; sourceTree = "<group>"; };
-		81E84DF81565BE820002D4DA /* RomFilesEntityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFilesEntityModel.m; path = Models/RomFilesEntityModel.m; sourceTree = "<group>"; };
+		81E84DEB1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; name = RelationshipVirtualMachinesDiskFilesModel.h; path = Models/RelationshipVirtualMachinesDiskFilesModel.h; sourceTree = "<group>"; };
+		81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RelationshipVirtualMachinesDiskFilesModel.m; path = Models/RelationshipVirtualMachinesDiskFilesModel.m; sourceTree = "<group>"; };
+		81E84DEE1565BE820002D4DA /* DiskFilesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; name = DiskFilesModel.h; path = Models/DiskFilesModel.h; sourceTree = "<group>"; };
+		81E84DEF1565BE820002D4DA /* DiskFilesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiskFilesModel.m; path = Models/DiskFilesModel.m; sourceTree = "<group>"; };
+		81E84DF71565BE820002D4DA /* RomFilesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RomFilesModel.h; path = Models/RomFilesModel.h; sourceTree = "<group>"; };
+		81E84DF81565BE820002D4DA /* RomFilesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RomFilesModel.m; path = Models/RomFilesModel.m; sourceTree = "<group>"; };
 		81EA87931A9FAC05007EB0DE /* Note.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Note.png; path = Medusa/Images/Note.png; sourceTree = SOURCE_ROOT; };
 		81F1D6061DBD5FF8007A9FE6 /* BoolToLockValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolToLockValueTransformer.h; path = TransformerControllers/ImageTransformers/BoolToLockValueTransformer.h; sourceTree = "<group>"; };
 		81F1D6071DBD5FF8007A9FE6 /* BoolToLockValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolToLockValueTransformer.m; path = TransformerControllers/ImageTransformers/BoolToLockValueTransformer.m; sourceTree = "<group>"; };
@@ -639,7 +639,7 @@
 			name = EmulatorFiles;
 			sourceTree = "<group>";
 		};
-		810E38451554414300949BE1 /* DataModel */ = {
+		810E38451554414300949BE1 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */,
@@ -651,7 +651,7 @@
 				4021088B1A8C9C9400F811F9 /* MigrationAssistants */,
 				4022065F1A91FD8300F0FC40 /* MigrationPolicies */,
 			);
-			name = DataModel;
+			name = CoreData;
 			path = DataModels;
 			sourceTree = "<group>";
 		};
@@ -792,13 +792,6 @@
 			name = Transformers;
 			sourceTree = "<group>";
 		};
-		816F654915A19C1A00687FA2 /* HelpingModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = HelpingModels;
-			sourceTree = "<group>";
-		};
 		817334F4182D54A500EDBF05 /* BackEndControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -864,8 +857,8 @@
 			children = (
 				8158324F1DC6AD6700F09104 /* Categories */,
 				8168995717CE17AA00058B9F /* Resources */,
-				810E38451554414300949BE1 /* DataModel */,
 				811C770518369E3100C681C6 /* Services */,
+				810E38451554414300949BE1 /* CoreData */,
 				818987D31538D41900A32B6A /* Models */,
 				81756F5D15347F3300FCBA8E /* Controllers */,
 				81756F5E15347F4A00FCBA8E /* Views */,
@@ -912,8 +905,16 @@
 		818987D31538D41900A32B6A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				816F654915A19C1A00687FA2 /* HelpingModels */,
-				81E84DEA1565B1EF0002D4DA /* EntityModels */,
+				81E84DEE1565BE820002D4DA /* DiskFilesModel.h */,
+				81E84DEF1565BE820002D4DA /* DiskFilesModel.m */,
+				813DB9C817F5AABE00CB7EA2 /* EmulatorsModel.h */,
+				813DB9C917F5AABE00CB7EA2 /* EmulatorsModel.m */,
+				81E84DEB1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesModel.h */,
+				81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesModel.m */,
+				81E84DF71565BE820002D4DA /* RomFilesModel.h */,
+				81E84DF81565BE820002D4DA /* RomFilesModel.m */,
+				815C26371587EEA5003FA9EB /* VirtualMachinesModel.h */,
+				815C26381587EEA5003FA9EB /* VirtualMachinesModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1068,23 +1069,6 @@
 				81D733EB15A4AC8800DEA523 /* LinkedView.m */,
 			);
 			name = SubClasses;
-			sourceTree = "<group>";
-		};
-		81E84DEA1565B1EF0002D4DA /* EntityModels */ = {
-			isa = PBXGroup;
-			children = (
-				81E84DEE1565BE820002D4DA /* DiskFilesEntityModel.h */,
-				81E84DEF1565BE820002D4DA /* DiskFilesEntityModel.m */,
-				813DB9C817F5AABE00CB7EA2 /* EmulatorsEntityModel.h */,
-				813DB9C917F5AABE00CB7EA2 /* EmulatorsEntityModel.m */,
-				81E84DEB1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.h */,
-				81E84DEC1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m */,
-				81E84DF71565BE820002D4DA /* RomFilesEntityModel.h */,
-				81E84DF81565BE820002D4DA /* RomFilesEntityModel.m */,
-				815C26371587EEA5003FA9EB /* VirtualMachinesEntityModel.h */,
-				815C26381587EEA5003FA9EB /* VirtualMachinesEntityModel.m */,
-			);
-			name = EntityModels;
 			sourceTree = "<group>";
 		};
 		81FAA927159F3968004F5F11 /* Images */ = {
@@ -1307,14 +1291,14 @@
 				4096FFDA1A9233360016BE57 /* Medusa.xcdatamodeld in Sources */,
 				40B0F3B61949B54100F5CEC7 /* RomEmulatorTransformer.m in Sources */,
 				81134C4415540B2900785866 /* PreferencesController.m in Sources */,
-				81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesEntityModel.m in Sources */,
-				81E84DF01565BE820002D4DA /* DiskFilesEntityModel.m in Sources */,
+				81E84DED1565BE810002D4DA /* RelationshipVirtualMachinesDiskFilesModel.m in Sources */,
+				81E84DF01565BE820002D4DA /* DiskFilesModel.m in Sources */,
 				40AAA30219E7D16900EFFB00 /* VMListButtonCell.m in Sources */,
-				81E84DF91565BE820002D4DA /* RomFilesEntityModel.m in Sources */,
+				81E84DF91565BE820002D4DA /* RomFilesModel.m in Sources */,
 				404EC1B61A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel in Sources */,
 				814FAD891570ED0D008D3223 /* PreferencesWindowController.m in Sources */,
 				40394FDC19E7E653003893E1 /* ToggleButtonImageTransformer.m in Sources */,
-				815C26391587EEA5003FA9EB /* VirtualMachinesEntityModel.m in Sources */,
+				815C26391587EEA5003FA9EB /* VirtualMachinesModel.m in Sources */,
 				402206651A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m in Sources */,
 				81DB8249159FAED8003D4C5D /* AssetsWindowController.m in Sources */,
 				81D733EC15A4AC8800DEA523 /* LinkedView.m in Sources */,
@@ -1349,7 +1333,7 @@
 				81B08F1C17F43FE5000954C6 /* ByteValueTransformer.m in Sources */,
 				81B08F2317F44198000954C6 /* DiskFormatValueTransformer.m in Sources */,
 				81B08F2717F44648000954C6 /* BoolValueTransformer.m in Sources */,
-				813DB9CA17F5AABE00CB7EA2 /* EmulatorsEntityModel.m in Sources */,
+				813DB9CA17F5AABE00CB7EA2 /* EmulatorsModel.m in Sources */,
 				8188A59217F97A6800BAB33B /* VirtualMachineController.m in Sources */,
 				8188A59617F97A7A00BAB33B /* EmulatorController.m in Sources */,
 				81BBBC5417F9B5B700C151FE /* EmulatorFamilyValueTransformer.m in Sources */,

@@ -31,9 +31,10 @@
 //------------------------------------------------------------------------------
 
 #import "VirtualMachineController.h"
-#import "VirtualMachinesEntityModel.h"
+#import "VirtualMachinesModel.h"
 #import "AppDelegate.h"
 #import "PreferencesController.h"
+#import "NSManagedObject+clone.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -85,7 +86,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     DDLogVerbose(@"Creating machine called '%@'", newMachineName);
 
     //Sets a new vm object.
-    VirtualMachinesEntityModel * newVirtualMachineObject = [
+    VirtualMachinesModel * newVirtualMachineObject = [
         NSEntityDescription
         insertNewObjectForEntityForName:@"VirtualMachines"
                  inManagedObjectContext:managedObjectContext
@@ -111,7 +112,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     DDLogVerbose(@"Creating machine with data called '%@'", newMachineName);
 
     //Sets a new vm object.
-    VirtualMachinesEntityModel * newVirtualMachineObject = [
+    VirtualMachinesModel * newVirtualMachineObject = [
         NSEntityDescription
         insertNewObjectForEntityForName:@"VirtualMachines"
                  inManagedObjectContext:managedObjectContext
@@ -136,13 +137,13 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @method      cloneMachine:withName:
  * @abstract    Clones existing machine into new one.
  */
-- (void)cloneMachine:(VirtualMachinesEntityModel *)machineToClone withName:(NSString *)newMachineName {
+- (void)cloneMachine:(VirtualMachinesModel *)machineToClone withName:(NSString *)newMachineName {
 
     int currentTime = CFAbsoluteTimeGetCurrent();
     DDLogVerbose(@"Cloning machine called '%@'", [machineToClone name]);
     
     //Cloned machine:
-    VirtualMachinesEntityModel * clonedMachine = [machineToClone clone];
+    VirtualMachinesModel * clonedMachine = [machineToClone clone];
     
     //Change name:
     [clonedMachine setName:newMachineName];

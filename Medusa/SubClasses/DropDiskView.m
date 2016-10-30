@@ -32,8 +32,8 @@
 
 #import "DropDiskView.h"
 #import "DiskController.h"
-#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-#import "VirtualMachinesEntityModel.h"
+#import "RelationshipVirtualMachinesDiskFilesModel.h"
+#import "VirtualMachinesModel.h"
 
 @implementation DropDiskView
 @synthesize currentMachine;
@@ -50,7 +50,7 @@
     
     // Workaround:
     if (currentMachine) {
-        VirtualMachinesEntityModel * newVirtualMachineObject = [currentMachine content];
+        VirtualMachinesModel * newVirtualMachineObject = [currentMachine content];
         if ([[newVirtualMachineObject running] intValue] == 1)
             return NO;
     }
@@ -63,8 +63,8 @@
     [diskObject parseDriveFilesAndSave:urls];
     
     if (currentMachine) {
-        VirtualMachinesEntityModel * newVirtualMachineObject = [currentMachine content];
-        RelationshipVirtualMachinesDiskFilesEntityModel * newRelationship = [
+        VirtualMachinesModel * newVirtualMachineObject = [currentMachine content];
+        RelationshipVirtualMachinesDiskFilesModel * newRelationship = [
         NSEntityDescription
             insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
             inManagedObjectContext:[currentMachine managedObjectContext]

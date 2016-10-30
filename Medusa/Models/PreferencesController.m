@@ -31,11 +31,11 @@
 //------------------------------------------------------------------------------
 
 #import "PreferencesController.h"
-#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-#import "DiskFilesEntityModel.h"
-#import "VirtualMachinesEntityModel.h"
-#import "RomFilesEntityModel.h"
-#import "EmulatorsEntityModel.h"
+#import "RelationshipVirtualMachinesDiskFilesModel.h"
+#import "DiskFilesModel.h"
+#import "VirtualMachinesModel.h"
+#import "RomFilesModel.h"
+#import "EmulatorsModel.h"
 #import "AppDelegate.h"
 #import "RomController.h"
 #import "DiskController.h"
@@ -87,7 +87,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  */
 - (void)savePreferences:(NSArray *)dataToSave
                  InPath:(NSString*)filePath
-      ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
+      ForVirtualMachine:(VirtualMachinesModel *)virtualMachine {
 
     DDLogVerbose(@"Save data: %@", dataToSave);
 
@@ -154,7 +154,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @method      getVirtualMachineData:
  * @abstract    Returns an array with key-value pairs of settings from the coredata.
  */
-- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesEntityModel *)virtualMachine
+- (NSMutableArray*)getVirtualMachineData:(VirtualMachinesModel *)virtualMachine
                        forEmulatorFamily:(int)emulatorFamily {
     
     //The idea here is to return an array with dictionaries inside.
@@ -316,12 +316,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     NSArray * drivesResult = [managedObjectContext executeFetchRequest:request error:&error];
     NSEnumerator * rowEnumerator = [drivesResult objectEnumerator];
-    RelationshipVirtualMachinesDiskFilesEntityModel * object;
+    RelationshipVirtualMachinesDiskFilesModel * object;
     
     BOOL bootFromCD = NO;
 
     while (object = [rowEnumerator nextObject]) {
-        DiskFilesEntityModel * unbootableDriveObject = [object diskFile];
+        DiskFilesModel * unbootableDriveObject = [object diskFile];
         DDLogVerbose(@"DAMN --- %@", [unbootableDriveObject fileName]);
 
         int diskType = [[unbootableDriveObject type] intValue];
@@ -641,7 +641,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @abstract    Creates preferences file path and directories for a given VM.
  */
 - (void)savePreferencesFile:(NSString *)preferencesFilePath
-          ForVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
+          ForVirtualMachine:(VirtualMachinesModel *)virtualMachine {
 
     NSMutableString * filePath = [[[NSMutableString alloc] initWithString:preferencesFilePath] autorelease];
     int emulatorFamily = [[[virtualMachine emulator] family] intValue];
@@ -740,7 +740,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @method      insertData:intoVirtualMachine:
  * @abstract    Reads inserts parsed data into coredata's VM.
  */
-- (void)insertData:(NSArray *)preferences intoVirtualMachine:(VirtualMachinesEntityModel *)virtualMachine {
+- (void)insertData:(NSArray *)preferences intoVirtualMachine:(VirtualMachinesModel *)virtualMachine {
     DDLogInfo(@"Parsing imported data");
     [virtualMachine retain];
     NSMutableArray * notParsed = [[NSMutableArray alloc] initWithCapacity:1];
@@ -812,7 +812,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             if ([key isEqualToString: @"disk"]) {
                 DiskController * diskObject = [[DiskController alloc] autorelease];
                 [diskObject parseSingleDriveFileAndSave:[dataElement objectForKey:key] inObjectContext:managedObjectContext];
-                RelationshipVirtualMachinesDiskFilesEntityModel * newRelationship = [
+                RelationshipVirtualMachinesDiskFilesModel * newRelationship = [
                 NSEntityDescription
                     insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
                     inManagedObjectContext:managedObjectContext

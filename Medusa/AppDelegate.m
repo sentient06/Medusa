@@ -44,17 +44,17 @@
 #import "IconValueTransformer.h"            //Transforms a coredata integer in an icon
 
 // Models:
-#import "VirtualMachinesEntityModel.h"
-#import "DiskFilesEntityModel.h"
+#import "VirtualMachinesModel.h"
+#import "DiskFilesModel.h"
 
 // Controllers
 #import "PreferencesController.h"
 #import "VirtualMachineController.h"
-#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
+#import "RelationshipVirtualMachinesDiskFilesModel.h"
 #import "SystemFileService.h"
 
 // Enums and structs
-#import "EmulatorsEntityModel.h"
+#import "EmulatorsModel.h"
 
 // Classes that make migrations less painful.
 #import "MigrationAssistant.h"
@@ -240,7 +240,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         [virtualMachineModelObject insertMachineNamed:newMachineName];
     } else if (newVirtualMachineIdentifier == duplicate) {
         //Machine to clone:
-        VirtualMachinesEntityModel * machineToClone = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+        VirtualMachinesModel * machineToClone = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
         [virtualMachineModelObject cloneMachine:machineToClone withName:newMachineName];
     } else if (newVirtualMachineIdentifier == importBasilisk) {
         NSArray * importedData = [[PreferencesController parsePreferencesFor:BasiliskII] retain];
@@ -303,7 +303,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     ] autorelease ];
 
     //The user can select only one in the current interface, but anyway...
-    VirtualMachinesEntityModel * virtualMachine = [selectedVirtualMachines objectAtIndex:0];
+    VirtualMachinesModel * virtualMachine = [selectedVirtualMachines objectAtIndex:0];
     
     NSString * preferencesFilePath = [
         [NSMutableString alloc] initWithFormat:
@@ -360,7 +360,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  */
 - (IBAction)savePreferencesFile:(id)sender {
     [self saveCoreData];
-    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+    VirtualMachinesModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
 
     NSString * preferencesFilePath = [
         [NSMutableString alloc] initWithFormat:
@@ -381,7 +381,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  */
 - (IBAction)openPreferencesFileFolder:(id)sender {
     [self saveCoreData];
-    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+    VirtualMachinesModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
 
     NSString * preferencesFilePath = [
         [NSMutableString alloc] initWithFormat:
@@ -413,7 +413,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  *              to stop it. I thought it could be much more simple to use a single
  *              button to handle both operations.
  */
-- (IBAction)toggleEmulator:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender {
+- (IBAction)toggleEmulator:(VirtualMachinesModel *)virtualMachine andSender:(id)sender {
     DDLogVerbose(@"Toggling %@", [virtualMachine running]);
     int currentStatus = [[virtualMachine running] intValue];
     if (currentStatus == 1) {
@@ -432,7 +432,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @discussion  This action is triggered inside the table row.
  */
 - (IBAction)toggleVirtualMachine:(id)sender {
-    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController arrangedObjects] objectAtIndex:[sender clickedRow]];
+    VirtualMachinesModel * virtualMachine = [[virtualMachinesArrayController arrangedObjects] objectAtIndex:[sender clickedRow]];
     [self toggleEmulator:virtualMachine andSender:sender];
 }
 
@@ -445,7 +445,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  *              proceed to prompt the user about it. The function is handy,
  *              nevertheless, and remained here.
  */
-- (IBAction)stopEmulator:(VirtualMachinesEntityModel *)virtualMachine {
+- (IBAction)stopEmulator:(VirtualMachinesModel *)virtualMachine {
     if ([virtualMachine running]) {
         NSTask * theTask = [virtualMachineTasks objectForKey:[virtualMachine uniqueName]];        
         [theTask terminate];
@@ -465,7 +465,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  */
 - (IBAction)killEmulator:(id)sender {
     DDLogInfo(@"Attemptying to kill emulator.");
-    VirtualMachinesEntityModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
+    VirtualMachinesModel * virtualMachine = [[virtualMachinesArrayController selectedObjects] objectAtIndex:0];
     NSTask * runningTask = [virtualMachineTasks objectForKey:[virtualMachine uniqueName]];
     if ([virtualMachine running]) {
         NSString * command = [[[NSString alloc] initWithFormat:@"kill -9 %d", [runningTask processIdentifier]] autorelease];
@@ -483,7 +483,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * Old comment to be checked:
  * This will crash if the application support dir doesn't exist. Fix it!
  */
-- (IBAction)run:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender {
+- (IBAction)run:(VirtualMachinesModel *)virtualMachine andSender:(id)sender {
     
     [self saveCoreData];
    
@@ -508,9 +508,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     int usedDisks = 0;
     int busyDisks = 0;
     NSEnumerator * rowEnumerator = [[virtualMachine disks] objectEnumerator];
-    RelationshipVirtualMachinesDiskFilesEntityModel * object;
+    RelationshipVirtualMachinesDiskFilesModel * object;
     while (object = [rowEnumerator nextObject]) {
-        DiskFilesEntityModel * driveObject = [object diskFile];
+        DiskFilesModel * driveObject = [object diskFile];
         BOOL busy = [SystemFileService pidsAccessingPath:[driveObject filePath]];
         DDLogInfo(@"Disk busy: %@", busy ? @"yes" : @"no");
         if (busy) {
@@ -559,9 +559,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         
         // Blocks all used disks:
         NSEnumerator * rowEnumerator = [[virtualMachine disks] objectEnumerator];
-        RelationshipVirtualMachinesDiskFilesEntityModel * object;
+        RelationshipVirtualMachinesDiskFilesModel * object;
         while (object = [rowEnumerator nextObject]) {
-            DiskFilesEntityModel * driveObject = [object diskFile];
+            DiskFilesModel * driveObject = [object diskFile];
             [driveObject setBlocked:[NSNumber numberWithBool:YES]];
         }
         
@@ -608,7 +608,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         // Unblocks all used disks:
         rowEnumerator = [[virtualMachine disks] objectEnumerator];
         while (object = [rowEnumerator nextObject]) {
-            DiskFilesEntityModel * driveObject = [object diskFile];
+            DiskFilesModel * driveObject = [object diskFile];
             [driveObject setBlocked:[NSNumber numberWithBool:NO]];
         }
 
@@ -641,7 +641,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     ] autorelease];
     // The user can select only one in the current interface, but anyway...
 
-    VirtualMachinesEntityModel * selectedVirtualMachine = [selectedVirtualMachines objectAtIndex:0];
+    VirtualMachinesModel * selectedVirtualMachine = [selectedVirtualMachines objectAtIndex:0];
     VirtualMachineWindowController * newWindowController = [windowsForVirtualMachines objectForKey:[selectedVirtualMachine uniqueName]];
     
     if (newWindowController == nil) {

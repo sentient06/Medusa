@@ -32,7 +32,7 @@
 
 #import "MigrationAssistant.h"
 #import "AppDelegate.h"
-#import "EmulatorsEntityModel.h"
+#import "EmulatorsModel.h"
 #import "SystemFileService.h"
 
 //------------------------------------------------------------------------------

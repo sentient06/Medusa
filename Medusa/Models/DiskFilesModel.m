@@ -1,5 +1,5 @@
 //
-//  RomFilesEntityModel.m
+//  DiskFilesEntityModel.m
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -30,51 +30,34 @@
 //
 //------------------------------------------------------------------------------
 
-#import "RomFilesEntityModel.h"
-#import "VirtualMachinesEntityModel.h"
-#import "EmulatorsEntityModel.h"
+#import "DiskFilesModel.h"
+#import "RelationshipVirtualMachinesDiskFilesModel.h"
 #import "SystemFileService.h"
 
-@implementation RomFilesEntityModel
+@implementation DiskFilesModel
 
-@dynamic comments;
-@dynamic emulatorType;
-@dynamic fileMissing;
+@dynamic bootable;
+@dynamic bootableHeader;
+@dynamic blocked;
+@dynamic capacity;
+@dynamic format;
+@dynamic partitions;
+@dynamic type;
+@dynamic size;
+@dynamic virtualMachines;
+@dynamic fileName;
 @dynamic fileAlias;
-@dynamic modelName;
-@dynamic checksum;
-@dynamic romCondition;
-@dynamic romCategory;
-@dynamic machines;
-@dynamic fileSize;
 
-- (NSNumber *)icon {
-    int myCategory  = [[self romCategory ] intValue];
-    int myEmulator  = [[self emulatorType] intValue];
-    int myCondition = [[self romCondition] intValue];
-    if (myCondition == UnsupportedRom || myEmulator == EmulatorUnsupported) {
-        return [NSNumber numberWithInt:DeadMac];
-    } else {
-        if (myEmulator >= vMacStandard && myEmulator <= vMacOther2) {
-            return [NSNumber numberWithInt:MiniVMacMac];
-        } else {
-            if (myCategory == OldWorldROM) {
-                return [NSNumber numberWithInt:BlackAndWhiteHappyMac];
-            } else if (myCategory >= NewWorldROM) {
-                return [NSNumber numberWithInt:ColouredHappyMac];
-            } else {
-                return [NSNumber numberWithInt:QuestionMarkMac];
-            }
-        }
-    }
+- (void)changeType:(int)newType {
+    [self setType:[NSNumber numberWithInt:newType]];
+}
 
+- (NSString *)description {
+    return [self fileName];
 }
 
 - (NSString *)filePath {
-    NSString * resolvedFilePath = [SystemFileService resolveAlias:[self fileAlias]];
-    if (resolvedFilePath == nil)
-        [self setFileMissing:[NSNumber numberWithBool:YES]];
-    return resolvedFilePath;
+    return [SystemFileService resolveAlias:[self fileAlias]];
 }
 
 @end

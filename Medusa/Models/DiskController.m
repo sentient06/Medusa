@@ -31,8 +31,8 @@
 //------------------------------------------------------------------------------
 
 #import "DiskController.h"
-#import "DiskFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
-#import "VirtualMachinesEntityModel.h"
+#import "DiskFilesModel.h" //Model that handles all Rom-Files-Entity-related objects.
+#import "VirtualMachinesModel.h"
 #import "SystemFileService.h"
 
 //------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     //----------------------------------------------------------------------        
     
-    DiskFilesEntityModel * managedObject = [
+    DiskFilesModel * managedObject = [
         NSEntityDescription
             insertNewObjectForEntityForName: @"DiskFiles"
             inManagedObjectContext: currentContext

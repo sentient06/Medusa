@@ -35,10 +35,10 @@
 #import "AppDelegate.h"
 #import "EmulatorController.h"
 #import "ASIHTTPRequest.h"
-#import "RomFilesEntityModel.h"
+#import "RomFilesModel.h"
 #import "RomController.h"
 #import "DiskController.h"
-#import "EmulatorsEntityModel.h"
+#import "EmulatorsModel.h"
 #import "HelpDocumentationController.h"
 
 //------------------------------------------------------------------------------
@@ -271,7 +271,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @see         showFinderItemAtPath:
  */
 - (IBAction)showFinderRomItem:(id)sender {
-    RomFilesEntityModel * currentRom = [[RomFilesArrayController selectedObjects] objectAtIndex:0];
+    RomFilesModel * currentRom = [[RomFilesArrayController selectedObjects] objectAtIndex:0];
     [self showFinderItemAtPath:[currentRom filePath]];
 }
 
@@ -281,7 +281,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @see         showFinderItemAtPath:
  */
 - (IBAction)showFinderDiskItem:(id)sender {
-    DiskFilesEntityModel * disk = [[DiskFilesArrayController selectedObjects] objectAtIndex:0];
+    DiskFilesModel * disk = [[DiskFilesArrayController selectedObjects] objectAtIndex:0];
     [self showFinderItemAtPath:[disk filePath]];
 }
 
@@ -291,7 +291,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @see         showFinderItemAtPath:
  */
 - (IBAction)showFinderAppItem:(id)sender {
-    EmulatorsEntityModel * emulatorBundle = [[emulatorsArrayController selectedObjects] objectAtIndex:0];
+    EmulatorsModel * emulatorBundle = [[emulatorsArrayController selectedObjects] objectAtIndex:0];
     [self showFinderItemAtPath:[emulatorBundle filePath]];
 }
 

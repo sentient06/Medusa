@@ -1,5 +1,5 @@
 //
-//  DiskFilesEntityModel.h
+//  RomFilesModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -33,51 +33,65 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-enum diskFormat {
-    formatLisaFS  = 1, // Lisa File-system
-    formatMFS     = 2, // Macintosh File-system
-    formatHFS     = 3, // Hyerarquical File-system
-    formatHFSPlus = 4, // Hyerarquical File-system Plus
-    formatISO9660 = 5, // ISO 9660 - CD/DVD ROM
-    formatFAT     = 6, // FAT 16, FAT 32
-    formatOther   = 7, // Other FS
-    formatUnknown = 8, // Unknown FS
-    formatMisc    = 9  // Partitioned with different FS
+enum RomCategory {
+    OldWorldROM = 1
+  , NewWorldROM
+  , NoCategory
 };
 
-enum diskType {
-    typeHardDrive = 1,
-    typeCDROM     = 2,
-    typeDiskette  = 3,
-    typeOther     = 4
+enum RomConditions {
+    NormalCondition = 1
+  , NoAppleTalk
+  , FPURequired
+  , NoAppleTalkAndFPURequired
+  , UnsupportedRom
+  , IgnoreIllegalMemoryInstructionsDisableJIT
 };
 
-@class RelationshipVirtualMachinesDiskFilesEntityModel;
+enum RomSizes {
+    romNull = 0,
+    rom64KB,
+    rom128KB,
+    rom256KB,
+    rom512KB,
+    rom1MB,
+    rom2MB,
+    rom3MB,
+    rom4MB,
+};
 
-@interface DiskFilesEntityModel : NSManagedObject
+enum RomIcons {
+    DeadMac
+  , BlackAndWhiteHappyMac
+  , ColouredHappyMac
+  , MiniVMacMac
+  , QuestionMarkMac
+};
 
-@property (nonatomic, retain) NSNumber * blocked;
-@property (nonatomic, retain) NSNumber * bootable;
-@property (nonatomic, retain) NSNumber * bootableHeader;
-@property (nonatomic, retain) NSNumber * capacity;
-@property (nonatomic, retain) NSNumber * format;
-@property (nonatomic, retain) NSNumber * partitions;
-@property (nonatomic, retain) NSNumber * type;
-@property (nonatomic, retain) NSNumber * size;
-@property (nonatomic, retain) NSSet    * virtualMachines;
-@property (nonatomic, retain) NSString * fileName;
+@class VirtualMachinesModel;
+
+@interface RomFilesModel : NSManagedObject
+
+@property (nonatomic, retain) NSString * comments;
+@property (nonatomic, retain) NSNumber * emulatorType;
+@property (nonatomic, retain) NSNumber * fileMissing;
 @property (nonatomic, retain) NSData   * fileAlias;
+@property (nonatomic, retain) NSString * modelName;
+@property (nonatomic, retain) NSString * checksum;
+@property (nonatomic, retain) NSNumber * romCondition;
+@property (nonatomic, retain) NSNumber * romCategory;
+@property (nonatomic, retain) NSNumber * fileSize;
+@property (nonatomic, retain) NSSet    * machines;
 
 @end
 
-@interface DiskFilesEntityModel (CoreDataGeneratedAccessors)
+@interface RomFilesModel (CoreDataGeneratedAccessors)
 
-- (void)addVirtualMachinesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
-- (void)removeVirtualMachinesObject:(RelationshipVirtualMachinesDiskFilesEntityModel *)value;
-- (void)addVirtualMachines:(NSSet *)values;
-- (void)removeVirtualMachines:(NSSet *)values;
-- (void)changeType:(int)newType;
-
+- (void)addMachinesObject:(VirtualMachinesModel *)value;
+- (void)removeMachinesObject:(VirtualMachinesModel *)value;
+- (void)addMachines:(NSSet *)values;
+- (void)removeMachines:(NSSet *)values;
+- (NSNumber *)icon;
 - (NSString *)filePath;
 
 @end

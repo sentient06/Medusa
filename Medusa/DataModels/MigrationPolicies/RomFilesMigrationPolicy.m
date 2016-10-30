@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "RomFilesMigrationPolicy.h"
-#import "EmulatorsEntityModel.h"
+#import "EmulatorsModel.h"
 #import "SystemFileService.h"
 
 //------------------------------------------------------------------------------

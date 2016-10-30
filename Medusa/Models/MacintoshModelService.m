@@ -32,7 +32,7 @@
 
 #import "MacintoshModelService.h"
 #import "EmulatorService.h"
-#import "EmulatorsEntityModel.h"
+#import "EmulatorsModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger

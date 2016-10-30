@@ -1,9 +1,9 @@
 //
-//  EmulatorsEntityModel.m
+//  RelationshipVirtualMachinesDiskFilesModel.h
 //  Medusa
 //
-//  Created by Giancarlo Mariot on 27/09/2013.
-//  Copyright (c) 2013 Giancarlo Mariot. All rights reserved.
+//  Created by Giancarlo Mariot on 18/05/2012.
+//  Copyright (c) 2012 Giancarlo Mariot. All rights reserved.
 //
 //------------------------------------------------------------------------------
 //
@@ -30,45 +30,15 @@
 //
 //------------------------------------------------------------------------------
 
-#import "EmulatorsEntityModel.h"
-#import "SystemFileService.h"
+#import <Foundation/Foundation.h>
+#import <CoreData/CoreData.h>
 
-@implementation EmulatorsEntityModel
+@class DiskFilesModel, VirtualMachinesModel;
 
-@dynamic family;
-@dynamic name;
-@dynamic maintained;
-@dynamic readablePath;
-@dynamic unixPath;
-@dynamic version;
-@dynamic machines;
-@dynamic appMissing;
-@dynamic appAlias;
-@dynamic useCount;
+@interface RelationshipVirtualMachinesDiskFilesModel : NSManagedObject
 
-
-- (NSString *)filePath {
-    NSData * alias;    
-    if (![self appAlias])
-        alias = [self fixAliasAndReturn];
-    else
-        alias = [self appAlias];
-    NSString * resolvedFilePath = [SystemFileService resolveAlias:alias];
-    NSLog(@"App alias: %@", [self appAlias]);
-    NSLog(@"Missing: %@", resolvedFilePath == nil ? @"YES" : @"NO");
-    if (resolvedFilePath == nil)
-        [self setAppMissing:[NSNumber numberWithBool:YES]];
-    return resolvedFilePath;
-}
-
-- (NSData *)fixAliasAndReturn {
-    NSLog(@"Alias missing, fixing it");
-    // Path from string to alias:
-    NSString * oldPath     = [self readablePath];
-    NSString * escapedPath = [oldPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSData   * fileAlias   = [SystemFileService createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
-    [self setAppAlias:fileAlias];
-    return [self appAlias];
-}
+@property (nonatomic, retain) NSNumber * positionIndex;
+@property (nonatomic, retain) DiskFilesModel * diskFile;
+@property (nonatomic, retain) VirtualMachinesModel * virtualMachine;
 
 @end

@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "RomFileConditionTransformer.h"
-#import "RomFilesEntityModel.h"
+#import "RomFilesModel.h"
 
 @implementation RomFileConditionTransformer
 

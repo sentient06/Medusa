@@ -32,7 +32,7 @@
 
 #import "DropEmulatorView.h"
 #import "EmulatorController.h"
-#import "VirtualMachinesEntityModel.h"
+#import "VirtualMachinesModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger

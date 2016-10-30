@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "DiskIconValueTransformer.h"
-#import "DiskFilesEntityModel.h"
+#import "DiskFilesModel.h"
 
 @implementation DiskIconValueTransformer
 

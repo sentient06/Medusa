@@ -1,5 +1,5 @@
 //
-//  RelationshipVirtualMachinesDiskFilesEntityModel.h
+//  DiskFilesEntityModel.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 18/05/2012.
@@ -33,12 +33,51 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class DiskFilesEntityModel, VirtualMachinesEntityModel;
+enum diskFormat {
+    formatLisaFS  = 1, // Lisa File-system
+    formatMFS     = 2, // Macintosh File-system
+    formatHFS     = 3, // Hyerarquical File-system
+    formatHFSPlus = 4, // Hyerarquical File-system Plus
+    formatISO9660 = 5, // ISO 9660 - CD/DVD ROM
+    formatFAT     = 6, // FAT 16, FAT 32
+    formatOther   = 7, // Other FS
+    formatUnknown = 8, // Unknown FS
+    formatMisc    = 9  // Partitioned with different FS
+};
 
-@interface RelationshipVirtualMachinesDiskFilesEntityModel : NSManagedObject
+enum diskType {
+    typeHardDrive = 1,
+    typeCDROM     = 2,
+    typeDiskette  = 3,
+    typeOther     = 4
+};
 
-@property (nonatomic, retain) NSNumber * positionIndex;
-@property (nonatomic, retain) DiskFilesEntityModel * diskFile;
-@property (nonatomic, retain) VirtualMachinesEntityModel * virtualMachine;
+@class RelationshipVirtualMachinesDiskFilesModel;
+
+@interface DiskFilesModel : NSManagedObject
+
+@property (nonatomic, retain) NSNumber * blocked;
+@property (nonatomic, retain) NSNumber * bootable;
+@property (nonatomic, retain) NSNumber * bootableHeader;
+@property (nonatomic, retain) NSNumber * capacity;
+@property (nonatomic, retain) NSNumber * format;
+@property (nonatomic, retain) NSNumber * partitions;
+@property (nonatomic, retain) NSNumber * type;
+@property (nonatomic, retain) NSNumber * size;
+@property (nonatomic, retain) NSSet    * virtualMachines;
+@property (nonatomic, retain) NSString * fileName;
+@property (nonatomic, retain) NSData   * fileAlias;
+
+@end
+
+@interface DiskFilesModel (CoreDataGeneratedAccessors)
+
+- (void)addVirtualMachinesObject:(RelationshipVirtualMachinesDiskFilesModel *)value;
+- (void)removeVirtualMachinesObject:(RelationshipVirtualMachinesDiskFilesModel *)value;
+- (void)addVirtualMachines:(NSSet *)values;
+- (void)removeVirtualMachines:(NSSet *)values;
+- (void)changeType:(int)newType;
+
+- (NSString *)filePath;
 
 @end

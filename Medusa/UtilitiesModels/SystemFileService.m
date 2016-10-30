@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "SystemFileService.h"
-#import "RomFilesEntityModel.h"
+#import "RomFilesModel.h"
 #import "AppDelegate.h"
 #import <libproc.h>
 
@@ -76,7 +76,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         [request setReturnsObjectsAsFaults:NO];
         NSArray * results = [currentContext executeFetchRequest:request error:&error];
         NSEnumerator * rowEnumerator = [results objectEnumerator];
-        RomFilesEntityModel * object;
+        RomFilesModel * object;
         
         while (object = [rowEnumerator nextObject]) {
             NSData * aliasData = [object fileAlias];

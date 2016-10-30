@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "DiskFormatValueTransformer.h"
-#import "DiskFilesEntityModel.h"
+#import "DiskFilesModel.h"
 
 @implementation DiskFormatValueTransformer
 

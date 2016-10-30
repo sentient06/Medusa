@@ -32,10 +32,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class RomFilesEntityModel;
+@class RomFilesModel;
 
 @interface RomController : NSObject {
-    RomFilesEntityModel * currentRomObject;
+    RomFilesModel * currentRomObject;
     NSString * macModel; // Name of compatible models.
     NSString * comments; // General details.
     NSString * checksum; // Checksum. =P
@@ -46,7 +46,7 @@
     int fileSize;        // File size in bytes.
 }
 
-@property (readonly, strong, nonatomic) RomFilesEntityModel * currentRomObject;
+@property (readonly, strong, nonatomic) RomFilesModel * currentRomObject;
 
 + (BOOL)validateFile:(NSString *)filePath;
 - (uint32)extractChecksumForFile:(NSString *)filePath;

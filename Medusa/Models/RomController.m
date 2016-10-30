@@ -31,8 +31,8 @@
 //------------------------------------------------------------------------------
 
 #import "RomController.h"
-#import "RomFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
-#import "EmulatorsEntityModel.h"
+#import "RomFilesModel.h" //Model that handles all Rom-Files-Entity-related objects.
+#import "EmulatorsModel.h"
 #import "NSData+MD5.h"
 #import "SystemFileService.h"
 
@@ -164,7 +164,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
             //----------------------------------------------------------------------
             
-            RomFilesEntityModel * managedObject = [
+            RomFilesModel * managedObject = [
                 NSEntityDescription
                 insertNewObjectForEntityForName: @"RomFiles"
                          inManagedObjectContext: currentContext

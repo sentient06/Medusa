@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class VirtualMachinesEntityModel;
+@class VirtualMachinesModel;
 
 @interface VirtualMachineController : NSObject {
     NSManagedObjectContext * managedObjectContext;
@@ -41,7 +41,7 @@
 - (BOOL)existsMachineNamed:(NSString *)nameToCheck;
 - (void)insertMachineNamed:(NSString *)newMachineName;
 - (void)insertMachineNamed:(NSString *)newMachineName withType:(int)emulatorType andData:(NSArray *)data;
-- (void)cloneMachine:(VirtualMachinesEntityModel *)machineToClone withName:(NSString *)newMachineName;
+- (void)cloneMachine:(VirtualMachinesModel *)machineToClone withName:(NSString *)newMachineName;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)newManagedObjectContext;
 

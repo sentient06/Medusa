@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "ProcessorToJitTransformer.h"
-#import "VirtualMachinesEntityModel.h"
+#import "VirtualMachinesModel.h"
 
 @implementation ProcessorToJitTransformer
 

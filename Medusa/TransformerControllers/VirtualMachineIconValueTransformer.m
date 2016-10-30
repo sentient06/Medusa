@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "VirtualMachineIconValueTransformer.h"
-#import "VirtualMachinesEntityModel.h"
+#import "VirtualMachinesModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger

@@ -40,11 +40,11 @@
 #import "HelpDocumentationController.h"
 
 // Models
-#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-#import "VirtualMachinesEntityModel.h"
-#import "RomFilesEntityModel.h"
-#import "DiskFilesEntityModel.h"
-#import "EmulatorsEntityModel.h"
+#import "RelationshipVirtualMachinesDiskFilesModel.h"
+#import "VirtualMachinesModel.h"
+#import "RomFilesModel.h"
+#import "DiskFilesModel.h"
+#import "EmulatorsModel.h"
 #import "EmulatorService.h"
 #import "MacintoshModelService.h"
 #import "EmulatorService.h"
@@ -93,7 +93,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @method      virtualMachine:
  * @abstract    Manual getter.
  */
-- (VirtualMachinesEntityModel *)virtualMachine {
+- (VirtualMachinesModel *)virtualMachine {
     return virtualMachine;
 }
 
@@ -111,7 +111,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @method      setVirtualMachine:
  * @abstract    Manual setter.
  */
-- (void)setVirtualMachine:(VirtualMachinesEntityModel *)value {
+- (void)setVirtualMachine:(VirtualMachinesModel *)value {
     virtualMachine = value;
 }
 
@@ -341,9 +341,9 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     // Filter:
     if ( [currentSelectedDrives count] > 0 ) {
-        for (DiskFilesEntityModel * currentDrive in currentSelectedDrives) {
+        for (DiskFilesModel * currentDrive in currentSelectedDrives) {
             allowed = YES;
-            for (RelationshipVirtualMachinesDiskFilesEntityModel * oldDriveRelationship in oldDriveRelationships) {
+            for (RelationshipVirtualMachinesDiskFilesModel * oldDriveRelationship in oldDriveRelationships) {
                 if ([[currentDrive filePath] isEqual:[[oldDriveRelationship diskFile] filePath]]) {
                     allowed = NO;
                 }
@@ -359,7 +359,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     for (int i = 0; i < [selectedDrives count]; i++) {
         // Create new relationship.
-        RelationshipVirtualMachinesDiskFilesEntityModel * newDriveRelationship = [
+        RelationshipVirtualMachinesDiskFilesModel * newDriveRelationship = [
             NSEntityDescription
                 insertNewObjectForEntityForName:@"RelationshipVirtualMachinesDiskFiles"
                          inManagedObjectContext:managedObjectContext
@@ -419,7 +419,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  */
 - (IBAction)circleUsedDriveType:(id)sender {
     NSArray * selectedDrives = [usedDisksController selectedObjects];
-    DiskFilesEntityModel * currentDrive = [[selectedDrives objectAtIndex:0] diskFile];
+    DiskFilesModel * currentDrive = [[selectedDrives objectAtIndex:0] diskFile];
     int currentType = [[currentDrive type] intValue];
     int nextType    = currentType == 3 ? 1 : currentType + 1;
     [currentDrive changeType:nextType];
@@ -572,7 +572,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             ] autorelease];
             if ([selectedFiles count] == 1) {
                 DDLogVerbose(@"Selected files: %@", selectedFiles);
-                RomFilesEntityModel * currentRom = [
+                RomFilesModel * currentRom = [
                     RomModelObject
                     parseSingleRomFileAndSave:[[selectedFiles objectAtIndex:0] path]
                               inObjectContext:managedObjectContext
@@ -611,7 +611,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             ] autorelease];
             if ([selectedFiles count] == 1) {
                 DDLogVerbose(@"Selected files: %@", selectedFiles);
-                EmulatorsEntityModel * addedEmulator = [emulatorsModelObject parseEmulator:[[selectedFiles objectAtIndex:0] path]];
+                EmulatorsModel * addedEmulator = [emulatorsModelObject parseEmulator:[[selectedFiles objectAtIndex:0] path]];
                 if (addedEmulator != nil) {
                     [virtualMachine setEmulator:addedEmulator];
                 }
@@ -701,7 +701,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     int counter = 0;
     int emulatorInUse = -1;
     
-    for (EmulatorsEntityModel * emulator in emulators) {
+    for (EmulatorsModel * emulator in emulators) {
 
         NSDictionary * thisEmulator = [
             [NSDictionary alloc] initWithObjectsAndKeys:
@@ -848,7 +848,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @method      initWithVirtualMachine:inManagedObjectContext:
  * @abstract    Init method.
  */
-- (id)initWithVirtualMachine:(VirtualMachinesEntityModel *)aVirtualMachine
+- (id)initWithVirtualMachine:(VirtualMachinesModel *)aVirtualMachine
       inManagedObjectContext:(NSManagedObjectContext *)theManagedObjectContext {
     
     //----------------------------------------------------------

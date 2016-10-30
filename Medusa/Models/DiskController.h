@@ -32,10 +32,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class DiskFilesEntityModel, VirtualMachinesEntityModel;
+@class DiskFilesModel, VirtualMachinesModel;
 
 @interface DiskController : NSObject {
-    DiskFilesEntityModel * currentDriveObject;
+    DiskFilesModel * currentDriveObject;
     NSString * fileName;
     NSUInteger diskFormat;
     NSUInteger diskSize;
@@ -45,7 +45,7 @@
     BOOL bootable;
 }
 
-@property (readonly, strong, nonatomic) DiskFilesEntityModel * currentDriveObject;
+@property (readonly, strong, nonatomic) DiskFilesModel * currentDriveObject;
 
 - (id)parseSingleDriveFileAndSave:(NSString *)filePath inObjectContext:(NSManagedObjectContext *)currentContext;
 - (void)parseDriveFileAndSave:(NSString *)filePath;

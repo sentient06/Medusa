@@ -1,5 +1,5 @@
 //
-//  VirtualMachinesEntityModel.m
+//  VirtualMachinesModel.m
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 12/06/2012.
@@ -30,13 +30,13 @@
 //
 //------------------------------------------------------------------------------
 
-#import "VirtualMachinesEntityModel.h"
-#import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-#import "RomFilesEntityModel.h"
-#import "EmulatorsEntityModel.h"
+#import "VirtualMachinesModel.h"
+#import "RelationshipVirtualMachinesDiskFilesModel.h"
+#import "RomFilesModel.h"
+#import "EmulatorsModel.h"
 #import "EmulatorService.h"
 
-@implementation VirtualMachinesEntityModel
+@implementation VirtualMachinesModel
 
 @dynamic name;
 @dynamic uniqueName;

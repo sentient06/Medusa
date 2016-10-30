@@ -45,7 +45,7 @@ enum newVirtualMachineIdentifiers {
 
 @class AssetsWindowController;          //Assets Window
 @class PreferencesWindowController;     //Preferences Window
-@class VirtualMachinesEntityModel;
+@class VirtualMachinesModel;
 
 /*!
  * @class       AppDelegate:
@@ -176,11 +176,11 @@ enum newVirtualMachineIdentifiers {
 
 - (IBAction)savePreferencesFile:(id)sender;
 - (IBAction)openPreferencesFileFolder:(id)sender;
-- (IBAction)stopEmulator:(VirtualMachinesEntityModel *)virtualMachine;
+- (IBAction)stopEmulator:(VirtualMachinesModel *)virtualMachine;
 - (IBAction)killEmulator:(id)sender;
-- (IBAction)run:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender;
+- (IBAction)run:(VirtualMachinesModel *)virtualMachine andSender:(id)sender;
 - (IBAction)showInformationWindow:(id)sender;
-- (IBAction)toggleEmulator:(VirtualMachinesEntityModel *)virtualMachine andSender:(id)sender;
+- (IBAction)toggleEmulator:(VirtualMachinesModel *)virtualMachine andSender:(id)sender;
 - (IBAction)toggleVirtualMachine:(id)sender;
 
 - (void)performCleanUp;

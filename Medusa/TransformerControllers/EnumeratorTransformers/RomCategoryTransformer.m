@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "RomCategoryTransformer.h"
-#import "RomFilesEntityModel.h"
+#import "RomFilesModel.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger

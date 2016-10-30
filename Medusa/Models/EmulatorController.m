@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "EmulatorController.h"
-#import "EmulatorsEntityModel.h"
+#import "EmulatorsModel.h"
 #import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
@@ -299,7 +299,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         } else {
             
             //Sets a new emulator object.
-            EmulatorsEntityModel * newEmulatorObject = [
+            EmulatorsModel * newEmulatorObject = [
                 NSEntityDescription
                     insertNewObjectForEntityForName:@"Emulators"
                              inManagedObjectContext:managedObjectContext
