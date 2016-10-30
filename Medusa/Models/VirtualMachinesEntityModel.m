@@ -34,7 +34,7 @@
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
 #import "RomFilesEntityModel.h"
 #import "EmulatorsEntityModel.h"
-#import "EmulatorModel.h"
+#import "EmulatorService.h"
 
 @implementation VirtualMachinesEntityModel
 
@@ -159,12 +159,12 @@
 }
 
 - (BOOL)sheepShaverSetup {
-    int type = [EmulatorModel familyFromEmulatorType:[[[self romFile] emulatorType] intValue]];
+    int type = [EmulatorService familyFromEmulatorType:[[[self romFile] emulatorType] intValue]];
     return type == sheepshaverFamily;
 }
 
 - (BOOL)basilisk2Setup {
-    int type = [EmulatorModel familyFromEmulatorType:[[[self romFile] emulatorType] intValue]];
+    int type = [EmulatorService familyFromEmulatorType:[[[self romFile] emulatorType] intValue]];
     return type == basiliskFamily;
 }
 

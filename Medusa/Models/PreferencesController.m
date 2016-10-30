@@ -39,7 +39,7 @@
 #import "AppDelegate.h"
 #import "RomController.h"
 #import "DiskController.h"
-#import "EmulatorModel.h"
+#import "EmulatorService.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -948,7 +948,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
     // Fetches all emulators for this rom:
     NSArray * emulators = [
-        EmulatorModel fetchAllAvailableEmulatorsForEmulatorType:[
+        EmulatorService fetchAllAvailableEmulatorsForEmulatorType:[
             [[virtualMachine romFile] emulatorType] intValue
         ]
     ];

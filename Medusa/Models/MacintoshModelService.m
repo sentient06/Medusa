@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "MacintoshModelService.h"
-#import "EmulatorModel.h"
+#import "EmulatorService.h"
 #import "EmulatorsEntityModel.h"
 
 //------------------------------------------------------------------------------
@@ -163,7 +163,7 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
             boolForKey:@"useSimpleModel"
     ];
     
-    int emulatorFamily = [EmulatorModel familyFromEmulatorType: emulatorType];
+    int emulatorFamily = [EmulatorService familyFromEmulatorType: emulatorType];
     
     if (useSimpleModel && emulatorFamily == basiliskFamily) {
         allowedGestalt = [

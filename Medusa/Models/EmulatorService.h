@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface EmulatorModel : NSObject
+@interface EmulatorService : NSObject
 
 + (int)familyFromEmulatorType:(int)type;
 + (NSArray *)fetchAllAvailableEmulatorsForEmulatorType:(int)emulatorType;

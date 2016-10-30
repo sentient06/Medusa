@@ -12,7 +12,7 @@
 		4021088E1A8C9CCA00F811F9 /* MigrationAssistant.m in Sources */ = {isa = PBXBuildFile; fileRef = 4021088D1A8C9CCA00F811F9 /* MigrationAssistant.m */; };
 		402206621A91FD8300F0FC40 /* RomFilesMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 402206611A91FD8300F0FC40 /* RomFilesMigrationPolicy.m */; };
 		402206651A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 402206641A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m */; };
-		4028B65D19DAD57C008CD002 /* EmulatorModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028B65C19DAD57C008CD002 /* EmulatorModel.m */; };
+		4028B65D19DAD57C008CD002 /* EmulatorService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4028B65C19DAD57C008CD002 /* EmulatorService.m */; };
 		40394FDC19E7E653003893E1 /* ToggleButtonImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40394FDB19E7E653003893E1 /* ToggleButtonImageTransformer.m */; };
 		4047CFAF194B4C0A003847C7 /* BoolValueToRedColourTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4047CFAE194B4C0A003847C7 /* BoolValueToRedColourTransformer.m */; };
 		404E76A91A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */; };
@@ -201,8 +201,8 @@
 		402206611A91FD8300F0FC40 /* RomFilesMigrationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RomFilesMigrationPolicy.m; sourceTree = "<group>"; };
 		402206631A91FDB100F0FC40 /* EmulatorsMigrationPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmulatorsMigrationPolicy.h; sourceTree = "<group>"; };
 		402206641A91FDB100F0FC40 /* EmulatorsMigrationPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmulatorsMigrationPolicy.m; sourceTree = "<group>"; };
-		4028B65B19DAD57C008CD002 /* EmulatorModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorModel.h; path = Models/EmulatorModel.h; sourceTree = "<group>"; };
-		4028B65C19DAD57C008CD002 /* EmulatorModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorModel.m; path = Models/EmulatorModel.m; sourceTree = "<group>"; };
+		4028B65B19DAD57C008CD002 /* EmulatorService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmulatorService.h; path = Models/EmulatorService.h; sourceTree = "<group>"; };
+		4028B65C19DAD57C008CD002 /* EmulatorService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmulatorService.m; path = Models/EmulatorService.m; sourceTree = "<group>"; };
 		40394FDA19E7E653003893E1 /* ToggleButtonImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ToggleButtonImageTransformer.h; path = TransformerControllers/ImageTransformers/ToggleButtonImageTransformer.h; sourceTree = "<group>"; };
 		40394FDB19E7E653003893E1 /* ToggleButtonImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ToggleButtonImageTransformer.m; path = TransformerControllers/ImageTransformers/ToggleButtonImageTransformer.m; sourceTree = "<group>"; };
 		4047CFAD194B4C0A003847C7 /* BoolValueToRedColourTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToRedColourTransformer.h; path = TransformerControllers/BoolTransformers/BoolValueToRedColourTransformer.h; sourceTree = "<group>"; };
@@ -290,7 +290,7 @@
 		81147AFA1DC3FFCC00E4EFA9 /* CDClassic16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CDClassic16.png; sourceTree = "<group>"; };
 		81147AFB1DC3FFCC00E4EFA9 /* DKClassic16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DKClassic16.png; sourceTree = "<group>"; };
 		81147AFC1DC3FFCC00E4EFA9 /* HDClassic16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HDClassic16.png; sourceTree = "<group>"; };
-		811C770718369E7800C681C6 /* MacintoshModelService.h */ = {isa = PBXFileReference; fileEncoding = 4; name = MacintoshModelService.h; path = Models/MacintoshModelService.h; sourceTree = "<group>"; };
+		811C770718369E7800C681C6 /* MacintoshModelService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacintoshModelService.h; path = Models/MacintoshModelService.h; sourceTree = "<group>"; };
 		811C770818369E7800C681C6 /* MacintoshModelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MacintoshModelService.m; path = Models/MacintoshModelService.m; sourceTree = "<group>"; };
 		811EF6E91804B4160011DDBD /* KeyboardLayoutValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardLayoutValueTransformer.h; path = TransformerControllers/ImageTransformers/KeyboardLayoutValueTransformer.h; sourceTree = "<group>"; };
 		811EF6EA1804B4160011DDBD /* KeyboardLayoutValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardLayoutValueTransformer.m; path = TransformerControllers/ImageTransformers/KeyboardLayoutValueTransformer.m; sourceTree = "<group>"; };
@@ -655,15 +655,15 @@
 			path = DataModels;
 			sourceTree = "<group>";
 		};
-		811C770518369E3100C681C6 /* BackEndModels */ = {
+		811C770518369E3100C681C6 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				811C770718369E7800C681C6 /* MacintoshModelService.h */,
 				811C770818369E7800C681C6 /* MacintoshModelService.m */,
-				4028B65B19DAD57C008CD002 /* EmulatorModel.h */,
-				4028B65C19DAD57C008CD002 /* EmulatorModel.m */,
+				4028B65B19DAD57C008CD002 /* EmulatorService.h */,
+				4028B65C19DAD57C008CD002 /* EmulatorService.m */,
 			);
-			name = BackEndModels;
+			name = Services;
 			sourceTree = "<group>";
 		};
 		812AFB4B1833F54E00C1FF36 /* Categories */ = {
@@ -865,6 +865,7 @@
 				812AFB4B1833F54E00C1FF36 /* Categories */,
 				8168995717CE17AA00058B9F /* Resources */,
 				810E38451554414300949BE1 /* DataModel */,
+				811C770518369E3100C681C6 /* Services */,
 				818987D31538D41900A32B6A /* Models */,
 				81756F5D15347F3300FCBA8E /* Controllers */,
 				81756F5E15347F4A00FCBA8E /* Views */,
@@ -911,7 +912,6 @@
 		818987D31538D41900A32B6A /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				811C770518369E3100C681C6 /* BackEndModels */,
 				816F654915A19C1A00687FA2 /* HelpingModels */,
 				81E84DEA1565B1EF0002D4DA /* EntityModels */,
 			);
@@ -1331,7 +1331,7 @@
 				81A54CC217F0915900B1EFD0 /* ASIDataCompressor.m in Sources */,
 				81A54CC317F0915900B1EFD0 /* ASIDataDecompressor.m in Sources */,
 				81A54CC417F0915900B1EFD0 /* ASIDownloadCache.m in Sources */,
-				4028B65D19DAD57C008CD002 /* EmulatorModel.m in Sources */,
+				4028B65D19DAD57C008CD002 /* EmulatorService.m in Sources */,
 				81A54CC517F0915900B1EFD0 /* ASIFormDataRequest.m in Sources */,
 				81A54CC617F0915900B1EFD0 /* ASIHTTPRequest.m in Sources */,
 				405EDCB31945C71B00DA78CE /* FileManager.m in Sources */,

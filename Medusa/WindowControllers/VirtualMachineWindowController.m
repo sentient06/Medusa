@@ -45,9 +45,9 @@
 #import "RomFilesEntityModel.h"
 #import "DiskFilesEntityModel.h"
 #import "EmulatorsEntityModel.h"
-#import "EmulatorModel.h"
+#import "EmulatorService.h"
 #import "MacintoshModelService.h"
-#import "EmulatorModel.h"
+#import "EmulatorService.h"
 #import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
@@ -670,7 +670,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     
     // Fetches all emulators for this rom:
     NSArray * emulators = [
-        EmulatorModel fetchAllAvailableEmulatorsForEmulatorType:[
+        EmulatorService fetchAllAvailableEmulatorsForEmulatorType:[
             [[virtualMachine romFile] emulatorType] intValue
         ]
     ];
@@ -810,7 +810,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @method      updateEmulatorFamily:
  */
 - (void)updateEmulatorFamily {
-    int family = [EmulatorModel familyFromEmulatorType:[[[virtualMachine romFile] emulatorType] intValue]];
+    int family = [EmulatorService familyFromEmulatorType:[[[virtualMachine romFile] emulatorType] intValue]];
     if (family == sheepshaverFamily) {
         [self setSheepshaverSetup:YES];
     } else {
@@ -822,7 +822,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @method      updateProcessor:
  */
 - (void)updateProcessor {
-    int family = [EmulatorModel familyFromEmulatorType:[[[virtualMachine romFile] emulatorType] intValue]];
+    int family = [EmulatorService familyFromEmulatorType:[[[virtualMachine romFile] emulatorType] intValue]];
     int processor = [[virtualMachine processorType] intValue];
     if (family == sheepshaverFamily) {
         [virtualMachine setProcessorType:[NSNumber numberWithInt:PPC7400]];

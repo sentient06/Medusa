@@ -30,12 +30,12 @@
 //
 //------------------------------------------------------------------------------
 
-#import "EmulatorModel.h"
+#import "EmulatorService.h"
 #import "EmulatorsEntityModel.h"
 
 //------------------------------------------------------------------------------
 
-@implementation EmulatorModel
+@implementation EmulatorService
 
 + (int)familyFromEmulatorType:(int)type {
     switch (type) {
@@ -68,7 +68,7 @@
 
 + (NSArray *)fetchAllAvailableEmulatorsForEmulatorType:(int)emulatorType {
 
-    int emulatorFamily = [EmulatorModel familyFromEmulatorType:emulatorType];
+    int emulatorFamily = [EmulatorService familyFromEmulatorType:emulatorType];
     //----------------------------------------------------------------------
     // Core-data part:
 
