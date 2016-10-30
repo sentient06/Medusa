@@ -18,7 +18,7 @@
 		404E76A91A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */; };
 		404EC1B51A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */; };
 		404EC1B61A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel in Sources */ = {isa = PBXBuildFile; fileRef = 404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */; };
-		405EDCB31945C71B00DA78CE /* FileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* FileManager.m */; };
+		405EDCB31945C71B00DA78CE /* SystemFileService.m in Sources */ = {isa = PBXBuildFile; fileRef = 405EDCB21945C71B00DA78CE /* SystemFileService.m */; };
 		406E55A81A95233F00012DDD /* linenPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E55681A95233F00012DDD /* linenPattern.png */; };
 		406E55A91A95233F00012DDD /* ToggleOffDown.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556A1A95233F00012DDD /* ToggleOffDown.png */; };
 		406E55AA1A95233F00012DDD /* ToggleOffUp.png in Resources */ = {isa = PBXBuildFile; fileRef = 406E556B1A95233F00012DDD /* ToggleOffUp.png */; };
@@ -210,8 +210,8 @@
 		404E76A81A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel"; sourceTree = "<group>"; };
 		404EC1AA1A91E84900159F90 /* MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.1.0.8-1.2.0.1.xcmappingmodel"; sourceTree = "<group>"; };
 		404EC1AB1A91E84900159F90 /* MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcmappingmodel; path = "MappingModel-1.2.0.1-1.2.0.2.xcmappingmodel"; sourceTree = "<group>"; };
-		405EDCB11945C71B00DA78CE /* FileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManager.h; path = UtilitiesModels/FileManager.h; sourceTree = "<group>"; };
-		405EDCB21945C71B00DA78CE /* FileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManager.m; path = UtilitiesModels/FileManager.m; sourceTree = "<group>"; };
+		405EDCB11945C71B00DA78CE /* SystemFileService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SystemFileService.h; path = UtilitiesModels/SystemFileService.h; sourceTree = "<group>"; };
+		405EDCB21945C71B00DA78CE /* SystemFileService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SystemFileService.m; path = UtilitiesModels/SystemFileService.m; sourceTree = "<group>"; };
 		406E55681A95233F00012DDD /* linenPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = linenPattern.png; sourceTree = "<group>"; };
 		406E556A1A95233F00012DDD /* ToggleOffDown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOffDown.png; sourceTree = "<group>"; };
 		406E556B1A95233F00012DDD /* ToggleOffUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ToggleOffUp.png; sourceTree = "<group>"; };
@@ -316,7 +316,7 @@
 		8152D5E31DBFEA1900D7CAC4 /* boot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = boot.png; sourceTree = "<group>"; };
 		8152D5E71DBFEA7100D7CAC4 /* BoolValueToBootTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BoolValueToBootTransformer.h; path = TransformerControllers/ImageTransformers/BoolValueToBootTransformer.h; sourceTree = "<group>"; };
 		8152D5E81DBFEA7100D7CAC4 /* BoolValueToBootTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BoolValueToBootTransformer.m; path = TransformerControllers/ImageTransformers/BoolValueToBootTransformer.m; sourceTree = "<group>"; };
-		8158324C1DC6AAE800F09104 /* NSManagedObject+clone.h */ = {isa = PBXFileReference; fileEncoding = 4; name = "NSManagedObject+clone.h"; path = "UtilitiesModels/NSManagedObject+clone.h"; sourceTree = "<group>"; };
+		8158324C1DC6AAE800F09104 /* NSManagedObject+clone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+clone.h"; path = "UtilitiesModels/NSManagedObject+clone.h"; sourceTree = "<group>"; };
 		8158324D1DC6AAE800F09104 /* NSManagedObject+clone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+clone.m"; path = "UtilitiesModels/NSManagedObject+clone.m"; sourceTree = "<group>"; };
 		8159C78E154F1205001E43D4 /* DropRomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DropRomView.h; path = SubClasses/DropRomView.h; sourceTree = "<group>"; };
 		8159C78F154F1205001E43D4 /* DropRomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DropRomView.m; path = SubClasses/DropRomView.m; sourceTree = "<group>"; };
@@ -662,6 +662,8 @@
 				811C770818369E7800C681C6 /* MacintoshModelService.m */,
 				4028B65B19DAD57C008CD002 /* EmulatorService.h */,
 				4028B65C19DAD57C008CD002 /* EmulatorService.m */,
+				405EDCB11945C71B00DA78CE /* SystemFileService.h */,
+				405EDCB21945C71B00DA78CE /* SystemFileService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -793,8 +795,6 @@
 		816F654915A19C1A00687FA2 /* HelpingModels */ = {
 			isa = PBXGroup;
 			children = (
-				405EDCB11945C71B00DA78CE /* FileManager.h */,
-				405EDCB21945C71B00DA78CE /* FileManager.m */,
 			);
 			name = HelpingModels;
 			sourceTree = "<group>";
@@ -1333,7 +1333,7 @@
 				4028B65D19DAD57C008CD002 /* EmulatorService.m in Sources */,
 				81A54CC517F0915900B1EFD0 /* ASIFormDataRequest.m in Sources */,
 				81A54CC617F0915900B1EFD0 /* ASIHTTPRequest.m in Sources */,
-				405EDCB31945C71B00DA78CE /* FileManager.m in Sources */,
+				405EDCB31945C71B00DA78CE /* SystemFileService.m in Sources */,
 				81A54CC717F0915900B1EFD0 /* ASIInputStream.m in Sources */,
 				81A54CC817F0915900B1EFD0 /* ASINetworkQueue.m in Sources */,
 				404E76A91A935BBC00240E35 /* MappingModel-1.2.0.2-1.2.0.3.xcmappingmodel in Sources */,

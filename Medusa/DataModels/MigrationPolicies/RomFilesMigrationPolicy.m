@@ -32,7 +32,7 @@
 
 #import "RomFilesMigrationPolicy.h"
 #import "EmulatorsEntityModel.h"
-#import "FileManager.h"
+#import "SystemFileService.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -72,12 +72,12 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     // Path from string to alias:
     NSString * oldPath     = [sInstance valueForKey:@"filePath"];
     NSString * escapedPath = [oldPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSData   * fileAlias   = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
+    NSData   * fileAlias   = [SystemFileService createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
     
     [newObject setValue:fileAlias forKey:@"fileAlias"];
 
     // Validity of file:
-    NSString * fileCheck = [FileManager resolveAlias:fileAlias];
+    NSString * fileCheck = [SystemFileService resolveAlias:fileAlias];
     if ([fileCheck isEqualTo:nil]) {
         [newObject setValue:[NSNumber numberWithBool:YES] forKey:@"fileMissing"];
         DDLogWarn(@"Path: %@ (missing)", oldPath);

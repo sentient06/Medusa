@@ -34,7 +34,7 @@
 #import "RomFilesEntityModel.h" //Model that handles all Rom-Files-Entity-related objects.
 #import "EmulatorsEntityModel.h"
 #import "NSData+MD5.h"
-#import "FileManager.h"
+#import "SystemFileService.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -137,7 +137,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             NSError * error;
             
             NSString * escapedPath = [filePath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSData   * fileAlias   = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
+            NSData   * fileAlias   = [SystemFileService createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
             
             NSFetchRequest      * request   = [[NSFetchRequest alloc] init];
             NSEntityDescription * entity    = [ NSEntityDescription entityForName:@"RomFiles" inManagedObjectContext:currentContext];

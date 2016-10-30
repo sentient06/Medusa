@@ -33,7 +33,7 @@
 #import "RomFilesEntityModel.h"
 #import "VirtualMachinesEntityModel.h"
 #import "EmulatorsEntityModel.h"
-#import "FileManager.h"
+#import "SystemFileService.h"
 
 @implementation RomFilesEntityModel
 
@@ -71,7 +71,7 @@
 }
 
 - (NSString *)filePath {
-    NSString * resolvedFilePath = [FileManager resolveAlias:[self fileAlias]];
+    NSString * resolvedFilePath = [SystemFileService resolveAlias:[self fileAlias]];
     if (resolvedFilePath == nil)
         [self setFileMissing:[NSNumber numberWithBool:YES]];
     return resolvedFilePath;

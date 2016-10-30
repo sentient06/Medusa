@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "EmulatorsEntityModel.h"
-#import "FileManager.h"
+#import "SystemFileService.h"
 
 @implementation EmulatorsEntityModel
 
@@ -53,7 +53,7 @@
         alias = [self fixAliasAndReturn];
     else
         alias = [self appAlias];
-    NSString * resolvedFilePath = [FileManager resolveAlias:alias];
+    NSString * resolvedFilePath = [SystemFileService resolveAlias:alias];
     NSLog(@"App alias: %@", [self appAlias]);
     NSLog(@"Missing: %@", resolvedFilePath == nil ? @"YES" : @"NO");
     if (resolvedFilePath == nil)
@@ -66,7 +66,7 @@
     // Path from string to alias:
     NSString * oldPath     = [self readablePath];
     NSString * escapedPath = [oldPath stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSData   * fileAlias   = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
+    NSData   * fileAlias   = [SystemFileService createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
     [self setAppAlias:fileAlias];
     return [self appAlias];
 }

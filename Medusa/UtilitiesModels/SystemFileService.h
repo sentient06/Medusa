@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface FileManager : NSObject
+@interface SystemFileService : NSObject
 
 + (NSData *)createBookmarkFromUrl:(NSURL *)filePath;
 + (void)resolveBookmarksInObjectContext:(NSManagedObjectContext *)currentContext;

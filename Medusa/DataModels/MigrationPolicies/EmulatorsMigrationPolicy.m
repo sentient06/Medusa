@@ -32,7 +32,7 @@
 
 #import "EmulatorsMigrationPolicy.h"
 //import "EmulatorsEntityModel.h"
-#import "FileManager.h"
+#import "SystemFileService.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -84,11 +84,11 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         @catch (NSException * e) {
             DDLogVerbose(@" | No key for appAlias");
             NSString * escapedPath = [[sInstance valueForKey:@"readablePath"] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-            NSData * fileAlias = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
+            NSData * fileAlias = [SystemFileService createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
             [newObject setValue:fileAlias forKey:@"appAlias"];
             
             @try {
-                NSString * resolvedFilePath = [FileManager resolveAlias:fileAlias];
+                NSString * resolvedFilePath = [SystemFileService resolveAlias:fileAlias];
                 if (resolvedFilePath == nil)
                     [newObject setValue:[NSNumber numberWithBool:YES] forKey:@"appMissing"];
                 else

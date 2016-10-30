@@ -33,7 +33,7 @@
 #import "MigrationAssistant.h"
 #import "AppDelegate.h"
 #import "EmulatorsEntityModel.h"
-#import "FileManager.h"
+#import "SystemFileService.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -80,7 +80,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
             DDLogVerbose(@" | Path: %@", [dataElement readablePath]);
             NSString * escapedPath = [[dataElement readablePath] stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 //            DDLogVerbose(@"Escaped path: %@", escapedPath);
-            NSData * fileAlias = [FileManager createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
+            NSData * fileAlias = [SystemFileService createBookmarkFromUrl:[NSURL URLWithString:escapedPath]];
             [dataElement setAppAlias:fileAlias];
         }
         
@@ -104,7 +104,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         for (id dataElement in emulatorsResult) {
 //            DDLogVerbose(@"Element: %@", dataElement);
             DDLogVerbose(@" | Name: %@", [dataElement name]);
-            NSString * resolvedFilePath = [FileManager resolveAlias:[dataElement appAlias]];
+            NSString * resolvedFilePath = [SystemFileService resolveAlias:[dataElement appAlias]];
             DDLogVerbose(@" | Resolved path: %@", resolvedFilePath==nil? @"yes" : @"no");
             if (resolvedFilePath == nil)
                 [dataElement setAppMissing:[NSNumber numberWithBool:YES]];

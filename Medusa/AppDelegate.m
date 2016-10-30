@@ -51,7 +51,7 @@
 #import "PreferencesController.h"
 #import "VirtualMachineController.h"
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-#import "FileManager.h"
+#import "SystemFileService.h"
 
 // Enums and structs
 #import "EmulatorsEntityModel.h"
@@ -511,7 +511,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     RelationshipVirtualMachinesDiskFilesEntityModel * object;
     while (object = [rowEnumerator nextObject]) {
         DiskFilesEntityModel * driveObject = [object diskFile];
-        BOOL busy = [FileManager pidsAccessingPath:[driveObject filePath]];
+        BOOL busy = [SystemFileService pidsAccessingPath:[driveObject filePath]];
         DDLogInfo(@"Disk busy: %@", busy ? @"yes" : @"no");
         if (busy) {
             busyDisks++;
@@ -748,7 +748,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     ];
     if (leaveXPRAM == NO)
         if ([virtualMachineTasks count] == 0)
-            [FileManager deleteXPRAMFile];
+            [SystemFileService deleteXPRAMFile];
 //    [self resetButtons];
     [virtualMachinesList reloadData];
 }
@@ -847,7 +847,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     //DDLogVerbose(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
     
     // Resolves all bookmarks:
-    [FileManager resolveBookmarksInObjectContext:[self managedObjectContext]];
+    [SystemFileService resolveBookmarksInObjectContext:[self managedObjectContext]];
     
     //Preferences management:
     BOOL haveSharePath = [[NSUserDefaults standardUserDefaults] boolForKey:@"haveSharePath"];

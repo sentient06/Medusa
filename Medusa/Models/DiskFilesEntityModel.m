@@ -32,7 +32,7 @@
 
 #import "DiskFilesEntityModel.h"
 #import "RelationshipVirtualMachinesDiskFilesEntityModel.h"
-#import "FileManager.h"
+#import "SystemFileService.h"
 
 @implementation DiskFilesEntityModel
 
@@ -57,7 +57,7 @@
 }
 
 - (NSString *)filePath {
-    return [FileManager resolveAlias:[self fileAlias]];
+    return [SystemFileService resolveAlias:[self fileAlias]];
 }
 
 @end

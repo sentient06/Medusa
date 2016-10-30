@@ -31,7 +31,7 @@
 //------------------------------------------------------------------------------
 
 #import "PreferencesWindowController.h"
-#import "FileManager.h"
+#import "SystemFileService.h"
 #import "AppDelegate.h"
 
 //------------------------------------------------------------------------------
@@ -211,7 +211,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  */
 - (IBAction)deleteXPRAM:(id)sender {
     DDLogVerbose(@"XPRAM triggered");
-    [FileManager deleteXPRAMFile];
+    [SystemFileService deleteXPRAMFile];
 }
 
 /*!

@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "FileManager.h"
+#import "SystemFileService.h"
 #import "RomFilesEntityModel.h"
 #import "AppDelegate.h"
 #import <libproc.h>
@@ -43,7 +43,7 @@
 static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
-@implementation FileManager
+@implementation SystemFileService
 
 + (NSData *)createBookmarkFromUrl:(NSURL *)filePath {
     FSRef fsFile, fsOriginal;
