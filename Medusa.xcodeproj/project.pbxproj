@@ -88,7 +88,7 @@
 		81147AFD1DC3FFCC00E4EFA9 /* CDClassic16.png in Resources */ = {isa = PBXBuildFile; fileRef = 81147AFA1DC3FFCC00E4EFA9 /* CDClassic16.png */; };
 		81147AFE1DC3FFCC00E4EFA9 /* DKClassic16.png in Resources */ = {isa = PBXBuildFile; fileRef = 81147AFB1DC3FFCC00E4EFA9 /* DKClassic16.png */; };
 		81147AFF1DC3FFCC00E4EFA9 /* HDClassic16.png in Resources */ = {isa = PBXBuildFile; fileRef = 81147AFC1DC3FFCC00E4EFA9 /* HDClassic16.png */; };
-		811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 811C770818369E7800C681C6 /* MacintoshModelModel.m */; };
+		811C770918369E7800C681C6 /* MacintoshModelService.m in Sources */ = {isa = PBXBuildFile; fileRef = 811C770818369E7800C681C6 /* MacintoshModelService.m */; };
 		811EF6EB1804B4160011DDBD /* KeyboardLayoutValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 811EF6EA1804B4160011DDBD /* KeyboardLayoutValueTransformer.m */; };
 		812A83A217EF5FF100B355BD /* DiskController.m in Sources */ = {isa = PBXBuildFile; fileRef = 812A83A117EF5FF000B355BD /* DiskController.m */; };
 		812AFB4E1833F57600C1FF36 /* NSData+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 812AFB4D1833F57600C1FF36 /* NSData+MD5.m */; };
@@ -290,8 +290,8 @@
 		81147AFA1DC3FFCC00E4EFA9 /* CDClassic16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CDClassic16.png; sourceTree = "<group>"; };
 		81147AFB1DC3FFCC00E4EFA9 /* DKClassic16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DKClassic16.png; sourceTree = "<group>"; };
 		81147AFC1DC3FFCC00E4EFA9 /* HDClassic16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HDClassic16.png; sourceTree = "<group>"; };
-		811C770718369E7800C681C6 /* MacintoshModelModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MacintoshModelModel.h; path = Models/MacintoshModelModel.h; sourceTree = "<group>"; };
-		811C770818369E7800C681C6 /* MacintoshModelModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MacintoshModelModel.m; path = Models/MacintoshModelModel.m; sourceTree = "<group>"; };
+		811C770718369E7800C681C6 /* MacintoshModelService.h */ = {isa = PBXFileReference; fileEncoding = 4; name = MacintoshModelService.h; path = Models/MacintoshModelService.h; sourceTree = "<group>"; };
+		811C770818369E7800C681C6 /* MacintoshModelService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MacintoshModelService.m; path = Models/MacintoshModelService.m; sourceTree = "<group>"; };
 		811EF6E91804B4160011DDBD /* KeyboardLayoutValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = KeyboardLayoutValueTransformer.h; path = TransformerControllers/ImageTransformers/KeyboardLayoutValueTransformer.h; sourceTree = "<group>"; };
 		811EF6EA1804B4160011DDBD /* KeyboardLayoutValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = KeyboardLayoutValueTransformer.m; path = TransformerControllers/ImageTransformers/KeyboardLayoutValueTransformer.m; sourceTree = "<group>"; };
 		812A83A017EF5FF000B355BD /* DiskController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiskController.h; path = Models/DiskController.h; sourceTree = "<group>"; };
@@ -658,8 +658,8 @@
 		811C770518369E3100C681C6 /* BackEndModels */ = {
 			isa = PBXGroup;
 			children = (
-				811C770718369E7800C681C6 /* MacintoshModelModel.h */,
-				811C770818369E7800C681C6 /* MacintoshModelModel.m */,
+				811C770718369E7800C681C6 /* MacintoshModelService.h */,
+				811C770818369E7800C681C6 /* MacintoshModelService.m */,
 				4028B65B19DAD57C008CD002 /* EmulatorModel.h */,
 				4028B65C19DAD57C008CD002 /* EmulatorModel.m */,
 			);
@@ -1360,7 +1360,7 @@
 				811EF6EB1804B4160011DDBD /* KeyboardLayoutValueTransformer.m in Sources */,
 				8139BB4D1826BCA0003BAD98 /* HelpDocumentationController.m in Sources */,
 				812AFB4E1833F57600C1FF36 /* NSData+MD5.m in Sources */,
-				811C770918369E7800C681C6 /* MacintoshModelModel.m in Sources */,
+				811C770918369E7800C681C6 /* MacintoshModelService.m in Sources */,
 				81A3A7A51A9E3C9B00630C3D /* MappingModel-1.2.0.3-1.2.0.4.xcmappingmodel in Sources */,
 				8138246C1A9E457700D629C7 /* MedusaTextField.m in Sources */,
 				81CADFDC1A9FBD40001BE96E /* TextFieldTransformer.m in Sources */,

@@ -391,7 +391,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
     ];
    
     NSWorkspace * ws = [NSWorkspace sharedWorkspace];
-    [ws selectFile:preferencesFilePath inFileViewerRootedAtPath:nil];
+    [ws selectFile:preferencesFilePath inFileViewerRootedAtPath:@""];
     [preferencesFilePath release];
 }
 

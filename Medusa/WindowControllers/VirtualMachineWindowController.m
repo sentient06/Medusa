@@ -46,7 +46,7 @@
 #import "DiskFilesEntityModel.h"
 #import "EmulatorsEntityModel.h"
 #import "EmulatorModel.h"
-#import "MacintoshModelModel.h"
+#import "MacintoshModelService.h"
 #import "EmulatorModel.h"
 #import "AppDelegate.h"
 
@@ -750,7 +750,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
     NSDictionary * allModels = [
         [NSDictionary alloc] initWithDictionary:
-            [MacintoshModelModel
+            [MacintoshModelService
                 fetchAllAvailableModelsForChecksum:[[virtualMachine romFile] checksum]
                                        andEmulator:emulatorType
             ]

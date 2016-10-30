@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "MacintoshModelModel.h"
+#import "MacintoshModelService.h"
 #import "EmulatorModel.h"
 #import "EmulatorsEntityModel.h"
 
@@ -42,7 +42,7 @@
 static const int ddLogLevel = LOG_LEVEL_OFF;
 //------------------------------------------------------------------------------
 
-@implementation MacintoshModelModel
+@implementation MacintoshModelService
 @synthesize modelName, modelId;
 
 - (void)dealloc {
@@ -496,15 +496,6 @@ static const int ddLogLevel = LOG_LEVEL_OFF;
     }
     
     return allowedGestalt;
-}
-
-- (id)initWithName:(NSString *)newName AndModelId:(NSNumber *)newModelId {
-    self = [super init];
-    if (self) {
-        modelName = newName;
-        modelId = newModelId;
-    }
-    return self;
 }
 
 @end

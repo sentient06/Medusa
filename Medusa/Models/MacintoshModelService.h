@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MacintoshModelModel : NSObject {
+@interface MacintoshModelService : NSObject {
     NSString * modelName;
     NSNumber * modelId;
 }
@@ -41,6 +41,5 @@
 
 + (NSDictionary *)fetchAllAvailableModelsForEmulatorType:(int)emulatorType;
 + (NSDictionary *)fetchAllAvailableModelsForChecksum:(NSString *)checksum andEmulator:(int)emulatorType;
-- (id)initWithName:(NSString *)newName AndModelId:(NSNumber *)newModelId;
 
 @end
