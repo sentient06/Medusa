@@ -37,7 +37,7 @@
 //import "PreferencesController.h"           // Object to handle coredata information.
 #import "RomController.h"
 #import "EmulatorController.h"
-#import "HelpDocumentationController.h"
+#import "HelpDocumentationService.h"
 
 // Models
 #import "RelationshipVirtualMachinesDiskFilesModel.h"
@@ -488,7 +488,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  * @abstract    Saves all preferences in current object context.
  */
 - (IBAction)openHelpAnchor:(id)sender { //emulators
-    [HelpDocumentationController openHelpAnchor:[sender helpAnchor]];
+    [HelpDocumentationService openHelpAnchor:[sender helpAnchor]];
 }
 
 #if ENVIRONMENT_DEV

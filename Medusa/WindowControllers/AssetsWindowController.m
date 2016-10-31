@@ -39,7 +39,7 @@
 #import "RomController.h"
 #import "DiskController.h"
 #import "EmulatorsModel.h"
-#import "HelpDocumentationController.h"
+#import "HelpDocumentationService.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -334,7 +334,7 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
 
 
 - (IBAction)openHelpAnchor:(id)sender { //emulators
-    [HelpDocumentationController openHelpAnchor:[sender helpAnchor]];
+    [HelpDocumentationService openHelpAnchor:[sender helpAnchor]];
 }
 
 //------------------------------------------------------------------------------

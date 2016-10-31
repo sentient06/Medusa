@@ -1,5 +1,5 @@
 //
-//  HelpDocumentationController.m
+//  HelpDocumentationService.m
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 03/11/2013.
@@ -30,7 +30,7 @@
 //
 //------------------------------------------------------------------------------
 
-#import "HelpDocumentationController.h"
+#import "HelpDocumentationService.h"
 
 //------------------------------------------------------------------------------
 // Lumberjack logger
@@ -40,7 +40,7 @@
 static const int ddLogLevel = LOG_LEVEL_INFO;
 //------------------------------------------------------------------------------
 
-@implementation HelpDocumentationController
+@implementation HelpDocumentationService
 
 + (void)openHelpAnchor:(NSString *)anchor {
     NSString * book = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleHelpBookName"];

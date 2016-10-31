@@ -1,5 +1,5 @@
 //
-//  HelpDocumentationController.h
+//  HelpDocumentationService.h
 //  Medusa
 //
 //  Created by Giancarlo Mariot on 03/11/2013.
@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface HelpDocumentationController : NSObject
+@interface HelpDocumentationService : NSObject
 
 + (void)openHelpAnchor:(NSString *)anchor;
 
