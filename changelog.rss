@@ -150,5 +150,42 @@
         sparkle:shortVersionString="1.2.0RC4"
       />
     </item>
+      <item>
+      <title>Version 1.2.0RC5</title>
+      <description>
+        <![CDATA[
+          <div style="font-family: 'Helvetica'; font-size: 0.9em;">
+            <h1>Medusa 1.2.0RC5</h1>
+            <p>
+                This is the Release Candidate 5. It should be backwards compatible with v1.2RC4, v1.2RC3, v1.2RC2, v1.2RC1 and v1.2B3.
+            </p>
+
+            <h2>New features</h2>
+            <ul>
+                <li>In the disk settings for the virtual machine, the disk list now shows whether the disk is bootable or not</li>
+                <li>In the disk settings for the virtual machine, the disk now can be set as diskette or CD-ROM to address issues with media that boots only as CDs or diskettes like some installer disks</li>
+                <li>In the assets manager, disks tab, a drop-down list was added to flag the selected disk as a hard drive, diskette or CD-ROM; the changes propagate to all virtual machines as they are inherent to that disk image</li>
+                <li>In the assets manager, disks tab, a checkbox is now available to manually override the bootable flag; the old bootable flag defines if Medusa found a bootable header, which is a problem in most ISO 9660 disks</li>
+                <li>There are icons to all files listed in the assets manager</li>
+            </ul>
+
+            <h2>Under the hood</h2>
+            <ul>
+                <li>Some issues with valid disk images failing to be imported were fixed</li>
+                <li>Fixed bug that would mix up the "go to file" (magnifier) buttons from the ROM files tab and the Disk files tab</li>
+            </ul>
+          </div>
+        ]]>
+      </description>
+      <pubDate>Tue, 1 nov 2016 18:55:00 +0000</pubDate>
+      <enclosure
+                               url="https://github.com/sentient06/Medusa/releases/download/v1.2.0rc5/Medusa.1.2.0rc5.dmg"
+                              type="application/octet-stream"
+                            length="2860631"
+                   sparkle:version="7"
+              sparkle:dsaSignature="MC4CFQCHLkVoWgevXXBpEuD5np3iR27GywIVAI6KcjstJbmNCSYP7hmtOPa7Y2sF"
+        sparkle:shortVersionString="1.2.0RC5"
+      />
+    </item>
   </channel>
 </rss>
