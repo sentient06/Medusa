@@ -150,7 +150,7 @@
         sparkle:shortVersionString="1.2.0RC4"
       />
     </item>
-      <item>
+    <item>
       <title>Version 1.2.0RC5</title>
       <description>
         <![CDATA[
@@ -177,7 +177,7 @@
           </div>
         ]]>
       </description>
-      <pubDate>Tue, 1 nov 2016 18:55:00 +0000</pubDate>
+      <pubDate>Tue, 01 nov 2016 18:55:00 +0000</pubDate>
       <enclosure
                                url="https://github.com/sentient06/Medusa/releases/download/v1.2.0rc5/Medusa.1.2.0rc5.dmg"
                               type="application/octet-stream"
