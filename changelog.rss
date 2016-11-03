@@ -182,7 +182,7 @@
                                url="https://github.com/sentient06/Medusa/releases/download/v1.2.0rc5/Medusa.1.2.0rc5.dmg"
                               type="application/octet-stream"
                             length="2860631"
-                   sparkle:version="7"
+                   sparkle:version="8"
               sparkle:dsaSignature="MC4CFQCHLkVoWgevXXBpEuD5np3iR27GywIVAI6KcjstJbmNCSYP7hmtOPa7Y2sF"
         sparkle:shortVersionString="1.2.0RC5"
       />
