@@ -41,7 +41,7 @@
 #import "DDLog.h"
 #import "DDASLLogger.h"
 #import "DDTTYLogger.h"
-static const int ddLogLevel = LOG_LEVEL_INFO;
+static const int ddLogLevel = LOG_LEVEL_VERBOSE;
 //------------------------------------------------------------------------------
 
 @implementation RomController
@@ -53,8 +53,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
  */
 + (BOOL)validateFile:(NSString *)filePath {
     
-    if (![[[filePath pathExtension] lowercaseString] isEqualTo:@"rom"])
-        return NO;
+//    if (![[[filePath pathExtension] lowercaseString] isEqualTo:@"rom"])
+//        return NO;
     
     NSString * kindSnowLeop = nil;
     NSURL    * url = [NSURL fileURLWithPath:[filePath stringByExpandingTildeInPath]];

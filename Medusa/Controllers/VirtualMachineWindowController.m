@@ -684,8 +684,8 @@ static const int ddLogLevel = LOG_LEVEL_INFO;
         DDLogVerbose(@"no emulators found");
         NSDictionary * thisEmulator = [
             [NSDictionary alloc] initWithObjectsAndKeys:
-            nil, @"name"
-            , nil, @"key"
+              @"", @"name"
+            , @"", @"key"
             , nil
         ];
         [availableEmulatorsController addObject:thisEmulator];
